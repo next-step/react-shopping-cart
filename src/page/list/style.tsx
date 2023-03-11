@@ -31,3 +31,8 @@ export const Title = styled("span", {
 export const Price = styled("span", {
 
 });
+
+export const Image = styled("img", {
+  width: "283px",
+  height: "283px",
+});
