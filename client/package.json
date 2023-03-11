@@ -6,8 +6,8 @@
     "@emotion/css": "^11.10.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
     "react-router-dom": "^6.8.1",
+    "react-scripts": "5.0.1",
     "web-vitals": "^2.1.0"
   },
   "devDependencies": {
@@ -18,6 +18,7 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "msw": "^1.1.0",
     "typescript": "^4.4.2"
   },
   "scripts": {
@@ -43,5 +44,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
