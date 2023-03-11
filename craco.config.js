@@ -2,6 +2,9 @@
 const path = require("path");
 
 module.exports = {
+  babel: {
+    plugins: ["babel-plugin-styled-components"],
+  },
   webpack: {
     alias: {
       "@": path.resolve(__dirname, "src/"),
