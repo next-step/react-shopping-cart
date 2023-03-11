@@ -1,12 +1,13 @@
-import React from "react";
-import CartPage from "./page/cart";
 import Header from "./components/header/header";
 import "../src/css/reset.css";
+import Nav from "./components/nav/nav";
+import ProductListPage from "./page/list/list";
 function App() {
   return (
     <div>
       <Header></Header>
-      <CartPage></CartPage>
+      <Nav/>
+      <ProductListPage />
     </div>
   );
 }
