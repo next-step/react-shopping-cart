@@ -20,3 +20,7 @@ body {
   width: 100%;
   border: 1px solid #aaaaaa;
 }
+
+a {
+  cursor: pointer;
+}
