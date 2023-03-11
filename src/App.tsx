@@ -1,13 +1,16 @@
 import Header from "./components/header/header";
-import "../src/css/reset.css";
 import Nav from "./components/nav/nav";
-import ProductListPage from "./page/list/list";
+import { RouterProvider } from "react-router-dom";
+import router from "./router";
+
+import "../src/css/reset.css";
+
 function App() {
   return (
     <div>
-      <Header></Header>
-      <Nav/>
-      <ProductListPage />
+      <Header />
+      <Nav />
+      <RouterProvider router={router} />
     </div>
   );
 }
