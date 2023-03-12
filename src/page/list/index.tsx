@@ -1,37 +1,37 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { ProductItem } from "store/type";
 import { ProductContainer } from "./style";
 import Item from "./item";
 import Header from "components/header";
 import Nav from "components/nav";
-import { getProducts } from "api/product";
+import { useProductsContext } from "store/context/ProductsContext";
 
-const ProductListPage = () => {
-  const [products, setProducts] = useState<ProductItem[]>([]);
+const ProductListPageContent = () => {
+  const { products, fetchProducts } = useProductsContext();
+
+  const handleFetchProducts = useCallback(() => {
+    fetchProducts();
+  }, [fetchProducts]);
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      const data = await getProducts();
-      return data;
-    };
+    handleFetchProducts();
+  }, [handleFetchProducts]);
 
-    const fetchAndSetProducts = async () => {
-      const res = await fetchProduct();
-      setProducts(res);
-    };
+  return (
+    <ProductContainer>
+      {products.map((item: ProductItem) => {
+        return <Item key={item.id} item={item} />;
+      })}
+    </ProductContainer>
+  );
+};
 
-    fetchAndSetProducts();
-  }, []);
-
+const ProductListPage = () => {
   return (
     <>
       <Header />
       <Nav />
-      <ProductContainer>
-        {products.map((item: ProductItem) => {
-          return <Item key={item.id} item={item} />;
-        })}
-      </ProductContainer>
+      <ProductListPageContent />
     </>
   );
 };
