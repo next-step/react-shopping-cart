@@ -1,12 +1,8 @@
 import styled from "styled-components";
 import { Product as ProductType } from "../../types/product";
+import { formatPrice } from "../../utils/common";
 
 interface ProductProps extends Omit<ProductType, "id"> {}
-
-const formatPrice = (price: number) => {
-  if (!price) return "0";
-  return String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-};
 
 function Product({ imageUrl, name, price }: ProductProps) {
   return (
