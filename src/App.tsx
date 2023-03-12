@@ -1,7 +1,7 @@
 import { RouterProvider } from "react-router-dom";
 import router from "./router";
 
-import "../src/css/reset.css";
+import "../src/style/reset.css";
 import { ProductsProvider } from "store/context/ProductsContext";
 
 function App() {
