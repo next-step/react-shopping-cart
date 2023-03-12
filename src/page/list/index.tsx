@@ -1,11 +1,11 @@
 import Item from "./item";
-import API from "../../api";
+import API from "api";
 import { ProductContainer } from "./style";
 import { useEffect, useState } from "react";
-import { ProductItem } from "../../store/type";
-import { API_URIS } from "../../constants";
-import Header from "../../components/header/header";
-import Nav from "../../components/nav/nav";
+import { ProductItem } from "store/type";
+import { API_URIS } from "constant";
+import Header from "components/header";
+import Nav from "components/nav";
 
 const ProductListPage = () => {
   const [products, setProducts] = useState<ProductItem[]>([]);

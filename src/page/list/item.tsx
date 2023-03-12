@@ -1,7 +1,6 @@
-import { ProductItem } from "../../store/type";
+import { Icon } from "common/ui";
+import { ProductItem } from "store/type";
 import { Image, ItemInfo, ItemWrapper, Price, Title } from "./style";
-
-import Cartsvg from './cart.svg'
 
 type ItemProps = {
   item: ProductItem;
@@ -16,7 +15,7 @@ const Item = ({ item }: ItemProps) => {
           <Title>PET 보틀-정사각(420ml)</Title>
           <Price>43,000원</Price>
         </ItemInfo>
-        <img src={`${Cartsvg}`} alt="장바구니"/>
+        <Icon src="assets/svgs/cart.svg" alt="장바구니"/>
       </ItemWrapper>
     </div>
   );

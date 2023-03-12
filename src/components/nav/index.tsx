@@ -1,3 +1,4 @@
+import { Icon } from "common/ui";
 import {
   NavBox,
   NavButton,
@@ -10,7 +11,8 @@ const Nav = () => {
   return (
     <NavBox>
       <NavTitleBox>
-        <NavTitle>CLEAN CODE SHOP</NavTitle>
+        <Icon src="assets/svgs/cart.svg" size={'big'} alt="장바구니"/>
+        <NavTitle>NEXTSTEP</NavTitle>
       </NavTitleBox>
       <NavButtonBox>
         <NavButton>장바구니</NavButton>

@@ -1,5 +1,5 @@
-import ProductListPage from "../page/list/list";
-import Home from "../page/home";
+import ProductListPage from "page/list";
+import Home from "page/home";
 
 import { createBrowserRouter } from "react-router-dom";
 

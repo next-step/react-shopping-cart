@@ -1,4 +1,4 @@
-import { useRouter } from "../../hooks/useRouter";
+import { useRouter } from "hooks/useRouter";
 import {
   GlobalNavButton,
   GlobalNavButtonBox,
