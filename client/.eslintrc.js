@@ -26,11 +26,16 @@ module.exports = {
   ignorePatterns: ['node_modules/'],
   rules: {
     'prettier/prettier': 0,
+    '@typescript-eslint/no-use-before-define': 'off',
+    'no-unused-vars': 'off',
+    'react/react-in-jsx-scope': 'off',
   },
   settings: {
+    'import/parsers': { '@typescript-eslint/parser': ['.ts', '.tsx'] },
     'import/resolver': {
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        moduleDirectory: ['node_modules', 'src/', 'public/'],
       },
     },
   },

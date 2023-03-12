@@ -15,7 +15,8 @@
     "resolveJsonModule": true,
     "jsx": "react-jsx",
     "outDir": "./dist",
-    "typeRoots": ["./node_modules/@types", "types"]
+    "typeRoots": ["./node_modules/@types", "types"],
+    "baseUrl": "src"
   },
-  "include": ["./src/**/*"]
+  "include": ["src","public","./types/assets.d.ts"]
 }

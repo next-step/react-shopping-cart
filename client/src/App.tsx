@@ -1,7 +1,14 @@
 import React from 'react';
+import ProductListPage from 'pages/ProductList/ProductList';
+import GlobalStyle from 'styles/GlobalStyle';
 
 function App() {
-  return <div>React APP</div>;
+  return (
+    <>
+      <GlobalStyle />
+      <ProductListPage />
+    </>
+  );
 }
 
 export default App;
