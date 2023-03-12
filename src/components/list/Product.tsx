@@ -1,19 +1,31 @@
 import styled from "styled-components";
+import { Product as ProductType } from "../../types/product";
 
-function Product() {
+interface ProductProps extends Omit<ProductType, "id"> {}
+
+const formatPrice = (price: number) => {
+  if (!price) return "0";
+  return String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
+
+function Product({ imageUrl, name, price }: ProductProps) {
   return (
-    <div>
-      <img src="images/product.png" alt="PET보틀-정사각(420ml)" />
+    <ProductContainer>
+      <img src={imageUrl} alt={name} />
       <ProductInfoBox>
         <ProductInfo>
-          <ProductInfoName>PET보틀-정사각(420ml)</ProductInfoName>
-          <span>43,000원</span>
+          <ProductInfoName>{name}</ProductInfoName>
+          <span>{formatPrice(price)}원</span>
         </ProductInfo>
         <img src="svgs/cart.svg" alt="장바구니" />
       </ProductInfoBox>
-    </div>
+    </ProductContainer>
   );
 }
+
+const ProductContainer = styled.div`
+  width: 300px;
+`;
 
 const ProductInfoBox = styled.div`
   display: flex;
