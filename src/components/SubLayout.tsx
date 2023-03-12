@@ -1,14 +1,36 @@
+import { useHistory } from "react-router";
 import styled from "styled-components";
+import { ROUTE } from "../constants/route";
 
 interface ComponentProps {
   children: JSX.Element | JSX.Element[];
 }
 
+interface StringObj {
+  [key: string]: string;
+}
+
+const PATH_NAME: StringObj = {
+  [ROUTE.ORDERS]: "주문목록",
+  [ROUTE.CART]: "장바구니",
+};
+
+const getPathName = (path: string | undefined) => {
+  if (!path) {
+    return "";
+  }
+  return PATH_NAME[path];
+};
+
 function SubLayout({ children }: ComponentProps) {
+  const history = useHistory();
+
   return (
     <Section>
       <SubHeader>
-        <SubHeaderTitle>장바구니</SubHeaderTitle>
+        <SubHeaderTitle>
+          {getPathName(history.location.pathname)}
+        </SubHeaderTitle>
         <Hr />
       </SubHeader>
       <Content>{children}</Content>
