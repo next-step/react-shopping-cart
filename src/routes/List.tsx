@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Product from "../components/list/Product";
+import { ROUTE } from "../constants/route";
 import { Product as ProductType } from "../types/product";
 import { api } from "../utils/api";
 
@@ -21,12 +23,18 @@ function List() {
   return (
     <ListSection>
       {products.map((product, idx) => (
-        <Product
+        <Link
+          to={{
+            pathname: `${ROUTE.PRODUCTS}/${product.id}`,
+          }}
           key={idx}
-          imageUrl={product.imageUrl}
-          price={product.price}
-          name={product.name}
-        ></Product>
+        >
+          <Product
+            imageUrl={product.imageUrl}
+            price={product.price}
+            name={product.name}
+          ></Product>
+        </Link>
       ))}
     </ListSection>
   );
