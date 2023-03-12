@@ -19,7 +19,9 @@ function Layout({ children }: ComponentProps) {
           <Button>
             <Link to={ROUTE.CART}>장바구니</Link>
           </Button>
-          <Button>주문목록</Button>
+          <Button>
+            <Link to={ROUTE.CART}>주문목록</Link>
+          </Button>
         </MenuBox>
       </Nav>
       <div>{children}</div>

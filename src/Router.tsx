@@ -4,6 +4,7 @@ import { ROUTE } from "./constants/route";
 import List from "./routes/ProductList";
 import Detail from "./routes/ProductDetail";
 import Cart from "./routes/Cart";
+import OrderList from "./routes/OrderList";
 
 function Router() {
   return (
@@ -25,6 +26,11 @@ function Router() {
         <Route path={ROUTE.CART}>
           <Layout>
             <Cart />
+          </Layout>
+        </Route>
+        <Route path={ROUTE.ORDERS}>
+          <Layout>
+            <OrderList />
           </Layout>
         </Route>
       </Switch>
