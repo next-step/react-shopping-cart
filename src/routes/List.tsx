@@ -26,6 +26,7 @@ function List() {
         <Link
           to={{
             pathname: `${ROUTE.PRODUCTS}/${product.id}`,
+            state: { product },
           }}
           key={idx}
         >
