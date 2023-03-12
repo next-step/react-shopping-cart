@@ -1,50 +1,25 @@
-import styled from 'styled-components';
-import { Image } from 'components/common';
+import * as Styled from './ListDetailItem.styles';
 
 const ListDetailItem = () => {
   return (
-    <Layout>
-      <Image src="../../../public/assets/images/product.png" alt="Pet보틀-정사각"></Image>
-      <Container>
-        <Box>
-          <Name>Pet보틀-정사각(420ml)</Name>
-          <Horizontal />
-          <InfoBox>
-            <Text>금액</Text>
-            <Price>43,000원</Price>
-          </InfoBox>
-        </Box>
-      </Container>
-    </Layout>
+    <Styled.Layout>
+      <Styled.ItemImage
+        src="assets/images/product.png"
+        alt="Pet보틀-정사각"
+        width={480}
+        height={480}
+      ></Styled.ItemImage>
+      <Styled.Container>
+        <Styled.Name>Pet보틀-정사각(420ml)</Styled.Name>
+        <Styled.Horizontal />
+        <Styled.FlexBox display={'flex'} justifyContent={'space-between'}>
+          <Styled.Text>금액</Styled.Text>
+          <Styled.Price>43,000원</Styled.Price>
+        </Styled.FlexBox>
+        <Styled.CartButton>장바구니</Styled.CartButton>
+      </Styled.Container>
+    </Styled.Layout>
   );
 };
-const Layout = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 280px;
-  padding: 5px;
-`;
-const Box = styled.div`
-  width: 100%;
-`;
-const Name = styled.span`
-  font-size: 24px;
-`;
-const Horizontal = styled.hr``;
-const InfoBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-const Text = styled.span``;
-const Price = styled.span`
-  font-size: 24px;
-`;
 
 export default ListDetailItem;

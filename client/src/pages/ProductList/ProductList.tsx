@@ -5,19 +5,20 @@ import { ListItem } from 'components/ListItem';
 
 const ProductListPage = () => {
   return (
-    <div>
-      <NavBar />
-      <Container>
-        <ListItem />
-        <ListItem />
-        <ListItem />
-        <ListItem />
-      </Container>
-    </div>
+    <Container>
+      <ListItem />
+      <ListItem />
+      <ListItem />
+      <ListItem />
+
+      <ListItem />
+
+      <ListItem />
+    </Container>
   );
 };
 
-const Container = styled.section`
+const Container = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

@@ -29,8 +29,10 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
 body {
-	line-height: 1;
+	width: 1920px;
+	margin: 24px auto 0;
 }
 ol, ul {
 	list-style: none;
