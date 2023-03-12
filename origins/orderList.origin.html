@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <title>React Clean Code Shopping Cart</title>
+  </head>
+  <body>
+    <div class="root">
+      <header class="flex-col-center">
+        <h1 class="global-nav-title">주문 목록</h1>
+        <br />
+        <div class="global-nav-button-box">
+          <a class="global-nav-button" href="./index.html">홈으로</a>
+          <a class="global-nav-button" href="./list.html">상품 목록</a>
+          <a class="global-nav-button" href="./detail.html">상품 상세</a>
+          <a class="global-nav-button" href="./cart.html">장바구니</a>
+          <a class="global-nav-button" href="./order.html">주문/결제</a>
+          <a class="global-nav-button" href="./orderList.html">주문 목록</a>
+          <a class="global-nav-button" href="./orderDetail.html">주문 상세</a>
+        </div>
+      </header>
+
+      <nav class="nav flex justify-around">
+        <div class="flex-center">
+          <h1 class="nav-title">CLEAN CODE SHOP</h1>
+        </div>
+        <div class="flex gap-15">
+          <button class="nav-button">장바구니</button>
+          <button class="nav-button">주문목록</button>
+        </div>
+      </nav>
+
+      <section class="order-section">
+        <header class="flex-col-center mt-20">
+          <h2 class="order-section__title">주문 목록</h2>
+          <hr class="divide-line mt-20" />
+        </header>
+
+        <div class="order-list">
+          <div class="order-list__header">
+            <span>주문번호: 1</span>
+            <span>상세보기 ></span>
+          </div>
+          <div class="order-list-item">
+            <div class="flex gap-15 mt-10">
+              <img
+                class="w-144 h-144"
+                src="./assets/images/product.png"
+                alt="PET보틀-정사각(420ml)"
+              />
+              <div class="flex-col gap-15">
+                <span class="order-name">PET보틀-정사각(420ml)</span>
+                <span class="order-info">54,800원 / 수량: 3개</span>
+              </div>
+            </div>
+            <button class="primary-button-small flex-center self-start">
+              장바구니
+            </button>
+          </div>
+          <div class="order-list-item">
+            <div class="flex gap-15 mt-10">
+              <img
+                class="w-144 h-144"
+                src="./assets/images/product.png"
+                alt="PET보틀-정사각(420ml)"
+              />
+              <div class="flex-col gap-15">
+                <span class="order-name">PET보틀-정사각(420ml)</span>
+                <span class="order-info">54,800원 / 수량: 3개</span>
+              </div>
+            </div>
+            <button class="primary-button-small flex-center self-start">
+              장바구니
+            </button>
+          </div>
+          <div class="order-list-item">
+            <div class="flex gap-15 mt-10">
+              <img
+                class="w-144 h-144"
+                src="./assets/images/product.png"
+                alt="PET보틀-정사각(420ml)"
+              />
+              <div class="flex-col gap-15">
+                <span class="order-name">PET보틀-정사각(420ml)</span>
+                <span class="order-info">54,800원 / 수량: 3개</span>
+              </div>
+            </div>
+            <button class="primary-button-small flex-center self-start">
+              장바구니
+            </button>
+          </div>
+        </div>
+        <div class="order-list">
+          <div class="order-list__header">
+            <span>주문번호: 2</span>
+            <span>상세보기 ></span>
+          </div>
+          <div class="order-list-item">
+            <div class="flex gap-15 mt-10">
+              <img
+                class="w-144 h-144"
+                src="./assets/images/product.png"
+                alt="PET보틀-정사각(420ml)"
+              />
+              <div class="flex-col gap-15">
+                <span class="order-name">PET보틀-정사각(420ml)</span>
+                <span class="order-info">54,800원 / 수량: 3개</span>
+              </div>
+            </div>
+            <button class="primary-button-small flex-center self-start">
+              장바구니
+            </button>
+          </div>
+          <div class="order-list-item">
+            <div class="flex gap-15 mt-10">
+              <img
+                class="w-144 h-144"
+                src="./assets/images/product.png"
+                alt="PET보틀-정사각(420ml)"
+              />
+              <div class="flex-col gap-15">
+                <span class="order-name">PET보틀-정사각(420ml)</span>
+                <span class="order-info">54,800원 / 수량: 3개</span>
+              </div>
+            </div>
+            <button class="primary-button-small flex-center self-start">
+              장바구니
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
