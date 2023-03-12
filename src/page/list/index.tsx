@@ -1,7 +1,5 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-
+import { useEffect, useState } from "react";
 import { ProductItem } from "store/type";
-
 import { ProductContainer } from "./style";
 import Item from "./item";
 import Header from "components/header";
@@ -11,21 +9,19 @@ import { getProducts } from "api/product";
 const ProductListPage = () => {
   const [products, setProducts] = useState<ProductItem[]>([]);
 
-  const fetchProduct = useCallback(async () => {
-    const data = await getProducts();
-    return data;
-  }, []);
-
-  const memoizedProduct = useMemo(async () => {
-    const data = await fetchProduct();
-    return data;
-  }, [fetchProduct]);
-
   useEffect(() => {
-    memoizedProduct.then((res) => {
+    const fetchProduct = async () => {
+      const data = await getProducts();
+      return data;
+    };
+
+    const fetchAndSetProducts = async () => {
+      const res = await fetchProduct();
       setProducts(res);
-    });
-  }, [memoizedProduct]);
+    };
+
+    fetchAndSetProducts();
+  }, []);
 
   return (
     <>
