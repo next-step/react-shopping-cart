@@ -11,12 +11,7 @@ const Cart = () => {
           <section className="cart-left-section">
             <div className="flex justify-between items-center">
               <div className="checkbox-container">
-                <input
-                  className="checkbox"
-                  name="checkbox"
-                  type="checkbox"
-                  checked={true}
-                />
+                <input className="checkbox" name="checkbox" type="checkbox" checked={true} />
                 <label className="checkbox-label" htmlFor="checkbox">
                   선택해제
                 </label>
@@ -27,25 +22,12 @@ const Cart = () => {
             <hr className="divide-line-gray mt-10" />
             <div className="cart-container">
               <div className="flex gap-15 mt-10">
-                <input
-                  className="checkbox"
-                  name="checkbox"
-                  type="checkbox"
-                  checked={true}
-                />
-                <img
-                  className="w-144 h-144"
-                  src="./assets/images/product.png"
-                  alt="PET보틀-정사각(420ml)"
-                />
+                <input className="checkbox" name="checkbox" type="checkbox" checked={true} />
+                <img className="w-144 h-144" src="./assets/images/product.png" alt="PET보틀-정사각(420ml)" />
                 <span className="cart-name">PET보틀-정사각(420ml)</span>
               </div>
               <div className="flex-col-center justify-end gap-15">
-                <img
-                  className="cart-trash-svg"
-                  src="./assets/svgs/trash.svg"
-                  alt="삭제"
-                />
+                <img className="cart-trash-svg" src="./assets/svgs/trash.svg" alt="삭제" />
                 <div className="number-input-container">
                   <input type="number" className="number-input" value="1" />
                   <div>
@@ -59,25 +41,12 @@ const Cart = () => {
             <hr className="divide-line-thin mt-10" />
             <div className="cart-container">
               <div className="flex gap-15 mt-10">
-                <input
-                  className="checkbox"
-                  name="checkbox"
-                  type="checkbox"
-                  checked={true}
-                />
-                <img
-                  className="w-144 h-144"
-                  src="./assets/images/product.png"
-                  alt="PET보틀-정사각(420ml)"
-                />
+                <input className="checkbox" name="checkbox" type="checkbox" checked={true} />
+                <img className="w-144 h-144" src="./assets/images/product.png" alt="PET보틀-정사각(420ml)" />
                 <span className="cart-name">PET보틀-정사각(420ml)</span>
               </div>
               <div className="flex-col-center justify-end gap-15">
-                <img
-                  className="cart-trash-svg"
-                  src="./assets/svgs/trash.svg"
-                  alt="삭제"
-                />
+                <img className="cart-trash-svg" src="./assets/svgs/trash.svg" alt="삭제" />
                 <div className="number-input-container">
                   <input type="number" className="number-input" value="1" />
                   <div>
@@ -91,25 +60,12 @@ const Cart = () => {
             <hr className="divide-line-thin mt-10" />
             <div className="cart-container">
               <div className="flex gap-15 mt-10">
-                <input
-                  className="checkbox"
-                  name="checkbox"
-                  type="checkbox"
-                  checked={true}
-                />
-                <img
-                  className="w-144 h-144"
-                  src="./assets/images/product.png"
-                  alt="PET보틀-정사각(420ml)"
-                />
+                <input className="checkbox" name="checkbox" type="checkbox" checked={true} />
+                <img className="w-144 h-144" src="./assets/images/product.png" alt="PET보틀-정사각(420ml)" />
                 <span className="cart-name">PET보틀-정사각(420ml)</span>
               </div>
               <div className="flex-col-center justify-end gap-15">
-                <img
-                  className="cart-trash-svg"
-                  src="./assets/svgs/trash.svg"
-                  alt="삭제"
-                />
+                <img className="cart-trash-svg" src="./assets/svgs/trash.svg" alt="삭제" />
                 <div className="number-input-container">
                   <input type="number" className="number-input" value="1" />
                   <div>
@@ -133,9 +89,7 @@ const Cart = () => {
                 <span className="highlight-text">21,800원</span>
               </div>
               <div className="flex-center mt-30 mx-10">
-                <button className="primary-button flex-center">
-                  주문하기(3개)
-                </button>
+                <button className="primary-button flex-center">주문하기(3개)</button>
               </div>
             </div>
           </section>

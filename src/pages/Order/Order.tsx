@@ -13,11 +13,7 @@ const Order = () => {
             <hr className="divide-line-gray mt-10" />
             <div className="order-container">
               <div className="flex gap-15 mt-10">
-                <img
-                  className="w-144 h-144"
-                  src="./assets/images/product.png"
-                  alt="PET보틀-정사각(420ml)"
-                />
+                <img className="w-144 h-144" src="./assets/images/product.png" alt="PET보틀-정사각(420ml)" />
                 <div className="flex-col gap-15">
                   <span className="order-name">PET보틀-정사각(420ml)</span>
                   <span>수량: 3</span>
@@ -27,11 +23,7 @@ const Order = () => {
             <hr className="divide-line-thin mt-10" />
             <div className="order-container">
               <div className="flex gap-15 mt-10">
-                <img
-                  className="w-144 h-144"
-                  src="./assets/images/product.png"
-                  alt="PET보틀-정사각(420ml)"
-                />
+                <img className="w-144 h-144" src="./assets/images/product.png" alt="PET보틀-정사각(420ml)" />
                 <div className="flex-col gap-15">
                   <span className="order-name">PET보틀-정사각(420ml)</span>
                   <span>수량: 3</span>
@@ -41,11 +33,7 @@ const Order = () => {
             <hr className="divide-line-thin mt-10" />
             <div className="order-container">
               <div className="flex gap-15 mt-10">
-                <img
-                  className="w-144 h-144"
-                  src="./assets/images/product.png"
-                  alt="PET보틀-정사각(420ml)"
-                />
+                <img className="w-144 h-144" src="./assets/images/product.png" alt="PET보틀-정사각(420ml)" />
                 <div className="flex-col gap-15">
                   <span className="order-name">PET보틀-정사각(420ml)</span>
                   <span>수량: 3</span>
@@ -65,9 +53,7 @@ const Order = () => {
                 <span className="highlight-text">21,800원</span>
               </div>
               <div className="flex-center mt-30 mx-10">
-                <button className="primary-button flex-center">
-                  21,800원 결제하기
-                </button>
+                <button className="primary-button flex-center">21,800원 결제하기</button>
               </div>
             </div>
           </section>

@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import routes from '@/routes'
 import { Header, Nav } from '@/components'
+import routes from '@/routes'
 
 function App() {
   return (
