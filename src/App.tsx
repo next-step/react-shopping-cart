@@ -5,12 +5,18 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <Router />;
+      <Router />
     </>
   );
 }
 
 const GlobalStyle = createGlobalStyle`
+/* body {
+      line-height: 1;
+    width: 1920px;
+    margin: 24px auto 0;
+} */
+
 /*** The new CSS Reset - version 1.4.4 (last updated 22.12.2021) ***/
 
 /*
