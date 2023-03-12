@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router";
 import styled from "styled-components";
 import { Product as ProductType } from "../types/product";
+import { api } from "../utils/api";
 import { formatPrice } from "../utils/common";
 
 interface RouteParams {
@@ -18,10 +19,21 @@ function Detail() {
   const [product, setProduct] = useState<ProductType>();
 
   useEffect(() => {
-    if (state) {
+    if (state && String(state.product.id) === id) {
       setProduct(state.product);
+
+      return;
     }
-  }, [state]);
+
+    (async () => {
+      try {
+        const product = await api.get<ProductType>(`/products/${id}`);
+        setProduct(product);
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+  }, [state, id]);
 
   return (
     <Container>
