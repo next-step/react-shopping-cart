@@ -4,6 +4,8 @@ import { ProductContainer } from "./style";
 import { useEffect, useState } from "react";
 import { ProductItem } from "../../store/type";
 import { API_URIS } from "../../constants";
+import Header from "../../components/header/header";
+import Nav from "../../components/nav/nav";
 
 const ProductListPage = () => {
   const [products, setProducts] = useState<ProductItem[]>([]);
@@ -18,11 +20,15 @@ const ProductListPage = () => {
   }, []);
 
   return (
-    <ProductContainer>
-      {products.map((item: ProductItem) => {
-        return <Item key={item.id} item={item} />;
-      })}
-    </ProductContainer>
+    <>
+      <Header />
+      <Nav />
+      <ProductContainer>
+        {products.map((item: ProductItem) => {
+          return <Item key={item.id} item={item} />;
+        })}
+      </ProductContainer>
+    </>
   );
 };
 
