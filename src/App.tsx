@@ -3,11 +3,14 @@ import router from "./router";
 
 import "../src/style/reset.css";
 import { ProductsProvider } from "store/context/ProductsContext";
+import { CartProvider } from "store/context/CartContext";
 
 function App() {
   return (
     <ProductsProvider>
-      <RouterProvider router={router} />
+      <CartProvider>
+        <RouterProvider router={router} />
+      </CartProvider>
     </ProductsProvider>
   );
 }

@@ -4,3 +4,14 @@ export type ProductItem = {
   price: number;
   imageUrl: string;
 }
+
+export type CartItem = {
+  id: number;
+  product: Product
+}
+
+export type Product = {
+  name: string;
+  price: number;
+  imageUrl: string;
+}
