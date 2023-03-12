@@ -1,8 +1,8 @@
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Layout from "./components/Layout";
 import { ROUTE } from "./constants/route";
-import List from "./routes/List";
-import Detail from "./routes/Detail";
+import List from "./routes/ProductList";
+import Detail from "./routes/ProductDetail";
 import Cart from "./routes/Cart";
 
 function Router() {
