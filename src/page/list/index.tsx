@@ -1,23 +1,31 @@
-import Item from "./item";
-import API from "api";
-import { ProductContainer } from "./style";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+
 import { ProductItem } from "store/type";
-import { API_URIS } from "constant";
+
+import { ProductContainer } from "./style";
+import Item from "./item";
 import Header from "components/header";
 import Nav from "components/nav";
+import { getProducts } from "api/product";
 
 const ProductListPage = () => {
   const [products, setProducts] = useState<ProductItem[]>([]);
 
-  const getProducts = async () => {
-    const response = await API.get(API_URIS.PRODUCTS);
-    setProducts(response.data);
-  };
+  const fetchProduct = useCallback(async () => {
+    const data = await getProducts();
+    return data;
+  }, []);
+
+  const memoizedProduct = useMemo(async () => {
+    const data = await fetchProduct();
+    return data;
+  }, [fetchProduct]);
 
   useEffect(() => {
-    getProducts();
-  }, []);
+    memoizedProduct.then((res) => {
+      setProducts(res);
+    });
+  }, [memoizedProduct]);
 
   return (
     <>
