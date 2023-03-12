@@ -7,11 +7,13 @@ import {
   NavTitleBox,
 } from "./style";
 
+import cartSvg from "assets/svgs/cart.svg"
+
 const Nav = () => {
   return (
     <NavBox>
       <NavTitleBox>
-        <Icon src="assets/svgs/cart.svg" size={'big'} alt="장바구니"/>
+        <Icon src={cartSvg} size={'big'} alt="장바구니"/>
         <NavTitle>NEXTSTEP</NavTitle>
       </NavTitleBox>
       <NavButtonBox>
