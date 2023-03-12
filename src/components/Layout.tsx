@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ROUTE } from "../constants/route";
 
-type ComponentProps = {
+interface ComponentProps {
   children: JSX.Element | JSX.Element[];
-};
+}
 
 function Layout({ children }: ComponentProps) {
   return (
@@ -20,7 +20,7 @@ function Layout({ children }: ComponentProps) {
             <Link to={ROUTE.CART}>장바구니</Link>
           </Button>
           <Button>
-            <Link to={ROUTE.CART}>주문목록</Link>
+            <Link to={ROUTE.ORDERS}>주문목록</Link>
           </Button>
         </MenuBox>
       </Nav>

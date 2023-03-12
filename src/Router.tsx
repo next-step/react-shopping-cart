@@ -5,6 +5,7 @@ import List from "./routes/ProductList";
 import Detail from "./routes/ProductDetail";
 import Cart from "./routes/Cart";
 import OrderList from "./routes/OrderList";
+import SubLayout from "./components/SubLayout";
 
 function Router() {
   return (
@@ -25,12 +26,16 @@ function Router() {
         </Route>
         <Route path={ROUTE.CART}>
           <Layout>
-            <Cart />
+            <SubLayout>
+              <Cart />
+            </SubLayout>
           </Layout>
         </Route>
         <Route path={ROUTE.ORDERS}>
           <Layout>
-            <OrderList />
+            <SubLayout>
+              <OrderList />
+            </SubLayout>
           </Layout>
         </Route>
       </Switch>
