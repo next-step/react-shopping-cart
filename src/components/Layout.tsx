@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { ROUTE } from "../constants/route";
 
 type ComponentProps = {
   children: JSX.Element | JSX.Element[];
@@ -9,10 +11,14 @@ function Layout({ children }: ComponentProps) {
     <>
       <Nav>
         <TitleBox>
-          <Title>CLEAN CODE SHOP</Title>
+          <Link to={ROUTE.HOME}>
+            <Title>CLEAN CODE SHOP</Title>
+          </Link>
         </TitleBox>
         <MenuBox>
-          <Button>장바구니</Button>
+          <Button>
+            <Link to={ROUTE.CART}>장바구니</Link>
+          </Button>
           <Button>주문목록</Button>
         </MenuBox>
       </Nav>

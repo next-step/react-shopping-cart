@@ -3,6 +3,7 @@ import Layout from "./components/Layout";
 import { ROUTE } from "./constants/route";
 import List from "./routes/List";
 import Detail from "./routes/Detail";
+import Cart from "./routes/Cart";
 
 function Router() {
   return (
@@ -19,6 +20,11 @@ function Router() {
         <Route path={`${ROUTE.PRODUCTS}/:id`}>
           <Layout>
             <Detail></Detail>
+          </Layout>
+        </Route>
+        <Route path={ROUTE.CART}>
+          <Layout>
+            <Cart />
           </Layout>
         </Route>
       </Switch>
