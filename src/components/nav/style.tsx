@@ -15,6 +15,7 @@ export const NavTitleBox = styled("div", {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  cursor : "pointer"
 });
 
 export const NavTitle = styled("h1", {

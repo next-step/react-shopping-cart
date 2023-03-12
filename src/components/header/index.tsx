@@ -5,6 +5,7 @@ import {
   GlobalNavTitle,
   HeaderWrapper,
 } from "./style";
+import { ROUTE } from "router";
 
 const Header = () => {
   const { go } = useRouter();
@@ -16,13 +17,13 @@ const Header = () => {
       </GlobalNavTitle>
       <br />
       <GlobalNavButtonBox>
-        <GlobalNavButton onClick={() => go("/")}>홈으로</GlobalNavButton>
-        <GlobalNavButton onClick={() => go("/list")}>상품 목록</GlobalNavButton>
-        <GlobalNavButton onClick={() => go("/detail")}>상품 상세</GlobalNavButton>
-        <GlobalNavButton onClick={() => go("/cart")}>장바구니</GlobalNavButton>
-        <GlobalNavButton onClick={() => go("/order")}>주문/결제</GlobalNavButton>
-        <GlobalNavButton onClick={() => go("/orderList")}>주문 목록</GlobalNavButton>
-        <GlobalNavButton onClick={() => go("/orderDetail")}>주문 상세</GlobalNavButton>
+        <GlobalNavButton onClick={() => go(ROUTE.HOME)}>홈으로</GlobalNavButton>
+        <GlobalNavButton onClick={() => go(ROUTE.PRODUCT_LIST)}>상품 목록</GlobalNavButton>
+        <GlobalNavButton onClick={() => go(ROUTE.PRODUCT_DETAIL)}>상품 상세</GlobalNavButton>
+        <GlobalNavButton onClick={() => go(ROUTE.CART_LIST)}>장바구니</GlobalNavButton>
+        <GlobalNavButton onClick={() => go(ROUTE.ORDER)}>주문/결제</GlobalNavButton>
+        <GlobalNavButton onClick={() => go(ROUTE.ORDER_LIST)}>주문 목록</GlobalNavButton>
+        <GlobalNavButton onClick={() => go(ROUTE.ORDER_DETAIL)}>주문 상세</GlobalNavButton>
       </GlobalNavButtonBox>
     </HeaderWrapper>
   );
