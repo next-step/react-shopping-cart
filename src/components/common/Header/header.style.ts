@@ -6,10 +6,10 @@ export const HeaderContainer = styled.nav`
   --header-text-top-padding: 10px;
 
   width: 100%;
-  height: 80px;
+  height: var(--header-height);
   background-color: var(--cyan);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
-  padding: 0 300px;
+  padding: var(--main-layout-padding);
 `;
 
 export const HeaderContentWrapper = styled.div`
