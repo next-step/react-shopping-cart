@@ -2,7 +2,7 @@ import api from "./api";
 import EndPoint from "./endPoints";
 
 export type Product = {
-  id: string;
+  id: number;
   price: number;
   name: string;
   imageUrl: string;

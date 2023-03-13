@@ -40,3 +40,7 @@ export function tryCatch(tryFunction: GeneralFunction, catchFunction?: GeneralFu
     };
   }
 }
+
+export function numberWithCommas(num: number) {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}

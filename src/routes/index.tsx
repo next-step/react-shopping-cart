@@ -2,6 +2,7 @@ import React from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 
 import { MainLayout } from "@/layouts";
+import { Products } from "@/views";
 
 export const DOMAINS = {
   MAIN: "/products",
@@ -20,7 +21,7 @@ export default createBrowserRouter([
     children: [
       {
         path: DOMAINS.MAIN,
-        element: <div>TEST</div>,
+        element: <Products />,
       },
     ],
   },
