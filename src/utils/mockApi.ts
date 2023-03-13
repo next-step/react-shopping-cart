@@ -2,7 +2,7 @@ async function request<TResponse>(
   path: string,
   config?: RequestInit
 ): Promise<TResponse> {
-  const response = await fetch(`http://localhost:3000${path}`, config);
+  const response = await fetch(`${window.location.origin}${path}`, config);
   return await response.json();
 }
 
