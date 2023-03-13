@@ -4,7 +4,7 @@ import Nav from "components/nav";
 import "style/common/index.css";
 import "./style.css";
 import LeftSection from "./left-section";
-import RightSection from "./right-section";
+import RightSection from "./right-section";
 import { useCartContext } from "store/context/CartContext";
 import { useCallback, useEffect } from "react";
 
