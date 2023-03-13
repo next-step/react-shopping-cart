@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
 
+import { API } from '@/config'
 import { ProductType } from '@/types'
 
 const useProductList = () => {
   const [products, setProducts] = useState<ProductType[]>([])
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/products`)
+    fetch(API.PRODUCTS)
       .then((response) => response.json())
       .then((data) => setProducts(data))
   }, [])
