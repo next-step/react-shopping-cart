@@ -1,5 +1,5 @@
 const ROUTE = {
-  LIST: '/',
+  HOME: '/',
   DETAIL: '/detail',
   CART: '/cart',
   ORDER: '/order',

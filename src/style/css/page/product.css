@@ -4,7 +4,7 @@
 
   flex-wrap: wrap;
   gap: 20px;
-  padding: 50px 240px;
+  padding: 50px 0;
 }
 
 .product-info {

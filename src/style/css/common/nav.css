@@ -3,7 +3,12 @@
   height: 80px;
 
   background: #2ac1bc;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+
+}
+
+.nav a{
+  cursor: pointer;
 }
 
 .nav-title {
@@ -11,11 +16,11 @@
   font-weight: 900;
   text-align: center;
   vertical-align: middle;
-
   color: #ffffff;
 }
 
 .nav-button {
+  height: 100%;
   font-weight: 500;
   font-size: 24px;
 
