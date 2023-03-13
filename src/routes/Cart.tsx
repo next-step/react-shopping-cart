@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import LeftSection from "../components/cart/LeftSection";
 import { Cart as CartType } from "../types/cart";
 import { mockApi } from "../utils/mockApi";
 
@@ -17,7 +18,7 @@ function Cart() {
     })();
   }, []);
 
-  return <div>Cart</div>;
+  return <LeftSection />;
 }
 
 export default Cart;
