@@ -17,7 +17,7 @@ const ProductsProvider = ({ children }: { children: React.ReactNode }) => {
   const fetchProducts = useCallback(async () => {
     try {
       const data = await getProducts();
-      dispatch({ type: "FETCH_PRODUCTS_SUCCESS", payload: data });
+      dispatch({ type: "FETCH_PRODUCTS", payload: data });
     } catch (error) {
       console.log(error)
     }
