@@ -16,6 +16,7 @@ export const HeaderContentWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 `;
 
 export const HeaderTitleWrapper = styled.div`
