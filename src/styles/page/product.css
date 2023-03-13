@@ -1,10 +1,10 @@
 .product-container {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 
   flex-wrap: wrap;
   gap: 20px;
-  padding: 50px 240px;
+  padding: 50px 120px;
 }
 
 .product-info {
