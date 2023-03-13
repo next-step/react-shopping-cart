@@ -8,8 +8,8 @@ import * as S from "./product.style";
 
 interface ProductProps {
   productInfo: Product;
-  onClickProduct: () => void;
-  onAddCart: () => void;
+  onClickProduct?: () => void;
+  onAddCart?: () => void;
 }
 
 export default function Product({ productInfo, onClickProduct, onAddCart }: ProductProps) {

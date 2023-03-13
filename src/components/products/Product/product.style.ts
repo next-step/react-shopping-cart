@@ -26,5 +26,5 @@ export const ProductInfoWrapper = styled.div`
 `;
 
 export const ProductName = styled.span`
-  font-size: 20px;
+  font-size: 18px;
 `;
