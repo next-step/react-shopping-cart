@@ -1,4 +1,4 @@
-import { Box, Button, Image } from 'components/common';
+import { Box, Button, Image, HorizontalLine } from 'components/common';
 import styled from 'styled-components';
 
 export const Layout = styled.div`
@@ -19,15 +19,11 @@ export const Container = styled.div`
 export const Name = styled.span`
   font-size: 24px;
 `;
-export const Horizontal = styled.hr`
-  width: 100%;
+export const Horizontal = styled(HorizontalLine)`
   border: 2px solid #aaaaaa;
 `;
 
-export const FlexBox = styled(Box)`
-  /* display: flex;
-  justify-content: space-between; */
-`;
+export const FlexBox = styled(Box)``;
 export const Text = styled.span`
   font-size: 18px;
 `;

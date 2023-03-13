@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { ListDetailItem } from 'components/ListDetailItem';
 
-const ProductDetailPage = () => {
+const ProductDetail = () => {
   return (
     <Container>
       <ListDetailItem />
@@ -16,4 +16,4 @@ const Container = styled.div`
   margin-top: 50px;
 `;
 
-export default ProductDetailPage;
+export default ProductDetail;

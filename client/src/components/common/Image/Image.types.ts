@@ -5,5 +5,5 @@ export interface ImageProps extends HTMLAttributes<HTMLImageElement> {
   src: string;
   width?: CSSProperties['width'];
   height?: CSSProperties['height'];
-  alt: string;
+  alt?: string;
 }

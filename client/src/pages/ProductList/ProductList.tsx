@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
-import { NavBar } from 'components/NavBar';
 import { ListItem } from 'components/ListItem';
 
-const ProductListPage = () => {
+const ProductList = () => {
   return (
     <Container>
       <ListItem />
@@ -26,4 +25,4 @@ const Container = styled.div`
   padding: 50px 240px;
 `;
 
-export default ProductListPage;
+export default ProductList;
