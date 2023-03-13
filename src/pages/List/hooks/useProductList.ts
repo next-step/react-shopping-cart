@@ -6,7 +6,7 @@ const useProductList = () => {
   const [products, setProducts] = useState<ProductType[]>([])
 
   useEffect(() => {
-    fetch('/products')
+    fetch(`${process.env.REACT_APP_API_URL}/products`)
       .then((response) => response.json())
       .then((data) => setProducts(data))
   }, [])

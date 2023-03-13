@@ -61,12 +61,12 @@ const products: ProductType[] = [
 
 export const handlers = [
   // 상품목록
-  rest.get('/products', (_: RestRequest, res, ctx) => {
+  rest.get(`${process.env.REACT_APP_API_URL}/products`, (_: RestRequest, res, ctx) => {
     return res(ctx.status(200), ctx.json(products))
   }),
 
   // 상품목록 추가
-  rest.post('/products', (req: RestRequest<{ product: ProductType }>, res, ctx) => {
+  rest.post(`${process.env.REACT_APP_API_URL}/products`, (req: RestRequest<{ product: ProductType }>, res, ctx) => {
     const product = req.body.product
     products.push(product)
     return res(ctx.status(201))
