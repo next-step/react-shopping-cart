@@ -1,15 +1,21 @@
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
 // json-server
-const path = require("path");
-const jsonServer = require("json-server");
+import path from 'path';
+import jsonServer from 'json-server';
+
+// lowdb
+import { Low } from 'lowdb';
+import { JSONFile } from 'lowdb/node';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 const server = jsonServer.create();
 const router = jsonServer.router(path.join(__dirname, "db.json"));
 const middlewares = jsonServer.defaults();
-
-// lowdb
-const low = require("lowdb");
-const FileSync = require("lowdb/adapters/FileSync");
-const adapter = new FileSync(path.join(__dirname, "db.json"));
-const db = low(adapter);
+const adapter = new JSONFile(path.join(__dirname, "db.json"));
+const db = new Low(adapter);
 
 server.use(middlewares);
 
