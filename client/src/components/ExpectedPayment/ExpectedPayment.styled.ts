@@ -17,7 +17,7 @@ export const Bottom = styled(Box)`
   margin-top: 20px;
   padding: 20px;
 `;
-export const BottomText = styled.span`
+export const Text = styled.span`
   position: relative;
   font-weight: 700;
   display: inline-block;
@@ -37,6 +37,27 @@ export const BottomText = styled.span`
     z-index: -1;
   }
 `;
+export const Price = styled.span`
+  position: relative;
+  font-weight: 700;
+  display: inline-block;
+  text-align: center;
+  padding: 0 2px;
+  font-size: 20px;
+  ::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 8px;
+    background-color: #2ac1bc;
+    opacity: 0.5;
+    z-index: -1;
+  }
+`;
+
 export const ButtonBox = styled(Box)`
   margin-left: 10px;
   margin-right: 10px;

@@ -1,19 +1,20 @@
 import * as Styled from './ExpectedPayment.styled';
+import type { ExpectedPaymentProps } from './ExpectedPayment.types';
 
-const ExpectedPayment = () => {
+const ExpectedPayment = ({ ...props }: ExpectedPaymentProps) => {
   return (
     <div>
       <Styled.Top>
-        <Styled.Title>결제 예상 금액</Styled.Title>
+        <Styled.Title>{props.title}</Styled.Title>
       </Styled.Top>
       <Styled.ThinLine />
       <div>
         <Styled.Bottom display={'flex'} justifyContent="space-between">
-          <Styled.BottomText>결제 예상 금액</Styled.BottomText>
-          <Styled.BottomText>21,800원</Styled.BottomText>
+          <Styled.Text>{props.text}</Styled.Text>
+          <Styled.Price>{props.price}</Styled.Price>
         </Styled.Bottom>
         <Styled.ButtonBox display={'flex'} justifyContent="center" alignItems="center">
-          <Styled.OrderButton>주문하기 (3개)</Styled.OrderButton>
+          <Styled.OrderButton>{props.buttonText}</Styled.OrderButton>
         </Styled.ButtonBox>
       </div>
     </div>

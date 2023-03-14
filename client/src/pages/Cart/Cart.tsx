@@ -32,7 +32,7 @@ const CartListLeftSection = () => {
 const CartListRightSection = () => {
   return (
     <Styled.RightSection>
-      <ExpectedPayment />
+      <ExpectedPayment title="결제예상금액" text="결제 예상 금액" price="21,800원" buttonText="주문하기" />
     </Styled.RightSection>
   );
 };
