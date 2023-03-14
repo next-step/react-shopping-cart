@@ -1,19 +1,13 @@
-import { useNavigate } from 'react-router-dom'
-
 import { ProductType } from '@/types'
 
+import { useProduct } from './hooks'
+
 const Product = ({ id, src, name, price }: ProductType) => {
-  const navigate = useNavigate()
-  const addCart = () => {
-    // 카트 추가 로직 필요
-    alert('장바구니에 추가되었습니다!')
-  }
-  const goToProductDetail = () => {
-    navigate(`detail/${id}`)
-  }
+  const { addCart, goToProductDetail } = useProduct()
+
   return (
     <div key={id}>
-      <img src={src} alt={name} onClick={goToProductDetail} />
+      <img src={src} alt={name} onClick={() => goToProductDetail(id)} />
       <div className="flex justify-between w-280 p-5">
         <div role="button" className="product-info">
           <span className="product-info__name">{name}</span>
