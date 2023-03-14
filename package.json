@@ -1,15 +1,51 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "vite-project",
+  "private": true,
+  "version": "0.0.0",
   "type": "commonjs",
-  "license": "MIT",
-  "devDependencies": {
-    "json-server": "^0.17.0",
-    "lowdb": "^1.0.0"
-  },
   "scripts": {
-    "server": "node server.js"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@stitches/react": "^1.2.8",
+    "react": "^0.0.0-experimental-56a3c18e5-20230314",
+    "react-dom": "^0.0.0-experimental-56a3c18e5-20230314"
+  },
+  "devDependencies": {
+    "vite": "^4.1.0",
+    "@vitejs/plugin-react": "^3.1.0",
+    "vite-tsconfig-paths": "^4.0.5",
+    "msw": "^1.1.0",
+    "typescript": "^4.9.3",
+    "uuid": "^9.0.0",
+    "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-essentials": "^6.5.16",
+    "@storybook/addon-interactions": "^6.5.16",
+    "@storybook/addon-links": "^6.5.16",
+    "storybook-addon-react-router-v6": "^0.2.1",
+    "@storybook/builder-vite": "^0.4.1",
+    "@storybook/react": "^6.5.16",
+    "@faker-js/faker": "^7.6.0",
+    "@types/node": "^18.15.3",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
+    "@typescript-eslint/parser": "^5.30.7",
+    "@vitejs/plugin-react-swc": "^3.0.0",
+    "babel-plugin-named-exports-order": "^0.0.2",
+    "prettier": "^2.7.1",
+    "eslint": "^7.6.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-import-resolver-typescript": "^3.3.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4"
+  },
+  "msw": {
+    "workerDirectory": ".public"
+  }
 }
