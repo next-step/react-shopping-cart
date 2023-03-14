@@ -46,7 +46,7 @@ export const handlers = [
       ctx.json({
         id: product.id,
         name: product.name,
-        src: product.src,
+        imageUrl: product.imageUrl,
         price: product.price,
       }),
     )
