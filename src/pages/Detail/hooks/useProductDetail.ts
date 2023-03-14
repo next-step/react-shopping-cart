@@ -7,14 +7,22 @@ import { ProductType } from '@/types'
 const useProductDetail = () => {
   const { id } = useParams()
   const [productDetail, setProductDetail] = useState<ProductType>()
+  const [hasSelectedProduct, setHasSelectedProduct] = useState(true)
 
   useEffect(() => {
-    fetch(API.PRODUCT(Number(id)))
+    const productId = id || sessionStorage.getItem('productId')
+
+    if (!productId) {
+      setHasSelectedProduct(false)
+      return
+    }
+
+    fetch(API.PRODUCT(Number(productId)))
       .then((response) => response.json())
       .then((data) => setProductDetail(data))
   }, [id])
 
-  return { ...productDetail }
+  return { ...productDetail, hasSelectedProduct }
 }
 
 export default useProductDetail

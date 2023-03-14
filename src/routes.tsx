@@ -3,6 +3,7 @@ import { List, Cart, Detail, Order, OrderDetail, OrderList } from '@/pages'
 const routes = [
   { path: '/', element: <List /> },
   { path: '/cart', element: <Cart /> },
+  { path: '/detail', element: <Detail /> },
   { path: '/detail/:id', element: <Detail /> },
   { path: '/order', element: <Order /> },
   { path: '/order-detail', element: <OrderDetail /> },
