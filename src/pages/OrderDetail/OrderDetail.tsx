@@ -1,11 +1,10 @@
+import { SubHeader } from '@/components'
+
 const OrderDetail = () => {
   return (
     <>
       <section className="order-section">
-        <header className="flex-col-center mt-20">
-          <h2 className="order-section__title">주문내역상세</h2>
-          <hr className="divide-line mt-20" />
-        </header>
+        <SubHeader title="주문내역상세" type="order" />
 
         <div className="order-list">
           <div className="order-list__header">

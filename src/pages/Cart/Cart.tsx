@@ -1,23 +1,14 @@
-import { useState, useEffect } from 'react'
+import { SubHeader } from '@/components'
 
-import { API } from '@/config'
-import { ProductType } from '@/types'
+import { useCart } from './hooks'
 
 const Cart = () => {
-  const [cartList, setCartList] = useState<ProductType[]>([])
-  useEffect(() => {
-    fetch(API.CARTS)
-      .then((response) => response.json())
-      .then((data) => setCartList(data))
-  }, [])
+  const { cartList } = useCart()
+
   return (
     <>
       <section className="cart-section">
-        <header className="flex-col-center mt-20">
-          <h2 className="cart-section__title">장바구니</h2>
-          <hr className="divide-line mt-20" />
-        </header>
-
+        <SubHeader title="장바구니" type="cart" />
         <div className="flex">
           <section className="cart-left-section">
             <div className="flex justify-between items-center">
