@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 import { API } from '@/config'
 import { ProductType } from '@/types'
 
 const useProductDetail = () => {
   const { id } = useParams()
+  const navigate = useNavigate()
   const [productDetail, setProductDetail] = useState<ProductType>()
   const [hasSelectedProduct, setHasSelectedProduct] = useState(true)
 
@@ -22,7 +23,25 @@ const useProductDetail = () => {
       .then((data) => setProductDetail(data))
   }, [id])
 
-  return { ...productDetail, hasSelectedProduct }
+  const addCart = (product: ProductType) => {
+    fetch(API.CARTS, {
+      method: 'POST',
+      body: JSON.stringify({ product: { ...product } }),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error))
+  }
+  const goToCartPage = () => {
+    navigate('/cart')
+  }
+
+  const handleCartButtonClick = (product: ProductType) => {
+    addCart(product)
+    goToCartPage()
+  }
+
+  return { productDetail, hasSelectedProduct, handleCartButtonClick }
 }
 
 export default useProductDetail

@@ -2,62 +2,7 @@ import { rest, RestRequest } from 'msw'
 
 import { ProductType } from '@/types'
 
-const products: ProductType[] = [
-  {
-    id: 0,
-    src: '/assets/images/product.png',
-    name: 'PET보틀-정사각(420ml)',
-    price: 43000,
-  },
-  {
-    id: 1,
-    src: '/assets/images/product.png',
-    name: 'PET보틀-정사각(420ml)',
-    price: 43000,
-  },
-  {
-    id: 2,
-    src: '/assets/images/product.png',
-    name: 'PET보틀-정사각(420ml)',
-    price: 43000,
-  },
-  {
-    id: 3,
-    src: '/assets/images/product.png',
-    name: 'PET보틀-정사각(420ml)',
-    price: 43000,
-  },
-  {
-    id: 4,
-    src: '/assets/images/product.png',
-    name: 'PET보틀-정사각(420ml)',
-    price: 43000,
-  },
-  {
-    id: 5,
-    src: '/assets/images/product.png',
-    name: 'PET보틀-정사각(420ml)',
-    price: 43000,
-  },
-  {
-    id: 6,
-    src: '/assets/images/product.png',
-    name: 'PET보틀-정사각(420ml)',
-    price: 43000,
-  },
-  {
-    id: 7,
-    src: '/assets/images/product.png',
-    name: 'PET보틀-정사각(420ml)',
-    price: 43000,
-  },
-  {
-    id: 8,
-    src: '/assets/images/product.png',
-    name: 'PET보틀-정사각(420ml)',
-    price: 43000,
-  },
-]
+import { products, carts } from './data'
 
 export const handlers = [
   // 상품목록
@@ -66,11 +11,14 @@ export const handlers = [
   }),
 
   // 상품목록 추가
-  rest.post(`${process.env.REACT_APP_API_URL}/products`, (req: RestRequest<{ product: ProductType }>, res, ctx) => {
-    const product = req.body.product
-    products.push(product)
-    return res(ctx.status(201))
-  }),
+  rest.post(
+    `${process.env.REACT_APP_API_URL}/products`,
+    async (req: RestRequest<{ product: ProductType }>, res, ctx) => {
+      const { product } = await req.json()
+      products.push(product)
+      return res(ctx.status(200))
+    },
+  ),
 
   // 상품 하나 가져오기
   rest.get(`${process.env.REACT_APP_API_URL}/products/:id`, (req, res, ctx) => {
@@ -82,5 +30,25 @@ export const handlers = [
     } else {
       return res(ctx.status(404))
     }
+  }),
+
+  // 장바구니 목록
+  rest.get(`${process.env.REACT_APP_API_URL}/carts`, (_: RestRequest, res, ctx) => {
+    return res(ctx.status(200), ctx.json(carts))
+  }),
+
+  // 장바구니 추가
+  rest.post(`${process.env.REACT_APP_API_URL}/carts`, async (req: RestRequest<{ product: ProductType }>, res, ctx) => {
+    const { product } = await req.json()
+    carts.push(product)
+    return res(
+      ctx.status(200),
+      ctx.json({
+        id: product.id,
+        name: product.name,
+        src: product.src,
+        price: product.price,
+      }),
+    )
   }),
 ]
