@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { API } from '@/config'
+import { addCart } from '@/domains'
 import { ProductType } from '@/types'
 
 const useProductDetail = () => {
@@ -23,15 +24,6 @@ const useProductDetail = () => {
       .then((data) => setProductDetail(data))
   }, [id])
 
-  const addCart = (product: ProductType) => {
-    fetch(API.CARTS, {
-      method: 'POST',
-      body: JSON.stringify({ product: { ...product } }),
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.error(error))
-  }
   const goToCartPage = () => {
     navigate('/cart')
   }

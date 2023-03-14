@@ -1,16 +1,19 @@
 import { useNavigate } from 'react-router-dom'
 
+import { addCart } from '@/domains'
+import { ProductType } from '@/types'
+
 const useProduct = () => {
   const navigate = useNavigate()
-  const addCart = () => {
-    // 카트 추가 로직 필요
+  const handleCartButtonClick = (product: ProductType) => {
+    addCart(product)
     alert('장바구니에 추가되었습니다!')
   }
   const goToProductDetail = (id: number) => {
     sessionStorage.setItem('productId', id.toString())
     navigate(`detail/${id}`)
   }
-  return { addCart, goToProductDetail }
+  return { handleCartButtonClick, goToProductDetail }
 }
 
 export default useProduct
