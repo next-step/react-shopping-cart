@@ -4,8 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "dev": "vite --mode development",
+    "dev:mock": "vite --mode mock",
+    "dev:test": "vite --mode test",
+    "build:prod": "tsc && vite build --mode production",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -15,15 +17,19 @@
   "devDependencies": {
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
-    "@vitejs/plugin-react": "^3.1.0",
-    "typescript": "^4.9.3",
-    "vite": "^4.1.0",
     "@typescript-eslint/eslint-plugin": "^5.51.0",
     "@typescript-eslint/parser": "^5.51.0",
+    "@vitejs/plugin-react": "^3.1.0",
     "eslint": "^8.33.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
-    "prettier": "^2.8.4"
+    "msw": "^1.1.0",
+    "prettier": "^2.8.4",
+    "typescript": "^4.9.3",
+    "vite": "^4.1.0"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
