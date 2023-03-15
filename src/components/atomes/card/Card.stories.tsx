@@ -15,8 +15,10 @@ const NormalCard = (props: ICard) => {
     <CardWrapper
       {...props}
     >
-      <CardWrapper.Image/>
-      <CardWrapper.Info/>
+      <div className="w-280">
+        <CardWrapper.Image/>
+        <CardWrapper.Info/>
+      </div>
     </CardWrapper>
   );
 };
