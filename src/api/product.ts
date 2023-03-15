@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export interface ProductType {
-  id: number;
+  id?: number;
   name: string;
   price: number;
   imageUrl: string;

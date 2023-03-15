@@ -8,3 +8,4 @@ export const DESKTOP_FRAME_PADDING = 30;
 
 export const COLOR_PRIMARY = '#2ac1bc';
 export const COLOR_WHITE = '#ffffff';
+export const COLOR_BLACK = '#333333';
