@@ -1,7 +1,6 @@
 import { rest } from 'msw';
 import productData from './data/products';
 
-// console.log(products);
 export const handlers = [
   // [GET] 상품 목록 조회
   rest.get('/products', (req, res, ctx) => {

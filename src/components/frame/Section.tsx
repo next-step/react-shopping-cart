@@ -5,8 +5,8 @@ import {
   MAX_DESKTOP_WIDTH,
   MOBILE_FRAME_PADDING,
   TABLET_FRAME_PADDING,
-} from '../constant/style';
-import mq from '../utils/style/mq';
+} from '../../constant/style';
+import mq from '../../utils/style/mq';
 
 interface SectionType {
   children: ReactNode;

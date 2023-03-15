@@ -1,15 +1,8 @@
-import Section from '../../layout/Section';
-import { useState } from 'react';
+import Section from '../frame/Section';
 import CartList from './item/CartList';
 import CartTotal from './item/CartTotal';
 import styled from '@emotion/styled';
 import mq from '../../utils/style/mq';
-
-interface CartItemType {
-  id: number;
-  count: number;
-  price: number;
-}
 
 const S = {
   Content: styled.div(
@@ -24,9 +17,6 @@ const S = {
 };
 
 const SectionCartList = () => {
-  const [totalPrice, setTotalPrice] = useState();
-  const [totalCount, setTotalCount] = useState();
-
   return (
     <Section>
       <S.Content>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { fetchProductList, ProductType } from '../../api/product';
-import Section from '../../layout/Section';
+import Section from '../frame/Section';
 import styled from '@emotion/styled';
 import mq from '../../utils/style/mq';
 import ProductItem from './item/ProductItem';

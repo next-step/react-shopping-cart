@@ -22,7 +22,7 @@ const ProductDetail = () => {
         <img
           className="w-480 h-480 mb-10"
           src={productData?.imageUrl}
-          alt="PET보틀-정사각(420ml)"
+          alt={productData?.name}
         />
         <div className="product-detail-info">
           <span className="product-detail-info__name">{productData?.name}</span>
