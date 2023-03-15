@@ -1,6 +1,6 @@
+import styled from 'styled-components';
 import { OrderListHeader } from 'components/OrderListHeader';
 import { OrderListItem } from 'components/OrderListItem';
-import styled from 'styled-components';
 import { Header } from 'components/Header';
 const OrderList = () => {
   return (
