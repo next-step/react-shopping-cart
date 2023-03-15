@@ -2,7 +2,12 @@ async function request<TResponse>(
   path: string,
   config?: RequestInit
 ): Promise<TResponse> {
-  const response = await fetch(`http://localhost:3003${path}`, config);
+  let url = process.env.REACT_APP_API_SERVER;
+
+  if (process.env.REACT_APP_ENV === "local") {
+    url = window.location.origin;
+  }
+  const response = await fetch(`${url}${path}`, config);
   return await response.json();
 }
 

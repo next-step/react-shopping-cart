@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import LeftSection from "../components/cart/LeftSection";
 import { Cart as CartType } from "../types/cart";
-import { mockApi } from "../utils/mockApi";
+import { api } from "../utils/api";
 
 function Cart() {
   const [carts, setCarts] = useState<CartType[]>([]);
@@ -10,7 +10,7 @@ function Cart() {
     (async () => {
       try {
         // TODO: real api 로 수정
-        const carts = await mockApi.get<CartType[]>("/carts");
+        const carts = await api.get<CartType[]>("/carts");
         setCarts(carts);
       } catch (e) {
         console.error(e);

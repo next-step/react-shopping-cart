@@ -1,19 +1,21 @@
 import { rest } from "msw";
-import cart from "./cart.json";
-import order from "./order.json";
-
-const URL = "http://localhost:3003";
+import MOCK from "./data.json";
 
 export const handlers = [
   rest.get(`/carts`, async (req, res, ctx) => {
     await sleep(200);
 
-    return res(ctx.status(200), ctx.json(cart));
+    return res(ctx.status(200), ctx.json(MOCK.carts));
   }),
   rest.get(`/orders`, async (req, res, ctx) => {
     await sleep(200);
 
-    return res(ctx.status(200), ctx.json(order));
+    return res(ctx.status(200), ctx.json(MOCK.orders));
+  }),
+  rest.get(`/products`, async (req, res, ctx) => {
+    await sleep(200);
+
+    return res(ctx.status(200), ctx.json(MOCK.products));
   }),
 ];
 
