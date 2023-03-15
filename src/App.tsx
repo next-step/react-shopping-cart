@@ -1,12 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [data, setData] = useState([]);
+
   useEffect(() => {
-    fetch('http://localhost:3000/items')
+    fetch('http://localhost:3000/products')
       .then(res => res.json())
-      .then(json => console.log(json));
+      .then(json => setData(json.data));
   }, []);
-  return <div>Hello</div>;
+
+  console.log(data);
+
+  return <div>HelloWorld!!</div>;
 }
 
 export default App;
