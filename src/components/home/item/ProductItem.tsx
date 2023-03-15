@@ -42,7 +42,7 @@ const ProductItem = ({
 }: ProductType) => {
   return (
     <S.Wrapper>
-      <S.ImgWrap>
+      <S.ImgWrap onClick={onClick}>
         <img src={imageUrl} alt={name} />
       </S.ImgWrap>
       <S.TextWrap>

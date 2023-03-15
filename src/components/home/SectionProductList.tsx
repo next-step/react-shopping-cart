@@ -52,6 +52,7 @@ const SectionProductList = () => {
             imageUrl={item.imageUrl}
             name={item.name}
             price={item.price}
+            onClick={() => navigate(`${ROUTE.DETAIL}/${item.id}`)}
             onClickAddCart={addToCart}
           />
         ))}
