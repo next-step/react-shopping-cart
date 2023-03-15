@@ -1,18 +1,10 @@
 import { Header } from './components/molecules';
 import './css/index.css';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import useHeaderRouting from './components/molecules/header/hooks';
 
 export default function App() {
-  const navigate = useNavigate();
-  const moveMainPage = () => {
-    navigate('/');
-  };
-  const moveCartPage = () => {
-    navigate('/cart');
-  };
-  const moveOrderList = () => {
-    navigate('/order-list');
-  };
+  const { moveMainPage, moveCartPage, moveOrderList } = useHeaderRouting();
 
   return (
     <div>

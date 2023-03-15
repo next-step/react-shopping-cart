@@ -1,9 +1,6 @@
 import { Card } from '../components/atomes';
 
 export default function List() {
-  const test = () => {
-    console.log('test');
-  };
   return (
     <section className="product-container">
       <Card
@@ -11,7 +8,6 @@ export default function List() {
         title="43,000원"
         imageSrc="./assets/images/product.png"
         icon="./assets/svgs/cart.svg"
-        onClickIcon={test}
       />
       <div>
         <img alt="PET보틀-정사각(420ml)" src="./assets/images/product.png"/>
