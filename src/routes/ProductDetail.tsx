@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router";
 import styled from "styled-components";
 import Product from "../components/detail/Product";
+import { Cart } from "../types/cart";
 import { Product as ProductType } from "../types/product";
 import { api } from "../utils/api";
 import { formatPrice } from "../utils/common";
@@ -36,6 +37,17 @@ function Detail() {
     })();
   }, [state, id]);
 
+  const handleCartClick = async () => {
+    const cart = {
+      name: "dd",
+      price: 3000,
+      imageUrl:
+        "https://cdn-mart.baemin.com/sellergoods/main/5297837f-5ecd-4945-be2f-4a75854cd06e.jpg",
+    };
+    await api.post<string, Cart[]>("/carts", JSON.stringify(cart));
+    console.log(await api.get("/carts"));
+  };
+
   return (
     <Container>
       <Box>
@@ -43,7 +55,7 @@ function Detail() {
         <Info>
           <Product product={product} />
         </Info>
-        <Button>장바구니</Button>
+        <Button onClick={handleCartClick}>장바구니</Button>
       </Box>
     </Container>
   );
