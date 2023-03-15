@@ -76,7 +76,7 @@
 }
 
 .w-520 {
-  width: 520;
+  width: 520px;
 }
 
 .h-144 {
@@ -139,12 +139,20 @@
   margin-top: 40px;
 }
 
+.mt-50 {
+  margin-top: 50px;
+}
+
 .mb-10 {
   margin-bottom: 10px;
 }
 
 .mb-20 {
   margin-bottom: 20px;
+}
+
+.mb-50 {
+  margin-bottom: 50px;
 }
 
 .my-10 {
