@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+
 import { getEnvMode } from './constants';
+
+import './styles/indes.css';
 
 console.log(getEnvMode());
 if (getEnvMode() === 'mock' || getEnvMode() === 'test') {
