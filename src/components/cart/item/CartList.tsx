@@ -1,12 +1,8 @@
 import styled from '@emotion/styled';
 import mq from '../../../utils/style/mq';
-
-interface CartTotal {
-  title: string;
-  totalText: string;
-  totalPrice: number;
-  buttonText: string;
-}
+import { useEffect, useState } from 'react';
+import { CartItemType, fetchCartList } from '../../../api/cart';
+import CartListItem from './CartListItem';
 
 const S = {
   Wrapper: styled.div(
@@ -23,6 +19,17 @@ const S = {
 };
 
 const CartList = () => {
+  const [cartList, setCartList] = useState<CartItemType[] | null>(null);
+
+  const fetchCart = async () => {
+    const list = await fetchCartList();
+    if (list === null) return;
+    setCartList(list);
+  };
+
+  useEffect(() => {
+    fetchCart();
+  }, []);
   return (
     <S.Wrapper>
       <div className="flex justify-between items-center">
@@ -37,87 +44,14 @@ const CartList = () => {
 
       <S.H3>든든배송 상품(3개)</S.H3>
       <hr className="divide-line-gray mt-10" />
-      <div className="cart-container">
-        <div className="flex gap-15 mt-10">
-          <input className="checkbox" name="checkbox" type="checkbox" />
-          <img
-            className="w-144 h-144"
-            src="./assets/images/product.png"
-            alt="PET보틀-정사각(420ml)"
-          />
-          <span className="cart-name">PET보틀-정사각(420ml)</span>
-        </div>
-        <div className="flex-col-center justify-end gap-15">
-          <img
-            className="cart-trash-svg"
-            src="./assets/svgs/trash.svg"
-            alt="삭제"
-          />
-          <div className="number-input-container">
-            <input type="number" className="number-input" value="1" />
-            <div>
-              <button className="number-input-button">▲</button>
-              <button className="number-input-button">▼</button>
-            </div>
-          </div>
-          <span className="cart-price">123,456원</span>
-        </div>
-      </div>
-      <hr className="divide-line-thin mt-10" />
-      <div className="cart-container">
-        <div className="flex gap-15 mt-10">
-          <input className="checkbox" name="checkbox" type="checkbox" />
-          <img
-            className="w-144 h-144"
-            src="./assets/images/product.png"
-            alt="PET보틀-정사각(420ml)"
-          />
-          <span className="cart-name">PET보틀-정사각(420ml)</span>
-        </div>
-        <div className="flex-col-center justify-end gap-15">
-          <img
-            className="cart-trash-svg"
-            src="./assets/svgs/trash.svg"
-            alt="삭제"
-          />
-          <div className="number-input-container">
-            <input type="number" className="number-input" value="1" />
-            <div>
-              <button className="number-input-button">▲</button>
-              <button className="number-input-button">▼</button>
-            </div>
-          </div>
-          <span className="cart-price">123,456원</span>
-        </div>
-      </div>
-      <hr className="divide-line-thin mt-10" />
-      <div className="cart-container">
-        <div className="flex gap-15 mt-10">
-          <input className="checkbox" name="checkbox" type="checkbox" />
-          <img
-            className="w-144 h-144"
-            src="./assets/images/product.png"
-            alt="PET보틀-정사각(420ml)"
-          />
-          <span className="cart-name">PET보틀-정사각(420ml)</span>
-        </div>
-        <div className="flex-col-center justify-end gap-15">
-          <img
-            className="cart-trash-svg"
-            src="./assets/svgs/trash.svg"
-            alt="삭제"
-          />
-          <div className="number-input-container">
-            <input type="number" className="number-input" value="1" />
-            <div>
-              <button className="number-input-button">▲</button>
-              <button className="number-input-button">▼</button>
-            </div>
-          </div>
-          <span className="cart-price">123,456원</span>
-        </div>
-      </div>
-      <hr className="divide-line-thin mt-10" />
+      {cartList?.map((item) => (
+        <CartListItem
+          key={item.id}
+          name={item.product.name}
+          price={item.product.price}
+          imageUrl={item.product.imageUrl}
+        />
+      ))}
     </S.Wrapper>
   );
 };
