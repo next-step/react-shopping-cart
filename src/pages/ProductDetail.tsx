@@ -1,11 +1,19 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchProductDetail, ProductType } from '../api/product';
+import { ROUTE } from '../constant/router';
 
 const ProductDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [productData, setProductData] = useState<ProductType | null>(null);
 
+  const addToCart = () => {
+    const confirmRes = confirm(
+      '장바구니에 상품을 담았습니다. 장바구니로 이동하시겠습니까?'
+    );
+    if (confirmRes) navigate(ROUTE.CART);
+  };
   const fetchDetail = async () => {
     const detail = await fetchProductDetail(Number(id));
     if (detail === null) return;
@@ -34,7 +42,10 @@ const ProductDetail = () => {
             </span>
           </div>
         </div>
-        <button className="product-detail-button flex-center mt-20">
+        <button
+          className="product-detail-button flex-center mt-20"
+          onClick={addToCart}
+        >
           장바구니
         </button>
       </div>

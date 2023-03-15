@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { ProductType } from '../../../api/product';
-import SvgCart from '../../svg/SvgCart';
+import SvgCart from '../../../assets/svg/SvgCart';
 
 const S = {
   Wrapper: styled.div``,
