@@ -3,17 +3,17 @@ import db from '../db.json';
 import { Product } from '@/types';
 
 export const cartsHandlers = [
-  rest.get('/carts', async (_req, res, ctx) => {
+  rest.get('/carts', (_req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
         ok: true,
-        products: db.carts,
+        data: db.carts,
       }),
     );
   }),
 
-  rest.post<Product>('/carts', async (req, res, ctx) => {
+  rest.post<Product>('/carts', (req, res, ctx) => {
     const product = req.body;
 
     if (!product) {
@@ -27,7 +27,7 @@ export const cartsHandlers = [
       const updatedCarts = currentCarts.filter(cart => cart.product.id !== product.id);
       db.carts = updatedCarts;
     } else {
-      const newId = db.carts[db.carts.length - 1].id + 1;
+      const newId = currentCarts[currentCarts.length - 1].id + 1;
       const updatedCarts = [...currentCarts, { id: newId, product }];
       db.carts = updatedCarts;
     }
@@ -45,7 +45,7 @@ export const cartsHandlers = [
       ctx.status(200),
       ctx.json({
         ok: true,
-        products: {},
+        data: {},
       }),
     );
   }),

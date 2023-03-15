@@ -5,17 +5,17 @@ import { Product } from '@/types';
 type ProductBody = Omit<Product, 'id'>;
 
 export const productHandlers = [
-  rest.get('/products', async (_req, res, ctx) => {
+  rest.get('/products', (_req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
         ok: true,
-        products: db.products,
+        data: db.products,
       }),
     );
   }),
 
-  rest.post<ProductBody>('/products', async (req, res, ctx) => {
+  rest.post<ProductBody>('/products', (req, res, ctx) => {
     const newProduct = req.body;
 
     if (!newProduct) {
@@ -63,7 +63,7 @@ export const productHandlers = [
       ctx.status(200),
       ctx.json({
         ok: true,
-        products: {},
+        data: {},
       }),
     );
   }),
