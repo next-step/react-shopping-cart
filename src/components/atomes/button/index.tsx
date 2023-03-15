@@ -1,20 +1,27 @@
-import { memo, PropsWithChildren, useCallback } from 'react';
+import { memo, useCallback } from 'react';
+import classNames from 'classnames';
 
 export interface IButton {
   onClick?: () => void;
+  small?: boolean;
+  color?: string;
+  text: string;
 }
 
-function Button({ children, onClick }: PropsWithChildren<IButton>) {
+function Button({ onClick, small, color = '', text }: IButton) {
   const handleClick = useCallback(() => {
     onClick?.();
   }, []);
 
   return (
     <button
-      className="product-detail-button flex-center mt-20"
+      className={classNames('primary-button', {
+        'primary-button--small': small === true,
+        'gray': color === 'gray'
+      })}
       onClick={handleClick}
     >
-      {children}
+      {text}
     </button>
   );
 }

@@ -2,6 +2,7 @@ import ProductService from '../service/ProductService';
 import { useEffect, useState } from 'react';
 import { IProduct } from '../types/shoppingCart';
 import { useParams } from 'react-router-dom';
+import { Button } from '../components/atomes';
 
 export default function Detail() {
   const { findProductOne } = ProductService();
@@ -26,7 +27,7 @@ export default function Detail() {
           className="w-480 h-480 mb-10"
           src={product?.imageUrl}
         />
-        <div className="product-detail-info">
+        <div className="product-detail-info mb-10">
           <span className="product-detail-info__name">{product?.name}</span>
           <hr className="divide-line-gray my-20"/>
           <div className="flex justify-between">
@@ -34,9 +35,7 @@ export default function Detail() {
             <span className="product-detail-info__price">{product?.price}</span>
           </div>
         </div>
-        <button className="product-detail-button flex-center mt-20">
-          장바구니
-        </button>
+        <Button text="장바구니" color="gray"/>
       </div>
     </div>
   );
