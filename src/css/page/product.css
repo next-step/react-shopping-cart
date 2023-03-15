@@ -1,17 +1,17 @@
 .product-container {
-    display: flex;
+    display: grid;
     justify-content: center;
-
-    flex-wrap: wrap;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 20px;
     padding: 50px 240px;
+    max-width: 1600px;
+    margin: 0 auto;
 }
 
 .product-detail-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-
     margin-top: 50px;
 }
 
