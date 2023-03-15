@@ -3,17 +3,18 @@ import { ListDetailItem } from 'components/ListDetailItem';
 
 const ProductDetail = () => {
   return (
-    <Container>
+    <Layout>
       <ListDetailItem />
-    </Container>
+    </Layout>
   );
 };
 
-const Container = styled.div`
+const Layout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
+  padding: 24px 300px;
 `;
 
 export default ProductDetail;

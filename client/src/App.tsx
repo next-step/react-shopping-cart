@@ -1,13 +1,13 @@
 import GlobalStyle from 'styles/GlobalStyle';
 import { NavBar } from 'components/NavBar';
-import { OrderList } from 'pages';
+import { OrderList, ProductDetail, OrderListDetail } from 'pages';
 
 function App() {
   return (
     <>
       <GlobalStyle />
       <NavBar />
-      <OrderList />
+      <OrderListDetail />
     </>
   );
 }

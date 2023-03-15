@@ -1,15 +1,15 @@
 import * as Styled from './Cart.styled';
 import { CartItem } from 'components/CartItem';
-import { ExpectedPayment } from 'components/ExpectedPayment';
+import { Payment } from 'components/Payment';
 const Cart = () => {
   return (
-    <Styled.Root>
+    <Styled.Layout>
       <Styled.CartListHeader>장바구니</Styled.CartListHeader>
       <Styled.FlexContainer>
         <CartListLeftSection />
         <CartListRightSection />
       </Styled.FlexContainer>
-    </Styled.Root>
+    </Styled.Layout>
   );
 };
 
@@ -32,7 +32,7 @@ const CartListLeftSection = () => {
 const CartListRightSection = () => {
   return (
     <Styled.RightSection>
-      <ExpectedPayment title="결제예상금액" text="결제 예상 금액" price="21,800원" buttonText="주문하기" />
+      <Payment title="결제예상금액" text="결제 예상 금액" price="21,800원" buttonText="주문하기" />
     </Styled.RightSection>
   );
 };

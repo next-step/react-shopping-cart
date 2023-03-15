@@ -4,20 +4,18 @@ import { ListItem } from 'components/ListItem';
 
 const ProductList = () => {
   return (
-    <Container>
+    <Layout>
       <ListItem />
       <ListItem />
       <ListItem />
       <ListItem />
-
       <ListItem />
-
       <ListItem />
-    </Container>
+    </Layout>
   );
 };
 
-const Container = styled.div`
+const Layout = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { Box, Input, Button, HorizontalLine } from 'components/common';
 import { Header } from 'components/Header';
 
-export const Root = styled.div`
+export const Layout = styled.div`
   padding: 24px 300px;
 `;
 

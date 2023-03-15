@@ -1,4 +1,4 @@
-import { ExpectedPayment } from 'components/ExpectedPayment';
+import { Payment } from 'components/Payment';
 import { OrderItem } from 'components/OrderItem';
 import * as Styled from './Order.styles';
 
@@ -26,7 +26,7 @@ const LeftSection = () => {
 const RightSection = () => {
   return (
     <Styled.RightSectionLayout>
-      <ExpectedPayment title="결제금액" text="총 결제금액" price="21,800원" buttonText="21,800원 결제하기" />
+      <Payment title="결제금액" text="총 결제금액" price="21,800원" buttonText="21,800원 결제하기" />
     </Styled.RightSectionLayout>
   );
 };
