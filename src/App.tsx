@@ -1,13 +1,12 @@
 import { Header } from './components/molecules';
-import { RouterProvider } from 'react-router-dom';
-import router from './router';
 import './css/index.css';
+import { Outlet } from 'react-router-dom';
 
 export default function App() {
   return (
     <div>
       <Header/>
-      <RouterProvider router={router}/>
+      <Outlet/>
     </div>
   );
 }
