@@ -1,4 +1,4 @@
-import { IOrder } from '../../types';
+import { IOrder } from '../../types/shoppingCart';
 
 const orders: IOrder[] = [
   {

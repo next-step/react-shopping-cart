@@ -1,18 +1,21 @@
-import { productList } from '../api/product';
 import { priceFormat } from '../utils';
+import { http } from '../client/httpClient';
+import { IProduct } from '../types/shoppingCart';
+
+const BASE_URL = '/products';
 
 function ProductService() {
-  const getProducts = async () => {
-    const products = await productList();
+  const findAllProducts = async (): Promise<IProduct[]> => {
+    const { data } = await http.get(BASE_URL);
 
-    return products.map((item) => ({
+    return data.map((item: IProduct) => ({
       ...item,
       price: priceFormat(item.price)
     }));
   };
 
   return {
-    getProducts
+    findAllProducts
   };
 }
 

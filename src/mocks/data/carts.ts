@@ -1,4 +1,4 @@
-import { ICart } from '../../types';
+import { ICart } from '../../types/shoppingCart';
 
 const carts: ICart[] = [
   {

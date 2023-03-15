@@ -1,5 +1,5 @@
 import { Card } from '../../atomes';
-import { IProduct } from '../../../types';
+import { IProduct } from '../../../types/shoppingCart';
 
 interface IProductContainer {
   products: IProduct[];

@@ -1,20 +1,21 @@
 import ProductService from '../service/ProductService';
 import { useEffect, useState } from 'react';
 import ProductContainer from '../components/organisms/list/ProductContainer';
+import { IProduct } from '../types/shoppingCart';
 
 export default function List() {
-  const { getProducts } = ProductService();
-  const [state, setState] = useState([]);
+  const { findAllProducts } = ProductService();
+  const [products, setProducts] = useState<IProduct[]>([]);
 
   const fetchData = async () => {
-    const response = await getProducts();
-    setState(response);
+    const products = await findAllProducts();
+    setProducts(products);
   };
 
   useEffect(() => {
     fetchData();
   }, []);
   return (
-    <ProductContainer products={state}/>
+    <ProductContainer products={products}/>
   );
 }
