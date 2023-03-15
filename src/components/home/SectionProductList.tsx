@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { fetchProductList, ProductType } from '../../api/product';
 import Section from '../../layout/Section';
 import styled from '@emotion/styled';
@@ -36,13 +36,12 @@ const SectionProductList = () => {
     <Section>
       <S.Container>
         {productList?.map((item) => (
-          <Fragment key={item.id}>
-            <ProductItem
-              imageUrl={item.imageUrl}
-              name={item.name}
-              price={item.price}
-            />
-          </Fragment>
+          <ProductItem
+            key={item.id}
+            imageUrl={item.imageUrl}
+            name={item.name}
+            price={item.price}
+          />
         ))}
       </S.Container>
     </Section>

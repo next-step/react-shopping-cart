@@ -28,7 +28,7 @@ const S = {
   `,
   ColumnRight: styled.div`
     height: 23px;
-    margin-left: 10px;
+    padding-left: 10px;
     cursor: pointer;
   `,
 };
