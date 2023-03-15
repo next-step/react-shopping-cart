@@ -1,11 +1,12 @@
 import React from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 
-import { MainLayout } from "@/layouts";
-import { Products } from "@/views";
+import { CartOrderLayout, MainLayout } from "@/layouts";
+import { Carts, Products } from "@/views";
 
 export const DOMAINS = {
   MAIN: "/products",
+  CART: "/carts",
 };
 
 export type Domain = keyof typeof DOMAINS;
@@ -22,6 +23,11 @@ export default createBrowserRouter([
       {
         path: DOMAINS.MAIN,
         element: <Products />,
+      },
+      {
+        path: "/",
+        element: <CartOrderLayout />,
+        children: [{ path: DOMAINS.CART, element: <Carts /> }],
       },
     ],
   },
