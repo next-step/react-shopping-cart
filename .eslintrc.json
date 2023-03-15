@@ -5,7 +5,11 @@
     "browser": true
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "react", "react-hooks"],
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "react-hooks"
+  ],
   "parserOptions": {
     "ecmaVersion": 2021,
     "sourceType": "module",
@@ -38,7 +42,8 @@
     "eol-last": [
       "error",
       "always"
-    ]
+    ],
+    "react-hooks/exhaustive-deps": "off"
   },
   "settings": {
     "react": {
