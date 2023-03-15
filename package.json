@@ -2,6 +2,11 @@
   "name": "react-shopping-cart",
   "private": true,
   "version": "0.0.0",
+  "author": {
+    "name": "Lee",
+    "email": "dlqhdrn33@gmail.com",
+    "url": ""
+  },
   "type": "module",
   "scripts": {
     "dev": "vite --mode development",
