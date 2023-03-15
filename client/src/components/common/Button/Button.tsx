@@ -1,8 +1,8 @@
 import type { ButtonProps } from './Button.types';
 import * as Styled from './Button.styled';
 
-const Button = ({ className, children }: ButtonProps) => {
-  return <Styled.Button className={className}>{children}</Styled.Button>;
+const Button = ({ children, ...attributes }: ButtonProps) => {
+  return <Styled.Button {...attributes}>{children}</Styled.Button>;
 };
 
 export default Button;

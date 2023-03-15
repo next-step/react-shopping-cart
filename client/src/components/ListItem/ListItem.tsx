@@ -1,5 +1,4 @@
 import * as Styled from './ListItem.styles';
-import { ReactComponent as CartIcon } from 'assets/svgs/cart.svg';
 
 const ListItem = () => {
   return (
@@ -10,7 +9,7 @@ const ListItem = () => {
           <Styled.NameText>Pet보틀-정사각(420ml)</Styled.NameText>
           <Styled.PriceText>43,000원</Styled.PriceText>
         </Styled.FlexBox>
-        <CartIcon />
+        <Styled.CartIcon />
       </Styled.FlexContainer>
     </Styled.Layout>
   );
