@@ -29,6 +29,7 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': 'off',
     'no-unused-vars': 'off',
     'react/react-in-jsx-scope': 'off',
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
   },
   settings: {
     'import/parsers': { '@typescript-eslint/parser': ['.ts', '.tsx'] },
