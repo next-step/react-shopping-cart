@@ -2,17 +2,38 @@
   "name": "server",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "commonjs",
+  "type": "module",
   "license": "MIT",
   "devDependencies": {
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
     "json-server": "^0.17.0",
     "lowdb": "^1.0.0",
     "msw": "^1.1.0"
   },
   "scripts": {
+    "start": "react-scripts start",
     "server": "node server.js"
   },
   "dependencies": {
-    "react-router-dom": "^6.9.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.9.0",
+    "react-scripts": "^5.0.1"
+  },
+  "msw": {
+    "workerDirectory": "public"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
