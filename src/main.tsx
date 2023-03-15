@@ -2,10 +2,11 @@ import './styles/indes.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import RootRouter from './RootRouter';
 import { getEnvMode } from './constants';
+import App from './App';
 
 console.log(getEnvMode());
+
 if (getEnvMode() === 'mock' || getEnvMode() === 'test') {
   import('./mocks/browser')
     .then(async ({ worker }) => {
@@ -16,6 +17,6 @@ if (getEnvMode() === 'mock' || getEnvMode() === 'test') {
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <RootRouter />
+    <App />
   </React.StrictMode>,
 );

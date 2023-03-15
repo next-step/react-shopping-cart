@@ -1,17 +1,21 @@
 import { useEffect, useState } from 'react';
+import RootRouter from './RootRouter';
 
 function App() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/products')
+    fetch('/products', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'GET',
+    })
       .then(res => res.json())
       .then(json => setData(json.data));
   }, []);
 
-  console.log(data);
-
-  return <div>HelloWorld!!</div>;
+  return <RootRouter />;
 }
 
 export default App;
