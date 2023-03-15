@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router";
 import styled from "styled-components";
+import Product from "../components/detail/Product";
 import { Product as ProductType } from "../types/product";
 import { api } from "../utils/api";
 import { formatPrice } from "../utils/common";
@@ -40,12 +41,7 @@ function Detail() {
       <Box>
         <Img src={product?.imageUrl} alt={product?.name} />
         <Info>
-          <Name>{product?.name}</Name>
-          <Hr />
-          <InfoDetail>
-            <span>금액</span>
-            <Price>{formatPrice(product?.price)}원</Price>
-          </InfoDetail>
+          <Product product={product} />
         </Info>
         <Button>장바구니</Button>
       </Box>
@@ -76,26 +72,6 @@ const Img = styled.img`
 
 const Info = styled.div`
   width: 100%;
-`;
-
-const Name = styled.span`
-  font-size: 24px;
-`;
-
-const Hr = styled.hr`
-  width: 100%;
-  border: 2px solid #aaaaaa;
-  margin-top: 20px;
-  margin-bottom: 20px;
-`;
-
-const InfoDetail = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const Price = styled.span`
-  font-size: 24px;
 `;
 
 const Button = styled.button`
