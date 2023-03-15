@@ -10,7 +10,16 @@ export const handlers = [
         productsList: productData,
       })
     );
-  }), // rest.post('/login', (req, res, ctx) => {
+  }),
+  rest.get('/products', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        productsList: productData,
+      })
+    );
+  }),
+  // rest.post('/login', (req, res, ctx) => {
   //   // Persist user's authentication in the session
   //   sessionStorage.setItem('is-authenticated', 'true');
   //   return res(

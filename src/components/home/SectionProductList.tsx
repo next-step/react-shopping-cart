@@ -4,6 +4,8 @@ import Section from '../../layout/Section';
 import styled from '@emotion/styled';
 import mq from '../../utils/style/mq';
 import ProductItem from './item/ProductItem';
+import { useNavigate } from 'react-router-dom';
+import { ROUTE } from '../../constant/router';
 
 const S = {
   Container: styled.div(
@@ -22,6 +24,15 @@ const S = {
 };
 const SectionProductList = () => {
   const [productList, setProductList] = useState<ProductType[] | null>(null);
+  const navigate = useNavigate();
+
+  const addToCart = () => {
+    const confirmRes = confirm(
+      '장바구니에 상품을 담았습니다. 장바구니로 이동하시겠습니까?'
+    );
+    if (confirmRes) navigate(ROUTE.CART);
+  };
+
   const fetchProduct = async () => {
     const list = await fetchProductList();
     if (list === null) return;
@@ -41,6 +52,7 @@ const SectionProductList = () => {
             imageUrl={item.imageUrl}
             name={item.name}
             price={item.price}
+            onClickAddCart={addToCart}
           />
         ))}
       </S.Container>

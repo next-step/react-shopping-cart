@@ -33,7 +33,13 @@ const S = {
   `,
 };
 
-const ProductItem = ({ name, price, imageUrl }: ProductType) => {
+const ProductItem = ({
+  name,
+  price,
+  imageUrl,
+  onClick,
+  onClickAddCart,
+}: ProductType) => {
   return (
     <S.Wrapper>
       <S.ImgWrap>
@@ -42,9 +48,9 @@ const ProductItem = ({ name, price, imageUrl }: ProductType) => {
       <S.TextWrap>
         <S.ColumnLeft>
           <S.Name>{name}</S.Name>
-          <S.Price>{price} 원</S.Price>
+          <S.Price>{price.toLocaleString()} 원</S.Price>
         </S.ColumnLeft>
-        <S.ColumnRight>
+        <S.ColumnRight onClick={onClickAddCart}>
           <SvgCart />
         </S.ColumnRight>
       </S.TextWrap>
