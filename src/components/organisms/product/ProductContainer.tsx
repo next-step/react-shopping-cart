@@ -1,11 +1,19 @@
 import { Card } from '../../atomes';
 import { IProduct } from '../../../types/shoppingCart';
+import { useNavigate } from 'react-router-dom';
+import { useCallback } from 'react';
 
 interface IProductContainer {
   products: IProduct[];
 }
 
 export default function ProductContainer({ products }: IProductContainer) {
+  const navigate = useNavigate();
+
+  const handleClickCard = useCallback((id: number) => {
+    navigate(`/detail/${id}`);
+  }, []);
+
   return (
     <section className="product-container">
       {products.map((item) => (
@@ -17,7 +25,7 @@ export default function ProductContainer({ products }: IProductContainer) {
           imageSrc={item.imageUrl}
           icon="./assets/svgs/cart.svg"
         >
-          <div>
+          <div onClick={() => handleClickCard(item.id)}>
             <Card.Image/>
             <Card.Info/>
           </div>
