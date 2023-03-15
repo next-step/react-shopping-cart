@@ -7,7 +7,9 @@ export interface CartItemType {
 }
 export const fetchCartList = async (): Promise<null | CartItemType[]> => {
   try {
-    const { data } = await axios(`${process.env.REACT_APP_API_URL}/carts`);
+    const { data } = await axios(
+      `${process.env.REACT_APP_CURRENT_DOMAIN}/carts`
+    );
     return data.response;
   } catch (error) {
     console.error(error);
