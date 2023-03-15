@@ -28,7 +28,7 @@
     ]
   },
   "dependencies": {
-    "facepaint": "^1.2.1",
+    "axios": "^1.3.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.9.0",
@@ -38,6 +38,7 @@
   "devDependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@types/facepaint": "^1.2.2",
     "@types/node": "^16.18.14",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
@@ -48,9 +49,13 @@
     "eslint-plugin-json-format": "^2.0.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
+    "facepaint": "^1.2.1",
     "json-server": "^0.17.0",
     "lowdb": "^1.0.0",
     "msw": "^1.1.0",
     "prettier": "^2.8.4"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
