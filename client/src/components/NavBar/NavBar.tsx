@@ -4,6 +4,7 @@ const NavBar = () => {
   return (
     <Styled.Layout>
       <Styled.TitleBox>
+        <Styled.CartIcon />
         <Styled.Title>CLEAN CODE SHOP</Styled.Title>
       </Styled.TitleBox>
       <Styled.ButtonBox display="flex">

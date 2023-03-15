@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Box, Button } from 'components/common';
+import { ReactComponent as Cart } from 'assets/svgs/cart.svg';
 
 export const Layout = styled(Box)`
   display: flex;
@@ -16,11 +17,14 @@ export const Title = styled.h1`
   text-align: center;
   vertical-align: middle;
   color: #ffffff;
+  cursor: pointer;
 `;
 export const TitleBox = styled.div`
   display: flex;
+
   justify-content: center;
   align-items: center;
+  gap: 15px;
 `;
 
 export const ButtonBox = styled(Box)`
@@ -33,4 +37,9 @@ export const NavButton = styled(Button)`
   color: #ffffff;
   background-color: transparent;
   border: none;
+`;
+export const CartIcon = styled(Cart)`
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
 `;
