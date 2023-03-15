@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import mq from '../../utils/style/mq';
 import ProductItem from './item/ProductItem';
 import { useNavigate } from 'react-router-dom';
-import { ROUTE } from '../../constant/router';
+import { ROUTE } from '../../router';
 
 const S = {
   Container: styled.div(

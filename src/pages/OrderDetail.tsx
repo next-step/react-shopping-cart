@@ -1,6 +1,8 @@
+import Layout from '../layout/Layout';
+
 const OrderList = () => {
   return (
-    <div className="root">
+    <Layout>
       <header className="flex-col-center">
         <h1 className="global-nav-title">주문 상세</h1>
         <br />
@@ -110,7 +112,7 @@ const OrderList = () => {
           </div>
         </div>
       </section>
-    </div>
+    </Layout>
   );
 };
 

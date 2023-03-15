@@ -1,15 +1,15 @@
 import Header from '../components/frame/Header';
 import styled from '@emotion/styled';
-import { Outlet } from 'react-router-dom';
+import { ReactNode } from 'react';
 
 const S = {
   Layout: styled.div(),
 };
-const Layout = () => {
+const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <S.Layout>
       <Header />
-      <Outlet />
+      {children}
     </S.Layout>
   );
 };

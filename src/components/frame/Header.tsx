@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ROUTE } from '../../constant/router';
+import { ROUTE } from '../../router';
 import styled from '@emotion/styled';
 import mq from '../../utils/style/mq';
 import {

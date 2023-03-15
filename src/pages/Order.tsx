@@ -1,6 +1,8 @@
+import Layout from '../layout/Layout';
+
 const Cart = () => {
   return (
-    <div className="root">
+    <Layout>
       <header className="flex-col-center">
         <h1 className="global-nav-title">주문/결제</h1>
         <br />
@@ -111,7 +113,7 @@ const Cart = () => {
           </section>
         </div>
       </section>
-    </div>
+    </Layout>
   );
 };
 
