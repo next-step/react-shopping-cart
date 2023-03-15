@@ -4,7 +4,6 @@ import App from './App';
 import './style/css/index.css';
 import { worker } from './mocks/browser';
 import { BrowserRouter } from 'react-router-dom';
-
 // if (process.env.NODE_ENV === 'development') {
 worker.start();
 // }
