@@ -1,13 +1,21 @@
 import styled from "styled-components";
+import { OrderDetail } from "../../types/order";
+import { formatPrice } from "../../utils/common";
 
-export default function OrderProduct() {
+interface ComponentProps {
+  orderDetail: OrderDetail;
+}
+
+export default function OrderProduct({ orderDetail }: ComponentProps) {
   return (
     <Product>
       <Info>
-        <Img src="assets/images/product.png" alt="PET보틀-정사각(420ml)" />
+        <Img src={orderDetail.imageUrl} alt={orderDetail.name} />
         <InfoDetail>
-          <Name>PET보틀-정사각(420ml)</Name>
-          <Price>54,800원 / 수량: 3개</Price>
+          <Name>{orderDetail.name}</Name>
+          <Price>
+            {formatPrice(orderDetail.price)}원 / 수량: {orderDetail.quantity}개
+          </Price>
         </InfoDetail>
       </Info>
       <Button>장바구니</Button>

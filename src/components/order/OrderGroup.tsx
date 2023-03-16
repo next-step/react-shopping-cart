@@ -1,16 +1,19 @@
 import styled from "styled-components";
-import OrderProduct from "./OrderProduct";
+import { Order } from "../../types/order";
 
-export default function OrderGroup() {
+interface ComponentProps {
+  children: JSX.Element | JSX.Element[];
+  order: Order;
+}
+
+export default function OrderGroup({ children, order }: ComponentProps) {
   return (
     <List>
       <Header>
-        <span>주문번호: 1</span>
+        <span>주문번호: {order.id}</span>
         <span>상세보기 &gt;</span>
       </Header>
-      <OrderProduct />
-      <OrderProduct />
-      <OrderProduct />
+      {children}
     </List>
   );
 }
