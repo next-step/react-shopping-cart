@@ -33,7 +33,7 @@ const SectionProductList = () => {
     if (confirmRes) navigate(ROUTE.CART);
   };
 
-  const fetchProduct = async () => {
+  const fetchProduct = async (): Promise<void> => {
     const list = await fetchProductList();
     if (list === null) return;
     setProductList(list);

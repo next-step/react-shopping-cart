@@ -10,9 +10,7 @@ export interface ProductType {
 }
 export const fetchProductList = async (): Promise<null | ProductType[]> => {
   try {
-    const { data } = await axios(
-      `${process.env.REACT_APP_CURRENT_DOMAIN}/products`
-    );
+    const { data } = await axios(`${process.env.REACT_APP_API_PATH}/products`);
     return data.response;
   } catch (error) {
     console.error(error);
@@ -25,7 +23,7 @@ export const fetchProductDetail = async (
 ): Promise<null | ProductType> => {
   try {
     const { data } = await axios(
-      `${process.env.REACT_APP_CURRENT_DOMAIN}/products/${productId}`
+      `${process.env.REACT_APP_API_PATH}/products/${productId}`
     );
     return data.response;
   } catch (error) {

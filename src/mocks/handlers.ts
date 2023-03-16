@@ -41,12 +41,12 @@ export const handlers = [
   }),
 
   // [POST] 장바구니 아이템 추가
-  rest.post('/carts', (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json({
-        response: cartData,
-      })
-    );
-  }),
+  // rest.post('/carts', (req, res, ctx) => {
+  //   return res(
+  //     ctx.status(200),
+  //     ctx.json({
+  //       response: cartData,
+  //     })
+  //   );
+  // }),
 ];
