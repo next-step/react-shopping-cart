@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 import { SubHeader } from "@/components/common";
 
-import * as S from "./cartOrderLayout.style";
+import * as S from "./cartOrderMainLayout.style";
 
 export default function CartOrderLayout() {
   return (
