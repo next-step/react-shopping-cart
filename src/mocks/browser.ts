@@ -1,5 +1,5 @@
 import { setupWorker } from "msw";
 
-import { productHandler } from "./handlers";
+import { cartHandler, productHandler } from "./handlers";
 
-export const worker = setupWorker(...productHandler);
+export const worker = setupWorker(...productHandler, ...cartHandler);
