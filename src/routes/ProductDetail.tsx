@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useHistory, useLocation, useParams } from "react-router";
 import styled from "styled-components";
 import Product from "../components/detail/Product";
+import { ROUTE } from "../constants/route";
 import { Cart } from "../types/cart";
 import { Product as ProductType } from "../types/product";
 import { api } from "../utils/api";
@@ -41,7 +42,7 @@ function Detail() {
   const handleCartClick = async () => {
     const cart = product;
     await api.post<string, Cart[]>("/carts", JSON.stringify(cart));
-    history.push("/cart");
+    history.push(ROUTE.CART);
   };
 
   return (
