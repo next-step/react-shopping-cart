@@ -1,5 +1,12 @@
+import OrderGroup from "../components/order/OrderGroup";
+
 function OrderList() {
-  return <div>OrderList</div>;
+  return (
+    <>
+      <OrderGroup />
+      <OrderGroup />
+    </>
+  );
 }
 
 export default OrderList;
