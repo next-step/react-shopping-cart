@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router";
+import { useHistory, useLocation, useParams } from "react-router";
 import styled from "styled-components";
 import Product from "../components/detail/Product";
 import { Cart } from "../types/cart";
@@ -37,15 +37,12 @@ function Detail() {
     })();
   }, [state, id]);
 
+  const history = useHistory();
+
   const handleCartClick = async () => {
-    const cart = {
-      name: "dd",
-      price: 3000,
-      imageUrl:
-        "https://cdn-mart.baemin.com/sellergoods/main/5297837f-5ecd-4945-be2f-4a75854cd06e.jpg",
-    };
+    const cart = product;
     await api.post<string, Cart[]>("/carts", JSON.stringify(cart));
-    console.log(await api.get("/carts"));
+    history.push("/cart");
   };
 
   return (
