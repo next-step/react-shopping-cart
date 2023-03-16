@@ -8,9 +8,9 @@ export interface CheckBoxProps extends InputHTMLAttributes<HTMLInputElement> {
   width?: string;
 }
 
-export default function CheckBox({ label, isChecked, ...props }: CheckBoxProps) {
+export default function CheckBox({ label, isChecked, className, ...props }: CheckBoxProps) {
   return (
-    <S.CheckBoxContainer>
+    <S.CheckBoxContainer className={className}>
       <S.CheckBox type="checkbox" {...props} checked={isChecked} />
       {label && <S.CheckBoxLabel>{label}</S.CheckBoxLabel>}
     </S.CheckBoxContainer>
