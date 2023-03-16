@@ -5,7 +5,6 @@ import Product from "../components/detail/Product";
 import { Cart } from "../types/cart";
 import { Product as ProductType } from "../types/product";
 import { api } from "../utils/api";
-import { formatPrice } from "../utils/common";
 
 interface RouteParams {
   id: string;

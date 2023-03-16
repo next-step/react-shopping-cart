@@ -1,4 +1,3 @@
-import { Cart } from "./../types/cart";
 import { rest } from "msw";
 import MOCK from "./data.json";
 import { Product } from "../types/product";

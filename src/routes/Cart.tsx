@@ -9,7 +9,6 @@ function Cart() {
   useEffect(() => {
     (async () => {
       try {
-        // TODO: real api 로 수정
         const carts = await api.get<CartType[]>("/carts");
         setCarts(carts);
       } catch (e) {
