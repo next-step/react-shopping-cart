@@ -1,8 +1,8 @@
 export type ProductsDto = {
-  products: ProductDto[];
+  products: TProduct[];
 };
 
-export type ProductDto = {
+export type TProduct = {
   id: number;
   name: string;
   price: number;

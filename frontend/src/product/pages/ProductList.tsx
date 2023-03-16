@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-
-import { Grid } from '@/components/common';
-
-import productApi from '@/product/apis/product';
-import { ProductDto } from '@/product/types/product';
-import Product from '@/product/components/Product';
 import styled from '@emotion/styled';
 
+import { Grid } from '@/components/common';
+import { TProduct } from '@/types/product';
+
+import productApi from '@/product/apis/product';
+import Product from '@/product/components/Product';
+
 export default function ProductList() {
-  const [products, setProducts] = useState<ProductDto[]>([]);
+  const [products, setProducts] = useState<TProduct[]>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -19,7 +19,7 @@ export default function ProductList() {
   }, []);
 
   return (
-    <ProductListGrid as="ul" display="grid" gap="32px" gridTemplateColumns="1fr 1fr 1fr 1fr">
+    <ProductListGrid as="ul" display="grid" gap="24px" gridTemplateColumns="1fr 1fr 1fr 1fr">
       {products.map((product) => {
         return <Product key={product.id} {...product} />;
       })}
@@ -28,6 +28,6 @@ export default function ProductList() {
 }
 
 const ProductListGrid = styled(Grid)`
-  max-width: 1280px;
-  margin: 0 auto;
+  max-width: 1392px;
+  margin: 32px auto 0;
 `;
