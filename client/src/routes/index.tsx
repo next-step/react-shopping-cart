@@ -1,4 +1,4 @@
-import { Route, Routes as ReactRouterRoutes, Navigate } from 'react-router-dom';
+import { Route, Routes as ReactRouterRoutes } from 'react-router-dom';
 import { Cart, Order, OrderList, OrderListDetail, ProductDetail, ProductList } from 'pages';
 
 const Routes = () => {

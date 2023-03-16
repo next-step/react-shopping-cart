@@ -1,16 +1,21 @@
 import styled from 'styled-components';
 
 import { ListItem } from 'components/ListItem';
+import useProductList from 'hooks/useProductsList';
 
 const ProductList = () => {
+  const { products, isLoading } = useProductList();
+
+  if (isLoading) {
+    return <div>로딩중...</div>;
+  }
   return (
     <Layout>
-      <ListItem />
-      <ListItem />
-      <ListItem />
-      <ListItem />
-      <ListItem />
-      <ListItem />
+      {!isLoading &&
+        products &&
+        products.map((product) => (
+          <ListItem key={product.id} price={product.price} image={product.imageUrl} name={product.name} />
+        ))}
     </Layout>
   );
 };
