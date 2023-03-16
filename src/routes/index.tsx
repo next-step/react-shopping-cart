@@ -1,7 +1,7 @@
 import React from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 
-import { CartOrderLayout, MainLayout } from "@/layouts";
+import { CartOrderMainLayout, MainLayout } from "@/layouts";
 import { Carts, Products } from "@/views";
 
 export const DOMAINS = {
@@ -26,7 +26,7 @@ export default createBrowserRouter([
       },
       {
         path: "/",
-        element: <CartOrderLayout />,
+        element: <CartOrderMainLayout />,
         children: [{ path: DOMAINS.CART, element: <Carts /> }],
       },
     ],
