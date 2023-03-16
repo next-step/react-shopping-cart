@@ -11,7 +11,7 @@ const Payment = ({ ...props }: PaymentProps) => {
       <div>
         <Styled.Bottom display={'flex'} justifyContent="space-between">
           <Styled.Text>{props.text}</Styled.Text>
-          <Styled.Price>{props.price}</Styled.Price>
+          <Styled.Price>{props.price}원</Styled.Price>
         </Styled.Bottom>
         {props.buttonText && (
           <Styled.ButtonBox display={'flex'} justifyContent="center" alignItems="center">

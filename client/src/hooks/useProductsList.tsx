@@ -1,13 +1,6 @@
 import { useEffect, useState } from 'react';
-import type { AxiosResponse } from 'axios';
 import useFetch from './useFetch';
-
-type ProductType = {
-  id: number;
-  price: string;
-  imageUrl: string;
-  name: string;
-};
+import { ProductType } from 'types';
 
 const useProductList = () => {
   const { sendRequest, isLoading, error } = useFetch();
@@ -22,6 +15,7 @@ const useProductList = () => {
     };
     fetchProducts();
   }, [sendRequest]);
+
   return { products, isLoading, error };
 };
 export default useProductList;

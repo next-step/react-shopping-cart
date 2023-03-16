@@ -29,7 +29,7 @@ export const CartItemImage = styled(Image)`
   height: 144px;
 `;
 export const CartItemName = styled.span`
-  font-size: 20px;
+  font-size: 24px;
 `;
 
 export const RightFlexBox = styled(Box)`
@@ -59,5 +59,6 @@ export const CartInputNumberButton = styled(Button)`
 `;
 export const CartPriceText = styled.span`
   color: #333333;
+  font-size: 20px;
   align-self: flex-end;
 `;

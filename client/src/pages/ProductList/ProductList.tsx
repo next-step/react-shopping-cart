@@ -9,12 +9,13 @@ const ProductList = () => {
   if (isLoading) {
     return <div>로딩중...</div>;
   }
+
   return (
     <Layout>
       {!isLoading &&
         products &&
         products.map((product) => (
-          <ListItem key={product.id} price={product.price} image={product.imageUrl} name={product.name} />
+          <ListItem key={product.id} price={product.price} image={product.image} name={product.name} />
         ))}
     </Layout>
   );
