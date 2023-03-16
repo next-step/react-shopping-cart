@@ -3,7 +3,7 @@ import EndPoint from "./endPoints";
 import type { Product } from "./products";
 
 export type Cart = {
-  id: string;
+  id: number;
   product: Product;
 };
 
