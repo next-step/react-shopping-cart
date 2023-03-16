@@ -1,6 +1,7 @@
 import { createContext, PropsWithChildren, useCallback, useMemo } from 'react';
 import Image from './Image';
 import Info from './Info';
+import classNames from 'classnames';
 
 export interface ICard {
   imageSrc: string;
@@ -30,7 +31,9 @@ export const CardWrapper = ({ title, children, ...props }: PropsWithChildren<ICa
 
   return (
     <CardContext.Provider value={contextValue}>
-      {children}
+      <div className={classNames('card')}>
+        {children}
+      </div>
     </CardContext.Provider>
   );
 };

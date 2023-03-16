@@ -1,4 +1,4 @@
-import { Card } from '../../atomes';
+import { Card, Flex } from '../../atomes';
 import { IProduct } from '../../../types/shoppingCart';
 import { useNavigate } from 'react-router-dom';
 import { useCallback } from 'react';
@@ -25,10 +25,10 @@ export default function ProductContainer({ products }: IProductContainer) {
           imageSrc={item.imageUrl}
           icon="./assets/svgs/cart.svg"
         >
-          <div onClick={() => handleClickCard(item.id)}>
+          <Flex onClick={() => handleClickCard(item.id)} type="flex-col">
             <Card.Image/>
             <Card.Info/>
-          </div>
+          </Flex>
         </Card>
       ))}
     </section>
