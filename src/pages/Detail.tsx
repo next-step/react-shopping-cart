@@ -7,7 +7,7 @@ import ProductDetail from '../components/organisms/product/ProductDetail';
 export default function Detail() {
   const { findProductOne } = ProductService();
   const { id } = useParams();
-  const [product, setProduct] = useState<IProduct>();
+  const [product, setProduct] = useState<IProduct | null>(null);
 
   const fetchData = async () => {
     const item = await findProductOne(Number(id));

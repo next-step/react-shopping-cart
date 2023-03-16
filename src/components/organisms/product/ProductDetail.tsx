@@ -4,10 +4,10 @@ import { useCallback } from 'react';
 import { IProduct } from '../../../types/shoppingCart';
 
 interface IProductDetail {
-  product: IProduct;
+  product: IProduct | null;
 }
 
-export default function ProductDetail({ product = {} }: IProductDetail) {
+export default function ProductDetail({ product }: IProductDetail) {
   const navigate = useNavigate();
   const moveCartPage = useCallback(() => {
     navigate('/cart');
