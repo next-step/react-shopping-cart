@@ -1,6 +1,7 @@
 import { Cart } from "./../types/cart";
 import { rest } from "msw";
 import MOCK from "./data.json";
+import { Product } from "../types/product";
 
 const state = {
   carts: MOCK.carts,
@@ -15,8 +16,12 @@ export const handlers = [
     return res(ctx.status(200), ctx.json(state.carts));
   }),
   rest.post(`/carts`, async (req, res, ctx) => {
-    const newPost = req.body as Cart;
-    state.carts.push(newPost);
+    const product = JSON.parse(req.body as string) as Product;
+    const cart = {
+      id: Date.now(),
+      product,
+    };
+    state.carts.push(cart);
     await sleep(200);
     return res(ctx.status(200), ctx.json(state.carts));
   }),
