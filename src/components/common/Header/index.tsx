@@ -12,6 +12,10 @@ export default function Header() {
     navigate(DOMAINS.MAIN);
   };
 
+  const moveToCartPage = () => {
+    navigate(DOMAINS.CART);
+  };
+
   return (
     <S.HeaderContainer>
       <S.HeaderContentWrapper>
@@ -20,8 +24,10 @@ export default function Header() {
           <S.HeaderTitle>Next Step</S.HeaderTitle>
         </S.HeaderTitleWrapper>
         <S.NavButtonWrapper>
-          <S.NavButton>장바구니</S.NavButton>
-          <S.NavButton>주문목록</S.NavButton>
+          <S.NavButton variant="text" onClick={moveToCartPage}>
+            장바구니
+          </S.NavButton>
+          <S.NavButton variant="text">주문목록</S.NavButton>
         </S.NavButtonWrapper>
       </S.HeaderContentWrapper>
     </S.HeaderContainer>

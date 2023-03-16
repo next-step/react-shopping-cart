@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 import { Cart } from "@/assets/svgs";
 
+import Button from "../Button";
+
 export const HeaderContainer = styled.nav`
   --header-text-top-padding: 10px;
 
@@ -50,7 +52,7 @@ export const NavButtonWrapper = styled.div`
   padding-top: var(--header-text-top-padding);
 `;
 
-export const NavButton = styled.button`
+export const NavButton = styled(Button)`
   font-weight: 500;
   font-size: 24px;
   color: var(--white);
