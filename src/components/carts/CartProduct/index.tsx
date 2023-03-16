@@ -1,4 +1,5 @@
-import React from "react";
+import React, { CSSProperties } from "react";
+import { FlattenSimpleInterpolation } from "styled-components";
 
 import { Trash } from "@/assets/svgs";
 import { Button, CheckBox, NumberCounter } from "@/components/common";
@@ -11,17 +12,21 @@ export interface CartProductProps {
   cartProductInfo: CartGroup;
   onIncreaseProductQuantity: () => void;
   onDecreaseProductQuantity: () => void;
+  className?: string;
+  css?: FlattenSimpleInterpolation;
 }
 
 export default function CartProduct({
   cartProductInfo,
   onIncreaseProductQuantity,
   onDecreaseProductQuantity,
+  className,
+  css,
 }: CartProductProps) {
   const { imageUrl, name, price, count } = cartProductInfo;
 
   return (
-    <S.CartProductContainer>
+    <S.CartProductContainer className={className} css={css}>
       <div>
         <CheckBox width="20px" />
       </div>

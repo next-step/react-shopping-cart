@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import type {} from "styled-components/cssprop";
 
 import App from "./App";
 import { GlobalStyle, ResetStyle } from "./styles";
