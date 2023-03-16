@@ -33,7 +33,10 @@ function SubLayout({ children }: ComponentProps) {
         </SubHeaderTitle>
         <Hr />
       </SubHeader>
-      <Content>{children}</Content>
+      {history.location.pathname === ROUTE.CART && (
+        <CartContent>{children}</CartContent>
+      )}
+      {history.location.pathname === ROUTE.ORDERS && <>{children}</>}
     </Section>
   );
 }
@@ -61,7 +64,7 @@ const Hr = styled.hr`
   margin-top: 20px;
 `;
 
-const Content = styled.div`
+const CartContent = styled.div`
   display: flex;
 `;
 
