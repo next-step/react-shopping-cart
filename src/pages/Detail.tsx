@@ -18,7 +18,6 @@ export default function Detail() {
 
   const handleClickCart = useCallback(() => {
     if (!product) return;
-    console.log('detail', product);
 
     addCart(product);
   }, [product]);

@@ -11,10 +11,9 @@ export function ProductService() {
   };
 
   const findProductOne = async (id: number): Promise<IProduct> => {
-    const { data } = await http.get(BASE_URL);
-    const findOne = data.find((item: IProduct) => item.id === id);
+    const { data } = await http.get(`${BASE_URL}/${id}`);
 
-    return findOne;
+    return data;
   };
 
   return {
