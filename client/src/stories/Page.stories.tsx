@@ -1,7 +1,5 @@
 import React from 'react'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { within, userEvent } from '@storybook/testing-library'
 import { Page } from './Page'
 
