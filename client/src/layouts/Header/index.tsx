@@ -1,7 +1,12 @@
-import React from 'react'
+import * as S from './styles'
+import GNB from '../GNB'
 
 const Header = () => {
-  return <header>header</header>
+  return (
+    <S.headerContainer>
+      <GNB />
+    </S.headerContainer>
+  )
 }
 
 export default Header
