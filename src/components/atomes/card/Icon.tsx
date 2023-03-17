@@ -1,7 +1,6 @@
 import useCardState from './hooks/useCardState';
-import { memo } from 'react';
 
-function Icon() {
+export default function Icon() {
   const { icon, onClickIcon } = useCardState();
 
   return (
@@ -14,4 +13,3 @@ function Icon() {
   );
 }
 
-export default memo(Icon);
