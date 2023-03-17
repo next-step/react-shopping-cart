@@ -1,15 +1,17 @@
 export class Repository<T> {
   constructor(
     private readonly key: string,
+    private readonly initialItems: T[] = [],
     private readonly repository: Storage = localStorage
   ) {
+    this.set(this.initialItems);
   }
 
   public get(): T[] {
     return JSON.parse(this.repository.getItem(this.key) || '[]');
   }
 
-  public set(item: T | T[]): void {
+  public set(item: T[]): void {
     this.repository.setItem(this.key, JSON.stringify(item));
   }
 
