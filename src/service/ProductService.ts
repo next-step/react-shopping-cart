@@ -3,7 +3,7 @@ import { IProduct } from '../types/shoppingCart';
 
 const BASE_URL = '/products';
 
-function ProductService() {
+export function ProductService() {
   const findAllProducts = async (): Promise<IProduct[]> => {
     const { data } = await http.get(BASE_URL);
 
@@ -22,5 +22,3 @@ function ProductService() {
     findProductOne
   };
 }
-
-export default ProductService;

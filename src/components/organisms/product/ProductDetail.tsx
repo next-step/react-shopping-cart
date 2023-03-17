@@ -7,12 +7,15 @@ import { Modal } from '../../molecules';
 
 interface IProductDetail {
   product: IProduct;
+  onClickCart: () => void;
 }
 
-export default function ProductDetail({ product }: IProductDetail) {
+export default function ProductDetail({ product, onClickCart }: IProductDetail) {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
-  const handleClickCartButton = useCallback(() => {
+  const handleClickButton = useCallback(() => {
+    console.log('handl;eclock');
+    onClickCart();
     setOpen(true);
   }, []);
 
@@ -42,7 +45,7 @@ export default function ProductDetail({ product }: IProductDetail) {
           </Flex>
         </Card>
         <div className="mt-20"></div>
-        <Button text="장바구니" color="gray" onClick={handleClickCartButton}/>
+        <Button text="장바구니" color="gray" onClick={handleClickButton}/>
       </Flex>
     </div>
   );
