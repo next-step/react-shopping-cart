@@ -1,6 +1,6 @@
 import { memo, PropsWithChildren, useCallback } from 'react';
 
-interface IFlex {
+export interface IFlex {
   className?: string;
   onClick?: () => void;
 }

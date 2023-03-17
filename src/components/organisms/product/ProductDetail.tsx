@@ -29,6 +29,7 @@ export default function ProductDetail({ product }: IProductDetail) {
             <span className="product-detail-info__price">{priceFormat(product.price)}</span>
           </Flex>
         </Card>
+        <div className="mt-20"></div>
         <Button text="장바구니" color="gray" onClick={moveCartPage}/>
       </Flex>
     </div>

@@ -1,5 +1,7 @@
 .card {
-  cursor: pointer;
+  &__icon {
+    cursor: pointer;
+  }
 
   &-image {
     display: flex;

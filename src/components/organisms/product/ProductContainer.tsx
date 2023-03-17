@@ -1,7 +1,6 @@
 import { Card, Flex } from '../../atomes';
 import { IProduct } from '../../../types/shoppingCart';
-import { useNavigate } from 'react-router-dom';
-import { useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { priceFormat } from '../../../utils';
 
 interface IProductContainer {
@@ -9,12 +8,6 @@ interface IProductContainer {
 }
 
 export default function ProductContainer({ products }: IProductContainer) {
-  const navigate = useNavigate();
-
-  const handleClickCard = useCallback((id: number) => {
-    navigate(`/detail/${id}`);
-  }, []);
-
   return (
     <section className="product-container">
       {products.map((item) => (
@@ -26,9 +19,12 @@ export default function ProductContainer({ products }: IProductContainer) {
           imageSrc={item.imageUrl}
           icon="./assets/svgs/cart.svg"
         >
-          <Flex onClick={() => handleClickCard(item.id)} className="flex-col">
+          <Link to={`/detail/${item.id}`}>
             <Card.Image/>
+          </Link>
+          <Flex className="justify-between">
             <Card.Info/>
+            <Card.Icon/>
           </Flex>
         </Card>
       ))}

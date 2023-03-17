@@ -1,7 +1,8 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { CardWrapper, ICard } from './index';
+import { CardWrapper } from './index';
+import { Flex } from '../index';
 
 const defaultArgs = {
   title: '43,000원',
@@ -10,49 +11,38 @@ const defaultArgs = {
   icon: './assets/svgs/cart.svg'
 };
 
-const NormalCard = (props: ICard) => {
-  return (
-    <CardWrapper
-      {...props}
-    >
-      <div className="w-280">
-        <CardWrapper.Image/>
-        <CardWrapper.Info/>
-      </div>
-    </CardWrapper>
-  );
-};
-
-const FlexCard = (props: ICard) => {
-  return (
-    <CardWrapper
-      {...props}
-    >
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <CardWrapper.Image/>
-        <CardWrapper.Info/>
-      </div>
-    </CardWrapper>
-  );
-};
-
-
 export default {
   title: 'Common/Card',
-  component: NormalCard,
+  component: CardWrapper,
   parameters: {
     layout: 'fullscreen',
   },
 } as ComponentMeta<typeof CardWrapper>;
 
-const Template: ComponentStory<typeof NormalCard> = (args) => <NormalCard {...args} />;
-const Template2: ComponentStory<typeof NormalCard> = (args) => <FlexCard {...args} />;
+const Template: ComponentStory<typeof CardWrapper> = (args) => (
+  <CardWrapper
+    {...args}
+  >
+    <CardWrapper.Image/>
+    <CardWrapper.Info/>
+  </CardWrapper>
+);
+const Template2: ComponentStory<typeof CardWrapper> = (args) => (
+  <CardWrapper
+    {...args}
+  >
+    <Flex className="items-center">
+      <CardWrapper.Image/>
+      <CardWrapper.Info/>
+    </Flex>
+  </CardWrapper>
+);
 
-export const Normal = Template.bind({});
-Normal.args = defaultArgs;
+export const NormalCard = Template.bind({});
+NormalCard.args = defaultArgs;
 
-export const Flex = Template2.bind({});
-Flex.args = {
+export const FlexCard = Template2.bind({});
+FlexCard.args = {
   ...defaultArgs,
   icon: ''
 };
