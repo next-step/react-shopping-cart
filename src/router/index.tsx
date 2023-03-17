@@ -7,7 +7,7 @@ import CartPage from "page/cart";
 export const ROUTE = {
   HOME: "/",
   PRODUCT_LIST: "/list",
-  PRODUCT_DETAIL: "/detail",
+  PRODUCT_DETAIL: "/list/:id",
   CART_LIST: "/cart",
   ORDER:"/order",
   ORDER_LIST:"/orderList",
