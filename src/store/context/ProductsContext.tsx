@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, Dispatch, useEffect, useCallback } from "react";
+import React, { createContext, useContext, useReducer, Dispatch, useCallback } from "react";
 import { ProductItem } from "../type";
 import { getProducts } from "api/product";
 import { productsReducer, ProductsActionType } from "store/reducers/productReducer";
@@ -22,10 +22,6 @@ const ProductsProvider = ({ children }: { children: React.ReactNode }) => {
       console.log(error)
     }
   }, [dispatch]);
-
-  useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts]);
 
   return (
     <ProductsContext.Provider value={{ products: state.products, dispatch, fetchProducts }}>

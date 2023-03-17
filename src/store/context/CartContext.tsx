@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, Dispatch, useEffect, useCallback } from "react";
+import React, { createContext, useContext, useReducer, Dispatch, useCallback } from "react";
 import { CartItem } from "../type";
 import { getCarts } from "api/cart";
 import { cartsReducer, CartsActionType } from "store/reducers/cartReducer";
@@ -22,10 +22,6 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
       console.log(error)
     }
   }, [dispatch]);
-
-  useEffect(() => {
-    fetchCarts();
-  }, [fetchCarts]);
 
   return (
     <CartContext.Provider value={{ carts: state.carts, dispatch, fetchCarts }}>

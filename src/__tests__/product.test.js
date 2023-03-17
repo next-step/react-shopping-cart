@@ -1,4 +1,3 @@
-import { getCarts } from "mocks/api/cart";
 import { getProducts } from "mocks/api/product";
 import server from "mocks/server";
 
