@@ -1,10 +1,11 @@
-import { Button } from '../../atomes';
+import { Button, Card, DivideLine, Flex } from '../../atomes';
 import { useNavigate } from 'react-router-dom';
 import { useCallback } from 'react';
 import { IProduct } from '../../../types/shoppingCart';
+import { priceFormat } from '../../../utils';
 
 interface IProductDetail {
-  product: IProduct | null;
+  product: IProduct;
 }
 
 export default function ProductDetail({ product }: IProductDetail) {
@@ -15,22 +16,21 @@ export default function ProductDetail({ product }: IProductDetail) {
 
   return (
     <div className="product-detail-container">
-      <div className="flex-col-center w-520">
-        <img
-          alt={product?.name}
-          className="w-480 h-480 mb-10"
-          src={product?.imageUrl}
-        />
-        <div className="product-detail-info mb-10">
-          <span className="product-detail-info__name">{product?.name}</span>
-          <hr className="divide-line-gray my-20"/>
-          <div className="flex justify-between">
+      <Flex type="flex-col-center">
+        <Card
+          imageSrc={product.imageUrl}
+          imageAlt={product.name}
+          imageTitle={product.name}
+        >
+          <Card.Image/>
+          <DivideLine className="mt-20 mb-20"/>
+          <Flex type="justify-between items-center">
             <span>금액</span>
-            <span className="product-detail-info__price">{product?.price}</span>
-          </div>
-        </div>
+            <span className="product-detail-info__price">{priceFormat(product.price)}</span>
+          </Flex>
+        </Card>
         <Button text="장바구니" color="gray" onClick={moveCartPage}/>
-      </div>
+      </Flex>
     </div>
   );
 }

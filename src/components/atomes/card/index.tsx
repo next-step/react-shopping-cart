@@ -7,13 +7,13 @@ export interface ICard {
   imageSrc: string;
   imageAlt: string;
   description?: string;
-  title: string;
+  imageTitle?: string;
+  title?: string;
   icon?: string;
   onClickIcon?: () => void;
 }
 
 export const CardContext = createContext<ICard>({
-  title: '',
   imageSrc: '',
   imageAlt: ''
 });

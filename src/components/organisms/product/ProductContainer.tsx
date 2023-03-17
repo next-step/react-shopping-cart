@@ -2,6 +2,7 @@ import { Card, Flex } from '../../atomes';
 import { IProduct } from '../../../types/shoppingCart';
 import { useNavigate } from 'react-router-dom';
 import { useCallback } from 'react';
+import { priceFormat } from '../../../utils';
 
 interface IProductContainer {
   products: IProduct[];
@@ -21,7 +22,7 @@ export default function ProductContainer({ products }: IProductContainer) {
           key={item.id}
           imageAlt={item.name}
           description={item.name}
-          title={String(item.price)}
+          title={priceFormat(item.price)}
           imageSrc={item.imageUrl}
           icon="./assets/svgs/cart.svg"
         >
