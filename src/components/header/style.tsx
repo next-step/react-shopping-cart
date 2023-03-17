@@ -7,12 +7,6 @@ export const HeaderWrapper = styled("header", {
   alignItems: "center",
 });
 
-export const GlobalNavTitle = styled("h1", {
-  fontSize: "36px",
-  fontWeight: "600",
-  marginTop: "16px",
-});
-
 export const GlobalNavButtonBox = styled("div", {
   display: "flex",
   gap: "5px",

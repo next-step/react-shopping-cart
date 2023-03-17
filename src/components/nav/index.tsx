@@ -21,8 +21,8 @@ const Nav = () => {
         <NavTitle>NEXTSTEP</NavTitle>
       </NavTitleBox>
       <NavButtonBox>
-        <NavButton>장바구니</NavButton>
-        <NavButton>주문목록</NavButton>
+        <NavButton onClick={() => go(ROUTE.CART_LIST)}>장바구니</NavButton>
+        <NavButton onClick={() => go(ROUTE.PRODUCT_LIST)}>주문목록</NavButton>
       </NavButtonBox>
     </NavBox>
   );
