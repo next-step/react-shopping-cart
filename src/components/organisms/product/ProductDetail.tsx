@@ -16,7 +16,7 @@ export default function ProductDetail({ product }: IProductDetail) {
 
   return (
     <div className="product-detail-container">
-      <Flex type="flex-col-center">
+      <Flex className="flex-col-center">
         <Card
           imageSrc={product.imageUrl}
           imageAlt={product.name}
@@ -24,7 +24,7 @@ export default function ProductDetail({ product }: IProductDetail) {
         >
           <Card.Image/>
           <DivideLine className="mt-20 mb-20"/>
-          <Flex type="justify-between items-center">
+          <Flex className="justify-between items-center">
             <span>금액</span>
             <span className="product-detail-info__price">{priceFormat(product.price)}</span>
           </Flex>

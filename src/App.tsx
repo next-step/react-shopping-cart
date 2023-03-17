@@ -1,5 +1,6 @@
 import { Header } from './components/molecules';
-import './css/index.css';
+import './styles/css/index.css';
+import './styles/scss/index.scss';
 import { Outlet } from 'react-router-dom';
 import useHeaderRouting from './components/molecules/header/hooks';
 

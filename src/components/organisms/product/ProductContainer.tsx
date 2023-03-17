@@ -26,7 +26,7 @@ export default function ProductContainer({ products }: IProductContainer) {
           imageSrc={item.imageUrl}
           icon="./assets/svgs/cart.svg"
         >
-          <Flex onClick={() => handleClickCard(item.id)} type="flex-col">
+          <Flex onClick={() => handleClickCard(item.id)} className="flex-col">
             <Card.Image/>
             <Card.Info/>
           </Flex>

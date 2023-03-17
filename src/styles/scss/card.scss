@@ -1,0 +1,13 @@
+.card {
+  cursor: pointer;
+
+  &-image {
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+      font-size: 24px;
+      padding-top: 10px;
+    }
+  }
+}
