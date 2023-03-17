@@ -1,4 +1,4 @@
-import { CartItem } from "store/type";
+import { CartItem } from "types/type";
 
 import trash from "assets/svgs/trash.svg";
 

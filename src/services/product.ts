@@ -1,5 +1,5 @@
-import { get } from "api";
-import { ProductItem } from "store/type";
+import { get } from "services";
+import { ProductItem } from "types/type";
 
 const PRODUCTS = "/products";
 

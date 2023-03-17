@@ -5,19 +5,23 @@ import "style/common/index.css";
 import "./style.css";
 import LeftSection from "./left-section";
 import RightSection from "./right-section";
-import { useCartContext } from "store/context/CartContext";
-import { useCallback, useEffect } from "react";
+
+import { useCart } from "hooks/useCart";
 
 const CartContent = () => {
-  const { carts, fetchCarts } = useCartContext();
+  const { data: carts, isLoading, isError } = useCart();
 
-  const handleFetchProducts = useCallback(() => {
-    fetchCarts();
-  }, [fetchCarts]);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-  useEffect(() => {
-    handleFetchProducts();
-  }, [handleFetchProducts]);
+  if (isError) {
+    return <div>Error loading product data</div>;
+  }
+
+  if (!carts) {
+    return <div>No cart data available</div>;
+  }
 
   return (
     <section className="cart-section">

@@ -1,21 +1,24 @@
-import { useCallback, useEffect } from "react";
-import { ProductItem } from "store/type";
+import { ProductItem } from "types/type";
 import { ProductContainer } from "./style";
 import Item from "./item";
 import Header from "components/header";
 import Nav from "components/nav";
-import { useProductsContext } from "store/context/ProductsContext";
+import { useProduct } from "hooks/useProduct";
 
 const ProductListPageContent = () => {
-  const { products, fetchProducts } = useProductsContext();
 
-  const handleFetchProducts = useCallback(() => {
-    fetchProducts();
-  }, [fetchProducts]);
+  const { data: products, isLoading, isError } = useProduct();
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-  useEffect(() => {
-    handleFetchProducts();
-  }, [handleFetchProducts]);
+  if (isError) {
+    return <div>Error loading product data</div>;
+  }
+
+  if (!products) {
+    return <div>No product data available</div>;
+  }
 
   return (
     <ProductContainer>

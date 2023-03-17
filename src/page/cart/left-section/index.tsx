@@ -1,4 +1,4 @@
-import { CartItem } from "store/type";
+import { CartItem } from "types/type";
 import Item from "./item";
 
 type LeftSectionProps = {

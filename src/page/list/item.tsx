@@ -1,5 +1,5 @@
 import { Icon } from "common/ui";
-import { ProductItem } from "store/type";
+import { ProductItem } from "types/type";
 import { Image, ItemInfo, ItemWrapper, Price, Title } from "./style";
 
 import cartSvg from 'assets/svgs/cart.svg';

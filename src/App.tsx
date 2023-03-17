@@ -2,16 +2,18 @@ import { RouterProvider } from "react-router-dom";
 import router from "./router";
 
 import "../src/style/reset.css";
-import { ProductsProvider } from "store/context/ProductsContext";
-import { CartProvider } from "store/context/CartContext";
+import { RecoilRoot } from "recoil";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 function App() {
+  const queryClient = new QueryClient();
+
   return (
-    <ProductsProvider>
-      <CartProvider>
+    <QueryClientProvider client={queryClient}>
+      <RecoilRoot>
         <RouterProvider router={router} />
-      </CartProvider>
-    </ProductsProvider>
+      </RecoilRoot>
+    </QueryClientProvider>
   );
 }
 
