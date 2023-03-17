@@ -1,21 +1,33 @@
 import { Button, Card, DivideLine, Flex } from '../../atomes';
 import { useNavigate } from 'react-router-dom';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { IProduct } from '../../../types/shoppingCart';
 import { priceFormat } from '../../../utils';
+import { Modal } from '../../molecules';
 
 interface IProductDetail {
   product: IProduct;
 }
 
 export default function ProductDetail({ product }: IProductDetail) {
+  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
-  const moveCartPage = useCallback(() => {
+  const handleClickCartButton = useCallback(() => {
+    setOpen(true);
+  }, []);
+
+  const handleModalClick = useCallback((status: boolean) => {
+    if (!status) {
+      setOpen(false);
+      return;
+    }
+
     navigate('/cart');
   }, []);
 
   return (
     <div className="product-detail-container">
+      <Modal open={open} text={'상품이 장바구니에 담겼습니다.\n 장바구니로 이동하시겠습니까?'} onClick={handleModalClick}/>
       <Flex className="flex-col-center">
         <Card
           imageSrc={product.imageUrl}
@@ -30,7 +42,7 @@ export default function ProductDetail({ product }: IProductDetail) {
           </Flex>
         </Card>
         <div className="mt-20"></div>
-        <Button text="장바구니" color="gray" onClick={moveCartPage}/>
+        <Button text="장바구니" color="gray" onClick={handleClickCartButton}/>
       </Flex>
     </div>
   );
