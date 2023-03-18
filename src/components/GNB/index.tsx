@@ -1,15 +1,35 @@
-const GNB = () => {
+import type { RoutePath } from '@/routes/Route';
+import { useRouter } from '@/routes/useRouter';
+import { Link } from 'react-router-dom';
+
+type Props = {
+  navList?: { path: RoutePath; text: string }[];
+};
+
+const GNB = ({ navList = NAV_LIST }: Props) => {
   return (
-    <nav className="nav flex justify-around">
+    <nav className="nav flex justify-between items-center py-300">
       <div className="flex-center">
-        <h1 className="nav-title">CLEAN CODE SHOP</h1>
+        <h1 className="nav-title">{NAV_TITLE}</h1>
       </div>
       <div className="flex gap-15">
-        <button className="nav-button">장바구니</button>
-        <button className="nav-button">주문목록</button>
+        {navList &&
+          navList.map((nav,idx) => (
+            <Link to={nav.path} key={idx}>
+              <button className="nav-button">{nav.text}</button>
+            </Link>
+          ))}
       </div>
     </nav>
-  );
+  )
 };
 
 export default GNB;
+
+const NAV_TITLE = 'NEXT STEP';
+const NAV_LIST: { path: RoutePath; text: string }[] = [
+  {
+    path: '/carts',
+    text: '장바구니',
+  },
+];

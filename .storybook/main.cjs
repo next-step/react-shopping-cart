@@ -1,3 +1,4 @@
+import '../src/css/index.css';
 const viteTsconfig = require('vite-tsconfig-paths');
 const tsconfigPaths = viteTsconfig.default;
 const { mergeConfig } = require('vite');
@@ -8,7 +9,11 @@ module.exports = {
     '../stories/**/*.stories.@(js|jsx|ts|tsx)',
     '../src/components/**/*.stories.@(js|jsx|ts|tsx)',
   ],
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials','storybook-addon-react-router-v6'],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    'storybook-addon-react-router-v6',
+  ],
   core: {
     builder: '@storybook/builder-vite',
   },
@@ -26,6 +31,4 @@ module.exports = {
       plugins: [tsconfigPaths()],
     });
   },
-
 };
-
