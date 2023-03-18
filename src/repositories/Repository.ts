@@ -4,7 +4,11 @@ export class Repository<T> {
     private readonly initialItems: T[] = [],
     private readonly repository: Storage = localStorage
   ) {
-    this.set(this.initialItems);
+    const items = this.get();
+
+    if (!items.length) {
+      this.set(this.initialItems);
+    }
   }
 
   public get(): T[] {

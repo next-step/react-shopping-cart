@@ -14,13 +14,12 @@ export default function ProductDetail({ product, onClickCart }: IProductDetail) 
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const handleClickButton = useCallback(() => {
-    console.log('handl;eclock');
     onClickCart();
     setOpen(true);
   }, []);
 
-  const handleModalClick = useCallback((status: boolean) => {
-    if (!status) {
+  const handleModalClick = useCallback((success: boolean) => {
+    if (!success) {
       setOpen(false);
       return;
     }

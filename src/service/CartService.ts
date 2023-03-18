@@ -4,7 +4,7 @@ import { http } from '../client/httpClient';
 const BASE_URL = '/carts';
 
 export function CartService() {
-  const addCart = (item: IProduct) => {
+  const addCart = (item: IProduct): void => {
     const cartItem: ICart = {
       id: new Date().getTime(),
       product: item
