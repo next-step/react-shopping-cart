@@ -1,7 +1,7 @@
 import { useFetch } from 'hooks';
 
 import Skeleton from './Skeleton';
-import Product from '../Product';
+import ProductItem from '../ProductItem';
 
 import { IProduct } from 'types/product';
 import { API } from 'constants/api';
@@ -16,7 +16,7 @@ function ProductList() {
   return (
     <section className="product-container">
       {products.map((product) => (
-        <Product key={product.id} product={product} />
+        <ProductItem key={product.id} product={product} />
       ))}
     </section>
   );
