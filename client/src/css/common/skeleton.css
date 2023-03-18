@@ -6,7 +6,6 @@
 
 .skeleton-box {
   display: inline-block;
-  height: 1em;
   position: relative;
   overflow: hidden;
   background-color: #dddbdd;

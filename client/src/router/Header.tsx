@@ -1,13 +1,21 @@
 import { Link } from 'react-router-dom';
+import { css, cx } from '@emotion/css';
 
 import { PATHS } from 'constants/router';
+import { colors } from 'constants/colors';
 import { LogoImage } from 'assets/images';
-import { css } from '@emotion/css';
 
 function Header() {
   return (
     <header>
-      <nav className="nav flex justify-around">
+      <nav
+        className={cx(
+          'nav flex justify-around',
+          css`
+            background-color: ${colors.green600};
+          `
+        )}
+      >
         <div
           className={css`
             width: 1200px;
