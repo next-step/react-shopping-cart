@@ -26,7 +26,7 @@ function Checkbox({ children, size = 'medium', ...props }: CheckboxProps) {
           css`
             width: ${width}px;
             height: ${height}px;
-            border-color: ${colors.green600};
+            border-color: ${colors.green600} !important;
             &:checked {
               background-color: ${colors.green600};
             }

@@ -10,7 +10,7 @@ interface ProductProps {
   product: IProduct;
 }
 
-function Product({ product }: ProductProps) {
+function ProductItem({ product }: ProductProps) {
   const { imageUrl, name, price } = product;
   const { isOpen, close: closeDialog, open: openDialog } = useIsOpen();
 
@@ -31,4 +31,4 @@ function Product({ product }: ProductProps) {
   );
 }
 
-export default Product;
+export default ProductItem;
