@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { CardWrapper } from './index';
-import { Flex } from '../index';
+import { Flex } from '../../atomes';
 
 const defaultArgs = {
   title: '43,000원',

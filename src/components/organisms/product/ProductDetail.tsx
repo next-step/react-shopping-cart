@@ -1,7 +1,7 @@
-import { Button, Card, DivideLine, Flex } from '../../atomes';
+import { Button, DivideLine, Flex } from '../../atomes';
 import { IProduct } from '../../../types/shoppingCart';
 import { priceFormat } from '../../../utils';
-import { Modal } from '../../molecules';
+import { Card, Modal } from '../../molecules';
 import { useAddProductToCart } from '../../../hooks';
 import { MODAL } from '../../../constants';
 import { useCallback } from 'react';

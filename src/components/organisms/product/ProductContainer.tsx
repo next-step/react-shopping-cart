@@ -1,8 +1,8 @@
-import { Card, Flex } from '../../atomes';
+import { Flex } from '../../atomes';
 import { IProduct } from '../../../types/shoppingCart';
 import { Link } from 'react-router-dom';
 import { priceFormat } from '../../../utils';
-import { Modal } from '../../molecules';
+import { Card, Modal } from '../../molecules';
 import { MODAL } from '../../../constants';
 import { useAddProductToCart } from '../../../hooks';
 import { useCallback } from 'react';
