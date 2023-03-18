@@ -4,7 +4,7 @@ import GNB from './components/GNB';
 
 function App() {
   return (
-    <div className="root">
+    <div className='app'>
       <GNB/>
       <Route />
     </div>

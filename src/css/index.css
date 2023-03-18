@@ -1,9 +1,8 @@
 @import "./common/index.css";
 @import "./page/index.css";
 
-body {
-  width: 1920px;
-  margin: 24px auto 0;
+.app {
+  width: 100vw;
 }
 
 .divide-line {
