@@ -32,4 +32,12 @@ const NAV_LIST: { path: RoutePath; text: string }[] = [
     path: '/carts',
     text: '장바구니',
   },
+  {
+    path: '/products',
+    text: '상품 목록',
+  },
+  {
+    path: '/order',
+    text: '주문 목록',
+  },
 ];
