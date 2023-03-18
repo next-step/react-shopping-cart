@@ -17,12 +17,18 @@ const getCarts = rest.get<ICart[]>(API.CARTS, (_, res, ctx) => {
 const addCart = rest.post<ICart[]>(API.CART, async (req, res, ctx) => {
   const cartWithoutId = await req.json<Omit<ICart, 'id'>>();
 
-  const newCart = {
-    ...cartWithoutId,
-    id: new Date().getTime(),
-  };
+  const existedCart = carts.find((cart) => cart.product.id === cartWithoutId.product.id);
 
-  carts.push(newCart);
+  if (existedCart) {
+    existedCart.count += cartWithoutId.count;
+  } else {
+    const newCart = {
+      ...cartWithoutId,
+      id: new Date().getTime(),
+    };
+
+    carts.push(newCart);
+  }
 
   return res(ctx.status(200), ctx.delay(500), ctx.json(carts));
 });
