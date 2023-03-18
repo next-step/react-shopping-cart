@@ -2,21 +2,19 @@ import { Card, Flex } from '../../atomes';
 import { IProduct } from '../../../types/shoppingCart';
 import { Link } from 'react-router-dom';
 import { priceFormat } from '../../../utils';
-import { useCallback } from 'react';
 import { Modal } from '../../molecules';
 import { MODAL } from '../../../constants';
 import { useAddProductToCart } from '../../../hooks';
+import { useCallback } from 'react';
 
 interface IProductContainer {
   products: IProduct[];
-  onClickCart: (item: IProduct) => void;
 }
 
-export default function ProductContainer({ products, onClickCart }: IProductContainer) {
-  const { openModal, setOpenModal, handleClickModal } = useAddProductToCart();
-  const handleClickIcon = useCallback((item: IProduct) => {
-    onClickCart(item);
-    setOpenModal(true);
+export default function ProductContainer({ products }: IProductContainer) {
+  const { modal, addProductWithModal, handleClickModal } = useAddProductToCart();
+  const handleClickIcon = useCallback((product: IProduct) => {
+    addProductWithModal(product);
   }, []);
 
   return (
@@ -40,7 +38,7 @@ export default function ProductContainer({ products, onClickCart }: IProductCont
           </Flex>
         </Card>
       ))}
-      <Modal open={openModal} text={MODAL.ADD_CART} onClick={handleClickModal}/>
+      <Modal open={modal} text={MODAL.ADD_CART} onClick={handleClickModal}/>
     </section>
   );
 }

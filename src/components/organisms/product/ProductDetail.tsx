@@ -1,27 +1,24 @@
 import { Button, Card, DivideLine, Flex } from '../../atomes';
-import { useCallback } from 'react';
 import { IProduct } from '../../../types/shoppingCart';
 import { priceFormat } from '../../../utils';
 import { Modal } from '../../molecules';
 import { useAddProductToCart } from '../../../hooks';
 import { MODAL } from '../../../constants';
+import { useCallback } from 'react';
 
 interface IProductDetail {
   product: IProduct;
-  onClickCart: () => void;
 }
 
-export default function ProductDetail({ product, onClickCart }: IProductDetail) {
-  const { openModal, setOpenModal, handleClickModal } = useAddProductToCart();
-
+export default function ProductDetail({ product }: IProductDetail) {
+  const { modal, addProductWithModal, handleClickModal } = useAddProductToCart();
   const handleClickButton = useCallback(() => {
-    onClickCart();
-    setOpenModal(true);
+    addProductWithModal(product);
   }, []);
 
   return (
     <div className="product-detail-container">
-      <Modal open={openModal} text={MODAL.ADD_CART} onClick={handleClickModal}/>
+      <Modal open={modal} text={MODAL.ADD_CART} onClick={handleClickModal}/>
       <Flex className="flex-col-center">
         <Card
           imageSrc={product.imageUrl}

@@ -1,11 +1,10 @@
-import { CartService, ProductService } from '../service';
+import { ProductService } from '../service';
 import { useEffect, useState } from 'react';
 import ProductContainer from '../components/organisms/product/ProductContainer';
 import { IProduct } from '../types/shoppingCart';
 
 export default function List() {
   const { findAllProducts } = ProductService();
-  const { addCart } = CartService();
   const [products, setProducts] = useState<IProduct[]>([]);
 
   const fetchData = async () => {
@@ -17,6 +16,6 @@ export default function List() {
     fetchData();
   }, []);
   return (
-    <ProductContainer products={products} onClickCart={addCart}/>
+    <ProductContainer products={products}/>
   );
 }
