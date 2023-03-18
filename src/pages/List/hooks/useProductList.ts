@@ -1,18 +1,11 @@
-import { useState, useEffect } from 'react'
-
 import { API } from '@/config'
+import { useFetch } from '@/hooks'
 import { ProductType } from '@/types'
 
 const useProductList = () => {
-  const [products, setProducts] = useState<ProductType[]>([])
+  const { payload: products, isLoading, isError } = useFetch<ProductType[]>(API.PRODUCTS)
 
-  useEffect(() => {
-    fetch(API.PRODUCTS)
-      .then((response) => response.json())
-      .then((data) => setProducts(data))
-  }, [])
-
-  return { products }
+  return { products, isLoading, isError }
 }
 
 export default useProductList
