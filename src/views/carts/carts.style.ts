@@ -15,15 +15,15 @@ export const CartProductCheckBox = styled(CheckBox)`
 `;
 
 export const CartProductDeleteButton = styled(Button)`
-  border-color: var(--white-gray);
+  border-color: var(--gray);
   font-size: 16px;
   padding: 5px 10px;
   margin-bottom: 30px;
 `;
 
 export const CartSubHeader = styled(SubHeader)`
-  border-color: var(--white-gray);
-  color: var(--white-gray);
+  border-color: var(--gray);
+  color: var(--gray);
   font-size: 20px;
   padding-bottom: 15px;
   margin-bottom: 20px;
@@ -36,6 +36,6 @@ export const cartProductStyle = css`
 
   &:not(:last-of-type) {
     padding-bottom: 10px;
-    border-bottom: 1px solid var(--white-gray);
+    border-bottom: 1px solid var(--gray);
   }
 `;

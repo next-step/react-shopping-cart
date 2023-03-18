@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React from "react";
 import { FlattenSimpleInterpolation } from "styled-components";
 
 import { Trash } from "@/assets/svgs";

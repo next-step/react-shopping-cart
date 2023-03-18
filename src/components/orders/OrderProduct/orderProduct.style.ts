@@ -29,6 +29,6 @@ export const AddCartButton = styled(Button)`
 `;
 
 export const OrderProductPrice = styled.span`
-  color: var(--white-gray);
+  color: var(--gray);
   font-size: 15px;
 `;

@@ -5,12 +5,12 @@ import Button from "../Button";
 export const PriceDashBoardContainer = styled.div`
   --price-dashboard-side-padding: 25px;
 
-  border: 1px solid var(--white-gray);
+  border: 1px solid var(--gray);
 `;
 
 export const PriceDashBoardTitleWrapper = styled.div`
   padding: 20px var(--price-dashboard-side-padding);
-  border-bottom: 3px solid var(--white-gray);
+  border-bottom: 3px solid var(--gray);
 `;
 
 export const PriceDashBoardTitle = styled.span`

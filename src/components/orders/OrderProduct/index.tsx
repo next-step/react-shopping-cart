@@ -1,4 +1,5 @@
 import React from "react";
+import { FlattenSimpleInterpolation } from "styled-components";
 
 import type { OrderedProduct } from "@/api/orders";
 import { numberWithCommas } from "@/helpers";
@@ -7,12 +8,14 @@ import * as S from "./orderProduct.style";
 
 export interface OrderProductProps {
   orderedProductInfo: OrderedProduct;
+  className?: string;
+  css?: FlattenSimpleInterpolation;
 }
 
-export default function OrderProduct({ orderedProductInfo }: OrderProductProps) {
+export default function OrderProduct({ orderedProductInfo, className, css }: OrderProductProps) {
   const { imageUrl, name, quantity, price } = orderedProductInfo;
   return (
-    <S.OrderProductContainer>
+    <S.OrderProductContainer className={className} css={css}>
       <S.ProductImageWrapper>
         <img src={imageUrl} alt={name} />
       </S.ProductImageWrapper>
