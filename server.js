@@ -1,4 +1,4 @@
-import { dirname } from 'node:path';
+import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 // json-server
@@ -10,12 +10,15 @@ import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const file = join(__dirname, 'db.json');
 
 const server = jsonServer.create();
 const router = jsonServer.router(path.join(__dirname, 'db.json'));
 const middlewares = jsonServer.defaults();
-const adapter = new JSONFile(path.join(__dirname, 'db.json'));
+const adapter = new JSONFile(file);
 const db = new Low(adapter);
+
+await db.read();
 
 server.use(middlewares);
 
@@ -31,14 +34,15 @@ server.post('/products', (req, res) => {
   ) {
     res.sendStatus(400);
   } else {
-    db.get('products').push({ id: Date.now(), price, name, imageUrl }).write();
+    db.data.products.push({ id: Date.now(), price, name, imageUrl });
+    db.write();
     res.sendStatus(201);
   }
 });
 
 server.post('/carts', (req, res) => {
-  const { product } = req.body;
-  const { price, name, imageUrl } = product;
+  const product = req.body;
+  const { price, name, imageUrl } = req.body;
   
   if (
     !Number.isInteger(price) ||
@@ -47,7 +51,8 @@ server.post('/carts', (req, res) => {
   ) {
     res.sendStatus(400);
   } else {
-    db.get('carts').push({ id: Date.now(), product }).write();
+    db.data.carts.push({ id: Date.now(), product });
+    db.write();
     res.sendStatus(201);
   }
 });
@@ -70,12 +75,11 @@ server.post('/orders', (req, res) => {
     }
   }
   
-  db.get('orders')
-    .push({
-      id: Date.now(),
-      orderDetails,
-    })
-    .write();
+  db.data.orders.push({
+    id: Date.now(),
+    orderDetails,
+  });
+  db.write();
   res.sendStatus(201);
 });
 
