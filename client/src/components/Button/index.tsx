@@ -106,6 +106,7 @@ function Button({
             color: ${fontColor};
             display: flex;
             align-items: center;
+            justify-content: center;
           `}
         >
           {children}

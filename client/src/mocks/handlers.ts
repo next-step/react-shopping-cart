@@ -1,8 +1,8 @@
-import { API } from 'constants/api';
 import { rest } from 'msw';
 
 import { ICart } from 'types/cart';
 import { IProduct } from 'types/product';
+import { API } from 'constants/api';
 
 import { carts, products } from './data';
 
@@ -15,7 +15,13 @@ const getCarts = rest.get<ICart[]>(API.CARTS, (_, res, ctx) => {
 });
 
 const addCart = rest.post<ICart[]>(API.CART, async (req, res, ctx) => {
-  const newCart = await req.json<ICart>();
+  const cartWithoutId = await req.json<Omit<ICart, 'id'>>();
+
+  const newCart = {
+    ...cartWithoutId,
+    id: new Date().getTime(),
+  };
+
   carts.push(newCart);
 
   return res(ctx.status(200), ctx.delay(500), ctx.json(carts));
