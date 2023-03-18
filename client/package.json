@@ -29,6 +29,7 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "babel-plugin-named-exports-order": "^0.0.2",
+    "chromatic": "^6.17.2",
     "msw": "^1.1.0",
     "prop-types": "^15.8.1",
     "typescript": "^4.4.2",
@@ -40,7 +41,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "chromatic": "npx chromatic --project-token=94ff399febb1"
   },
   "eslintConfig": {
     "extends": [
@@ -72,5 +74,7 @@
   },
   "msw": {
     "workerDirectory": "public"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "bolierplate@0.1.0"
 }
