@@ -1,1 +1,4 @@
-export const getProduct = fetch('/cart/list').then((res) => res.json());
+export const getAllProducts = async () : Promise<Product[]> => {
+  const data = await fetch('/product/list');
+  return data.json();
+};

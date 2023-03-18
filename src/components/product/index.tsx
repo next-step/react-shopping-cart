@@ -1,18 +1,18 @@
 import { use } from 'react';
-import { getProduct } from '@/api/product';
+import * as productApi from '@/api/product';
 
 const Products = () => {
-  const products = use<Product[]>(getProduct);
+  const products = use(productApi.getAllProducts());
+
   return (
     <>
-      {products &&
-        products.map((product) => (
-          <div key={product.id}>
-            <div>{product.name}</div>
-            <div>{product.price}</div>
-            <img src={product.image} />
-          </div>
-        ))}
+      {products.map((product) => (
+        <div key={product.id}>
+          <div>{product.name}</div>
+          <div>{product.price}</div>
+          <img src={product.image} />
+        </div>
+      ))}
     </>
   );
 };
