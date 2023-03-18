@@ -1,10 +1,11 @@
 import { Card, Flex } from '../../atomes';
 import { IProduct } from '../../../types/shoppingCart';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { priceFormat } from '../../../utils';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { Modal } from '../../molecules';
-import MODAL from '../../../constants/modal';
+import { MODAL } from '../../../constants';
+import { useAddProductToCart } from '../../../hooks';
 
 interface IProductContainer {
   products: IProduct[];
@@ -12,20 +13,10 @@ interface IProductContainer {
 }
 
 export default function ProductContainer({ products, onClickCart }: IProductContainer) {
-  const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
+  const { openModal, setOpenModal, handleClickModal } = useAddProductToCart();
   const handleClickIcon = useCallback((item: IProduct) => {
     onClickCart(item);
-    setOpen(true);
-  }, []);
-
-  const handleClickModal = useCallback((success: boolean) => {
-    if (!success) {
-      setOpen(false);
-      return;
-    }
-
-    navigate('/cart');
+    setOpenModal(true);
   }, []);
 
   return (
@@ -49,7 +40,7 @@ export default function ProductContainer({ products, onClickCart }: IProductCont
           </Flex>
         </Card>
       ))}
-      <Modal open={open} text={MODAL.ADD_CART} onClick={handleClickModal}/>
+      <Modal open={openModal} text={MODAL.ADD_CART} onClick={handleClickModal}/>
     </section>
   );
 }

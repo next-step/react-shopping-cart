@@ -1,9 +1,10 @@
 import { Button, Card, DivideLine, Flex } from '../../atomes';
-import { useNavigate } from 'react-router-dom';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { IProduct } from '../../../types/shoppingCart';
 import { priceFormat } from '../../../utils';
 import { Modal } from '../../molecules';
+import { useAddProductToCart } from '../../../hooks';
+import { MODAL } from '../../../constants';
 
 interface IProductDetail {
   product: IProduct;
@@ -11,25 +12,16 @@ interface IProductDetail {
 }
 
 export default function ProductDetail({ product, onClickCart }: IProductDetail) {
-  const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
+  const { openModal, setOpenModal, handleClickModal } = useAddProductToCart();
+
   const handleClickButton = useCallback(() => {
     onClickCart();
-    setOpen(true);
-  }, []);
-
-  const handleModalClick = useCallback((success: boolean) => {
-    if (!success) {
-      setOpen(false);
-      return;
-    }
-
-    navigate('/cart');
+    setOpenModal(true);
   }, []);
 
   return (
     <div className="product-detail-container">
-      <Modal open={open} text={'상품이 장바구니에 담겼습니다.\n 장바구니로 이동하시겠습니까?'} onClick={handleModalClick}/>
+      <Modal open={openModal} text={MODAL.ADD_CART} onClick={handleClickModal}/>
       <Flex className="flex-col-center">
         <Card
           imageSrc={product.imageUrl}
