@@ -54,7 +54,6 @@ function Button({
 
   return (
     <button
-      {...props}
       className={cx(
         css`
           height: ${height}px;
@@ -74,6 +73,8 @@ function Button({
         `,
         className
       )}
+      disabled={disabled || loading}
+      {...props}
     >
       <div
         className={css`

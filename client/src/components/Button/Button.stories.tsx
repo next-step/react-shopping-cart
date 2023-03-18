@@ -95,13 +95,13 @@ export const Disabled = () => {
 };
 
 export const WithIcon = () => {
-  return <Button leftComponent={<img src={CartSVG} alt="장바구니" />}>With Icon</Button>;
+  return <Button leftComponent={<CartSVG width={16} />}>With Icon</Button>;
 };
 
 export const OnlyIcon = () => {
   return (
     <Button>
-      <img src={CartSVG} alt="장바구니" width={16} />
+      <CartSVG width={16} />
     </Button>
   );
 };

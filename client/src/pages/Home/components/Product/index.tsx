@@ -1,4 +1,5 @@
 import { useMutation } from 'hooks';
+import { Button } from 'components';
 
 import { CartSVG } from 'assets/svgs';
 import { ICart } from 'types/cart';
@@ -11,7 +12,7 @@ interface ProductProps {
 
 function Product({ product }: ProductProps) {
   const { id, imageUrl, name, price } = product;
-  const { mutate: addCart } = useMutation<ICart[], ICart>({
+  const { mutate: addCart, isLoading } = useMutation<ICart[], ICart>({
     url: API.CART,
     options: { method: 'POST' },
     onSuccess: (data) => console.log(data),
@@ -31,9 +32,9 @@ function Product({ product }: ProductProps) {
           <span className="product-info__name">{name}</span>
           <span className="product-info__price">{price.toLocaleString('ko')}원</span>
         </div>
-        <button onClick={handleClickCartButton}>
-          <img src={CartSVG} alt="장바구니" />
-        </button>
+        <Button onClick={handleClickCartButton} loading={isLoading}>
+          <CartSVG width={18} />
+        </Button>
       </div>
     </div>
   );
