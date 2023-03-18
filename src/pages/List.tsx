@@ -2,6 +2,7 @@ import { ProductService } from '../service';
 import { useEffect, useState } from 'react';
 import ProductContainer from '../components/organisms/product/ProductContainer';
 import { IProduct } from '../types/shoppingCart';
+import { CardList } from '../components/template';
 
 export default function List() {
   const { findAllProducts } = ProductService();
@@ -16,6 +17,8 @@ export default function List() {
     fetchData();
   }, []);
   return (
-    <ProductContainer products={products}/>
+    <CardList>
+      <ProductContainer products={products}/>
+    </CardList>
   );
 }

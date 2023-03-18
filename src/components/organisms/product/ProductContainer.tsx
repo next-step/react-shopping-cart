@@ -18,7 +18,7 @@ export default function ProductContainer({ products }: IProductContainer) {
   }, []);
 
   return (
-    <section className="product-container">
+    <>
       {products.map((item) => (
         <Card
           key={item.id}
@@ -39,6 +39,6 @@ export default function ProductContainer({ products }: IProductContainer) {
         </Card>
       ))}
       <Modal open={modal} text={MODAL.ADD_CART} onClick={handleClickModal}/>
-    </section>
+    </>
   );
 }

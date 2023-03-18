@@ -1,5 +1,5 @@
 import { Button } from '../../atomes';
-import { useCallback } from 'react';
+import { memo, useCallback } from 'react';
 
 export interface IModal {
   open: boolean;
@@ -7,7 +7,7 @@ export interface IModal {
   onClick: (state: boolean) => void;
 }
 
-export default function Modal({ open, text, onClick }: IModal) {
+function Modal({ open, text, onClick }: IModal) {
   const handleClickCancel = useCallback(() => {
     onClick(false);
   }, []);
@@ -34,3 +34,5 @@ export default function Modal({ open, text, onClick }: IModal) {
     </div>
   );
 }
+
+export default memo(Modal);

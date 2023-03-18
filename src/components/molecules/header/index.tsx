@@ -1,10 +1,12 @@
+import { memo } from 'react';
+
 export interface IHeader {
   onClickLogo?: () => void;
   onClickCart?: () => void;
   onClickOrder?: () => void;
 }
 
-export default function Header({ onClickLogo, onClickCart, onClickOrder }: IHeader) {
+function Header({ onClickLogo, onClickCart, onClickOrder }: IHeader) {
   return (
     <header className="nav flex justify-around">
       <div className="flex-center">
@@ -17,3 +19,5 @@ export default function Header({ onClickLogo, onClickCart, onClickOrder }: IHead
     </header>
   );
 }
+
+export default memo(Header);

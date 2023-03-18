@@ -17,7 +17,7 @@ export default function ProductDetail({ product }: IProductDetail) {
   }, []);
 
   return (
-    <div className="product-detail-container">
+    <>
       <Modal open={modal} text={MODAL.ADD_CART} onClick={handleClickModal}/>
       <Flex className="flex-col-center">
         <Card
@@ -35,6 +35,6 @@ export default function ProductDetail({ product }: IProductDetail) {
         <div className="mt-20"></div>
         <Button text="장바구니" color="gray" onClick={handleClickButton}/>
       </Flex>
-    </div>
+    </>
   );
 }

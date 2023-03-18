@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { IProduct } from '../types/shoppingCart';
 import { useParams } from 'react-router-dom';
 import ProductDetail from '../components/organisms/product/ProductDetail';
+import { CardDetail } from '../components/template';
 
 export default function Detail() {
   const { findProductOne } = ProductService();
@@ -22,6 +23,8 @@ export default function Detail() {
   if (!product) return;
 
   return (
-    <ProductDetail product={product}/>
+    <CardDetail>
+      <ProductDetail product={product}/>
+    </CardDetail>
   );
 }

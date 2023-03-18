@@ -1,4 +1,5 @@
 import { memo, PropsWithChildren, useCallback } from 'react';
+import classNames from 'classnames';
 
 export interface IFlex {
   className?: string;
@@ -11,7 +12,7 @@ function Flex({ children, className = '', onClick }: PropsWithChildren<IFlex>) {
   }, []);
 
   return (
-    <div className={`flex ${className}`} onClick={handleClick}>
+    <div className={classNames('flex', className)} onClick={handleClick}>
       {children}
     </div>
   );

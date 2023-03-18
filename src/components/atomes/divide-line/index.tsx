@@ -1,9 +1,14 @@
+import classNames from 'classnames';
+import { memo } from 'react';
+
 export interface IDivideLine {
   className?: string;
 }
 
-export default function DivideLine({ className = '' }: IDivideLine) {
+function DivideLine({ className = '' }: IDivideLine) {
   return (
-    <hr className={`divide-line-gray ${className}`}/>
+    <hr className={classNames('divide-line-gray', className)}/>
   );
 }
+
+export default memo(DivideLine);
