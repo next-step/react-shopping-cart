@@ -10,16 +10,8 @@ export default {
 };
 
 export const Template: Story<PropsWithChildren<CheckboxProps>> = (args) => <Checkbox {...args} />;
-Template.args = { children: 'Sample', defaultIsChecked: true };
-Template.argTypes = {
-  isChecked: { control: false },
-  name: { control: false },
-};
+Template.args = { children: 'Sample' };
 Template.storyName = 'Uncontrolled Checkbox';
 
 export const ControlledCheckbox = Template.bind({});
-ControlledCheckbox.args = { isChecked: true, children: 'Controlled' };
-ControlledCheckbox.argTypes = {
-  defaultIsChecked: { control: false },
-  name: { control: false },
-};
+ControlledCheckbox.args = { checked: true, children: 'Controlled' };

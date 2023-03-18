@@ -1,35 +1,15 @@
-import { PropsWithChildren, useId, useState } from 'react';
+import { useId } from 'react';
 
-export interface CheckboxProps {
-  isChecked?: boolean;
-  defaultIsChecked?: boolean;
-  name?: string;
-}
+import { CombineElementProps } from 'types/utils';
 
-function Checkbox({
-  isChecked: isCheckedProp,
-  defaultIsChecked,
-  name,
-  children,
-}: PropsWithChildren<CheckboxProps>) {
-  const [isCheckedState, setIsCheckedState] = useState(defaultIsChecked ?? false);
-  const isChecked = isCheckedProp !== undefined ? isCheckedProp : isCheckedState;
+export interface CheckboxProps extends CombineElementProps<'input'> {}
+
+function Checkbox({ children, ...props }: CheckboxProps) {
   const id = useId();
-
-  const handleClickCheckbox = () => {
-    setIsCheckedState((prevState) => !prevState);
-  };
 
   return (
     <div className="checkbox-container">
-      <input
-        id={id}
-        className="checkbox"
-        name={name}
-        type="checkbox"
-        checked={isChecked}
-        onClick={handleClickCheckbox}
-      />
+      <input {...props} id={id} className="checkbox" type="checkbox" />
       <label className="checkbox-label" htmlFor={id}>
         {children}
       </label>
