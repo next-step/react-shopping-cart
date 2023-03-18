@@ -1,5 +1,5 @@
 {
-  "name": "vite-project",
+  "name": "react-shopping-cart",
   "private": true,
   "version": "0.0.0",
   "type": "commonjs",
@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@stitches/react": "^1.2.8",
-    "react": "^0.0.0-experimental-56a3c18e5-20230314",
-    "react-dom": "^0.0.0-experimental-56a3c18e5-20230314",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-router-dom": "^6.9.0"
   },
   "devDependencies": {
