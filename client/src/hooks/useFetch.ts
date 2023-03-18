@@ -4,6 +4,7 @@ import { useCacheActions } from 'contexts/CacheProvider/hooks';
 
 interface State<T> {
   data?: T;
+  isLoading: boolean;
   error?: Error;
 }
 
@@ -26,12 +27,13 @@ function useFetch<T = unknown>({ url, options, cacheTime, key }: UseFetchProps):
   const initialState: State<T> = {
     error: undefined,
     data: undefined,
+    isLoading: false,
   };
 
   const fetchReducer = (state: State<T>, action: Action<T>): State<T> => {
     switch (action.type) {
       case 'loading':
-        return { ...initialState };
+        return { ...initialState, isLoading: true };
       case 'fetched':
         return { ...initialState, data: action.payload };
       case 'error':
