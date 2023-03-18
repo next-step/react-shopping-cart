@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { useCallbackRef } from './useCallbackRef';
+import { useCallbackRef } from 'hooks';
 
 interface State<T> {
   data?: T;
