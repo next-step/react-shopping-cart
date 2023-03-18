@@ -21,7 +21,7 @@
 }
 
 .checkbox:after {
-  content: "✔";
+  content: '✔';
   width: 100%;
   height: 100%;
   font-size: 0.75rem;
@@ -33,4 +33,5 @@
 
 .checkbox-label {
   padding-left: 7px;
+  cursor: pointer;
 }
