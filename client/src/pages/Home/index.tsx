@@ -1,4 +1,4 @@
-import { ProductList } from 'components/domain';
+import { ProductList } from './components';
 
 function Home() {
   return (
