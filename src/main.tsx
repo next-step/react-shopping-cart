@@ -1,8 +1,10 @@
+import './css/index.css';
+
 import { BrowserRouter } from 'react-router-dom';
-import ReactDOM from 'react-dom/client';
-import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { StrictMode } from 'react';
+
 import App from './App';
-import './index.css';
 
 import { worker } from './mocks/browser';
 
@@ -19,11 +21,11 @@ function prepare() {
   return Promise.resolve();
 }
 prepare().then(() => {
-  ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <React.StrictMode>
+  createRoot(document.getElementById('root') as HTMLElement).render(
+    <StrictMode>
       <BrowserRouter>
         <App />;
       </BrowserRouter>
-    </React.StrictMode>
+    </StrictMode>
   );
 });
