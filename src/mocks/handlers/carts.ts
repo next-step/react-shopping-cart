@@ -18,7 +18,10 @@ export const cartsHandlers = [
     const newItem = await req.json();
     const newCartItems = [
       ...cartItems,
-      newItem
+      {
+        ...newItem,
+        id: new Date().getTime()
+      }
     ];
 
     cartRepository.set(newCartItems);
