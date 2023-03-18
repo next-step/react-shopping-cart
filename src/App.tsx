@@ -1,9 +1,11 @@
 import Route from '@/routes';
+import GNB from './components/GNB';
+
 
 function App() {
   return (
-    <div className="App">
-      <h2>GNB</h2>
+    <div className="root">
+      <GNB/>
       <Route />
     </div>
   );
