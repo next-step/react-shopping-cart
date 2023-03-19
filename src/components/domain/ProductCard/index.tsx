@@ -1,5 +1,6 @@
 import { CartIcon } from '@/assets/svgs';
 import { LazyImage } from '@/components/common';
+import { currency } from '@/utils/filter/currency';
 
 const ProductCard = (product: Product) => {
   return (
@@ -13,7 +14,7 @@ const ProductCard = (product: Product) => {
       <div className="flex justify-between">
         <div className="product-info">
           <span className="product-info__name">{product.name}</span>
-          <span className="product-info__price">{product.price}원</span>
+          <span className="product-info__price">{currency(product.price)}</span>
         </div>
         <button>
           <CartIcon />
