@@ -20,13 +20,14 @@
     "@types/styled-components": "^5.1.26",
     "json-server": "^0.17.0",
     "lowdb": "^1.0.0",
+    "msw": "^1.1.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
     "server": "node server.js",
-    "start": "yarn server & react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -51,5 +52,8 @@
   },
   "resolutions": {
     "styled-components": "^5"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
