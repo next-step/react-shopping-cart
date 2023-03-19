@@ -13,7 +13,6 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "@stitches/react": "^1.2.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.9.0",
@@ -23,6 +22,7 @@
     "@faker-js/faker": "^7.6.0",
     "@storybook/addon-actions": "^6.5.16",
     "@storybook/addon-essentials": "^6.5.16",
+    "storybook-addon-react-router-v6": "^0.3.1",
     "@storybook/addon-interactions": "^6.5.16",
     "@storybook/addon-links": "^6.5.16",
     "@storybook/builder-vite": "^0.4.1",
@@ -44,7 +44,6 @@
     "eslint-plugin-prettier": "^3.1.4",
     "msw": "^1.1.0",
     "prettier": "^2.7.1",
-    "storybook-addon-react-router-v6": "^0.3.1",
     "typescript": "^4.9.3",
     "vite": "^4.1.0",
     "vite-tsconfig-paths": "^4.0.5"
