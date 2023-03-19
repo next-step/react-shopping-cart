@@ -61,9 +61,7 @@ function useHttp<ResponseData>(requestFunction: RequestFunction<ResponseData>) {
     async function (requestData?: unknown) {
       dispatch({ type: 'SEND' });
       try {
-        const responseData = (await requestFunction(
-          requestData
-        )) as ResponseData;
+        const responseData = await requestFunction(requestData);
         dispatch({ type: 'SUCCESS', responseData });
       } catch (error: Error | unknown) {
         if (!(error instanceof Error)) {
