@@ -1,35 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import App from './App'
 import reportWebVitals from './reportWebVitals'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import NotFound from './pages/NotFound'
-import Products from './pages/Products'
-import ProductDetail from './pages/ProductDetail'
-import Cart from './pages/Cart'
-import OrderForm from './pages/OrderForm'
-import Orders from './pages/Orders'
-import OrderDetail from './pages/OrderDetail'
+import { RouterProvider } from 'react-router-dom'
 import { setupWorker } from 'msw'
 import { handlers } from './mocks/handlers'
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-    errorElement: <NotFound />,
-    children: [
-      { index: true, element: <Products /> },
-      { path: '/products', element: <Products /> },
-      { path: '/product/:productId', element: <ProductDetail /> },
-      { path: '/cart', element: <Cart /> },
-      { path: '/order/form', element: <OrderForm /> },
-      { path: '/orders', element: <Orders /> },
-      { path: '/order/:orderId', element: <OrderDetail /> },
-    ],
-  },
-])
+import { router } from './utils/routers'
 
 if (process.env.NODE_ENV === 'development') {
   const msw = setupWorker(...handlers)

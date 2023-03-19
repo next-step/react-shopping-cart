@@ -4,6 +4,7 @@ import { ProductType } from '../components/Product/Product'
 import { Button } from '../components/ui/Button'
 import { useProductApi } from '../context/productApiContext'
 import { convertCurrencyFormet } from '../utils/formatter'
+import { NAVIGATE_URL } from '../utils/routers'
 import NotFound from './NotFound'
 
 function ProductDetail() {
@@ -34,7 +35,7 @@ function ProductDetail() {
 
   const onNavigateCartPage = async (product: ProductType) => {
     await cartHttpClient?.addCart(product)
-    navigate('/cart')
+    navigate(NAVIGATE_URL.CARTS)
   }
 
   return (
