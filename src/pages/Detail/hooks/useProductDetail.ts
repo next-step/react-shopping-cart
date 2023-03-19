@@ -2,7 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 
 import { API } from '@/config'
 import { useFetch, useMutation } from '@/hooks'
-import { ProductType } from '@/types'
+import { Product } from '@/types'
 
 const useProductDetail = () => {
   const { id } = useParams()
@@ -13,14 +13,14 @@ const useProductDetail = () => {
     payload: productDetail,
     isLoading,
     error,
-  } = useFetch<ProductType>(API.PRODUCT(Number(productId)), { enabled: !!productId })
+  } = useFetch<Product>(API.PRODUCT(Number(productId)), { enabled: !!productId })
   const productDetailMutation = useMutation(API.CARTS, 'POST')
 
   const goToCartPage = () => {
     navigate('/cart')
   }
 
-  const handleCartButtonClick = async (product: ProductType) => {
+  const handleCartButtonClick = async (product: Product) => {
     await productDetailMutation.mutate({ product: { ...product } })
     goToCartPage()
   }

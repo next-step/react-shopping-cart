@@ -1,7 +1,7 @@
-import { ProductType } from '@/types'
+import { Product } from '@/types'
 
 interface ItemProps {
-  item: ProductType
+  item: Product
 }
 
 const CartItem = ({ item }: ItemProps) => {

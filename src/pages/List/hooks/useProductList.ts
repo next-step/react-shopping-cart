@@ -1,9 +1,9 @@
 import { API } from '@/config'
 import { useFetch } from '@/hooks'
-import { ProductType } from '@/types'
+import { Product } from '@/types'
 
 const useProductList = () => {
-  const { payload: products, isLoading, error } = useFetch<ProductType[]>(API.PRODUCTS)
+  const { payload: products, isLoading, error } = useFetch<Product[]>(API.PRODUCTS)
 
   return { products, isLoading, error }
 }

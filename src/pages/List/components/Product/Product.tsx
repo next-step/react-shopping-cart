@@ -1,4 +1,4 @@
-import { ProductType } from '@/types'
+import { Product as ProductType } from '@/types'
 
 import { useProduct } from './hooks'
 

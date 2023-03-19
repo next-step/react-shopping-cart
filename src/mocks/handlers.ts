@@ -1,6 +1,6 @@
 import { rest, RestRequest } from 'msw'
 
-import { ProductType } from '@/types'
+import { Product } from '@/types'
 
 import { products, carts } from './data'
 
@@ -11,14 +11,11 @@ export const handlers = [
   }),
 
   // 상품목록 추가
-  rest.post(
-    `${process.env.REACT_APP_API_URL}/products`,
-    async (req: RestRequest<{ product: ProductType }>, res, ctx) => {
-      const { product } = await req.json()
-      products.push(product)
-      return res(ctx.status(200))
-    },
-  ),
+  rest.post(`${process.env.REACT_APP_API_URL}/products`, async (req: RestRequest<{ product: Product }>, res, ctx) => {
+    const { product } = await req.json()
+    products.push(product)
+    return res(ctx.status(200))
+  }),
 
   // 상품 하나 가져오기
   rest.get(`${process.env.REACT_APP_API_URL}/products/:id`, (req, res, ctx) => {
@@ -38,7 +35,7 @@ export const handlers = [
   }),
 
   // 장바구니 추가
-  rest.post(`${process.env.REACT_APP_API_URL}/carts`, async (req: RestRequest<{ product: ProductType }>, res, ctx) => {
+  rest.post(`${process.env.REACT_APP_API_URL}/carts`, async (req: RestRequest<{ product: Product }>, res, ctx) => {
     const { product } = await req.json()
     carts.push(product)
     return res(

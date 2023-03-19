@@ -1,6 +1,6 @@
-import { ProductType } from '@/types'
+import { Product } from '@/types'
 
-export const products: ProductType[] = [
+export const products: Product[] = [
   {
     id: 0,
     imageUrl: '/assets/images/product.png',
@@ -57,4 +57,4 @@ export const products: ProductType[] = [
   },
 ]
 
-export const carts: ProductType[] = []
+export const carts: Product[] = []
