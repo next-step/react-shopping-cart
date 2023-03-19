@@ -16,11 +16,11 @@ const getProducts: getProductsFn = async () => {
 }
 
 const addProduct: addProductFn = async (product: ProductType) => {
-  return axios.get('/api/products', { params: product }).then((res) => res.data)
+  return axios.get('/api/product', { params: product }).then((res) => res.data)
 }
 
 const getProduct: getProductFn = async (productId: string) => {
-  return axios.get(`/api/products/${productId}`).then((res) => res.data)
+  return axios.get(`/api/product/${productId}`).then((res) => res.data)
 }
 
 export const productHttpClient: ProductClientType = {

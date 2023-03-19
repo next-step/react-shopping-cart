@@ -1,6 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useProductApi } from '../../context/productApiContext'
 import { convertCurrencyFormet } from '../../utils/formatter'
+import { NAVIGATE_URL } from '../../utils/routers'
 import { ProductType } from '../Product/Product'
 import { Button } from '../ui/Button'
 
@@ -14,8 +16,10 @@ type OrderProductProps = {
 
 const OrderProduct: React.FC<OrderProductProps> = ({ orderItem }) => {
   const navigate = useNavigate()
-  const onClickCartBtn = (productId: string) => {
-    navigate(`/product/${productId}`)
+  const { cartHttpClient } = useProductApi()
+  const onClickCartBtn = async (product: ProductType) => {
+    await cartHttpClient?.addCart(product)
+    navigate(NAVIGATE_URL.CARTS)
   }
   return (
     <li className='flex border-b-2 border-gray-200 border-solid justify-between p-4'>
@@ -37,7 +41,7 @@ const OrderProduct: React.FC<OrderProductProps> = ({ orderItem }) => {
       </div>
       <Button
         color='primary'
-        onClick={() => onClickCartBtn(orderItem.id)}
+        onClick={() => onClickCartBtn(orderItem)}
         size='md'
         textArea='장바구니'
         variant='fill'

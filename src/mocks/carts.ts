@@ -25,17 +25,17 @@ const CARTS = [
 ]
 
 export const cartsHandlers = [
-  rest.get('/carts', (req, res, ctx) => {
+  rest.get('/api/carts', (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(CARTS))
   }),
-  rest.post('/carts', async (req, res, ctx) => {
+  rest.post('/api/cart', async (req, res, ctx) => {
     const { params: cartItem } = await req.json()
     const currentCartItem = { ...cartItem, id: CARTS.length + 1 }
     CARTS.push(currentCartItem)
 
     return res(ctx.status(200), ctx.json(currentCartItem))
   }),
-  rest.delete('/carts/:cardId', (req, res, ctx) => {
+  rest.delete('/api/cart/:cardId', (req, res, ctx) => {
     const { cardId } = req.params
     const carttIndex = CARTS.findIndex((cart) => cart.id === cardId)
 

@@ -10,11 +10,11 @@ export interface CartHttpClientType {
 }
 
 const getCarts: GetCartsFn = async () => {
-  return axios.get('/carts').then((res) => res.data)
+  return axios.get('/api/carts').then((res) => res.data)
 }
 
 const addCart: AddCartFn = async (cartItem: CartItemType) => {
-  return axios.post('/carts', { params: cartItem }).then((res) => res.data)
+  return axios.post('/api/cart', { params: cartItem }).then((res) => res.data)
 }
 
 export const cartHttpClient: CartHttpClientType = {

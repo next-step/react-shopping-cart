@@ -112,14 +112,14 @@ export const productsHandler = [
   rest.get('/api/products', (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(PRODUCTS))
   }),
-  rest.post('/api/products', async (req, res, ctx) => {
+  rest.post('/api/product', async (req, res, ctx) => {
     const product = await req.json()
     const currentProduct = { ...product, id: PRODUCTS.length + 1 }
     PRODUCTS.push(currentProduct)
 
     return res(ctx.status(201), ctx.json(currentProduct))
   }),
-  rest.get('/api/products/:productId', (req, res, ctx) => {
+  rest.get('/api/product/:productId', (req, res, ctx) => {
     const { productId } = req.params
     const product = PRODUCTS.find((product) => product.id === productId)
     return res(
@@ -127,7 +127,7 @@ export const productsHandler = [
       ctx.json(product || { message: 'product not found' }),
     )
   }),
-  rest.delete('/api/products/:productId', (req, res, ctx) => {
+  rest.delete('/api/product/:productId', (req, res, ctx) => {
     const { productId } = req.params
     const productIndex = PRODUCTS.findIndex(
       (product) => product.id === productId,

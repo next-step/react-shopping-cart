@@ -12,15 +12,15 @@ export interface OrderHttpClientType {
 }
 
 const getOrders: GetOrdersFn = async () => {
-  return axios.get('/orders').then((res) => res.data)
+  return axios.get('/api/orders').then((res) => res.data)
 }
 
 const getOrder: GetOrderFn = async (orderId: string) => {
-  return axios.get(`/order/${orderId}`).then((res) => res.data)
+  return axios.get(`/api/order/${orderId}`).then((res) => res.data)
 }
 
 const addOrder: AddOrderFn = async (order: OrderProductsType) => {
-  return axios.post('/order', { params: order }).then((res) => res.data)
+  return axios.post('/api/order', { params: order }).then((res) => res.data)
 }
 
 export const ordersHttpClient: OrderHttpClientType = {
