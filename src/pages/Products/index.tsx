@@ -1,13 +1,7 @@
-import ProductPlaceHolder from '@/components/ProductPlaceHolder.tsx';
-import { lazy, Suspense } from 'react';
-const Product = lazy(() => import('@/components/Product'));
+import { Product } from '@/components/domain';
 
 const Products = () => {
-  return (
-    <Suspense fallback={<ProductPlaceHolder />}>
-      <Product />
-    </Suspense>
-  );
+  return <Product />;
 };
 
 export default Products;

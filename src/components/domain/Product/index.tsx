@@ -1,8 +1,8 @@
 import * as productApi from '@/api/product';
 import useOnMounted from '@/hooks/useOnMounted';
-import ProductCard from '../ProductCard.tsx';
+import ProductCard from '../ProductCard';
 import useHttp from '@/hooks/useHttp';
-import ProductPlaceHolder from '../ProductPlaceHolder.tsx';
+import ProductPlaceHolder from '../ProductPlaceHolder';
 
 const Products = () => {
   const { sendRequest, loading, data } = useHttp(productApi.getAllProducts);
