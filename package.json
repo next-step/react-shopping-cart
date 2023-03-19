@@ -14,7 +14,8 @@
     "@stitches/react": "^1.2.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.9.0"
+    "react-router-dom": "^6.9.0",
+    "vite-plugin-svgr": "^2.4.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
@@ -24,6 +25,7 @@
     "@storybook/addon-links": "^6.5.16",
     "@storybook/builder-vite": "^0.4.1",
     "@storybook/react": "^6.5.16",
+    "@svgr/rollup": "^6.5.1",
     "@types/node": "^18.15.3",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",

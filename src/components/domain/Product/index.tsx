@@ -17,9 +17,7 @@ const Products = () => {
       <div className="grid py-300 gap-50">
         {products?.map(ProductCard)}
         {loading &&
-          Array.from({ length: PLACE_HOLDER_PRODUCT }).map(() => (
-            <ProductPlaceHolder />
-          ))}
+          Array.from({ length: PLACE_HOLDER_PRODUCT }).map(ProductPlaceHolder)}
       </div>
     </div>
   );

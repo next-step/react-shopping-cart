@@ -1,3 +1,5 @@
+import { CartIcon } from '@/assets/svgs';
+
 const ProductCard = (product: Product) => {
   return (
     <div>
@@ -7,7 +9,9 @@ const ProductCard = (product: Product) => {
           <span className="product-info__name">{product.name}</span>
           <span className="product-info__price">{product.price}원</span>
         </div>
-        <img src="assets/svgs/cart.svg" alt="장바구니" />
+        <button>
+          <CartIcon />
+        </button>
       </div>
     </div>
   );
