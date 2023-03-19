@@ -11,6 +11,8 @@ import Cart from './pages/Cart'
 import OrderForm from './pages/OrderForm'
 import Orders from './pages/Orders'
 import OrderDetail from './pages/OrderDetail'
+import { setupWorker } from 'msw'
+import { handlers } from './mocks/handlers'
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,11 @@ const router = createBrowserRouter([
     ],
   },
 ])
+
+if (process.env.NODE_ENV === 'development') {
+  const msw = setupWorker(...handlers)
+  msw.start()
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
