@@ -6,7 +6,7 @@ import "./style.css";
 import LeftSection from "./left-section";
 import RightSection from "./right-section";
 
-import { useCart } from "hooks/useCart";
+import { useCart } from "hooks/cart";
 
 const CartContent = () => {
   const { data: carts, isLoading, isError } = useCart();

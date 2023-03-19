@@ -1,13 +1,25 @@
 import { ProductItem } from "types/type";
-import { ProductContainer } from "./style";
+import { ProductContainer } from "../style";
 import Item from "./item";
 import Header from "components/header";
 import Nav from "components/nav";
-import { useProduct } from "hooks/useProduct";
+import { productListState, useProductList } from "hooks/product";
+import { useRecoilState } from "recoil";
+
+import { useEffect } from "react";
+
 
 const ProductListPageContent = () => {
 
-  const { data: products, isLoading, isError } = useProduct();
+  const { data, isLoading, isError } = useProductList();
+  const [products, setProducts] = useRecoilState(productListState);
+
+  useEffect(() => {
+    if (data) {
+      setProducts(data);
+    }
+  }, [data, setProducts])
+
   if (isLoading) {
     return <div>Loading...</div>;
   }

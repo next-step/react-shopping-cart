@@ -7,3 +7,8 @@ export const getProducts = async ():Promise<ProductItem[]> => {
   const { data } = await get(PRODUCTS);
   return data;
 }
+
+export const getProduct = async (id: string):Promise<ProductItem> => {
+  const { data } = await get(`${PRODUCTS}/${id}`);
+  return data;
+}

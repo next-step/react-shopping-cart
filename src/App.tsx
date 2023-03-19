@@ -9,11 +9,11 @@ function App() {
   const queryClient = new QueryClient();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <RecoilRoot>
+    <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
-      </RecoilRoot>
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </RecoilRoot>
   );
 }
 
