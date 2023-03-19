@@ -20,7 +20,7 @@ const LazyImage = ({ src, alt, width, height }: Props) => {
 
   return (
     <div
-      className="animated-bg"
+      className="flex justify-between animated-bg"
       ref={ref}
       style={{
         width,
