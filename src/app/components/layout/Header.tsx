@@ -12,11 +12,13 @@ const Header = () => {
   };
   return (
     <header className="flex-col-center">
-      <nav className="nav flex justify-around">
+      <nav className="nav flex justify-around" onClick={handleNavigate}>
         <div className="flex-center">
-          <h1 className="nav-title">CLEAN CODE SHOP</h1>
+          <h1 className="nav-title" data-path={URL.HOME}>
+            CLEAN CODE SHOP
+          </h1>
         </div>
-        <ul className="flex gap-15" onClick={handleNavigate}>
+        <ul className="flex gap-15">
           <li className="nav-button" data-path={URL.CART}>
             장바구니
           </li>
