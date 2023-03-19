@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { convertCurrencyFormet } from '../../utils/formatter'
+import { Button } from '../ui/Button'
+import { FaShoppingCart } from 'react-icons/fa'
 
 export interface ProductType {
   id: string
@@ -14,6 +16,10 @@ type ProductProps = {
 }
 
 const Product: React.FC<ProductProps> = ({ product }) => {
+  const onAddCartItem = () => {
+    // cart에 추가하기
+    // modal open
+  }
   return (
     <Link to={`/product/${product.id}`}>
       <div className='w-full h-64'>
@@ -32,7 +38,14 @@ const Product: React.FC<ProductProps> = ({ product }) => {
           </p>
         </div>
 
-        <button>iconButton</button>
+        <Button
+          color='secondary'
+          variant='text'
+          iconArea={<FaShoppingCart className='text-gray-500' />}
+          width='auto'
+          size='lg'
+          onClick={onAddCartItem}
+        />
       </div>
     </Link>
   )
