@@ -1,6 +1,6 @@
 import { useReducer, useCallback, useMemo } from 'react';
 
-type RequestFunction<T> = (payload: unknown) => Promise<T | void>;
+type RequestFunction<T> = (payload: unknown) => Promise<T>;
 
 type HttpActionType<Data> =
   | { type: 'SEND' }
@@ -16,16 +16,16 @@ type State<Data> = {
   error: null | string;
 };
 
-const initialState: State<null> = {
+const initialState: State<any> = {
   status: 'pending',
   data: undefined,
   error: null,
 };
 
-function httpReducer<Data>(
+const httpReducer = <Data>(
   state: State<Data>,
   action: HttpActionType<Data>
-): State<Data> {
+): State<Data> => {
   switch (action.type) {
     case 'SEND':
       return {
@@ -48,10 +48,14 @@ function httpReducer<Data>(
     default:
       return state;
   }
-}
+};
 
 function useHttp<ResponseData>(requestFunction: RequestFunction<ResponseData>) {
-  const [httpState, dispatch] = useReducer(httpReducer, initialState);
+  const [httpState, dispatch] = useReducer<typeof httpReducer<ResponseData>>(
+    httpReducer,
+    initialState
+  );
+
   const loading = useMemo(
     () => httpState.status !== 'completed',
     [httpState.status]
@@ -62,6 +66,7 @@ function useHttp<ResponseData>(requestFunction: RequestFunction<ResponseData>) {
       dispatch({ type: 'SEND' });
       try {
         const responseData = await requestFunction(requestData);
+
         dispatch({ type: 'SUCCESS', responseData });
       } catch (error: Error | unknown) {
         if (!(error instanceof Error)) {

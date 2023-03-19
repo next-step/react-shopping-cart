@@ -4,8 +4,11 @@ import ProductCard from '../ProductCard';
 import useHttp from '@/hooks/useHttp';
 
 const Products = () => {
-  const { sendRequest, loading, data } = useHttp(productApi.getAllProducts);
-  const products = data as Product[];
+  const {
+    sendRequest,
+    loading,
+    data: products,
+  } = useHttp(productApi.getAllProducts);
 
   useOnMounted(() => {
     sendRequest();
@@ -15,10 +18,10 @@ const Products = () => {
     <div className="product-container">
       <div className="grid py-300 gap-50">
         {products?.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product.id} {...product} />
         ))}
         {loading &&
-          Array.from({ length: 20 }).map((_, index) => (
+          Array.from({ length: SINGLE_PAGE_SIZE }).map((_, index) => (
             <ProductCard key={index} />
           ))}
       </div>
@@ -27,3 +30,5 @@ const Products = () => {
 };
 
 export default Products;
+
+const SINGLE_PAGE_SIZE = 20;
