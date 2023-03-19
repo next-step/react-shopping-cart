@@ -1,24 +1,12 @@
 import { rest, RestRequest } from 'msw'
 
+import { API } from '@/config'
 import { Product } from '@/types'
 
 import { products, carts } from './data'
 
-export const handlers = [
-  // 상품목록
-  rest.get(`${process.env.REACT_APP_API_URL}/products`, (_: RestRequest, res, ctx) => {
-    return res(ctx.status(200), ctx.json(products))
-  }),
-
-  // 상품목록 추가
-  rest.post(`${process.env.REACT_APP_API_URL}/products`, async (req: RestRequest<{ product: Product }>, res, ctx) => {
-    const { product } = await req.json()
-    products.push(product)
-    return res(ctx.status(200))
-  }),
-
-  // 상품 하나 가져오기
-  rest.get(`${process.env.REACT_APP_API_URL}/products/:id`, (req, res, ctx) => {
+const getProduct = (products: Product[]) =>
+  rest.get(`${API.PRODUCTS}/:id`, (req, res, ctx) => {
     const { id } = req.params
     const product = products.find((p) => p.id === Number(id))
 
@@ -27,15 +15,27 @@ export const handlers = [
     } else {
       return res(ctx.status(404))
     }
-  }),
+  })
 
-  // 장바구니 목록
-  rest.get(`${process.env.REACT_APP_API_URL}/carts`, (_: RestRequest, res, ctx) => {
+const getProducts = (products: Product[]) =>
+  rest.get(`${API.PRODUCTS}`, (_: RestRequest, res, ctx) => {
+    return res(ctx.status(200), ctx.json(products))
+  })
+
+const createProduct = () =>
+  rest.post(`${API.PRODUCTS}`, async (req: RestRequest<{ product: Product }>, res, ctx) => {
+    const { product } = await req.json()
+    products.push(product)
+    return res(ctx.status(200))
+  })
+
+const getCarts = (carts: Product[]) =>
+  rest.get(`${API.CARTS}`, (_: RestRequest, res, ctx) => {
     return res(ctx.status(200), ctx.json(carts))
-  }),
+  })
 
-  // 장바구니 추가
-  rest.post(`${process.env.REACT_APP_API_URL}/carts`, async (req: RestRequest<{ product: Product }>, res, ctx) => {
+const getCart = (carts: Product[]) =>
+  rest.post(`${API.CARTS}`, async (req: RestRequest<{ product: Product }>, res, ctx) => {
     const { product } = await req.json()
     carts.push(product)
     return res(
@@ -47,5 +47,6 @@ export const handlers = [
         price: product.price,
       }),
     )
-  }),
-]
+  })
+
+export const handlers = [getProduct(products), getProducts(products), createProduct(), getCarts(carts), getCart(carts)]
