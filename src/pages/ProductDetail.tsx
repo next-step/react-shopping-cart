@@ -8,13 +8,12 @@ import NotFound from './NotFound'
 
 function ProductDetail() {
   const { productId } = useParams()
-  const { productHttpClient } = useProductApi()
+  const { productHttpClient, cartHttpClient } = useProductApi()
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [product, setProduct] = useState<ProductType | null>(null)
   useEffect(() => {
-    console.log(productId)
     setLoading(true)
     setError(null)
     productHttpClient
@@ -33,11 +32,8 @@ function ProductDetail() {
   if (loading) return <div>loading...</div>
   if (!product) return <NotFound />
 
-  const onNavigateCartPage = () => {
-    // fetch('/cart', {
-    //   method: 'POST',
-    //   body: {...product}
-    // })
+  const onNavigateCartPage = async (product: ProductType) => {
+    await cartHttpClient?.addCart(product)
     navigate('/cart')
   }
 
@@ -65,7 +61,7 @@ function ProductDetail() {
             size='xl'
             width='100%'
             textArea='장바구니'
-            onClick={onNavigateCartPage}
+            onClick={() => onNavigateCartPage(product)}
           />
         </article>
       </section>

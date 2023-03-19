@@ -29,7 +29,7 @@ export const cartsHandlers = [
     return res(ctx.status(200), ctx.json(CARTS))
   }),
   rest.post('/carts', async (req, res, ctx) => {
-    const cartItem = await req.json()
+    const { params: cartItem } = await req.json()
     const currentCartItem = { ...cartItem, id: CARTS.length + 1 }
     CARTS.push(currentCartItem)
 
