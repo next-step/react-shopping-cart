@@ -1,3 +1,2 @@
-export type RoutePath = '/' | '/products' | '/carts' | '/order';
-
+export type RoutePath = '/' | '/products' | '/carts' | '/orders';
 

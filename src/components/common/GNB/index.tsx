@@ -1,3 +1,4 @@
+import { CartIcon } from '@/assets/svgs';
 import type { RoutePath } from '@/routes/Route';
 
 import { Link } from 'react-router-dom';
@@ -9,19 +10,19 @@ type Props = {
 const GNB = ({ navList = NAV_LIST }: Props) => {
   return (
     <nav className="nav flex justify-between items-center py-300">
-      <div className="flex-center">
-        <h1 className="nav-title">{NAV_TITLE}</h1>
-      </div>
+      <Link className="flex-center nav-title" to={'/'}>
+        <h2>{NAV_TITLE}</h2>
+      </Link>
       <div className="flex gap-15">
         {navList &&
-          navList.map((nav,idx) => (
+          navList.map((nav, idx) => (
             <Link to={nav.path} key={idx}>
               <button className="nav-button">{nav.text}</button>
             </Link>
           ))}
       </div>
     </nav>
-  )
+  );
 };
 
 export default GNB;
@@ -37,7 +38,7 @@ const NAV_LIST: { path: RoutePath; text: string }[] = [
     text: '상품 목록',
   },
   {
-    path: '/order',
+    path: '/orders',
     text: '주문 목록',
   },
 ];
