@@ -29,9 +29,7 @@ function Cart() {
   return (
     <main>
       <section className='container mx-auto'>
-        <h3 className='w-full font-bold text-2xl mt-6 text-center mb-3 pb-3 border-solid border-gray-600 border-b-4'>
-          장바구니
-        </h3>
+        <h3 className='subtitle'>장바구니</h3>
         <section className='flex flex-col lg:flex-row'>
           <div className='lg:w-2/3 pr-10'>
             <div className='my-10'>전체 체크 박스 넣을 자리</div>
