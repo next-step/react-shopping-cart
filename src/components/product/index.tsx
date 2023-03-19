@@ -1,19 +1,21 @@
-import { use } from 'react';
+import { Suspense, useState } from 'react';
+
 import * as productApi from '@/api/product';
+import useOnMounted from '@/hooks/useOnMounted';
+import ProductCard from '../ProductCard.tsx';
+import ProductPlaceHolder from '../ProductPlaceHolder.tsx';
 
 const Products = () => {
-  const products = use(productApi.getAllProducts());
+  const [products, setProducts] = useState<Product[]>();
+
+  useOnMounted(() => {
+    productApi.getAllProducts().then((data) => setProducts(data));
+  });
 
   return (
-    <>
-      {products.map((product) => (
-        <div key={product.id}>
-          <div>{product.name}</div>
-          <div>{product.price}</div>
-          <img src={product.image} />
-        </div>
-      ))}
-    </>
+    <Suspense fallback={<ProductPlaceHolder />}>
+      <div className="grid py-300">{products?.map(ProductCard)}</div>
+    </Suspense>
   );
 };
 
