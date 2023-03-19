@@ -1,8 +1,9 @@
-import { Product as ProductType } from '@/types'
+import { Product as ProductProps } from '@/types'
 
 import { useProduct } from './hooks'
 
-const Product = ({ id, imageUrl, name, price }: ProductType) => {
+const Product = ({ product }: { product: ProductProps }) => {
+  const { id, imageUrl, name, price } = product
   const { handleCartButtonClick, goToProductDetail } = useProduct()
 
   return (
