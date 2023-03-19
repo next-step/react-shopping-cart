@@ -15,10 +15,7 @@ import { worker } from './mocks/browser';
  */
 
 function prepare() {
-  if (import.meta.env.MODE == 'development') {
-    return worker.start();
-  }
-  return Promise.resolve();
+  return worker.start();
 }
 prepare().then(() => {
   createRoot(document.getElementById('root') as HTMLElement).render(
