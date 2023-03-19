@@ -18,7 +18,7 @@ const useFetch = <T>(url: string, options: UseFetchOptions = { enabled: true }):
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    if (!options.enabled) return
+    if (options.enabled === false) return
 
     const fetchData = async () => {
       try {

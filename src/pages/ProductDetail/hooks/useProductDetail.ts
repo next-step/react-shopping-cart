@@ -1,19 +1,18 @@
-import { useParams, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { API } from '@/config'
-import { useFetch, useMutation } from '@/hooks'
+import { useFetch, useMutation, useProductInfo } from '@/hooks'
 import { Product } from '@/types'
 
 const useProductDetail = () => {
-  const { id } = useParams()
   const navigate = useNavigate()
+  const { getProductId } = useProductInfo()
 
-  const productId = id || sessionStorage.getItem('productId') || null
   const {
     payload: productDetail,
     isLoading,
     error,
-  } = useFetch<Product>(API.PRODUCT(Number(productId)), { enabled: !!productId })
+  } = useFetch<Product>(API.PRODUCT(getProductId()), { enabled: !!getProductId() })
   const productDetailMutation = useMutation(API.CARTS, 'POST')
 
   const goToCartPage = () => {

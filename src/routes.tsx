@@ -3,7 +3,6 @@ import { ProductList, Cart, ProductDetail, Order, OrderDetail, OrderList } from 
 const routes = [
   { path: '/', element: <ProductList /> },
   { path: '/cart', element: <Cart /> },
-  { path: '/detail', element: <ProductDetail /> },
   { path: '/detail/:id', element: <ProductDetail /> },
   { path: '/order', element: <Order /> },
   { path: '/order-detail', element: <OrderDetail /> },
