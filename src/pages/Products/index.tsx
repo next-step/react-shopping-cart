@@ -1,9 +1,10 @@
-import { Suspense } from 'react';
-import Product from '@/components/product';
+import ProductPlaceHolder from '@/components/ProductPlaceHolder.tsx';
+import { lazy, Suspense, useState } from 'react';
+const Product = lazy(() => import('@/components/product'));
 
 const Products = () => {
   return (
-    <Suspense fallback={<h2>loading...</h2>}>
+    <Suspense fallback={<ProductPlaceHolder />}>
       <Product />
     </Suspense>
   );

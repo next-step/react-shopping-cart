@@ -1,25 +1,34 @@
-import { useReducer, useCallback } from 'react';
+import { useReducer, useCallback, useMemo } from 'react';
 
-type HttpActionType =
+type RequestFunction<T extends any> = (payload: unknown) => Promise<T | void>;
+
+type HttpActionType<Data> =
   | { type: 'SEND' }
-  | { type: 'SUCCESS'; responseData: unknown }
+  | {
+      type: 'SUCCESS';
+      responseData?: Awaited<ReturnType<RequestFunction<Data>>>;
+    }
   | { type: 'ERROR'; errorMessage: string };
 
-type State = {
+type State<Data> = {
   status: 'pending' | 'completed';
-  data: null | any;
+  data?: Awaited<ReturnType<RequestFunction<Data>>>;
   error: null | string;
 };
-const initialState: State = {
+
+const initialState: State<null> = {
   status: 'pending',
-  data: null,
+  data: undefined,
   error: null,
 };
 
-function httpReducer(state: State, action: HttpActionType): State {
+function httpReducer<Data>(
+  state: State<Data>,
+  action: HttpActionType<Data>
+): State<Data> {
   if (action.type === 'SEND') {
     return {
-      data: null,
+      data: undefined,
       error: null,
       status: 'pending',
     };
@@ -35,7 +44,7 @@ function httpReducer(state: State, action: HttpActionType): State {
 
   if (action.type === 'ERROR') {
     return {
-      data: null,
+      data: undefined,
       error: action.errorMessage,
       status: 'completed',
     };
@@ -44,17 +53,20 @@ function httpReducer(state: State, action: HttpActionType): State {
   return state;
 }
 
-function useHttp<T>(
-  requestFunction: (payload: unknown) => Promise<T>,
-  startWithPending = false
-) {
+function useHttp<ResponseData>(requestFunction: RequestFunction<ResponseData>) {
   const [httpState, dispatch] = useReducer(httpReducer, initialState);
+  const loading = useMemo(
+    () => httpState.status !== 'completed',
+    [httpState.status]
+  );
 
   const sendRequest = useCallback(
-    async function (requestData: unknown) {
+    async function (requestData?: unknown) {
       dispatch({ type: 'SEND' });
       try {
-        const responseData = await requestFunction(requestData);
+        const responseData = (await requestFunction(
+          requestData
+        )) as ResponseData;
         dispatch({ type: 'SUCCESS', responseData });
       } catch (error: Error | unknown) {
         if (!(error instanceof Error)) {
@@ -75,6 +87,7 @@ function useHttp<T>(
 
   return {
     sendRequest,
+    loading,
     ...httpState,
   };
 }

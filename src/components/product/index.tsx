@@ -1,21 +1,23 @@
-import { Suspense, useState } from 'react';
-
 import * as productApi from '@/api/product';
 import useOnMounted from '@/hooks/useOnMounted';
 import ProductCard from '../ProductCard.tsx';
-import ProductPlaceHolder from '../ProductPlaceHolder.tsx';
+import useHttp from '@/hooks/useHttp';
 
 const Products = () => {
-  const [products, setProducts] = useState<Product[]>();
+  const { sendRequest, loading, data } = useHttp(productApi.getAllProducts);
+  const products = data as Product[];
 
   useOnMounted(() => {
-    productApi.getAllProducts().then((data) => setProducts(data));
+    sendRequest();
   });
 
   return (
-    <Suspense fallback={<ProductPlaceHolder />}>
-      <div className="grid py-300">{products?.map(ProductCard)}</div>
-    </Suspense>
+    <>
+      <div className="grid py-300">
+        {loading && <h2>Loading...</h2>}
+        {products.map(ProductCard)}
+      </div>
+    </>
   );
 };
 
