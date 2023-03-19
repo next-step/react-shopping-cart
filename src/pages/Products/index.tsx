@@ -1,6 +1,6 @@
 import ProductPlaceHolder from '@/components/ProductPlaceHolder.tsx';
-import { lazy, Suspense, useState } from 'react';
-const Product = lazy(() => import('@/components/product'));
+import { lazy, Suspense } from 'react';
+const Product = lazy(() => import('@/components/Product'));
 
 const Products = () => {
   return (

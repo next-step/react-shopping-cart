@@ -1,4 +1,3 @@
-import '../src/css/index.css';
 const viteTsconfig = require('vite-tsconfig-paths');
 const tsconfigPaths = viteTsconfig.default;
 const { mergeConfig } = require('vite');

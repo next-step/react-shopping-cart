@@ -4,7 +4,7 @@ import { withRouter } from 'storybook-addon-react-router-v6';
 import GNB from '.';
 
 export default {
-  title: 'Components/UI/GNB',
+  title: 'Components/Common/GNB',
   component: GNB,
   decorators: [withRouter],
 } as ComponentMeta<typeof GNB>;

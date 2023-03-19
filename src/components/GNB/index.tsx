@@ -1,5 +1,5 @@
 import type { RoutePath } from '@/routes/Route';
-import { useRouter } from '@/routes/useRouter';
+
 import { Link } from 'react-router-dom';
 
 type Props = {
