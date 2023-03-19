@@ -2,7 +2,7 @@ import * as productApi from '@/api/product';
 import useOnMounted from '@/hooks/useOnMounted';
 import ProductCard from '../ProductCard';
 import useHttp from '@/hooks/useHttp';
-import ProductPlaceHolder from '../ProductPlaceHolder';
+import { PlaceHolder } from '@/components/common';
 
 const Products = () => {
   const { sendRequest, loading, data } = useHttp(productApi.getAllProducts);
@@ -16,13 +16,12 @@ const Products = () => {
     <div className="product-container">
       <div className="grid py-300 gap-50">
         {products?.map(ProductCard)}
-        {loading &&
-          Array.from({ length: PLACE_HOLDER_PRODUCT }).map(ProductPlaceHolder)}
+        {loading && (
+          <PlaceHolder quantity={8} width={'250px'} height={'250px'} />
+        )}
       </div>
     </div>
   );
 };
 
 export default Products;
-
-const PLACE_HOLDER_PRODUCT = 20;

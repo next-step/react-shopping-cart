@@ -8,8 +8,8 @@ const ProductCard = (product: Product) => {
       <LazyImage
         src={product.image}
         alt={product.name}
-        width={200}
-        height={200}
+        width={250}
+        height={250}
       />
       <div className="flex justify-between">
         <div className="product-info">
