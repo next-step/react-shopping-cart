@@ -7,7 +7,7 @@ type ButtonProps = {
   width?: string
   iconArea?: React.ReactNode
   textArea?: React.ReactNode
-  onClick: () => void
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 const SIZE_CLASS = {

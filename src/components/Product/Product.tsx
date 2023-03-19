@@ -16,7 +16,8 @@ type ProductProps = {
 }
 
 const Product: React.FC<ProductProps> = ({ product }) => {
-  const onAddCartItem = () => {
+  const onAddCartItem = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
     // cart에 추가하기
     // modal open
   }
