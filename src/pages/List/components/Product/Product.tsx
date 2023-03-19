@@ -7,10 +7,10 @@ const Product = ({ product }: { product: ProductProps }) => {
   const { handleCartButtonClick, goToProductDetail } = useProduct()
 
   return (
-    <div key={id}>
+    <div>
       <img src={imageUrl} alt={name} onClick={() => goToProductDetail(id)} />
       <div className="flex justify-between w-280 p-5">
-        <div role="button" className="product-info">
+        <div className="product-info">
           <span className="product-info__name">{name}</span>
           <span className="product-info__price">{price.toLocaleString()}원</span>
         </div>
