@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import { asyncRequest } from '@/domains'
+
 type UseMutationResult<TData, TVariables> = {
   data: TData | null
   error: string | null
@@ -20,7 +22,7 @@ function useMutation<TData, TVariables>(
     setError(null)
 
     try {
-      const response = await fetch(url, {
+      const response = await asyncRequest(url, {
         method,
         headers: {
           'Content-Type': 'application/json',
@@ -31,7 +33,9 @@ function useMutation<TData, TVariables>(
       const responseData = (await response.json()) as TData
 
       if (!response.ok) {
-        return Promise.reject(`response.ok에서 false가 반환됐어요. 에러 내용: ${String(error)}`)
+        return Promise.reject(
+          `response.ok에서 false가 반환됐어요. 에러 내용: ${response.status}, ${response.statusText}}`,
+        )
       }
 
       setData(responseData)

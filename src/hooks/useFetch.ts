@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 
+import { asyncRequest } from '@/domains'
+
 interface UseFetchOptions {
   enabled?: boolean
 }
@@ -20,9 +22,11 @@ const useFetch = <T>(url: string, options: UseFetchOptions = { enabled: true }):
 
     const fetchData = async () => {
       try {
-        const response = await fetch(url)
+        const response = await asyncRequest(url)
         if (!response.ok) {
-          throw new Error('Network response was not ok')
+          return Promise.reject(
+            `response.ok에서 false가 반환됐어요. 에러 내용: ${response.status}, ${response.statusText}}`,
+          )
         }
         const json = await response.json()
         setPayload(json)
