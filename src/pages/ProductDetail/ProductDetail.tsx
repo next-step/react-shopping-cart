@@ -1,6 +1,6 @@
 import { useProductDetail } from './hooks'
 
-const Detail = () => {
+const ProductDetail = () => {
   const { productDetail, handleCartButtonClick } = useProductDetail()
   return (
     <div className="product-detail-container">
@@ -29,4 +29,4 @@ const Detail = () => {
   )
 }
 
-export default Detail
+export default ProductDetail

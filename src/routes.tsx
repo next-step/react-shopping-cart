@@ -1,10 +1,10 @@
-import { List, Cart, Detail, Order, OrderDetail, OrderList } from '@/pages'
+import { ProductList, Cart, ProductDetail, Order, OrderDetail, OrderList } from '@/pages'
 
 const routes = [
-  { path: '/', element: <List /> },
+  { path: '/', element: <ProductList /> },
   { path: '/cart', element: <Cart /> },
-  { path: '/detail', element: <Detail /> },
-  { path: '/detail/:id', element: <Detail /> },
+  { path: '/detail', element: <ProductDetail /> },
+  { path: '/detail/:id', element: <ProductDetail /> },
   { path: '/order', element: <Order /> },
   { path: '/order-detail', element: <OrderDetail /> },
   { path: '/order-list', element: <OrderList /> },
