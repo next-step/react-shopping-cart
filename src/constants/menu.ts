@@ -1,14 +1,13 @@
-import { NAVIGATE_URL } from '../utils/routers'
 import { MenuType } from './../components/ui/Menu/Menu'
 export const MENU: MenuType[] = [
   {
-    id: 'cart',
-    path: NAVIGATE_URL.CARTS,
+    id: 'carts',
+    path: '/carts',
     name: '장바구니',
   },
   {
     id: 'orders',
-    path: NAVIGATE_URL.ORDERS,
+    path: '/orders',
     name: '주문목록',
   },
 ]

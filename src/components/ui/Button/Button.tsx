@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './Button.module.css'
 
 type ButtonProps = {
   variant: 'fill' | 'outline' | 'text'
@@ -17,24 +18,6 @@ const SIZE_CLASS = {
   xl: 'h-16 w-48 text-3xl',
 }
 
-const COLOR_CLASS = {
-  primary: 'violet-600',
-  secondary: 'gray-400',
-  danger: 'red-600',
-}
-
-type ColorKeys = keyof typeof COLOR_CLASS
-
-const convertVariantClass = (color: ColorKeys) => {
-  const colorValue = COLOR_CLASS[color]
-
-  return {
-    fill: `bg-${colorValue} text-white`,
-    outline: `text-${colorValue} border-solid border-${colorValue} border-2`,
-    text: `text-${colorValue} border-none`,
-  }
-}
-
 const Button: React.FC<ButtonProps> = ({
   size,
   color,
@@ -50,7 +33,7 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       style={{ width }}
       className={`${SIZE_CLASS[size]} rounded-md font-semibold ${
-        convertVariantClass(color)[variant]
+        styles[`${variant}_${color}`]
       }`}
     >
       <span>{iconArea}</span>
