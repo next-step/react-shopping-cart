@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import Product, { ProductType } from '../components/Product/Product'
+import { useProductApi } from '../context/productApiContext'
 
 function Products() {
+  const { productHttpClient } = useProductApi()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [products, setProducts] = useState<ProductType[] | []>([])
   useEffect(() => {
     setLoading(true)
     setError(null)
-    fetch('/api/products', {
-      method: 'GET',
-    })
-      .then((res) => res.json())
+    productHttpClient
+      ?.getProducts()
       .then((products) => {
         setProducts(products)
       })
@@ -21,7 +21,7 @@ function Products() {
       .finally(() => {
         setLoading(false)
       })
-  }, [])
+  }, [productHttpClient])
 
   if (!products.length) return <>nothing</>
   return (

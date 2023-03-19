@@ -2,22 +2,23 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ProductType } from '../components/Product/Product'
 import { Button } from '../components/ui/Button'
+import { useProductApi } from '../context/productApiContext'
 import { convertCurrencyFormet } from '../utils/formatter'
 import NotFound from './NotFound'
 
 function ProductDetail() {
   const { productId } = useParams()
+  const { productHttpClient } = useProductApi()
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [product, setProduct] = useState<ProductType | null>(null)
   useEffect(() => {
+    console.log(productId)
     setLoading(true)
     setError(null)
-    fetch('/api/products/' + productId, {
-      method: 'GET',
-    })
-      .then((res) => res.json())
+    productHttpClient
+      ?.getProduct(productId ?? '')
       .then((product) => {
         setProduct(product)
       })
@@ -27,13 +28,16 @@ function ProductDetail() {
       .finally(() => {
         setLoading(false)
       })
-  }, [productId])
+  }, [productHttpClient, productId])
 
   if (loading) return <div>loading...</div>
   if (!product) return <NotFound />
 
   const onNavigateCartPage = () => {
-    // cart page로 가기
+    // fetch('/cart', {
+    //   method: 'POST',
+    //   body: {...product}
+    // })
     navigate('/cart')
   }
 
