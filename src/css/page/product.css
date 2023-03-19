@@ -1,10 +1,10 @@
 .product-container {
-  display: flex;
-  justify-content: center;
-
-  flex-wrap: wrap;
-  gap: 20px;
   padding: 50px 240px;
+}
+
+.product-card {
+  width: 280px;
+  height : 280px;  
 }
 
 .product-info {

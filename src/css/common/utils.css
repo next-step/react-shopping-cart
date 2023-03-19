@@ -174,3 +174,19 @@
   margin-left: 20px;
   margin-right: 20px;
 }
+
+
+.grid {
+  display: grid;
+  gap: 5px;
+  grid-template-columns: repeat(4, minmax(min-content, 1fr));
+}
+
+@media screen {
+}
+
+@media(max-width: 980px) {
+  .grid:last-child {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }  
+}
