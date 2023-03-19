@@ -8,7 +8,7 @@
 }
 
 .highlight-text::after {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   left: 0;

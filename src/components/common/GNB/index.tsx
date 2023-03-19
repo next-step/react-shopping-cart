@@ -1,4 +1,3 @@
-import { CartIcon } from '@/assets/svgs';
 import type { RoutePath } from '@/routes/Route';
 
 import { Link } from 'react-router-dom';

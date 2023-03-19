@@ -2,11 +2,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": false,
@@ -19,22 +15,13 @@
     "isolatedModules": false,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": [
-      "node",
-      "react/experimental"
-    ],
+    "types": ["node", "react/experimental"],
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"]
     }
   },
-  "include": [
-    "src",
-    "src/global.d.ts",
-    "stitches.config.ts"
-  ],
+  "include": ["src", "src/global.d.ts", "stitches.config.ts"],
   "references": [
     {
       "path": "./tsconfig.node.json"

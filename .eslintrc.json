@@ -13,7 +13,7 @@
     "plugin:prettier/recommended"
   ],
   "rules": {
-    "no-debugger": "off", 
+    "no-debugger": "off",
     "@typescript-eslint/no-var-requires": "off"
   },
   "settings": {

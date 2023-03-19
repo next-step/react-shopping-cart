@@ -1,13 +1,13 @@
 import { useEffect, RefObject } from 'react';
 
-let listenerCallbacks = new WeakMap();
+const listenerCallbacks = new WeakMap();
 
 const handleIntersections = (entries: IntersectionObserverEntry[]) => {
   entries.forEach((entry) => {
     if (!listenerCallbacks.has(entry.target)) {
       return;
     }
-    let callback = listenerCallbacks.get(entry.target);
+    const callback = listenerCallbacks.get(entry.target);
     if (!entry.isIntersecting) {
       return;
     }
@@ -17,7 +17,7 @@ const handleIntersections = (entries: IntersectionObserverEntry[]) => {
   });
 };
 
-let observer = new IntersectionObserver(handleIntersections, {
+const observer = new IntersectionObserver(handleIntersections, {
   rootMargin: '0px',
   threshold: 0.15,
 });

@@ -5,6 +5,8 @@
   "type": "commonjs",
   "scripts": {
     "dev": "vite",
+    "lint:eslint": "eslint src/ --ext .ts,.tsx --config .eslintrc.json",
+    "prettier": "prettier --write .",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "storybook": "start-storybook -p 6006",

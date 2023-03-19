@@ -21,6 +21,7 @@
   cursor: pointer;
 }
 
-.nav-button:hover, :active {
+.nav-button:hover,
+.nav-button:active {
   font-weight: bold;
 }

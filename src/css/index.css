@@ -1,5 +1,5 @@
-@import "./common/index.css";
-@import "./page/index.css";
+@import './common/index.css';
+@import './page/index.css';
 
 .app {
   width: 100vw;

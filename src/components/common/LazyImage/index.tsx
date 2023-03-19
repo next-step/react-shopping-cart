@@ -27,7 +27,7 @@ const LazyImage = ({ src, alt, width, height }: Props) => {
         height,
       }}
     >
-      {isInView && <img src={src} alt={alt} />}
+      {isInView && <img src={src} alt={alt} loading="lazy" />}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { useReducer, useCallback, useMemo } from 'react';
 
-type RequestFunction<T extends any> = (payload: unknown) => Promise<T | void>;
+type RequestFunction<T> = (payload: unknown) => Promise<T | void>;
 
 type HttpActionType<Data> =
   | { type: 'SEND' }
@@ -26,31 +26,28 @@ function httpReducer<Data>(
   state: State<Data>,
   action: HttpActionType<Data>
 ): State<Data> {
-  if (action.type === 'SEND') {
-    return {
-      data: undefined,
-      error: null,
-      status: 'pending',
-    };
+  switch (action.type) {
+    case 'SEND':
+      return {
+        data: undefined,
+        error: null,
+        status: 'pending',
+      };
+    case 'SUCCESS':
+      return {
+        data: action.responseData,
+        error: null,
+        status: 'completed',
+      };
+    case 'ERROR':
+      return {
+        data: undefined,
+        error: action.errorMessage,
+        status: 'completed',
+      };
+    default:
+      return state;
   }
-
-  if (action.type === 'SUCCESS') {
-    return {
-      data: action.responseData,
-      error: null,
-      status: 'completed',
-    };
-  }
-
-  if (action.type === 'ERROR') {
-    return {
-      data: undefined,
-      error: action.errorMessage,
-      status: 'completed',
-    };
-  }
-
-  return state;
 }
 
 function useHttp<ResponseData>(requestFunction: RequestFunction<ResponseData>) {
