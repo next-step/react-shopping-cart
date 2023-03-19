@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useProductApi } from '../context/productApiContext'
+import { useApiClient } from '../context/ApiClientContext'
 import { OrderProducts, OrderProductsType } from '../components/OrderProducts'
 
 function Orders() {
-  const { ordersHttpClient } = useProductApi()
+  const { ordersHttpClient } = useApiClient()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [orders, setOrders] = useState<OrderProductsType[] | []>([])

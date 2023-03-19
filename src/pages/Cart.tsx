@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import CartItem, { CartItemType } from '../components/CartItem/CartItem'
 import { PaymentInfo } from '../components/PaymentInfo'
-import { useProductApi } from '../context/productApiContext'
+import { useApiClient } from '../context/ApiClientContext'
 
 function Cart() {
-  const { cartHttpClient } = useProductApi()
+  const { cartHttpClient } = useApiClient()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [carts, setCarts] = useState<CartItemType[] | []>([])

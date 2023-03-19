@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useProductApi } from '../../context/productApiContext'
+import { useApiClient } from '../../context/ApiClientContext'
 import { convertCurrencyFormet } from '../../utils/formatter'
 import { NAVIGATE_URL } from '../../utils/routers'
 import { ProductType } from '../Product/Product'
@@ -16,7 +16,7 @@ type OrderProductProps = {
 
 const OrderProduct: React.FC<OrderProductProps> = ({ orderItem }) => {
   const navigate = useNavigate()
-  const { cartHttpClient } = useProductApi()
+  const { cartHttpClient } = useApiClient()
   const onClickCartBtn = async (product: ProductType) => {
     await cartHttpClient?.addCart(product)
     navigate(NAVIGATE_URL.CARTS)

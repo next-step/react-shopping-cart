@@ -4,28 +4,28 @@ import { ProductClientType, productHttpClient } from '../api/productHttpClient'
 import { CartHttpClientType, cartHttpClient } from '../api/cartHttpClient'
 import { OrderHttpClientType, ordersHttpClient } from '../api/ordersHttpClient'
 
-type ProductApiContextProps = {
+type ApiClientContextProps = {
   productHttpClient: ProductClientType | null
   cartHttpClient: CartHttpClientType | null
   ordersHttpClient: OrderHttpClientType | null
 }
 
-export const ProductApiContext = createContext<ProductApiContextProps>({
+export const ApiClientContext = createContext<ApiClientContextProps>({
   productHttpClient: null,
   cartHttpClient: null,
   ordersHttpClient: null,
 })
 
-export const ProductApiProvder: React.FC<PropsWithChildren> = ({
+export const ApiClientProvider: React.FC<PropsWithChildren> = ({
   children,
 }) => {
   return (
-    <ProductApiContext.Provider
+    <ApiClientContext.Provider
       value={{ productHttpClient, cartHttpClient, ordersHttpClient }}
     >
       {children}
-    </ProductApiContext.Provider>
+    </ApiClientContext.Provider>
   )
 }
 
-export const useProductApi = () => useContext(ProductApiContext)
+export const useApiClient = () => useContext(ApiClientContext)

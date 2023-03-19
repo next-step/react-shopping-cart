@@ -27,7 +27,7 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
           color='secondary'
           variant='text'
           size='lg'
-          onClick={() => console.log('click')}
+          onClick={() => console.log('trash')}
           iconArea={<BsFillTrashFill />}
           width='auto'
         />

@@ -1,14 +1,14 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { Header } from './components/ui/Header'
-import { ProductApiProvder } from './context/productApiContext'
+import { ApiClientProvider } from './context/ApiClientContext'
 
 function App() {
   return (
-    <ProductApiProvder>
+    <ApiClientProvider>
       <Header />
       <Outlet />
-    </ProductApiProvder>
+    </ApiClientProvider>
   )
 }
 

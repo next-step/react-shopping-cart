@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ProductType } from '../components/Product/Product'
 import { Button } from '../components/ui/Button'
-import { useProductApi } from '../context/productApiContext'
+import { useApiClient } from '../context/ApiClientContext'
 import { convertCurrencyFormet } from '../utils/formatter'
 import { NAVIGATE_URL } from '../utils/routers'
 import NotFound from './NotFound'
 
 function ProductDetail() {
   const { productId } = useParams()
-  const { productHttpClient, cartHttpClient } = useProductApi()
+  const { productHttpClient, cartHttpClient } = useApiClient()
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)

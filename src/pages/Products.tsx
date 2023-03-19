@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Product, { ProductType } from '../components/Product/Product'
-import { useProductApi } from '../context/productApiContext'
+import { useApiClient } from '../context/ApiClientContext'
 
 function Products() {
-  const { productHttpClient } = useProductApi()
+  const { productHttpClient } = useApiClient()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [products, setProducts] = useState<ProductType[] | []>([])
