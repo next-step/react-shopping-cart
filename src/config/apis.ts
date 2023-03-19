@@ -1,6 +1,13 @@
+export const API_ROOT = 'http://localhost:3000'
+
+export const API_PATH = {
+  PRODUCTS: 'products',
+  CARTS: 'carts',
+}
+
 export const API = {
-  PRODUCTS: `${process.env.REACT_APP_API_URL}/products`,
-  PRODUCT: (id: number | null) => `${process.env.REACT_APP_API_URL}/products/${id}`,
-  CARTS: `${process.env.REACT_APP_API_URL}/carts`,
-  CART: (id: number) => `${process.env.REACT_APP_API_URL}/carts/${id}`,
+  PRODUCTS: `${API_ROOT}/${API_PATH.PRODUCTS}`,
+  PRODUCT: (id: number | null) => `${API_ROOT}/${API_PATH.PRODUCTS}/${id}`,
+  CARTS: `${API_ROOT}/${API_PATH.CARTS}`,
+  CART: (id: number) => `${API_ROOT}/${API_PATH.CARTS}/${id}`,
 }
