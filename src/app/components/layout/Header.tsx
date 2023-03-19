@@ -1,9 +1,32 @@
-const Header = () => (
-  <ul className="global-nav-button-box">
-    <li className="global-nav-button">Home</li>
-    <li className="global-nav-button">상품목록</li>
-    <li className="global-nav-button">주문목록</li>
-  </ul>
-);
+import useRouter from '../../hooks/useRoute';
+import * as React from 'react';
+import URL from '../../../constants/url';
+
+const Header = () => {
+  const { movePage } = useRouter();
+  const handleNavigate: React.MouseEventHandler = (evt) => {
+    const { target } = evt;
+    if (!(target instanceof HTMLElement)) return;
+    if (typeof target.dataset.path !== 'string') return;
+    movePage(target.dataset.path);
+  };
+  return (
+    <header className="flex-col-center">
+      <nav className="nav flex justify-around">
+        <div className="flex-center">
+          <h1 className="nav-title">CLEAN CODE SHOP</h1>
+        </div>
+        <ul className="flex gap-15" onClick={handleNavigate}>
+          <li className="nav-button" data-path={URL.CART}>
+            장바구니
+          </li>
+          <li className="nav-button" data-path={URL.ORDER}>
+            주문목록
+          </li>
+        </ul>
+      </nav>
+    </header>
+  );
+};
 
 export default Header;
