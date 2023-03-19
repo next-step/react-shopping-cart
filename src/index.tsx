@@ -1,14 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import App from './app/App';
 import reportWebVitals from './reportWebVitals';
+import { ThemeProvider } from 'styled-components';
+import { BrowserRouter } from 'react-router-dom';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const defaultTheme = {};
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <ThemeProvider theme={defaultTheme}>
+        <App />
+      </ThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
