@@ -1,10 +1,10 @@
 import { useProductDetail } from './hooks'
 
 const Detail = () => {
-  const { productDetail, hasSelectedProduct, handleCartButtonClick } = useProductDetail()
+  const { productDetail, handleCartButtonClick } = useProductDetail()
   return (
     <div className="product-detail-container">
-      {hasSelectedProduct && productDetail ? (
+      {productDetail ? (
         <div className="flex-col-center w-520">
           <img className="w-480 h-480 mb-10" src={productDetail.imageUrl} alt={productDetail.name} />
           <div className="product-detail-info">

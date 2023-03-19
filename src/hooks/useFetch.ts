@@ -1,17 +1,23 @@
 import { useState, useEffect } from 'react'
 
+interface UseFetchOptions {
+  enabled?: boolean
+}
+
 type UseFetchReturnType<T> = {
   payload: T | null
   isLoading: boolean
-  isError: boolean
+  error: string | null
 }
 
-const useFetch = <T>(url: string): UseFetchReturnType<T> => {
+const useFetch = <T>(url: string, options: UseFetchOptions = { enabled: true }): UseFetchReturnType<T> => {
   const [payload, setPayload] = useState<T | null>(null)
   const [isLoading, setLoading] = useState<boolean>(true)
-  const [isError, setError] = useState<boolean>(false)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
+    if (!options.enabled) return
+
     const fetchData = async () => {
       try {
         const response = await fetch(url)
@@ -21,17 +27,20 @@ const useFetch = <T>(url: string): UseFetchReturnType<T> => {
         const json = await response.json()
         setPayload(json)
       } catch (error) {
-        // Todo: 에러 핸들링
-        setError(true)
+        if (error instanceof Error) {
+          setError(error.message)
+        } else {
+          setError(String(error))
+        }
       } finally {
         setLoading(false)
       }
     }
 
     fetchData()
-  }, [url])
+  }, [url, options.enabled])
 
-  return { payload, isLoading, isError }
+  return { payload, isLoading, error }
 }
 
 export default useFetch

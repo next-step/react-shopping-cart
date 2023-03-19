@@ -1,39 +1,31 @@
-import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { API } from '@/config'
-import { addCart } from '@/domains'
+import { useFetch, useMutation } from '@/hooks'
 import { ProductType } from '@/types'
 
 const useProductDetail = () => {
   const { id } = useParams()
   const navigate = useNavigate()
-  const [productDetail, setProductDetail] = useState<ProductType>()
-  const [hasSelectedProduct, setHasSelectedProduct] = useState(true)
 
-  useEffect(() => {
-    const productId = id || sessionStorage.getItem('productId')
-
-    if (!productId) {
-      setHasSelectedProduct(false)
-      return
-    }
-
-    fetch(API.PRODUCT(Number(productId)))
-      .then((response) => response.json())
-      .then((data) => setProductDetail(data))
-  }, [id])
+  const productId = id || sessionStorage.getItem('productId') || null
+  const {
+    payload: productDetail,
+    isLoading,
+    error,
+  } = useFetch<ProductType>(API.PRODUCT(Number(productId)), { enabled: !!productId })
+  const productDetailMutation = useMutation(API.CARTS, 'POST')
 
   const goToCartPage = () => {
     navigate('/cart')
   }
 
-  const handleCartButtonClick = (product: ProductType) => {
-    addCart(product)
+  const handleCartButtonClick = async (product: ProductType) => {
+    await productDetailMutation.mutate({ product: { ...product } })
     goToCartPage()
   }
 
-  return { productDetail, hasSelectedProduct, handleCartButtonClick }
+  return { productDetail, handleCartButtonClick, isLoading, error }
 }
 
 export default useProductDetail
