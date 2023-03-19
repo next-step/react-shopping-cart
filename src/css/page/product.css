@@ -1,23 +1,25 @@
 .product-container {
-  padding: 50px 240px;
+  padding-top: 60px;
 }
 
 .product-card {
-  width: 280px;
-  height : 280px;  
+  min-width: 150px;
+  min-height : 150px;  
+  width: 100%;
+  height: 80%;
 }
 
 .product-info {
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  gap: 3px;
+  height: 12px;
 }
 
 .product-info__name {
   font-size: 12px;
+  height: 12px;
 }
 
-.product-info__price {
-}
 
 .product-detail-container {
   display: flex;

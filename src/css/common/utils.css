@@ -63,6 +63,14 @@
   gap: 15px;
 }
 
+.gap-50 {
+  gap: 50px;
+}
+
+.w-full {
+  width: 100%;
+}
+
 .w-144 {
   width: 144px;
 }
@@ -81,6 +89,10 @@
 
 .h-144 {
   height: 144px;
+}
+
+.h-full {
+  height: 100%;
 }
 
 .h-280 {
@@ -178,15 +190,14 @@
 
 .grid {
   display: grid;
-  gap: 5px;
   grid-template-columns: repeat(4, minmax(min-content, 1fr));
 }
 
-@media screen {
-}
-
-@media(max-width: 980px) {
+@media(max-width: 1280px) {
+  .grid {
+    gap: 5px;
+  }
   .grid:last-child {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }  
 }
