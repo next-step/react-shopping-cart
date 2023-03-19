@@ -1,52 +1,101 @@
 import { rest, RestRequest } from 'msw'
+import z from 'zod'
 
 import { API } from '@/config'
-import { Product } from '@/types'
+import { ProductSchema, ProductSchemaInfer } from '@/schemas'
 
 import { products, carts } from './data'
 
-const getProduct = (products: Product[]) =>
+const getProduct = (products: ProductSchemaInfer[], schema: z.ZodTypeAny) =>
   rest.get(`${API.PRODUCTS}/:id`, (req, res, ctx) => {
     const { id } = req.params
     const product = products.find((p) => p.id === Number(id))
 
     if (product) {
-      return res(ctx.status(200), ctx.json(product))
+      try {
+        const validatedProduct = schema.parse(product)
+        return res(ctx.status(200), ctx.json(validatedProduct))
+      } catch (error) {
+        if (error instanceof Error) {
+          return res(ctx.status(400), ctx.json({ message: error.message }))
+        } else {
+          return res(ctx.status(400), ctx.json({ message: String(error) }))
+        }
+      }
     } else {
       return res(ctx.status(404))
     }
   })
 
-const getProducts = (products: Product[]) =>
+const getProducts = (products: ProductSchemaInfer[], schema: z.ZodTypeAny) =>
   rest.get(`${API.PRODUCTS}`, (_: RestRequest, res, ctx) => {
-    return res(ctx.status(200), ctx.json(products))
+    try {
+      const validatedProducts = products.map((product) => schema.parse(product))
+      return res(ctx.status(200), ctx.json(validatedProducts))
+    } catch (error) {
+      if (error instanceof Error) {
+        return res(ctx.status(400), ctx.json({ message: error.message }))
+      } else {
+        return res(ctx.status(400), ctx.json({ message: String(error) }))
+      }
+    }
   })
 
-const createProduct = () =>
-  rest.post(`${API.PRODUCTS}`, async (req: RestRequest<{ product: Product }>, res, ctx) => {
+const createProduct = (schema: z.ZodTypeAny) =>
+  rest.post(`${API.PRODUCTS}`, async (req: RestRequest<{ product: ProductSchemaInfer }>, res, ctx) => {
     const { product } = await req.json()
-    products.push(product)
-    return res(ctx.status(200))
+    try {
+      const validatedProduct = schema.parse(product)
+      products.push(validatedProduct)
+      return res(ctx.status(201))
+    } catch (error) {
+      if (error instanceof Error) {
+        return res(ctx.status(400), ctx.json({ message: error.message }))
+      } else {
+        return res(ctx.status(400), ctx.json({ message: String(error) }))
+      }
+    }
   })
 
-const getCarts = (carts: Product[]) =>
+const getCarts = (carts: ProductSchemaInfer[], schema: z.ZodTypeAny) =>
   rest.get(`${API.CARTS}`, (_: RestRequest, res, ctx) => {
-    return res(ctx.status(200), ctx.json(carts))
+    try {
+      const validatedCarts = carts.map((cart) => schema.parse(cart))
+      return res(ctx.status(200), ctx.json(validatedCarts))
+    } catch (error) {
+      if (error instanceof Error) {
+        return res(ctx.status(400), ctx.json({ message: error.message }))
+      } else {
+        return res(ctx.status(400), ctx.json({ message: String(error) }))
+      }
+    }
   })
 
-const getCart = (carts: Product[]) =>
-  rest.post(`${API.CARTS}`, async (req: RestRequest<{ product: Product }>, res, ctx) => {
-    const { product } = await req.json()
-    carts.push(product)
-    return res(
-      ctx.status(200),
-      ctx.json({
-        id: product.id,
-        name: product.name,
-        imageUrl: product.imageUrl,
-        price: product.price,
-      }),
-    )
+const getCart = (carts: ProductSchemaInfer[], schema: z.ZodTypeAny) =>
+  rest.get(`${API.CARTS}/:id`, async (req: RestRequest<{ product: ProductSchemaInfer }>, res, ctx) => {
+    const { id } = req.params
+    const cart = carts.find((p) => p.id === Number(id))
+
+    if (cart) {
+      try {
+        const validatedCart = schema.parse(cart)
+        return res(ctx.status(200), ctx.json(validatedCart))
+      } catch (error) {
+        if (error instanceof Error) {
+          return res(ctx.status(400), ctx.json({ message: error.message }))
+        } else {
+          return res(ctx.status(400), ctx.json({ message: String(error) }))
+        }
+      }
+    } else {
+      return res(ctx.status(404))
+    }
   })
 
-export const handlers = [getProduct(products), getProducts(products), createProduct(), getCarts(carts), getCart(carts)]
+export const handlers = [
+  getProduct(products, ProductSchema),
+  getProducts(products, ProductSchema),
+  createProduct(ProductSchema),
+  getCarts(carts, ProductSchema),
+  getCart(carts, ProductSchema),
+]
