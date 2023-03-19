@@ -2,14 +2,24 @@ import React, { useEffect, useState } from 'react'
 import Product, { ProductType } from '../components/Product/Product'
 
 function Products() {
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
   const [products, setProducts] = useState<ProductType[] | []>([])
   useEffect(() => {
+    setLoading(true)
+    setError(null)
     fetch('/api/products', {
       method: 'GET',
     })
       .then((res) => res.json())
       .then((products) => {
         setProducts(products)
+      })
+      .catch((e) => {
+        setError(e.message)
+      })
+      .finally(() => {
+        setLoading(false)
       })
   }, [])
 
