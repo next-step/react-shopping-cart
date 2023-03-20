@@ -3,15 +3,7 @@ import "../order.css";
 import Nav from "components/nav";
 import { useOrderList } from "hooks/order";
 import OrderItem from "./list";
-
-const OrderHeader = () => {
-  return (
-    <header className="flex-col-center mt-20">
-      <h2 className="order-section__title">주문 목록</h2>
-      <hr className="divide-line mt-20" />
-    </header>
-  );
-};
+import { Header } from "common/header";
 
 const OrderListContent = () => {
   const { data: orders, isLoading, isError } = useOrderList();
@@ -46,7 +38,7 @@ const OrdeList = () => {
   return (
     <>
       <Nav />
-      <OrderHeader />
+      <Header title={'주문 목록'} />
       <OrderListContent />
     </>
   );

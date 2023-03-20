@@ -1,4 +1,4 @@
-import { Icon } from "common/ui";
+import { Icon } from "common/icon";
 import {
   NavBox,
   NavButton,
