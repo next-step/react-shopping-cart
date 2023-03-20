@@ -1,7 +1,7 @@
 import { styled } from '@/stitches.config';
 
 // TODO: 내부 내용물을 채우는 width는 content div와 연계되어있음. 따라서 공통 설정 필요.
-export const StyledHeader = styled('header', {
+export const StyledHeader = styled('nav', {
   display: 'flex',
   justifyContent: 'center',
   width: '100%',
@@ -14,6 +14,7 @@ export const StyledHeaderContent = styled('div', {
   justifyContent: 'space-between',
   alignItems: 'center',
   width: '60%',
+  minWidth: '600px',
   color: 'white',
 });
 
