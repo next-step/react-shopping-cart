@@ -2,9 +2,12 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ReactComponent as Cart } from 'assets/cart.svg';
 
-export const Navigation = styled.nav`
+const Navigation = styled.nav`
   width: 100%;
   height: 75px;
+
+  position: fixed;
+  top: 0;
 
   background: ${(props) => props.theme.colors.background};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
@@ -13,22 +16,22 @@ export const Navigation = styled.nav`
   align-items: center;
 `;
 
-export const StyledLink = styled(Link)`
+const StyledLink = styled(Link)`
   color: ${(props) => props.theme.colors.white};
 `;
 
-export const FirstStyledLink = styled(StyledLink)`
+const FirstStyledLink = styled(StyledLink)`
   flex: 1;
   display: flex;
   align-items: center;
 `;
 
-export const NavTitle = styled.span`
+const NavTitle = styled.span`
   font-size: 40px;
   font-weight: 900;
 `;
 
-export const StyledCart = styled(Cart)`
+const StyledCart = styled(Cart)`
   width: 40px;
   height: 100%;
   margin: 0 10px;
@@ -37,8 +40,17 @@ export const StyledCart = styled(Cart)`
   }
 `;
 
-export const NavLink = styled.span`
+const NavLink = styled.span`
   font-weight: 500;
   font-size: 24px;
   margin: 0 15px;
 `;
+
+export {
+  Navigation,
+  StyledLink,
+  FirstStyledLink,
+  NavTitle,
+  StyledCart,
+  NavLink,
+};
