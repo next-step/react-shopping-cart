@@ -1,8 +1,8 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { ProductDetailPage, ProductListPage, CartPage, PaymentPage, OrderDetailPage, OrderListPage } from './pages';
+import { ProductDetailPage, ProductListPage, CartPage, PaymentPage, OrderDetailPage, OrderListPage } from '@/pages';
 import App from './App';
 
-const ROUTES_URL = {
+export const ROUTES_URL = {
   HOME: '/',
   PRODUCT_DETAIL: '/product/:id',
   CARTS: '/carts',

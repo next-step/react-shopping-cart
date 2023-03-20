@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
+import { Header } from './components';
+import ContentLayout from './components/Layout/ContentsLayout';
 
 function App() {
   const [data, setData] = useState([]);
@@ -15,7 +17,14 @@ function App() {
       .then(json => setData(json.data));
   }, []);
 
-  return <Outlet />;
+  return (
+    <>
+      <Header />
+      <ContentLayout>
+        <Outlet />
+      </ContentLayout>
+    </>
+  );
 }
 
 export default App;
