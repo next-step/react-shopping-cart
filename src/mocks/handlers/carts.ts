@@ -17,7 +17,7 @@ export const cartsHandlers = [
     const product = req.body;
 
     if (!product) {
-      res(ctx.status(400), ctx.json({ ok: false, message: '장바구니에 상품 추가에 실패했습니다(상품없음).' }));
+      return res(ctx.status(400), ctx.json({ ok: false, message: '장바구니에 상품 추가에 실패했습니다(상품없음).' }));
     }
 
     const currentCarts = [...db.carts];
@@ -32,7 +32,7 @@ export const cartsHandlers = [
       db.carts = updatedCarts;
     }
 
-    res(ctx.status(201), ctx.json({ ok: true, message: '상품이 성공적으로 업데이트 되었습니다.' }));
+    return res(ctx.status(201), ctx.json({ ok: true, message: '상품이 성공적으로 업데이트 되었습니다.' }));
   }),
 
   rest.delete('/carts/:cartId', (req, res, ctx) => {
@@ -41,7 +41,7 @@ export const cartsHandlers = [
 
     db.carts = updateCarts;
 
-    res(
+    return res(
       ctx.status(200),
       ctx.json({
         ok: true,

@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 import { ProductDetailPage, ProductListPage, CartPage, PaymentPage, OrderDetailPage, OrderListPage } from '@/pages';
 import App from './App';
 
@@ -11,7 +11,7 @@ export const ROUTES_URL = {
   ORDER_DETAIL: '/order/:id',
 };
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
@@ -44,9 +44,3 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-
-function RootRouter() {
-  return <RouterProvider router={router} />;
-}
-
-export default RootRouter;

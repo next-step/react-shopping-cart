@@ -6,6 +6,7 @@ type ProductBody = Omit<Product, 'id'>;
 
 export const productHandlers = [
   rest.get('/products', (_req, res, ctx) => {
+    console.log(_req);
     return res(
       ctx.status(200),
       ctx.json({
@@ -19,7 +20,7 @@ export const productHandlers = [
     const newProduct = req.body;
 
     if (!newProduct) {
-      res(ctx.status(400), ctx.json({ ok: false, message: '상품 추가에 실패했습니다(추가상품없음).' }));
+      return res(ctx.status(400), ctx.json({ ok: false, message: '상품 추가에 실패했습니다(추가상품없음).' }));
     }
 
     const newId = db.products[db.products.length - 1].id + 1;
@@ -27,7 +28,7 @@ export const productHandlers = [
 
     db.products = updatedProducts;
 
-    res(ctx.status(201), ctx.json({ ok: true, message: '상품이 성공적으로 추가되었습니다.' }));
+    return res(ctx.status(201), ctx.json({ ok: true, message: '상품이 성공적으로 추가되었습니다.' }));
   }),
 
   rest.get('/product/:id', (req, res, ctx) => {
@@ -36,7 +37,7 @@ export const productHandlers = [
     const product = db.products.find(product => product.id === +id);
 
     if (!product) {
-      res(
+      return res(
         ctx.status(400),
         ctx.json({
           ok: false,
@@ -45,7 +46,7 @@ export const productHandlers = [
       );
       return;
     }
-    res(
+    return res(
       ctx.status(200),
       ctx.json({
         ok: true,
@@ -59,7 +60,7 @@ export const productHandlers = [
 
     db.products = updatedProducts;
 
-    res(
+    return res(
       ctx.status(200),
       ctx.json({
         ok: true,

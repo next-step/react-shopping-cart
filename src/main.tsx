@@ -3,7 +3,8 @@ import './styles/indes.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { getEnvMode } from './constants';
-import RootRouter from './RootRouter';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './RootRouter';
 
 if (getEnvMode() === 'mock' || getEnvMode() === 'test') {
   import('./mocks/browser')
@@ -15,6 +16,6 @@ if (getEnvMode() === 'mock' || getEnvMode() === 'test') {
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <RootRouter />
+    <RouterProvider router={router} />;
   </React.StrictMode>,
 );

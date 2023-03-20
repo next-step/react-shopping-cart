@@ -1,19 +1,17 @@
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Header, AppLayout, ContentsLayout } from './components';
+import useFetch from './hooks/useFetch';
+import axios from 'axios';
 
 function App() {
   const [data, setData] = useState([]);
 
+  const { state } = useFetch('/products');
+  console.log(state);
+
   useEffect(() => {
-    fetch('/products', {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'GET',
-    })
-      .then(res => res.json())
-      .then(json => setData(json.data));
+    axios.get('http://localhost:3000/products').then(res => console.log(res));
   }, []);
 
   return (
