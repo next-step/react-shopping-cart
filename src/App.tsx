@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import RootRouter from './RootRouter';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   const [data, setData] = useState([]);
@@ -15,7 +15,7 @@ function App() {
       .then(json => setData(json.data));
   }, []);
 
-  return <RootRouter />;
+  return <Outlet />;
 }
 
 export default App;

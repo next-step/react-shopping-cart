@@ -3,9 +3,7 @@ import './styles/indes.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { getEnvMode } from './constants';
-import App from './App';
-
-console.log(getEnvMode());
+import RootRouter from './RootRouter';
 
 if (getEnvMode() === 'mock' || getEnvMode() === 'test') {
   import('./mocks/browser')
@@ -17,6 +15,6 @@ if (getEnvMode() === 'mock' || getEnvMode() === 'test') {
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    <RootRouter />
   </React.StrictMode>,
 );
