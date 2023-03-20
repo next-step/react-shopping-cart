@@ -1,5 +1,6 @@
 import { CartIcon } from '@/assets/svgs';
-import { Product } from '@/types';
+
+import type { Product } from '@/types';
 
 interface ProductItemProps {
   product: Product;

@@ -1,7 +1,8 @@
-import { ROUTES_URL } from '@/RootRouter';
-import { ProductList } from '@/types';
 import { Link } from 'react-router-dom';
+import { ROUTES_URL } from '@/RootRouter';
 import ProductItem from './ProductItem';
+
+import type { ProductList } from '@/types';
 
 interface ProductItemProps {
   products?: ProductList;

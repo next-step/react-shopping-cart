@@ -1,6 +1,8 @@
-import { ResponseReturn } from '@/api';
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import { useEffect, useState } from 'react';
+
+import type { ResponseReturn } from '@/api';
+import type { AxiosError } from 'axios';
 
 function useFetch<T>(endpoint: string, deps: unknown[] = []) {
   const [loading, setLoading] = useState(false);

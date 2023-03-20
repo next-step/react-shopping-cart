@@ -1,4 +1,4 @@
-import { Mode } from '@/types';
+import type { Mode } from '@/types';
 
 export const BASE_URL: Record<Mode, string> = {
   test: 'http://localhost:3000',
@@ -10,5 +10,3 @@ export const BASE_URL: Record<Mode, string> = {
 export const getEnvMode = () => import.meta.env.MODE as Mode;
 
 export const getBaseUrlByMode = () => BASE_URL[getEnvMode()];
-
-export * from './routes';

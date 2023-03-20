@@ -1,4 +1,4 @@
-import { SVGProps } from 'react';
+import type { SVGProps } from 'react';
 
 function CartIcon({ fill = 'black', width, height, viewBox }: SVGProps<SVGSVGElement>) {
   return (

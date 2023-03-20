@@ -1,4 +1,4 @@
-import { SVGProps } from 'react';
+import type { SVGProps } from 'react';
 
 function TrashIcon({ fill = 'none', width, height, viewBox }: SVGProps<SVGSVGElement>) {
   return (
