@@ -1,9 +1,18 @@
 @import "./common/index.css";
 @import "./page/index.css";
 
-body {
-  width: 1920px;
-  margin: 24px auto 0;
+html body {
+  width: 100vw;
+  height: 100vh;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+a {
+  cursor: pointer;
 }
 
 .divide-line {
