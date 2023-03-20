@@ -21,7 +21,7 @@ const Item = ({ item }: ItemProps) => {
 
   const handleAddCart = (e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
     e.stopPropagation();
-    alert("장바구니");
+    go(ROUTE.ORDER_LIST)
   }
 
   return (
