@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import Layout from './layouts'
 import OrderList from './orders/pages/OrderList'
 import ProductList from './products/pages/ProductList'
-import ShoppingBack from './shoppingBack/pages/ShoppingBack'
+import ShoppingCart from './shoppingCart/pages/ShoppingCart'
 
 interface RouterBase {
   id: number
@@ -21,8 +21,8 @@ const routerData: RouterBase[] = [
   {
     id: 1,
     label: '장바구니',
-    path: '/shopping-back',
-    element: <ShoppingBack />,
+    path: '/shopping-cart',
+    element: <ShoppingCart />,
   },
   {
     id: 2,

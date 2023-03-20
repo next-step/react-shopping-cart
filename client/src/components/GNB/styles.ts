@@ -4,6 +4,7 @@ import colors from '../../styles/constants/colors'
 export const navMenu = styled.nav`
   max-width: 1080px;
   height: 100%;
+  margin: auto;
   display: flex;
   justify-content: space-between;
 `
@@ -12,13 +13,13 @@ export const navLogoBox = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${colors.WHITE};
-  font-weight: 600;
-  font-size: 30px;
-
-  div {
+  h1 {
+    color: ${colors.WHITE};
+    font-size: 30px;
+    font-weight: 600;
     margin-left: 5px;
   }
+
   svg {
     width: 38px;
     height: 40px;
@@ -35,7 +36,7 @@ export const navBtnBox = styled.div`
   justify-content: center;
   align-items: center;
 
-  button {
+  a {
     color: ${colors.WHITE};
     font-size: 18px;
     width: 100px;
