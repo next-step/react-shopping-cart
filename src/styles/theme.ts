@@ -24,11 +24,9 @@ const colors = {
 
 const common = {
   pageContainer: `
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
     height: 100%;
+    margin: 105px auto 30px auto;
   `,
   ellipsis: `
     overflow:hidden;
