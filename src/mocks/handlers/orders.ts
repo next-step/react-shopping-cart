@@ -1,7 +1,7 @@
-import { rest } from "msw";
-import { Order } from "types/order";
-import { ORDERS } from "constants/orders";
-import ordersData from "mocks/data/orders.json";
+import { rest } from 'msw';
+import { Order } from 'types/order';
+import { ORDERS } from 'constants/orders';
+import ordersData from 'mocks/data/orders.json';
 
 const handlers = [
   // 주문 리스트 가져오기

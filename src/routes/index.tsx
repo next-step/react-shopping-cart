@@ -1,12 +1,12 @@
-import PageNotFound from "components/PageNotFound";
-import { CARTS, CARTS_URL } from "constants/carts";
-import { ORDERS, ORDERS_URL } from "constants/orders";
-import { PRODUCTS_URL } from "constants/products";
-import { CartsDetails, CartsList } from "pages/shopping/carts";
-import NavBar from "pages/shopping/components/NavBar";
-import { OrdersDetails, OrdersList } from "pages/shopping/orders";
-import { ProductsDetails, ProductsList } from "pages/shopping/products";
-import { createBrowserRouter } from "react-router-dom";
+import PageNotFound from 'components/PageNotFound';
+import { CARTS, CARTS_URL } from 'constants/carts';
+import { ORDERS, ORDERS_URL } from 'constants/orders';
+import { PRODUCTS_URL } from 'constants/products';
+import { CartsDetails, CartsList } from 'pages/shopping/carts';
+import NavBar from 'pages/shopping/components/NavBar';
+import { OrdersDetails, OrdersList } from 'pages/shopping/orders';
+import { ProductsDetails, ProductsList } from 'pages/shopping/products';
+import { createBrowserRouter } from 'react-router-dom';
 
 const router = createBrowserRouter([
   {
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "*",
+        path: '*',
         element: <PageNotFound />,
       },
     ],

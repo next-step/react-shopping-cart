@@ -1,7 +1,7 @@
-import { rest } from "msw";
-import { Cart } from "types/cart";
-import { CARTS } from "constants/carts";
-import cartsData from "mocks/data/carts.json";
+import { rest } from 'msw';
+import { Cart } from 'types/cart';
+import { CARTS } from 'constants/carts';
+import cartsData from 'mocks/data/carts.json';
 
 const handlers = [
   // 카트 리스트 가져오기
