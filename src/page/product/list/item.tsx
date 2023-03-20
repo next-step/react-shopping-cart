@@ -2,8 +2,8 @@ import { Icon } from "common/icon";
 import { ProductItem } from "types/type";
 import { Image, ItemInfo, ItemWrapper, Price, Title } from "../style";
 
-import cartSvg from 'assets/svgs/cart.svg';
-import { printWon } from "common/util";
+import cartSvg from "assets/svgs/cart.svg";
+import { handleModal, printWon } from "common/util";
 import { useRouter } from "hooks/useRouter";
 import { ROUTE } from "router";
 
@@ -12,17 +12,25 @@ type ItemProps = {
 };
 
 const Item = ({ item }: ItemProps) => {
-  const { go }  = useRouter();
+  const { go } = useRouter();
 
-  const handleMoveToDetail = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, id: number) => {
+  const handleMoveToDetail = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    id: number
+  ) => {
     e.stopPropagation();
-    go(`${ROUTE.PRODUCT_LIST}/${id}`)
-  }
+    go(`${ROUTE.PRODUCT_LIST}/${id}`);
+  };
 
   const handleAddCart = (e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
     e.stopPropagation();
-    go(ROUTE.ORDER_LIST)
-  }
+
+    handleModal({
+      title: "장바구니에 추가되었습니다",
+      message: "해당 페이지로 이동하시겠습니까?",
+      onConfirm: () => go(ROUTE.ORDER_LIST),
+    });
+  };
 
   return (
     <div onClick={(e) => handleMoveToDetail(e, item.id)}>
@@ -32,7 +40,7 @@ const Item = ({ item }: ItemProps) => {
           <Title>{item.name}</Title>
           <Price>{printWon(item.price)}</Price>
         </ItemInfo>
-        <Icon src={cartSvg} alt="장바구니" onClick={(e) => handleAddCart(e)}/>
+        <Icon src={cartSvg} alt="장바구니" onClick={(e) => handleAddCart(e)} />
       </ItemWrapper>
     </div>
   );
