@@ -1,12 +1,13 @@
-import React from "react";
-import Button from "./components/Button/Button";
+import React, { useEffect } from "react";
 
 function App() {
-  return (
-    <div id="app">
-      <Button variant={"dark"}>Test Button</Button>
-    </div>
-  );
+  useEffect(() => {
+    fetch("http://localhost:3000/products").then((res) =>
+      res.json().then(console.log)
+    );
+  }, []);
+
+  return <div id="app"></div>;
 }
 
 export default App;
