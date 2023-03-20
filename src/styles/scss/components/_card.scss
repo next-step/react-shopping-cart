@@ -1,0 +1,16 @@
+.card {
+  &__icon {
+    max-width: 24px;
+    cursor: pointer;
+  }
+
+  &-image {
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+      font-size: 24px;
+      padding-top: 10px;
+    }
+  }
+}

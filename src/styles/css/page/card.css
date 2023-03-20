@@ -1,0 +1,11 @@
+.card-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-info__description {
+    font-size: 12px;
+}
+
+.card-info__title {
+}

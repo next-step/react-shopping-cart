@@ -1,0 +1,20 @@
+.primary-button {
+    background: var(--primary-color);
+    font-size: 24px;
+    color: var(--white);
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.primary-button--small {
+    background: var(--primary-color);
+    font-size: 20px;
+    color: var(--white);
+    padding: 14px 28px;
+}
+
+.primary-button--gray {
+    background: var(--gray);
+}

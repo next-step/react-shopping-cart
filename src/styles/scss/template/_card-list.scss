@@ -1,0 +1,17 @@
+.card-list {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+  padding: 50px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @include is-tablet {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @include is-mobile {
+    grid-template-columns: 1fr 1fr;
+  }
+}

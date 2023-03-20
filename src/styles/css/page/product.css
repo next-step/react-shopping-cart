@@ -1,0 +1,37 @@
+.product-container {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+    padding: 50px 240px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.product-detail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px auto 0;
+    max-width: 500px;
+}
+
+.product-detail-info {
+    width: 100%;
+}
+
+.product-detail-info__name {
+    font-size: 24px;
+}
+
+.product-detail-info__price {
+    font-size: 24px;
+}
+
+.product-detail-button {
+    width: 100%;
+    padding: 24px;
+    background: #73675c;
+    font-size: 24px;
+    color: white;
+}
