@@ -6,7 +6,7 @@ import {
 } from "./style";
 import { ROUTE } from "router";
 
-const Header = () => {
+const GlobalHeader = () => {
   const { go } = useRouter();
   
   return (
@@ -24,4 +24,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default GlobalHeader;

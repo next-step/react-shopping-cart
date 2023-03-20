@@ -1,4 +1,3 @@
-import Header from "components/header";
 import Nav from "components/nav";
 
 import "style/common/index.css";
@@ -41,7 +40,6 @@ const CartContent = () => {
 const CartPage = () => {
   return (
     <>
-      <Header />
       <Nav />
       <CartContent />
     </>

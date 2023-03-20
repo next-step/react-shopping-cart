@@ -1,7 +1,7 @@
 import { ProductItem } from "types/type";
 import { ProductContainer } from "../style";
 import Item from "./item";
-import Header from "components/header";
+import GlobalHeader from "components/header";
 import Nav from "components/nav";
 import { productListState, useProductList } from "hooks/product";
 import { useRecoilState } from "recoil";
@@ -43,7 +43,7 @@ const ProductListPageContent = () => {
 const ProductListPage = () => {
   return (
     <>
-      <Header />
+      <GlobalHeader />
       <Nav />
       <ProductListPageContent />
     </>

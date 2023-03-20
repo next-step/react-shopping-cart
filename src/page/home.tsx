@@ -1,10 +1,10 @@
-import Header from "components/header";
+import GlobalHeader from "components/header";
 import Nav from "components/nav";
 
 const Home = () => {
   return (
     <>
-      <Header />
+      <GlobalHeader />
       <Nav />
     </>
   );
