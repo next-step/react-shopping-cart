@@ -5,13 +5,15 @@ import ReactDOM from 'react-dom/client';
 import { getEnvMode } from './constants';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './RootRouter';
+import { worker } from './mocks/browser';
 
 if (getEnvMode() === 'mock' || getEnvMode() === 'test') {
-  import('./mocks/browser')
-    .then(async ({ worker }) => {
-      await worker.start();
-    })
-    .catch(error => console.error(error));
+  try {
+    await worker.start();
+  } catch (error) {
+    console.error(error);
+  }
+  await worker.start();
 }
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
