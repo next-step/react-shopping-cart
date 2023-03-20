@@ -18,4 +18,21 @@
   - 이전 미션에서 컨텍스트 API를 사용해봤으니, 이번에도 한번 사용해봐야겠다.
 - MSW 초기 렌더링에 문제가 있음
   - `Uncaught (in promise) SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON`
+    - 초기 설정의 문제 -> 코드 수정으로 해결
+    ```
+    if (getEnvMode() === 'production' || getEnvMode() === 'development') {
+        worker.start();
+      }
+    ```
   - fetch를 써서 그런가? -> axios써보자
+
+## 2차 작업
+
+- 위의 MSW초기 실행 문제 해결
+- 홈 화면 구성
+- 약간의 반응형
+- useFetch
+
+### Next
+
+- 상태관리 라이브러리 고민
