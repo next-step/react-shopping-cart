@@ -7,9 +7,12 @@ import Nav from "components/nav";
 import { useParams } from "react-router-dom";
 import { useSelectedProduct } from "hooks/product";
 import { printWon } from "common/util";
+import { useRouter } from "hooks/useRouter";
+import { ROUTE } from "router";
 
 export const Contents = () => {
   const { id } = useParams<{ id: string }>();
+  const { go } = useRouter();
 
   const selectedProduct = useSelectedProduct(Number(id));
   
@@ -37,7 +40,7 @@ export const Contents = () => {
             </span>
           </div>
         </div>
-        <button className="product-detail-button flex-center mt-20">
+        <button className="product-detail-button flex-center mt-20" onClick={() => go(ROUTE.ORDER_LIST)}>
           장바구니
         </button>
       </div>
