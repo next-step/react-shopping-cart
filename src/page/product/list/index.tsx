@@ -15,21 +15,20 @@ const ProductListPageContent = () => {
   const [products, setProducts] = useRecoilState(productListState);
 
   useEffect(() => {
+    if (isError) {
+      console.log("Error fetching product list", isError);
+      
+      alert("상품 목록을 불러오는데 실패했습니다.");
+      return;
+    }
+
     if (data) {
       setProducts(data);
     }
-  }, [data, setProducts])
+  }, [data, isError, setProducts]);
 
   if (isLoading) {
     return <div>Loading...</div>;
-  }
-
-  if (isError) {
-    return <div>Error loading product data</div>;
-  }
-
-  if (!products) {
-    return <div>No product data available</div>;
   }
 
   return (
