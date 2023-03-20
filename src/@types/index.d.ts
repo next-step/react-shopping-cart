@@ -1,6 +1,6 @@
 declare interface Product {
   id: string;
-  image: string;
+  imageUrl: string;
   name: string;
   price: number;
 }

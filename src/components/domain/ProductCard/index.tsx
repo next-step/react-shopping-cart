@@ -21,7 +21,7 @@ const ProductCard = ({ product }: Props) => {
   return (
     <div>
       <LazyImage
-        src={product.image}
+        src={product.imageUrl}
         alt={product.name}
         width={280}
         height={280}

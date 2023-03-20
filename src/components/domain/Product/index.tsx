@@ -18,7 +18,7 @@ const Products = () => {
     <div className="product-container">
       <div className="grid py-300 gap-50">
         {products?.map((product) => (
-          <ProductCard key={product.id} {...product} />
+          <ProductCard key={product.id} product={product} />
         ))}
         {loading &&
           Array.from({ length: SINGLE_PAGE_SIZE }).map((_, index) => (
