@@ -23,7 +23,8 @@
       "@constants/*": ["src/constants/*"],
       "@constants": ["src/constants/index"],
       "@utils": ["src/utils/index"],
-      "@assets/*": ["src/assets/*"]
+      "@assets/*": ["src/assets/*"],
+      "@api/*": ["src/api/*"]
     }
   },
   "include": ["src"],
