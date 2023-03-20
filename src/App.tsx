@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Header } from './components';
-import ContentLayout from './components/Layout/ContentsLayout';
+import { Header, AppLayout, ContentsLayout } from './components';
 
 function App() {
   const [data, setData] = useState([]);
@@ -18,12 +17,12 @@ function App() {
   }, []);
 
   return (
-    <>
+    <AppLayout>
       <Header />
-      <ContentLayout>
+      <ContentsLayout>
         <Outlet />
-      </ContentLayout>
-    </>
+      </ContentsLayout>
+    </AppLayout>
   );
 }
 
