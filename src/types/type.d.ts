@@ -9,3 +9,16 @@ export type CartItem = {
   id: number;
   product: ProductItem
 }
+
+export type Order = {
+  id: number;
+  orderDetails: OrderDetail[];
+}
+
+export type OrderDetail = {
+  id: number,
+  name: string,
+  price: number,
+  imageUrl: string,
+  quantity: number
+}
