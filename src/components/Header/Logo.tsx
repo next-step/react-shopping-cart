@@ -1,5 +1,5 @@
 import { ROUTES_URL } from '@/RootRouter';
-import CartIcon from '@/assets/svgs/Cart';
+import { CartIcon } from '@/assets/svgs';
 import { Link } from 'react-router-dom';
 
 function Logo() {

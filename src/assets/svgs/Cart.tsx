@@ -1,6 +1,6 @@
 import { SVGProps } from 'react';
 
-function CartIcon({ fill = 'none', width, height, viewBox }: SVGProps<SVGSVGElement>) {
+function CartIcon({ fill = 'black', width, height, viewBox }: SVGProps<SVGSVGElement>) {
   return (
     <svg
       width={width || 24}

@@ -4,7 +4,7 @@ import App from './App';
 
 export const ROUTES_URL = {
   HOME: '/',
-  PRODUCT_DETAIL: '/product/:id',
+  PRODUCT: '/product',
   CARTS: '/carts',
   PAYMENT: '/payment',
   ORDER_LIST: '/order-list',
@@ -22,7 +22,7 @@ export const router = createBrowserRouter([
         element: <ProductListPage />,
       },
       {
-        path: ROUTES_URL.PRODUCT_DETAIL,
+        path: `${ROUTES_URL.PRODUCT}/:id`,
         element: <ProductDetailPage />,
       },
       {
