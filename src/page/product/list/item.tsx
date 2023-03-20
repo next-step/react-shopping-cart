@@ -3,9 +3,10 @@ import { ProductItem } from "types/type";
 import { Image, ItemInfo, ItemWrapper, Price, Title } from "../style";
 
 import cartSvg from "assets/svgs/cart.svg";
-import { handleModal, printWon } from "common/util";
+import { printWon } from "common/util";
 import { useRouter } from "hooks/useRouter";
 import { ROUTE } from "router";
+import { handleModal } from "common/modal";
 
 type ItemProps = {
   item: ProductItem;

@@ -6,7 +6,7 @@ import LeftSection from "./left-section";
 import RightSection from "./right-section";
 
 import { useCart } from "hooks/cart";
-import { Header } from "common/header";
+import { Header } from "common/ui/header";
 
 const CartContent = () => {
   const { data: carts, isLoading, isError } = useCart();

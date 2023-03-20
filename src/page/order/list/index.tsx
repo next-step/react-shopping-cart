@@ -3,7 +3,7 @@ import "../order.css";
 import Nav from "components/nav";
 import { useOrderList } from "hooks/order";
 import OrderItem from "./list";
-import { Header } from "common/header";
+import { Header } from "common/ui/header";
 
 const OrderListContent = () => {
   const { data: orders, isLoading, isError } = useOrderList();
