@@ -19,8 +19,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "NODE_ENV=development react-scripts start",
-    "start:stg": "set ENV=stage && react-scripts start",
+    "start": "npm run server & NODE_ENV=development react-scripts start",
     "server": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false",
