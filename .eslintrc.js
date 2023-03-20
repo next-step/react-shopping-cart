@@ -11,13 +11,7 @@ module.exports = {
   },
   parser: '@typescript-eslint/parser',
   plugins: ['react', 'prettier', 'import', '@typescript-eslint'],
-  extends: [
-    'airbnb',
-    'airbnb/hooks',
-    'plugin:prettier/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:storybook/recommended',
-  ],
+  extends: ['airbnb', 'airbnb/hooks', 'plugin:prettier/recommended', 'plugin:@typescript-eslint/recommended'],
   rules: {
     'prettier/prettier': 'error',
     'no-use-before-define': [
@@ -31,6 +25,7 @@ module.exports = {
     'no-param-reassign': 0,
     'no-unused-expressions': 0,
     'class-methods-use-this': 0,
+    'no-restricted-syntax': 1,
 
     'react/destructuring-assignment': 0,
     'react/jsx-filename-extension': [
