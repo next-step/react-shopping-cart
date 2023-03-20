@@ -7,13 +7,12 @@ import { RouterProvider } from 'react-router-dom';
 import { router } from './RootRouter';
 import { worker } from './mocks/browser';
 
-if (getEnvMode() === 'mock' || getEnvMode() === 'test') {
+if (getEnvMode() === 'production' || getEnvMode() === 'development') {
   try {
     await worker.start();
   } catch (error) {
     console.error(error);
   }
-  await worker.start();
 }
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
