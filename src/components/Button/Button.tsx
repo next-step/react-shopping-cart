@@ -1,22 +1,15 @@
 import React from "react";
-import StyledButton from "./StyledButton";
 
 export type ButtonProps = {
   children: React.ReactNode;
+  className: string;
   onClick?: () => void;
-  disabled?: boolean;
-  variant: "light" | "dark";
 };
 
-const Button = ({
-  children,
-  variant,
-  onClick,
-  disabled = false,
-}: ButtonProps): JSX.Element => (
-  <StyledButton variant={variant} onClick={onClick} disabled={disabled}>
+const Button = ({ children, className, onClick }: ButtonProps): JSX.Element => (
+  <button className={className} onClick={onClick}>
     {children}
-  </StyledButton>
+  </button>
 );
 
 export default Button;
