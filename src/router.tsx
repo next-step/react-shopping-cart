@@ -12,7 +12,7 @@ export const ROUTE = {
   ORDER_DETAIL: '/order-detail',
 };
 
-export const routers = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: ROUTE.HOME,
     element: <Home />,
