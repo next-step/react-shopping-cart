@@ -63,6 +63,10 @@
   gap: 15px;
 }
 
+.w-full {
+  width: 100%;
+}
+
 .w-144 {
   width: 144px;
 }
@@ -77,6 +81,10 @@
 
 .w-520 {
   width: 520;
+}
+
+.h-full {
+  height: 100%;
 }
 
 .h-144 {
@@ -165,4 +173,8 @@
 .mx-20 {
   margin-left: 20px;
   margin-right: 20px;
+}
+
+.pointer {
+  cursor: pointer;
 }
