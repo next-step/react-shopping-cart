@@ -6,22 +6,22 @@ import { CSS } from '@stitches/react';
 import { StyledInnerLayer, StyledOuterLayer } from './LayeredWrapper.styled';
 
 interface LayeredWrapperProps {
-  css?: CSS;
-  as?: IntrinsicElementsKeys | ComponentType<any>;
-  outerClassName?: string;
-  innerClassName?: string;
+  outer: {
+    as?: IntrinsicElementsKeys | ComponentType<any>;
+    css?: CSS;
+    className?: string;
+  };
+  inner?: {
+    as?: IntrinsicElementsKeys | ComponentType<any>;
+    css?: CSS;
+    className?: string;
+  };
 }
 
-export function LayeredWrapper({
-  as,
-  css,
-  outerClassName,
-  innerClassName,
-  children,
-}: PropsWithChildren<LayeredWrapperProps>) {
+export function LayeredWrapper({ outer, inner, children }: PropsWithChildren<LayeredWrapperProps>) {
   return (
-    <StyledOuterLayer className={outerClassName}>
-      <StyledInnerLayer as={as} css={css} className={innerClassName}>
+    <StyledOuterLayer as={outer?.as} css={outer?.css} className={outer?.className}>
+      <StyledInnerLayer as={inner?.as} css={inner?.css} className={inner?.className}>
         {children}
       </StyledInnerLayer>
     </StyledOuterLayer>

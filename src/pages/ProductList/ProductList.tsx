@@ -15,7 +15,7 @@ export function ProductList() {
   }, []);
 
   return (
-    <LayeredWrapper outerClassName={ProductListOuterStyle()} innerClassName={ProductListInnerStyle()}>
+    <LayeredWrapper outer={{ className: ProductListOuterStyle() }} inner={{ className: ProductListInnerStyle() }}>
       {products?.map((product) => (
         <Product key={product.id} product={product} />
       ))}
