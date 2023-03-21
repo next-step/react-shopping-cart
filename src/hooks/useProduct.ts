@@ -1,5 +1,5 @@
 import useFetch from './useFetch';
-import { ProductType } from '../api/product';
+import { ProductType } from '../types';
 import { useCallback } from 'react';
 import { ROUTE } from '../router';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +9,7 @@ const useProduct = () => {
   const { payload, isLoading, error } = useFetch(
     `${process.env.REACT_APP_API_PATH}/products`
   );
+
   const products = payload?.response as ProductType[];
 
   const onClickProductItem = useCallback((id: number | undefined) => {

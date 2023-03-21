@@ -1,4 +1,4 @@
-import { ProductType } from '../../api/product';
+import { ProductType } from '../../types';
 
 const CartItem = ({ name, price, imageUrl }: ProductType) => {
   return (

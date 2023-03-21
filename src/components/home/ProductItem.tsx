@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { ProductType } from '../../api/product';
+import { ProductType } from '../../types';
 import SvgCart from '../../assets/svg/SvgCart';
 import { priceFormat } from '../../utils';
 

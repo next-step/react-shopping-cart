@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import mq from '../../utils/style/mediaQuery';
-import { CartItemType } from '../../api/cart';
+import { CartItemType } from '../../types';
 import CartItem from './CartItem';
 
 const S = {

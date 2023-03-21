@@ -1,13 +1,12 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { fetchProductDetail, ProductType } from '../api/product';
+import { useNavigate } from 'react-router-dom';
 import { ROUTE } from '../router';
 import Layout from '../layout/Layout';
+import useProductDetail from '../hooks/useProductDetail';
+import { priceFormat } from '../utils';
 
 const ProductDetail = () => {
-  const { id } = useParams();
   const navigate = useNavigate();
-  const [productData, setProductData] = useState<ProductType | null>(null);
+  const { productData } = useProductDetail();
 
   const addToCart = () => {
     const confirmRes = confirm(
@@ -15,15 +14,6 @@ const ProductDetail = () => {
     );
     if (confirmRes) navigate(ROUTE.CART);
   };
-  const fetchDetail = async () => {
-    const detail = await fetchProductDetail(Number(id));
-    if (detail === null) return;
-    setProductData(detail);
-  };
-
-  useEffect(() => {
-    fetchDetail();
-  }, []);
 
   return (
     <Layout>
@@ -42,7 +32,7 @@ const ProductDetail = () => {
             <div className="flex justify-between">
               <span>금액</span>
               <span className="product-detail-info__price">
-                {productData?.price.toLocaleString()}원
+                {priceFormat(productData?.price)}원
               </span>
             </div>
           </div>

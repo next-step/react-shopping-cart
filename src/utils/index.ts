@@ -1,3 +1,4 @@
-export const priceFormat = (value: number): string => {
+export const priceFormat = (value: number | undefined) => {
+  if (!value) return null;
   return value.toLocaleString() + ' 원';
 };
