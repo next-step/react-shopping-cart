@@ -1,7 +1,6 @@
+import React from "react";
 import { Meta, Story } from "@storybook/react/types-6-0";
-
 import Navbar, { NavbarProps } from "./Navbar";
-
 require("../../css/common/index.css");
 
 export default {
@@ -12,11 +11,3 @@ export default {
 const Template: Story<NavbarProps> = (args) => <Navbar {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {
-  children: (
-    <>
-      <button className="nav-button">장바구니</button>
-      <button className="nav-button">주문목록</button>
-    </>
-  ),
-};

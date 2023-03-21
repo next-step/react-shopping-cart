@@ -1,19 +1,19 @@
-import { ReactNode } from "react";
+import React from "react";
+import Button from "../Button/Button";
 
-export type NavbarProps = {
-  children: ReactNode;
-};
-
-const Navbar = ({ children }: NavbarProps) => {
+const Navbar = () => {
   return (
     <nav className="nav flex justify-around">
       <div className="flex-center">
         <h1 className="nav-title">CLEAN CODE SHOP</h1>
       </div>
       <div className="flex gap-15">
-        {children}
-        {/* <button className="nav-button">장바구니</button>
-        <button className="nav-button">주문목록</button> */}
+        <Button className="nav-button" onClick={() => alert("장바구니 이동")}>
+          장바구니
+        </Button>
+        <Button className="nav-button" onClick={() => alert("주문목록 이동")}>
+          주문목록
+        </Button>
       </div>
     </nav>
   );
