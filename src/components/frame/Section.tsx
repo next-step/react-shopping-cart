@@ -6,7 +6,7 @@ import {
   MOBILE_FRAME_PADDING,
   TABLET_FRAME_PADDING,
 } from '../../constant/style';
-import mq from '../../utils/style/mq';
+import mq from '../../utils/style/mediaQuery';
 
 interface SectionType {
   children: ReactNode;

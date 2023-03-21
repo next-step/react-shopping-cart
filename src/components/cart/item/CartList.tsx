@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import mq from '../../../utils/style/mq';
+import mq from '../../../utils/style/mediaQuery';
 import { useEffect, useState } from 'react';
 import { CartItemType, fetchCartList } from '../../../api/cart';
 import CartListItem from './CartListItem';

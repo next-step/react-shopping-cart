@@ -2,7 +2,7 @@ import Section from '../frame/Section';
 import CartList from './item/CartList';
 import CartTotal from './item/CartTotal';
 import styled from '@emotion/styled';
-import mq from '../../utils/style/mq';
+import mq from '../../utils/style/mediaQuery';
 
 const S = {
   Content: styled.div(

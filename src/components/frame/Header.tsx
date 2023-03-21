@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ROUTE } from '../../router';
 import styled from '@emotion/styled';
-import mq from '../../utils/style/mq';
+import mq from '../../utils/style/mediaQuery';
 import {
   COLOR_PRIMARY,
   COLOR_WHITE,

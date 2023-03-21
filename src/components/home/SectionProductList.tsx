@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchProductList, ProductType } from '../../api/product';
 import Section from '../frame/Section';
 import styled from '@emotion/styled';
-import mq from '../../utils/style/mq';
+import mq from '../../utils/style/mediaQuery';
 import ProductItem from './item/ProductItem';
 import { useNavigate } from 'react-router-dom';
 import { ROUTE } from '../../router';
