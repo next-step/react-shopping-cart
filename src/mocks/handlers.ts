@@ -28,10 +28,20 @@ const getProduct = (products: ProductSchemaInfer[], schema: z.ZodTypeAny) =>
   })
 
 const getProducts = (products: ProductSchemaInfer[], schema: z.ZodTypeAny) =>
-  rest.get(`${API.PRODUCTS}`, (_: RestRequest, res, ctx) => {
+  rest.get(`${API.PRODUCTS}`, (req, res, ctx) => {
+    const searchParams = new URLSearchParams(req.url.search)
+    const page = searchParams.get('page') as string
+    const perPage = searchParams.get('perPage') as string
+    const startIndex = (parseInt(page) - 1) * parseInt(perPage)
+    const endIndex = startIndex + parseInt(perPage)
+
+    // console.log(req)
+
     try {
       const validatedProducts = products.map((product) => schema.parse(product))
-      return res(ctx.status(200), ctx.json(validatedProducts))
+      const productList = validatedProducts.slice(startIndex, endIndex)
+      const totalPage = Math.ceil(products.length / parseInt(perPage))
+      return res(ctx.status(200), ctx.json({ productList, totalPage }))
     } catch (error) {
       if (error instanceof Error) {
         return res(ctx.status(400), ctx.json({ message: error.message }))
