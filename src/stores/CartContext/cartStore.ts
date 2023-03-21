@@ -5,11 +5,9 @@ import { CartProductModel } from '@/models';
 
 import { DispatchContext, ReducerReturnType } from '../types';
 
-export type CartStore = { cart: { [id: number]: CartProductModel } };
+export type CartStore = { [productId: number]: CartProductModel };
 
-const initialCartStore: CartStore = {
-  cart: {},
-};
+const initialCartStore: CartStore = {};
 
 export function getInitialCardStore() {
   return cloneDeep(initialCartStore);
@@ -23,28 +21,28 @@ export function reducer(store: CartStore, action: { type?: TCartStoreActions; pa
 
   switch (type) {
     case 'add': {
-      store.cart[payload.product.id] = new CartProductModel(payload);
+      store[payload.product.id] = new CartProductModel(payload);
       break;
     }
     case 'plus': {
-      const targetProduct = store.cart[payload.product.id];
+      const targetProduct = store[payload.product.id];
       if (!targetProduct) return store;
 
       targetProduct.count += payload.count;
       break;
     }
     case 'minus': {
-      const targetProduct = store.cart[payload.product.id];
+      const targetProduct = store[payload.product.id];
       if (!targetProduct) return store;
 
       targetProduct.count -= payload.count;
       break;
     }
     case 'delete': {
-      const targetProduct = store.cart[payload.product.id];
+      const targetProduct = store[payload.product.id];
       if (!targetProduct) return store;
 
-      delete store.cart[payload.product.id];
+      delete store[payload.product.id];
       break;
     }
     default: {
