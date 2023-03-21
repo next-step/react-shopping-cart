@@ -1,11 +1,11 @@
 import Header from '../components/frame/Header';
 import styled from '@emotion/styled';
-import { ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 
 const S = {
   Layout: styled.div(),
 };
-const Layout = ({ children }: { children: ReactNode }) => {
+const Layout = ({ children }: PropsWithChildren) => {
   return (
     <S.Layout>
       <Header />
