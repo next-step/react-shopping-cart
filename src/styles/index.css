@@ -15,6 +15,10 @@ a {
   cursor: pointer;
 }
 
+label {
+  user-select: none;
+}
+
 .divide-line {
   width: 100%;
   border: 2px solid black;
