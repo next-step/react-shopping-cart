@@ -16,10 +16,10 @@ export function Header() {
           </Link>
         </div>
         <StyledButtonContainer>
-          <Link to="/asdf">
+          <Link to="/cart">
             <span>장바구니</span>
           </Link>
-          <Link to="/zxcv">
+          <Link to="/order_list">
             <span>주문목록</span>
           </Link>
         </StyledButtonContainer>
