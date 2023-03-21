@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 
 import { TrashIcon } from '@/components/Icons';
 import { Currency } from '@/components';
-import type { CartProductModel } from '@/models';
+import { CartProductModel } from '@/models';
 import { useCartContextApiSelector } from '@/stores/CartContext';
 
 import {
@@ -27,6 +27,16 @@ export function CartProduct({ cartProduct }: CartProductProps) {
     cartContextApis?.dispatch({ type: 'delete', payload: cartProduct });
   }, [cartContextApis, cartProduct]);
 
+  const handleCartProductCountChange = useCallback(
+    (callback: number | ((prev: number) => number)) => {
+      if (typeof callback !== 'function') return;
+
+      cartProduct.setCount(callback);
+      cartContextApis?.dispatch({ type: 'update', payload: new CartProductModel(cartProduct) });
+    },
+    [cartProduct, cartContextApis]
+  );
+
   return (
     <StyledCartProduct>
       <input type="checkbox" className="checkbox" />
@@ -35,7 +45,11 @@ export function CartProduct({ cartProduct }: CartProductProps) {
         <StyledProductTitle>{name}</StyledProductTitle>
         <StyledCartProductController>
           <TrashIcon className="pointer" onClick={handleCartProductDeleteIconClick} />
-          <CounterWithInput onlyNaturalNumber className={CounterWithInputStyle()} />
+          <CounterWithInput
+            onlyNaturalNumber
+            className={CounterWithInputStyle()}
+            stateBundle={[cartProduct.count, handleCartProductCountChange]}
+          />
           <Currency price={price} />
         </StyledCartProductController>
       </StyledCartContent>

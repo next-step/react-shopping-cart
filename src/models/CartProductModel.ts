@@ -14,4 +14,14 @@ export class CartProductModel implements CartProductModelPOJO {
     this.count = count;
     this.product = product;
   }
+
+  setCount(setter: (prev: number) => number | number) {
+    if (typeof setter === 'function') {
+      this.count = setter(this.count);
+      return;
+    }
+
+    const newValue = setter;
+    this.count = newValue;
+  }
 }
