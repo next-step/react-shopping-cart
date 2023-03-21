@@ -8,7 +8,7 @@ export const navMenu = styled.nav`
   display: flex;
   justify-content: space-between;
 `
-export const navLogoBox = styled.button`
+export const navLogoBox = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;

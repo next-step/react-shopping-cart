@@ -45,7 +45,8 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": [".storybook/**", "src/stories/**"]
+        "devDependencies": ["**/*.stories.*", "**/.storybook/**/*.*"],
+        "peerDependencies": true
       }
     ],
     // "max-lines": ["warn", 150],
