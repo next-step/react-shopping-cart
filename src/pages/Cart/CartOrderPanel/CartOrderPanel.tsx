@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { Currency } from '@/components';
+import { TCartStore } from '@/stores/CartContext';
 
 import {
   StyledCartOrderPanel,
@@ -9,10 +11,9 @@ import {
   StyledOrderButton,
   StyledPriceSpan,
 } from './CartOrderPanel.styled';
-import { CartStore } from '@/stores/CartContext';
 
 interface CartOrderPanelProps {
-  cart: CartStore;
+  cart: TCartStore;
 }
 
 export function CartOrderPanel({ cart }: CartOrderPanelProps) {

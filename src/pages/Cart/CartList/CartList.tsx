@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { InputWithLabel } from '@/components';
-import { CartStore, useCartContextApiSelector } from '@/stores/CartContext';
+import { TCartStore, useCartContextApiSelector } from '@/stores/CartContext';
 
 import { StyledCartList, StyledCartListHeader, StyledCartCounter, StyledCartContent } from './CartList.styled';
 import { CartProduct } from './CartProduct';
 
 interface CartListProps {
-  cart: CartStore;
+  cart: TCartStore;
 }
 
 export function CartList({ cart }: CartListProps) {

@@ -1,6 +1,7 @@
 import React, { PropsWithChildren, useReducer, useMemo } from 'react';
 
-import { reducer, getInitialCardStore, CartStore, ApiContext, CartContext } from './cartStore';
+import { reducer, getInitialCardStore, CartStore } from '../commonCartStore';
+import { CartApiContext, CartContext } from './cartStore';
 
 interface CartContextProviderProps {
   value?: CartStore;
@@ -14,7 +15,7 @@ export function CartContextProvider({ value, children }: PropsWithChildren<CartC
   return (
     // eslint-disable-next-line
     <CartContext.Provider value={{ ...store }}>
-      <ApiContext.Provider value={cardContextApis}>{children}</ApiContext.Provider>
+      <CartApiContext.Provider value={cardContextApis}>{children}</CartApiContext.Provider>
     </CartContext.Provider>
   );
 }
