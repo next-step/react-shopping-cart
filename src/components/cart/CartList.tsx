@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
-import mq from '../../../utils/style/mediaQuery';
-import { useEffect, useState } from 'react';
-import { CartItemType, fetchCartList } from '../../../api/cart';
-import CartListItem from './CartListItem';
+import mq from '../../utils/style/mediaQuery';
+import { CartItemType } from '../../api/cart';
+import CartItem from './CartItem';
 
 const S = {
   Wrapper: styled.div(
@@ -18,18 +17,11 @@ const S = {
   ),
 };
 
-const CartList = () => {
-  const [cartList, setCartList] = useState<CartItemType[] | null>(null);
+interface CartListProps {
+  cartList: CartItemType[] | null;
+}
 
-  const fetchCart = async () => {
-    const list = await fetchCartList();
-    if (list === null) return;
-    setCartList(list);
-  };
-
-  useEffect(() => {
-    fetchCart();
-  }, []);
+const CartList = ({ cartList }: CartListProps) => {
   return (
     <S.Wrapper>
       <div className="flex justify-between items-center">
@@ -45,7 +37,7 @@ const CartList = () => {
       <S.H3>든든배송 상품(3개)</S.H3>
       <hr className="divide-line-gray mt-10" />
       {cartList?.map((item) => (
-        <CartListItem
+        <CartItem
           key={item.id}
           name={item.product.name}
           price={item.product.price}

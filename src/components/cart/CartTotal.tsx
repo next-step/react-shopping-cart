@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import mq from '../../../utils/style/mediaQuery';
+import mq from '../../utils/style/mediaQuery';
 
 interface CartTotal {
   title: string;

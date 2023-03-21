@@ -1,4 +1,4 @@
-import Header from '../components/frame/Header';
+import Header from './header/Header';
 import styled from '@emotion/styled';
 import { PropsWithChildren } from 'react';
 

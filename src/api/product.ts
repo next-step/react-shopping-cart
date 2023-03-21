@@ -5,7 +5,7 @@ export interface ProductType {
   name: string;
   price: number;
   imageUrl: string;
-  onClick?: () => void;
+  onClickProductImage?: () => void;
   onClickAddCart?: () => void;
 }
 export const fetchProductList = async (): Promise<null | ProductType[]> => {

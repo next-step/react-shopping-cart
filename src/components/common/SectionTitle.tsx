@@ -1,4 +1,4 @@
-import Section from '../frame/Section';
+import Section from './Section';
 
 interface TitleType {
   text: string;

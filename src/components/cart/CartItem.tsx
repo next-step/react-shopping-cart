@@ -1,6 +1,6 @@
-import { ProductType } from '../../../api/product';
+import { ProductType } from '../../api/product';
 
-const CartListItem = ({ name, price, imageUrl }: ProductType) => {
+const CartItem = ({ name, price, imageUrl }: ProductType) => {
   return (
     <div className="cart-container">
       <div className="flex gap-15 mt-10">
@@ -27,4 +27,4 @@ const CartListItem = ({ name, price, imageUrl }: ProductType) => {
   );
 };
 
-export default CartListItem;
+export default CartItem;
