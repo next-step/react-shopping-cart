@@ -39,6 +39,7 @@ export const StyledPriceSpan = styled('span', {
 export const StyledOrderButton = styled('button', {
   flexCenter: '',
   flex: 1,
+  gap: '5px',
   height: '80px',
   backgroundColor: '$mint',
   color: 'White',
