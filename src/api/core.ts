@@ -1,14 +1,10 @@
-export const request = async (url: string, option: httpMethod) => {
+export const request = async (url: string, option: HttpMethod) => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
   const response = await fetch(`${BASE_URL + url}`, option);
-
-  if (!response.ok) {
-    console.error('request error');
-  }
   return response.json();
 };
 
-type httpMethod = {
+type HttpMethod = {
   method: string;
   headers?: {
     ['x-username']?: string;
@@ -18,12 +14,12 @@ type httpMethod = {
 };
 
 export const HTTP_METHOD = {
-  GET(): httpMethod {
+  GET(): HttpMethod {
     return {
       method: 'GET',
     };
   },
-  POST(data: unknown): httpMethod {
+  POST(data: unknown): HttpMethod {
     return {
       method: 'POST',
       headers: {
@@ -32,7 +28,7 @@ export const HTTP_METHOD = {
       body: JSON.stringify(data),
     };
   },
-  PUT(data: unknown): httpMethod {
+  PUT(data: unknown): HttpMethod {
     return {
       method: 'PUT',
       headers: {
@@ -41,7 +37,7 @@ export const HTTP_METHOD = {
       body: JSON.stringify(data),
     };
   },
-  DELETE(): httpMethod {
+  DELETE(): HttpMethod {
     return {
       method: 'DELETE',
       headers: {},

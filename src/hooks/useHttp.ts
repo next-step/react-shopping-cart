@@ -11,13 +11,13 @@ type HttpActionType<Data> =
   | { type: 'ERROR'; errorMessage: string };
 
 type State<Data> = {
-  status: 'pending' | 'completed';
+  status: 'ready' |'pending' | 'completed';
   data?: Awaited<ReturnType<RequestFunction<Data>>>;
   error: null | string;
 };
 
 const initialState: State<any> = {
-  status: 'pending',
+  status: 'ready',
   data: undefined,
   error: null,
 };
@@ -50,16 +50,14 @@ const httpReducer = <Data>(
   }
 };
 
-function useHttp<ResponseData>(requestFunction: RequestFunction<ResponseData>) {
+function useHttp<ResponseData extends unknown>(
+  requestFunction: RequestFunction<ResponseData>
+) {
   const [httpState, dispatch] = useReducer<typeof httpReducer<ResponseData>>(
     httpReducer,
     initialState
   );
-
-  const loading = useMemo(
-    () => httpState.status !== 'completed',
-    [httpState.status]
-  );
+  const loading = !!(httpState.status === 'pending')  
 
   const sendRequest = useCallback(
     async function (requestData?: unknown) {
