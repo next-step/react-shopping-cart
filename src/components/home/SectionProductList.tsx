@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { fetchProductList, ProductType } from '../../api/product';
+import React from 'react';
 import Section from '../common/Section';
 import styled from '@emotion/styled';
 import mq from '../../utils/style/mediaQuery';
 import ProductItem from './ProductItem';
 import { useNavigate } from 'react-router-dom';
 import { ROUTE } from '../../router';
+import useProduct from '../../hooks/useProduct';
 
 const S = {
   Container: styled.div(
@@ -23,8 +23,8 @@ const S = {
   ),
 };
 const SectionProductList = () => {
-  const [productList, setProductList] = useState<ProductType[] | null>(null);
   const navigate = useNavigate();
+  const { products, onClickProductItem } = useProduct();
 
   const addToCart = () => {
     const confirmRes = confirm(
@@ -33,24 +33,10 @@ const SectionProductList = () => {
     if (confirmRes) navigate(ROUTE.CART);
   };
 
-  const fetchProduct = async (): Promise<void> => {
-    const list = await fetchProductList();
-    if (list === null) return;
-    setProductList(list);
-  };
-
-  const onClickProductItem = useCallback((id: number | undefined) => {
-    navigate(`${ROUTE.DETAIL}/${id}`);
-  }, []);
-
-  useEffect(() => {
-    fetchProduct();
-  }, []);
-
   return (
     <Section>
       <S.Container>
-        {productList?.map((item) => (
+        {products?.map((item) => (
           <ProductItem
             key={item.id}
             imageUrl={item.imageUrl}
