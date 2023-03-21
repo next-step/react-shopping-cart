@@ -11,7 +11,7 @@ type HttpActionType<Data> =
   | { type: 'ERROR'; errorMessage: string };
 
 type State<Data> = {
-  status: 'ready' |'pending' | 'completed';
+  status: 'ready' | 'pending' | 'completed';
   data?: Awaited<ReturnType<RequestFunction<Data>>>;
   error: null | string;
 };
@@ -57,7 +57,7 @@ function useHttp<ResponseData extends unknown>(
     httpReducer,
     initialState
   );
-  const loading = !!(httpState.status === 'pending')  
+  const loading = !!(httpState.status === 'pending');
 
   const sendRequest = useCallback(
     async function (requestData?: unknown) {
