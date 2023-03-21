@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
 import { getProducts } from '@/apis';
+import { LayeredWrapper } from '@/components/LayeredWrapper/LayeredWrapper';
 import { ProductModel } from '@/models';
 
 import { ProductListInnerStyle, ProductListOuterStyle } from './ProductList.styled';
 import { Product } from './Product';
-import { LayeredWrapper } from '@/components/LayeredWrapper/LayeredWrapper';
 
 export function ProductList() {
   const [products, setProducts] = useState<ProductModel[]>();

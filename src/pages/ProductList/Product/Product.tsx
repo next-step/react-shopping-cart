@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { MouseEvent, useCallback } from 'react';
 
 import { ProductModel } from '@/models';
 import { CartIcon } from '@/components/Icons';
+import { useCartContextApiSelector } from '@/stores/CartContext';
 import { formatToCurrencyNumber } from '@/utils';
 
 import { StyledProduct, StyledProductBottom, StyledCardButton } from './Product.styled';
@@ -11,6 +12,16 @@ interface ProductProps {
 }
 
 export function Product({ product }: ProductProps) {
+  const cartContextApis = useCartContextApiSelector();
+
+  const handleCartButtonClick = useCallback(
+    (e: MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation();
+      cartContextApis?.dispatch({ type: 'add', payload: { count: 1, product } });
+    },
+    [product, cartContextApis]
+  );
+
   return (
     <StyledProduct>
       <img src={product.imageUrl} alt="PET보틀-정사각(420ml)" />
@@ -19,7 +30,7 @@ export function Product({ product }: ProductProps) {
           <span className="product-info__name">{product.name}</span>
           <ProductPrice price={product.price} />
         </div>
-        <StyledCardButton>
+        <StyledCardButton onClick={handleCartButtonClick}>
           <CartIcon />
         </StyledCardButton>
       </StyledProductBottom>
