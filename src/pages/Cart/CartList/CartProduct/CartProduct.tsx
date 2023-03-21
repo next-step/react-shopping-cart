@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { TrashIcon } from '@/components/Icons';
-import { Currency } from '@/components';
+import { Currency, CounterWithInput } from '@/components';
 import { CartProductModel } from '@/models';
 import { useCartContextApiSelector } from '@/stores/CartContext';
 
@@ -13,7 +13,6 @@ import {
   StyledCartProductController,
   CounterWithInputStyle,
 } from './CartProduct.styled';
-import { CounterWithInput } from '@/components/CounterWithInput/CounterWithInput';
 
 interface CartProductProps {
   cartProduct: CartProductModel;
