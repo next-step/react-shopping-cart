@@ -1,5 +1,7 @@
 export const request = async (url: string, option: httpMethod) => {
-  const response = await fetch(url, option);
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+  const response = await fetch(`${BASE_URL + url}`, option);
+
   if (!response.ok) {
     console.error('request error');
   }

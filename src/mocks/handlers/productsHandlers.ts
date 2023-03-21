@@ -1,5 +1,4 @@
 import { products } from '@/mocks/data/product';
-import { faker } from '@faker-js/faker';
 
 import { rest } from 'msw';
 
@@ -8,9 +7,5 @@ export default function handlers() {
 }
 
 const getAllProducts: Parameters<typeof rest.get>[1] = (_req, res, ctx) => {
-  return res(
-    ctx.delay(3000),
-    ctx.status(200),
-    ctx.json({ response: [...products] })
-  );
+  return res(ctx.delay(3000), ctx.status(200), ctx.json([...products]));
 };
