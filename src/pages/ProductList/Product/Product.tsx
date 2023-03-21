@@ -17,7 +17,7 @@ export function Product({ product }: ProductProps) {
   const handleCartButtonClick = useCallback(
     (e: MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation();
-      cartContextApis?.dispatch({ type: 'add', payload: { count: 1, product } });
+      cartContextApis?.dispatch({ type: 'add', payload: [{ product }] });
     },
     [product, cartContextApis]
   );

@@ -1,8 +1,8 @@
 import { ProductModel } from './ProductModel';
 
 export interface CartProductModelPOJO {
-  isChecked: boolean;
-  count: number;
+  isChecked?: boolean;
+  count?: number;
   product: ProductModel;
 }
 
@@ -14,9 +14,17 @@ export class CartProductModel implements CartProductModelPOJO {
   product: ProductModel;
 
   constructor({ isChecked, count, product }: CartProductModelPOJO) {
-    this.isChecked = isChecked;
-    this.count = count;
+    this.isChecked = isChecked || false;
+    this.count = count || 1;
     this.product = product;
+  }
+
+  checkOn() {
+    this.isChecked = true;
+  }
+
+  checkOff() {
+    this.isChecked = false;
   }
 
   toggleIsChecked() {

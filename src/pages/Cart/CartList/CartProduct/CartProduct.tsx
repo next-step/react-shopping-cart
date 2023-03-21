@@ -24,29 +24,24 @@ export function CartProduct({ cartProduct }: CartProductProps) {
   const cartContextApis = useCartContextApiSelector();
 
   const handleCartProductDeleteIconClick = () => {
-    cartContextApis?.dispatch({ type: 'delete', payload: cartProduct });
+    cartContextApis?.dispatch({ type: 'delete', payload: [cartProduct] });
   };
 
   const handleCartProductCountChange = (callback: number | ((prev: number) => number)) => {
     if (typeof callback !== 'function') return;
 
     cartProduct.setCount(callback);
-    cartContextApis?.dispatch({ type: 'update', payload: new CartProductModel(cartProduct) });
+    cartContextApis?.dispatch({ type: 'update', payload: [cartProduct] });
   };
 
   const handleCheckboxChange = () => {
     cartProduct.toggleIsChecked();
-    cartContextApis?.dispatch({ type: 'update', payload: new CartProductModel(cartProduct) });
+    cartContextApis?.dispatch({ type: 'update', payload: [cartProduct] });
   };
 
   return (
     <StyledCartProduct>
-      <input
-        type="checkbox"
-        className="checkbox"
-        value={String(cartProduct.isChecked)}
-        onChange={handleCheckboxChange}
-      />
+      <input type="checkbox" className="checkbox" checked={cartProduct.isChecked} onChange={handleCheckboxChange} />
       <StyledProductImage src={imageUrl} alt={`product image, id of ${id}`} />
       <StyledCartContent>
         <StyledProductTitle>{name}</StyledProductTitle>

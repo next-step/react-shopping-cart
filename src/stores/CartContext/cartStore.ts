@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 import { cloneDeep } from 'lodash-es';
 
-import { CartProductModel } from '@/models';
+import { CartProductModel, CartProductModelPOJO } from '@/models';
 
 import { DispatchContext, ReducerReturnType } from '../types';
 
@@ -15,27 +15,37 @@ export function getInitialCardStore() {
 
 type TCartStoreActions = 'add' | 'update' | 'delete';
 
-export function reducer(store: CartStore, action: { type?: TCartStoreActions; payload?: CartProductModel }) {
+export function reducer(
+  store: CartStore,
+  action: { type?: TCartStoreActions; payload?: CartProductModel[] | CartProductModelPOJO[] }
+) {
   const { type, payload } = action;
   if (!payload) return store;
+  const cartProducts = payload;
 
   switch (type) {
     case 'add': {
-      store[payload.product.id] = new CartProductModel(payload);
+      cartProducts.forEach((cartProduct) => {
+        store[cartProduct.product.id] = new CartProductModel(cartProduct);
+      });
       break;
     }
     case 'update': {
-      const targetProduct = store[payload.product.id];
-      if (!targetProduct) return store;
+      cartProducts.forEach((cartProduct) => {
+        const targetProduct = store[cartProduct.product.id];
+        if (!targetProduct) return;
 
-      store[payload.product.id] = payload;
+        store[cartProduct.product.id] = new CartProductModel(cartProduct);
+      });
       break;
     }
     case 'delete': {
-      const targetProduct = store[payload.product.id];
-      if (!targetProduct) return store;
+      cartProducts.forEach((cartProduct) => {
+        const targetProduct = store[cartProduct.product.id];
+        if (!targetProduct) return;
 
-      delete store[payload.product.id];
+        delete store[cartProduct.product.id];
+      });
       break;
     }
     default: {
