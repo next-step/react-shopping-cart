@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { fetchProductList, ProductType } from '../../api/product';
-import Section from '../frame/Section';
+import Section from '../common/Section';
 import styled from '@emotion/styled';
 import mq from '../../utils/style/mediaQuery';
-import ProductItem from './item/ProductItem';
+import ProductItem from './ProductItem';
 import { useNavigate } from 'react-router-dom';
 import { ROUTE } from '../../router';
 
@@ -39,6 +39,10 @@ const SectionProductList = () => {
     setProductList(list);
   };
 
+  const onClickProductItem = useCallback((id: number | undefined) => {
+    navigate(`${ROUTE.DETAIL}/${id}`);
+  }, []);
+
   useEffect(() => {
     fetchProduct();
   }, []);
@@ -52,7 +56,7 @@ const SectionProductList = () => {
             imageUrl={item.imageUrl}
             name={item.name}
             price={item.price}
-            onClick={() => navigate(`${ROUTE.DETAIL}/${item.id}`)}
+            onClickProductImage={() => onClickProductItem(item.id)}
             onClickAddCart={addToCart}
           />
         ))}

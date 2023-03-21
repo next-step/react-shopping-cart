@@ -1,8 +1,10 @@
-import Section from '../frame/Section';
-import CartList from './item/CartList';
-import CartTotal from './item/CartTotal';
+import Section from '../common/Section';
+import CartList from './CartList';
+import CartTotal from './CartTotal';
 import styled from '@emotion/styled';
 import mq from '../../utils/style/mediaQuery';
+import { useEffect, useState } from 'react';
+import { CartItemType, fetchCartList } from '../../api/cart';
 
 const S = {
   Content: styled.div(
@@ -17,10 +19,22 @@ const S = {
 };
 
 const SectionCartList = () => {
+  const [cartList, setCartList] = useState<CartItemType[] | null>(null);
+
+  const fetchCart = async () => {
+    const list = await fetchCartList();
+    if (list === null) return;
+    setCartList(list);
+  };
+
+  useEffect(() => {
+    fetchCart();
+  }, []);
+
   return (
     <Section>
       <S.Content>
-        <CartList />
+        <CartList cartList={cartList} />
         <CartTotal
           title="결제예상금액"
           totalText="결제예상금액"

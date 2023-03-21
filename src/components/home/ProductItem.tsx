@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { ProductType } from '../../../api/product';
-import SvgCart from '../../../assets/svg/SvgCart';
+import { ProductType } from '../../api/product';
+import SvgCart from '../../assets/svg/SvgCart';
+import { priceFormat } from '../../utils';
 
 const S = {
   Wrapper: styled.div``,
@@ -37,18 +38,18 @@ const ProductItem = ({
   name,
   price,
   imageUrl,
-  onClick,
+  onClickProductImage,
   onClickAddCart,
 }: ProductType) => {
   return (
     <S.Wrapper>
-      <S.ImgWrap onClick={onClick}>
+      <S.ImgWrap onClick={onClickProductImage}>
         <img src={imageUrl} alt={name} />
       </S.ImgWrap>
       <S.TextWrap>
         <S.ColumnLeft>
           <S.Name>{name}</S.Name>
-          <S.Price>{price.toLocaleString()} 원</S.Price>
+          <S.Price>{priceFormat(price)}</S.Price>
         </S.ColumnLeft>
         <S.ColumnRight onClick={onClickAddCart}>
           <SvgCart />
