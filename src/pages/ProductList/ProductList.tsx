@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
 import { getProducts } from '@/apis';
-import { Header } from '@/components';
 import { ProductModel } from '@/models';
 
-import { StyledProductList, StyledProductsContainer } from './ProductList.styled';
+import { ProductListInnerStyle, ProductListOuterStyle } from './ProductList.styled';
 import { Product } from './Product';
+import { LayeredWrapper } from '@/components/LayeredWrapper/LayeredWrapper';
 
 export function ProductList() {
   const [products, setProducts] = useState<ProductModel[]>();
@@ -15,15 +15,10 @@ export function ProductList() {
   }, []);
 
   return (
-    <>
-      <Header />
-      <StyledProductList>
-        <StyledProductsContainer>
-          {products?.map((product) => (
-            <Product key={product.id} product={product} />
-          ))}
-        </StyledProductsContainer>
-      </StyledProductList>
-    </>
+    <LayeredWrapper outerClassName={ProductListOuterStyle()} innerClassName={ProductListInnerStyle()}>
+      {products?.map((product) => (
+        <Product key={product.id} product={product} />
+      ))}
+    </LayeredWrapper>
   );
 }
