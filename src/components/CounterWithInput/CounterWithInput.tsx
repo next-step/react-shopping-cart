@@ -14,8 +14,10 @@ import { MdOutlineArrowDropUp, MdOutlineArrowDropDown } from 'react-icons/md'
 
 import { StyledCounterWithInput, StyledCounterController, StyledInput } from './CounterWithInput.styled';
 
+type TSetStateCallback = (prev: number) => number;
+
 interface CounterWithInputProps {
-  stateBundle?: [number, Dispatch<SetStateAction<number>>];
+  stateBundle?: [number, Dispatch<SetStateAction<number>> | ((callback: number | TSetStateCallback) => void)];
   onlyNaturalNumber?: boolean;
   operand?: number;
   className?: string;
@@ -33,8 +35,13 @@ export const CounterWithInput = memo(
 
     const handleInputChange = useCallback(
       (e: ChangeEvent<HTMLInputElement>) => {
-        const { value } = e.currentTarget;
-        setNum(Number(value));
+        const value = Number(e.currentTarget);
+        if (onlyNaturalNumber && value < 0) {
+          setNum(0);
+          return;
+        }
+
+        setNum(value);
       },
       [setNum]
     );
