@@ -23,6 +23,7 @@ export const StyledCartCounter = styled('div', {
 export const StyledCartContent = styled('div', {
   display: 'flex',
   flexDirection: 'column',
+  width: '100%',
   gap: '10px',
   marginTop: '10px',
 });
