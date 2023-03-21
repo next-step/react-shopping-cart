@@ -12,6 +12,7 @@ interface CartListProps {
 
 export function CartList({ cart }: CartListProps) {
   const cartProducts = Object.values(cart);
+
   return (
     <StyledCartList>
       <StyledCartListHeader>
