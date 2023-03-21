@@ -2,14 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { CartIcon } from '@/components/Icons';
+import { routes } from '@/routes';
 
+import { LayeredWrapper } from '../LayeredWrapper';
 import {
   HeaderWrapperInnerStyle,
   HeaderWrapperOuterStyle,
   StyledGNBTitle,
   StyledButtonContainer,
 } from './Header.styled';
-import { LayeredWrapper } from '../LayeredWrapper/LayeredWrapper';
 
 export function Header() {
   return (
@@ -18,16 +19,16 @@ export function Header() {
       inner={{ className: HeaderWrapperInnerStyle() }}
     >
       <div>
-        <Link to="/">
+        <Link to={routes.home}>
           <CartIcon color="white" />
           <StyledGNBTitle>NEXTSTEP</StyledGNBTitle>
         </Link>
       </div>
       <StyledButtonContainer>
-        <Link to="/cart">
+        <Link to={routes.cart}>
           <span>장바구니</span>
         </Link>
-        <Link to="/order_list">
+        <Link to={routes.orderList}>
           <span>주문목록</span>
         </Link>
       </StyledButtonContainer>
