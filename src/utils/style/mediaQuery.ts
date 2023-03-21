@@ -1,12 +1,8 @@
 import facepaint from 'facepaint';
 import { CSSObject } from '@emotion/styled';
-import {
-  MAX_DESKTOP_WIDTH,
-  MAX_MOBILE_WIDTH,
-  MAX_TABLET_WIDTH,
-} from '../../constant/style';
+import { MAX_WIDTH } from '../../constant/style';
 
-const breakpoints = [MAX_MOBILE_WIDTH, MAX_TABLET_WIDTH, MAX_DESKTOP_WIDTH];
+const breakpoints = [MAX_WIDTH.MOBILE, MAX_WIDTH.TABLET, MAX_WIDTH.DESKTOP];
 
 // media query
 const mq = (cssObject: CSSObject) => {

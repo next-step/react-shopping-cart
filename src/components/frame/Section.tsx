@@ -1,11 +1,6 @@
 import styled from '@emotion/styled';
 import { ReactNode } from 'react';
-import {
-  DESKTOP_FRAME_PADDING,
-  MAX_DESKTOP_WIDTH,
-  MOBILE_FRAME_PADDING,
-  TABLET_FRAME_PADDING,
-} from '../../constant/style';
+import { FRAME_PADDING, MAX_WIDTH } from '../../constant/style';
 import mq from '../../utils/style/mediaQuery';
 
 interface SectionType {
@@ -15,12 +10,12 @@ interface SectionType {
 const S = {
   Section: styled.div(
     mq({
-      maxWidth: MAX_DESKTOP_WIDTH,
+      maxWidth: MAX_WIDTH.DESKTOP,
       margin: '0 auto',
       padding: [
-        `0 ${MOBILE_FRAME_PADDING}px`,
-        `0 ${TABLET_FRAME_PADDING}px`,
-        `0 ${DESKTOP_FRAME_PADDING}px`,
+        `0 ${FRAME_PADDING.MOBILE}px`,
+        `0 ${FRAME_PADDING.TABLET}px`,
+        `0 ${FRAME_PADDING.DESKTOP}px`,
       ],
     })
   ),

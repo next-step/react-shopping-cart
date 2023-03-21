@@ -2,33 +2,26 @@ import { Link } from 'react-router-dom';
 import { ROUTE } from '../../router';
 import styled from '@emotion/styled';
 import mq from '../../utils/style/mediaQuery';
-import {
-  COLOR_PRIMARY,
-  COLOR_WHITE,
-  DESKTOP_FRAME_PADDING,
-  MAX_DESKTOP_WIDTH,
-  MOBILE_FRAME_PADDING,
-  TABLET_FRAME_PADDING,
-} from '../../constant/style';
+import { COLORS, FRAME_PADDING, MAX_WIDTH } from '../../constant/style';
 
 const S = {
   Header: styled.div(
     mq({
       width: '100%',
       height: '80px',
-      background: COLOR_PRIMARY,
+      background: COLORS.PRIMARY,
       boxShadow: '0 4px 4px rgba(0, 0, 0, 0.3)',
     })
   ),
   Nav: styled.nav(
     mq({
-      maxWidth: MAX_DESKTOP_WIDTH,
+      maxWidth: MAX_WIDTH.DESKTOP,
       height: '100%',
       margin: '0 auto',
       padding: [
-        `0 ${MOBILE_FRAME_PADDING}px`,
-        `0 ${TABLET_FRAME_PADDING}px`,
-        `0 ${DESKTOP_FRAME_PADDING}px`,
+        `0 ${FRAME_PADDING.MOBILE}px`,
+        `0 ${FRAME_PADDING.TABLET}px`,
+        `0 ${FRAME_PADDING.DESKTOP}px`,
       ],
       display: 'flex',
       justifyContent: 'space-between',
@@ -43,7 +36,7 @@ const S = {
   Button: styled.button(
     mq({
       fontSize: ['15px', '15px', '18px'],
-      color: COLOR_WHITE,
+      color: COLORS.WHITE,
     })
   ),
 };
