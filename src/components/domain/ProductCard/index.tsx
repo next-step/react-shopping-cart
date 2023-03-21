@@ -1,12 +1,23 @@
-import { CartIcon } from '@/assets/svgs';
+import { CartIcon, Loader } from '@/assets/svgs';
+
 import { LazyImage } from '@/components/common';
 import { currency } from '@/utils/filter/currency';
+import useHttp from '@/hooks/useHttp';
+import * as cartApi from '@/api/cart';
 
 type Props = {
   product?: Product;
 };
 
 const ProductCard = ({ product }: Props) => {
+  const { sendRequest, loading = false } = useHttp((product) =>
+    cartApi.postAddCart(product as Product)
+  );
+
+  const handleClickCart = () => {
+    sendRequest(product);
+  };
+
   if (!product) {
     return (
       <div className="product-card flex-col gap-10">
@@ -31,8 +42,8 @@ const ProductCard = ({ product }: Props) => {
           <span className="product-info__name">{product.name}</span>
           <span className="product-info__price">{currency(product.price)}</span>
         </div>
-        <button>
-          <CartIcon />
+        <button onClick={handleClickCart}>
+          {loading ? <Loader /> : <CartIcon />}
         </button>
       </div>
     </div>
