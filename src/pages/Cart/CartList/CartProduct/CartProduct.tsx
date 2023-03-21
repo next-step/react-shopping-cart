@@ -11,7 +11,9 @@ import {
   StyledProductImage,
   StyledProductTitle,
   StyledCartProductController,
+  CounterWithInputStyle,
 } from './CartProduct.styled';
+import { CounterWithInput } from '@/components/CounterWithInput/CounterWithInput';
 
 interface CartProductProps {
   cartProduct: CartProductModel;
@@ -32,8 +34,8 @@ export function CartProduct({ cartProduct }: CartProductProps) {
       <StyledCartContent>
         <StyledProductTitle>{name}</StyledProductTitle>
         <StyledCartProductController>
-          <TrashIcon onClick={handleCartProductDeleteIconClick} />
-          <div>카운터</div>
+          <TrashIcon className="pointer" onClick={handleCartProductDeleteIconClick} />
+          <CounterWithInput onlyNaturalNumber className={CounterWithInputStyle()} />
           <Currency price={price} />
         </StyledCartProductController>
       </StyledCartContent>
