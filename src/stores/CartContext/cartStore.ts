@@ -13,7 +13,7 @@ export function getInitialCardStore() {
   return cloneDeep(initialCartStore);
 }
 
-type TCartStoreActions = 'add' | 'plus' | 'minus' | 'delete';
+type TCartStoreActions = 'add' | 'update' | 'delete';
 
 export function reducer(store: CartStore, action: { type?: TCartStoreActions; payload?: CartProductModel }) {
   const { type, payload } = action;
@@ -24,18 +24,11 @@ export function reducer(store: CartStore, action: { type?: TCartStoreActions; pa
       store[payload.product.id] = new CartProductModel(payload);
       break;
     }
-    case 'plus': {
+    case 'update': {
       const targetProduct = store[payload.product.id];
       if (!targetProduct) return store;
 
-      targetProduct.count += payload.count;
-      break;
-    }
-    case 'minus': {
-      const targetProduct = store[payload.product.id];
-      if (!targetProduct) return store;
-
-      targetProduct.count -= payload.count;
+      store[payload.product.id] = payload;
       break;
     }
     case 'delete': {
