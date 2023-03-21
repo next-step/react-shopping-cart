@@ -1,4 +1,9 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+
+import { TrashIcon } from '@/components/Icons';
+import { Currency } from '@/components';
+import type { CartProductModel } from '@/models';
+import { useCartContextApiSelector } from '@/stores/CartContext';
 
 import {
   StyledCartProduct,
@@ -8,19 +13,28 @@ import {
   StyledCartProductController,
 } from './CartProduct.styled';
 
-interface CartProductProps {}
+interface CartProductProps {
+  cartProduct: CartProductModel;
+}
 
-export function CartProduct({}: CartProductProps) {
+export function CartProduct({ cartProduct }: CartProductProps) {
+  const { id, imageUrl, name, price } = cartProduct.product;
+  const cartContextApis = useCartContextApiSelector();
+
+  const handleCartProductDeleteIconClick = useCallback(() => {
+    cartContextApis?.dispatch({ type: 'delete', payload: cartProduct });
+  }, [cartContextApis, cartProduct]);
+
   return (
     <StyledCartProduct>
       <input type="checkbox" className="checkbox" />
-      <StyledProductImage>그림</StyledProductImage>
+      <StyledProductImage src={imageUrl} alt={`product image, id of ${id}`} />
       <StyledCartContent>
-        <StyledProductTitle>제목</StyledProductTitle>
+        <StyledProductTitle>{name}</StyledProductTitle>
         <StyledCartProductController>
-          <div>쓰레기통 아이콘</div>
+          <TrashIcon onClick={handleCartProductDeleteIconClick} />
           <div>카운터</div>
-          <div>가격</div>
+          <Currency price={price} />
         </StyledCartProductController>
       </StyledCartContent>
     </StyledCartProduct>

@@ -1,13 +1,17 @@
 import React from 'react';
 
 import { InputWithLabel } from '@/components';
+import type { CartStore } from '@/stores/CartContext';
 
 import { StyledCartList, StyledCartListHeader, StyledCartCounter, StyledCartContent } from './CartList.styled';
 import { CartProduct } from './CartProduct';
 
-interface CartListProps {}
+interface CartListProps {
+  cart: CartStore;
+}
 
-export function CartList({}: CartListProps) {
+export function CartList({ cart }: CartListProps) {
+  const cartProducts = Object.values(cart);
   return (
     <StyledCartList>
       <StyledCartListHeader>
@@ -20,12 +24,12 @@ export function CartList({}: CartListProps) {
       </StyledCartListHeader>
       <StyledCartCounter>
         <span>든든배송상품</span>
-        <span>(3개)</span>
+        <span>{`${cartProducts.length}개`}</span>
       </StyledCartCounter>
       <StyledCartContent>
-        <CartProduct />
-        <CartProduct />
-        <CartProduct />
+        {cartProducts.map((cartProduct) => (
+          <CartProduct key={cartProduct.product.id} cartProduct={cartProduct} />
+        ))}
       </StyledCartContent>
     </StyledCartList>
   );
