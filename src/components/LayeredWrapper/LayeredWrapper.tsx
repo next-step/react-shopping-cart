@@ -6,7 +6,7 @@ import { CSS } from '@stitches/react';
 import { StyledInnerLayer, StyledOuterLayer } from './LayeredWrapper.styled';
 
 interface LayeredWrapperProps {
-  outer: {
+  outer?: {
     as?: IntrinsicElementsKeys | ComponentType<any>;
     css?: CSS;
     className?: string;
