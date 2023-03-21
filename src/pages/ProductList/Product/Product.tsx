@@ -1,9 +1,9 @@
 import React, { MouseEvent, useCallback } from 'react';
 
 import { ProductModel } from '@/models';
+import { Currency } from '@/components';
 import { CartIcon } from '@/components/Icons';
 import { useCartContextApiSelector } from '@/stores/CartContext';
-import { formatToCurrencyNumber } from '@/utils';
 
 import { StyledProduct, StyledProductBottom, StyledCardButton } from './Product.styled';
 
@@ -28,7 +28,7 @@ export function Product({ product }: ProductProps) {
       <StyledProductBottom>
         <div className="product-info">
           <span className="product-info__name">{product.name}</span>
-          <ProductPrice price={product.price} />
+          <Currency price={product.price} />
         </div>
         <StyledCardButton onClick={handleCartButtonClick}>
           <CartIcon />
@@ -36,12 +36,4 @@ export function Product({ product }: ProductProps) {
       </StyledProductBottom>
     </StyledProduct>
   );
-}
-
-interface ProductPriceProps {
-  price: number;
-}
-
-function ProductPrice({ price }: ProductPriceProps) {
-  return <span className="product-info__price">{`${formatToCurrencyNumber(price, 3, ',')} 원`}</span>;
 }
