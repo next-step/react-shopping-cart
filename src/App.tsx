@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import Navbar from "./components/Navbar/Navbar";
+import "./css/index.css";
 
 function App() {
-  useEffect(() => {
-    fetch("http://localhost:3000/products").then((res) =>
-      res.json().then(console.log)
-    );
-  }, []);
-
-  return <div id="app"></div>;
+  return (
+    <div id="app" className="app-container">
+      <Navbar>
+        <button className="nav-button">장바구니</button>
+        <button className="nav-button">주문목록</button>
+      </Navbar>
+    </div>
+  );
 }
 
 export default App;
