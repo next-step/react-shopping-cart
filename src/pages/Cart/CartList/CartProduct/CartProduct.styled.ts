@@ -5,7 +5,7 @@ export const StyledCartProduct = styled('div', {
   gap: '10px',
 });
 
-export const StyledProductImage = styled('div', {
+export const StyledProductImage = styled('img', {
   width: '100px',
 });
 
@@ -19,5 +19,5 @@ export const StyledProductTitle = styled('div', {
 });
 
 export const StyledCartProductController = styled('div', {
-  width: '50px',
+  width: '100px',
 });
