@@ -25,7 +25,7 @@ export function CartOrderPanel({ cart }: CartOrderPanelProps) {
         <StyledTotalPrice>
           <StyledPriceSpan>결제예상금액</StyledPriceSpan>
           <StyledPriceSpan>
-            <Currency price={20000} />
+            <Currency price={products.reduce((prev, curr) => prev + curr.getTotalPrice(), 0)} />
           </StyledPriceSpan>
         </StyledTotalPrice>
         <StyledOrderButton type="button">

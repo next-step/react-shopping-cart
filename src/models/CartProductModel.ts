@@ -24,4 +24,8 @@ export class CartProductModel implements CartProductModelPOJO {
     const newValue = setter;
     this.count = newValue;
   }
+
+  getTotalPrice() {
+    return this.product.price * this.count;
+  }
 }
