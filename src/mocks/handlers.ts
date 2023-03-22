@@ -41,12 +41,24 @@ export const handlers = [
   }),
 
   // [POST] 장바구니 아이템 추가
-  // rest.post('/carts', (req, res, ctx) => {
-  //   return res(
-  //     ctx.status(200),
-  //     ctx.json({
-  //       response: cartData,
-  //     })
-  //   );
-  // }),
+  rest.post('/carts', (req, res, ctx) => {
+    const product = req.body;
+    const cartData = window.localStorage.getItem('cartData');
+
+    if (cartData) {
+      const tempCart = JSON.parse(cartData);
+      const newCart = [...tempCart, product];
+      window.localStorage.setItem('cartData', JSON.stringify(newCart));
+    } else {
+      const newCart = [product];
+      window.localStorage.setItem('cartData', JSON.stringify(newCart));
+    }
+
+    return res(
+      ctx.status(200)
+      // ctx.json({
+      //   response: cartData,
+      // })
+    );
+  }),
 ];

@@ -1,7 +1,8 @@
 export const cartData = [
   {
-    id: 1,
+    id: 1675351764412,
     product: {
+      id: 1,
       name: '[리뉴얼]젓가락(종이)-정성을 담아',
       price: 21800,
       imageUrl:
@@ -9,18 +10,19 @@ export const cartData = [
     },
   },
   {
+    id: 1675352324224,
     product: {
+      id: 2,
       name: '젓가락(종이)-웬만해선 이 맛을 막을 수 없다',
       price: 21800,
       imageUrl:
         'https://cdn-mart.baemin.com/sellergoods/main/1b6e926b-52a3-4a92-8db5-fddaccdb2583.jpg',
     },
-    id: 2,
   },
   {
     id: 1675351764224,
     product: {
-      id: 4,
+      id: 3,
       name: '리치스 스위트콘 대 2.95kg',
       price: 4780,
       imageUrl:
@@ -40,7 +42,7 @@ export const cartData = [
   {
     id: 1675351774776,
     product: {
-      id: 4,
+      id: 5,
       name: '리치스 스위트콘 대 2.95kg',
       price: 4780,
       imageUrl:
@@ -50,7 +52,7 @@ export const cartData = [
   {
     id: 1675351775632,
     product: {
-      id: 4,
+      id: 6,
       name: '리치스 스위트콘 대 2.95kg',
       price: 4780,
       imageUrl:
@@ -60,7 +62,7 @@ export const cartData = [
   {
     id: 1675351776006,
     product: {
-      id: 4,
+      id: 7,
       name: '리치스 스위트콘 대 2.95kg',
       price: 4780,
       imageUrl:
@@ -70,7 +72,7 @@ export const cartData = [
   {
     id: 1675351781321,
     product: {
-      id: 3,
+      id: 8,
       name: '펩시 콜라 355ml 24캔',
       price: 83700,
       imageUrl:
@@ -80,7 +82,7 @@ export const cartData = [
   {
     id: 1675351804540,
     product: {
-      id: 12,
+      id: 9,
       name: '[리뉴얼]젓가락(종이)-정성을 담아',
       price: 21800,
       imageUrl:

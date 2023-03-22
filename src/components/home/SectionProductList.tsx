@@ -14,8 +14,8 @@ const S = {
         'repeat(2, minmax(0, 1fr))',
         'repeat(4, minmax(0, 1fr))',
       ],
-      gridColumnGap: ['0', '20px', '40px'],
-      gridRowGap: ['20px', '20px', '30px'],
+      columnGap: ['0', '20px', '40px'],
+      rowGap: ['20px', '20px', '30px'],
       margin: ['50px 0', '60px 0'],
     })
   ),
@@ -24,10 +24,13 @@ const S = {
 interface SectionProductListProps {
   products: ProductType[];
   navigateToDetailedPage: (num: number | undefined) => void;
+  addCart: (item: ProductType) => void;
 }
+
 const SectionProductList = ({
   products,
   navigateToDetailedPage,
+  addCart,
 }: SectionProductListProps) => {
   return (
     <Section>
@@ -39,6 +42,7 @@ const SectionProductList = ({
             name={item.name}
             price={item.price}
             onClickProductImage={() => navigateToDetailedPage(item.id)}
+            onClickAddCart={() => addCart(item)}
           />
         ))}
       </S.Container>
