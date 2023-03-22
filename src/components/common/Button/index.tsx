@@ -1,8 +1,7 @@
 import React, { ButtonHTMLAttributes, PropsWithChildren } from "react";
 
+import type { ButtonVariant } from "./button.style";
 import * as S from "./button.style";
-
-export type ButtonVariant = "text" | "outlined" | "contained";
 
 export interface ButtonProps extends PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement>> {
   variant: ButtonVariant;

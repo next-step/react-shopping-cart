@@ -2,7 +2,9 @@ import styled, { css } from "styled-components";
 
 import { UTIL_COLORS } from "@/styles/GlobalStyle";
 
-import type { ButtonProps, ButtonVariant } from "./index";
+import type { ButtonProps } from "./index";
+
+export type ButtonVariant = "text" | "outlined" | "contained";
 
 const setButtonStyle = (variant: ButtonVariant) => {
   switch (variant) {
