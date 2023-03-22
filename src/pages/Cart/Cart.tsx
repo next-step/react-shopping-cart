@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TitleLayout } from '@/components';
+import { LayeredTitleLayout } from '@/components';
 import { useCartSelector } from '@/stores/CartContext';
 
 import { CartList } from './CartList';
@@ -13,11 +13,11 @@ export function Cart() {
   if (!cartStore) return null;
 
   return (
-    <TitleLayout title="장바구니">
+    <LayeredTitleLayout title="장바구니">
       <StyledCartContentContainer>
         <CartList cart={cartStore} />
         <CartOrderPanel cart={cartStore} />
       </StyledCartContentContainer>
-    </TitleLayout>
+    </LayeredTitleLayout>
   );
 }

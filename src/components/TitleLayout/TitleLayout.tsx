@@ -1,6 +1,5 @@
 import React, { PropsWithChildren } from 'react';
 
-import { LayeredWrapper } from '../LayeredWrapper';
 import { StyledTitle } from './TitleLayout.styled';
 
 interface TitleLayoutProps {
@@ -9,12 +8,12 @@ interface TitleLayoutProps {
 
 export function TitleLayout({ title, children }: PropsWithChildren<TitleLayoutProps>) {
   return (
-    <LayeredWrapper outer={{ as: 'section' }}>
+    <>
       <StyledTitle>
         <h2 className="cart-section__title">{title}</h2>
       </StyledTitle>
 
       {children}
-    </LayeredWrapper>
+    </>
   );
 }
