@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { styled, css } from '@/stitches.config';
 
 export const CartSidePanelStyle = css({
+  position: 'sticky',
+  top: '50px',
   width: '280px',
   height: '230px',
   marginTop: '50px',
