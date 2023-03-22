@@ -1,16 +1,20 @@
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, ReactElement } from 'react';
 
 import { LayeredWrapper } from '../LayeredWrapper';
-import { TitleLayout } from '../TitleLayout';
+import { StyledTitle } from './LayeredTitleLayout.styled';
 
 interface LayeredTitleLayoutProps {
-  title: string;
+  title: ReactElement | string;
 }
 
 export function LayeredTitleLayout({ title, children }: PropsWithChildren<LayeredTitleLayoutProps>) {
   return (
     <LayeredWrapper outer={{ as: 'section' }}>
-      <TitleLayout title={title}>{children}</TitleLayout>
+      <StyledTitle>
+        <h2 className="cart-section__title">{title}</h2>
+      </StyledTitle>
+
+      {children}
     </LayeredWrapper>
   );
 }
