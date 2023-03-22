@@ -8,7 +8,7 @@ interface ProductItemProps {
   products?: ProductList;
 }
 
-function Products({ products }: ProductItemProps) {
+function ProductCards({ products }: ProductItemProps) {
   return (
     <>
       {products?.map(product => {
@@ -22,4 +22,4 @@ function Products({ products }: ProductItemProps) {
   );
 }
 
-export default Products;
+export default ProductCards;
