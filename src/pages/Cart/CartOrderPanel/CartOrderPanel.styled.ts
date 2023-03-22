@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import { styled } from '@/stitches.config';
 
 export const StyledCartOrderPanel = styled('div', {
@@ -36,7 +38,7 @@ export const StyledPriceSpan = styled('span', {
   height: 'fit-content',
 });
 
-export const StyledOrderButton = styled('button', {
+export const StyledOrderButton = styled(Link, {
   flexCenter: '',
   flex: 1,
   gap: '5px',
