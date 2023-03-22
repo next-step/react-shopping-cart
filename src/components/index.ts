@@ -7,3 +7,4 @@ export * from './LayeredTitleLayout';
 export * from './TextHighlighter';
 export * from './ThreeLayeredFrame';
 export * from './CartSidePanel';
+export * from './OrderProduct';

@@ -1,9 +1,8 @@
 import React from 'react';
 
 import { TOrderStore } from '@/stores/OrderContext';
-import { ThreeLayeredFrame } from '@/components';
+import { ThreeLayeredFrame, OrderProduct } from '@/components';
 
-import { Order } from './Order';
 import { StyledOrderProductListTitle, OrderStyle } from './OrderProductList.styled';
 
 interface OrderProductListProps {
@@ -19,7 +18,7 @@ export function OrderProductList({ order }: OrderProductListProps) {
       dividerCss={{ backgroundColor: 'rgba(0,0,0,.3)' }}
       titleSection={<StyledOrderProductListTitle>{`주문 상품(${orderCount}건)`}</StyledOrderProductListTitle>}
       bodySection={orderList.map((order) => (
-        <Order order={order} className={OrderStyle()} />
+        <OrderProduct order={order} className={OrderStyle()} />
       ))}
     />
   );

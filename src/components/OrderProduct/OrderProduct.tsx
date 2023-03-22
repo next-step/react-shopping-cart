@@ -1,17 +1,17 @@
 import React, { ReactElement } from 'react';
 
+import { Currency } from '@/components';
 import { CartProductModel } from '@/models';
 
-import { StyledOrder, StyledOrderImage, StyledProductContainer, StyledInfoContainer } from './Order.styled';
-import { Currency } from '@/components';
+import { StyledOrder, StyledOrderImage, StyledProductContainer, StyledInfoContainer } from './OrderProduct.styled';
 
-interface OrderProps {
+interface OrderProductProps {
   order: CartProductModel;
   additionalElement?: ReactElement | string;
   className?: string;
 }
 
-export function Order({ order, additionalElement, className }: OrderProps) {
+export function OrderProduct({ order, additionalElement, className }: OrderProductProps) {
   const { name, id, imageUrl, price } = order.product;
 
   return (
