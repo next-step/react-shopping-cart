@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { Product } from "@/components/products";
 import { useFetchProducts } from "@/hooks/api";
@@ -6,11 +6,7 @@ import { useFetchProducts } from "@/hooks/api";
 import * as S from "./products.style";
 
 export default function Products() {
-  const { products, fetchProducts } = useFetchProducts();
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+  const { products } = useFetchProducts();
 
   return (
     <S.ProductsContainer>

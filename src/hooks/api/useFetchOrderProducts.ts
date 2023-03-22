@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { fetchOrders as internalFethcOrders, Order } from "@/api/orders";
 import { withAsync } from "@/helpers";
@@ -8,6 +8,10 @@ import useApiStatus from "../useApiStatus";
 const useFetchOrderProducts = () => {
   const { apiStatus, setApiStatus, ...statuses } = useApiStatus("IDLE");
   const [orders, setOrders] = useState<Order[]>([]);
+
+  useEffect(() => {
+    fetchOrders();
+  }, []);
 
   const fetchOrders = useCallback(async () => {
     setApiStatus("IDLE");

@@ -1,14 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { OrderProductList } from "@/components/orders";
 import { useFetchOrderProducts } from "@/hooks/api";
 
 export default function Orders() {
-  const { orders, fetchOrders } = useFetchOrderProducts();
-
-  useEffect(() => {
-    fetchOrders();
-  }, []);
+  const { orders } = useFetchOrderProducts();
 
   return (
     <div>

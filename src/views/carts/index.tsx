@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 
 import type { Product } from "@/api/products";
 import { CartProduct } from "@/components/carts";
@@ -15,7 +15,7 @@ export interface CartGroup extends Omit<Product, "id"> {
 }
 
 export default function Carts() {
-  const { cartProducts, fetchCartProducts } = useFetchCartProducts();
+  const { cartProducts } = useFetchCartProducts();
 
   const cartProductsGroup = useMemo(() => {
     return cartProducts.reduce((acc, { product }, index) => {
@@ -30,10 +30,6 @@ export default function Carts() {
       }
     }, [] as CartGroup[]);
   }, [cartProducts]);
-
-  useEffect(() => {
-    fetchCartProducts();
-  }, []);
 
   return (
     <CartOrderContentLayout>
