@@ -1,4 +1,4 @@
-import { CartIcon, Loader } from '@/assets/svgs';
+import { CartIcon, LoaderIcon } from '@/assets/svgs';
 
 import { LazyImage } from '@/components/common';
 import { currency } from '@/utils/filter/currency';
@@ -43,7 +43,7 @@ const ProductCard = ({ product }: Props) => {
           <span className="product-info__price">{currency(product.price)}</span>
         </div>
         <button onClick={handleClickCart}>
-          {loading ? <Loader /> : <CartIcon />}
+          {loading ? <LoaderIcon /> : <CartIcon />}
         </button>
       </div>
     </div>
