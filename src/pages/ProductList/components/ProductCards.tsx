@@ -8,7 +8,7 @@ interface ProductItemProps {
   products?: ProductList;
 }
 
-function ProductCards({ products }: ProductItemProps) {
+function ProductCards({ products = [] }: ProductItemProps) {
   return (
     <>
       {products?.map(product => {
