@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { TOrderStore } from '@/stores/OrderContext';
 import { ThreeLayeredFrame, OrderProduct } from '@/components';
+import { TOrderStore } from '@/stores/OrderContext';
 
 import { StyledOrderProductListTitle, OrderStyle } from './OrderProductList.styled';
 
