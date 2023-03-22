@@ -21,6 +21,7 @@ export function CartSidePanel({ cart, title, body, buttonContent, to, onSubmit }
     <ThreeLayeredFrame
       className={CartSidePanelStyle()}
       padding="20px"
+      dividerCss={{ backgroundColor: 'rgba(0,0,0,.1)' }}
       titleSection={title}
       bodySection={
         <StyledTotalPrice>
