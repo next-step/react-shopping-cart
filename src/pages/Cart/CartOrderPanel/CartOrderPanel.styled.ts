@@ -33,11 +33,6 @@ export const StyledTotalPrice = styled('div', {
   flex: 1,
 });
 
-export const StyledPriceSpan = styled('span', {
-  textHightLight: '',
-  height: 'fit-content',
-});
-
 export const StyledOrderButton = styled(Link, {
   flexCenter: '',
   flex: 1,

@@ -1,6 +1,6 @@
 import React, { MouseEvent } from 'react';
 
-import { Currency } from '@/components';
+import { Currency, TextHighlighter } from '@/components';
 import { routes } from '@/routes';
 import { TCartStore } from '@/stores/CartContext';
 import { useOrderContextApiSelector } from '@/stores/OrderContext';
@@ -11,7 +11,6 @@ import {
   StyledCartOrderPanelBody,
   StyledTotalPrice,
   StyledOrderButton,
-  StyledPriceSpan,
 } from './CartOrderPanel.styled';
 
 interface CartOrderPanelProps {
@@ -39,10 +38,10 @@ export function CartOrderPanel({ cart }: CartOrderPanelProps) {
       <StyledCartOrderPanelHeader>결제예상금액</StyledCartOrderPanelHeader>
       <StyledCartOrderPanelBody>
         <StyledTotalPrice>
-          <StyledPriceSpan>결제예상금액</StyledPriceSpan>
-          <StyledPriceSpan>
+          <TextHighlighter>결제예상금액</TextHighlighter>
+          <TextHighlighter>
             <Currency price={cartProducts.reduce((prev, curr) => prev + curr.getTotalPrice(), 0)} />
-          </StyledPriceSpan>
+          </TextHighlighter>
         </StyledTotalPrice>
         <StyledOrderButton to={routes.orderList} onClick={handleOrderButtonClick}>
           <span>주문하기</span>
