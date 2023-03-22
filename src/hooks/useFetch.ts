@@ -2,15 +2,15 @@ import { useCallback, useEffect, useState } from 'react';
 import axiosRequest from '../api/axios';
 import { AxiosError } from 'axios';
 
-const useFetch = (url: string) => {
-  const [payload, setPayload] = useState<any | null>(null);
+const useFetch = <T>(url: string) => {
+  const [data, setData] = useState<T | null>(null);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   const fetchData = useCallback(async () => {
     try {
       const response = await axiosRequest.get(url);
-      setPayload(response.data);
+      setData(response.data);
     } catch (err) {
       const error = err as AxiosError;
       setError(error.message);
@@ -23,7 +23,7 @@ const useFetch = (url: string) => {
     fetchData();
   }, []);
 
-  return { payload, isLoading, error };
+  return { data, isLoading, error };
 };
 
 export default useFetch;
