@@ -28,6 +28,7 @@ module.exports = {
     'no-restricted-syntax': 1,
     'no-continue': 0,
     'no-return-assign': 0,
+    'consistent-return': 0,
 
     'react/destructuring-assignment': 0,
     'react/jsx-filename-extension': [
