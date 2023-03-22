@@ -5,7 +5,7 @@ import ProductItem from './ProductItem';
 import type { ProductList } from '@/types';
 
 interface ProductItemProps {
-  products?: ProductList;
+  products?: ProductList | null;
 }
 
 function ProductCards({ products = [] }: ProductItemProps) {
