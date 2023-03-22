@@ -10,28 +10,30 @@ import {
   HeaderWrapperOuterStyle,
   StyledGNBTitle,
   StyledButtonContainer,
+  StyledHeaderFake,
 } from './Header.styled';
 
 export function Header() {
   return (
-    <LayeredWrapper
-      outer={{ as: 'nav', className: HeaderWrapperOuterStyle() }}
-      inner={{ className: HeaderWrapperInnerStyle() }}
-    >
-      <div>
+    <>
+      <LayeredWrapper
+        outer={{ as: 'header', className: HeaderWrapperOuterStyle() }}
+        inner={{ className: HeaderWrapperInnerStyle() }}
+      >
         <Link to={routes.home}>
           <CartIcon color="white" />
           <StyledGNBTitle>NEXTSTEP</StyledGNBTitle>
         </Link>
-      </div>
-      <StyledButtonContainer>
-        <Link to={routes.cart}>
-          <span>장바구니</span>
-        </Link>
-        <Link to={routes.orderList}>
-          <span>주문목록</span>
-        </Link>
-      </StyledButtonContainer>
-    </LayeredWrapper>
+        <StyledButtonContainer>
+          <Link to={routes.cart}>
+            <span>장바구니</span>
+          </Link>
+          <Link to={routes.orderList}>
+            <span>주문목록</span>
+          </Link>
+        </StyledButtonContainer>
+      </LayeredWrapper>
+      <StyledHeaderFake />
+    </>
   );
 }

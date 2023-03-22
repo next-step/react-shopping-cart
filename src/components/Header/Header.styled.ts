@@ -1,7 +1,11 @@
 import { styled, css } from '@/stitches.config';
 
+const HEADER_HEIGHT = '50px';
+
 export const HeaderWrapperOuterStyle = css({
-  height: '50px',
+  position: 'fixed',
+  top: 0,
+  height: HEADER_HEIGHT,
   backgroundColor: '#2BC1BC',
 });
 
@@ -22,4 +26,10 @@ export const StyledButtonContainer = styled('div', {
   display: 'flex',
   alignItems: 'center',
   gap: '20px',
+});
+
+export const StyledHeaderFake = styled('div', {
+  content: 'none',
+  width: '100%',
+  height: HEADER_HEIGHT,
 });
