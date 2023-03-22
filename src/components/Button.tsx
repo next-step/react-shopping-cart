@@ -12,14 +12,13 @@ const buttonSizeMap: Record<ButtonSize, string> = {
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size: ButtonSize;
-  text?: string;
 }
 
-function Button({ children, size = 'full', text, ...props }: PropsWithChildren<ButtonProps>) {
+function Button({ children, size = 'full', ...props }: PropsWithChildren<ButtonProps>) {
   const buttonSize = buttonSizeMap[size];
   return (
     <button className={cls(buttonSize, 'bg-teal-400 disabled:bg-slate-400 text-white font-bold')} {...props}>
-      {text || children}
+      {children}
     </button>
   );
 }
