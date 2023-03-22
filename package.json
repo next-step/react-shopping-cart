@@ -1,15 +1,59 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "react-shopping-cart",
+  "private": true,
+  "version": "0.0.0",
   "type": "commonjs",
-  "license": "MIT",
+  "scripts": {
+    "start": "node server.js",
+    "server": "node server.js",
+    "start:dev": "NODE_PATH=src vite",
+    "lint:eslint": "eslint src/ --ext .ts,.tsx --config .eslintrc.json",
+    "heroku-postbuild": "NODE_PATH=src npm run build",
+    "prettier": "prettier --write .",
+    "build": "NODE_PATH=src && tsc && vite build",
+    "preview": "vite preview",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.9.0",
+    "vite-plugin-svgr": "^2.4.0"
+  },
   "devDependencies": {
     "json-server": "^0.17.0",
-    "lowdb": "^1.0.0"
+    "lowdb": "^1.0.0",
+    "@faker-js/faker": "^7.6.0",
+    "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-essentials": "^6.5.16",
+    "storybook-addon-react-router-v6": "^0.3.1",
+    "@storybook/addon-interactions": "^6.5.16",
+    "@storybook/addon-links": "^6.5.16",
+    "@storybook/builder-vite": "^0.4.1",
+    "@storybook/react": "^6.5.16",
+    "@svgr/rollup": "^6.5.1",
+    "@types/node": "^18.15.3",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
+    "@typescript-eslint/parser": "^5.30.7",
+    "@vitejs/plugin-react": "^3.1.0",
+    "@vitejs/plugin-react-swc": "^3.0.0",
+    "babel-plugin-named-exports-order": "^0.0.2",
+    "eslint": "^7.6.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-import-resolver-typescript": "^3.3.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "msw": "^1.1.0",
+    "prettier": "^2.7.1",
+    "typescript": "^4.9.3",
+    "vite": "^4.1.0",
+    "vite-tsconfig-paths": "^4.0.5"
   },
-  "scripts": {
-    "server": "node server.js"
-  },
-  "dependencies": {}
+  "msw": {
+    "workerDirectory": ".public"
+  }
 }
