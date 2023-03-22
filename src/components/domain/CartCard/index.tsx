@@ -1,14 +1,17 @@
-import { Button, CheckBox, LazyImage, Text } from '@/components/common';
+import { Button, LazyImage, Text } from '@/components/common';
+import CheckBox, { useCheckBox } from '@/components/common/CheckBox';
 
 type Props = {
   cart?: Product;
 };
 
 const CartCard = ({ cart }: Props) => {
+  const { checked, toggleCheck } = useCheckBox();
+
   return (
     <div className="cart-container">
       <div className="flex gap-15 mt-10">
-        <CheckBox />
+        <CheckBox checked={checked} onClick={toggleCheck} />;
         <LazyImage
           className="w-144 h-144"
           src="./assets/images/product.png"
