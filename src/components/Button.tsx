@@ -15,7 +15,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text?: string;
 }
 
-function Buttons({ children, size = 'full', text, ...props }: PropsWithChildren<ButtonProps>) {
+function Button({ children, size = 'full', text, ...props }: PropsWithChildren<ButtonProps>) {
   const buttonSize = buttonSizeMap[size];
   return (
     <button className={cls(buttonSize, 'bg-teal-400 disabled:bg-slate-400 text-white font-bold')} {...props}>
@@ -24,4 +24,4 @@ function Buttons({ children, size = 'full', text, ...props }: PropsWithChildren<
   );
 }
 
-export default Buttons;
+export default Button;
