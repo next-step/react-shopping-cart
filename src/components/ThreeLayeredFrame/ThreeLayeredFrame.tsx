@@ -9,10 +9,12 @@ import {
   StyledHR,
 } from './ThreeLayeredFrame.styled';
 
+type PossibleReactElement = ReactElement[] | ReactElement | string;
+
 interface ThreeLayeredFrameProps {
-  titleSection: ReactElement | string;
-  bodySection: ReactElement | string;
-  bottomSection?: ReactElement | string;
+  titleSection: PossibleReactElement;
+  bodySection: PossibleReactElement;
+  bottomSection?: PossibleReactElement;
   padding?: string;
   css?: CSS;
   className?: string;
