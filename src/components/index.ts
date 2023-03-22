@@ -8,3 +8,4 @@ export * from './TextHighlighter';
 export * from './ThreeLayeredFrame';
 export * from './CartSidePanel';
 export * from './OrderProduct';
+export * from './CartLoader';
