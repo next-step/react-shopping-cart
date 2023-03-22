@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import mq from '../../utils/style/mediaQuery';
+import { priceFormat } from '../../utils';
 
 interface CartTotal {
   title: string;
@@ -28,7 +29,7 @@ const CartTotal = ({ title, totalText, totalPrice, buttonText }: CartTotal) => {
       <div className="cart-right-section__bottom">
         <div className="flex justify-between p-20 mt-20">
           <span className="highlight-text">{totalText}</span>
-          <span className="highlight-text">{totalPrice}</span>
+          <span className="highlight-text">{priceFormat(totalPrice)}</span>
         </div>
         <div className="flex-center mt-30 mx-10">
           <button className="primary-button flex-center">{buttonText}</button>
