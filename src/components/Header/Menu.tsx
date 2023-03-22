@@ -17,8 +17,8 @@ function Menu() {
 
   return (
     <div className="flex text-white font-bold gap-10">
-      {menu.map(({ id, name, to }, i) => (
-        <Link key={`${id}-${i}`} to={to}>
+      {menu.map(({ name, to }, i) => (
+        <Link key={i} to={to}>
           {name}
         </Link>
       ))}
