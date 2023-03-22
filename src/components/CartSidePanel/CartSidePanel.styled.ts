@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { styled, css } from '@/stitches.config';
 
-export const StyledCartOrderPanel = css({
+export const CartSidePanelStyle = css({
   width: '280px',
   height: '230px',
   marginTop: '50px',
@@ -16,7 +16,7 @@ export const StyledTotalPrice = styled('div', {
   marginTop: '20px',
 });
 
-export const StyledOrderButton = styled(Link, {
+export const StyledSubmitButton = styled(Link, {
   flexCenter: '',
   flex: 1,
   gap: '5px',

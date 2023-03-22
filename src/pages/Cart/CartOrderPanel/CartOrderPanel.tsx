@@ -1,17 +1,9 @@
 import React, { MouseEvent } from 'react';
 
-import { Currency, TextHighlighter } from '@/components';
+import { CartSidePanel } from '@/components';
 import { routes } from '@/routes';
 import { TCartStore } from '@/stores/CartContext';
 import { useOrderContextApiSelector } from '@/stores/OrderContext';
-
-import {
-  StyledCartOrderPanel,
-  StyledCartOrderPanelHeader,
-  StyledCartOrderPanelBody,
-  StyledTotalPrice,
-  StyledOrderButton,
-} from './CartOrderPanel.styled';
 
 interface CartOrderPanelProps {
   cart: TCartStore;
@@ -34,20 +26,18 @@ export function CartOrderPanel({ cart }: CartOrderPanelProps) {
   };
 
   return (
-    <StyledCartOrderPanel>
-      <StyledCartOrderPanelHeader>결제예상금액</StyledCartOrderPanelHeader>
-      <StyledCartOrderPanelBody>
-        <StyledTotalPrice>
-          <TextHighlighter>결제예상금액</TextHighlighter>
-          <TextHighlighter>
-            <Currency price={cartProducts.reduce((prev, curr) => prev + curr.getTotalPrice(), 0)} />
-          </TextHighlighter>
-        </StyledTotalPrice>
-        <StyledOrderButton to={routes.orderList} onClick={handleOrderButtonClick}>
+    <CartSidePanel
+      cart={cart}
+      title="결제예상금액"
+      body="결제예상금액"
+      buttonContent={
+        <>
           <span>주문하기</span>
           <span>{`${cartProducts?.length}개`}</span>
-        </StyledOrderButton>
-      </StyledCartOrderPanelBody>
-    </StyledCartOrderPanel>
+        </>
+      }
+      to={routes.orderList}
+      onSubmit={handleOrderButtonClick}
+    />
   );
 }
