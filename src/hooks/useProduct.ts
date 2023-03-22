@@ -1,4 +1,4 @@
-import useFetch from './useFetch';
+import useCustomQuery from './useCustomQuery';
 import { ProductType } from '../types';
 import { useCallback } from 'react';
 import { ROUTE } from '../router';
@@ -9,7 +9,7 @@ interface UseProductResponse {
 
 const useProduct = () => {
   const navigate = useNavigate();
-  const { data, isLoading, error } = useFetch<UseProductResponse>(
+  const { data, isLoading, error } = useCustomQuery<UseProductResponse>(
     `${process.env.REACT_APP_API_PATH}/products`
   );
 

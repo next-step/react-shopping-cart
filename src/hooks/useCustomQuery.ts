@@ -2,12 +2,21 @@ import { useCallback, useEffect, useState } from 'react';
 import axiosRequest from '../api/axios';
 import { AxiosError } from 'axios';
 
-const useFetch = <T>(url: string) => {
-  const [data, setData] = useState<T | null>(null);
-  const [isLoading, setLoading] = useState(true);
+type UseQueryResult<TData> = {
+  data?: TData | null;
+  error: string | null;
+  isLoading: boolean;
+};
+
+const useCustomQuery = <TData>(url: string): UseQueryResult<TData> => {
+  const [data, setData] = useState<TData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   const fetchData = useCallback(async () => {
+    setIsLoading(true);
+    setData(null);
+    setError(null);
     try {
       const response = await axiosRequest.get(url);
       setData(response.data);
@@ -15,15 +24,15 @@ const useFetch = <T>(url: string) => {
       const error = err as AxiosError;
       setError(error.message);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   }, [url]);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [url]);
 
   return { data, isLoading, error };
 };
 
-export default useFetch;
+export default useCustomQuery;

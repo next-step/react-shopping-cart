@@ -1,4 +1,4 @@
-import useFetch from './useFetch';
+import useCustomQuery from './useCustomQuery';
 import { ProductType } from '../types';
 import { useParams } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ interface UseProductDetailResponse {
 }
 const useProductDetail = () => {
   const { id } = useParams();
-  const { data, isLoading, error } = useFetch<UseProductDetailResponse>(
+  const { data, isLoading, error } = useCustomQuery<UseProductDetailResponse>(
     `${process.env.REACT_APP_API_PATH}/products/${id}`
   );
 
