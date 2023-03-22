@@ -18,7 +18,7 @@ const S = {
 };
 
 interface CartListProps {
-  cartList: CartItemType[] | null;
+  cartList: CartItemType[];
 }
 
 const CartList = ({ cartList }: CartListProps) => {
@@ -34,16 +34,20 @@ const CartList = ({ cartList }: CartListProps) => {
         <button className="delete-button">상품삭제</button>
       </div>
 
-      <S.H3>든든배송 상품(3개)</S.H3>
+      <S.H3>든든배송 상품({cartList.length}개)</S.H3>
       <hr className="divide-line-gray mt-10" />
-      {cartList?.map((item) => (
-        <CartItem
-          key={item.id}
-          name={item.product.name}
-          price={item.product.price}
-          imageUrl={item.product.imageUrl}
-        />
-      ))}
+      {cartList.length > 0 ? (
+        cartList.map((item) => (
+          <CartItem
+            key={item.id}
+            name={item.product.name}
+            price={item.product.price}
+            imageUrl={item.product.imageUrl}
+          />
+        ))
+      ) : (
+        <div>장바구니가 비어있습니다.</div>
+      )}
     </S.Wrapper>
   );
 };

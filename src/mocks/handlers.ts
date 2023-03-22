@@ -1,6 +1,5 @@
 import { rest } from 'msw';
 import productData from './data/products';
-import { cartData } from './data/carts';
 
 export const handlers = [
   /** 상품 */
@@ -32,10 +31,16 @@ export const handlers = [
   /** 장바구니*/
   // [GET] 장바구니 아이템 목록 조회
   rest.get('/carts', (req, res, ctx) => {
+    const cartData = window.localStorage.getItem('cartData');
+    let responseData = [];
+    if (cartData) {
+      responseData = JSON.parse(cartData);
+    }
+
     return res(
       ctx.status(200),
       ctx.json({
-        response: cartData,
+        response: responseData,
       })
     );
   }),
