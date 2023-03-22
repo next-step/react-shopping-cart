@@ -1,4 +1,4 @@
-import api from "./api";
+import axios from "./api";
 import EndPoint from "./endPoints";
 
 export type Product = {
@@ -9,17 +9,17 @@ export type Product = {
 };
 
 export const fetchProducts = () => {
-  return api.get<Product[]>(EndPoint.PRODUCTS.GET_PRODUCTS);
+  return axios.get<Product[]>(EndPoint.PRODUCTS.GET_PRODUCTS);
 };
 
 export const addProduct = (product: Product) => {
-  return api.post<Product>(EndPoint.PRODUCTS.ADD_PRODUCTS, { product });
+  return axios.post<Product>(EndPoint.PRODUCTS.ADD_PRODUCTS, { product });
 };
 
 export const fetchProduct = (productId: string) => {
-  return api.get<Product>(EndPoint.PRODUCTS.GET_PRODUCT, { data: productId });
+  return axios.get<Product>(EndPoint.PRODUCTS.GET_PRODUCT, { data: productId });
 };
 
 export const deleteProduct = (productId: string) => {
-  return api.delete<Product>(EndPoint.PRODUCTS.DELETE_PRODUCT, { data: { productId } });
+  return axios.delete<Product>(EndPoint.PRODUCTS.DELETE_PRODUCT, { data: { productId } });
 };

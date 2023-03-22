@@ -1,4 +1,4 @@
-import api from "./api";
+import axios from "./api";
 import EndPoint from "./endPoints";
 import type { Product } from "./products";
 
@@ -8,13 +8,13 @@ export type Cart = {
 };
 
 export const fetchCarts = () => {
-  return api.get<Cart[]>(EndPoint.CARTS.GET_CARTS);
+  return axios.get<Cart[]>(EndPoint.CARTS.GET_CARTS);
 };
 
 export const addCart = (product: Product) => {
-  return api.post<Cart>(EndPoint.CARTS.ADD_CARTS, { product });
+  return axios.post<Cart>(EndPoint.CARTS.ADD_CARTS, { product });
 };
 
 export const deleteCard = (cartId: string) => {
-  return api.delete<Cart>(EndPoint.CARTS.DELETE_CARTS, { data: { cartId } });
+  return axios.delete<Cart>(EndPoint.CARTS.DELETE_CARTS, { data: { cartId } });
 };
