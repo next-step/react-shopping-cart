@@ -57,7 +57,7 @@ function useHttp<ResponseData extends unknown>(
     httpReducer,
     initialState
   );
-  const loading = !!(httpState.status === 'pending');
+  const loading = httpState.status === 'pending';
 
   const sendRequest = useCallback(
     async function (requestData?: unknown) {
