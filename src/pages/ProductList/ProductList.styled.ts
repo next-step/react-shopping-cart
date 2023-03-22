@@ -1,4 +1,12 @@
-import { css } from '@/stitches.config';
+import { styled, css } from '@/stitches.config';
+
+export const StyledProductListLoader = styled('div', {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '100%',
+  height: '100%',
+});
 
 export const ProductListOuterStyle = css({
   marginTop: '40px',

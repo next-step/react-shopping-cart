@@ -1,18 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense } from 'react';
 
 import { getProducts } from '@/apis';
-import { LayeredWrapper } from '@/components/LayeredWrapper/LayeredWrapper';
+import { LayeredWrapper, CartLoader } from '@/components';
+import { useSuspenseFetch } from '@/hooks';
 import { ProductModel } from '@/models';
 
-import { ProductListInnerStyle, ProductListOuterStyle } from './ProductList.styled';
 import { Product } from './Product';
+import { ProductListInnerStyle, ProductListOuterStyle, StyledProductListLoader } from './ProductList.styled';
 
 export function ProductList() {
-  const [products, setProducts] = useState<ProductModel[]>();
+  return (
+    <Suspense
+      fallback={
+        <StyledProductListLoader>
+          <CartLoader />
+        </StyledProductListLoader>
+      }
+    >
+      <ProductListContent />
+    </Suspense>
+  );
+}
 
-  useEffect(() => {
-    getProducts().then((products) => setProducts(products.map((productPOJO) => new ProductModel(productPOJO))));
-  }, []);
+function ProductListContent() {
+  const products = useSuspenseFetch('/products', getProducts) as unknown as ProductModel[];
 
   return (
     <LayeredWrapper outer={{ className: ProductListOuterStyle() }} inner={{ className: ProductListInnerStyle() }}>
