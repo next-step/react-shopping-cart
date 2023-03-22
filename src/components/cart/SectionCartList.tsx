@@ -3,7 +3,7 @@ import CartList from './CartList';
 import CartTotal from './CartTotal';
 import styled from '@emotion/styled';
 import mq from '../../utils/style/mediaQuery';
-import useCart from '../../hooks/useCart';
+import { CartItemType } from '../../types';
 
 const S = {
   Content: styled.div(
@@ -17,9 +17,10 @@ const S = {
   ),
 };
 
-const SectionCartList = () => {
-  const { carts } = useCart();
-
+interface SectionCartListProps {
+  carts: CartItemType[];
+}
+const SectionCartList = ({ carts }: SectionCartListProps) => {
   return (
     <Section>
       <S.Content>

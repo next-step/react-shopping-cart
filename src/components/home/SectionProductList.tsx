@@ -3,9 +3,7 @@ import Section from '../common/Section';
 import styled from '@emotion/styled';
 import mq from '../../utils/style/mediaQuery';
 import ProductItem from './ProductItem';
-import { useNavigate } from 'react-router-dom';
-import { ROUTE } from '../../router';
-import useProduct from '../../hooks/useProduct';
+import { ProductType } from '../../types';
 
 const S = {
   Container: styled.div(
@@ -22,17 +20,15 @@ const S = {
     })
   ),
 };
-const SectionProductList = () => {
-  const navigate = useNavigate();
-  const { products, onClickProductItem } = useProduct();
 
-  const addToCart = () => {
-    const confirmRes = confirm(
-      '장바구니에 상품을 담았습니다. 장바구니로 이동하시겠습니까?'
-    );
-    if (confirmRes) navigate(ROUTE.CART);
-  };
-
+interface SectionProductListProps {
+  products: ProductType[];
+  onClickProductItem: (num: number | undefined) => void;
+}
+const SectionProductList = ({
+  products,
+  onClickProductItem,
+}: SectionProductListProps) => {
   return (
     <Section>
       <S.Container>
@@ -43,7 +39,6 @@ const SectionProductList = () => {
             name={item.name}
             price={item.price}
             onClickProductImage={() => onClickProductItem(item.id)}
-            onClickAddCart={addToCart}
           />
         ))}
       </S.Container>
