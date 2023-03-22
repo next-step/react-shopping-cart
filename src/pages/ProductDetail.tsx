@@ -1,12 +1,12 @@
-import { useNavigate } from 'react-router-dom';
-import { ROUTE } from '../router';
 import Layout from '../layout/Layout';
 import useProductDetail from '../hooks/useProductDetail';
 import { priceFormat } from '../utils';
+import { useProduct } from '../hooks';
+import { ProductType } from '../types';
 
 const ProductDetail = () => {
-  const navigate = useNavigate();
   const { productData, isLoading, error } = useProductDetail();
+  const { addCart } = useProduct();
 
   if (isLoading) {
     return <div>페이지 로딩 중...</div>;
@@ -15,13 +15,6 @@ const ProductDetail = () => {
   if (error) {
     return <div>{error}</div>;
   }
-
-  const addToCart = () => {
-    const confirmRes = confirm(
-      '장바구니에 상품을 담았습니다. 장바구니로 이동하시겠습니까?'
-    );
-    if (confirmRes) navigate(ROUTE.CART);
-  };
 
   return (
     <Layout>
@@ -46,7 +39,7 @@ const ProductDetail = () => {
           </div>
           <button
             className="product-detail-button flex-center mt-20"
-            onClick={addToCart}
+            onClick={() => addCart(productData as ProductType)}
           >
             장바구니
           </button>
