@@ -23,11 +23,11 @@ const S = {
 
 interface SectionProductListProps {
   products: ProductType[];
-  onClickProductItem: (num: number | undefined) => void;
+  navigateToDetailedPage: (num: number | undefined) => void;
 }
 const SectionProductList = ({
   products,
-  onClickProductItem,
+  navigateToDetailedPage,
 }: SectionProductListProps) => {
   return (
     <Section>
@@ -38,7 +38,7 @@ const SectionProductList = ({
             imageUrl={item.imageUrl}
             name={item.name}
             price={item.price}
-            onClickProductImage={() => onClickProductItem(item.id)}
+            onClickProductImage={() => navigateToDetailedPage(item.id)}
           />
         ))}
       </S.Container>

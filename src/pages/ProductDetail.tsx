@@ -6,7 +6,15 @@ import { priceFormat } from '../utils';
 
 const ProductDetail = () => {
   const navigate = useNavigate();
-  const { productData } = useProductDetail();
+  const { productData, isLoading, error } = useProductDetail();
+
+  if (isLoading) {
+    return <div>페이지 로딩 중...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   const addToCart = () => {
     const confirmRes = confirm(

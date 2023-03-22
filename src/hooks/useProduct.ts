@@ -15,11 +15,11 @@ const useProduct = () => {
 
   const products = data?.response;
 
-  const onClickProductItem = useCallback((id: number | undefined) => {
+  const navigateToDetailedPage = useCallback((id: number | undefined) => {
     navigate(`${ROUTE.DETAIL}/${id}`);
   }, []);
 
-  return { products, isLoading, error, onClickProductItem };
+  return { products, isLoading, error, navigateToDetailedPage };
 };
 
 export default useProduct;
