@@ -35,8 +35,6 @@ const getProducts = (products: ProductSchemaInfer[], schema: z.ZodTypeAny) =>
     const startIndex = (parseInt(page) - 1) * parseInt(perPage)
     const endIndex = startIndex + parseInt(perPage)
 
-    // console.log(req)
-
     try {
       const validatedProducts = products.map((product) => schema.parse(product))
       const productList = validatedProducts.slice(startIndex, endIndex)

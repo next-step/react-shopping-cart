@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import { API } from '@/config'
 import { useFetch } from '@/hooks'
@@ -7,15 +8,31 @@ import { ProductListSchemaInfer, ProductListSchema } from '@/schemas'
 type NumericString = keyof Record<string, number>
 
 const useProductList = () => {
-  const [page, setPage] = useState('1')
-  const [perPage, setPerPage] = useState('10')
+  const location = useLocation()
+  const searchParams = new URLSearchParams(location.search)
+  const pageParam = searchParams.get('page')
+  const perPageParam = searchParams.get('perPage')
+  const navigate = useNavigate()
 
-  const changePage = (page: NumericString) => {
-    setPage(page)
+  const [page, setPage] = useState(pageParam || '1')
+  const [perPage, setPerPage] = useState(perPageParam || '10')
+
+  useEffect(() => {
+    if (pageParam) {
+      setPage(pageParam)
+    }
+
+    if (perPageParam) {
+      setPerPage(perPageParam)
+    }
+  }, [pageParam, perPageParam])
+
+  const changePage = (newPage: NumericString) => {
+    navigate(`?page=${newPage}&perPage=${perPage}`)
   }
 
-  const changePerPage = (perPage: NumericString) => {
-    setPerPage(perPage)
+  const changePerPage = (newPerPage: NumericString) => {
+    navigate(`?page=${page}&perPage=${newPerPage}`)
   }
 
   const {

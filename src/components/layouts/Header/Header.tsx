@@ -10,7 +10,7 @@ const Header = () => {
   const getDestinations = useMemo(() => {
     // Todo: path 상수로 관리하기 (현재는 변경에 취약)
     return [
-      { to: '/', text: '상품 목록' },
+      { to: '/product-list', text: '상품 목록' },
       { to: `/detail/${getProductId()}`, text: '상품 상세' },
       { to: '/cart', text: '장바구니' },
       { to: '/order', text: '주문/결제' },
