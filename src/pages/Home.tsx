@@ -1,23 +1,16 @@
-import React from 'react';
-import SectionProductList from '../components/home/SectionProductList';
 import Layout from '../layout/Layout';
-import useProduct from '../hooks/useProduct';
+import SectionProductList from '../components/home/SectionProductList';
+import { useRouter, useProduct, useCustomMutation } from '../hooks';
 import { CartItemType, ProductType } from '../types';
-import useRouter from '../hooks/useRouter';
-import useCustomMutation from '../hooks/useCustomMutation';
-import axiosRequest from '../api/axios';
 import { CONFIRM } from '../constant/message';
 import { ROUTE } from '../router';
+import { updateCartList } from '../api/request';
 
 const Home = () => {
   const { confirmAndRoute } = useRouter();
   const { products, error, isLoading, navigateToDetailedPage } = useProduct();
   const { mutate } = useCustomMutation<unknown, CartItemType>((payload) =>
-    axiosRequest({
-      url: `${process.env.REACT_APP_API_PATH}/carts`,
-      method: 'POST',
-      data: payload,
-    })
+    updateCartList(payload)
   );
   const addCart = async (item: ProductType) => {
     await mutate({ id: Number(item.id), product: item });

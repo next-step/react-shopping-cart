@@ -1,4 +1,3 @@
-import React from 'react';
 import Section from '../common/Section';
 import styled from '@emotion/styled';
 import mq from '../../utils/style/mediaQuery';
