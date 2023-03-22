@@ -33,7 +33,7 @@ const ProductDetail = () => {
             <div className="flex justify-between">
               <span>금액</span>
               <span className="product-detail-info__price">
-                {priceFormat(productData?.price)}원
+                {priceFormat(productData?.price)}
               </span>
             </div>
           </div>
