@@ -8,6 +8,6 @@ export default {
 } as ComponentMeta<typeof CheckBox>;
 
 export const Default = () => {
-  const { checked, toggleCheck } = useCheckBox();
-  return <CheckBox checked={checked} onClick={toggleCheck} label="check" />;
+  const { checked, handleSelect } = useCheckBox();
+  return <CheckBox checked={checked} onSelect={handleSelect} label="check" />;
 };
