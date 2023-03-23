@@ -1,11 +1,12 @@
 import axios from 'axios';
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
+import { reportError } from 'utils/error';
 
 const useFetch = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState('error');
+  const [error, setError] = useState<unknown>('error');
 
-  const sendRequest = useCallback(async (url: string, method = 'GET') => {
+  const sendRequest = async (url: string, method = 'GET') => {
     try {
       const { data } = await axios({
         url,
@@ -13,10 +14,11 @@ const useFetch = () => {
       });
       setIsLoading(false);
       return data;
-    } catch (err: any) {
+    } catch (err) {
+      reportError(err);
       setError(err);
     }
-  }, []);
+  };
 
   return { error, isLoading, sendRequest };
 };

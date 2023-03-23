@@ -14,7 +14,7 @@ const useProductList = () => {
       } catch (err: any) {}
     };
     fetchProducts();
-  }, [sendRequest]);
+  }, []);
 
   return { products, isLoading, error };
 };
