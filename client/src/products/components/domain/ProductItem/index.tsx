@@ -9,9 +9,10 @@ interface ProductItemProps {
   textValue1: string | number
   textValue2: string | number
   buttonValue: string | React.ReactNode
+  buttonEvent: () => void
 }
 
-const ProductItem = ({ src, alt, textValue1, textValue2, buttonValue }: ProductItemProps) => {
+const ProductItem = ({ src, alt, textValue1, textValue2, buttonValue, buttonEvent }: ProductItemProps) => {
   return (
     <FlexBox direction='column' alienItems='center'>
       <Img src={src} size='small' alt={alt} />
@@ -20,7 +21,9 @@ const ProductItem = ({ src, alt, textValue1, textValue2, buttonValue }: ProductI
           <Text fontSize='small'>{textValue1}</Text>
           <Text fontSize='medium'>{textValue2}</Text>
         </FlexBox>
-        <Button size='auto'>{buttonValue}</Button>
+        <Button onClick={buttonEvent} size='auto'>
+          {buttonValue}
+        </Button>
       </FlexBox>
     </FlexBox>
   )

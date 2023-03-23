@@ -16,6 +16,7 @@ const ProductList = () => {
               textValue1={data.name}
               textValue2={`${data.price}원`}
               buttonValue={<ShoppingBack />}
+              buttonEvent={() => console.log(`ID:${data.id} 장바구니 저장 `)}
             />
           </FlexItem>
         ))}
