@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import URL from '../constants/url';
+import { URL } from '../constants/url';
 import CartList from './pages/CartList';
 import NotFound from './pages/NotFound';
 import OrderList from './pages/OrderList';

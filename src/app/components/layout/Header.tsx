@@ -1,6 +1,6 @@
 import useRouter from '../../hooks/useRoute';
 import * as React from 'react';
-import URL from '../../../constants/url';
+import { URL } from '../../../constants/url';
 
 const Header = () => {
   const { movePage } = useRouter();

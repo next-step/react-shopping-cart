@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import URL from '../../constants/url';
+import { URL } from '../../constants/url';
 
 const useRoute = () => {
   const navigate = useNavigate();
