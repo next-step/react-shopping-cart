@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-type RoutePath = '/cart' | '/order' | '/orderList' | '/orderListDetail' | '/productList' | '/productListDetail';
+type RoutePath = '/order' | '/orders' | '/products' | '/carts';
 
 const useRouter = () => {
   const navigate = useNavigate();

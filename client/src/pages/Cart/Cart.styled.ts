@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
 import { Box, Input, Button, HorizontalLine } from 'components/common';
-
-export const Layout = styled.div`
+export const Layout = styled.section`
   padding: 24px 300px;
 `;
+
 export const LeftSection = styled.section`
   width: 60%;
   margin-top: 50px;

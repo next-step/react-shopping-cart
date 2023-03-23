@@ -1,14 +1,14 @@
 import GlobalStyle from 'styles/GlobalStyle';
-import { NavBar } from 'components/common/NavBar';
-import Routes from 'routes';
 import { CartContextProvider } from 'context/Cart';
+import { NavBar } from 'components/common/NavBar';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
     <CartContextProvider>
       <GlobalStyle />
       <NavBar />
-      <Routes />
+      <Outlet />
     </CartContextProvider>
   );
 }
