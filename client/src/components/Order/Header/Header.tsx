@@ -1,6 +1,6 @@
-import * as Styled from './OrderListHeader.styles';
+import * as Styled from './Header.styles';
 
-const OrderListHeader = () => {
+const Header = () => {
   return (
     <Styled.Layout>
       <Styled.Text>주문번호 </Styled.Text>
@@ -8,4 +8,4 @@ const OrderListHeader = () => {
     </Styled.Layout>
   );
 };
-export default OrderListHeader;
+export default Header;

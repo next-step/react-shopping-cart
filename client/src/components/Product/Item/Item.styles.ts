@@ -16,7 +16,7 @@ export const FlexContainer = styled(Box)`
   width: 280px;
   padding: 5px;
 `;
-export const ListItemImage = styled(Image)`
+export const ItemImage = styled(Image)`
   width: 283px;
   height: 283px;
 `;

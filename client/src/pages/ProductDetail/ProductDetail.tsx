@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { ListDetailItem } from 'components/ListDetailItem';
+import { ProductDetailItem } from 'components/Product/DetailItem';
 
 const ProductDetail = () => {
   return (
     <Layout>
-      <ListDetailItem />
+      <ProductDetailItem />
     </Layout>
   );
 };

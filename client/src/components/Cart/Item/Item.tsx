@@ -1,4 +1,4 @@
-import * as Styled from './CartItem.styles';
+import * as Styled from './Item.styles';
 import { ProductType } from 'types';
 
 type CartItemProps = ProductType;

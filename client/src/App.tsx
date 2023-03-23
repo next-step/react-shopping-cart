@@ -1,5 +1,5 @@
 import GlobalStyle from 'styles/GlobalStyle';
-import { NavBar } from 'components/NavBar';
+import { NavBar } from 'components/common/NavBar';
 import Routes from 'routes';
 import { CartContextProvider } from 'context/Cart';
 

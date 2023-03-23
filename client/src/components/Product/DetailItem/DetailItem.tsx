@@ -1,6 +1,6 @@
-import * as Styled from './ListDetailItem.styles';
+import * as Styled from './DetailItem.styles';
 
-const ListDetailItem = () => {
+const DetailItem = () => {
   return (
     <Styled.Layout>
       <Styled.ItemImage
@@ -22,4 +22,4 @@ const ListDetailItem = () => {
   );
 };
 
-export default ListDetailItem;
+export default DetailItem;

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { OrderListHeader } from 'components/OrderListHeader';
-import { OrderListItem } from 'components/OrderListItem';
-import { Header } from 'components/Header';
+import { OrderListHeader } from 'components/Order/Header';
+import { OrderListItem } from 'components/Order/List/Item';
+import { PageHeader } from 'components/common/PageHeader';
 const OrderList = () => {
   return (
     <Layout>
-      <Header>주문 목록</Header>
+      <PageHeader>주문 목록</PageHeader>
       <OrderListHeader />
       <OrderListItem />
     </Layout>

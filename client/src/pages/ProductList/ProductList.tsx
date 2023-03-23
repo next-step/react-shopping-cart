@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import uuid from 'react-uuid';
 
-import { ListItem } from 'components/ListItem';
+import { ProductItem } from 'components/Product/Item';
 import useProductList from 'hooks/useProductsList';
 
 const ProductList = () => {
@@ -12,11 +13,9 @@ const ProductList = () => {
 
   return (
     <Layout>
-      {!isLoading &&
-        products &&
-        products.map((product) => (
-          <ListItem key={product.id} price={product.price} image={product.image} name={product.name} />
-        ))}
+      {products?.map((product) => (
+        <ProductItem key={uuid()} price={product.price} image={product.image} name={product.name} />
+      ))}
     </Layout>
   );
 };

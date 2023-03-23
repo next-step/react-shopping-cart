@@ -1,12 +1,9 @@
-import { Box, HorizontalLine } from 'components/common';
-import { Header } from 'components/Header';
 import styled from 'styled-components';
+import { Box, HorizontalLine } from 'components/common';
 export const Layout = styled.section`
   padding: 24px 300px;
 `;
-export const MainHeader = styled(Header)`
-  margin-top: 20px;
-`;
+
 export const Container = styled(Box)``;
 export const Title = styled.h3`
   display: flex;

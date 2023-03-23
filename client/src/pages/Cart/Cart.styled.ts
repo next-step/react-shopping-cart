@@ -1,12 +1,9 @@
 import styled, { css } from 'styled-components';
 import { Box, Input, Button, HorizontalLine } from 'components/common';
-import { Header } from 'components/Header';
 
 export const Layout = styled.div`
   padding: 24px 300px;
 `;
-
-export const CartListHeader = styled(Header)``;
 export const LeftSection = styled.section`
   width: 60%;
   margin-top: 50px;
