@@ -3,32 +3,30 @@ import { PropsWithChildren, useState } from 'react';
 type Props = {
   label?: string;
   checked?: boolean;
-  onClick?: () => void;
+  onSelect?: () => void;
 };
 
 export const useCheckBox = (initialState = false) => {
   const [checked, setChecked] = useState(initialState);
   return {
     checked,
-    toggleCheck: () => setChecked((prev) => !prev),
+    handleSelect: () => setChecked((prev) => !prev),
   };
 };
 
-const CheckBox = ({ checked, onClick, label }: PropsWithChildren<Props>) => {
+const CheckBox = ({ checked, onSelect, label }: PropsWithChildren<Props>) => {
   return (
-    <div className="checkbox-container" onClick={onClick}>
-      <input
-        className="checkbox"
-        name="checkbox"
-        type="checkbox"
-        readOnly
-        checked={checked}
-      />
-      {label && (
-        <label className="checkbox-label" htmlFor="checkbox">
-          {label}
-        </label>
-      )}
+    <div className="checkbox-container">
+      <label className="checkbox-label" htmlFor="checkbox">
+        <input
+          className="checkbox"
+          name="checkbox"
+          type="checkbox"
+          onClick={onSelect}
+          checked={checked}
+        />
+        <span>{label && label}</span>
+      </label>
     </div>
   );
 };

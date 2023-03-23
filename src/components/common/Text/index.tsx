@@ -2,7 +2,7 @@ import { createElement } from 'react';
 import { PropsWithChildren } from 'react';
 
 type Props = {
-  as?: string,
+  as?: string;
   highlight?: boolean;
   className?: string;
   loading?: boolean;
@@ -20,8 +20,8 @@ const Text = ({
     ${highlight ? 'highlight-text' : ''}
     ${loading ? 'animated-bg animated-bg-text' : ''}
     ${className}`,
-    children
-  })
+    children,
+  });
 };
 
 export default Text;
