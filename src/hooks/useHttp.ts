@@ -1,4 +1,4 @@
-import { useReducer, useCallback, useMemo } from 'react';
+import { useReducer, useCallback } from 'react';
 
 type RequestFunction<T> = (payload: unknown) => Promise<T>;
 
@@ -50,7 +50,7 @@ const httpReducer = <Data>(
   }
 };
 
-function useHttp<ResponseData extends unknown>(
+function useHttp<ResponseData>(
   requestFunction: RequestFunction<ResponseData>
 ) {
   const [httpState, dispatch] = useReducer<typeof httpReducer<ResponseData>>(
