@@ -1,7 +1,7 @@
 import * as S from './styles'
 
 interface TextProps {
-  children: string
+  children: string | number
   fontSize: 'small' | 'medium' | 'large'
   bold?: boolean
 }
