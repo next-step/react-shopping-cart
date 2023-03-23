@@ -1,6 +1,6 @@
 import { Button, CheckBox, Divider, Text } from '@/components/common';
 import CartCard from '@/components/domain/CartCard';
-import { useCartContext } from './CartContext';
+import { useCartContext } from '../Cart/CartContext';
 import { useCheckBox } from '@/components/common/CheckBox';
 
 const CartLeftSection = () => {

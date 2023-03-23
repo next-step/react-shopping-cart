@@ -2,7 +2,7 @@ import { Header } from '@/components/common';
 import useHttp from '@/hooks/useHttp';
 import useOnMounted from '@/hooks/useOnMounted';
 import * as cartApi from '@/api/cart';
-import { useCartContext } from '../CartSection/CartContext';
+import { useCartContext } from './CartContext';
 import { useEffect } from 'react';
 import { CartLeftSection, CartRightSection } from '@/components/domain';
 
