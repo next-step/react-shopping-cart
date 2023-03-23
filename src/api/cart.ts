@@ -4,3 +4,8 @@ export const postAddCart = async (product: Product): Promise<Product> => {
   const data = await request('/carts', HTTP_METHOD.POST({ product }));
   return data;
 };
+
+export const getAllCarts = async (): Promise<Cart[]> => {
+  const data = await request('/carts', HTTP_METHOD.GET());
+  return data;
+};
