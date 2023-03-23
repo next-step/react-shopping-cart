@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 // json-server
 const path = require("path");
 const jsonServer = require("json-server");
@@ -18,11 +19,7 @@ server.use(jsonServer.bodyParser);
 server.post("/products", (req, res) => {
   const { price, name, imageUrl } = req.body;
 
-  if (
-    !Number.isInteger(price) ||
-    typeof name !== "string" ||
-    typeof imageUrl !== "string"
-  ) {
+  if (!Number.isInteger(price) || typeof name !== "string" || typeof imageUrl !== "string") {
     res.sendStatus(400);
   } else {
     db.get("products").push({ id: Date.now(), price, name, imageUrl }).write();
@@ -34,11 +31,7 @@ server.post("/carts", (req, res) => {
   const { product } = req.body;
   const { price, name, imageUrl } = product;
 
-  if (
-    !Number.isInteger(price) ||
-    typeof name !== "string" ||
-    typeof imageUrl !== "string"
-  ) {
+  if (!Number.isInteger(price) || typeof name !== "string" || typeof imageUrl !== "string") {
     res.sendStatus(400);
   } else {
     db.get("carts").push({ id: Date.now(), product }).write();
