@@ -2,6 +2,7 @@ import { createContext, PropsWithChildren, useContext, useState } from 'react';
 
 type CartContext = {
   carts: UserCart[];
+  selectedItems: UserCart[];
   setCarts: (carts: UserCart[]) => void;
   selectCart: (cart: Cart) => void;
   setAllChecked: () => void;
@@ -12,6 +13,7 @@ const CartContext = createContext<CartContext | null>(null);
 
 export const CartContextProvider = ({ children }: PropsWithChildren) => {
   const [cartState, setCartState] = useState<UserCart[]>([]);
+  const selectedItems = cartState.filter(({ checked }) => checked);
 
   const selectCart = (selectedCart: Cart) => {
     setCartState((prev) =>
@@ -30,6 +32,7 @@ export const CartContextProvider = ({ children }: PropsWithChildren) => {
   const value = {
     carts: cartState,
     setCarts: (carts: Cart[]) => setCartState(carts),
+    selectedItems,
     selectCart,
     setAllChecked,
     setAllUnChecked,
