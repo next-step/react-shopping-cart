@@ -67,3 +67,8 @@
   height: 50px;
   padding: 10px;
 }
+
+.selected-page {
+  font-size: 18px;
+  font-weight: bold;
+}

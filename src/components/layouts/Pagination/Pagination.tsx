@@ -1,7 +1,12 @@
 import PageButton from './PageButton'
 
+type Pages = {
+  page: number
+  isSelectedPage: boolean
+}
+
 interface PaginationProps {
-  pages: number[]
+  pages: Pages[]
   changePage: (page: string) => void
 }
 
@@ -9,7 +14,7 @@ const Pagination = ({ pages, changePage }: PaginationProps) => {
   return (
     <div className="pagination">
       {pages.map((page) => (
-        <PageButton key={page} page={page} changePage={changePage} />
+        <PageButton key={page.page} page={page} changePage={changePage} />
       ))}
     </div>
   )

@@ -43,7 +43,9 @@ const useProductList = () => {
     schema: ProductListSchema,
   })
 
-  const pageArray = new Array(productListPayload?.totalPage).fill(null).map((_, index) => index + 1)
+  const pageArray = new Array(productListPayload?.totalPage)
+    .fill(null)
+    .map((_, index) => ({ page: index + 1, isSelectedPage: Number(page) === index + 1 }))
 
   return { productListPayload, isLoading, error, changePage, changePerPage, pageArray }
 }

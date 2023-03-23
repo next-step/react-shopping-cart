@@ -1,6 +1,6 @@
+import { Pagination } from '@/components/layouts'
 import { Product } from '@/pages/ProductList/components'
 import { useProductList } from '@/pages/ProductList/hooks'
-
 const ProductList = () => {
   const { productListPayload, pageArray, changePage } = useProductList()
 
@@ -12,13 +12,7 @@ const ProductList = () => {
         ))}
       </section>
       <section className="pagination-container">
-        <div className="pagination">
-          {pageArray.map((page) => (
-            <button key={page} onClick={() => changePage(String(page))}>
-              {page}
-            </button>
-          ))}
-        </div>
+        <Pagination pages={pageArray} changePage={changePage} />
       </section>
     </>
   )
