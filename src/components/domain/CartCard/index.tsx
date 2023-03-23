@@ -1,23 +1,27 @@
 import { Button, LazyImage, Text } from '@/components/common';
 import CheckBox, { useCheckBox } from '@/components/common/CheckBox';
+import { currency } from '@/utils/filter/currency';
 
 type Props = {
-  cart?: Product;
+  cart: UserCart;
 };
 
 const CartCard = ({ cart }: Props) => {
-  const { checked, toggleCheck } = useCheckBox();
+  const { handleSelect } = useCheckBox(cart.checked);
+  const { product } = cart;
 
   return (
     <div className="cart-container">
       <div className="flex gap-15 mt-10">
-        <CheckBox checked={checked} onClick={toggleCheck} />;
+        <CheckBox checked={cart.checked} onSelect={handleSelect} />
         <LazyImage
           className="w-144 h-144"
-          src="./assets/images/product.png"
-          alt="PET보틀-정사각(420ml)"
+          width={144}
+          height={144}
+          src={product.imageUrl}
+          alt={product.name}
         />
-        <Text className="cart-name">PET보틀-정사각(420ml)</Text>
+        <Text className="cart-name">{product.name}</Text>
       </div>
       <div className="flex-col-center justify-end gap-15">
         <img
@@ -26,13 +30,13 @@ const CartCard = ({ cart }: Props) => {
           alt="삭제"
         />
         <div className="number-input-container">
-          <input type="number" className="number-input" value="1" />
+          <input type="number" className="number-input" defaultValue={1} />
           <div>
             <Button type="number">▲</Button>
             <Button type="number">▼</Button>
           </div>
         </div>
-        <Text className="cart-price">123,456원</Text>
+        <Text className="cart-price">{currency(product.price)}</Text>
       </div>
     </div>
   );
