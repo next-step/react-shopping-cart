@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Cart, Order, OrderList, OrderListDetail, ProductDetail, ProductList } from 'pages';
-import App from '../App';
+import { App } from 'pages/App';
 import { Error } from 'pages/Error';
 
 export const ROUTE_URL = {
