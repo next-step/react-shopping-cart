@@ -1,6 +1,6 @@
 import React from "react";
-import { Meta, Story } from "@storybook/react/types-6-0";
-import Navbar, { NavbarProps } from "./Navbar";
+import { Meta } from "@storybook/react/types-6-0";
+import Navbar from "./Navbar";
 require("../../css/common/index.css");
 
 export default {
@@ -8,6 +8,6 @@ export default {
   component: Navbar,
 } as Meta;
 
-const Template: Story<NavbarProps> = (args) => <Navbar {...args} />;
+const Template = () => <Navbar />;
 
 export const Default = Template.bind({});
