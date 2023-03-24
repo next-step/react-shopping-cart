@@ -12,5 +12,11 @@ export const ProductListSchema = z.object({
   totalPage: z.number(),
 })
 
+export const ProductSchemaWithCheckedAndQuantity = ProductSchema.extend({
+  checked: z.boolean(),
+  quantity: z.number().int().min(0),
+})
+
 export type ProductSchemaInfer = z.infer<typeof ProductSchema>
 export type ProductListSchemaInfer = z.infer<typeof ProductListSchema>
+export type ProductSchemaWithCheckedAndQuantityInfer = z.infer<typeof ProductSchemaWithCheckedAndQuantity>
