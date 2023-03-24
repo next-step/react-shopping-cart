@@ -34,11 +34,49 @@ const useCart = () => {
     )
   }
 
+  const handleCheckedChange = (id: number, checked: boolean) => {
+    setCartList((prev) =>
+      prev.map((cart) => {
+        if (cart.id === id) {
+          return { ...cart, checked: !checked }
+        } else {
+          return cart
+        }
+      }),
+    )
+  }
+
+  const handleAllCheckedChange = (checked: boolean) => {
+    setCartList((prev) =>
+      prev.map((cart) => {
+        if (checked === true) return { ...cart, checked: true }
+        return { ...cart, checked: false }
+      }),
+    )
+  }
+
   const totalCartPrice = cartList.reduce((acc, cur) => {
     return acc + cur.price * cur.quantity
   }, 0)
 
-  return { cartList, isLoading, error, handleQuantityChange, totalCartPrice }
+  const expectedPaymentAmount = cartList.reduce((acc, cur) => {
+    if (cur.checked) {
+      return acc + cur.price * cur.quantity
+    } else {
+      return acc
+    }
+  }, 0)
+
+  return {
+    cartList,
+    isLoading,
+    error,
+    handleQuantityChange,
+    handleCheckedChange,
+    handleAllCheckedChange,
+    totalCartPrice,
+    expectedPaymentAmount,
+  }
 }
 
 export default useCart

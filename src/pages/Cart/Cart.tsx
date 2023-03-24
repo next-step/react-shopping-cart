@@ -4,7 +4,14 @@ import { CartItem } from './components'
 import { useCart } from './hooks'
 
 const Cart = () => {
-  const { cartList, handleQuantityChange, totalCartPrice } = useCart()
+  const {
+    cartList,
+    handleQuantityChange,
+    handleCheckedChange,
+    handleAllCheckedChange,
+    totalCartPrice,
+    expectedPaymentAmount,
+  } = useCart()
 
   return (
     <section className="cart-section">
@@ -13,7 +20,12 @@ const Cart = () => {
         <section className="cart-left-section">
           <div className="flex justify-between items-center">
             <div className="checkbox-container">
-              <input className="checkbox" name="checkbox" type="checkbox" checked={false} />
+              <input
+                className="checkbox"
+                name="checkbox"
+                type="checkbox"
+                onChange={(event) => handleAllCheckedChange(event.target.checked)}
+              />
               <label className="checkbox-label" htmlFor="checkbox">
                 선택해제
               </label>
@@ -23,15 +35,23 @@ const Cart = () => {
           <h3 className="cart-title">든든배송 상품(3개)</h3>
           <hr className="divide-line-gray mt-10" />
           {cartList && cartList.length > 0 ? (
-            cartList?.map((item) => <CartItem key={item.id} item={item} handleQuantityChange={handleQuantityChange} />)
+            cartList?.map((item) => (
+              <CartItem
+                key={item.id}
+                item={item}
+                handleQuantityChange={handleQuantityChange}
+                handleCheckedChange={handleCheckedChange}
+              />
+            ))
           ) : (
             <div className="flex justify-center px-20">장바구니가 비어있습니다.</div>
           )}
           <hr className="divide-line-thin" />
         </section>
       </div>
-      <div className="flex justify-end mt-20 font-size-lg">
+      <div className="flex-col items-end gap-10 mt-20 font-size-lg">
         <div>총 금액: {`${totalCartPrice.toLocaleString()} 원`}</div>
+        <div>결제예상금액: {`${expectedPaymentAmount.toLocaleString()} 원`}</div>
       </div>
     </section>
   )

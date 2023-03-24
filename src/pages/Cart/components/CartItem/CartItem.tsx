@@ -3,13 +3,20 @@ import { ProductSchemaWithCheckedAndQuantityInfer } from '@/schemas'
 interface ItemProps {
   item: ProductSchemaWithCheckedAndQuantityInfer
   handleQuantityChange: (id: number, quantity: number) => void
+  handleCheckedChange: (id: number, checked: boolean) => void
 }
 
-const CartItem = ({ item, handleQuantityChange }: ItemProps) => {
+const CartItem = ({ item, handleQuantityChange, handleCheckedChange }: ItemProps) => {
   return (
     <div className="cart-container mt-10 mb-10">
       <div className="flex gap-15">
-        <input className="checkbox" name="checkbox" type="checkbox" checked={item.checked} />
+        <input
+          className="checkbox"
+          name="checkbox"
+          type="checkbox"
+          checked={item.checked}
+          onChange={() => handleCheckedChange(item.id, item.checked)}
+        />
         <img className="w-144 h-144" src="./assets/images/product.png" alt={item.name} />
         <span className="cart-name">{item.name}</span>
       </div>
