@@ -34,6 +34,10 @@
   align-items: center;
 }
 
+.items-between {
+  align-items: space-between;
+}
+
 .items-start {
   align-items: start;
 }
@@ -185,4 +189,8 @@
 
 .font-size-2xl {
   font-size: 1.75rem;
+}
+
+.text-white {
+  color: white;
 }

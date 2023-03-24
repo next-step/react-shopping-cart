@@ -14,7 +14,7 @@ const useCart = () => {
 
   useEffect(() => {
     if (payload) {
-      const newPayload = payload.map((product) => ({ ...product, checked: false, quantity: 1 }))
+      const newPayload = payload.map((product) => ({ ...product, checked: true, quantity: 1 }))
 
       setCartList(newPayload)
     }
@@ -54,6 +54,9 @@ const useCart = () => {
       }),
     )
   }
+
+  // const deleteAllCart = () => {}
+  // const deleteCartItem = () => {}
 
   const totalCartPrice = cartList.reduce((acc, cur) => {
     return acc + cur.price * cur.quantity

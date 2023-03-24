@@ -1,3 +1,5 @@
+import { DeleteModal } from '@/components/modals'
+import { useModal } from '@/hooks'
 import { ProductSchemaWithCheckedAndQuantityInfer } from '@/schemas'
 
 interface ItemProps {
@@ -7,6 +9,13 @@ interface ItemProps {
 }
 
 const CartItem = ({ item, handleQuantityChange, handleCheckedChange }: ItemProps) => {
+  const { openModal } = useModal()
+
+  const opemDeleteModal = (productName: string) => {
+    openModal({
+      element: <DeleteModal text={`장바구니에서 ${productName} 제품을 삭제하시겠어요?`} />,
+    })
+  }
   return (
     <div className="cart-container mt-10 mb-10">
       <div className="flex gap-15">
@@ -21,9 +30,14 @@ const CartItem = ({ item, handleQuantityChange, handleCheckedChange }: ItemProps
         <span className="cart-name">{item.name}</span>
       </div>
       <div className="flex-col-center justify-end gap-15">
-        <img className="cart-trash-svg" src="./assets/svgs/trash.svg" alt="삭제" />
+        <img
+          className="cart-trash-svg"
+          src="./assets/svgs/trash.svg"
+          alt="삭제"
+          onClick={() => opemDeleteModal(item.name)}
+        />
         <div className="number-input-container">
-          <input type="number" className="number-input" value={item.quantity} />
+          <input type="number" className="number-input" value={item.quantity} readOnly />
           <div>
             <button className="number-input-button" onClick={() => handleQuantityChange(item.id, item.quantity + 1)}>
               ▲

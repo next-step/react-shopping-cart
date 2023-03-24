@@ -1,4 +1,6 @@
 import { SubHeader } from '@/components'
+import { DeleteModal } from '@/components/modals'
+import { useModal } from '@/hooks'
 
 import { CartItem } from './components'
 import { useCart } from './hooks'
@@ -13,6 +15,14 @@ const Cart = () => {
     expectedPaymentAmount,
   } = useCart()
 
+  const { openModal } = useModal()
+
+  const openDeleteModal = () => {
+    openModal({
+      element: <DeleteModal text="선택된 제품을 장바구니에서 삭제하시겠어요?" />,
+    })
+  }
+
   return (
     <section className="cart-section">
       <SubHeader title="장바구니" type="cart" />
@@ -24,13 +34,16 @@ const Cart = () => {
                 className="checkbox"
                 name="checkbox"
                 type="checkbox"
+                defaultChecked={true}
                 onChange={(event) => handleAllCheckedChange(event.target.checked)}
               />
               <label className="checkbox-label" htmlFor="checkbox">
                 선택해제
               </label>
             </div>
-            <button className="delete-button">상품삭제</button>
+            <button className="delete-button" onClick={openDeleteModal}>
+              상품삭제
+            </button>
           </div>
           <h3 className="cart-title">든든배송 상품(3개)</h3>
           <hr className="divide-line-gray mt-10" />
