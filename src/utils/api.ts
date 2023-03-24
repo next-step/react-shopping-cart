@@ -2,11 +2,11 @@ async function request<TResponse>(
   path: string,
   config?: RequestInit
 ): Promise<TResponse> {
-  let url = process.env.REACT_APP_API_SERVER;
+  const isLocalEnv = process.env.REACT_APP_ENV === "local";
+  const url = isLocalEnv
+    ? process.env.REACT_APP_API_SERVER
+    : window.location.origin;
 
-  if (process.env.REACT_APP_ENV === "local") {
-    url = window.location.origin;
-  }
   const response = await fetch(`${url}${path}`, config);
   return await response.json();
 }
