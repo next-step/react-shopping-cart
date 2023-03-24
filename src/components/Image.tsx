@@ -1,16 +1,22 @@
-import { Img, Size } from 'types/common';
+import { Img } from 'types/common';
 
 interface ImageProps {
+  id: number;
   img: Img;
-  size: Size;
 }
 
-const Image = ({ img, size }: ImageProps) => {
+const Image = ({ id, img }: ImageProps) => {
   const { src, alt } = img;
-  const { width, height } = size;
 
   return (
-    <img src={src} alt={alt} width={width} height={height} loading="lazy"></img>
+    <img
+      data-id={id}
+      src={src}
+      alt={alt}
+      width={'100%'}
+      height={'100%'}
+      loading="lazy"
+    ></img>
   );
 };
 
