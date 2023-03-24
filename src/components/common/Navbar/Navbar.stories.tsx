@@ -1,7 +1,7 @@
 import React from "react";
 import { Meta } from "@storybook/react/types-6-0";
 import Navbar from "./Navbar";
-require("../../css/common/index.css");
+require("../../../css/common/index.css");
 
 export default {
   title: "Components/Navbar",
