@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { ROUTE } from "../constants/route";
 
 interface ComponentProps {
-  children: JSX.Element | JSX.Element[];
+  children: React.ReactNode;
 }
 
 function Layout({ children }: ComponentProps) {
