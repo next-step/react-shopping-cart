@@ -1,4 +1,10 @@
-const CartList = () => (
+import { ICartTypes } from '../../@interface';
+
+interface ICartListProp {
+  data: Array<ICartTypes>;
+}
+
+const CartList = ({ data }: ICartListProp) => (
   <main className="cart-section">
     <header className="flex-col-center mt-20">
       <h2 className="cart-section__title">장바구니</h2>
@@ -16,65 +22,31 @@ const CartList = () => (
           </div>
           <button className="delete-button">상품삭제</button>
         </div>
-        <h3 className="cart-title">든든배송 상품(3개)</h3>
+        <h3 className="cart-title">든든배송 상품({data.length}개)</h3>
         <hr className="divide-line-gray mt-10" />
-        <div className="cart-container">
-          <div className="flex gap-15 mt-10">
-            <input className="checkbox" name="checkbox" type="checkbox" />
-            <img className="w-144 h-144" src="./assets/images/product.png" alt="PET보틀-정사각(420ml)" />
-            <span className="cart-name">PET보틀-정사각(420ml)</span>
-          </div>
-          <div className="flex-col-center justify-end gap-15">
-            <img className="cart-trash-svg" src="./assets/svgs/trash.svg" alt="삭제" />
-            <div className="number-input-container">
-              <input type="number" className="number-input" />
-              <div>
-                <button className="number-input-button">▲</button>
-                <button className="number-input-button">▼</button>
+        {data.map(({ product }: ICartTypes) => (
+          <>
+            <div className="cart-container">
+              <div className="flex gap-15 mt-10">
+                <input className="checkbox" name="checkbox" type="checkbox" />
+                <img className="w-144 h-144" src={product.imageUrl} alt={product.name} />
+                <span className="cart-name">{product.name}</span>
+              </div>
+              <div className="flex-col-center justify-end gap-15">
+                <img className="cart-trash-svg" src="./assets/svgs/trash.svg" alt="삭제" />
+                <div className="number-input-container">
+                  <input type="number" className="number-input" />
+                  <div>
+                    <button className="number-input-button">▲</button>
+                    <button className="number-input-button">▼</button>
+                  </div>
+                </div>
+                <span className="cart-price">{product.price}원</span>
               </div>
             </div>
-            <span className="cart-price">123,456원</span>
-          </div>
-        </div>
-        <hr className="divide-line-thin mt-10" />
-        <div className="cart-container">
-          <div className="flex gap-15 mt-10">
-            <input className="checkbox" name="checkbox" type="checkbox" />
-            <img className="w-144 h-144" src="./assets/images/product.png" alt="PET보틀-정사각(420ml)" />
-            <span className="cart-name">PET보틀-정사각(420ml)</span>
-          </div>
-          <div className="flex-col-center justify-end gap-15">
-            <img className="cart-trash-svg" src="./assets/svgs/trash.svg" alt="삭제" />
-            <div className="number-input-container">
-              <input type="number" className="number-input" />
-              <div>
-                <button className="number-input-button">▲</button>
-                <button className="number-input-button">▼</button>
-              </div>
-            </div>
-            <span className="cart-price">123,456원</span>
-          </div>
-        </div>
-        <hr className="divide-line-thin mt-10" />
-        <div className="cart-container">
-          <div className="flex gap-15 mt-10">
-            <input className="checkbox" name="checkbox" type="checkbox" />
-            <img className="w-144 h-144" src="./assets/images/product.png" alt="PET보틀-정사각(420ml)" />
-            <span className="cart-name">PET보틀-정사각(420ml)</span>
-          </div>
-          <div className="flex-col-center justify-end gap-15">
-            <img className="cart-trash-svg" src="./assets/svgs/trash.svg" alt="삭제" />
-            <div className="number-input-container">
-              <input type="number" className="number-input" />
-              <div>
-                <button className="number-input-button">▲</button>
-                <button className="number-input-button">▼</button>
-              </div>
-            </div>
-            <span className="cart-price">123,456원</span>
-          </div>
-        </div>
-        <hr className="divide-line-thin mt-10" />
+            <hr className="divide-line-thin mt-10" />
+          </>
+        ))}
       </section>
       <section className="cart-right-section">
         <div className="cart-right-section__top">

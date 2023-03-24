@@ -9,15 +9,15 @@ export interface IProductTypes {
 
 export interface IOrderTypes {
   id: number;
-  name: string;
-  price: number;
-  imageUrl: string;
-  quantity: number;
+  orderDetails: Array<IOrderDetailTypes>;
 }
 
+export interface IOrderDetailTypes extends IProductTypes {
+  quantity: number;
+}
 export interface ICartTypes {
   id: number;
-  product: Array<IProductTypes>;
+  product: IProductTypes;
 }
 
 export type CustomMouseEvent<T = HTMLElement> = MouseEvent<T>;
