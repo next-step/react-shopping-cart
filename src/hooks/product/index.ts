@@ -1,13 +1,15 @@
 import { useQuery } from 'react-query';
-import { atom, useRecoilValue, useRecoilValueLoadable } from 'recoil';
-import { getProducts } from 'services/product';
+import { atom, useRecoilValueLoadable } from 'recoil';
+import { getProduct, getProducts } from 'services/product';
 import { ProductItem } from 'types/type';
 
 const PRODUCTS_QUERY_KEY = 'products';
+const PRODUCT_DETAIL_QUERY_KEY = 'productDetail';
 
-export const productListState = atom({
-  key: 'productListState',
-  default: [] as ProductItem[],
+
+export const productState = atom({
+  key: PRODUCT_DETAIL_QUERY_KEY,
+  default: {} as ProductItem,
 });
 
 
@@ -21,11 +23,12 @@ export function useProductList() {
   return { data, isLoading, isError };
 }
 
-export function useSelectedProduct(productId: number): ProductItem | undefined {
-  const productList = useRecoilValue(productListState);
-  const selectedProductLoadable = useRecoilValueLoadable(productListState);
+export function useSelectedProduct(productId: number) {
+  const { data, isLoading, isError } = useQuery<ProductItem>(PRODUCT_DETAIL_QUERY_KEY, () => getProduct(productId));
+  const selectedProductLoadable = useRecoilValueLoadable(productState);
 
   if (selectedProductLoadable.state === 'hasValue') {
-    return productList.find(product => product.id === productId);
+    return { data, isLoading, isError };
   }
+  return { data: selectedProductLoadable.contents, isLoading, isError };
 }

@@ -3,21 +3,18 @@ import { ProductContainer } from "../style";
 import Item from "./item";
 import GlobalHeader from "components/header";
 import Nav from "components/nav";
-import { productListState, useProductList } from "hooks/product";
-import { useRecoilState } from "recoil";
+import { useProductList } from "hooks/product";
 
-import { useEffect } from "react";
-
+import { useEffect, useState } from "react";
 
 const ProductListPageContent = () => {
-
   const { data, isLoading, isError } = useProductList();
-  const [products, setProducts] = useRecoilState(productListState);
+  const [products, setProducts] = useState<ProductItem[]>([]);
 
   useEffect(() => {
     if (isError) {
       console.log("Error fetching product list", isError);
-      
+
       alert("상품 목록을 불러오는데 실패했습니다.");
       return;
     }
