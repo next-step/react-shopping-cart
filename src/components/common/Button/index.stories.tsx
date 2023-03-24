@@ -25,18 +25,18 @@ Default.args = {
 export const Small = Template.bind({});
 Small.args = {
   size: 'small',
-  type: 'primary',
+  theme: 'primary',
   children: 'Button',
 };
 
 export const Outline = Template.bind({});
 Outline.args = {
-  type: 'outline',
+  theme: 'outline',
   children: 'Button',
 };
 
 export const Number = Template.bind({});
 Number.args = {
-  type: 'number',
+  theme: 'number',
   children: 'Button',
 };

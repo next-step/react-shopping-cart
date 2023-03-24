@@ -50,9 +50,7 @@ const httpReducer = <Data>(
   }
 };
 
-function useHttp<ResponseData>(
-  requestFunction: RequestFunction<ResponseData>
-) {
+function useHttp<ResponseData>(requestFunction: RequestFunction<ResponseData>) {
   const [httpState, dispatch] = useReducer<typeof httpReducer<ResponseData>>(
     httpReducer,
     initialState

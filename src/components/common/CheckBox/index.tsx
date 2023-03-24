@@ -16,9 +16,7 @@ export const useCheckBox = (initialState = false) => {
 
 const CheckBox = ({ checked, onSelect, label }: PropsWithChildren<Props>) => {
   return (
-    <div className="checkbox-container"
-      onClick={onSelect}
-    >
+    <div className="checkbox-container" onClick={onSelect}>
       <label className="checkbox-label" htmlFor="checkbox">
         <input
           className="checkbox"
