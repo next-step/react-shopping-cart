@@ -2,7 +2,7 @@ import React from "react";
 import { Meta } from "@storybook/react/types-6-0";
 import { Story } from "@storybook/react";
 import Button, { ButtonProps } from "./Button";
-require("../../css/common/index.css");
+require("../../../css/common/index.css");
 
 export default {
   title: "Components/Button",
