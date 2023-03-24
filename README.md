@@ -15,6 +15,58 @@
 ✔️ Router를 활용해 여러 페이지 전환을 고려합니다.  
 ✔️ [CSS Template](https://github.com/next-step/shopping-cart-css)
 
+## 📝 Requirements
+
+## STEP1
+
+### 필수 요구사항
+
+- [x] MSW를 활용한 API mocking
+- [x] Endpoint만 변경하면 언제든 Real API를 바라볼 수 있다고 가정하고 상상합니다.
+  - [x] Real API 없이 로컬에서만 동작하는 상태로 리뷰 받는 것이 기본 원칙입니다.
+
+### GNB
+
+- [x] 로고를 누르면 상품목록 페이지로 이동한다.
+- [x] 장바구니 버튼을 누르면 장바구니 페이지로 이동한다.
+- [x] 주문목록 버튼을 누르면 주문목록 페이지로 이동한다.
+
+### 상품목록
+
+- [x] 상품들은 n x 4 레이아웃으로 보여진다.
+- [x] 상품들에는 사진, 이름, 금액이 보여진다.
+- [x] 장바구니 버튼을 클릭하면 (\*\*)
+
+### 선택 요구사항 (심화)
+
+### 상품상세
+
+- [ ] 페이지에는 상품 사진, 이름, 금액 정보가 보여진다.
+- [ ] 장바구니 버튼을 클릭하면 장바구니 페이지로 이동한다.
+- [ ] 장바구니 버튼을 클릭하면 해당 상품이 장바구니에 담긴다.
+
+### 주문 상세
+
+- [ ] 주문 정보가 보여진다.
+- [ ] 장바구니 버튼을 클릭하면, 해당 상품이 장바구니에 담기고 장바구니 이동 선택 모달이 보여진다.
+  - [ ] 장바구니 이동 버튼을 누르면 장바구니 페이지로 이동한다.
+
+### UX/UI
+
+- [ ] 반응형 레이아웃을 구현한다.
+- [ ] 사용성 개선
+  - [ ] 사용자를 위한 로딩 환경 개선
+  - [ ] 상품이 없을 때와 같은 다양한 Edge Case 대응
+  - [ ] 반응형 레이아웃 구현
+  - [ ] 별도의 모바일 레이아웃 추가 제공
+- [ ] 매출 증대 및 마케팅을 위해 별도의 기능 구현 (별도의 API 없음)
+  - [ ] 브라우저 새로고침시 모든 상태 유지
+  - [ ] 흐름을 고려한 맞춤 큐레이팅 상품 추천 기능
+  - [ ] 구매 유도를 위한 상품 찜 페이지
+- [ ] 매출 증대 및 마케팅을 위한 별도의 도구 추가
+  - [ ] Google Analytics
+  - [ ] Google Tag Manager
+
 <br />
 
 ### 🕋 Server Guide
@@ -37,20 +89,20 @@
 
 ```json
 {
-	"response": [
-		{
-			"id": 1,
-			"price": 10000,
-			"name": "치킨",
-			"imageUrl": "http://example.com/chicken.jpg"
-		},
-		{
-			"id": 2,
-			"price": 20000,
-			"name": "피자",
-			"imageUrl": "http://example.com/pizza.jpg"
-		}
-	]
+  "response": [
+    {
+      "id": 1,
+      "price": 10000,
+      "name": "치킨",
+      "imageUrl": "http://example.com/chicken.jpg"
+    },
+    {
+      "id": 2,
+      "price": 20000,
+      "name": "피자",
+      "imageUrl": "http://example.com/pizza.jpg"
+    }
+  ]
 }
 ```
 
@@ -62,13 +114,13 @@
 
 ```json
 {
-	"requestBody": {
-		"products": {
-			"price": 10000,
-			"name": "치킨",
-			"imageUrl": "http://example.com/chicken.jpg"
-		}
-	}
+  "requestBody": {
+    "products": {
+      "price": 10000,
+      "name": "치킨",
+      "imageUrl": "http://example.com/chicken.jpg"
+    }
+  }
 }
 ```
 
@@ -80,12 +132,12 @@
 
 ```json
 {
-	"response": {
-		"id": 1,
-		"price": 10000,
-		"name": "치킨",
-		"imageUrl": "http://example.com/chicken.jpg"
-	}
+  "response": {
+    "id": 1,
+    "price": 10000,
+    "name": "치킨",
+    "imageUrl": "http://example.com/chicken.jpg"
+  }
 }
 ```
 
@@ -97,7 +149,7 @@
 
 ```json
 {
-	"response": {}
+  "response": {}
 }
 ```
 
@@ -140,14 +192,14 @@
 
 ```json
 {
-	"requestBody": {
-		"product": {
-			"id": 10,
-			"name": "tes11111t",
-			"price": 1234,
-			"imageUrl": "test.com"
-		}
-	}
+  "requestBody": {
+    "product": {
+      "id": 10,
+      "name": "tes11111t",
+      "price": 1234,
+      "imageUrl": "test.com"
+    }
+  }
 }
 ```
 
@@ -159,7 +211,7 @@
 
 ```json
 {
-	"response": {}
+  "response": {}
 }
 ```
 
@@ -173,24 +225,24 @@
 
 ```json
 {
-	"requestBody": {
-		"orderDetails": [
-			{
-				"id": 1,
-				"price": 10000,
-				"name": "치킨",
-				"imageUrl": "http://example.com/chicken.jpg",
-				"quantity": 5
-			},
-			{
-				"id": 2,
-				"price": 20000,
-				"name": "피자",
-				"imageUrl": "http://example.com/pizza.jpg",
-				"quantity": 3
-			}
-		]
-	}
+  "requestBody": {
+    "orderDetails": [
+      {
+        "id": 1,
+        "price": 10000,
+        "name": "치킨",
+        "imageUrl": "http://example.com/chicken.jpg",
+        "quantity": 5
+      },
+      {
+        "id": 2,
+        "price": 20000,
+        "name": "피자",
+        "imageUrl": "http://example.com/pizza.jpg",
+        "quantity": 3
+      }
+    ]
+  }
 }
 ```
 
@@ -202,46 +254,46 @@
 
 ```json
 {
-	"response": [
-		{
-			"id": 1,
-			"orderDetails": [
-				{
-					"id": 1,
-					"price": 10000,
-					"name": "치킨",
-					"imageUrl": "http://example.com/chicken.jpg",
-					"quantity": 5
-				},
-				{
-					"id": 2,
-					"price": 20000,
-					"name": "피자",
-					"imageUrl": "http://example.com/pizza.jpg",
-					"quantity": 3
-				}
-			]
-		},
-		{
-			"id": 2,
-			"orderDetails": [
-				{
-					"id": 1,
-					"price": 10000,
-					"name": "치킨",
-					"imageUrl": "http://example.com/chicken.jpg",
-					"quantity": 5
-				},
-				{
-					"id": 2,
-					"price": 20000,
-					"name": "피자",
-					"imageUrl": "http://example.com/pizza.jpg",
-					"quantity": 3
-				}
-			]
-		}
-	]
+  "response": [
+    {
+      "id": 1,
+      "orderDetails": [
+        {
+          "id": 1,
+          "price": 10000,
+          "name": "치킨",
+          "imageUrl": "http://example.com/chicken.jpg",
+          "quantity": 5
+        },
+        {
+          "id": 2,
+          "price": 20000,
+          "name": "피자",
+          "imageUrl": "http://example.com/pizza.jpg",
+          "quantity": 3
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "orderDetails": [
+        {
+          "id": 1,
+          "price": 10000,
+          "name": "치킨",
+          "imageUrl": "http://example.com/chicken.jpg",
+          "quantity": 5
+        },
+        {
+          "id": 2,
+          "price": 20000,
+          "name": "피자",
+          "imageUrl": "http://example.com/pizza.jpg",
+          "quantity": 3
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -253,24 +305,24 @@
 
 ```json
 {
-	"response": {
-		"id": 1,
-		"orderDetails": [
-			{
-				"id": 1,
-				"price": 10000,
-				"name": "치킨",
-				"imageUrl": "http://example.com/chicken.jpg",
-				"quantity": 5
-			},
-			{
-				"id": 2,
-				"price": 20000,
-				"name": "피자",
-				"imageUrl": "http://example.com/pizza.jpg",
-				"quantity": 3
-			}
-		]
-	}
+  "response": {
+    "id": 1,
+    "orderDetails": [
+      {
+        "id": 1,
+        "price": 10000,
+        "name": "치킨",
+        "imageUrl": "http://example.com/chicken.jpg",
+        "quantity": 5
+      },
+      {
+        "id": 2,
+        "price": 20000,
+        "name": "피자",
+        "imageUrl": "http://example.com/pizza.jpg",
+        "quantity": 3
+      }
+    ]
+  }
 }
 ```

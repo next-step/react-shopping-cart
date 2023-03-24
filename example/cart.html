@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <title>React Clean Code Shopping Cart</title>
+  </head>
+  <body>
+    <div class="root">
+      <header class="flex-col-center">
+        <h1 class="global-nav-title">장바구니</h1>
+        <br />
+        <div class="global-nav-button-box">
+          <a class="global-nav-button" href="./index.html">홈으로</a>
+          <a class="global-nav-button" href="./list.html">상품 목록</a>
+          <a class="global-nav-button" href="./detail.html">상품 상세</a>
+          <a class="global-nav-button" href="./cart.html">장바구니</a>
+          <a class="global-nav-button" href="./order.html">주문/결제</a>
+          <a class="global-nav-button" href="./orderList.html">주문 목록</a>
+          <a class="global-nav-button" href="./orderDetail.html">주문 상세</a>
+        </div>
+      </header>
+
+      <nav class="nav flex justify-around">
+        <div class="flex-center">
+          <h1 class="nav-title">CLEAN CODE SHOP</h1>
+        </div>
+        <div class="flex gap-15">
+          <button class="nav-button">장바구니</button>
+          <button class="nav-button">주문목록</button>
+        </div>
+      </nav>
+
+      <section class="cart-section">
+        <header class="flex-col-center mt-20">
+          <h2 class="cart-section__title">장바구니</h2>
+          <hr class="divide-line mt-20" />
+        </header>
+
+        <div class="flex">
+          <section class="cart-left-section">
+            <div class="flex justify-between items-center">
+              <div class="checkbox-container">
+                <input
+                  class="checkbox"
+                  name="checkbox"
+                  type="checkbox"
+                  checked="true"
+                />
+                <label class="checkbox-label" for="checkbox">선택해제</label>
+              </div>
+              <button class="delete-button">상품삭제</button>
+            </div>
+            <h3 class="cart-title">든든배송 상품(3개)</h3>
+            <hr class="divide-line-gray mt-10" />
+            <div class="cart-container">
+              <div class="flex gap-15 mt-10">
+                <input
+                  class="checkbox"
+                  name="checkbox"
+                  type="checkbox"
+                  checked="true"
+                />
+                <img
+                  class="w-144 h-144"
+                  src="./assets/images/product.png"
+                  alt="PET보틀-정사각(420ml)"
+                />
+                <span class="cart-name">PET보틀-정사각(420ml)</span>
+              </div>
+              <div class="flex-col-center justify-end gap-15">
+                <img
+                  class="cart-trash-svg"
+                  src="./assets/svgs/trash.svg"
+                  alt="삭제"
+                />
+                <div class="number-input-container">
+                  <input type="number" class="number-input" value="1" />
+                  <div>
+                    <button class="number-input-button">▲</button>
+                    <button class="number-input-button">▼</button>
+                  </div>
+                </div>
+                <span class="cart-price">123,456원</span>
+              </div>
+            </div>
+            <hr class="divide-line-thin mt-10" />
+            <div class="cart-container">
+              <div class="flex gap-15 mt-10">
+                <input
+                  class="checkbox"
+                  name="checkbox"
+                  type="checkbox"
+                  checked="true"
+                />
+                <img
+                  class="w-144 h-144"
+                  src="./assets/images/product.png"
+                  alt="PET보틀-정사각(420ml)"
+                />
+                <span class="cart-name">PET보틀-정사각(420ml)</span>
+              </div>
+              <div class="flex-col-center justify-end gap-15">
+                <img
+                  class="cart-trash-svg"
+                  src="./assets/svgs/trash.svg"
+                  alt="삭제"
+                />
+                <div class="number-input-container">
+                  <input type="number" class="number-input" value="1" />
+                  <div>
+                    <button class="number-input-button">▲</button>
+                    <button class="number-input-button">▼</button>
+                  </div>
+                </div>
+                <span class="cart-price">123,456원</span>
+              </div>
+            </div>
+            <hr class="divide-line-thin mt-10" />
+            <div class="cart-container">
+              <div class="flex gap-15 mt-10">
+                <input
+                  class="checkbox"
+                  name="checkbox"
+                  type="checkbox"
+                  checked="true"
+                />
+                <img
+                  class="w-144 h-144"
+                  src="./assets/images/product.png"
+                  alt="PET보틀-정사각(420ml)"
+                />
+                <span class="cart-name">PET보틀-정사각(420ml)</span>
+              </div>
+              <div class="flex-col-center justify-end gap-15">
+                <img
+                  class="cart-trash-svg"
+                  src="./assets/svgs/trash.svg"
+                  alt="삭제"
+                />
+                <div class="number-input-container">
+                  <input type="number" class="number-input" value="1" />
+                  <div>
+                    <button class="number-input-button">▲</button>
+                    <button class="number-input-button">▼</button>
+                  </div>
+                </div>
+                <span class="cart-price">123,456원</span>
+              </div>
+            </div>
+            <hr class="divide-line-thin mt-10" />
+          </section>
+          <section class="cart-right-section">
+            <div class="cart-right-section__top">
+              <h3 class="cart-title">결제예상금액</h3>
+            </div>
+            <hr class="divide-line-thin" />
+            <div class="cart-right-section__bottom">
+              <div class="flex justify-between p-20 mt-20">
+                <span class="highlight-text">결제예상금액</span>
+                <span class="highlight-text">21,800원</span>
+              </div>
+              <div class="flex-center mt-30 mx-10">
+                <button class="primary-button flex-center">
+                  주문하기(3개)
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
