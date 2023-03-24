@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import LeftSection from "../components/cart/LeftSection";
+import LeftSection from "../components/cart/ProductController";
 import { Cart as CartType } from "../types/cart";
 import { api } from "../utils/api";
 
