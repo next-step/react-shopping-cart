@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { ComponentPropsWithoutRef, PropsWithChildren } from 'react';
 import './index.module.css';
 
 export const ButtonType = {
@@ -7,20 +7,20 @@ export const ButtonType = {
   number: 'number-input-button',
 };
 
-type Props = {
+interface Props extends ComponentPropsWithoutRef<'button'> {
   size?: 'small' | '';
-  type?: keyof typeof ButtonType;
+  theme?: keyof typeof ButtonType;
   className?: string;
-};
+}
 
 const Button = ({
   size = '',
-  type = 'primary',
+  theme = 'primary',
   children,
   className,
   ...props
 }: PropsWithChildren<Props>) => {
-  const classType = ButtonType[type] + `${size && '-' + size}`;
+  const classType = ButtonType[theme] + `${size && '-' + size}`;
   return (
     <button
       {...props}

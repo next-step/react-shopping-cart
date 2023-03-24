@@ -20,7 +20,7 @@ const CartLeftSection = () => {
           checked={checkedAll}
           onSelect={handleSelect}
         />
-        <Button type="outline">상품삭제</Button>
+        <Button theme="outline">상품삭제</Button>
       </div>
       <Text as="h3" className="cart-title">
         든든배송 상품{carts.length}개

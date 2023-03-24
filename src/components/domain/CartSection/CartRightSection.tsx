@@ -1,6 +1,15 @@
 import { Button, Divider, Text } from '@/components/common';
+import { currency } from '@/utils/filter/currency';
+import { useCartContext } from '../Cart/CartContext';
 
 const CartRightSection = () => {
+  const { selectedItems } = useCartContext();
+  const selectedCounts = selectedItems.length;
+  const selectedTotalPrice = selectedItems.reduce(
+    (accPrice, { product, quantity }) => accPrice + product.price * quantity,
+    0
+  );
+
   return (
     <section className="cart-right-section">
       <div className="cart-right-section__top">
@@ -12,10 +21,10 @@ const CartRightSection = () => {
       <div className="cart-right-section__bottom">
         <div className="flex justify-between p-20 mt-20">
           <Text highlight>결제예상금액</Text>
-          <Text highlight>21,800원</Text>
+          <Text highlight>{currency(selectedTotalPrice)}</Text>
         </div>
         <div className="flex-center mt-30 mx-10">
-          <Button>주문하기(3개)</Button>
+          <Button>주문하기({selectedCounts}개)</Button>
         </div>
       </div>
     </section>
