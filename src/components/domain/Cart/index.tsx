@@ -13,7 +13,9 @@ const Cart = () => {
 
   useEffect(() => {
     if (cartData.length > 0) {
-      setCarts(cartData.map((cart) => ({ ...cart, checked: false })));
+      setCarts(
+        cartData.map((cart) => ({ ...cart, checked: false, quantity: 1 }))
+      );
     }
   }, [cartData]);
 

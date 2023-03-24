@@ -5,6 +5,8 @@ type CartContext = {
   selectedItems: UserCart[];
   setCarts: (carts: UserCart[]) => void;
   selectCart: (cart: Cart) => void;
+  increaseCartItemQty: (cart: Cart) => void;
+  decreaseCartItemQty: (cart: Cart) => void;
   setAllChecked: () => void;
   setAllUnChecked: () => void;
 };
@@ -24,6 +26,26 @@ export const CartContextProvider = ({ children }: PropsWithChildren) => {
       })
     );
   };
+
+  const increaseCartItemQty = (selectedCart: Cart) => {
+    setCartState((prev) =>
+      prev.map((cart) => {
+        return cart.id === selectedCart.id
+          ? { ...cart, quantity: cart.quantity + 1 }
+          : cart;
+      })
+    );
+  };
+  const decreaseCartItemQty = (selectedCart: Cart) => {
+    setCartState((prev) =>
+      prev.map((cart) => {
+        return cart.id === selectedCart.id
+          ? { ...cart, quantity: cart.quantity === 1 ? 1 : cart.quantity - 1 }
+          : cart;
+      })
+    );
+  };
+
   const setAllChecked = () =>
     setCartState((prev) => prev.map((cart) => ({ ...cart, checked: true })));
   const setAllUnChecked = () =>
@@ -31,11 +53,13 @@ export const CartContextProvider = ({ children }: PropsWithChildren) => {
 
   const value = {
     carts: cartState,
-    setCarts: (carts: Cart[]) => setCartState(carts),
+    setCarts: (carts: UserCart[]) => setCartState(carts),
     selectedItems,
     selectCart,
     setAllChecked,
     setAllUnChecked,
+    increaseCartItemQty,
+    decreaseCartItemQty,
   };
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };

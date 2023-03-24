@@ -1,19 +1,21 @@
 import { Button, LazyImage, Text } from '@/components/common';
-import CheckBox, { useCheckBox } from '@/components/common/CheckBox';
+import CheckBox from '@/components/common/CheckBox';
 import { currency } from '@/utils/filter/currency';
+import { useCartContext } from '../Cart/CartContext';
 
 type Props = {
   cart: UserCart;
 };
 
 const CartCard = ({ cart }: Props) => {
-  const { handleSelect } = useCheckBox(cart.checked);
+  const { selectCart, increaseCartItemQty, decreaseCartItemQty } =
+    useCartContext();
   const { product } = cart;
 
   return (
     <div className="cart-container">
       <div className="flex gap-15 mt-10">
-        <CheckBox checked={cart.checked} onSelect={handleSelect} />
+        <CheckBox checked={cart.checked} onSelect={() => selectCart(cart)} />
         <LazyImage
           className="w-144 h-144"
           width={144}
@@ -30,10 +32,19 @@ const CartCard = ({ cart }: Props) => {
           alt="삭제"
         />
         <div className="number-input-container">
-          <input type="number" className="number-input" defaultValue={1} />
+          <input
+            type="number"
+            className="number-input"
+            value={cart.quantity}
+            readOnly
+          />
           <div>
-            <Button type="number">▲</Button>
-            <Button type="number">▼</Button>
+            <Button theme="number" onClick={() => increaseCartItemQty(cart)}>
+              ▲
+            </Button>
+            <Button theme="number" onClick={() => decreaseCartItemQty(cart)}>
+              ▼
+            </Button>
           </div>
         </div>
         <Text className="cart-price">{currency(product.price)}</Text>
