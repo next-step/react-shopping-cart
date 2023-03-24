@@ -12,4 +12,5 @@ declare interface Cart {
 
 interface UserCart extends Cart {
   checked?: boolean;
+  quantity: number;
 }
