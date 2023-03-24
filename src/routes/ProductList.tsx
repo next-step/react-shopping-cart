@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Product from "../components/list/Product";
+import Product from "../components/product/ProductList";
 import { ROUTE } from "../constants/route";
 import { Product as ProductType } from "../types/product";
 import { api } from "../utils/api";

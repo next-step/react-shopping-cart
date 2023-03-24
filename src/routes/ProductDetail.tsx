@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useHistory, useLocation, useParams } from "react-router";
 import styled from "styled-components";
-import Product from "../components/detail/Product";
+import Product from "../components/product/ProductDetail";
 import { ROUTE } from "../constants/route";
 import { Cart } from "../types/cart";
 import { Product as ProductType } from "../types/product";
