@@ -23,6 +23,7 @@ const CheckBox = ({ checked, onSelect, label }: PropsWithChildren<Props>) => {
           name="checkbox"
           type="checkbox"
           checked={checked}
+          readOnly
         />
         <span>{label && label}</span>
       </label>

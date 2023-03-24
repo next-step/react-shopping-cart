@@ -31,7 +31,7 @@ export const CartContextProvider = ({ children }: PropsWithChildren) => {
     setCartState((prev) =>
       prev.map((cart) => {
         return cart.id === selectedCart.id
-          ? { ...cart, quantity: cart.quantity + 1 }
+          ? { ...cart, quantity: cart.quantity == CART_MAX_QUANTITY ? CART_MAX_QUANTITY : cart.quantity + 1, checked: true }
           : cart;
       })
     );
@@ -40,7 +40,7 @@ export const CartContextProvider = ({ children }: PropsWithChildren) => {
     setCartState((prev) =>
       prev.map((cart) => {
         return cart.id === selectedCart.id
-          ? { ...cart, quantity: cart.quantity === 1 ? 1 : cart.quantity - 1 }
+          ? { ...cart, quantity: cart.quantity == CART_MIN_QUANTITY ? CART_MIN_QUANTITY : cart.quantity - 1, checked: true }
           : cart;
       })
     );
@@ -71,3 +71,7 @@ export const useCartContext = () => {
   }
   return context;
 };
+
+
+const CART_MAX_QUANTITY = 20;
+const CART_MIN_QUANTITY = 1;
