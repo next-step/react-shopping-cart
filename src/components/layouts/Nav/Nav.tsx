@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom'
 const Nav = () => {
   return (
     <nav className="nav flex justify-around">
-      <div className="flex-center">
+      <div className="flex-center align-center">
         <h1 className="nav-title">
-          <Link to="/">
-            <button>CLEAN CODE SHOP</button>
-          </Link>
+          <Link to="/">CLEAN SHOP</Link>
         </h1>
       </div>
       <div className="flex gap-15">

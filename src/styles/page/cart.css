@@ -1,5 +1,5 @@
 .cart-section {
-  padding: 24px 300px;
+  padding: 24px 100px;
   margin-bottom: 50px;
 }
 
@@ -14,8 +14,8 @@
 }
 
 .cart-left-section {
-  width: 60%;
-  margin-top: 50px;
+  width: 100%;
+  margin-top: 20px;
 }
 
 .cart-right-section {

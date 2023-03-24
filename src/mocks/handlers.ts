@@ -65,6 +65,22 @@ const createProduct = (schema: z.ZodTypeAny) =>
     }
   })
 
+const createCart = (schema: z.ZodTypeAny) =>
+  rest.post(`${API.CARTS}`, async (req: RestRequest<{ cart: ProductSchemaInfer }>, res, ctx) => {
+    const { cart } = await req.json()
+    try {
+      const validatedCart = schema.parse(cart)
+      carts.push(validatedCart)
+      return res(ctx.status(201))
+    } catch (error) {
+      if (error instanceof Error) {
+        return res(ctx.status(400), ctx.json({ message: error.message }))
+      } else {
+        return res(ctx.status(400), ctx.json({ message: String(error) }))
+      }
+    }
+  })
+
 const getCarts = (carts: ProductSchemaInfer[], schema: z.ZodTypeAny) =>
   rest.get(`${API.CARTS}`, (_: RestRequest, res, ctx) => {
     try {
@@ -104,6 +120,7 @@ export const handlers = [
   getProduct(products, ProductSchema),
   getProducts(products, ProductSchema),
   createProduct(ProductSchema),
+  createCart(ProductSchema),
   getCarts(carts, ProductSchema),
   getCart(carts, ProductSchema),
 ]

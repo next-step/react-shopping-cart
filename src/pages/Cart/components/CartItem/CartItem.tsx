@@ -6,8 +6,8 @@ interface ItemProps {
 
 const CartItem = ({ item }: ItemProps) => {
   return (
-    <div className="cart-container">
-      <div className="flex gap-15 mt-10">
+    <div className="cart-container mt-10 mb-10">
+      <div className="flex gap-15">
         <input className="checkbox" name="checkbox" type="checkbox" checked={true} />
         <img className="w-144 h-144" src="./assets/images/product.png" alt={item.name} />
         <span className="cart-name">{item.name}</span>
