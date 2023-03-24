@@ -4,17 +4,27 @@ import Image from './Image';
 
 type StyledProps = {
   direction?: FlexDirection;
+  imgContainerSize: Size;
 };
 
 interface CardProps extends StyledProps {
-  imgInfo: Img & Size;
+  id: number;
+  imgInfo: Img;
   children: React.ReactElement;
 }
 
-const Card = ({ imgInfo, direction, children }: CardProps) => {
+const Card = ({
+  id,
+  imgInfo,
+  imgContainerSize,
+  direction,
+  children,
+}: CardProps) => {
   return (
     <CardContainer direction={direction}>
-      <Image img={imgInfo} size={imgInfo} />
+      <ImageContainer imgContainerSize={imgContainerSize}>
+        <Image img={imgInfo} id={id} />
+      </ImageContainer>
       {children}
     </CardContainer>
   );
@@ -22,10 +32,17 @@ const Card = ({ imgInfo, direction, children }: CardProps) => {
 
 export default Card;
 
-const CardContainer = styled.div<StyledProps>(
+const CardContainer = styled.div<Omit<StyledProps, 'imgContainerSize'>>(
   ({ direction = 'column' }) => `
     display: flex;
     flex-direction: ${direction};
     ${direction === 'column' && 'align-items: center'}
   `
+);
+
+const ImageContainer = styled.div<Omit<StyledProps, 'direction'>>(
+  ({ imgContainerSize }) => `
+  width: ${imgContainerSize.width};
+  height: ${imgContainerSize.height};
+`
 );
