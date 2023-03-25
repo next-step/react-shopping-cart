@@ -3,7 +3,7 @@ import { InputHTMLAttributes } from 'react';
 
 type CheckboxProps = InputHTMLAttributes<HTMLInputElement>;
 
-function Checkbox(props: CheckboxProps) {
+function Checkbox({ checked, ...props }: CheckboxProps) {
   return (
     <input
       className={cls(
@@ -13,6 +13,7 @@ function Checkbox(props: CheckboxProps) {
         'after:w-full after:h-full after:text-[0.75rem] after:flex after:justify-center after:items-center',
       )}
       type="checkbox"
+      checked={checked}
       {...props}
     />
   );
