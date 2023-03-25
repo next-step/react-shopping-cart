@@ -1,17 +1,20 @@
 import { createContext, PropsWithChildren, useContext, useState } from 'react';
 
-type CartContext = {
+type CartState = {
   carts: UserCart[];
   selectedItems: UserCart[];
-  setCarts: (carts: UserCart[]) => void;
-  selectCart: (cart: Cart) => void;
-  increaseCartItemQty: (cart: Cart) => void;
-  decreaseCartItemQty: (cart: Cart) => void;
+}
+type CartAction = {
+  increaseCartItemQty: (item: Cart) => void;
+  decreaseCartItemQty: (item: Cart) => void;
   setAllChecked: () => void;
   setAllUnChecked: () => void;
-};
+  setCarts: (items: UserCart[]) => void;
+  selectCart: (item: Cart) => void;
+}
 
-const CartContext = createContext<CartContext | null>(null);
+
+const CartContext = createContext<CartState & CartAction | null>(null);
 
 export const CartContextProvider = ({ children }: PropsWithChildren) => {
   const [cartState, setCartState] = useState<UserCart[]>([]);
@@ -31,7 +34,14 @@ export const CartContextProvider = ({ children }: PropsWithChildren) => {
     setCartState((prev) =>
       prev.map((cart) => {
         return cart.id === selectedCart.id
-          ? { ...cart, quantity: cart.quantity == CART_MAX_QUANTITY ? CART_MAX_QUANTITY : cart.quantity + 1, checked: true }
+          ? {
+              ...cart,
+              quantity:
+                cart.quantity == CART_MAX_QUANTITY
+                  ? CART_MAX_QUANTITY
+                  : cart.quantity + 1,
+              checked: true,
+            }
           : cart;
       })
     );
@@ -40,7 +50,14 @@ export const CartContextProvider = ({ children }: PropsWithChildren) => {
     setCartState((prev) =>
       prev.map((cart) => {
         return cart.id === selectedCart.id
-          ? { ...cart, quantity: cart.quantity == CART_MIN_QUANTITY ? CART_MIN_QUANTITY : cart.quantity - 1, checked: true }
+          ? {
+              ...cart,
+              quantity:
+                cart.quantity == CART_MIN_QUANTITY
+                  ? CART_MIN_QUANTITY
+                  : cart.quantity - 1,
+              checked: true,
+            }
           : cart;
       })
     );
@@ -71,7 +88,6 @@ export const useCartContext = () => {
   }
   return context;
 };
-
 
 const CART_MAX_QUANTITY = 20;
 const CART_MIN_QUANTITY = 1;
