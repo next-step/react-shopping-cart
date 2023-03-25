@@ -27,6 +27,7 @@ const common = {
     width: 100%;
     height: 100%;
     margin: 105px auto 30px auto;
+    max-width: 1000px;
   `,
   ellipsis: `
     overflow:hidden;
