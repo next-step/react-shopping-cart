@@ -1,0 +1,39 @@
+@import "./common/index.css";
+@import "./page/index.css";
+
+html body {
+  width: 100vw;
+  height: 100vh;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+a {
+  cursor: pointer;
+}
+
+label {
+  user-select: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.divide-line {
+  width: 100%;
+  border: 2px solid black;
+}
+
+.divide-line-gray {
+  width: 100%;
+  border: 2px solid #aaaaaa;
+}
+
+.divide-line-thin {
+  width: 100%;
+  border: 1px solid #aaaaaa;
+}
