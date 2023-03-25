@@ -1,6 +1,6 @@
 import { useEffect, useReducer } from 'react';
 
-import { useCacheActions } from 'contexts/CacheProvider/hooks';
+import { getCachedData, isOverCacheTime, setCachedData } from 'storages/memory';
 
 interface State<T> {
   data?: T;
@@ -21,7 +21,6 @@ interface UseFetchProps {
 }
 
 function useFetch<T = unknown>({ url, options, cacheTime, key }: UseFetchProps): State<T> {
-  const { isOverCacheTime, getCachedData, setCachedData } = useCacheActions();
   const cacheKey = key ?? url;
 
   const initialState: State<T> = {
