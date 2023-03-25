@@ -34,7 +34,7 @@ const NavTitle = styled.span`
 const StyledCart = styled(Cart)`
   width: 40px;
   height: 100%;
-  margin: 0 10px;
+  margin: -10px 10px 0 10px;
   & path {
     fill: ${(props) => props.theme.colors.white};
   }
