@@ -4,6 +4,12 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import GlobalStyle from './styles'
 
+import { worker } from './products/mocks/worker'
+
+if (process.env.NODE_ENV === 'development') {
+  worker.start()
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
