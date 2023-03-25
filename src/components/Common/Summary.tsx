@@ -12,7 +12,7 @@ function OrderSummary({ title, totalPrice, transparent, renderButton }: PropsWit
   return (
     <div className={cls('h-full w-full flex flex-col justify-evenly gap-16', bgColor)}>
       <div className="flex flex-col">
-        <div className="text-2xl text-slate-500">{title}</div>
+        <div className="text-2xl text-black">{title}</div>
       </div>
       <div className="flex justify-between">
         <div className="font-bold text-lg">총 결제금액</div>
