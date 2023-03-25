@@ -14,7 +14,6 @@ function useFetch<T>(endpoint: string, deps: unknown[] = []) {
     axios
       .get<ResponseReturn<T>>(endpoint)
       .then(({ data }) => {
-        console.log(data);
         setState(data);
       })
       .catch(error => setError(error))
