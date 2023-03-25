@@ -1,6 +1,7 @@
 import { PageTitleLayout } from '@/components';
 import { ProductRow } from '@/components/Common';
 import Button from '@/components/Common/Button';
+import Checkbox from '@/components/Common/Checkbox';
 import NumberInput from '@/components/Common/NumerInput';
 
 function CartPage() {
@@ -23,6 +24,7 @@ function CartPage() {
       </Button>
       <Button variant="danger">Button</Button>
       <Button variant="info">Button</Button>
+      <Checkbox />
     </PageTitleLayout>
   );
 }
