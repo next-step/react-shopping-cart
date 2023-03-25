@@ -35,6 +35,8 @@ const StyledButton = styled.button<StyledProps>(
     height: 100%;
     background-color: ${backgroundColor};
     color: ${color};
+    padding: 12px;
+    border-radius: 5px;
 
     :hover {
       opacity: 0.7;

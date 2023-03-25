@@ -44,5 +44,6 @@ const ImageContainer = styled.div<Omit<StyledProps, 'direction'>>(
   ({ imgContainerSize }) => `
   width: ${imgContainerSize.width};
   height: ${imgContainerSize.height};
+  cursor: pointer;
 `
 );
