@@ -22,7 +22,7 @@ const S = {
 
 interface SectionProductListProps {
   products: ProductType[];
-  navigateToDetailedPage: (num: number | undefined) => void;
+  navigateToDetailedPage: (num?: number) => void;
   addCart: (item: ProductType) => void;
 }
 
@@ -37,9 +37,7 @@ const SectionProductList = ({
         {products?.map((item) => (
           <ProductItem
             key={item.id}
-            imageUrl={item.imageUrl}
-            name={item.name}
-            price={item.price}
+            {...item}
             onClickProductImage={() => navigateToDetailedPage(item.id)}
             onClickAddCart={() => addCart(item)}
           />
