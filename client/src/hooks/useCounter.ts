@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 function useCounter(defaultCount?: number) {
   const [count, setCount] = useState(defaultCount ?? 0);
 
-  const plus = () => {
+  const plus = useCallback(() => {
     setCount((prevState) => prevState + 1);
-  };
+  }, []);
 
-  const minus = () => {
+  const minus = useCallback(() => {
     setCount((prevState) => prevState - 1);
-  };
+  }, []);
 
   return {
     count,
