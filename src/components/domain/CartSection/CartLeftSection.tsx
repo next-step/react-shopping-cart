@@ -4,7 +4,8 @@ import { useCartContext } from '../Cart/CartContext';
 import { useCheckBox } from '@/components/common/CheckBox';
 
 const CartLeftSection = () => {
-  const { carts, setAllChecked, setAllUnChecked } = useCartContext();
+  const { carts, setAllChecked, setAllUnChecked, removeSelectedItems } =
+    useCartContext();
   const { checked: checkedAll, handleSelect: handleSelectAll } = useCheckBox();
 
   const handleSelect = () => {
@@ -20,7 +21,9 @@ const CartLeftSection = () => {
           checked={checkedAll}
           onSelect={handleSelect}
         />
-        <Button theme="outline">상품삭제</Button>
+        <Button theme="outline" onClick={removeSelectedItems}>
+          상품삭제
+        </Button>
       </div>
       <Text as="h3" className="cart-title">
         든든배송 상품{carts.length}개

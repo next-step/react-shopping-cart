@@ -8,7 +8,7 @@ type Props = {
 };
 
 const CartCard = ({ cart }: Props) => {
-  const { selectCart, increaseCartItemQty, decreaseCartItemQty } =
+  const { selectCart, increaseCartItemQty, decreaseCartItemQty, removeItem } =
     useCartContext();
   const { product } = cart;
 
@@ -27,6 +27,7 @@ const CartCard = ({ cart }: Props) => {
       </div>
       <div className="flex-col-center justify-end gap-15">
         <img
+          onClick={() => removeItem(cart)}
           className="cart-trash-svg"
           src="./assets/svgs/trash.svg"
           alt="삭제"

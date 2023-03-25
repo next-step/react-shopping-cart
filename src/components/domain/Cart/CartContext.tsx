@@ -3,24 +3,26 @@ import { createContext, PropsWithChildren, useContext, useState } from 'react';
 type CartState = {
   carts: UserCart[];
   selectedItems: UserCart[];
-}
+};
 type CartAction = {
-  increaseCartItemQty: (item: Cart) => void;
-  decreaseCartItemQty: (item: Cart) => void;
+  increaseCartItemQty: (selectedCart: UserCart) => void;
+  decreaseCartItemQty: (selectedCart: UserCart) => void;
   setAllChecked: () => void;
   setAllUnChecked: () => void;
-  setCarts: (items: UserCart[]) => void;
-  selectCart: (item: Cart) => void;
-}
+  setCarts: (selectedCarts: UserCart[]) => void;
+  selectCart: (selectedCart: UserCart) => void;
+  removeItem: (selectedCart: UserCart) => void;
+  removeSelectedItems: () => void;
+};
+type CartContext = CartState & CartAction;
 
-
-const CartContext = createContext<CartState & CartAction | null>(null);
+const CartContext = createContext<CartContext | null>(null);
 
 export const CartContextProvider = ({ children }: PropsWithChildren) => {
   const [cartState, setCartState] = useState<UserCart[]>([]);
   const selectedItems = cartState.filter(({ checked }) => checked);
 
-  const selectCart = (selectedCart: Cart) => {
+  const selectCart = (selectedCart: UserCart) => {
     setCartState((prev) =>
       prev.map((cart) => {
         return cart.id === selectedCart.id
@@ -30,7 +32,7 @@ export const CartContextProvider = ({ children }: PropsWithChildren) => {
     );
   };
 
-  const increaseCartItemQty = (selectedCart: Cart) => {
+  const increaseCartItemQty = (selectedCart: UserCart) => {
     setCartState((prev) =>
       prev.map((cart) => {
         return cart.id === selectedCart.id
@@ -46,7 +48,7 @@ export const CartContextProvider = ({ children }: PropsWithChildren) => {
       })
     );
   };
-  const decreaseCartItemQty = (selectedCart: Cart) => {
+  const decreaseCartItemQty = (selectedCart: UserCart) => {
     setCartState((prev) =>
       prev.map((cart) => {
         return cart.id === selectedCart.id
@@ -60,6 +62,17 @@ export const CartContextProvider = ({ children }: PropsWithChildren) => {
             }
           : cart;
       })
+    );
+  };
+
+  const removeItem = (selectedCart: UserCart) => {
+    setCartState((prev) => prev.filter((cart) => selectedCart.id !== cart.id));
+  };
+
+  const removeSelectedItems = () => {
+    const selectedIds = selectedItems.map((cart) => cart.id);
+    setCartState((prev) =>
+      prev.filter((cart) => !selectedIds.includes(cart.id))
     );
   };
 
@@ -77,6 +90,8 @@ export const CartContextProvider = ({ children }: PropsWithChildren) => {
     setAllUnChecked,
     increaseCartItemQty,
     decreaseCartItemQty,
+    removeItem,
+    removeSelectedItems,
   };
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
