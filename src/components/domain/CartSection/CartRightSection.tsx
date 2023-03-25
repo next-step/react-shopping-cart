@@ -5,6 +5,7 @@ import { useCartContext } from '../Cart/CartContext';
 const CartRightSection = () => {
   const { selectedItems } = useCartContext();
   const selectedCounts = selectedItems.length;
+  const hasItem = Boolean(selectedCounts);
   const selectedTotalPrice = selectedItems.reduce(
     (accPrice, { product, quantity }) => accPrice + product.price * quantity,
     0
@@ -24,7 +25,7 @@ const CartRightSection = () => {
           <Text highlight>{currency(selectedTotalPrice)}</Text>
         </div>
         <div className="flex-center mt-30 mx-10">
-          <Button>주문하기({selectedCounts}개)</Button>
+          <Button disabled={!hasItem}>주문하기({selectedCounts}개)</Button>
         </div>
       </div>
     </section>

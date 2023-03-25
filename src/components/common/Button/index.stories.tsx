@@ -40,3 +40,10 @@ Number.args = {
   theme: 'number',
   children: 'Button',
 };
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  theme: 'primary',
+  children: 'Button',
+  disabled: true,
+};

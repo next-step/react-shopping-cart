@@ -6,6 +6,10 @@
   padding: 20px;
 }
 
+.primary-button:disabled {
+  background: #888;
+}
+
 .primary-button-small {
   background: #2ac1bc;
   font-size: 20px;
