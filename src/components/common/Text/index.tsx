@@ -1,5 +1,4 @@
-import { createElement } from 'react';
-import { PropsWithChildren } from 'react';
+import { createElement, PropsWithChildren } from 'react';
 
 type Props = {
   as?: string;

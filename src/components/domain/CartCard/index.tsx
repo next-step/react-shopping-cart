@@ -1,3 +1,4 @@
+import { TrashIcon } from '@/assets/svgs';
 import { Button, LazyImage, Text } from '@/components/common';
 import CheckBox from '@/components/common/CheckBox';
 import { currency } from '@/utils/filter/currency';
@@ -26,12 +27,9 @@ const CartCard = ({ cart }: Props) => {
         <Text className="cart-name">{product.name}</Text>
       </div>
       <div className="flex-col-center justify-end gap-15">
-        <img
-          onClick={() => removeItem(cart)}
-          className="cart-trash-svg"
-          src="./assets/svgs/trash.svg"
-          alt="삭제"
-        />
+        <button className="cart-trash-svg" onClick={() => removeItem(cart)}>
+          <TrashIcon />
+        </button>
         <div className="number-input-container">
           <input
             type="number"

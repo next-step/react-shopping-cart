@@ -33,7 +33,9 @@ export const CartContextProvider = ({ children }: PropsWithChildren) => {
   };
 
   const increaseCartItemQty = (selectedCart: UserCart) => {
-    const selectedCartIndex = cartState.findIndex((cart) => cart.id == selectedCart.id)
+    const selectedCartIndex = cartState.findIndex(
+      (cart) => cart.id == selectedCart.id
+    );
     const nextCarItems = structuredClone(cartState);
     nextCarItems[selectedCartIndex] = {
       ...selectedCart,
@@ -42,12 +44,14 @@ export const CartContextProvider = ({ children }: PropsWithChildren) => {
           ? CART_MAX_QUANTITY
           : selectedCart.quantity + 1,
       checked: true,
-    }
+    };
     setCartState(nextCarItems);
   };
 
   const decreaseCartItemQty = (selectedCart: UserCart) => {
-    const selectedCartIndex = cartState.findIndex((cart) => cart.id == selectedCart.id)
+    const selectedCartIndex = cartState.findIndex(
+      (cart) => cart.id == selectedCart.id
+    );
     const nextCarItems = structuredClone(cartState);
     nextCarItems[selectedCartIndex] = {
       ...selectedCart,
@@ -56,7 +60,7 @@ export const CartContextProvider = ({ children }: PropsWithChildren) => {
           ? CART_MIN_QUANTITY
           : selectedCart.quantity - 1,
       checked: true,
-    }
+    };
     setCartState(nextCarItems);
   };
 
