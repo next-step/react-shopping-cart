@@ -1,38 +1,6 @@
 import { cls } from '@/utils';
 import { InputHTMLAttributes } from 'react';
 
-// .checkbox {
-//   appearance: none;
-//   border: 1px solid #2ac1bc;
-//   border-radius: 2px;
-//   width: 1.75rem;
-//   height: 1.75rem;
-//   cursor: pointer;
-// }
-
-// .checkbox:focus {
-//   outline: none;
-// }
-
-// .checkbox:checked {
-//   background-color: #2ac1bc;
-// }
-
-// .checkbox:after {
-//   content: "✔";
-//   width: 100%;
-//   height: 100%;
-//   font-size: 0.75rem;
-//   color: white;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
-
-// .checkbox-label {
-//   padding-left: 7px;
-// }
-
 type CheckboxProps = InputHTMLAttributes<HTMLInputElement>;
 
 function Checkbox(props: CheckboxProps) {
