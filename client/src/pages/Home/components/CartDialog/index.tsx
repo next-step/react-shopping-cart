@@ -6,13 +6,13 @@ import { useCounter, useMutation } from 'hooks';
 
 import { colors } from 'constants/colors';
 import { API } from 'constants/api';
-import { IProduct } from 'types/product';
-import { ICart } from 'types/cart';
+import { Product } from 'types/product';
+import { Cart } from 'types/cart';
 
 const dialogRootEl = document.getElementById('dialog-root');
 
 interface CartDialogProps {
-  product: IProduct;
+  product: Product;
   closeDialog: () => void;
 }
 
@@ -21,7 +21,7 @@ function CartDialog({ product, closeDialog }: CartDialogProps) {
   const { count, plus, minus } = useCounter(1);
   const totalPrice = price * count;
 
-  const { mutate: addCart, isLoading } = useMutation<ICart[], Omit<ICart, 'id'>>({
+  const { mutate: addCart, isLoading } = useMutation<Cart[], Omit<Cart, 'id'>>({
     url: API.CART,
     options: { method: 'POST' },
     onSuccess: () => {

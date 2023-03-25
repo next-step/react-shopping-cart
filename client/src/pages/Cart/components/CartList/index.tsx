@@ -4,13 +4,13 @@ import { Button, Checkbox } from 'components';
 import { useFetch } from 'hooks';
 
 import { API } from 'constants/api';
-import { ICart } from 'types/cart';
+import { Cart } from 'types/cart';
 
 import CartItem from '../CartItem';
 import Skeleton from './Skeleton';
 
 function CartList() {
-  const { data: carts = [], isLoading } = useFetch<ICart[]>({ url: API.CARTS, cacheTime: 0 });
+  const { data: carts = [], isLoading } = useFetch<Cart[]>({ url: API.CARTS, cacheTime: 0 });
 
   if (isLoading) {
     return <Skeleton />;

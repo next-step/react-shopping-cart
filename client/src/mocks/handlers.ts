@@ -1,21 +1,21 @@
 import { rest } from 'msw';
 
-import { ICart } from 'types/cart';
-import { IProduct } from 'types/product';
+import { Cart } from 'types/cart';
+import { Product } from 'types/product';
 import { API } from 'constants/api';
 
 import { carts, products } from './data';
 
-const getProducts = rest.get<IProduct[]>(API.PRODUCTS, (_, res, ctx) => {
+const getProducts = rest.get<Product[]>(API.PRODUCTS, (_, res, ctx) => {
   return res(ctx.status(200), ctx.delay(1000), ctx.json(products));
 });
 
-const getCarts = rest.get<ICart[]>(API.CARTS, (_, res, ctx) => {
+const getCarts = rest.get<Cart[]>(API.CARTS, (_, res, ctx) => {
   return res(ctx.status(200), ctx.delay(1000), ctx.json(carts));
 });
 
-const addCart = rest.post<ICart[]>(API.CART, async (req, res, ctx) => {
-  const cartWithoutId = await req.json<Omit<ICart, 'id'>>();
+const addCart = rest.post<Cart[]>(API.CART, async (req, res, ctx) => {
+  const cartWithoutId = await req.json<Omit<Cart, 'id'>>();
 
   const existedCart = carts.find((cart) => cart.product.id === cartWithoutId.product.id);
 

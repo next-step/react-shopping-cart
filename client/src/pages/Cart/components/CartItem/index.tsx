@@ -1,13 +1,13 @@
 import { Button, Checkbox, Counter } from 'components';
 import { useCounter } from 'hooks';
 
-import { ICart } from 'types/cart';
+import { Cart } from 'types/cart';
 import { TrashSVG } from 'assets/svgs';
 import { css, cx } from '@emotion/css';
 import { colors } from 'constants/colors';
 
 interface CartItemProps {
-  cart: ICart;
+  cart: Cart;
 }
 
 function CartItem({ cart }: CartItemProps) {

@@ -2,12 +2,12 @@ import { useIsOpen } from 'hooks';
 import { Button } from 'components';
 
 import { CartSVG } from 'assets/svgs';
-import { IProduct } from 'types/product';
+import { Product } from 'types/product';
 
 import CartDialog from '../CartDialog';
 
 interface ProductProps {
-  product: IProduct;
+  product: Product;
 }
 
 function ProductItem({ product }: ProductProps) {

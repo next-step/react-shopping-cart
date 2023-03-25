@@ -3,11 +3,11 @@ import { useFetch } from 'hooks';
 import Skeleton from './Skeleton';
 import ProductItem from '../ProductItem';
 
-import { IProduct } from 'types/product';
+import { Product } from 'types/product';
 import { API } from 'constants/api';
 
 function ProductList() {
-  const { data: products = [], isLoading } = useFetch<IProduct[]>({ url: API.PRODUCTS });
+  const { data: products = [], isLoading } = useFetch<Product[]>({ url: API.PRODUCTS });
 
   if (isLoading) {
     return <Skeleton />;
