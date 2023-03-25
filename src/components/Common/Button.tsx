@@ -21,14 +21,16 @@ const buttonVariantMap: Record<ButtonVariant, string> = {
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size: ButtonSize;
   variant: ButtonVariant;
+  isFullWidth?: boolean;
 }
 
-function Button({ children, variant, size, ...props }: PropsWithChildren<ButtonProps>) {
+function Button({ children, variant, size, isFullWidth, ...props }: PropsWithChildren<ButtonProps>) {
   const buttonSize = buttonSizeMap[size];
   const buttonVariant = buttonVariantMap[variant];
+  const widthFull = isFullWidth ? 'w-full' : '';
 
   return (
-    <button className={cls(buttonSize, buttonVariant, 'font-bold py-2 px-4 rounded-md ')} {...props}>
+    <button className={cls(buttonSize, buttonVariant, widthFull, 'font-semibold py-2 px-4 rounded-md')} {...props}>
       {children}
     </button>
   );

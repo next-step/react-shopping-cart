@@ -10,7 +10,7 @@ function PageTitleLayout({ title, children }: PropsWithChildren<PageTitleLayoutP
       <div className="flex justify-center mt-10 my-5 pb-5 border-b-2 border-black">
         <Heading variant="h2">{title}</Heading>
       </div>
-      {children}
+      <div>{children}</div>
     </div>
   );
 }

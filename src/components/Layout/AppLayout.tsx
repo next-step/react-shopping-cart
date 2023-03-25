@@ -4,7 +4,7 @@ interface AppLayoutProps {
   children: ReactNode;
 }
 function AppLayout({ children }: AppLayoutProps) {
-  return <div className="overflow-scroll">{children}</div>;
+  return <div>{children}</div>;
 }
 
 export default AppLayout;
