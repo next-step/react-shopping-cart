@@ -3,6 +3,7 @@ import z from 'zod'
 
 import { API } from '@/config'
 import { ProductSchema, ProductSchemaInfer } from '@/schemas'
+import { Product } from '@/types'
 
 import { products, carts } from './data'
 
@@ -116,6 +117,58 @@ const getCart = (carts: ProductSchemaInfer[], schema: z.ZodTypeAny) =>
     }
   })
 
+const deleteCartItem = (schema: z.ZodTypeAny) =>
+  rest.delete(`${API.CARTS}/:id`, (req, res, ctx) => {
+    const { id } = req.params
+    const cartIndex = carts.findIndex((cart) => cart.id === Number(id))
+
+    if (cartIndex !== -1) {
+      const cartItem = carts[cartIndex]
+
+      try {
+        const validatedCartItem = schema.parse(cartItem)
+        carts.splice(cartIndex, 1)
+        return res(ctx.status(200), ctx.json(validatedCartItem))
+      } catch (error) {
+        if (error instanceof Error) {
+          return res(ctx.status(400), ctx.json({ message: error.message }))
+        } else {
+          return res(ctx.status(400), ctx.json({ message: String(error) }))
+        }
+      }
+    } else {
+      return res(ctx.status(404))
+    }
+  })
+
+const deleteCartItems = (schema: z.ZodTypeAny) =>
+  rest.delete(`${API.CARTS}`, async (req: RestRequest<{ ids: number[] }>, res, ctx) => {
+    const { ids } = await req.json()
+
+    console.log('ids', ids)
+
+    try {
+      const validatedCartItems = ids.map((id: number) => {
+        const cartItem = carts.find((cart) => cart.id === id)
+        if (!cartItem) throw new Error(`Cart item with id ${id} not found`)
+        return schema.parse(cartItem)
+      })
+
+      validatedCartItems.forEach((cartItem: Product) => {
+        const cartIndex = carts.findIndex((cart) => cart.id === cartItem.id)
+        carts.splice(cartIndex, 1)
+      })
+
+      return res(ctx.status(200), ctx.json(validatedCartItems))
+    } catch (error) {
+      if (error instanceof Error) {
+        return res(ctx.status(400), ctx.json({ message: error.message }))
+      } else {
+        return res(ctx.status(400), ctx.json({ message: String(error) }))
+      }
+    }
+  })
+
 export const handlers = [
   getProduct(products, ProductSchema),
   getProducts(products, ProductSchema),
@@ -123,4 +176,6 @@ export const handlers = [
   createCart(ProductSchema),
   getCarts(carts, ProductSchema),
   getCart(carts, ProductSchema),
+  deleteCartItem(ProductSchema),
+  deleteCartItems(ProductSchema),
 ]

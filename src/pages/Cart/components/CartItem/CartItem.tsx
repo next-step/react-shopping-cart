@@ -1,21 +1,34 @@
 import { DeleteModal } from '@/components/modals'
-import { useModal } from '@/hooks'
+import { API } from '@/config'
+import { useModal, useMutation } from '@/hooks'
 import { ProductSchemaWithCheckedAndQuantityInfer } from '@/schemas'
 
 interface ItemProps {
   item: ProductSchemaWithCheckedAndQuantityInfer
   handleQuantityChange: (id: number, quantity: number) => void
   handleCheckedChange: (id: number, checked: boolean) => void
+  updateCartList: (id: number) => void
 }
 
-const CartItem = ({ item, handleQuantityChange, handleCheckedChange }: ItemProps) => {
-  const { openModal } = useModal()
+const CartItem = ({ item, handleQuantityChange, handleCheckedChange, updateCartList }: ItemProps) => {
+  const { openModal, closeModal } = useModal()
 
-  const opemDeleteModal = (productName: string) => {
+  const cartItemDeleteMutation = useMutation(`${API.CARTS}/${item.id}`, 'DELETE')
+
+  const deleteCartItem = async () => {
+    await cartItemDeleteMutation.mutate()
+
+    updateCartList(item.id)
+
+    closeModal({ element: <DeleteModal /> })
+  }
+
+  const openDeleteModal = (productName: string) => {
     openModal({
-      element: <DeleteModal text={`장바구니에서 ${productName} 제품을 삭제하시겠어요?`} />,
+      element: <DeleteModal onDelete={deleteCartItem} text={`장바구니에서 ${productName} 제품을 삭제하시겠어요?`} />,
     })
   }
+
   return (
     <div className="cart-container mt-10 mb-10">
       <div className="flex gap-15">
@@ -34,7 +47,7 @@ const CartItem = ({ item, handleQuantityChange, handleCheckedChange }: ItemProps
           className="cart-trash-svg"
           src="./assets/svgs/trash.svg"
           alt="삭제"
-          onClick={() => opemDeleteModal(item.name)}
+          onClick={() => openDeleteModal(item.name)}
         />
         <div className="number-input-container">
           <input type="number" className="number-input" value={item.quantity} readOnly />

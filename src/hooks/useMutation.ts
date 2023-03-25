@@ -11,7 +11,7 @@ type UseMutationResult<TData, TVariables> = {
 
 function useMutation<TData, TVariables>(
   url: string,
-  method: 'POST' | 'PUT' | 'DELETE' = 'POST',
+  method: 'POST' | 'PUT' | 'DELETE',
 ): UseMutationResult<TData, TVariables> {
   const [data, setData] = useState<TData | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -20,6 +20,8 @@ function useMutation<TData, TVariables>(
   const mutate = async (variables?: TVariables): Promise<TData | null> => {
     setIsLoading(true)
     setError(null)
+
+    console.log(url, method, variables)
 
     try {
       const response = await asyncRequest(url, {

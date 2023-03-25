@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { z } from 'zod'
 
+import { DeleteModal } from '@/components/modals'
 import { API } from '@/config'
-import { useFetch } from '@/hooks'
+import { useModal, useMutation, useFetch } from '@/hooks'
 import { ProductSchema, ProductSchemaInfer, ProductSchemaWithCheckedAndQuantityInfer } from '@/schemas'
 
 const useCart = () => {
@@ -11,6 +12,37 @@ const useCart = () => {
   })
 
   const [cartList, setCartList] = useState<ProductSchemaWithCheckedAndQuantityInfer[]>([])
+
+  const deleteModalMutation = useMutation(`${API.CARTS}`, 'DELETE')
+
+  const { openModal, closeModal } = useModal()
+
+  const deleteSelectedCartItems = async () => {
+    const selectedCartItemIds = cartList.filter((item) => item.checked).map((item) => item.id)
+
+    if (selectedCartItemIds.length === 0) {
+      alert('삭제할 상품을 선택해주세요.')
+      return
+    }
+
+    await deleteModalMutation.mutate({ ids: selectedCartItemIds })
+
+    const unCheckedCartList = cartList.filter((item) => !item.checked)
+    setCartList(unCheckedCartList)
+
+    closeModal({ element: <DeleteModal /> })
+  }
+
+  const updateCartListAfterDeletion = async (id: number) => {
+    const unCheckedCartList = cartList.filter((item) => item.id !== id)
+    setCartList(unCheckedCartList)
+  }
+
+  const openDeleteModal = () => {
+    openModal({
+      element: <DeleteModal onDelete={deleteSelectedCartItems} text="선택된 제품을 장바구니에서 삭제하시겠어요?" />,
+    })
+  }
 
   useEffect(() => {
     if (payload) {
@@ -55,9 +87,6 @@ const useCart = () => {
     )
   }
 
-  // const deleteAllCart = () => {}
-  // const deleteCartItem = () => {}
-
   const totalCartPrice = cartList.reduce((acc, cur) => {
     return acc + cur.price * cur.quantity
   }, 0)
@@ -79,6 +108,8 @@ const useCart = () => {
     handleAllCheckedChange,
     totalCartPrice,
     expectedPaymentAmount,
+    openDeleteModal,
+    updateCartListAfterDeletion,
   }
 }
 

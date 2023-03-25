@@ -3,7 +3,6 @@ import { useEffect, RefObject } from 'react'
 const useOutsideClick = (ref: RefObject<HTMLElement>, closeModal: () => void) => {
   useEffect(() => {
     const onClick = (e: Event) => {
-      console.log(ref.current, e.target)
       if (ref.current && !ref.current.contains(e.target as HTMLElement)) {
         closeModal()
       }
