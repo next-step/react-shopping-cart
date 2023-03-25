@@ -1,20 +1,20 @@
 import styled from 'styled-components';
 import { ReactComponent as Cart } from 'assets/cart.svg';
+import FlexContainer from 'components/FlexContainer';
 
-const FlexContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const FlexContainerColumn = styled(FlexContainer)`
-  flex-direction: column;
+const StyledFlexContainer = styled(FlexContainer)`
+  padding: 10px;
+  width: 100%;
 `;
 
 const StyledCart = styled(Cart)`
   width: 30px;
   height: 100%;
   margin: 0 10px;
+  cursor: pointer;
+  &:hover {
+    opacity: 80%;
+  }
 `;
 
-export { FlexContainer, FlexContainerColumn, StyledCart };
+export { StyledFlexContainer, StyledCart };

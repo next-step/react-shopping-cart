@@ -1,4 +1,6 @@
 import Card from 'components/Card';
+import FlexContainer from 'components/FlexContainer';
+import Title from 'components/Title';
 import { useMemo } from 'react';
 import { Product } from 'types/products';
 import * as StyledVerticalProductCard from './VerticalProductCard.styled';
@@ -15,16 +17,16 @@ const VerticalProductCard = ({ product }: VerticalProductCardProps) => {
   return (
     <Card
       imgInfo={img}
-      imgContainerSize={{ width: '200px', height: '200px' }}
+      imgContainerSize={{ width: '100%', height: '100%' }}
       id={id}
     >
-      <StyledVerticalProductCard.FlexContainer>
-        <StyledVerticalProductCard.FlexContainerColumn>
-          <h5 data-id={id}>{name}</h5>
-          <p data-id={id}> {price}</p>
-        </StyledVerticalProductCard.FlexContainerColumn>
+      <StyledVerticalProductCard.StyledFlexContainer justifyContent="space-between">
+        <FlexContainer direction="column">
+          <Title data-id={id}>{name}</Title>
+          <p data-id={id}>{price}원</p>
+        </FlexContainer>
         <StyledVerticalProductCard.StyledCart />
-      </StyledVerticalProductCard.FlexContainer>
+      </StyledVerticalProductCard.StyledFlexContainer>
     </Card>
   );
 };
