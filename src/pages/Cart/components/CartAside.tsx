@@ -3,9 +3,9 @@ import OrderSummary from '@/components/Common/Summary';
 
 function CartAside() {
   return (
-    <div className="border-[1px] border-gray-200 py-6 px-4 my-20 rounded-md">
+    <div className="border-[1px] border-gray-200 p-6 my-20 rounded-md">
       <OrderSummary
-        title="hello"
+        title="결제예상금액"
         totalPrice="10"
         renderButton={() => (
           <Button isFullWidth size="lg">
