@@ -19,6 +19,9 @@ const H4 = styled.h4<StyledProps>(
   ({ color = 'black', fontSize = '12px', fontWeight = 'normal' }) => `
   color: ${color};
   font-weight: ${fontWeight};
-  font-size :${fontSize}
+  font-size :${fontSize};
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 `
 );

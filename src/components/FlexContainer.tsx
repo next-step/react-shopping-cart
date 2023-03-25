@@ -3,20 +3,28 @@ import styled from 'styled-components';
 
 type FlexContainerProps = {
   direction?: 'row' | 'column';
+  flex?: string;
+  justifyContent?: string;
+  alignItems?: string;
+  margin?: string;
 };
 
 const FlexContainer = ({
-  direction,
   children,
+  ...props
 }: FlexContainerProps & PropsWithChildren) => {
-  return <Div direction={direction}>{children}</Div>;
+  return <Div {...props}>{children}</Div>;
 };
 
 export default FlexContainer;
 
 const Div = styled.div<FlexContainerProps>(
-  ({ direction = 'row' }) => `
+  ({ direction = 'row', flex, justifyContent, alignItems, margin }) => `
   display: flex;
-  flex-direction: ${direction}
+  flex-direction: ${direction};
+  ${flex && `flex: ${flex}`};
+  ${justifyContent && `justify-content: ${justifyContent}`};
+  ${alignItems && `align-items: ${alignItems}`};
+  ${margin && `margin: ${margin}`};
 `
 );
