@@ -1,17 +1,9 @@
 import { useQuery } from 'react-query';
-import { atom, useRecoilValueLoadable } from 'recoil';
 import { getProduct, getProducts } from 'services/product';
 import { ProductItem } from 'types/type';
 
 const PRODUCTS_QUERY_KEY = 'products';
 const PRODUCT_DETAIL_QUERY_KEY = 'productDetail';
-
-
-export const productState = atom({
-  key: PRODUCT_DETAIL_QUERY_KEY,
-  default: {} as ProductItem,
-});
-
 
 export function useProductList() {
   // https://velog.io/@aeong98/React.js-React-Query
@@ -25,10 +17,5 @@ export function useProductList() {
 
 export function useSelectedProduct(productId: number) {
   const { data, isLoading, isError } = useQuery<ProductItem>(PRODUCT_DETAIL_QUERY_KEY, () => getProduct(productId));
-  const selectedProductLoadable = useRecoilValueLoadable(productState);
-
-  if (selectedProductLoadable.state === 'hasValue') {
-    return { data, isLoading, isError };
-  }
-  return { data: selectedProductLoadable.contents, isLoading, isError };
+  return { data, isLoading, isError };
 }
