@@ -1,11 +1,13 @@
-import { CartContext } from 'context/Cart';
-import { useContext } from 'react';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from 'store';
+import { addProduct } from 'store/feature/cart/cartSlice';
 import { ProductType } from 'types';
 
 const useCart = () => {
-  const { addItem, cartList } = useContext(CartContext);
+  const cartList = useAppSelector((state) => state.cart.cartList);
+  const dispatch = useDispatch();
   const addCart = (product: ProductType) => {
-    addItem(product);
+    dispatch(addProduct(product));
     alert('장바구니에 상품이 추가되었습니다!');
   };
 
