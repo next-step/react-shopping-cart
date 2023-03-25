@@ -6,7 +6,7 @@ const Item = ({ name, price, image }: ItemProps) => {
   const { addCart } = useCart();
 
   return (
-    <Styled.Layout>
+    <Styled.Layout data-testid="product">
       <Styled.ItemImage src={image} alt="Pet보틀-정사각" />
       <Styled.FlexContainer display="flex" justifyContent="space-between">
         <Styled.FlexBox display="flex" flexDirection="column">

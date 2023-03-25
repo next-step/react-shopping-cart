@@ -3,7 +3,6 @@ import { rest } from 'msw';
 import products from '../src/mocks/server/data/products.json';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import { withReactContext } from 'storybook-react-context';
-import { ROUTE_URL } from '../src/routes/index';
 
 initialize();
 // Provide the MSW addon decorator globally

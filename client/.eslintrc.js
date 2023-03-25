@@ -1,6 +1,6 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'react-hooks'],
+  plugins: ['@typescript-eslint', 'react-hooks', 'testing-library', 'jest-dom'],
   extends: [
     'airbnb-typescript',
     'plugin:react/recommended',
@@ -11,6 +11,10 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:prettier/recommended',
     'plugin:storybook/recommended',
+    'react-app',
+    'react-app/jest',
+    'plugin:testing-library/react',
+    'plugin:jest-dom/recommended',
   ],
   parserOptions: {
     project: './tsconfig.json',
@@ -22,6 +26,7 @@ module.exports = {
     browser: true,
     node: true,
     es6: true,
+    jest: true,
   },
   ignorePatterns: ['node_modules/'],
   rules: {
