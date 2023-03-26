@@ -4,4 +4,14 @@ export type ProductType = {
   name: string;
   id: number;
 };
-export type CartListType = ProductType[];
+
+export interface CartProductType extends ProductType {
+  isOrder: boolean;
+  amount: number;
+}
+
+export interface OrderProductType extends ProductType {
+  amount: number;
+}
+export type CartListType = CartProductType[];
+export type OrderListType = OrderProductType[];

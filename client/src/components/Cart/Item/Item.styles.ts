@@ -4,9 +4,11 @@ import { ReactComponent as CartRemove } from 'assets/svgs/trash.svg';
 
 export const Layout = styled(Box)``;
 
-export const LeftFlexBox = styled(Box)`
+export const LeftFlexBox = styled.div`
+  display: flex;
   margin-top: 10px;
   gap: 15px;
+  align-items: center;
 `;
 
 export const CheckBox = styled(Input)`
@@ -32,14 +34,22 @@ export const CartItemName = styled.span`
   font-size: 24px;
 `;
 
-export const RightFlexBox = styled(Box)`
+export const RightFlexBox = styled.div`
+  display: flex;
+  flex-direction: column;
   gap: 15px;
+  align-items: center;
+  justify-content: center;
 `;
 export const CartRemoveButton = styled(CartRemove)`
   align-self: flex-end;
   cursor: pointer;
 `;
-export const CartInputNumberContainer = styled(Box)``;
+export const FlexContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 export const CartInputNumber = styled(Input)`
   width: 72px;
   height: 58px;

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { ProductType } from 'types';
-import { sendRequest } from 'utils/fetch';
+import { getData } from 'utils/fetch';
 
 type ProductStateType = {
   productList: ProductType[];
@@ -9,7 +9,7 @@ type ProductStateType = {
 
 const fetchProductList = createAsyncThunk('product', async (url: string, thunkApi: any) => {
   try {
-    const response = await sendRequest(url);
+    const response = await getData(url);
     return response.products;
   } catch (error: any) {
     return thunkApi.rejectWithValue(error.message);
