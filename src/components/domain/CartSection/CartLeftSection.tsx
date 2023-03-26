@@ -2,16 +2,16 @@ import { Button, CheckBox, Divider, Text } from '@/components/common';
 import CartCard from '@/components/domain/CartCard';
 import { useCartContext } from '../Cart/CartContext';
 import { useCheckBox } from '@/components/common/CheckBox';
-import { REMOVE_CONFIRM_MESSAGE } from '@/constant/message'
+import { REMOVE_CONFIRM_MESSAGE } from '@/constant/message';
 
 const CartLeftSection = () => {
   const { carts, setAllChecked, setAllUnChecked, removeSelectedItems } =
     useCartContext();
 
   const handleRemoveCartItem = () => {
-    const result = confirm(REMOVE_CONFIRM_MESSAGE)
-    result && removeSelectedItems()
-  }
+    const result = confirm(REMOVE_CONFIRM_MESSAGE);
+    result && removeSelectedItems();
+  };
   const { checked: checkedAll, handleSelect: handleSelectAll } = useCheckBox();
 
   const handleSelect = () => {

@@ -10,7 +10,7 @@ export const getAllCarts = async (): Promise<Cart[]> => {
   return data;
 };
 
-export const removeCart =async  (cartId : string): Promise<void> => {
-  const data = await request(`/carts/${cartId}`, HTTP_METHOD.DELETE())
-  return data
-}
+export const removeCart = async (cartId: string): Promise<void> => {
+  const data = await request(`/carts/${cartId}`, HTTP_METHOD.DELETE());
+  return data;
+};

@@ -1,6 +1,5 @@
-import useHttp from '@/hooks/useHttp';
 import { createContext, PropsWithChildren, useContext, useState } from 'react';
-import * as cartApi from '@/api/cart'
+import * as cartApi from '@/api/cart';
 type CartState = {
   carts: UserCart[];
   selectedItems: UserCart[];
@@ -22,7 +21,6 @@ const CartContext = createContext<CartContext | null>(null);
 export const CartContextProvider = ({ children }: PropsWithChildren) => {
   const [cartState, setCartState] = useState<UserCart[]>([]);
   const selectedItems = cartState.filter(({ checked }) => checked);
-
 
   const selectCart = (selectedCart: UserCart) => {
     setCartState((prev) =>
@@ -67,15 +65,15 @@ export const CartContextProvider = ({ children }: PropsWithChildren) => {
   };
 
   const removeItem = (selectedCart: UserCart) => {
-    cartApi.removeCart(selectedCart.id)    
+    cartApi.removeCart(selectedCart.id);
     setCartState((prev) => prev.filter((cart) => selectedCart.id !== cart.id));
   };
 
   const removeSelectedItems = () => {
     const selectedIds = selectedItems.map((cart) => cart.id);
     selectedIds.forEach((cartId) => {
-      cartApi.removeCart(cartId)
-    })
+      cartApi.removeCart(cartId);
+    });
     setCartState((prev) =>
       prev.filter((cart) => !selectedIds.includes(cart.id))
     );

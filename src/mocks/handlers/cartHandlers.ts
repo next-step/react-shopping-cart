@@ -20,17 +20,19 @@ const postAddCart: Parameters<typeof rest.post>[1] = async (req, res, ctx) => {
   );
 };
 
-const removeCart: Parameters<typeof rest.delete>[1] = async (req,res,ctx) =>{
-  const { cardId } = req.params
+const removeCart: Parameters<typeof rest.delete>[1] = async (req, res, ctx) => {
+  const { cardId } = req.params;
 
   return res(
     ctx.status(200),
     ctx.json({
-      cardId
+      cardId,
     })
   );
+};
 
-}
-
-const handlers = [rest.post('/carts', postAddCart), rest.delete('/cart/:cardId',removeCart)];
+const handlers = [
+  rest.post('/carts', postAddCart),
+  rest.delete('/cart/:cardId', removeCart),
+];
 export default handlers;

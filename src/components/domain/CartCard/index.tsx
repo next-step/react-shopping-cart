@@ -3,7 +3,7 @@ import { Button, LazyImage, Text } from '@/components/common';
 import CheckBox from '@/components/common/CheckBox';
 import { currency } from '@/utils/filter/currency';
 import { useCartContext } from '../Cart/CartContext';
-import { REMOVE_CONFIRM_MESSAGE } from '@/constant/message'
+import { REMOVE_CONFIRM_MESSAGE } from '@/constant/message';
 
 type Props = {
   cart: UserCart;
@@ -15,9 +15,9 @@ const CartCard = ({ cart }: Props) => {
   const { product } = cart;
 
   const handleRemoveItem = (cartItem: UserCart) => {
-    const result = confirm(REMOVE_CONFIRM_MESSAGE)
-    result && removeItem(cartItem)
-  }
+    const result = confirm(REMOVE_CONFIRM_MESSAGE);
+    result && removeItem(cartItem);
+  };
 
   return (
     <div className="cart-container">
@@ -33,7 +33,10 @@ const CartCard = ({ cart }: Props) => {
         <Text className="cart-name">{product.name}</Text>
       </div>
       <div className="flex-col-center justify-end gap-15">
-        <button className="cart-trash-svg" onClick={() => handleRemoveItem(cart)}>
+        <button
+          className="cart-trash-svg"
+          onClick={() => handleRemoveItem(cart)}
+        >
           <TrashIcon />
         </button>
         <div className="number-input-container">
