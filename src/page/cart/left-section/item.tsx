@@ -3,19 +3,20 @@ import { CartItem } from "types/type";
 import trash from "assets/svgs/trash.svg";
 import { useEffect, useState } from "react";
 import { printWon } from "common/util";
+import { handleModal } from "common/modal";
 
 type ItemProps = {
   item: CartItem;
-  addTempCart: (addable: boolean, item: CartItem) => void;
-  updateTempCartQuantity: (id: number, quantity: number) => void;
+  addShopingCart: (addable: boolean, item: CartItem) => void;
+  updateCartQuantity: (id: number, quantity: number) => void;
   isAllChecked: () => boolean;
   deleteCartItem: (id: number) => void;
 };
 
 const Item = ({
   item,
-  addTempCart,
-  updateTempCartQuantity,
+  addShopingCart,
+  updateCartQuantity,
   isAllChecked,
   deleteCartItem,
 }: ItemProps) => {
@@ -33,20 +34,24 @@ const Item = ({
       setQuantity(quantity - 1);
       return;
     }
-    updateTempCartQuantity(item.id, quantity);
-
+    updateCartQuantity(item.id, quantity);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quantity]);
 
   useEffect(() => {
-    addTempCart(addable, item);
+    addShopingCart(addable, item);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [addable]);
 
-  const handleDeleteCartItem = (e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault();
-    deleteCartItem(item.id)
-  }
+  const handleDeleteCartItem = () => {
+    handleModal({
+      title: "삭제",
+      message: "장바구니 목록에서 삭제하시겠습니까?",
+      onConfirm: () => deleteCartItem(item.id),
+    });
+  };
+
+  if(item.product === null) return (<></>)
 
   return (
     <>
@@ -62,13 +67,18 @@ const Item = ({
           />
           <img
             className="w-144 h-144"
-            src={item.product?.imageUrl}
+            src={item.product.imageUrl}
             alt="상품 이미지"
           />
-          <span className="cart-name">{item.product?.name}</span>
+          <span className="cart-name">{item.product.name}</span>
         </div>
         <div className="flex-col-center justify-end gap-15">
-          <img className="cart-trash-svg" src={trash} alt="삭제" onClick={(e) => handleDeleteCartItem(e)}/>
+          <img
+            className="cart-trash-svg"
+            src={trash}
+            alt="삭제"
+            onClick={() => handleDeleteCartItem()}
+          />
           <div className="number-input-container">
             <input
               type="number"
@@ -92,7 +102,7 @@ const Item = ({
             </div>
           </div>
           <span className="cart-price">
-            {printWon(item.product?.price * quantity)}
+            {printWon(item.product.price * quantity)}
           </span>
         </div>
       </div>

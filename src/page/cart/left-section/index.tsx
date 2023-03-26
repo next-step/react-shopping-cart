@@ -3,6 +3,7 @@ import Item from "./item";
 import { useRecoilValue } from "recoil";
 import { cartState, tempCartState, useCart } from "hooks/cart";
 import { useEffect, useState } from "react";
+import { handleModal } from "common/modal";
 
 const LeftSection = () => {
   const carts = useRecoilValue(cartState);
@@ -10,7 +11,7 @@ const LeftSection = () => {
 
   const [checked, setChecked] = useState(false);
 
-  const { addTempCart, updateTempCartQuantity, deleteCartItem } = useCart();
+  const { addShopingCart, updateCartQuantity, deleteCartItem } = useCart();
 
   const isAllChecked = () => {
     return tempCart.length === carts.length;
@@ -19,10 +20,27 @@ const LeftSection = () => {
   useEffect(() => {
     // eslint-disable-next-line array-callback-return
     carts.map((item: CartItem) => {
-      addTempCart(checked, item);
+      addShopingCart(checked, item);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checked]);
+
+  const cartOrderText = () => {
+    return carts.length ? `든든배송 상품(${carts.length}개)` : "";
+  };
+
+  const handleDeleteAll = () => {
+    handleModal({
+      title: "고갱님",
+      message:
+        "확인 버튼을 누르면 정말루 다 지워집니다. 그래도 삭제 가시겠습니까?",
+      onConfirm: () =>
+        // eslint-disable-next-line array-callback-return
+        carts.map((item: CartItem) => {
+          deleteCartItem(item.id);
+        }),
+    });
+  };
 
   return (
     <section className="cart-left-section">
@@ -40,16 +58,18 @@ const LeftSection = () => {
             선택해제
           </label>
         </div>
-        <button className="delete-button">상품삭제</button>
+        <button className="delete-button" onClick={() => handleDeleteAll()}>
+          상품삭제
+        </button>
       </div>
-      <h3 className="cart-title">든든배송 상품(3개)</h3>
+      <h3 className="cart-title">{cartOrderText()}</h3>
       <hr className="divide-line-gray mt-10" />
       {carts.map((item: CartItem) => (
         <Item
           item={item}
           key={item.id}
-          addTempCart={addTempCart}
-          updateTempCartQuantity={updateTempCartQuantity}
+          addShopingCart={addShopingCart}
+          updateCartQuantity={updateCartQuantity}
           deleteCartItem={deleteCartItem}
           isAllChecked={isAllChecked}
         />

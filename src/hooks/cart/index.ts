@@ -18,8 +18,8 @@ export const tempCartState = atom<CartItem[]>({
 interface CartItems {
   getCartItems: UseQueryResult<CartItem[], unknown>;
   addCartItem: UseMutationResult<CartItem, Error, ProductItem, unknown>;
-  addTempCart: (addAble: boolean, item: CartItem) => void;
-  updateTempCartQuantity: (itemId: number, quantity: number) => void;
+  addShopingCart: (addAble: boolean, item: CartItem) => void;
+  updateCartQuantity: (itemId: number, quantity: number) => void;
   deleteCartItem: (itemId: number) => void;
 }
 
@@ -43,7 +43,7 @@ export function useCart(): CartItems {
     },
   });
 
-  const addTempCart = (addAble: boolean, item: CartItem) => {
+  const addShopingCart = (addAble: boolean, item: CartItem) => {
     if (addAble) {
       setTempCartState((prevTempCartState) => [
         ...prevTempCartState,
@@ -62,7 +62,7 @@ export function useCart(): CartItems {
     }
   };
 
-  const updateTempCartQuantity = (itemId: number, quantity: number) => {
+  const updateCartQuantity = (itemId: number, quantity: number) => {
     setTempCartState((prevTempCartState) => {
       const updatedTempCartItems = prevTempCartState.map((tempCartItem) => {
         if (tempCartItem.id === itemId) {
@@ -76,6 +76,20 @@ export function useCart(): CartItems {
       });
       return updatedTempCartItems;
     });
+
+    setCartState((prevTempCartState) => {
+      const updatedCartItems = prevTempCartState.map((cartItem) => {
+        if (cartItem.id === itemId) {
+          return {
+            ...cartItem,
+            quantity: quantity,
+            totalPrice: cartItem.product.price * quantity,
+          };
+        }
+        return cartItem;
+      });
+      return updatedCartItems;
+    });
   }
 
   const deleteCartItem = async (itemId: number) => {
@@ -88,14 +102,21 @@ export function useCart(): CartItems {
         );
         return updatedCartItems;
       });
+
+      setTempCartState((prevTempCartState) => {
+        const updatedTempCartItems = prevTempCartState.filter(
+          (tempCartItem) => tempCartItem.id !== itemId
+        );
+        return updatedTempCartItems;
+      });
     }
   };
 
   return {
     getCartItems,
     addCartItem,
-    addTempCart,
-    updateTempCartQuantity,
+    addShopingCart,
+    updateCartQuantity,
     deleteCartItem
   };
 }
