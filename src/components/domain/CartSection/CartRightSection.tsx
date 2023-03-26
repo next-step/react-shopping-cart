@@ -1,15 +1,34 @@
 import { Button, Divider, Text } from '@/components/common';
+import { useRouter } from '@/routes/useRouter';
 import { currency } from '@/utils/filter/currency';
 import { useCartContext } from '../Cart/CartContext';
+import { ORDER_CONFIRM_MESSAGE } from '@/constant/message';
+import useHttp from '@/hooks/useHttp';
+import * as orderApi from '@/api/order';
 
 const CartRightSection = () => {
-  const { selectedItems } = useCartContext();
-  const selectedCounts = selectedItems.reduce((accQty, { quantity }) => accQty + quantity, 0);
+  const { go } = useRouter();
+  const { selectedItems, removeSelectedItems } = useCartContext();
+  const { sendRequest } = useHttp(() =>
+    orderApi.postAddOrder(generateOrderObj(selectedItems))
+  );
+  const selectedCounts = selectedItems.reduce(
+    (accQty, { quantity }) => accQty + quantity,
+    0
+  );
   const hasItem = Boolean(selectedCounts);
   const selectedTotalPrice = selectedItems.reduce(
     (accPrice, { product, quantity }) => accPrice + product.price * quantity,
     0
   );
+
+  const handleClickOrder = async () => {
+    const result = confirm(ORDER_CONFIRM_MESSAGE);
+    if (!result) return;
+    await sendRequest();
+    go('/payment');
+    removeSelectedItems();
+  };
 
   return (
     <section className="cart-right-section">
@@ -25,7 +44,9 @@ const CartRightSection = () => {
           <Text highlight>{currency(selectedTotalPrice)}</Text>
         </div>
         <div className="flex-center mt-30 mx-10">
-          <Button disabled={!hasItem}>주문하기({selectedCounts}개)</Button>
+          <Button onClick={handleClickOrder} disabled={!hasItem}>
+            주문하기({selectedCounts}개)
+          </Button>
         </div>
       </div>
     </section>
@@ -33,3 +54,14 @@ const CartRightSection = () => {
 };
 
 export default CartRightSection;
+
+const generateOrderObj = (
+  selectedItems: UserCart[]
+): Pick<Order, 'orderDetails'> => {
+  return {
+    orderDetails: selectedItems.map(({ product, quantity }) => ({
+      ...product,
+      quantity,
+    })),
+  };
+};
