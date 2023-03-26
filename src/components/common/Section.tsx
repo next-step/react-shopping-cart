@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { ReactNode } from 'react';
 import { FRAME_PADDING, MAX_WIDTH } from '../../constant/style';
-import mq from '../../utils/style/mediaQuery';
+import mediaQuery from '../../utils/style/mediaQuery';
 
 interface SectionType {
   children: ReactNode;
@@ -9,7 +9,7 @@ interface SectionType {
 
 const S = {
   Section: styled.div(
-    mq({
+    mediaQuery({
       maxWidth: MAX_WIDTH.DESKTOP,
       margin: '0 auto',
       padding: [

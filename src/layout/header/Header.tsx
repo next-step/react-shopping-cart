@@ -1,20 +1,18 @@
 import { Link } from 'react-router-dom';
 import { ROUTE } from '../../router';
 import styled from '@emotion/styled';
-import mq from '../../utils/style/mediaQuery';
+import mediaQuery from '../../utils/style/mediaQuery';
 import { COLORS, FRAME_PADDING, MAX_WIDTH } from '../../constant/style';
 
 const S = {
-  Header: styled.div(
-    mq({
-      width: '100%',
-      height: '80px',
-      background: COLORS.PRIMARY,
-      boxShadow: '0 4px 4px rgba(0, 0, 0, 0.3)',
-    })
-  ),
+  Header: styled.div({
+    width: '100%',
+    height: '80px',
+    background: COLORS.PRIMARY,
+    boxShadow: '0 4px 4px rgba(0, 0, 0, 0.3)',
+  }),
   Nav: styled.nav(
-    mq({
+    mediaQuery({
       maxWidth: MAX_WIDTH.DESKTOP,
       height: '100%',
       margin: '0 auto',
@@ -29,12 +27,12 @@ const S = {
     })
   ),
   Logo: styled.h1(
-    mq({
+    mediaQuery({
       fontSize: ['20px', '20px', '30px'],
     })
   ),
   Button: styled.button(
-    mq({
+    mediaQuery({
       fontSize: ['15px', '15px', '18px'],
       color: COLORS.WHITE,
     })

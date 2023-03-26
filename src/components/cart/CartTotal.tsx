@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import mq from '../../utils/style/mediaQuery';
 import { priceFormat } from '../../utils';
 
 interface CartTotal {
@@ -10,13 +9,11 @@ interface CartTotal {
 }
 
 const S = {
-  Wrapper: styled.div(
-    mq({
-      width: '100%',
-      height: '260px',
-      border: '1px solid #dddddd',
-    })
-  ),
+  Wrapper: styled.div({
+    width: '100%',
+    height: '260px',
+    border: '1px solid #dddddd',
+  }),
 };
 
 const CartTotal = ({ title, totalText, totalPrice, buttonText }: CartTotal) => {

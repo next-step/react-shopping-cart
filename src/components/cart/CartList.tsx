@@ -1,20 +1,15 @@
 import styled from '@emotion/styled';
-import mq from '../../utils/style/mediaQuery';
 import { CartItemType } from '../../types';
 import CartItem from './CartItem';
 
 const S = {
-  Wrapper: styled.div(
-    mq({
-      width: '100%',
-    })
-  ),
-  H3: styled.h3(
-    mq({
-      fontSize: '20px',
-      marginTop: '20px',
-    })
-  ),
+  Wrapper: styled.div({
+    width: '100%',
+  }),
+  H3: styled.h3({
+    fontSize: '20px',
+    marginTop: '20px',
+  }),
 };
 
 interface CartListProps {

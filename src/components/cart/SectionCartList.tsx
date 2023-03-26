@@ -2,12 +2,12 @@ import Section from '../common/Section';
 import CartList from './CartList';
 import CartTotal from './CartTotal';
 import styled from '@emotion/styled';
-import mq from '../../utils/style/mediaQuery';
+import mediaQuery from '../../utils/style/mediaQuery';
 import { CartItemType } from '../../types';
 
 const S = {
   Content: styled.div(
-    mq({
+    mediaQuery({
       display: 'grid',
       gridTemplateColumns: ['1fr', '1fr', '2fr 1fr'],
       columnGap: ['0', '0', '50px'],

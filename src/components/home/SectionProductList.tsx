@@ -1,12 +1,12 @@
 import Section from '../common/Section';
 import styled from '@emotion/styled';
-import mq from '../../utils/style/mediaQuery';
+import mediaQuery from '../../utils/style/mediaQuery';
 import ProductItem from './ProductItem';
 import { ProductType } from '../../types';
 
 const S = {
   Container: styled.div(
-    mq({
+    mediaQuery({
       display: 'grid',
       gridTemplateColumns: [
         'repeat(1, minmax(0, 1fr))',
