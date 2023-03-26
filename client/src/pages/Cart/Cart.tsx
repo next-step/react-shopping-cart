@@ -24,7 +24,7 @@ const Cart = () => {
           <Styled.CartTitle>든든 배송상품</Styled.CartTitle>
           <Styled.Divider />
           {cartList?.map((product) => (
-            <CartItem key={uuid()} price={product.price} image={product.image} name={product.name} />
+            <CartItem key={uuid()} price={product.price} image={product.image} name={product.name} id={product.id} />
           ))}
         </Styled.LeftSection>
         <Styled.RightSection>

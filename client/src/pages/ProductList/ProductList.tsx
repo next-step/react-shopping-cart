@@ -2,19 +2,19 @@ import styled from 'styled-components';
 import uuid from 'react-uuid';
 
 import { ProductItem } from 'components/Product/Item';
-import useProductList from 'hooks/useProductsList';
+import useProducts from 'hooks/useProducts';
 
 const ProductList = () => {
-  const { products, isLoading } = useProductList();
+  const { products, status } = useProducts();
 
-  if (isLoading) {
+  if (status === 'Loading') {
     return <div>로딩중...</div>;
   }
 
   return (
     <Layout>
       {products?.map((product) => (
-        <ProductItem key={uuid()} price={product.price} image={product.image} name={product.name} />
+        <ProductItem key={uuid()} price={product.price} image={product.image} name={product.name} id={product.id} />
       ))}
     </Layout>
   );
