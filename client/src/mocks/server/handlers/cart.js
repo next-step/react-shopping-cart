@@ -1,5 +1,5 @@
 import { rest } from 'msw';
-const userCarts = [];
+let userCarts = [];
 
 export const addCart = rest.post('/carts', async (req, res, ctx) => {
   const product = await req.json();
@@ -8,4 +8,24 @@ export const addCart = rest.post('/carts', async (req, res, ctx) => {
 });
 export const getCarts = rest.get('/carts', (req, res, ctx) => {
   return res(ctx.status(200), ctx.json(userCarts));
+});
+
+export const deleteCart = rest.post('/cart/delete', async (req, res, ctx) => {
+  // const product = await req.json();
+  // const newCarts = userCarts.filter((item) => item.id !== product.id);
+  // return res(ctx.status(200), ctx.json(newCarts));
+});
+export const updateCart = rest.put('/cart/update', async (req, res, ctx) => {
+  const product = await req.json();
+  // const newCarts = userCarts.filter((item) => item.id !== product.id);
+
+  const newCarts = userCarts.map((item) => {
+    if (item.id === product.id) {
+      return product;
+    }
+    return item;
+  });
+  userCarts = newCarts;
+
+  return res(ctx.status(200), ctx.json(newCarts));
 });

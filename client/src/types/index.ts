@@ -10,8 +10,4 @@ export interface CartProductType extends ProductType {
   amount: number;
 }
 
-export interface OrderProductType extends ProductType {
-  amount: number;
-}
 export type CartListType = CartProductType[];
-export type OrderListType = OrderProductType[];

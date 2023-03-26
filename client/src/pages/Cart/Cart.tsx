@@ -5,17 +5,12 @@ import { Payment } from 'components/Payment';
 import { PageHeader } from 'components/common/PageHeader';
 import { useCart } from 'hooks';
 import { useEffect } from 'react';
-import { useAppDispatch } from 'store';
-import { getCart } from 'store/feature/cart/cartSlice';
-
 const Cart = () => {
-  const { cartList } = useCart();
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(getCart('/carts'));
-  }, []);
+  const { cartList, GetCart, totalAmount, totalPrice, SelectAllCart } = useCart();
 
-  // const { totalPrice, totalAmount } = useOrder();
+  useEffect(() => {
+    GetCart();
+  }, []);
 
   return (
     <Styled.Layout>
@@ -24,7 +19,7 @@ const Cart = () => {
         <Styled.LeftSection>
           <Styled.FlexContainer justifyContent={'space-between'} alignItems={'center'}>
             <Styled.CheckBoxContainer alignItems={'center'}>
-              <Styled.CheckBox type={'checkbox'} name="checkbox" />
+              <Styled.CheckBox type={'checkbox'} name="checkbox" onClick={SelectAllCart} />
               <Styled.CheckBoxLabel htmlFor="checkbox">모두 선택</Styled.CheckBoxLabel>
             </Styled.CheckBoxContainer>
             <Styled.CheckBoxButton>상품 삭제</Styled.CheckBoxButton>
@@ -44,7 +39,12 @@ const Cart = () => {
           ))}
         </Styled.LeftSection>
         <Styled.RightSection>
-          <Payment title="결제예상금액" text="결제 예상 금액" price={0} buttonText={`주문하기 1개 `} />
+          <Payment
+            title="결제예상금액"
+            text="결제 예상 금액"
+            price={totalPrice}
+            buttonText={`주문하기 ${totalAmount}개`}
+          />
         </Styled.RightSection>
       </Styled.FlexContainer>
     </Styled.Layout>

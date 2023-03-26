@@ -16,3 +16,11 @@ export const postData = async (url: string, data: any) => {
     console.log(error);
   }
 };
+export const updateData = async (url: string, data: any) => {
+  try {
+    const response = await axios.put(url, JSON.stringify(data));
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};

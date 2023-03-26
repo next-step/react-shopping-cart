@@ -1,4 +1,4 @@
-import type { ProductType, OrderProductType } from 'types';
+import type { ProductType, CartProductType } from 'types';
 
 export const calculateProductTotal = (array: ProductType[]) => {
   const total = array.reduce((prev, next) => {
@@ -7,15 +7,23 @@ export const calculateProductTotal = (array: ProductType[]) => {
   return total;
 };
 
-export const calculateOrderProductTotal = (array: OrderProductType[]) => {
+export const calculateCartProductTotal = (array: CartProductType[]) => {
   const total = array.reduce((prev, next) => {
-    return prev + next.price * next.amount;
+    if (next.isOrder) {
+      return prev + next.price * next.amount;
+    } else {
+      return prev;
+    }
   }, 0);
   return total;
 };
-export const calculateTotalAmount = (array: OrderProductType[]) => {
+export const calculateCartTotalAmount = (array: CartProductType[]) => {
   const amounts = array.reduce((prev, next) => {
-    return prev + next.amount;
+    if (next.isOrder) {
+      return prev + next.amount;
+    } else {
+      return prev;
+    }
   }, 0);
   return amounts;
 };
