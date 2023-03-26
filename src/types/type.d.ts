@@ -8,6 +8,8 @@ export type ProductItem = {
 export type CartItem = {
   id: number;
   product: ProductItem
+  quantity?: number;
+  totalPrice?: number;
 }
 
 export type Order = {

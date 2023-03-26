@@ -9,7 +9,9 @@ import { useCart } from "hooks/cart";
 import { Header } from "common/ui/header";
 
 const CartContent = () => {
-  const { data: carts, isLoading, isError } = useCart();
+  const {
+    getCartItems: { data, isLoading, isError },
+  } = useCart();
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -19,15 +21,15 @@ const CartContent = () => {
     return <div>Error loading product data</div>;
   }
 
-  if (!carts) {
+  if (!data) {
     return <div>No cart data available</div>;
   }
 
   return (
     <section className="cart-section">
-      <Header title={'장바구니'}/>
+      <Header title={"장바구니"} />
       <div className="flex">
-        <LeftSection carts={carts}/>
+        <LeftSection />
         <RightSection />
       </div>
     </section>

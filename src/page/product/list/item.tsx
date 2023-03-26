@@ -7,7 +7,7 @@ import { printWon } from "common/util";
 import { useRouter } from "hooks/useRouter";
 import { ROUTE } from "router";
 import { handleModal } from "common/modal";
-import { useAddCart } from "hooks/cart";
+import { useCart } from "hooks/cart";
 
 type ItemProps = {
   item: ProductItem;
@@ -16,7 +16,9 @@ type ItemProps = {
 const Item = ({ item }: ItemProps) => {
   const { go } = useRouter();
 
-  const { mutate } = useAddCart();
+  const {
+    addCartItem: { mutate },
+  } = useCart();
 
   const handleMoveToDetail = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -26,7 +28,10 @@ const Item = ({ item }: ItemProps) => {
     go(`${ROUTE.PRODUCT_LIST}/${id}`);
   };
 
-  const HandleAddCart = (e: React.MouseEvent<HTMLImageElement, MouseEvent>, item: ProductItem) => {
+  const HandleAddCart = (
+    e: React.MouseEvent<HTMLImageElement, MouseEvent>,
+    item: ProductItem
+  ) => {
     e.stopPropagation();
     mutate(item);
     handleModal({
@@ -44,7 +49,11 @@ const Item = ({ item }: ItemProps) => {
           <Title>{item.name}</Title>
           <Price>{printWon(item.price)}</Price>
         </ItemInfo>
-        <Icon src={cartSvg} alt="장바구니" onClick={(e) => HandleAddCart(e, item)} />
+        <Icon
+          src={cartSvg}
+          alt="장바구니"
+          onClick={(e) => HandleAddCart(e, item)}
+        />
       </ItemWrapper>
     </div>
   );

@@ -1,22 +1,86 @@
 import { UseMutationResult, UseQueryResult, useMutation, useQuery } from 'react-query';
+import { atom, useSetRecoilState } from 'recoil';
 import { addCart, getCarts } from 'services/cart';
 import { CartItem, ProductItem } from 'types/type';
 
 const CART = 'cart'
 
-export function useCart(): UseQueryResult<CartItem[], Error> {
-  return useQuery([CART], () => getCarts());
+export const cartState = atom<CartItem[]>({
+  key: 'cartState',
+  default: [] as CartItem[]
+});
+
+export const tempCartState = atom<CartItem[]>({
+  key: 'tempCartState',
+  default: [] as CartItem[]
+});
+
+interface CartItems {
+  getCartItems: UseQueryResult<CartItem[], unknown>;
+  addCartItem: UseMutationResult<CartItem, Error, ProductItem, unknown>;
+  addTempCart: (addAble: boolean, item: CartItem) => void;
+  updateTempCartQuantity: (itemId: number, quantity: number) => void;
 }
 
-export function useAddCart(): UseMutationResult<unknown, Error, ProductItem, unknown> {
-  const mutation = useMutation((item: ProductItem) => addCart(item));
+export function useCart(): CartItems {
 
-  function addCartItem(item: ProductItem) {
-    mutation.mutate(item);
+  const setCartState = useSetRecoilState(cartState);
+  const setTempCartState = useSetRecoilState(tempCartState);
+
+  const getCartItems = useQuery([CART], async () => {
+    const cartItems = await getCarts();
+    setCartState(cartItems);
+    return cartItems;
+  })
+
+  const addCartItem = useMutation((item: ProductItem) => addCart(item), {
+    onSuccess: (newCartItem) => {
+      setCartState((oldCartItems) => [...oldCartItems, newCartItem]);
+    },
+    onError: (error: Error) => {
+      throw new Error(`Failed to add cart item: ${error.message}`);
+    },
+  });
+
+  const addTempCart = (addAble: boolean, item: CartItem) => {
+    if (addAble) {
+      setTempCartState((prevTempCartState) => [
+        ...prevTempCartState,
+        {
+          ...item,
+          totalPrice: item.product.price * (item.quantity ? item.quantity : 1),
+        },
+      ]);
+    } else {
+      setTempCartState((prevTempCartState) => {
+        const updatedTempCartItems = prevTempCartState.filter(
+          (tempCartItem) => tempCartItem.id !== item.id
+        );
+        return updatedTempCartItems;
+      });
+    }
+  };
+
+  const updateTempCartQuantity = (itemId: number, quantity: number) => {
+    setTempCartState((prevTempCartState) => {
+      const updatedTempCartItems = prevTempCartState.map((tempCartItem) => {
+        if (tempCartItem.id === itemId) {
+          return {
+            ...tempCartItem,
+            quantity: quantity,
+            totalPrice: tempCartItem.product.price * quantity,
+          };
+        }
+        return tempCartItem;
+      });
+      return updatedTempCartItems;
+    });
   }
 
   return {
-    ...mutation,
-    mutate: addCartItem
-  } as UseMutationResult<unknown, Error, ProductItem, unknown>;
+    getCartItems,
+    addCartItem,
+    addTempCart,
+    updateTempCartQuantity
+  };
 }
