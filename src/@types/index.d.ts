@@ -1,11 +1,11 @@
-declare interface Product {
+interface Product {
   id: string;
   imageUrl: string;
   name: string;
   price: number;
 }
 
-declare interface Cart {
+interface Cart {
   id: string;
   product: Product;
 }
@@ -13,4 +13,12 @@ declare interface Cart {
 interface UserCart extends Cart {
   checked?: boolean;
   quantity: number;
+}
+
+interface OrderDetail extends Product {
+  quantity: number;
+}
+interface Order {
+  id: string;
+  orderDetails: OrderDetail[];
 }
