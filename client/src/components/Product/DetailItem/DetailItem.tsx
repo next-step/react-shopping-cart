@@ -1,15 +1,15 @@
-import { useProducts } from 'hooks';
+import { useProducts, useCart } from 'hooks';
 import { useParams } from 'react-router-dom';
 import * as Styled from './DetailItem.styles';
 
 const DetailItem = () => {
   const params = useParams();
   const { products } = useProducts();
+  const { addCart } = useCart();
+
   const { id } = params;
-
-  const currentDetailItem = products.filter((product) => product.id === Number(id))[0];
-
   // 리덕스 스토어에 있는 productList렌더링하기!
+  const currentDetailItem = products.filter((product) => product.id === Number(id))[0];
 
   return (
     <Styled.Layout>
@@ -26,7 +26,7 @@ const DetailItem = () => {
           <Styled.Text>금액</Styled.Text>
           <Styled.Price>{currentDetailItem.price}</Styled.Price>
         </Styled.FlexBox>
-        <Styled.CartButton>장바구니</Styled.CartButton>
+        <Styled.CartButton onClick={() => addCart(currentDetailItem)}>장바구니</Styled.CartButton>
       </Styled.Container>
     </Styled.Layout>
   );
