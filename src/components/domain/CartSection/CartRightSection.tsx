@@ -4,7 +4,7 @@ import { useCartContext } from '../Cart/CartContext';
 
 const CartRightSection = () => {
   const { selectedItems } = useCartContext();
-  const selectedCounts = selectedItems.length;
+  const selectedCounts = selectedItems.reduce((accQty, { quantity }) => accQty + quantity, 0);
   const hasItem = Boolean(selectedCounts);
   const selectedTotalPrice = selectedItems.reduce(
     (accPrice, { product, quantity }) => accPrice + product.price * quantity,
