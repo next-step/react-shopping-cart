@@ -4,12 +4,11 @@ import { MAX_WIDTH } from '../../constant/style';
 
 const breakpoints = [MAX_WIDTH.MOBILE, MAX_WIDTH.TABLET, MAX_WIDTH.DESKTOP];
 
-// media query
-const mq = (cssObject: CSSObject) => {
+const mediaQuery = (cssObject: CSSObject) => {
   const facePaintFn = facepaint(
-    breakpoints.map((bp) => `@media (min-width: ${bp}px)`)
+    breakpoints.map((breakpoint) => `@media (min-width: ${breakpoint}px)`)
   );
   return facePaintFn(cssObject);
 };
 
-export default mq;
+export default mediaQuery;
