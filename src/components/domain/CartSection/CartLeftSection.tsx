@@ -1,11 +1,16 @@
+import useHttp from '@/hooks/useHttp';
+import * as cartApi from '@/api/cart';
 import { Button, CheckBox, Divider, Text } from '@/components/common';
 import CartCard from '@/components/domain/CartCard';
 import { useCartContext } from '../Cart/CartContext';
 import { useCheckBox } from '@/components/common/CheckBox';
 import { REMOVE_CONFIRM_MESSAGE } from '@/constant/message';
+import { useEffect } from 'react';
+import useOnMounted from '@/hooks/useOnMounted';
 
 const CartLeftSection = () => {
-  const { carts, setAllChecked, setAllUnChecked, removeSelectedItems } =
+  const { sendRequest, loading, data: cartData = [] } = useHttp(cartApi.getAllCarts);
+  const { carts, setCarts, setAllChecked, setAllUnChecked, removeSelectedItems } =
     useCartContext();
 
   const handleRemoveCartItem = () => {
@@ -18,6 +23,20 @@ const CartLeftSection = () => {
     handleSelectAll();
     return checkedAll ? setAllUnChecked() : setAllChecked();
   };
+
+
+  useEffect(() => {
+    if (cartData.length > 0) {
+      setCarts(
+        cartData.map((cart) => ({ ...cart, checked: false, quantity: 1 }))
+      );
+    }
+  }, [cartData]);
+
+  useOnMounted(() => {
+    sendRequest();
+  });
+
 
   return (
     <section className="cart-left-section">
@@ -40,8 +59,17 @@ const CartLeftSection = () => {
           <CartCard cart={cart} />
         </div>
       ))}
+      {loading &&
+        Array.from({ length: SINGLE_PAGE_SIZE }).map((_, index) => (
+          <div key={index}>
+            <Divider type="gray" />
+            <CartCard />
+          </div>
+        ))}
     </section>
   );
 };
 
 export default CartLeftSection;
+
+const SINGLE_PAGE_SIZE = 5;
