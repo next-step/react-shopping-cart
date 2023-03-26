@@ -9,9 +9,7 @@ import { currency } from '@/utils/filter/currency';
 const CartRightSection = () => {
   const { go } = useRouter();
   const { selectedItems, removeSelectedItems } = useCartContext();
-  const { sendRequest } = useHttp(() =>
-    orderApi.postAddOrder(generateOrderObj(selectedItems))
-  );
+  const { sendRequest } = useHttp(orderApi.postAddOrder);
   const selectedCounts = selectedItems.reduce(
     (accQty, { quantity }) => accQty + quantity,
     0
@@ -25,7 +23,7 @@ const CartRightSection = () => {
   const handleClickOrder = async () => {
     const result = confirm(ORDER_CONFIRM_MESSAGE);
     if (!result) return;
-    await sendRequest();
+    await sendRequest(generateOrderObj(selectedItems));
     go('/payment');
     removeSelectedItems();
   };

@@ -9,10 +9,10 @@ const Products = () => {
     sendRequest,
     loading,
     data: products,
-  } = useHttp(productApi.getAllProducts);
+  } = useHttp(productApi.getPaginatedProducts);
 
   useOnMounted(() => {
-    sendRequest();
+    sendRequest({ start: 1, end: 10 });
   });
 
   return (

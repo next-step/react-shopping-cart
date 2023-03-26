@@ -1,6 +1,6 @@
 import { useCallback, useReducer } from 'react';
 
-type RequestFunction<T> = (payload: unknown) => Promise<T>;
+type RequestFunction<T> = (payload?: any) => Promise<T>;
 
 type HttpActionType<Data> =
   | { type: 'SEND' }
@@ -58,10 +58,10 @@ function useHttp<ResponseData>(requestFunction: RequestFunction<ResponseData>) {
   const loading = httpState.status === 'pending';
 
   const sendRequest = useCallback(
-    async function (requestData?: unknown) {
+    async function (...requestData: Parameters<typeof requestFunction>) {
       dispatch({ type: 'SEND' });
       try {
-        const responseData = await requestFunction(requestData);
+        const responseData = await requestFunction(...requestData);
 
         dispatch({ type: 'SUCCESS', responseData });
       } catch (error: Error | unknown) {

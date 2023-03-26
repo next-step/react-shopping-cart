@@ -9,9 +9,7 @@ type Props = {
 };
 
 const ProductCard = ({ product }: Props) => {
-  const { sendRequest, loading = false } = useHttp((product) =>
-    cartApi.postAddCart(product as Product)
-  );
+  const { sendRequest, loading = false } = useHttp(cartApi.postAddCart);
 
   const handleClickCart = () => {
     sendRequest(product);
