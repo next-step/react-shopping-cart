@@ -6,7 +6,7 @@ type CartItemProps = CartProductType;
 
 const CartItem = ({ id, image, price, name, isOrder, amount }: CartItemProps) => {
   const { increaseNumber, decreaseNumber, inputNumber } = useCartInputNumber(amount);
-  const { UpdateCart } = useCart();
+  const { UpdateCart, DeleteCart } = useCart();
 
   const currentCartItem = { id, image, price: price, name, amount: inputNumber, isOrder };
 
@@ -23,7 +23,7 @@ const CartItem = ({ id, image, price, name, isOrder, amount }: CartItemProps) =>
         <Styled.CartItemName>{name}</Styled.CartItemName>
       </Styled.LeftFlexBox>
       <Styled.RightFlexBox>
-        <Styled.CartRemoveButton />
+        <Styled.CartRemoveButton onClick={() => DeleteCart({ ...currentCartItem })} />
         <Styled.FlexContainer>
           <Styled.CartInputNumber type="text" value={amount} readOnly={true} />
 

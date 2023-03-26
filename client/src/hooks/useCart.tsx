@@ -1,5 +1,5 @@
 import { useAppSelector, useAppDispatch } from 'store';
-import { addCart, updateCart, getCart } from 'store/feature/cart/cartSlice';
+import { addCart, updateCart, getCart, deleteCart } from 'store/feature/cart/cartSlice';
 
 import { CartProductType } from 'types';
 import { calculateCartProductTotal, calculateCartTotalAmount } from 'utils/app';
@@ -33,23 +33,40 @@ const useCart = () => {
       })
     );
   };
-  const deleteCart = (product: CartProductType) => {
-    // dispatch(deleteProduct(product.id));
+  const DeleteCart = (product: CartProductType) => {
+    dispatch(deleteCart(product));
     alert('장바구니에서 아이템이 삭제되었습니다!');
   };
 
-  const SelectAllCart = async () => {
+  const CheckAllCart = async (checked: boolean) => {
     const cartData = (await getData('/carts')) as CartProductType[];
     cartData.forEach((product) => {
       UpdateCart({
         ...product,
-        isOrder: !product.isOrder,
+        isOrder: !checked,
       });
     });
   };
 
-  const deleteAllCart = () => {};
+  const DeleteCheckedCart = async () => {
+    const cartData = (await getData('/carts')) as CartProductType[];
+    cartData.forEach((product) => {
+      if (product.isOrder) {
+        dispatch(deleteCart(product));
+      }
+    });
+  };
 
-  return { AddCart, cartList, deleteCart, UpdateCart, GetCart, totalAmount, totalPrice, SelectAllCart };
+  return {
+    AddCart,
+    cartList,
+    DeleteCart,
+    UpdateCart,
+    GetCart,
+    totalAmount,
+    totalPrice,
+    CheckAllCart,
+    DeleteCheckedCart,
+  };
 };
 export default useCart;

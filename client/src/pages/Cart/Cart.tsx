@@ -3,14 +3,9 @@ import uuid from 'react-uuid';
 import { CartItem } from 'components/Cart/Item';
 import { Payment } from 'components/Payment';
 import { PageHeader } from 'components/common/PageHeader';
-import { useCart } from 'hooks';
-import { useEffect } from 'react';
+import { useCartPage } from 'hooks';
 const Cart = () => {
-  const { cartList, GetCart, totalAmount, totalPrice, SelectAllCart } = useCart();
-
-  useEffect(() => {
-    GetCart();
-  }, []);
+  const { check, handleCheckBox, handleDeleteButton, cartList, totalAmount, totalPrice } = useCartPage();
 
   return (
     <Styled.Layout>
@@ -19,10 +14,10 @@ const Cart = () => {
         <Styled.LeftSection>
           <Styled.FlexContainer justifyContent={'space-between'} alignItems={'center'}>
             <Styled.CheckBoxContainer alignItems={'center'}>
-              <Styled.CheckBox type={'checkbox'} name="checkbox" onClick={SelectAllCart} />
+              <Styled.CheckBox type={'checkbox'} name="checkbox" onClick={handleCheckBox} checked={check} />
               <Styled.CheckBoxLabel htmlFor="checkbox">모두 선택</Styled.CheckBoxLabel>
             </Styled.CheckBoxContainer>
-            <Styled.CheckBoxButton>상품 삭제</Styled.CheckBoxButton>
+            <Styled.CheckBoxButton onClick={handleDeleteButton}>상품 삭제</Styled.CheckBoxButton>
           </Styled.FlexContainer>
           <Styled.CartTitle>든든 배송상품</Styled.CartTitle>
           <Styled.Divider />

@@ -30,8 +30,8 @@ const getCart = createAsyncThunk('getCart', async (thunkApi: any) => {
 
 const deleteCart = createAsyncThunk('deleteCart', async (data: CartProductType, thunkApi: any) => {
   try {
-    const response = await postData('/cart/delete', data);
-    return response;
+    const response = (await postData('/cart/delete', data)) as any;
+    return response.data;
   } catch (error: any) {
     return thunkApi.rejectWithValue(error.message);
   }

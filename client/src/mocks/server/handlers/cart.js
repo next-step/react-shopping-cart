@@ -11,14 +11,13 @@ export const getCarts = rest.get('/carts', (req, res, ctx) => {
 });
 
 export const deleteCart = rest.post('/cart/delete', async (req, res, ctx) => {
-  // const product = await req.json();
-  // const newCarts = userCarts.filter((item) => item.id !== product.id);
-  // return res(ctx.status(200), ctx.json(newCarts));
+  const product = await req.json();
+  const newCarts = userCarts.filter((item) => item.id !== product.id);
+  userCarts = newCarts;
+  return res(ctx.status(200), ctx.json(newCarts));
 });
 export const updateCart = rest.put('/cart/update', async (req, res, ctx) => {
   const product = await req.json();
-  // const newCarts = userCarts.filter((item) => item.id !== product.id);
-
   const newCarts = userCarts.map((item) => {
     if (item.id === product.id) {
       return product;
