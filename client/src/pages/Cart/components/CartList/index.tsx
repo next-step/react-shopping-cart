@@ -3,14 +3,20 @@ import { css } from '@emotion/css';
 import { Button, Checkbox } from 'components';
 import { useFetch } from 'hooks';
 
-import { API } from 'constants/api';
+import { fetchCarts } from 'api';
 import { Cart } from 'types/cart';
 
 import CartItem from '../CartItem';
 import Skeleton from './Skeleton';
 
+const CACHE_KEY = 'carts';
+
 function CartList() {
-  const { data: carts = [], isLoading } = useFetch<Cart[]>({ url: API.CARTS, cacheTime: 0 });
+  const { data: carts = [], isLoading } = useFetch<Cart[]>({
+    fetcher: fetchCarts,
+    cacheKey: CACHE_KEY,
+    cacheTime: 0,
+  });
 
   if (isLoading) {
     return <Skeleton />;

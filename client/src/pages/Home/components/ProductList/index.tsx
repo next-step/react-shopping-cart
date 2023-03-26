@@ -3,11 +3,16 @@ import { useFetch } from 'hooks';
 import Skeleton from './Skeleton';
 import ProductItem from '../ProductItem';
 
+import { fetchProducts } from 'api';
 import { Product } from 'types/product';
-import { API } from 'constants/api';
+
+const CACHE_KEY = 'products';
 
 function ProductList() {
-  const { data: products = [], isLoading } = useFetch<Product[]>({ url: API.PRODUCTS });
+  const { data: products = [], isLoading } = useFetch<Product[]>({
+    fetcher: fetchProducts,
+    cacheKey: CACHE_KEY,
+  });
 
   if (isLoading) {
     return <Skeleton />;
