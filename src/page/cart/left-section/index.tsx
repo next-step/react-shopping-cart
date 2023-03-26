@@ -1,14 +1,20 @@
 import { CartItem } from "types/type";
 import Item from "./item";
 import { useRecoilValue } from "recoil";
-import { cartState, useCart } from "hooks/cart";
+import { cartState, tempCartState, useCart } from "hooks/cart";
 import { useEffect, useState } from "react";
 
 const LeftSection = () => {
   const carts = useRecoilValue(cartState);
+  const tempCart = useRecoilValue(tempCartState);
+  
   const [checked, setChecked] = useState(false);
 
   const { addTempCart, updateTempCartQuantity } = useCart();
+
+  const isAllChecked = () => {
+    return tempCart.length === carts.length;
+  };
 
   useEffect(() => {
     // eslint-disable-next-line array-callback-return
@@ -42,6 +48,7 @@ const LeftSection = () => {
           key={item.id}
           addTempCart={addTempCart}
           updateTempCartQuantity={updateTempCartQuantity}
+          isAllChecked={isAllChecked}
         />
       ))}
     </section>

@@ -10,13 +10,11 @@ type ItemProps = {
   item: CartItem;
   addTempCart: (addable: boolean, item: CartItem) => void;
   updateTempCartQuantity: (id: number, quantity: number) => void;
+  isAllChecked: () => boolean;
 };
-const Item = ({ item, addTempCart, updateTempCartQuantity }: ItemProps) => {
+const Item = ({ item, addTempCart, updateTempCartQuantity,isAllChecked }: ItemProps) => {
   const [quantity, setQuantity] = useState(1);
   const [addable, setAddable] = useState(false);
-  
-  const tempCart = useRecoilValue(tempCartState);
-  const cart = useRecoilValue(cartState);
 
   useEffect(() => {
     if (quantity < 1) {
@@ -48,7 +46,7 @@ const Item = ({ item, addTempCart, updateTempCartQuantity }: ItemProps) => {
             name="checkbox"
             type="checkbox"
             readOnly
-            checked={tempCart.length === cart.length}
+            checked={isAllChecked()}
             onClick={() => setAddable(!addable)}
           />
           <img
