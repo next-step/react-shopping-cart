@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 
-import { DeleteModal } from '@/components/modals'
+import { DeleteModal, OrderCheckModal } from '@/components/modals'
 import { API } from '@/config'
 import { useModal, useMutation, useFetch } from '@/hooks'
 import { ProductSchema, ProductSchemaInfer, ProductSchemaWithCheckedAndQuantityInfer } from '@/schemas'
 
 const useCart = () => {
+  const navigate = useNavigate()
   const { payload, isLoading, error } = useFetch<ProductSchemaInfer[]>(API.CARTS, {
     schema: z.array(ProductSchema),
   })
@@ -99,6 +101,29 @@ const useCart = () => {
     }
   }, 0)
 
+  const updateCartListAfterOrder = async () => {
+    const selectedCartItemIds = cartList.filter((item) => item.checked).map((item) => item.id)
+    await deleteModalMutation.mutate({ ids: selectedCartItemIds })
+    const unCheckedCartList = cartList.filter((item) => !item.checked)
+    setCartList(unCheckedCartList)
+    closeModal({ element: <DeleteModal /> })
+    navigate('/order')
+  }
+
+  const openOrderCheckModal = () => {
+    openModal({
+      element: <OrderCheckModal text="선택한 상품을 주문하시겠어요?" onClick={updateCartListAfterOrder} />,
+    })
+  }
+
+  const checkedCartListCount = cartList.reduce((acc, cur) => {
+    if (cur.checked) {
+      return acc + 1
+    } else {
+      return acc
+    }
+  }, 0)
+
   return {
     cartList,
     isLoading,
@@ -110,6 +135,8 @@ const useCart = () => {
     expectedPaymentAmount,
     openDeleteModal,
     updateCartListAfterDeletion,
+    checkedCartListCount,
+    openOrderCheckModal,
   }
 }
 

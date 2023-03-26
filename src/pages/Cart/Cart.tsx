@@ -12,6 +12,8 @@ const Cart = () => {
     expectedPaymentAmount,
     openDeleteModal,
     updateCartListAfterDeletion,
+    checkedCartListCount,
+    openOrderCheckModal,
   } = useCart()
 
   return (
@@ -36,7 +38,7 @@ const Cart = () => {
               상품삭제
             </button>
           </div>
-          <h3 className="cart-title">든든배송 상품(3개)</h3>
+          <h3 className="cart-title">든든배송 상품{`(${checkedCartListCount}개)`}</h3>
           <hr className="divide-line-gray mt-10" />
           {cartList && cartList.length > 0 ? (
             cartList?.map((item) => (
@@ -59,7 +61,14 @@ const Cart = () => {
             <span className="underline">결제예상금액</span>
             <span className="underline">{`${expectedPaymentAmount.toLocaleString()} 원`}</span>
           </div>
-          <button className="cart-amount-box__button primary-button">주문하기</button>
+
+          <button
+            className="cart-amount-box__button primary-button"
+            disabled={checkedCartListCount <= 0}
+            onClick={openOrderCheckModal}
+          >
+            주문하기 {`(${checkedCartListCount}개)`}
+          </button>
         </div>
       </div>
     </section>

@@ -96,3 +96,7 @@
   padding: 10px 20px;
   margin-top: 20px;
 }
+
+.cart-amount-box__button[disabled] {
+  opacity: 0.5;
+}
