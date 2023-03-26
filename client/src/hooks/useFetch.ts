@@ -13,16 +13,13 @@ type Action<T> =
   | { type: 'fetched'; payload: T }
   | { type: 'error'; payload: Error };
 
-interface UseFetchProps {
-  url: string;
-  options?: RequestInit;
+interface UseFetchProps<T> {
+  fetcher: () => Promise<T>;
   cacheTime?: number;
-  key?: string;
+  cacheKey: string;
 }
 
-function useFetch<T = unknown>({ url, options, cacheTime, key }: UseFetchProps): State<T> {
-  const cacheKey = key ?? url;
-
+function useFetch<T = unknown>({ fetcher, cacheKey, cacheTime }: UseFetchProps<T>): State<T> {
   const initialState: State<T> = {
     error: undefined,
     data: undefined,
@@ -45,7 +42,7 @@ function useFetch<T = unknown>({ url, options, cacheTime, key }: UseFetchProps):
   const [state, dispatch] = useReducer(fetchReducer, initialState);
 
   useEffect(() => {
-    if (!url) return;
+    if (!fetcher) return;
 
     const abortController = new AbortController();
 
@@ -60,12 +57,7 @@ function useFetch<T = unknown>({ url, options, cacheTime, key }: UseFetchProps):
       }
 
       try {
-        const response = await fetch(url, options);
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        }
-
-        const data = (await response.json()) as T;
+        const data = await fetcher();
 
         setCachedData({ key: cacheKey, data, cacheTime });
 
@@ -86,7 +78,7 @@ function useFetch<T = unknown>({ url, options, cacheTime, key }: UseFetchProps):
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [url]);
+  }, [fetcher]);
 
   return state;
 }
