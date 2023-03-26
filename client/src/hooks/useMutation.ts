@@ -1,5 +1,4 @@
 import { useReducer } from 'react';
-import { useCallbackRef } from 'hooks';
 
 interface State<T> {
   data?: T;
@@ -22,12 +21,9 @@ interface UseMutationProps<T> {
 function useMutation<T = unknown, P = unknown>({
   url,
   options,
-  onSuccess: onSuccessProp,
-  onError: onErrorProp,
+  onSuccess,
+  onError,
 }: UseMutationProps<T>) {
-  const handleSuccess = useCallbackRef(onSuccessProp);
-  const handleError = useCallbackRef(onErrorProp);
-
   const initialState: State<T> = {
     error: undefined,
     data: undefined,
@@ -62,14 +58,14 @@ function useMutation<T = unknown, P = unknown>({
       const data = (await response.json()) as T;
 
       dispatch({ type: 'mutated', payload: data });
-      handleSuccess?.(data);
+      onSuccess?.(data);
     } catch (error: unknown) {
       if (isError(error) && error.name === 'AbortError') {
         return;
       }
 
       dispatch({ type: 'error', payload: error as Error });
-      handleError?.(error);
+      onError?.(error);
     }
   };
 
