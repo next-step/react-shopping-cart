@@ -1,9 +1,9 @@
-import axiosRequest from './axios';
+import httpRequest from './httpRequest';
 import { CartItemType } from '../types';
 
-export const updateCartList = (payload: CartItemType | undefined) =>
-  axiosRequest({
-    url: `${process.env.REACT_APP_API_PATH}/carts`,
+export const updateCartList = (payload?: CartItemType) =>
+  httpRequest({
+    url: `/carts`,
     method: 'POST',
     data: payload,
   });

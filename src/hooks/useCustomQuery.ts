@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import axiosRequest from '../api/axios';
+import httpRequest from '../api/httpRequest';
 import { AxiosError } from 'axios';
 
 type UseQueryResult<TData> = {
@@ -18,7 +18,7 @@ const useCustomQuery = <TData>(url: string): UseQueryResult<TData> => {
     setData(null);
     setError(null);
     try {
-      const response = await axiosRequest.get(url);
+      const response = await httpRequest.get(url);
       setData(response.data);
     } catch (err) {
       const error = err as AxiosError;
