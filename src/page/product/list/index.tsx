@@ -1,38 +1,51 @@
+import { useEffect, useState } from "react";
 import { ProductItem } from "types/type";
 import { ProductContainer } from "../style";
 import Item from "./item";
 import GlobalHeader from "components/header";
 import Nav from "components/nav";
 import { useProductList } from "hooks/product";
+import { useScrollPagination } from "hooks/useScrollPagination";
 
-import { useEffect, useState } from "react";
+const PAGE_SIZE = 10;
 
 const ProductListPageContent = () => {
-  const { data, isLoading, isError } = useProductList();
+  const [page, setPage] = useState<number>(0);
+  const { data, isLoading, isError } = useProductList(page, PAGE_SIZE);
   const [products, setProducts] = useState<ProductItem[]>([]);
+  const [hasMore, setHasMore] = useState<boolean>(true);
+
+  const { isLoading: isScrollLoading, setIsLoading: setScrollLoading } =
+    useScrollPagination({
+      onLoadMore: () => {
+        setPage((prevPage) => prevPage + 1);
+      },
+    });
 
   useEffect(() => {
     if (isError) {
-      console.log("Error fetching product list", isError);
-
-      alert("상품 목록을 불러오는데 실패했습니다.");
+      console.error("Error fetching product list:", isError);
+      alert("Failed to load product list.");
       return;
     }
 
     if (data) {
-      setProducts(data);
-    }
-  }, [data, isError, setProducts]);
+      // 기존 목록에 새 제품 추가
+      setProducts((prevProducts) => [...prevProducts, ...data]);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+      // 가져올 제품이 더 있는지 확인
+      setHasMore(data.length >= PAGE_SIZE);
+    }
+
+    setScrollLoading(false);
+  }, [data, isError, setScrollLoading]);
 
   return (
     <ProductContainer>
-      {products.map((item: ProductItem) => {
-        return <Item key={item.id} item={item} />;
-      })}
+      {products.map((item: ProductItem) => (
+        <Item key={item.id} item={item} />
+      ))}
+      {(isLoading || isScrollLoading) && hasMore && <div>Loading...</div>}
     </ProductContainer>
   );
 };
