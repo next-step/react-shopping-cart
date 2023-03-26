@@ -14,7 +14,9 @@
     "msw": "^1.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.9.0",
     "react-scripts": "5.0.1",
+    "storybook-addon-react-router-v6": "^0.3.5",
     "styled-components": "^5.3.9",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
