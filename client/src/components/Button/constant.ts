@@ -1,6 +1,7 @@
 import { colors } from 'constants/colors';
+import { ButtonColor } from './types';
 
-export const buttonColors = {
+export const buttonColors: ButtonColor = {
   primary: {
     fill: {
       background: colors.green600,
