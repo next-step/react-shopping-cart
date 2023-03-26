@@ -2,10 +2,16 @@ import { Button, CheckBox, Divider, Text } from '@/components/common';
 import CartCard from '@/components/domain/CartCard';
 import { useCartContext } from '../Cart/CartContext';
 import { useCheckBox } from '@/components/common/CheckBox';
+import { REMOVE_CONFIRM_MESSAGE } from '@/constant/message'
 
 const CartLeftSection = () => {
   const { carts, setAllChecked, setAllUnChecked, removeSelectedItems } =
     useCartContext();
+
+  const handleRemoveCartItem = () => {
+    const result = confirm(REMOVE_CONFIRM_MESSAGE)
+    result && removeSelectedItems()
+  }
   const { checked: checkedAll, handleSelect: handleSelectAll } = useCheckBox();
 
   const handleSelect = () => {
@@ -21,7 +27,7 @@ const CartLeftSection = () => {
           checked={checkedAll}
           onSelect={handleSelect}
         />
-        <Button theme="outline" onClick={removeSelectedItems}>
+        <Button theme="outline" onClick={handleRemoveCartItem}>
           상품삭제
         </Button>
       </div>
