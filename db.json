@@ -313,6 +313,15 @@
         "price": 1440,
         "imageUrl": "https://cdn-mart.baemin.com/sellergoods/main/6ae4c431-6988-41ab-8894-7df7ee7b7cb3.jpg"
       }
+    },
+    {
+      "id": 1679836964427,
+      "product": {
+        "id": 3,
+        "name": "펩시 콜라 355ml 24캔",
+        "price": 83700,
+        "imageUrl": "https://cdn-mart.baemin.com/sellergoods/main/84fc0238-0239-4d0e-870b-a9daa6f2c42c.jpg"
+      }
     }
   ],
   "orders": [

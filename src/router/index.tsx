@@ -4,7 +4,7 @@ import Home from "page/home";
 import { createBrowserRouter } from "react-router-dom";
 import CartPage from "page/cart";
 import Detail from "page/product/detail";
-import OrdeList from "page/order/list";
+import OrderList from "page/order/already";
 
 export const ROUTE = {
   HOME: "/",
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
   },
   {
     path: ROUTE.ORDER_LIST,
-    element: <OrdeList />
+    element: <OrderList />
   },
 ]);
 

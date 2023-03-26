@@ -1,12 +1,16 @@
+import { handleModal } from "common/modal";
 import { printWon } from "common/util";
 import { tempCartState } from "hooks/cart";
+import { useRouter } from "hooks/useRouter";
 import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
+import { ROUTE } from "router";
 
 const RightSection = () => {
   const cart = useRecoilValue(tempCartState);
 
   const [totalPrice, setTotalPrice] = useState(0);
+  const { go } = useRouter();
 
   useEffect(() => {
     if (cart.length) {
@@ -23,6 +27,18 @@ const RightSection = () => {
     return cart.length ? `주문하기 (${cart.length})` : "주문하기";
   };
 
+  const handleOrder = () => {
+    if (!cart.length) {
+      return alert("주문할 상품이 없습니다.");
+    }
+
+    return handleModal({
+      title: `주문`,
+      message: `${cart.length} 개의 상품을 주문하시겠습니까?`,
+      onConfirm: () => go(ROUTE.ORDER_LIST),
+    });
+  };
+
   return (
     <section className="cart-right-section">
       <div className="cart-right-section__top">
@@ -34,7 +50,7 @@ const RightSection = () => {
           <span className="highlight-text">결제예상금액</span>
           <span className="highlight-text">{printWon(totalPrice)}</span>
         </div>
-        <div className="flex-center mt-30 mx-10">
+        <div className="flex-center mt-30 mx-10" onClick={() => handleOrder()}>
           <button className="primary-button flex-center">{orderText()}</button>
         </div>
       </div>

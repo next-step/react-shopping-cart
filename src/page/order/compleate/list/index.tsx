@@ -34,7 +34,7 @@ const OrderListContent = () => {
     </section>
   );
 };
-const OrdeList = () => {
+const OrdeCompleateList = () => {
   return (
     <>
       <Nav />
@@ -44,4 +44,4 @@ const OrdeList = () => {
   );
 };
 
-export default OrdeList;
+export default OrdeCompleateList;
