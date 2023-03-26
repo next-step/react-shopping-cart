@@ -3,16 +3,22 @@ import { CartItem } from "types/type";
 import trash from "assets/svgs/trash.svg";
 import { useEffect, useState } from "react";
 import { printWon } from "common/util";
-import { cartState, tempCartState } from "hooks/cart";
-import { useRecoilValue } from "recoil";
 
 type ItemProps = {
   item: CartItem;
   addTempCart: (addable: boolean, item: CartItem) => void;
   updateTempCartQuantity: (id: number, quantity: number) => void;
   isAllChecked: () => boolean;
+  deleteCartItem: (id: number) => void;
 };
-const Item = ({ item, addTempCart, updateTempCartQuantity,isAllChecked }: ItemProps) => {
+
+const Item = ({
+  item,
+  addTempCart,
+  updateTempCartQuantity,
+  isAllChecked,
+  deleteCartItem,
+}: ItemProps) => {
   const [quantity, setQuantity] = useState(1);
   const [addable, setAddable] = useState(false);
 
@@ -37,6 +43,11 @@ const Item = ({ item, addTempCart, updateTempCartQuantity,isAllChecked }: ItemPr
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [addable]);
 
+  const handleDeleteCartItem = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    deleteCartItem(item.id)
+  }
+
   return (
     <>
       <div className="cart-container">
@@ -46,18 +57,18 @@ const Item = ({ item, addTempCart, updateTempCartQuantity,isAllChecked }: ItemPr
             name="checkbox"
             type="checkbox"
             readOnly
-            checked={isAllChecked()}
+            checked={isAllChecked() ? true : addable}
             onClick={() => setAddable(!addable)}
           />
           <img
             className="w-144 h-144"
-            src={item.product.imageUrl}
+            src={item.product?.imageUrl}
             alt="상품 이미지"
           />
-          <span className="cart-name">{item.product.name}</span>
+          <span className="cart-name">{item.product?.name}</span>
         </div>
         <div className="flex-col-center justify-end gap-15">
-          <img className="cart-trash-svg" src={trash} alt="삭제" />
+          <img className="cart-trash-svg" src={trash} alt="삭제" onClick={(e) => handleDeleteCartItem(e)}/>
           <div className="number-input-container">
             <input
               type="number"

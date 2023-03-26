@@ -1,6 +1,6 @@
 import { UseMutationResult, UseQueryResult, useMutation, useQuery } from 'react-query';
 import { atom, useSetRecoilState } from 'recoil';
-import { addCart, getCarts } from 'services/cart';
+import { addCart, deleteCart, getCarts } from 'services/cart';
 import { CartItem, ProductItem } from 'types/type';
 
 const CART = 'cart'
@@ -20,6 +20,7 @@ interface CartItems {
   addCartItem: UseMutationResult<CartItem, Error, ProductItem, unknown>;
   addTempCart: (addAble: boolean, item: CartItem) => void;
   updateTempCartQuantity: (itemId: number, quantity: number) => void;
+  deleteCartItem: (itemId: number) => void;
 }
 
 export function useCart(): CartItems {
@@ -77,10 +78,24 @@ export function useCart(): CartItems {
     });
   }
 
+  const deleteCartItem = async (itemId: number) => {
+    const { status } = await deleteCart(itemId);
+
+    if (status === 200) {
+      setCartState((oldCartItems) => {
+        const updatedCartItems = oldCartItems.filter(
+          (cartItem) => cartItem.id !== itemId
+        );
+        return updatedCartItems;
+      });
+    }
+  };
+
   return {
     getCartItems,
     addCartItem,
     addTempCart,
-    updateTempCartQuantity
+    updateTempCartQuantity,
+    deleteCartItem
   };
 }

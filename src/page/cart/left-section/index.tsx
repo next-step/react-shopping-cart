@@ -7,10 +7,10 @@ import { useEffect, useState } from "react";
 const LeftSection = () => {
   const carts = useRecoilValue(cartState);
   const tempCart = useRecoilValue(tempCartState);
-  
+
   const [checked, setChecked] = useState(false);
 
-  const { addTempCart, updateTempCartQuantity } = useCart();
+  const { addTempCart, updateTempCartQuantity, deleteCartItem } = useCart();
 
   const isAllChecked = () => {
     return tempCart.length === carts.length;
@@ -32,6 +32,8 @@ const LeftSection = () => {
             className="checkbox"
             name="checkbox"
             type="checkbox"
+            readOnly
+            checked={isAllChecked()}
             onChange={() => setChecked(!checked)}
           />
           <label className="checkbox-label" htmlFor="checkbox">
@@ -48,6 +50,7 @@ const LeftSection = () => {
           key={item.id}
           addTempCart={addTempCart}
           updateTempCartQuantity={updateTempCartQuantity}
+          deleteCartItem={deleteCartItem}
           isAllChecked={isAllChecked}
         />
       ))}
