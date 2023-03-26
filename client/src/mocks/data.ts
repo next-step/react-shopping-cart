@@ -1,9 +1,9 @@
 import { Cart } from 'types/cart';
-import { Product } from 'types/product';
+import { Products } from 'types/product';
 
 export const carts: Cart[] = [];
 
-export const products: Product[] = [
+export const products: Products = [
   {
     id: 1,
     name: '냉면용기(대)',

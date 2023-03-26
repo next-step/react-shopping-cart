@@ -1,12 +1,12 @@
 import { rest } from 'msw';
 
 import { Cart } from 'types/cart';
-import { Product } from 'types/product';
+import { Products } from 'types/product';
 import { API } from 'constants/api';
 
 import { carts, products } from './data';
 
-const getProducts = rest.get<Product[]>(API.PRODUCTS, (_, res, ctx) => {
+const getProducts = rest.get<Products>(API.PRODUCTS, (_, res, ctx) => {
   return res(ctx.status(200), ctx.delay(1000), ctx.json(products));
 });
 
