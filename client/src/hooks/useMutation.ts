@@ -1,8 +1,10 @@
 import { useReducer } from 'react';
 
+type Status = 'init' | 'loading' | 'mutated' | 'error';
+
 interface State<T> {
   data?: T;
-  isLoading: boolean;
+  status: Status;
   error?: Error;
 }
 
@@ -11,33 +13,31 @@ type Action<T> =
   | { type: 'mutated'; payload: T }
   | { type: 'error'; payload: Error };
 
-interface UseMutationProps<T> {
-  url: string;
-  options?: RequestInit;
+interface UseMutationProps<T, P> {
+  mutation: (params: P) => Promise<T>;
   onSuccess?: (data: T) => void;
   onError?: (error: unknown) => void;
 }
 
 function useMutation<T = unknown, P = unknown>({
-  url,
-  options,
+  mutation,
   onSuccess,
   onError,
-}: UseMutationProps<T>) {
+}: UseMutationProps<T, P>) {
   const initialState: State<T> = {
     error: undefined,
     data: undefined,
-    isLoading: false,
+    status: 'init',
   };
 
   const mutateReducer = (state: State<T>, action: Action<T>): State<T> => {
     switch (action.type) {
       case 'loading':
-        return { ...initialState, isLoading: true };
+        return { ...initialState, status: 'loading' };
       case 'mutated':
-        return { ...initialState, data: action.payload };
+        return { ...initialState, status: 'mutated', data: action.payload };
       case 'error':
-        return { ...initialState, error: action.payload };
+        return { ...initialState, status: 'error', error: action.payload };
       default:
         return state;
     }
@@ -45,17 +45,11 @@ function useMutation<T = unknown, P = unknown>({
 
   const [state, dispatch] = useReducer(mutateReducer, initialState);
 
-  const mutate = async (requestBody: P) => {
+  const mutate = async (params: P) => {
     dispatch({ type: 'loading' });
 
     try {
-      const response = await fetch(url, { ...options, body: JSON.stringify(requestBody) });
-
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-
-      const data = (await response.json()) as T;
+      const data = await mutation(params);
 
       dispatch({ type: 'mutated', payload: data });
       onSuccess?.(data);
@@ -69,7 +63,7 @@ function useMutation<T = unknown, P = unknown>({
     }
   };
 
-  return { ...state, mutate };
+  return { ...state, mutate, isLoading: state.status === 'loading' };
 }
 
 const isError = (args: any): args is Error => args !== undefined;

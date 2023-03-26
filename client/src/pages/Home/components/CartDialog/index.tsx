@@ -3,9 +3,9 @@ import { css } from '@emotion/css';
 
 import { Button, Counter } from 'components';
 import { useCounter, useMutation } from 'hooks';
+import { addCart } from 'api';
 
 import { colors } from 'constants/colors';
-import { API } from 'constants/api';
 import { Product } from 'types/product';
 import { Carts, Cart } from 'types/cart';
 
@@ -21,9 +21,8 @@ function CartDialog({ product, closeDialog }: CartDialogProps) {
   const { count, plus, minus } = useCounter(1);
   const totalPrice = price * count;
 
-  const { mutate: addCart, isLoading } = useMutation<Carts, Omit<Cart, 'id'>>({
-    url: API.CART,
-    options: { method: 'POST' },
+  const { mutate, isLoading } = useMutation<Carts, Omit<Cart, 'id'>>({
+    mutation: addCart,
     onSuccess: () => {
       closeDialog();
       window.alert(`${name} 제품을 장바구니에 추가했습니다.`);
@@ -32,7 +31,7 @@ function CartDialog({ product, closeDialog }: CartDialogProps) {
   });
 
   const handleClickCartButton = () => {
-    addCart({ product, count });
+    mutate({ product, count });
   };
 
   return createPortal(
