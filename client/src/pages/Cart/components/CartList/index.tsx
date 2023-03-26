@@ -7,20 +7,15 @@ import { fetchCarts } from 'api';
 import { Cart } from 'types/cart';
 
 import CartItem from '../CartItem';
-import Skeleton from './Skeleton';
 
 const CACHE_KEY = 'carts';
 
 function CartList() {
-  const { data: carts = [], isLoading } = useFetch<Cart[]>({
+  const { data: carts = [] } = useFetch<Cart[]>({
     fetcher: fetchCarts,
     cacheKey: CACHE_KEY,
     cacheTime: 0,
   });
-
-  if (isLoading) {
-    return <Skeleton />;
-  }
 
   return (
     <div className="flex">

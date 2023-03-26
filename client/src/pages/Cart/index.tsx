@@ -1,4 +1,5 @@
-import CartList from './components/CartList';
+import { Suspense } from 'react';
+import { CartList, CartListFallback } from './components';
 
 function Cart() {
   return (
@@ -7,7 +8,9 @@ function Cart() {
         <h2 className="cart-section__title">장바구니</h2>
         <hr className="divide-line mt-20" />
       </header>
-      <CartList />
+      <Suspense fallback={<CartListFallback />}>
+        <CartList />
+      </Suspense>
     </section>
   );
 }

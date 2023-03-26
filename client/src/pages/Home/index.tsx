@@ -1,9 +1,12 @@
-import { ProductList } from './components';
+import { Suspense } from 'react';
+import { ProductList, ProductListFallback } from './components';
 
 function Home() {
   return (
     <div className="container">
-      <ProductList />
+      <Suspense fallback={<ProductListFallback />}>
+        <ProductList />
+      </Suspense>
     </div>
   );
 }
