@@ -1,9 +1,9 @@
 import { Navigate, Route, Routes as ReactRouters } from 'react-router-dom';
 
-import Products from '@/pages/Products';
-import Orders from '@/pages/Orders';
 import Carts from '@/pages/Carts';
+import Orders from '@/pages/Orders';
 import Payment from '@/pages/Payment';
+import Products from '@/pages/Products';
 
 const Routes = () => {
   return (

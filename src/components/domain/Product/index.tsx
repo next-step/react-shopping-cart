@@ -1,7 +1,8 @@
 import * as productApi from '@/api/product';
-import useOnMounted from '@/hooks/useOnMounted';
-import ProductCard from '../ProductCard';
 import useHttp from '@/hooks/useHttp';
+import useOnMounted from '@/hooks/useOnMounted';
+
+import ProductCard from '../ProductCard';
 
 const Products = () => {
   const {

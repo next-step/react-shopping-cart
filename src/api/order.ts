@@ -1,4 +1,4 @@
-import { request, HTTP_METHOD } from '@/api/core';
+import { HTTP_METHOD, request } from '@/api/core';
 
 export const postAddOrder = async (
   orderDetails: Pick<Order, 'orderDetails'>

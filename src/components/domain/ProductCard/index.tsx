@@ -1,9 +1,8 @@
-import { CartIcon, LoaderIcon } from '@/assets/svgs';
-
-import { LazyImage } from '@/components/common';
-import { currency } from '@/utils/filter/currency';
-import useHttp from '@/hooks/useHttp';
 import * as cartApi from '@/api/cart';
+import { CartIcon, LoaderIcon } from '@/assets/svgs';
+import { LazyImage } from '@/components/common';
+import useHttp from '@/hooks/useHttp';
+import { currency } from '@/utils/filter/currency';
 
 type Props = {
   product?: Product;

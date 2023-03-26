@@ -1,4 +1,4 @@
-import { request, HTTP_METHOD } from '@/api/core';
+import { HTTP_METHOD, request } from '@/api/core';
 
 export const postAddCart = async (product: Product): Promise<Product> => {
   const data = await request('/carts', HTTP_METHOD.POST({ product }));

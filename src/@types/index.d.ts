@@ -1,24 +1,24 @@
-interface Product {
+declare interface Product {
   id: string;
   imageUrl: string;
   name: string;
   price: number;
 }
 
-interface Cart {
+declare interface Cart {
   id: string;
   product: Product;
 }
 
-interface UserCart extends Cart {
+declare interface UserCart extends Cart {
   checked?: boolean;
   quantity: number;
 }
 
-interface OrderDetail extends Product {
+declare interface OrderDetail extends Product {
   quantity: number;
 }
-interface Order {
+declare interface Order {
   id: string;
   orderDetails: OrderDetail[];
 }

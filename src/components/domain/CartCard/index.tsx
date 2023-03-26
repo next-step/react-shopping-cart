@@ -1,5 +1,5 @@
+import CartCardContainer from './CartCardContainer';
 import CartCardSkeleton from './CartCardSkeleton';
-import CartCardContainer from './CartCardContainer'
 
 type Props = {
   cart?: UserCart;
@@ -7,14 +7,10 @@ type Props = {
 
 const CartCard = ({ cart }: Props) => {
   if (!cart) {
-    return (
-      <CartCardSkeleton />
-    );
+    return <CartCardSkeleton />;
   }
 
-  return (
-    <CartCardContainer cart={cart} />
-  );
+  return <CartCardContainer cart={cart} />;
 };
 
 export default CartCard;

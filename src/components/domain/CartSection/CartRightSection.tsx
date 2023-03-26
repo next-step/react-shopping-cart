@@ -1,10 +1,10 @@
+import * as orderApi from '@/api/order';
 import { Button, Divider, Text } from '@/components/common';
-import { useRouter } from '@/routes/useRouter';
-import { currency } from '@/utils/filter/currency';
-import { useCartContext } from '../Cart/CartContext';
+import { useCartContext } from '@/components/domain/Cart/CartContext';
 import { ORDER_CONFIRM_MESSAGE } from '@/constant/message';
 import useHttp from '@/hooks/useHttp';
-import * as orderApi from '@/api/order';
+import { useRouter } from '@/routes/useRouter';
+import { currency } from '@/utils/filter/currency';
 
 const CartRightSection = () => {
   const { go } = useRouter();

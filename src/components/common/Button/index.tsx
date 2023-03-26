@@ -1,5 +1,6 @@
-import { ComponentPropsWithoutRef, PropsWithChildren } from 'react';
 import './index.module.css';
+
+import { ComponentPropsWithoutRef, PropsWithChildren } from 'react';
 
 export const ButtonType = {
   primary: 'primary-button',

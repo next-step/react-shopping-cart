@@ -1,5 +1,6 @@
+import { useCallback, useRef, useState } from 'react';
+
 import useIntersection from '@/hooks/useIntersection';
-import { useState, useRef, useCallback } from 'react';
 
 type Props = {
   src?: string;

@@ -1,9 +1,8 @@
 import { TrashIcon } from '@/assets/svgs';
-import { Button, LazyImage, Text } from '@/components/common';
-import CheckBox from '@/components/common/CheckBox';
-import { currency } from '@/utils/filter/currency';
-import { useCartContext } from '../Cart/CartContext';
+import { Button, CheckBox, LazyImage, Text } from '@/components/common';
+import { useCartContext } from '@/components/domain/Cart/CartContext';
 import { REMOVE_CONFIRM_MESSAGE } from '@/constant/message';
+import { currency } from '@/utils/filter/currency';
 
 type Props = {
   cart: UserCart;

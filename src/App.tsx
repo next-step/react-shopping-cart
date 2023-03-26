@@ -1,5 +1,5 @@
-import Route from '@/routes';
 import { GNB } from '@/components/common';
+import Route from '@/routes';
 
 function App() {
   return (

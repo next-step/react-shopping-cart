@@ -1,17 +1,27 @@
-import useHttp from '@/hooks/useHttp';
-import * as cartApi from '@/api/cart';
-import { Button, CheckBox, Divider, Text } from '@/components/common';
-import CartCard from '@/components/domain/CartCard';
-import { useCartContext } from '../Cart/CartContext';
-import { useCheckBox } from '@/components/common/CheckBox';
-import { REMOVE_CONFIRM_MESSAGE } from '@/constant/message';
 import { useEffect } from 'react';
+
+import * as cartApi from '@/api/cart';
+import { Button, Divider, Text } from '@/components/common';
+import CheckBox, { useCheckBox } from '@/components/common/CheckBox';
+import { CartCard } from '@/components/domain';
+import { useCartContext } from '@/components/domain/Cart/CartContext';
+import { REMOVE_CONFIRM_MESSAGE } from '@/constant/message';
+import useHttp from '@/hooks/useHttp';
 import useOnMounted from '@/hooks/useOnMounted';
 
 const CartLeftSection = () => {
-  const { sendRequest, loading, data: cartData = [] } = useHttp(cartApi.getAllCarts);
-  const { carts, setCarts, setAllChecked, setAllUnChecked, removeSelectedItems } =
-    useCartContext();
+  const {
+    sendRequest,
+    loading,
+    data: cartData = [],
+  } = useHttp(cartApi.getAllCarts);
+  const {
+    carts,
+    setCarts,
+    setAllChecked,
+    setAllUnChecked,
+    removeSelectedItems,
+  } = useCartContext();
 
   const handleRemoveCartItem = () => {
     const result = confirm(REMOVE_CONFIRM_MESSAGE);
@@ -24,7 +34,6 @@ const CartLeftSection = () => {
     return checkedAll ? setAllUnChecked() : setAllChecked();
   };
 
-
   useEffect(() => {
     if (cartData.length > 0) {
       setCarts(
@@ -36,7 +45,6 @@ const CartLeftSection = () => {
   useOnMounted(() => {
     sendRequest();
   });
-
 
   return (
     <section className="cart-left-section">
