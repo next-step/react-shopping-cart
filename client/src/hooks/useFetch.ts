@@ -21,9 +21,17 @@ interface UseFetchProps<T> {
   fetcher: () => Promise<T>;
   cacheTime?: number;
   cacheKey: string;
+  onSuccess?: (data: T) => void;
+  onError?: (error: Error) => void;
 }
 
-function useFetch<T = unknown>({ fetcher, cacheKey, cacheTime }: UseFetchProps<T>): State<T> {
+function useFetch<T = unknown>({
+  fetcher,
+  cacheKey,
+  cacheTime,
+  onSuccess,
+  onError,
+}: UseFetchProps<T>): State<T> {
   const initialState: State<T> = {
     error: undefined,
     data: undefined,
@@ -52,9 +60,11 @@ function useFetch<T = unknown>({ fetcher, cacheKey, cacheTime }: UseFetchProps<T
   function resolvePromise(data: T) {
     setCachedData({ key: cacheKey, data, cacheTime });
     dispatch({ type: 'fetched', payload: data });
+    onSuccess?.(data);
   }
   function rejectPromise(error: Error) {
     dispatch({ type: 'error', payload: error });
+    onError?.(error);
   }
 
   useEffect(() => {
