@@ -1,6 +1,6 @@
 import { useCallback, useReducer } from 'react';
 
-type RequestFunction<T> = (payload?: any) => Promise<T>;
+type RequestFunction<T> = (...payload: any[]) => Promise<T>;
 
 type HttpActionType<Data> =
   | { type: 'SEND' }
