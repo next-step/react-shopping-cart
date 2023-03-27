@@ -2,7 +2,10 @@ import React, { useMemo } from "react";
 
 import type { Product } from "@/api/products";
 import { CartProduct } from "@/components/carts";
+import { CartProductProps } from "@/components/carts/CartProduct";
+import { useCartProductHandler } from "@/components/carts/CartProduct/hooks";
 import { PriceDashBoard } from "@/components/common";
+import { useItemSelector } from "@/hooks";
 import { useFetchCartProducts } from "@/hooks/api";
 import { CartOrderContentLayout } from "@/layouts";
 
@@ -15,37 +18,43 @@ export interface CartGroup extends Omit<Product, "id"> {
 }
 
 export default function Carts() {
-  const { cartProducts } = useFetchCartProducts();
+  const { cartProducts, onToggleAllItems, onToggleItem, isChecked } = useCartProductHandler();
+  // const { cartProducts } = useFetchCartProducts();
 
-  const cartProductsGroup = useMemo(() => {
-    return cartProducts.reduce((acc, { product }, index) => {
-      const { id, ...restProductKey } = product;
-      const curCartProductIndex = acc.findIndex((prevCartProduct) => prevCartProduct.productId === id);
+  // const cartProductsGroup = useMemo(() => {
+  //   return cartProducts.reduce((acc, { product }, index) => {
+  //     const { id, ...restProductKey } = product;
+  //     const curCartProductIndex = acc.findIndex((prevCartProduct) => prevCartProduct.productId === id);
 
-      if (curCartProductIndex === -1) {
-        return [...acc, { id: Date.now() + index, productId: id, ...restProductKey, count: 1 }];
-      } else {
-        const updatedProduct = { ...acc[curCartProductIndex], count: acc[curCartProductIndex].count + 1 };
-        return [...acc.slice(0, curCartProductIndex), updatedProduct, ...acc.slice(curCartProductIndex + 1)];
-      }
-    }, [] as CartGroup[]);
-  }, [cartProducts]);
+  //     if (curCartProductIndex === -1) {
+  //       return [...acc, { id: Date.now() + index, productId: id, ...restProductKey, count: 1 }];
+  //     } else {
+  //       const updatedProduct = { ...acc[curCartProductIndex], count: acc[curCartProductIndex].count + 1 };
+  //       return [...acc.slice(0, curCartProductIndex), updatedProduct, ...acc.slice(curCartProductIndex + 1)];
+  //     }
+  //   }, [] as CartGroup[]);
+  // }, [cartProducts]);
+
+  // const { onToggleAllItems, onToggleItem, isChecked } = useItemSelector(cartProductsGroup);
 
   return (
     <CartOrderContentLayout>
       <div>
         <S.CartProductDeleteButtonWrapper>
-          <S.CartProductCheckBox width="20px" label="선택해제" />
+          <S.CartProductCheckBox width="20px" label="선택해제" onChange={onToggleAllItems} />
           <S.CartProductDeleteButton variant="outlined">상품삭제</S.CartProductDeleteButton>
         </S.CartProductDeleteButtonWrapper>
 
         <S.CartSubHeader textAlign="left">든든배송 상품 (3개)</S.CartSubHeader>
 
-        {cartProductsGroup.map((cartProduct) => (
+        {cartProducts.map((cartProduct) => (
           <CartProduct
+            id={cartProduct.id.toString()}
             key={cartProduct.id}
             css={S.cartProductStyle}
             cartProductInfo={cartProduct}
+            isChecked={isChecked(cartProduct.id)}
+            onCheckItem={onToggleItem}
             onIncreaseProductQuantity={() => console.log("increase")}
             onDecreaseProductQuantity={() => console.log("decrease")}
           />
