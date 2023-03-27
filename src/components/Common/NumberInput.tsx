@@ -1,3 +1,4 @@
+import { QuantityButtonType } from '@/pages/Cart/hooks/useCart';
 import { ButtonHTMLAttributes, InputHTMLAttributes } from 'react';
 
 function CountControlButton({ children, ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {
@@ -11,11 +12,16 @@ function CountControlButton({ children, ...props }: ButtonHTMLAttributes<HTMLBut
   );
 }
 
-type NumberInputProps = InputHTMLAttributes<HTMLInputElement>;
-function NumberInput({ value, min = 1, max = 20, ...props }: NumberInputProps) {
+interface NumberInputProps extends InputHTMLAttributes<HTMLInputElement> {
+  id: string;
+  handleQuantity: (id: string, type: QuantityButtonType) => void;
+}
+
+function NumberInput({ id, value, min = 1, max = 20, handleQuantity, readOnly = true, ...props }: NumberInputProps) {
   return (
     <div className="flex justify-center items-center w-[80px] h-[58px]">
       <input
+        readOnly={readOnly}
         className="flex-[7] h-full border-[1px] border-gray-200 text-center text-2xl outline-none"
         type="number"
         value={value || 1}
@@ -24,8 +30,8 @@ function NumberInput({ value, min = 1, max = 20, ...props }: NumberInputProps) {
         {...props}
       />
       <div className="flex-[3]">
-        <CountControlButton>▲</CountControlButton>
-        <CountControlButton>▼</CountControlButton>
+        <CountControlButton onClick={() => handleQuantity(id, 'up')}>▲</CountControlButton>
+        <CountControlButton onClick={() => handleQuantity(id, 'down')}>▼</CountControlButton>
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ type ButtonVariant = 'primary' | 'info' | 'disabled' | 'danger';
 const buttonVariantMap: Record<ButtonVariant, string> = {
   primary: 'bg-teal-400 text-white active:bg-teal-300',
   info: 'bg-white border-[1px] border-slate-400 text-slate-400 active:border-slate-300 active:text-slate-300',
-  disabled: 'bg-slate-400 text-white cursor-not-allowed',
+  disabled: 'bg-slate-300 text-white cursor-not-allowed',
   danger: 'bg-red-400 text-white active:bg-red-300',
 };
 
