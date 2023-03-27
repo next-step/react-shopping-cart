@@ -1,5 +1,11 @@
 import { rest } from 'msw';
 
+import { userCarts } from '@/mocks/data/cart';
+
+const getAllCarts: Parameters<typeof rest.get>[1] = (_req, res, ctx) => {
+  return res(ctx.delay(3000), ctx.status(200), ctx.json([...userCarts]));
+};
+
 const postAddCart: Parameters<typeof rest.post>[1] = async (req, res, ctx) => {
   const { product } = await req.json();
 
@@ -32,7 +38,8 @@ const removeCart: Parameters<typeof rest.delete>[1] = async (req, res, ctx) => {
 };
 
 const handlers = [
+  rest.get('/carts', getAllCarts),
   rest.post('/carts', postAddCart),
-  rest.delete('/cart/:cardId', removeCart),
+  rest.delete('/carts/:cardId', removeCart),
 ];
 export default handlers;

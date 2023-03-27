@@ -1,7 +1,9 @@
 import { rest } from 'msw';
 
+import { order } from '@/mocks/data/order';
+
 const postAddOrder: Parameters<typeof rest.post>[1] = async (req, res, ctx) => {
-  const orderDetails = await req.json();
+  const orderDetails: OrderDetail[] = await req.json();
 
   if (orderDetails.length === 0) {
     return res(
@@ -15,7 +17,7 @@ const postAddOrder: Parameters<typeof rest.post>[1] = async (req, res, ctx) => {
   return res(
     ctx.status(200),
     ctx.json({
-      orderDetails,
+      order,
     })
   );
 };
