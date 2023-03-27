@@ -13,7 +13,7 @@ function Skeleton() {
     <div className="flex">
       <section className="cart-left-section">
         <div className="flex justify-between items-center">
-          <Checkbox>선택해제</Checkbox>
+          <Checkbox>모두선택</Checkbox>
           <Button type="default">상품삭제</Button>
         </div>
         <h3 className="cart-title my-20">배송 상품 (총 0개)</h3>
