@@ -1,4 +1,4 @@
-import { Product } from '@/types'
+import { Product, Order } from '@/types'
 
 export const products: Product[] = [
   {
@@ -94,3 +94,5 @@ export const products: Product[] = [
 ]
 
 export const carts: Product[] = []
+
+export const orders: Order[] = []

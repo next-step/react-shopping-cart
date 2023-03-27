@@ -1,5 +1,5 @@
 .order-section {
-  padding: 24px 300px;
+  padding: 24px 100px;
 }
 
 .order-section__title {
@@ -27,7 +27,7 @@
 }
 
 .order-left-section {
-  width: 60%;
+  width: 100%;
   margin-top: 50px;
 }
 

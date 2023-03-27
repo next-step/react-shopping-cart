@@ -15,7 +15,8 @@ const useCart = () => {
 
   const [cartList, setCartList] = useState<ProductSchemaWithCheckedAndQuantityInfer[]>([])
 
-  const deleteModalMutation = useMutation(`${API.CARTS}`, 'DELETE')
+  const deleteCartMutation = useMutation(`${API.CARTS}`, 'DELETE')
+  const createOrdersMutation = useMutation(`${API.ORDERS}`, 'POST')
 
   const { openModal, closeModal } = useModal()
 
@@ -27,7 +28,7 @@ const useCart = () => {
       return
     }
 
-    await deleteModalMutation.mutate({ ids: selectedCartItemIds })
+    await deleteCartMutation.mutate({ ids: selectedCartItemIds })
 
     const unCheckedCartList = cartList.filter((item) => !item.checked)
     setCartList(unCheckedCartList)
@@ -101,10 +102,14 @@ const useCart = () => {
     }
   }, 0)
 
+  const checkedCartList = cartList.filter((item) => item.checked)
+  const checkedCartIds = checkedCartList.map((item) => item.id)
+  const unCheckedCartList = cartList.filter((item) => !item.checked)
+
   const updateCartListAfterOrder = async () => {
-    const selectedCartItemIds = cartList.filter((item) => item.checked).map((item) => item.id)
-    await deleteModalMutation.mutate({ ids: selectedCartItemIds })
-    const unCheckedCartList = cartList.filter((item) => !item.checked)
+    await deleteCartMutation.mutate({ ids: checkedCartIds })
+    await createOrdersMutation.mutate({ orderList: checkedCartList })
+
     setCartList(unCheckedCartList)
     closeModal({ element: <DeleteModal /> })
     navigate('/order')

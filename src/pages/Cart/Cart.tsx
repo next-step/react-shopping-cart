@@ -1,4 +1,4 @@
-import { SubHeader } from '@/components'
+import { SubHeader, AmountBox } from '@/components'
 
 import { CartItem } from './components'
 import { useCart } from './hooks'
@@ -39,7 +39,7 @@ const Cart = () => {
             </button>
           </div>
           <h3 className="cart-title">든든배송 상품{`(${checkedCartListCount}개)`}</h3>
-          <hr className="divide-line-gray mt-10" />
+          <hr className="divide-line-thin mt-10" />
           {cartList && cartList.length > 0 ? (
             cartList?.map((item) => (
               <CartItem
@@ -53,22 +53,15 @@ const Cart = () => {
           ) : (
             <div className="flex justify-center px-20">장바구니가 비어있습니다.</div>
           )}
-          <hr className="divide-line-thin" />
         </section>
-        <div className="span-2 cart-amount-box">
-          <div className="cart-amount-box__title">결제예상금액</div>
-          <div className="cart-amount-box__price">
-            <span className="underline">결제예상금액</span>
-            <span className="underline">{`${expectedPaymentAmount.toLocaleString()} 원`}</span>
-          </div>
-
-          <button
-            className="cart-amount-box__button primary-button"
+        <div className="span-2">
+          <AmountBox
+            title="결제예상금액"
+            price={`${expectedPaymentAmount.toLocaleString()} 원`}
             disabled={checkedCartListCount <= 0}
             onClick={openOrderCheckModal}
-          >
-            주문하기 {`(${checkedCartListCount}개)`}
-          </button>
+            buttonText={`주문하기 (${checkedCartListCount}개)`}
+          />
         </div>
       </div>
     </section>

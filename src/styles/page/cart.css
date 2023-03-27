@@ -60,7 +60,7 @@
   align-self: flex-end;
 }
 
-.cart-amount-box {
+.amount-box {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -70,14 +70,14 @@
   height: 200px;
 }
 
-.cart-amount-box__title {
+.amount-box__title {
   font-size: 20px;
   padding: 15px 0;
   width: 100%;
   border-bottom: 1px solid #dddddd;
 }
 
-.cart-amount-box__price {
+.amount-box__price {
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
@@ -86,17 +86,17 @@
   font-size: 18px;
 }
 
-.cart-amount-box__price span {
+.amount-box__price span {
   underline: 5px solid #dddddd;
 }
 
-.cart-amount-box__button {
+.amount-box__button {
   font-size: 16px;
   text-align: center;
   padding: 10px 20px;
   margin-top: 20px;
 }
 
-.cart-amount-box__button[disabled] {
+.amount-box__button[disabled] {
   opacity: 0.5;
 }

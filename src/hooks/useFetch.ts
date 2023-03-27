@@ -40,6 +40,7 @@ const useFetch = <T>(url: string, options: UseFetchOptions = { enabled: true }):
       } else {
         setError(String(error))
       }
+      throw error
     } finally {
       setLoading(false)
     }
