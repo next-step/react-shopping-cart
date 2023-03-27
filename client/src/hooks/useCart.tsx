@@ -8,8 +8,8 @@ import { getData } from 'utils/fetch';
 const useCart = () => {
   const cartList = useAppSelector((state) => state.cart.cartList);
   const dispatch = useAppDispatch();
-  const totalAmount = calculateCartTotalAmount(cartList);
-  const totalPrice = calculateCartProductTotal(cartList);
+  const totalAmount = cartList.length && calculateCartTotalAmount(cartList);
+  const totalPrice = cartList.length && calculateCartProductTotal(cartList);
 
   const GetCart = () => {
     dispatch(getCart('/carts'));

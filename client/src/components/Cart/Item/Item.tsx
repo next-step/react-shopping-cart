@@ -25,8 +25,7 @@ const CartItem = ({ id, image, price, name, isOrder, amount }: CartItemProps) =>
       <Styled.RightFlexBox>
         <Styled.CartRemoveButton onClick={() => DeleteCart({ ...currentCartItem })} />
         <Styled.FlexContainer>
-          <Styled.CartInputNumber type="text" value={amount} readOnly={true} />
-
+          <Styled.CartInputNumber type="text" value={inputNumber} readOnly={true} />
           <div>
             <Styled.CartInputNumberButton onClick={() => increaseNumber(currentCartItem)}>
               ▲
@@ -36,11 +35,8 @@ const CartItem = ({ id, image, price, name, isOrder, amount }: CartItemProps) =>
             </Styled.CartInputNumberButton>
           </div>
         </Styled.FlexContainer>
-        {isOrder ? (
-          <Styled.CartPriceText>{price * amount}원</Styled.CartPriceText>
-        ) : (
-          <Styled.CartPriceText>{price * inputNumber}원</Styled.CartPriceText>
-        )}
+
+        <Styled.CartPriceText>{price * inputNumber}원</Styled.CartPriceText>
       </Styled.RightFlexBox>
     </Styled.Layout>
   );
