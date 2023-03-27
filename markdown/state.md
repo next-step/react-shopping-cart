@@ -39,6 +39,6 @@
 - 이전 페이지의 state를 넘겨줘서 화면을 그린다기보단, 각 단계에서 데이터는 DB에 저장된다
 - 그래서 각 페이지에서 데이터를 불러오는 방향이 더 적합하지 않을까? -> SWR, RQ 선택 가능
 
-## 테스트 전략
+## Refer
 
-- msw + faker
+- [SWR, Context](https://dev.to/saisandeepvaddi/simple-way-to-manage-state-in-react-with-context-kig)
