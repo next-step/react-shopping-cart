@@ -1,18 +1,11 @@
 import useFetch from '@/hooks/useFetch';
-import { CartList, Product } from '@/types';
+import { CartList, CartWithProductQuantity } from '@/types';
 import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
-
-type ProductWithQuantity = Product & { quantity: number };
-
-type CartWithQuantity = {
-  id: number;
-  product: ProductWithQuantity;
-};
 
 function useCart() {
   const { state } = useFetch<CartList>('/carts');
 
-  const [carts, setCarts] = useState<CartWithQuantity[]>([]);
+  const [carts, setCarts] = useState<CartWithProductQuantity[]>([]);
   const [checkedProductList, setCheckedProductList] = useState<number[]>([]);
 
   const handleCheckList = useCallback((e: ChangeEvent<HTMLInputElement>) => {

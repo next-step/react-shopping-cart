@@ -1,11 +1,14 @@
-import { TableRow, Button } from '@/components/Common';
+import { TableRow } from '@/components/Common';
 import Checkbox from '@/components/Common/Checkbox';
 import CartTableContainer from './CartTableContainer';
 import CartTableHeader from './CartTableHeader';
 import useCart from '../../hooks/useCart';
+import CartController from './CartController';
 
 function CartTable() {
   const { carts, checkedProductList, handleCheckList, handleCheckAllList } = useCart();
+
+  console.log(carts);
 
   const allChecked = carts.every(cart => checkedProductList.includes(cart.id));
 
@@ -22,7 +25,7 @@ function CartTable() {
                 checkboxComponent: (
                   <Checkbox value={cart.id} checked={checkedProductList.includes(cart.id)} onChange={handleCheckList} />
                 ),
-                sideComponent: <Button>Delete</Button>,
+                sideComponent: <CartController cart={cart} />,
               }}
             />
           </div>

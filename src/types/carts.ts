@@ -6,3 +6,10 @@ export type Cart = {
 };
 
 export type CartList = Cart[];
+
+export type ProductWithQuantity = Product & { quantity: number };
+
+export type CartWithProductQuantity = {
+  id: number;
+  product: ProductWithQuantity;
+};
