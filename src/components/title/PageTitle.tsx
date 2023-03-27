@@ -2,7 +2,7 @@ interface TitleProps {
   text: string;
 }
 
-const Title = ({ text }: TitleProps) => {
+const PageTitle = ({ text }: TitleProps) => {
   return (
     <header className="flex-col-center mt-50 mb-50">
       <h2 className="cart-section__title">{text}</h2>
@@ -11,4 +11,4 @@ const Title = ({ text }: TitleProps) => {
   );
 };
 
-export default Title;
+export default PageTitle;

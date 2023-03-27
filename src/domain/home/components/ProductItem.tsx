@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { ProductInfoType } from '../../../types';
-import { SvgCart } from '../../../components/svg';
+import { SvgCart } from '../../../assets/svg';
 import { priceFormat } from '../../../utils';
 
 const S = {
