@@ -25,7 +25,7 @@ const SectionCartList = ({ cartList }: SectionCartListProps) => {
         <CartList items={cartList} />
         <CartTotal
           title="결제예상금액"
-          totalText="결제예상금액"
+          label="결제예상금액"
           totalPrice={21700}
           buttonText="주문하기(2개)"
         />

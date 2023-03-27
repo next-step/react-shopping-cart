@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import { priceFormat } from '../../utils';
 
-interface CartTotal {
+interface CartTotalProps {
   title: string;
-  totalText: string;
+  label: string;
   totalPrice: number;
   buttonText: string;
 }
@@ -16,7 +16,12 @@ const S = {
   }),
 };
 
-const CartTotal = ({ title, totalText, totalPrice, buttonText }: CartTotal) => {
+const CartTotal = ({
+  title,
+  label,
+  totalPrice,
+  buttonText,
+}: CartTotalProps) => {
   return (
     <S.Wrapper>
       <div className="cart-right-section__top">
@@ -25,7 +30,7 @@ const CartTotal = ({ title, totalText, totalPrice, buttonText }: CartTotal) => {
       <hr className="divide-line-thin" />
       <div className="cart-right-section__bottom">
         <div className="flex justify-between p-20 mt-20">
-          <span className="highlight-text">{totalText}</span>
+          <span className="highlight-text">{label}</span>
           <span className="highlight-text">{priceFormat(totalPrice)}</span>
         </div>
         <div className="flex-center mt-30 mx-10">
