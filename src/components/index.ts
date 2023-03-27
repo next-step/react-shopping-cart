@@ -1,5 +1,5 @@
 export { default as Section } from './common/Section';
-export { default as SectionTitle } from './common/SectionTitle';
+export { default as Title } from './common/Title';
 
 export { default as ProductItem } from './home/ProductItem';
 export { default as SectionProductList } from './home/SectionProductList';

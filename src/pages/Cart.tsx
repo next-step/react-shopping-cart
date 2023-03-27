@@ -1,4 +1,4 @@
-import { SectionTitle, SectionCartList } from '../components';
+import { Title, SectionCartList, Section } from '../components';
 import { Layout } from '../layout';
 import useCart from '../hooks/useCart';
 import { CartItemType } from '../types';
@@ -16,7 +16,9 @@ const Cart = () => {
 
   return (
     <Layout>
-      <SectionTitle text="장바구니" />
+      <Section>
+        <Title text="장바구니" />
+      </Section>
       <SectionCartList cartList={cartData as CartItemType[]} />
     </Layout>
   );
