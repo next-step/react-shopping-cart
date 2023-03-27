@@ -4,7 +4,7 @@ import useCart from '../hooks/useCart';
 import { CartItemType } from '../types';
 
 const Cart = () => {
-  const { carts, error, loading } = useCart();
+  const { cartData, error, loading } = useCart();
 
   if (loading) {
     return <div>페이지 로딩 중...</div>;
@@ -17,7 +17,7 @@ const Cart = () => {
   return (
     <Layout>
       <SectionTitle text="장바구니" />
-      <SectionCartList cartList={carts as CartItemType[]} />
+      <SectionCartList cartList={cartData as CartItemType[]} />
     </Layout>
   );
 };

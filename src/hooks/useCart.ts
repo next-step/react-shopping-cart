@@ -6,9 +6,9 @@ interface UseCartResponse {
 }
 const useCart = () => {
   const { data, loading, error } = useCustomQuery<UseCartResponse>(`/carts`);
-  const carts = data?.response;
+  const cartData = data?.response;
 
-  return { carts, loading, error };
+  return { cartData, loading, error };
 };
 
 export default useCart;
