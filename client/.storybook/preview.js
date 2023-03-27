@@ -1,20 +1,27 @@
 import { initialize, mswDecorator } from 'msw-storybook-addon';
-import { rest } from 'msw';
-import products from '../src/mocks/server/data/products.json';
 import { withRouter } from 'storybook-addon-react-router-v6';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor } from 'utils/redux-persist';
+import store from 'store';
+import { handlers } from '../src/mocks/server/handlers/index';
 
 initialize();
-// Provide the MSW addon decorator globally
-export const decorators = [mswDecorator, withRouter];
-
+export const decorators = [
+  mswDecorator,
+  withRouter,
+  (Story) => (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Story />
+      </PersistGate>
+    </Provider>
+  ),
+];
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   msw: {
-    handlers: [
-      rest.get('/products', (req, res, ctx) => {
-        return res(ctx.json(products));
-      }),
-    ],
+    handlers: [handlers],
   },
   controls: {
     matchers: {

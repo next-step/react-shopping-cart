@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import { ProductDetailItem } from 'components/Product/DetailItem';
+import { useProducts } from 'hooks';
 
 const ProductDetail = () => {
+  const { products } = useProducts();
   return (
     <Layout>
-      <ProductDetailItem />
+      <ProductDetailItem products={products} />
     </Layout>
   );
 };

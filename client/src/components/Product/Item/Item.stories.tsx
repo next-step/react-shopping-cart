@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ProductItem } from 'components/Product/Item';
 export default {
-  title: '기본 아이템',
+  title: 'Product',
   component: ProductItem,
 } as ComponentMeta<typeof ProductItem>;
 
@@ -14,4 +14,4 @@ const mockData = {
 
 const Template: ComponentStory<typeof ProductItem> = () => <ProductItem {...mockData} />;
 
-export const DefaultPayment = Template.bind({});
+export const Item = Template.bind({});
