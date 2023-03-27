@@ -16,13 +16,13 @@ const S = {
 };
 
 interface SectionCartListProps {
-  carts: CartItemType[];
+  cartList: CartItemType[];
 }
-const SectionCartList = ({ carts }: SectionCartListProps) => {
+const SectionCartList = ({ cartList }: SectionCartListProps) => {
   return (
     <Section>
       <S.Content>
-        <CartList cartList={carts} />
+        <CartList items={cartList} />
         <CartTotal
           title="결제예상금액"
           totalText="결제예상금액"

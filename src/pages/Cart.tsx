@@ -17,7 +17,7 @@ const Cart = () => {
   return (
     <Layout>
       <SectionTitle text="장바구니" />
-      <SectionCartList carts={carts as CartItemType[]} />
+      <SectionCartList cartList={carts as CartItemType[]} />
     </Layout>
   );
 };

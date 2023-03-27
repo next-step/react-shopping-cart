@@ -13,15 +13,20 @@ const S = {
 };
 
 interface CartListProps {
-  cartList: CartItemType[];
+  items: CartItemType[];
 }
 
-const CartList = ({ cartList }: CartListProps) => {
+const CartList = ({ items }: CartListProps) => {
   return (
     <S.Wrapper>
       <div className="flex justify-between items-center">
         <div className="checkbox-container">
-          <input className="checkbox" name="checkbox" type="checkbox" />
+          <input
+            className="checkbox"
+            name="checkbox"
+            type="checkbox"
+            id="checkbox"
+          />
           <label className="checkbox-label" htmlFor="checkbox">
             선택해제
           </label>
@@ -29,9 +34,9 @@ const CartList = ({ cartList }: CartListProps) => {
         <button className="delete-button">상품삭제</button>
       </div>
 
-      <S.H3>든든배송 상품({cartList.length}개)</S.H3>
+      <S.H3>든든배송 상품({items.length}개)</S.H3>
       <hr className="divide-line-gray mt-10" />
-      {cartList.map((item) => (
+      {items.map((item) => (
         <CartItem
           key={item.id}
           name={item.product.name}
@@ -39,7 +44,7 @@ const CartList = ({ cartList }: CartListProps) => {
           imageUrl={item.product.imageUrl}
         />
       ))}
-      {cartList.length === 0 && <div>장바구니가 비어있습니다.</div>}
+      {items.length === 0 && <div>장바구니가 비어있습니다.</div>}
     </S.Wrapper>
   );
 };
