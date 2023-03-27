@@ -4,3 +4,4 @@ export { default as useRouter } from './useRouter';
 export { default as useCartItem } from './useCartItem';
 export { default as useCartPage } from './useCartPage';
 export { default as useDialog } from './useDialog';
+export { default as useProductItem } from './useProductItem';

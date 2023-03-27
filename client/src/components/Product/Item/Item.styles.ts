@@ -19,6 +19,7 @@ export const FlexContainer = styled(Box)`
 export const ItemImage = styled(Image)`
   width: 283px;
   height: 283px;
+  cursor: pointer;
 `;
 export const CartIcon = styled(Cart)`
   cursor: pointer;
