@@ -1,4 +1,3 @@
-import { PaginationResponse, Product } from '@/@types';
 import { HTTP_METHOD, request } from '@/api/core';
 
 const cache: { [key: string]: PaginationResponse<Product> } = {};
