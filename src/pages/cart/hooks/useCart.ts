@@ -1,5 +1,5 @@
-import useCustomQuery from './useCustomQuery';
-import { CartInfoType } from '../types';
+import { useCustomQuery } from '../../../apiClient';
+import { CartInfoType } from '../../../types';
 
 interface ResponseType {
   response: CartInfoType[];

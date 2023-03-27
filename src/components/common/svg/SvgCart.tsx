@@ -1,4 +1,4 @@
-import { COLORS } from '../../constant';
+import { COLORS } from '../../../constant';
 
 interface SvgProps {
   color?: string;

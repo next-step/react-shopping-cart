@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import httpRequest from '../api/httpRequest';
+import httpRequest from '../httpRequest';
 import { AxiosError } from 'axios';
 
 type UseQueryResultType<TData> = {

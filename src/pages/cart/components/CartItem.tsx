@@ -1,4 +1,4 @@
-import { ProductInfoType } from '../../types';
+import { ProductInfoType } from '../../../types';
 
 const CartItem = ({ name, price, imageUrl }: ProductInfoType) => {
   return (

@@ -1,7 +1,8 @@
-import { Section, CartList, CartTotal } from '../index';
+import { Section } from '../../../components';
+import { CartList, CartTotal } from '../components';
 import styled from '@emotion/styled';
-import { mediaQuery } from '../../utils';
-import { CartInfoType } from '../../types';
+import { mediaQuery } from '../../../utils';
+import { CartInfoType } from '../../../types';
 
 const S = {
   Content: styled.div(

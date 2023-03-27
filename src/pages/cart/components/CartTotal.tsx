@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { priceFormat } from '../../utils';
+import { priceFormat } from '../../../utils';
 
 interface CartTotalProps {
   title: string;

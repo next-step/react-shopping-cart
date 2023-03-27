@@ -1,5 +1,5 @@
-import useCustomQuery from './useCustomQuery';
-import { ProductInfoType } from '../types';
+import useCustomQuery from '../../../apiClient/hook/useCustomQuery';
+import { ProductInfoType } from '../../../types';
 import { useParams } from 'react-router-dom';
 
 interface ResponseType {

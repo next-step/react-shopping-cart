@@ -1,7 +1,8 @@
-import { Section, ProductItem } from '../index';
+import { Section } from '../../../components';
+import { ProductItem } from '../components';
 import styled from '@emotion/styled';
-import { mediaQuery } from '../../utils';
-import { ProductInfoType } from '../../types';
+import { mediaQuery } from '../../../utils';
+import { ProductInfoType } from '../../../types';
 
 const S = {
   Container: styled.div(
@@ -25,7 +26,7 @@ interface SectionProductListProps {
   addCart: (item: ProductInfoType) => void;
 }
 
-const SectionProductList = ({
+const ProductList = ({
   products,
   navigateToDetailedPage,
   addCart,
@@ -46,4 +47,4 @@ const SectionProductList = ({
   );
 };
 
-export default SectionProductList;
+export default ProductList;

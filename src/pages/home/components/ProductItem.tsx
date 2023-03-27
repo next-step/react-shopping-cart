@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
-import { ProductInfoType } from '../../types';
-import { SvgCart } from '../../assets/svg';
-import { priceFormat } from '../../utils';
+import { ProductInfoType } from '../../../types';
+import { SvgCart } from '../../../components/common/svg';
+import { priceFormat } from '../../../utils';
 
 const S = {
   Wrapper: styled.div``,

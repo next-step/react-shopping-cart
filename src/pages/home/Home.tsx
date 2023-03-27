@@ -1,7 +1,7 @@
-import { Layout } from '../layout';
-import { SectionProductList } from '../components';
-import { useProduct } from '../hooks';
-import { ProductInfoType } from '../types';
+import { Layout } from '../../layout';
+import { ProductList } from './components';
+import useProduct from './hooks/useProduct';
+import { ProductInfoType } from '../../types';
 
 const Home = () => {
   const { products, error, loading, navigateToDetailedPage, addCart } =
@@ -17,7 +17,7 @@ const Home = () => {
 
   return (
     <Layout>
-      <SectionProductList
+      <ProductList
         products={products as ProductInfoType[]}
         navigateToDetailedPage={navigateToDetailedPage}
         addCart={addCart}

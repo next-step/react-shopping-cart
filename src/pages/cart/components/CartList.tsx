@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import { CartInfoType } from '../../types';
-import CartItem from './CartItem';
+import { CartInfoType } from '../../../types';
+import { CartItem } from '../components';
 
 const S = {
   Wrapper: styled.div({

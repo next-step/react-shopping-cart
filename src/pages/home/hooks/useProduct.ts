@@ -1,11 +1,14 @@
-import useCustomQuery from './useCustomQuery';
-import { CartInfoType, ProductInfoType } from '../types';
 import { useCallback } from 'react';
-import { ROUTE } from '../router';
+import { CartInfoType, ProductInfoType } from '../../../types';
+import { ROUTE, useRouter } from '../../../router';
 import { useNavigate } from 'react-router-dom';
-import { useCustomMutation, useRouter } from './index';
-import { updateCartList } from '../api/request';
-import { CONFIRM } from '../constant';
+import {
+  updateCartList,
+  useCustomMutation,
+  useCustomQuery,
+} from '../../../apiClient';
+import { CONFIRM } from '../../../constant';
+
 interface ResponseType {
   response: ProductInfoType[];
 }

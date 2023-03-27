@@ -1,5 +1,5 @@
-import httpRequest from './httpRequest';
-import { CartInfoType } from '../types';
+import httpRequest from '../httpRequest';
+import { CartInfoType } from '../../types';
 
 export const updateCartList = (payload?: CartInfoType) =>
   httpRequest({

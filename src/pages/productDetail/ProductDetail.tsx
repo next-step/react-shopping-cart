@@ -1,8 +1,8 @@
-import { Layout } from '../layout';
-import useProductDetail from '../hooks/useProductDetail';
-import { priceFormat } from '../utils';
-import { useProduct } from '../hooks';
-import { ProductInfoType } from '../types';
+import { Layout } from '../../layout';
+import useProductDetail from './hooks/useProductDetail';
+import useProduct from '../home/hooks/useProduct';
+import { priceFormat } from '../../utils';
+import { ProductInfoType } from '../../types';
 
 const ProductDetail = () => {
   const { productData, loading, error } = useProductDetail();
