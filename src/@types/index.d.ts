@@ -22,3 +22,10 @@ declare interface Order {
   id: string;
   orderDetails: OrderDetail[];
 }
+
+declare interface PaginationResponse<T> {
+  data: T[];
+  pageNumber: number;
+  nextPage: number;
+  limit: number;
+}

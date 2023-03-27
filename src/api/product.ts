@@ -1,4 +1,7 @@
+import { PaginationResponse, Product } from '@/@types';
 import { HTTP_METHOD, request } from '@/api/core';
+
+const cache: { [key: string]: PaginationResponse<Product> } = {};
 
 export const getAllProducts = async (): Promise<Product[]> => {
   const data = await request('/products', HTTP_METHOD.GET());
@@ -6,12 +9,20 @@ export const getAllProducts = async (): Promise<Product[]> => {
 };
 
 export const getPaginatedProducts = async ({
-  start = 1,
-  end = 10,
-}): Promise<Product[]> => {
+  page = 1,
+  limit = 10,
+}): Promise<PaginationResponse<Product>> => {
   const data = await request(
-    `/products?_start=${start}&_end=${end}`,
+    `/products?_page=${page}&_limit=${limit}`,
     HTTP_METHOD.GET()
   );
-  return data;
+  cache[page] = data;
+
+  return {
+    ...data,
+    data: Object.values(cache).flatMap((item) => item),
+    page,
+    nextPage: page + 1,
+    limit,
+  };
 };

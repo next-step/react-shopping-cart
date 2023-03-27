@@ -6,8 +6,8 @@ import CheckBox, { useCheckBox } from '@/components/common/CheckBox';
 import { CartCard } from '@/components/domain';
 import { useCartContext } from '@/components/domain/Cart/CartContext';
 import { REMOVE_CONFIRM_MESSAGE } from '@/constant/message';
+import useEffectOnce from '@/hooks/useEffectOnce';
 import useHttp from '@/hooks/useHttp';
-import useOnMounted from '@/hooks/useOnMounted';
 
 const CartLeftSection = () => {
   const {
@@ -42,9 +42,7 @@ const CartLeftSection = () => {
     }
   }, [cartData]);
 
-  useOnMounted(() => {
-    sendRequest();
-  });
+  useEffectOnce(sendRequest);
 
   return (
     <section className="cart-left-section">
