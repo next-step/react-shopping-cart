@@ -1,10 +1,7 @@
 import styled from '@emotion/styled';
-import { ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 import { FRAME_PADDING, MAX_WIDTH } from '../../constant';
 import { mediaQuery } from '../../utils';
-interface SectionType {
-  children: ReactNode;
-}
 
 const S = {
   Section: styled.div(
@@ -19,7 +16,7 @@ const S = {
     })
   ),
 };
-const Section = ({ children }: SectionType) => {
+const Section = ({ children }: PropsWithChildren) => {
   return <S.Section>{children}</S.Section>;
 };
 
