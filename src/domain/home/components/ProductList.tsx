@@ -1,11 +1,10 @@
-import { Section } from '../../../components';
 import { ProductItem } from '../components';
 import styled from '@emotion/styled';
 import { mediaQuery } from '../../../utils';
 import { ProductInfoType } from '../../../types';
 
 const S = {
-  Container: styled.div(
+  Content: styled.div(
     mediaQuery({
       display: 'grid',
       gridTemplateColumns: [
@@ -32,18 +31,16 @@ const ProductList = ({
   addCart,
 }: SectionProductListProps) => {
   return (
-    <Section>
-      <S.Container>
-        {products?.map((item) => (
-          <ProductItem
-            key={item.id}
-            {...item}
-            onClickProductImage={() => navigateToDetailedPage(item.id)}
-            onClickAddCart={() => addCart(item)}
-          />
-        ))}
-      </S.Container>
-    </Section>
+    <S.Content>
+      {products?.map((item) => (
+        <ProductItem
+          key={item.id}
+          {...item}
+          onClickProductImage={() => navigateToDetailedPage(item.id)}
+          onClickAddCart={() => addCart(item)}
+        />
+      ))}
+    </S.Content>
   );
 };
 

@@ -1,4 +1,3 @@
-import { Section } from '../../../components';
 import { CartList, CartTotal } from '../components';
 import styled from '@emotion/styled';
 import { mediaQuery } from '../../../utils';
@@ -19,20 +18,18 @@ const S = {
 interface SectionCartListProps {
   cartList: CartInfoType[];
 }
-const SectionCartList = ({ cartList }: SectionCartListProps) => {
+const CartLayout = ({ cartList }: SectionCartListProps) => {
   return (
-    <Section>
-      <S.Content>
-        <CartList items={cartList} />
-        <CartTotal
-          title="결제예상금액"
-          label="결제예상금액"
-          totalPrice={21700}
-          buttonText="주문하기(2개)"
-        />
-      </S.Content>
-    </Section>
+    <S.Content>
+      <CartList items={cartList} />
+      <CartTotal
+        title="결제예상금액"
+        label="결제예상금액"
+        totalPrice={21700}
+        buttonText="주문하기(2개)"
+      />
+    </S.Content>
   );
 };
 
-export default SectionCartList;
+export default CartLayout;

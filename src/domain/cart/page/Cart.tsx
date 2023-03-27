@@ -1,5 +1,5 @@
-import { Title, Section } from '../../../components';
-import { SectionCartList } from '../components';
+import { Title } from '../../../components';
+import { CartLayout } from '../components';
 import { Layout } from '../../../layout';
 import useCart from '../hooks/useCart';
 import { CartInfoType } from '../../../types';
@@ -17,10 +17,8 @@ const Cart = () => {
 
   return (
     <Layout>
-      <Section>
-        <Title text="장바구니" />
-      </Section>
-      <SectionCartList cartList={cartData as CartInfoType[]} />
+      <Title text="장바구니" />
+      <CartLayout cartList={cartData as CartInfoType[]} />
     </Layout>
   );
 };
