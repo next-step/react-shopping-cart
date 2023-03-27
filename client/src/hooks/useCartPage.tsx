@@ -3,7 +3,7 @@ import { useCart, useDialog } from 'hooks';
 const useCartPage = () => {
   const [check, setCheck] = useState(false);
   const { GetCart, CheckAllCart, cartList, totalAmount, totalPrice } = useCart();
-  const { handleDialogUIMessage } = useDialog();
+  const { showDialogUI } = useDialog();
 
   useEffect(() => {
     GetCart();
@@ -14,7 +14,7 @@ const useCartPage = () => {
     CheckAllCart(check);
   };
   const handleDeleteButton = () => {
-    handleDialogUIMessage('deleteCheckCart');
+    showDialogUI('deleteCheckCart');
   };
 
   return { check, handleCheckBox, handleDeleteButton, cartList, totalAmount, totalPrice };

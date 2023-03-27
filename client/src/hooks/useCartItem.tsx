@@ -6,7 +6,7 @@ import { useDialog } from 'hooks';
 const useCartItemInputNumber = (cartItem: CartProductType) => {
   const [inputNumber, setInputNumber] = useState(cartItem.amount);
   const { UpdateCart } = useCart();
-  const { handleDialogUIMessage, selectProduct } = useDialog();
+  const { showDialogUI, selectProduct } = useDialog();
   const handleIncreaseButton = () => {
     if (inputNumber === 20) {
       alert('더이상 증가할수 없습니다!');
@@ -30,7 +30,7 @@ const useCartItemInputNumber = (cartItem: CartProductType) => {
     });
   };
   const handleRemoveButton = () => {
-    handleDialogUIMessage('deleteCart');
+    showDialogUI('deleteCart');
     selectProduct(cartItem);
   };
   const handleCheckBox = () => {

@@ -1,4 +1,4 @@
-import { useCart, useRouter } from 'hooks';
+import { useCart, useDialog } from 'hooks';
 import { useParams } from 'react-router-dom';
 import * as Styled from './DetailItem.styles';
 import type { ProductType } from 'types';
@@ -9,13 +9,14 @@ type DetailItemProps = {
 const DetailItem = ({ products }: DetailItemProps) => {
   const params = useParams();
   const { AddCart } = useCart();
-  const { push } = useRouter();
+  const { showDialogUI } = useDialog();
   const { id } = params;
   const currentDetailItem = products.filter((product) => product.id === Number(id))[0];
+
   // Q1 . 기능이 한가지 밖에 없는데 커스텀 훅으로 추상화 시키는게 맞나?
   const handleCartButton = async () => {
     await AddCart({ ...currentDetailItem, isOrder: false, amount: 1 });
-    push('/carts');
+    showDialogUI('cart');
   };
 
   return (

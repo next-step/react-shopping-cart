@@ -6,10 +6,12 @@ import {
 } from 'store/feature/dialog/dialogslice';
 import { useAppDispatch, useAppSelector } from 'store';
 import type { DialogType, CartProductType } from 'types';
-import { useCart } from 'hooks';
+import { useCart, useRouter } from 'hooks';
 
 const useDialog = () => {
   const { DeleteCart, DeleteCheckedCart } = useCart();
+  const { push } = useRouter();
+
   const dispatch = useAppDispatch();
   const dialogStore = useAppSelector((state) => state.dialog);
   const isOpenDialog = dialogStore.isOpen;
@@ -20,7 +22,7 @@ const useDialog = () => {
   const handleOpenDialogUI = (isOpen: boolean) => {
     dispatch(handleOpenDialog(isOpen));
   };
-  const handleDialogUIMessage = (type: DialogType) => {
+  const showDialogUI = (type: DialogType) => {
     switch (type) {
       case 'deleteCart':
         dispatch(handleDialogMessage('상품을 삭제하시겠습니까?'));
@@ -29,6 +31,10 @@ const useDialog = () => {
       case 'deleteCheckCart':
         dispatch(handleDialogMessage('체크된 상품을 삭제하시겠습니까?'));
         dispatch(handleDialogType('deleteCheckCart'));
+        break;
+      case 'cart':
+        dispatch(handleDialogMessage('장바구니로 이동하시겠습니까?'));
+        dispatch(handleDialogType('cart'));
         break;
       default:
         break;
@@ -48,6 +54,9 @@ const useDialog = () => {
       case 'deleteCheckCart':
         DeleteCheckedCart();
         break;
+      case 'cart':
+        push('/carts');
+        break;
       default:
         break;
     }
@@ -57,7 +66,7 @@ const useDialog = () => {
     isOpenDialog,
     dialogTitle,
     handleOpenDialogUI,
-    handleDialogUIMessage,
+    showDialogUI,
     handleConfirmButton,
     selectProduct,
   };
