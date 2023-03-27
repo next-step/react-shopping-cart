@@ -18,5 +18,5 @@
 
 ### 라이브러리 비교
 
-- React + Context, Redux, Zustand, Jotai, Recoil
+- React + Context, Redux(RTK), Zustand, Jotai, Recoil
 - useSWR, React-Query
