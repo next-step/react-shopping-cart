@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Home, Cart, ProductDetail } from '../pages';
+import { Home, Cart, ProductDetail } from '../domain';
 
 export const ROUTE = {
   HOME: '/',

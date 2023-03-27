@@ -1,7 +1,7 @@
-import { Layout } from '../../layout';
-import { ProductList } from './components';
-import useProduct from './hooks/useProduct';
-import { ProductInfoType } from '../../types';
+import { Layout } from '../../../layout';
+import { ProductList } from '../components';
+import useProduct from '../hooks/useProduct';
+import { ProductInfoType } from '../../../types';
 
 const Home = () => {
   const { products, error, loading, navigateToDetailedPage, addCart } =

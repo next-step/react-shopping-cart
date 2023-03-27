@@ -1,8 +1,8 @@
-import { Title, Section } from '../../components';
-import { SectionCartList } from './components';
-import { Layout } from '../../layout';
-import useCart from './hooks/useCart';
-import { CartInfoType } from '../../types';
+import { Title, Section } from '../../../components';
+import { SectionCartList } from '../components';
+import { Layout } from '../../../layout';
+import useCart from '../hooks/useCart';
+import { CartInfoType } from '../../../types';
 
 const Cart = () => {
   const { cartData, error, loading } = useCart();

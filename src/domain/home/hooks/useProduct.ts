@@ -1,20 +1,16 @@
 import { useCallback } from 'react';
-import { CartInfoType, ProductInfoType } from '../../../types';
-import { ROUTE, useRouter } from '../../../router';
-import { useNavigate } from 'react-router-dom';
-import {
-  updateCartList,
-  useCustomMutation,
-  useCustomQuery,
-} from '../../../apiClient';
+import { ROUTE } from '../../../router';
+import { updateCartList } from '../../../apiClient';
 import { CONFIRM } from '../../../constant';
+import { useRouter, useCustomMutation, useCustomQuery } from '../../../hooks';
+import { CartInfoType, ProductInfoType } from '../../../types';
 
 interface ResponseType {
   response: ProductInfoType[];
 }
 
 const useProduct = () => {
-  const navigate = useNavigate();
+  const { routeTo } = useRouter();
   const { confirmAndRoute } = useRouter();
   const { data, loading, error } = useCustomQuery<ResponseType>(`/products`);
   const { mutate } = useCustomMutation<unknown, CartInfoType>((payload) =>
@@ -26,7 +22,7 @@ const useProduct = () => {
   }, []);
 
   const navigateToDetailedPage = useCallback((id: number | undefined) => {
-    navigate(`${ROUTE.DETAIL}/${id}`);
+    routeTo(`${ROUTE.DETAIL}/${id}`);
   }, []);
 
   return {

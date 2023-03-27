@@ -1,4 +1,4 @@
-import { useCustomQuery } from '../../../apiClient';
+import { useCustomQuery } from '../../../hooks';
 import { CartInfoType } from '../../../types';
 
 interface ResponseType {
