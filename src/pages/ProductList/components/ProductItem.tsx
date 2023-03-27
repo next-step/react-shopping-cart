@@ -16,7 +16,7 @@ function ProductItem({ product }: ProductItemProps) {
       <div className="flex-[2] w-full py-6 px-2 flex justify-between">
         <div className="px-1 flex flex-col">
           <span className="text-sm">{product.name}</span>
-          <span>{product.price}</span>
+          <span>{product.price.toLocaleString()}원</span>
         </div>
         <div className="flex justify-center items-center">
           <CartIcon />

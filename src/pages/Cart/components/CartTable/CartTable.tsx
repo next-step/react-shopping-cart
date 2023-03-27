@@ -1,27 +1,28 @@
 import { TableRow, Button } from '@/components/Common';
 import Checkbox from '@/components/Common/Checkbox';
-import useFetch from '@/hooks/useFetch';
-import { CartList } from '@/types';
 import CartTableContainer from './CartTableContainer';
 import CartTableHeader from './CartTableHeader';
+import useCart from '../../hooks/useCart';
 
 function CartTable() {
-  const { state, loading } = useFetch<CartList>('/carts');
+  const { carts, checkedProductList, handleCheckList, handleCheckAllList } = useCart();
 
-  if (loading) return <div>loading...</div>;
+  const allChecked = carts.every(cart => checkedProductList.includes(cart.id));
 
   return (
     <div className="flex flex-col">
-      <CartTableHeader />
-      <CartTableContainer desc={`든든배송 상품(${state?.data?.length})개`}>
-        {state?.data?.map(cart => (
+      <CartTableHeader allChecked={allChecked} onChange={handleCheckAllList} />
+      <CartTableContainer desc={`든든배송 상품(${carts?.length})개`}>
+        {carts?.map(cart => (
           <div key={cart.id} className="min-h-[180px] py-3 border-b-[1px] border-b-gray-200">
             <TableRow
               productName={cart.product.name}
               imgUrl={cart.product.imageUrl}
               addOnComponent={{
-                checkboxComponent: <Checkbox />,
-                sideComponent: <Button>Button</Button>,
+                checkboxComponent: (
+                  <Checkbox value={cart.id} checked={checkedProductList.includes(cart.id)} onChange={handleCheckList} />
+                ),
+                sideComponent: <Button>Delete</Button>,
               }}
             />
           </div>
