@@ -148,4 +148,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+node_modules
+.idea
+
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,jetbrains+all
