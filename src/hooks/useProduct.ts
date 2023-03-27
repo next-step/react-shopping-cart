@@ -1,24 +1,23 @@
 import useCustomQuery from './useCustomQuery';
-import { CartItemType, ProductType } from '../types';
+import { CartInfoType, ProductInfoType } from '../types';
 import { useCallback } from 'react';
 import { ROUTE } from '../router';
 import { useNavigate } from 'react-router-dom';
 import { useCustomMutation, useRouter } from './index';
 import { updateCartList } from '../api/request';
 import { CONFIRM } from '../constant';
-interface UseProductResponse {
-  response: ProductType[];
+interface ResponseType {
+  response: ProductInfoType[];
 }
 
 const useProduct = () => {
   const navigate = useNavigate();
   const { confirmAndRoute } = useRouter();
-  const { data, loading, error } =
-    useCustomQuery<UseProductResponse>(`/products`);
-  const { mutate } = useCustomMutation<unknown, CartItemType>((payload) =>
+  const { data, loading, error } = useCustomQuery<ResponseType>(`/products`);
+  const { mutate } = useCustomMutation<unknown, CartInfoType>((payload) =>
     updateCartList(payload)
   );
-  const addCart = useCallback(async (item: ProductType) => {
+  const addCart = useCallback(async (item: ProductInfoType) => {
     await mutate({ id: Number(item.id), product: item });
     confirmAndRoute(CONFIRM.CART_AND_ROUTE, ROUTE.CART);
   }, []);

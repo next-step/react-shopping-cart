@@ -1,11 +1,11 @@
 import useCustomQuery from './useCustomQuery';
-import { CartItemType } from '../types';
+import { CartInfoType } from '../types';
 
-interface UseCartResponse {
-  response: CartItemType[];
+interface ResponseType {
+  response: CartInfoType[];
 }
 const useCart = () => {
-  const { data, loading, error } = useCustomQuery<UseCartResponse>(`/carts`);
+  const { data, loading, error } = useCustomQuery<ResponseType>(`/carts`);
   const cartData = data?.response;
 
   return { cartData, loading, error };

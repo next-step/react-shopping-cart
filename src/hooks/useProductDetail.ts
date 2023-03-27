@@ -1,13 +1,13 @@
 import useCustomQuery from './useCustomQuery';
-import { ProductType } from '../types';
+import { ProductInfoType } from '../types';
 import { useParams } from 'react-router-dom';
 
-interface UseProductDetailResponse {
-  response: ProductType;
+interface ResponseType {
+  response: ProductInfoType;
 }
 const useProductDetail = () => {
   const { id } = useParams();
-  const { data, loading, error } = useCustomQuery<UseProductDetailResponse>(
+  const { data, loading, error } = useCustomQuery<ResponseType>(
     `/products/${id}`
   );
 

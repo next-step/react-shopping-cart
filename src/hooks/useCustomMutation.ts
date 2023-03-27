@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { AxiosError, AxiosResponse } from 'axios';
 
-type UseMutationResult<TData, TPayload> = {
+type UseMutationResultType<TData, TPayload> = {
   data?: TData | null;
   error: string | null;
   loading: boolean;
@@ -10,7 +10,7 @@ type UseMutationResult<TData, TPayload> = {
 
 const useCustomMutation = <TData, TPayload>(
   mutationFn: (payload?: TPayload) => Promise<AxiosResponse>
-): UseMutationResult<TData, TPayload> => {
+): UseMutationResultType<TData, TPayload> => {
   const [data, setData] = useState<TData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

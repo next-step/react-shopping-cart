@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { CartItemType } from '../../types';
+import { CartInfoType } from '../../types';
 import CartItem from './CartItem';
 
 const S = {
@@ -13,7 +13,7 @@ const S = {
 };
 
 interface CartListProps {
-  items: CartItemType[];
+  items: CartInfoType[];
 }
 
 const CartList = ({ items }: CartListProps) => {

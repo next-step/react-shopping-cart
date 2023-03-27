@@ -2,7 +2,7 @@ import { Layout } from '../layout';
 import useProductDetail from '../hooks/useProductDetail';
 import { priceFormat } from '../utils';
 import { useProduct } from '../hooks';
-import { ProductType } from '../types';
+import { ProductInfoType } from '../types';
 
 const ProductDetail = () => {
   const { productData, loading, error } = useProductDetail();
@@ -39,7 +39,7 @@ const ProductDetail = () => {
           </div>
           <button
             className="product-detail-button flex-center mt-20"
-            onClick={() => addCart(productData as ProductType)}
+            onClick={() => addCart(productData as ProductInfoType)}
           >
             장바구니
           </button>

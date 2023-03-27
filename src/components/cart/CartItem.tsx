@@ -1,6 +1,6 @@
-import { ProductType } from '../../types';
+import { ProductInfoType } from '../../types';
 
-const CartItem = ({ name, price, imageUrl }: ProductType) => {
+const CartItem = ({ name, price, imageUrl }: ProductInfoType) => {
   return (
     <div className="cart-container">
       <div className="flex gap-15 mt-10">

@@ -1,7 +1,7 @@
 import { Title, SectionCartList, Section } from '../components';
 import { Layout } from '../layout';
 import useCart from '../hooks/useCart';
-import { CartItemType } from '../types';
+import { CartInfoType } from '../types';
 
 const Cart = () => {
   const { cartData, error, loading } = useCart();
@@ -19,7 +19,7 @@ const Cart = () => {
       <Section>
         <Title text="장바구니" />
       </Section>
-      <SectionCartList cartList={cartData as CartItemType[]} />
+      <SectionCartList cartList={cartData as CartInfoType[]} />
     </Layout>
   );
 };

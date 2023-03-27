@@ -1,6 +1,6 @@
 import { rest } from 'msw';
 import productData from './data/products';
-import { CartItemType } from '../types';
+import { CartInfoType } from '../types';
 import { cartDataStorage } from './util/storage';
 
 const fetchProductData = rest.get('/products', (req, res, ctx) => {
@@ -42,7 +42,7 @@ const fetchCartsData = rest.get('/carts', (req, res, ctx) => {
 });
 
 const updateCartData = rest.post('/carts', (req, res, ctx) => {
-  const productInfo = req.body as CartItemType;
+  const productInfo = req.body as CartInfoType;
   const cartData = cartDataStorage.get();
   if (cartData) {
     const currentCartData = JSON.parse(cartData);

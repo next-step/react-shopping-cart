@@ -1,10 +1,10 @@
 import { COLORS } from '../../constant';
 
-interface SvgType {
+interface SvgProps {
   color?: string;
 }
 
-const SvgCart = ({ color }: SvgType) => {
+const SvgCart = ({ color }: SvgProps) => {
   return (
     <svg
       width="100%"

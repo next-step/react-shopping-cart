@@ -1,8 +1,8 @@
-interface TitleType {
+interface TitleProps {
   text: string;
 }
 
-const Title = ({ text }: TitleType) => {
+const Title = ({ text }: TitleProps) => {
   return (
     <header className="flex-col-center mt-50 mb-50">
       <h2 className="cart-section__title">{text}</h2>

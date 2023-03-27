@@ -1,16 +1,16 @@
-export interface ProductType extends ProductEvent {
+export interface ProductInfoType extends ProductEventType {
   id?: number;
   name: string;
   price: number;
   imageUrl: string;
 }
 
-export interface ProductEvent {
+export interface ProductEventType {
   onClickProductImage?: () => void;
   onClickAddCart?: () => void;
 }
 
-export interface CartItemType {
+export interface CartInfoType {
   id: number;
-  product: ProductType;
+  product: ProductInfoType;
 }

@@ -1,7 +1,7 @@
 import { Layout } from '../layout';
 import { SectionProductList } from '../components';
 import { useProduct } from '../hooks';
-import { ProductType } from '../types';
+import { ProductInfoType } from '../types';
 
 const Home = () => {
   const { products, error, loading, navigateToDetailedPage, addCart } =
@@ -18,7 +18,7 @@ const Home = () => {
   return (
     <Layout>
       <SectionProductList
-        products={products as ProductType[]}
+        products={products as ProductInfoType[]}
         navigateToDetailedPage={navigateToDetailedPage}
         addCart={addCart}
       />

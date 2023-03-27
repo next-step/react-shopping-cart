@@ -1,7 +1,7 @@
 import { Section, ProductItem } from '../index';
 import styled from '@emotion/styled';
 import { mediaQuery } from '../../utils';
-import { ProductType } from '../../types';
+import { ProductInfoType } from '../../types';
 
 const S = {
   Container: styled.div(
@@ -20,9 +20,9 @@ const S = {
 };
 
 interface SectionProductListProps {
-  products: ProductType[];
+  products: ProductInfoType[];
   navigateToDetailedPage: (num?: number) => void;
-  addCart: (item: ProductType) => void;
+  addCart: (item: ProductInfoType) => void;
 }
 
 const SectionProductList = ({

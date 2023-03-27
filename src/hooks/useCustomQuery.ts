@@ -2,13 +2,13 @@ import { useCallback, useEffect, useState } from 'react';
 import httpRequest from '../api/httpRequest';
 import { AxiosError } from 'axios';
 
-type UseQueryResult<TData> = {
+type UseQueryResultType<TData> = {
   data?: TData | null;
   error: string | null;
   loading: boolean;
 };
 
-const useCustomQuery = <TData>(url: string): UseQueryResult<TData> => {
+const useCustomQuery = <TData>(url: string): UseQueryResultType<TData> => {
   const [data, setData] = useState<TData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
