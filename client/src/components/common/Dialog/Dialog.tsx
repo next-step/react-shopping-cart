@@ -1,17 +1,24 @@
-import styled from 'styled-components';
+import { useDialog } from 'hooks';
 import * as Styled from './Dialog.styled';
 
 const Dialog = () => {
-  return (
+  const { isOpenDialog, dialogTitle, handleOpenDialogUI, handleConfirmButton } = useDialog();
+  return isOpenDialog ? (
     <Styled.OverLay>
       <Styled.FlexContainer>
-        <Styled.Title>상품을 삭제하시겠습니까?</Styled.Title>
+        <Styled.Title>{dialogTitle}</Styled.Title>
         <Styled.FlexBox>
-          <Styled.DiaLogButton theme="primary">확인</Styled.DiaLogButton>
-          <Styled.DiaLogButton theme="primary">취소</Styled.DiaLogButton>
+          <Styled.DiaLogButton theme="primary" onClick={handleConfirmButton}>
+            확인
+          </Styled.DiaLogButton>
+          <Styled.DiaLogButton theme="primary" onClick={() => handleOpenDialogUI(false)}>
+            취소
+          </Styled.DiaLogButton>
         </Styled.FlexBox>
       </Styled.FlexContainer>
     </Styled.OverLay>
+  ) : (
+    <></>
   );
 };
 

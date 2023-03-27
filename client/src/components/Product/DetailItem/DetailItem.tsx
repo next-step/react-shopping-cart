@@ -12,7 +12,6 @@ const DetailItem = ({ products }: DetailItemProps) => {
   const { push } = useRouter();
   const { id } = params;
   const currentDetailItem = products.filter((product) => product.id === Number(id))[0];
-  console.log(currentDetailItem);
   // Q1 . 기능이 한가지 밖에 없는데 커스텀 훅으로 추상화 시키는게 맞나?
   const handleCartButton = async () => {
     await AddCart({ ...currentDetailItem, isOrder: false, amount: 1 });

@@ -16,7 +16,7 @@ export const FlexContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 350px;
+  width: 380px;
   min-height: 200px;
   background-color: white;
   border: 1px solid #ddd;

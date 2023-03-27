@@ -1,38 +1,28 @@
 import * as Styled from './Item.styles';
 import { CartProductType } from 'types';
-import { useCartInputNumber, useCart } from 'hooks';
+import { useCartItem } from 'hooks';
 
 type CartItemProps = CartProductType;
 
 const CartItem = ({ id, image, price, name, isOrder, amount }: CartItemProps) => {
-  const { increaseNumber, decreaseNumber, inputNumber } = useCartInputNumber(amount);
-  const { UpdateCart, DeleteCart } = useCart();
-
-  const currentCartItem = { id, image, price: price, name, amount: inputNumber, isOrder };
+  const currentCartItem = { id, image, price: price, name, amount, isOrder };
+  const { handleIncreaseButton, handleDecreaseButton, inputNumber, handleRemoveButton, handleCheckBox } =
+    useCartItem(currentCartItem);
 
   return (
     <Styled.Layout display={'flex'} justifyContent={'space-between'}>
       <Styled.LeftFlexBox>
-        <Styled.CheckBox
-          type={'checkbox'}
-          name="checkbox"
-          onChange={() => UpdateCart({ ...currentCartItem, isOrder: !isOrder })}
-          checked={isOrder}
-        />
+        <Styled.CheckBox type={'checkbox'} name="checkbox" onChange={handleCheckBox} checked={isOrder} />
         <Styled.CartItemImage src={image} alt={name} />
         <Styled.CartItemName>{name}</Styled.CartItemName>
       </Styled.LeftFlexBox>
       <Styled.RightFlexBox>
-        <Styled.CartRemoveButton onClick={() => DeleteCart({ ...currentCartItem })} />
+        <Styled.CartRemoveButton onClick={handleRemoveButton} />
         <Styled.FlexContainer>
           <Styled.CartInputNumber type="text" value={inputNumber} readOnly={true} />
           <div>
-            <Styled.CartInputNumberButton onClick={() => increaseNumber(currentCartItem)}>
-              ▲
-            </Styled.CartInputNumberButton>
-            <Styled.CartInputNumberButton onClick={() => decreaseNumber(currentCartItem)}>
-              ▼
-            </Styled.CartInputNumberButton>
+            <Styled.CartInputNumberButton onClick={handleIncreaseButton}>▲</Styled.CartInputNumberButton>
+            <Styled.CartInputNumberButton onClick={handleDecreaseButton}>▼</Styled.CartInputNumberButton>
           </div>
         </Styled.FlexContainer>
 
