@@ -31,18 +31,15 @@ const CartList = ({ cartList }: CartListProps) => {
 
       <S.H3>든든배송 상품({cartList.length}개)</S.H3>
       <hr className="divide-line-gray mt-10" />
-      {cartList.length > 0 ? (
-        cartList.map((item) => (
-          <CartItem
-            key={item.id}
-            name={item.product.name}
-            price={item.product.price}
-            imageUrl={item.product.imageUrl}
-          />
-        ))
-      ) : (
-        <div>장바구니가 비어있습니다.</div>
-      )}
+      {cartList.map((item) => (
+        <CartItem
+          key={item.id}
+          name={item.product.name}
+          price={item.product.price}
+          imageUrl={item.product.imageUrl}
+        />
+      ))}
+      {cartList.length === 0 && <div>장바구니가 비어있습니다.</div>}
     </S.Wrapper>
   );
 };
