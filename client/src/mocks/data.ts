@@ -1,7 +1,4 @@
-import { Carts } from 'types/cart';
 import { Products } from 'types/product';
-
-export const carts: Carts = [];
 
 export const products: Products = [
   {
