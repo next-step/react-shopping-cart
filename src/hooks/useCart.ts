@@ -5,12 +5,12 @@ interface UseCartResponse {
   response: CartItemType[];
 }
 const useCart = () => {
-  const { data, isLoading, error } = useCustomQuery<UseCartResponse>(
+  const { data, loading, error } = useCustomQuery<UseCartResponse>(
     `${process.env.REACT_APP_API_PATH}/carts`
   );
   const carts = data?.response;
 
-  return { carts, isLoading, error };
+  return { carts, loading, error };
 };
 
 export default useCart;

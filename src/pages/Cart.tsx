@@ -4,9 +4,9 @@ import useCart from '../hooks/useCart';
 import { CartItemType } from '../types';
 
 const Cart = () => {
-  const { carts, error, isLoading } = useCart();
+  const { carts, error, loading } = useCart();
 
-  if (isLoading) {
+  if (loading) {
     return <div>페이지 로딩 중...</div>;
   }
 

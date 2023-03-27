@@ -5,7 +5,7 @@ import { ROUTE } from '../router';
 import { useNavigate } from 'react-router-dom';
 import { useCustomMutation, useRouter } from './index';
 import { updateCartList } from '../api/request';
-import { CONFIRM } from '../constant/message';
+import { CONFIRM } from '../constant';
 interface UseProductResponse {
   response: ProductType[];
 }
@@ -13,7 +13,7 @@ interface UseProductResponse {
 const useProduct = () => {
   const navigate = useNavigate();
   const { confirmAndRoute } = useRouter();
-  const { data, isLoading, error } = useCustomQuery<UseProductResponse>(
+  const { data, loading, error } = useCustomQuery<UseProductResponse>(
     `${process.env.REACT_APP_API_PATH}/products`
   );
   const { mutate } = useCustomMutation<unknown, CartItemType>((payload) =>
@@ -30,7 +30,7 @@ const useProduct = () => {
 
   return {
     products: data?.response,
-    isLoading,
+    loading,
     error,
     navigateToDetailedPage,
     addCart,

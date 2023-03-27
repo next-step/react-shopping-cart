@@ -5,10 +5,10 @@ import { useProduct } from '../hooks';
 import { ProductType } from '../types';
 
 const ProductDetail = () => {
-  const { productData, isLoading, error } = useProductDetail();
+  const { productData, loading, error } = useProductDetail();
   const { addCart } = useProduct();
 
-  if (isLoading) {
+  if (loading) {
     return <div>페이지 로딩 중...</div>;
   }
 

@@ -5,16 +5,16 @@ import { AxiosError } from 'axios';
 type UseQueryResult<TData> = {
   data?: TData | null;
   error: string | null;
-  isLoading: boolean;
+  loading: boolean;
 };
 
 const useCustomQuery = <TData>(url: string): UseQueryResult<TData> => {
   const [data, setData] = useState<TData | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   const fetchData = useCallback(async () => {
-    setIsLoading(true);
+    setLoading(true);
     setData(null);
     setError(null);
     try {
@@ -24,7 +24,7 @@ const useCustomQuery = <TData>(url: string): UseQueryResult<TData> => {
       const error = err as AxiosError;
       setError(error.message);
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   }, [url]);
 
@@ -32,7 +32,7 @@ const useCustomQuery = <TData>(url: string): UseQueryResult<TData> => {
     fetchData();
   }, [url]);
 
-  return { data, isLoading, error };
+  return { data, loading, error };
 };
 
 export default useCustomQuery;
