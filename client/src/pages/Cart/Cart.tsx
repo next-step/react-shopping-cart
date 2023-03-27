@@ -38,8 +38,8 @@ const Cart = () => {
             title="결제예상금액"
             text="결제 예상 금액"
             price={totalPrice}
-            buttonText={`주문하기`}
             totalAmount={totalAmount}
+            type="cart"
           />
         </Styled.RightSection>
       </Styled.FlexContainer>

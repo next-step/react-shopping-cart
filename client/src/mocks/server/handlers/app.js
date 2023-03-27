@@ -1,5 +1,8 @@
 import { rest } from 'msw';
+import products from '../data/products.json';
+
 let userCarts = [];
+let orderItems = [];
 
 export const addCart = rest.post('/carts', async (req, res, ctx) => {
   const product = await req.json();
@@ -27,4 +30,19 @@ export const updateCart = rest.put('/cart/update', async (req, res, ctx) => {
   userCarts = newCarts;
 
   return res(ctx.status(200), ctx.json(newCarts));
+});
+export const getProducts = rest.get('/products', (req, res, ctx) => {
+  return res(ctx.json(products));
+});
+
+// 주문하기 버튼눌렀을때 실행
+export const updateOrders = rest.post('/order/update', async (req, res, ctx) => {
+  const userOrderItem = await req.json();
+  const newOrderItem = [...userOrderItem];
+  orderItems = newOrderItem;
+  return res(ctx.status(200), ctx.json(orderItems));
+});
+
+export const getOrders = rest.get('/orders', (req, res, ctx) => {
+  return res(ctx.status(200), ctx.json(orderItems));
 });

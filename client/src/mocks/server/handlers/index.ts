@@ -1,4 +1,3 @@
-import * as productHandler from './product';
-import * as cartHandler from './cart';
+import * as appHandler from './app';
 
-export const handlers = [...Object.values(productHandler), ...Object.values(cartHandler)];
+export const handlers = [...Object.values(appHandler)];

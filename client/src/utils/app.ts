@@ -1,4 +1,4 @@
-import type { ProductType, CartProductType } from 'types';
+import type { ProductType, CartProductType, OrderProductType } from 'types';
 
 export const calculateProductTotal = (array: ProductType[]) => {
   const total = array.reduce((prev, next) => {
@@ -26,4 +26,16 @@ export const calculateCartTotalAmount = (array: CartProductType[]) => {
     }
   }, 0);
   return amounts;
+};
+export const calculateOrderProductTotal = (array: OrderProductType[]) => {
+  const total = array.reduce((prev, next) => {
+    return prev + next.price * next.amount;
+  }, 0);
+  return total;
+};
+export const calculateOrderTotalAmount = (array: OrderProductType[]) => {
+  const total = array.reduce((prev, next) => {
+    return prev + next.amount;
+  }, 0);
+  return total;
 };

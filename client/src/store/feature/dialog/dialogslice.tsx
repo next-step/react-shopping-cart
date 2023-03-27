@@ -22,17 +22,30 @@ export const dialogSlice = createSlice({
     handleProduct: (state: DialogStateType, action: PayloadAction<CartProductType>) => {
       state.product = action.payload;
     },
-    handleDialogType: (state: DialogStateType, action: PayloadAction<DialogType>) => {
-      state.type = action.payload;
-    },
     handleOpenDialog: (state: DialogStateType, action: PayloadAction<boolean>) => {
       state.isOpen = action.payload;
     },
     handleDialogMessage: (state: DialogStateType, action: PayloadAction<DialogMessage>) => {
       state.message = action.payload;
+      switch (action.payload) {
+        case '장바구니로 이동하시겠습니까?':
+          state.type = 'cart';
+          break;
+        case '상품을 삭제하시겠습니까?':
+          state.type = 'deleteCart';
+          break;
+        case '체크된 상품을 삭제하시겠습니까?':
+          state.type = 'deleteCheckCart';
+          break;
+        case '주문 하시겠습니까?':
+          state.type = 'cartorder';
+          break;
+        default:
+          break;
+      }
       state.isOpen = true;
     },
   },
 });
 export default dialogSlice;
-export const { handleOpenDialog, handleDialogMessage, handleDialogType, handleProduct } = dialogSlice.actions;
+export const { handleOpenDialog, handleDialogMessage, handleProduct } = dialogSlice.actions;

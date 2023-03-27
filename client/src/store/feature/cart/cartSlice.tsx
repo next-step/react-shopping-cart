@@ -19,9 +19,9 @@ const addCart = createAsyncThunk('addCart', async (data: CartProductType, thunkA
   }
 });
 
-const getCart = createAsyncThunk('getCart', async (thunkApi: any) => {
+const getCart = createAsyncThunk('getCart', async (url: string, thunkApi: any) => {
   try {
-    const response = await getData('/carts');
+    const response = await getData(url);
     return response;
   } catch (error: any) {
     return thunkApi.rejectWithValue(error.message);

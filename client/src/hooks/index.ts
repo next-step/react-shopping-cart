@@ -5,3 +5,4 @@ export { default as useCartItem } from './useCartItem';
 export { default as useCartPage } from './useCartPage';
 export { default as useDialog } from './useDialog';
 export { default as useProductItem } from './useProductItem';
+export { default as useOrder } from './useOrder';

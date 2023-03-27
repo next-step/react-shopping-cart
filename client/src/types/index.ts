@@ -12,7 +12,12 @@ export interface CartProductType extends ProductType {
 
 export type CartListType = CartProductType[];
 
-export type DialogType = 'deleteCart' | 'deleteCheckCart' | 'order' | '' | 'cart';
+export interface OrderProductType extends ProductType {
+  amount: number;
+}
+export type OrderListType = OrderProductType[];
+
+export type DialogType = 'deleteCart' | 'deleteCheckCart' | 'cartorder' | '' | 'cart';
 export type DialogMessage =
   | '상품을 삭제하시겠습니까?'
   | '주문 하시겠습니까?'
