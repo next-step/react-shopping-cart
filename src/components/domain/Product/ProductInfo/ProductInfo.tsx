@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export type ProductInfoProps = {
   imageUrl: string;
@@ -15,7 +16,9 @@ const ProductInfo = ({ imageUrl, name, price }: ProductInfoProps) => {
           <p className="product-info__name">{name}</p>
           <p className="product-info__price">{price}</p>
         </div>
-        <img src="assets/svgs/cart.svg" alt="장바구니" />
+        <Link to="cart">
+          <img src="assets/svgs/cart.svg" alt="장바구니" />
+        </Link>
       </div>
     </div>
   );

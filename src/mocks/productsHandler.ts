@@ -4,13 +4,49 @@ const PRODUCTS = [
   {
     id: "1",
     price: 10000,
-    name: "치킨",
+    name: "unknown",
     imageUrl: "http://example.com/chicken.jpg",
   },
   {
     id: "2",
     price: 20000,
-    name: "피자",
+    name: "unknown",
+    imageUrl: "http://example.com/pizza.jpg",
+  },
+  {
+    id: "3",
+    price: 30000,
+    name: "unknown",
+    imageUrl: "http://example.com/pizza.jpg",
+  },
+  {
+    id: "4",
+    price: 40000,
+    name: "unknown",
+    imageUrl: "http://example.com/pizza.jpg",
+  },
+  {
+    id: "5",
+    price: 50000,
+    name: "unknown",
+    imageUrl: "http://example.com/pizza.jpg",
+  },
+  {
+    id: "6",
+    price: 60000,
+    name: "unknown",
+    imageUrl: "http://example.com/pizza.jpg",
+  },
+  {
+    id: "7",
+    price: 70000,
+    name: "unknown",
+    imageUrl: "http://example.com/pizza.jpg",
+  },
+  {
+    id: "8",
+    price: 80000,
+    name: "unknown",
     imageUrl: "http://example.com/pizza.jpg",
   },
 ];
