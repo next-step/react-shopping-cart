@@ -5,9 +5,7 @@ interface UseCartResponse {
   response: CartItemType[];
 }
 const useCart = () => {
-  const { data, loading, error } = useCustomQuery<UseCartResponse>(
-    `${process.env.REACT_APP_API_PATH}/carts`
-  );
+  const { data, loading, error } = useCustomQuery<UseCartResponse>(`/carts`);
   const carts = data?.response;
 
   return { carts, loading, error };

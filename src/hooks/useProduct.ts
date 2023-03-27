@@ -13,16 +13,15 @@ interface UseProductResponse {
 const useProduct = () => {
   const navigate = useNavigate();
   const { confirmAndRoute } = useRouter();
-  const { data, loading, error } = useCustomQuery<UseProductResponse>(
-    `${process.env.REACT_APP_API_PATH}/products`
-  );
+  const { data, loading, error } =
+    useCustomQuery<UseProductResponse>(`/products`);
   const { mutate } = useCustomMutation<unknown, CartItemType>((payload) =>
     updateCartList(payload)
   );
-  const addCart = async (item: ProductType) => {
+  const addCart = useCallback(async (item: ProductType) => {
     await mutate({ id: Number(item.id), product: item });
     confirmAndRoute(CONFIRM.CART_AND_ROUTE, ROUTE.CART);
-  };
+  }, []);
 
   const navigateToDetailedPage = useCallback((id: number | undefined) => {
     navigate(`${ROUTE.DETAIL}/${id}`);

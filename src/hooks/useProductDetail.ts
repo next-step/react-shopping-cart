@@ -8,7 +8,7 @@ interface UseProductDetailResponse {
 const useProductDetail = () => {
   const { id } = useParams();
   const { data, loading, error } = useCustomQuery<UseProductDetailResponse>(
-    `${process.env.REACT_APP_API_PATH}/products/${id}`
+    `/products/${id}`
   );
 
   const productData = data?.response;

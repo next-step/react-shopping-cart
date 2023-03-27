@@ -30,7 +30,7 @@ const useCustomQuery = <TData>(url: string): UseQueryResult<TData> => {
 
   useEffect(() => {
     fetchData();
-  }, [url]);
+  }, []);
 
   return { data, loading, error };
 };
