@@ -9,6 +9,10 @@ interface ProductItemProps {
 }
 
 function ProductCards({ products = [] }: ProductItemProps) {
+  if (!products?.length) {
+    return <div>등록된 상품이 없습니다.</div>;
+  }
+
   return (
     <>
       {products?.map(product => {

@@ -37,7 +37,12 @@ export const cartsHandlers = [
 
   rest.delete('/carts/:cartId', (req, res, ctx) => {
     const { cartId } = req.params;
-    const updateCarts = db.carts.filter(cart => cart.id !== +cartId);
+    let updateCarts;
+    if (Array.isArray(cartId)) {
+      updateCarts = db.carts.filter(cart => !JSON.parse(JSON.stringify(cartId)).includes(cart.id.toString()));
+    } else {
+      updateCarts = db.carts.filter(cart => cart.id !== +cartId);
+    }
 
     db.carts = updateCarts;
 

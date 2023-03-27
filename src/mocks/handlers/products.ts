@@ -1,17 +1,26 @@
 import { rest } from 'msw';
 import db from '../db.json';
 import { Product } from '@/types';
+import { sleep } from '../lib';
 
 type ProductBody = Omit<Product, 'id'>;
 
 export const productHandlers = [
-  rest.get('/products', (_req, res, ctx) => {
-    console.log(_req);
+  rest.get('/products', async (_req, res, ctx) => {
+    await sleep(500);
+
+    const page = _req.url.searchParams.get('page') || 0;
+    const size = _req.url.searchParams.get('size') || 10;
+
+    const from = +page * Number(size);
+    const to = (+page + 1) * +size;
+
     return res(
       ctx.status(200),
       ctx.json({
         ok: true,
-        data: db.products,
+        data: db.products.slice(from, to),
+        totalPage: Math.ceil(db.products.length / +size),
       }),
     );
   }),
