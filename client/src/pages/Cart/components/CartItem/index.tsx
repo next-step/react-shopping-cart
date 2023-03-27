@@ -1,20 +1,44 @@
+import { ChangeEventHandler } from 'react';
+import { css, cx } from '@emotion/css';
+
 import { Button, Checkbox, Counter } from 'components';
 import { useCounter } from 'hooks';
+import { useCartActions, useIsCheckedCart } from 'store/cart';
 
+import { colors } from 'constants/colors';
 import { Cart } from 'types/cart';
 import { TrashSVG } from 'assets/svgs';
-import { css, cx } from '@emotion/css';
-import { colors } from 'constants/colors';
 
 interface CartItemProps {
   cart: Cart;
 }
 
 function CartItem({ cart }: CartItemProps) {
-  const { count: defaultCount, product } = cart;
+  const { count: defaultCount, product, id } = cart;
   const { imageUrl, name, price } = product;
   const { count, minus, plus } = useCounter(defaultCount);
+  const {
+    toggle: toggleIsChecked,
+    increase: increaseCartById,
+    decrease: decreaseCartById,
+  } = useCartActions();
+
+  const isChecked = useIsCheckedCart(id);
   const totalPrice = price * count;
+
+  const handleChangeCheckbox: ChangeEventHandler<HTMLInputElement> = (e) => {
+    toggleIsChecked(id);
+  };
+
+  const handleClickPlusButton = () => {
+    plus();
+    increaseCartById(id);
+  };
+
+  const handleClickMinusButton = () => {
+    minus();
+    decreaseCartById(id);
+  };
 
   return (
     <div
@@ -30,7 +54,7 @@ function CartItem({ cart }: CartItemProps) {
       )}
     >
       <div className="flex gap-15 mt-10">
-        <Checkbox />
+        <Checkbox checked={isChecked} onChange={handleChangeCheckbox} />
         <img className="w-144 h-144" src={imageUrl} alt={name} />
         <span className="cart-name">{name}</span>
       </div>
@@ -46,7 +70,13 @@ function CartItem({ cart }: CartItemProps) {
         <Button>
           <TrashSVG width={18} />
         </Button>
-        <Counter count={count} onMinus={minus} onPlus={plus} min={1} />
+        <Counter
+          count={count}
+          onMinus={handleClickMinusButton}
+          onPlus={handleClickPlusButton}
+          min={1}
+          max={20}
+        />
         <span className="cart-price">{totalPrice.toLocaleString('ko')}원</span>
       </div>
     </div>
