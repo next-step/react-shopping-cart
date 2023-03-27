@@ -19,7 +19,7 @@ export const productHandlers = [
       ctx.status(200),
       ctx.json({
         ok: true,
-        data: db.products.slice(from, to),
+        data: [...db.products.slice(from, to)],
         totalPage: Math.ceil(db.products.length / +size),
       }),
     );
