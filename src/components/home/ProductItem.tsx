@@ -1,7 +1,6 @@
-import React from 'react';
 import styled from '@emotion/styled';
 import { ProductType } from '../../types';
-import SvgCart from '../../assets/svg/SvgCart';
+import { SvgCart } from '../../assets/svg';
 import { priceFormat } from '../../utils';
 
 const S = {

@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
 import { ReactNode } from 'react';
-import { FRAME_PADDING, MAX_WIDTH } from '../../constant/style';
-import mediaQuery from '../../utils/style/mediaQuery';
-
+import { FRAME_PADDING, MAX_WIDTH } from '../../constant';
+import { mediaQuery } from '../../utils';
 interface SectionType {
   children: ReactNode;
 }

@@ -1,8 +1,6 @@
-import Section from '../common/Section';
-import CartList from './CartList';
-import CartTotal from './CartTotal';
+import { Section, CartList, CartTotal } from '../index';
 import styled from '@emotion/styled';
-import mediaQuery from '../../utils/style/mediaQuery';
+import { mediaQuery } from '../../utils';
 import { CartItemType } from '../../types';
 
 const S = {

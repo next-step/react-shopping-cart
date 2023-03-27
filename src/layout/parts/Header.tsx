@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { ROUTE } from '../../router';
 import styled from '@emotion/styled';
-import mediaQuery from '../../utils/style/mediaQuery';
-import { COLORS, FRAME_PADDING, MAX_WIDTH } from '../../constant/style';
+import { mediaQuery } from '../../utils';
+import { COLORS, FRAME_PADDING, MAX_WIDTH } from '../../constant';
 
 const S = {
   Header: styled.div({

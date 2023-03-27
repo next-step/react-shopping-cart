@@ -1,6 +1,6 @@
 import facepaint from 'facepaint';
 import { CSSObject } from '@emotion/styled';
-import { MAX_WIDTH } from '../../constant/style';
+import { MAX_WIDTH } from '../constant';
 
 const breakpoints = [MAX_WIDTH.MOBILE, MAX_WIDTH.TABLET, MAX_WIDTH.DESKTOP];
 

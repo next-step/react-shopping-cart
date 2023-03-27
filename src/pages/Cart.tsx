@@ -1,6 +1,5 @@
-import SectionTitle from '../components/common/SectionTitle';
-import SectionCartList from '../components/cart/SectionCartList';
-import Layout from '../layout/Layout';
+import { SectionTitle, SectionCartList } from '../components';
+import { Layout } from '../layout';
 import useCart from '../hooks/useCart';
 import { CartItemType } from '../types';
 

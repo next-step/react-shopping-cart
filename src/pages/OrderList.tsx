@@ -1,5 +1,4 @@
-import Layout from '../layout/Layout';
-
+import { Layout } from '../layout';
 const OrderList = () => {
   return (
     <Layout>

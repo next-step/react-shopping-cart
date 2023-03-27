@@ -1,4 +1,4 @@
-import Layout from '../layout/Layout';
+import { Layout } from '../layout';
 import useProductDetail from '../hooks/useProductDetail';
 import { priceFormat } from '../utils';
 import { useProduct } from '../hooks';

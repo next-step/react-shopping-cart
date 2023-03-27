@@ -1,7 +1,6 @@
-import Section from '../common/Section';
+import { Section, ProductItem } from '../index';
 import styled from '@emotion/styled';
-import mediaQuery from '../../utils/style/mediaQuery';
-import ProductItem from './ProductItem';
+import { mediaQuery } from '../../utils';
 import { ProductType } from '../../types';
 
 const S = {

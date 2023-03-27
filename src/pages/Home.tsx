@@ -1,5 +1,5 @@
-import Layout from '../layout/Layout';
-import SectionProductList from '../components/home/SectionProductList';
+import { Layout } from '../layout';
+import { SectionProductList } from '../components';
 import { useProduct } from '../hooks';
 import { ProductType } from '../types';
 
