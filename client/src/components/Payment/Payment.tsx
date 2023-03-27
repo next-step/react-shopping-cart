@@ -15,7 +15,10 @@ const Payment = ({ ...props }: PaymentProps) => {
         </Styled.Bottom>
         {props.buttonText && (
           <Styled.ButtonBox display={'flex'} justifyContent="center" alignItems="center">
-            <Styled.OrderButton>{props.buttonText}</Styled.OrderButton>
+            <Styled.OrderButton active={props.totalAmount && props.totalAmount > 0 ? true : false}>
+              {props.buttonText}
+              {` ${props.totalAmount}개`}
+            </Styled.OrderButton>
           </Styled.ButtonBox>
         )}
       </div>

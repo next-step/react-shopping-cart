@@ -3,4 +3,5 @@ export type PaymentProps = {
   text: string;
   buttonText?: string;
   price: number;
+  totalAmount?: number;
 };

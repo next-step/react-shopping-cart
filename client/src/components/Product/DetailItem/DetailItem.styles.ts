@@ -31,11 +31,9 @@ export const Price = styled.span`
   font-size: 24px;
 `;
 
-export const CartButton = styled(Button)`
+export const CartButton= styled(Button)`
   width: 100%;
   padding: 24px;
-  background: #73675c;
   font-size: 24px;
-  color: white;
   margin-top: 20px;
 `;

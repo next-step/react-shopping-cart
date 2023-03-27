@@ -1,3 +1,6 @@
 import type { HTMLAttributes, ButtonHTMLAttributes } from 'react';
 
-export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  active?: boolean;
+  theme: 'primary' | 'brown';
+}

@@ -1,4 +1,4 @@
-import { Box, Image, Input, Button } from 'components/common';
+import { Box, Image, Input } from 'components/common';
 import styled from 'styled-components';
 import { ReactComponent as CartRemove } from 'assets/svgs/trash.svg';
 
@@ -57,7 +57,7 @@ export const CartInputNumber = styled(Input)`
   text-align: center;
   font-size: 24px;
 `;
-export const CartInputNumberButton = styled(Button)`
+export const CartInputNumberButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;

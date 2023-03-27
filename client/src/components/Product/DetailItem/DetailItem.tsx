@@ -32,7 +32,9 @@ const DetailItem = () => {
           <Styled.Text>금액</Styled.Text>
           <Styled.Price>{currentDetailItem.price}</Styled.Price>
         </Styled.FlexBox>
-        <Styled.CartButton onClick={handleCartButton}>장바구니</Styled.CartButton>
+        <Styled.CartButton onClick={handleCartButton} theme="brown">
+          장바구니
+        </Styled.CartButton>
       </Styled.Container>
     </Styled.Layout>
   );

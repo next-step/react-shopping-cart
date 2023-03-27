@@ -36,10 +36,9 @@ export const CheckBoxLabel = styled.label`
   font-size: 16px;
 `;
 export const CheckBoxButton = styled(Button)`
-  padding: 12px 22px;
-  font-size: 16px;
-  background: none;
-  border: 1px solid #bbbbbb;
+  padding: 18px;
+  font-size: 20px;
+  font-weight: 600;
 `;
 export const CartTitle = styled.h3`
   display: flex;

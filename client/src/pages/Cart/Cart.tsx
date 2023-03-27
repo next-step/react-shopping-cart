@@ -14,7 +14,7 @@ const Cart = () => {
         <Styled.LeftSection>
           <Styled.FlexContainer justifyContent={'space-between'} alignItems={'center'}>
             <Styled.CheckBoxContainer alignItems={'center'}>
-              <Styled.CheckBox type={'checkbox'} name="checkbox" onClick={handleCheckBox} checked={check} />
+              <Styled.CheckBox type={'checkbox'} name="checkbox" onChange={handleCheckBox} checked={check} />
               <Styled.CheckBoxLabel htmlFor="checkbox">모두 선택</Styled.CheckBoxLabel>
             </Styled.CheckBoxContainer>
             <Styled.CheckBoxButton onClick={handleDeleteButton}>상품 삭제</Styled.CheckBoxButton>
@@ -38,7 +38,8 @@ const Cart = () => {
             title="결제예상금액"
             text="결제 예상 금액"
             price={totalPrice}
-            buttonText={`주문하기 ${totalAmount}개`}
+            buttonText={`주문하기`}
+            totalAmount={totalAmount}
           />
         </Styled.RightSection>
       </Styled.FlexContainer>
