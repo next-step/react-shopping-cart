@@ -65,17 +65,15 @@ function useCart({ initialData = [] }: UseCartProps) {
     [checkedList, isEmptyChecked],
   );
 
-  console.log(isAllChecked);
-
   return {
     cartData,
     checkedList,
     handleCheckList,
     handleAllCheckCancel,
     handleAllCheck,
-    totalPrice,
     isAllChecked,
     isEmptyChecked,
+    totalPrice,
     handleQuantity,
     handleDelete,
   };
