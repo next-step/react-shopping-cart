@@ -1,0 +1,20 @@
+name: Shopping Cart CI
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+on: [pull_request]
+
+jobs:
+  build_source:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          always-auth: true
+      - name: Install Package
+        run: npm ci
+      # - name: Run Test
+      #   run: npm run test

@@ -152,3 +152,4 @@ $RECYCLE.BIN/
 
 # node
 node_modules
+.vercel
