@@ -1,8 +1,8 @@
 import Header from './Header';
 
 export default {
-  title: 'Common/Header',
+  title: 'Domain/Header',
   component: Header,
 };
 
-export const Primary = () => <Header></Header>;
+export const Primary = () => <Header />;

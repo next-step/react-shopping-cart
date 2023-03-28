@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Box } from '../Box';
+import { Box } from '../@common/Box';
 
 export const Wrapper = styled.header`
   background-color: ${({ theme }) => theme.color.cyan05};
