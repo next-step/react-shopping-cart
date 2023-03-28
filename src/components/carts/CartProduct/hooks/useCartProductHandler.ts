@@ -121,7 +121,7 @@ const useCartProductHandler = () => {
   };
 
   const onDeleteCartProduct = (productId: number) => async () => {
-    const isDeleteConfirm = confirm(CONFIRM_MESSAGES.DELETE_CONFIRM_MESSAGE);
+    const isDeleteConfirm = confirm(CONFIRM_MESSAGES.DELETE_CART_ITEM_CONFIRM_MESSAGE);
 
     if (!isDeleteConfirm) return;
 
@@ -135,7 +135,7 @@ const useCartProductHandler = () => {
   const onDeleteCartProducts = async () => {
     if (selectedItems.size === 0) return;
 
-    const isDeleteConfirm = confirm(CONFIRM_MESSAGES.MULTIPLE_DELETE_CONFIRM_MESSAGE(selectedItems.size));
+    const isDeleteConfirm = confirm(CONFIRM_MESSAGES.DELETE_MULTIPLE_CART_ITEMS_CONFIRM_MESSAGE(selectedItems.size));
 
     if (!isDeleteConfirm) return;
 
@@ -155,7 +155,7 @@ const useCartProductHandler = () => {
 
   return {
     cartProducts,
-    selectedItems,
+    selectedCartProducts: selectedItems,
     onIncreaseCartProductCount,
     onDecreaseCartProductCount,
     onDeleteCartProduct,

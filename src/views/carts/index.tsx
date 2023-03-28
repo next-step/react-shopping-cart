@@ -4,6 +4,8 @@ import type { Product } from "@/api/products";
 import { CartProduct } from "@/components/carts";
 import { useCartProductHandler } from "@/components/carts/CartProduct/hooks";
 import { PriceDashBoard } from "@/components/common";
+import { CONFIRM_MESSAGES } from "@/constants/messages";
+import { withAsync } from "@/helpers";
 import { CartOrderContentLayout } from "@/layouts";
 
 import * as S from "./carts.style";
@@ -17,6 +19,7 @@ export interface CartGroup extends Omit<Product, "id"> {
 export default function Carts() {
   const {
     cartProducts,
+    selectedCartProducts,
     onToggleAllItems,
     onToggleItem,
     checkedTotalPrice,
@@ -26,6 +29,18 @@ export default function Carts() {
     onDeleteCartProducts,
     onDeleteCartProduct,
   } = useCartProductHandler();
+
+  const handleSubmitOrder = async () => {
+    const isSubmitConfirm = confirm(CONFIRM_MESSAGES.COMPLETE_ORDER_MESSAGE);
+
+    if (!isSubmitConfirm) return;
+
+    const { error } = await withAsync(() => onDeleteCartProducts());
+
+    if (!error) {
+      // 주문하기 페이지로 이동
+    }
+  };
 
   return (
     <CartOrderContentLayout>
@@ -59,8 +74,8 @@ export default function Carts() {
           title="결제예상금액"
           priceTitle="결제예상금액"
           price={checkedTotalPrice}
-          buttonLabel="주문하기"
-          onSubmit={() => console.log("order")}
+          buttonLabel={`주문하기 ${selectedCartProducts.size ? `${selectedCartProducts.size}개` : ""}`}
+          onSubmit={handleSubmitOrder}
         />
       </div>
     </CartOrderContentLayout>
