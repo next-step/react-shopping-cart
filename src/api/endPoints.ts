@@ -5,11 +5,7 @@ export default {
     GET_PRODUCT: "/products/:id",
     DELETE_PRODUCT: "/products/:id",
   },
-  CARTS: {
-    GET_CARTS: "/carts",
-    ADD_CARTS: "/carts",
-    DELETE_CARTS: "/carts/:id",
-  },
+  CARTS: "/carts",
   ORDERS: {
     GET_ORDERS: "/orders",
     ADD_ORDERS: "/orders",
