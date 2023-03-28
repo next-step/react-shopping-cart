@@ -5,15 +5,16 @@ env:
 on: [pull_request]
 
 jobs:
-  runs-on: ubuntu-latest
+  build_source:
+    runs-on: ubuntu-latest
 
-  steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 16
-        always-auth: true
-    - name: Install Package
-      run: npm ci
-    # - name: Run Test
-    #   run: npm run test
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          always-auth: true
+      - name: Install Package
+        run: npm ci
+      # - name: Run Test
+      #   run: npm run test
