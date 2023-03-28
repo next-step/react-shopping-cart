@@ -15,16 +15,20 @@ function CartTable() {
     isAllChecked,
     isEmptyChecked,
     handleQuantity,
-    handleDelete,
+    handleDeleteAllChecked,
+    handleDeleteOneProduct,
+    update,
   } = useCartContext();
 
   return (
     <div className="flex flex-col">
       <CartTableHeader
+        checkedList={checkedList}
         isAllChecked={isAllChecked}
         isEmptyChecked={isEmptyChecked}
         onChange={isAllChecked ? handleAllCheckCancel : handleAllCheck}
-        handleDelete={handleDelete}
+        handleDelete={handleDeleteAllChecked}
+        update={update}
       />
       <CartTableContainer desc={`든든배송 상품(${cartData?.length})개`}>
         {cartData?.map(cart => (
@@ -36,7 +40,14 @@ function CartTable() {
                 checkboxComponent: (
                   <Checkbox value={cart.id} checked={checkedList.includes(cart.id)} onChange={handleCheckList} />
                 ),
-                sideComponent: <CartController cart={cart} handleQuantity={handleQuantity} />,
+                sideComponent: (
+                  <CartController
+                    cart={cart}
+                    handleQuantity={handleQuantity}
+                    handleDelete={handleDeleteOneProduct}
+                    update={update}
+                  />
+                ),
               }}
             />
           </div>

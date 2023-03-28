@@ -1,6 +1,8 @@
+import { ResponseReturn } from '@/api';
 import { CART_PRODUCT_QUANTITY } from '@/constants';
-import { CartWithProductQuantity } from '@/types';
+import { CartList, CartWithProductQuantity } from '@/types';
 import { ChangeEvent, useCallback, useMemo, useState } from 'react';
+import { KeyedMutator } from 'swr';
 
 export type QuantityButtonType = 'up' | 'down';
 
@@ -13,6 +15,7 @@ const quantityCalc = (type: QuantityButtonType, quantity: number) => {
 
 interface UseCartProps {
   initialData: CartWithProductQuantity[];
+  mutateCart: KeyedMutator<ResponseReturn<CartList>> | undefined;
 }
 function useCart({ initialData = [] }: UseCartProps) {
   const [cartData, setCartData] = useState<CartWithProductQuantity[]>(initialData);
@@ -42,9 +45,15 @@ function useCart({ initialData = [] }: UseCartProps) {
     );
   };
 
-  const handleDelete = () => {
+  const handleDeleteAllChecked = () => {
     setCartData(prevCartData => prevCartData.filter(cart => !checkedList.includes(cart.id)));
     setCheckedList([]);
+  };
+
+  const handleDeleteOneProduct = (id: number) => {
+    setCartData(prevCartData => prevCartData.filter(cart => cart.id !== id));
+    setCheckedList(prevCheckedList => prevCheckedList.filter(checkedId => checkedId !== id));
+    console.log(cartData);
   };
 
   const totalPrice = useMemo(
@@ -75,7 +84,8 @@ function useCart({ initialData = [] }: UseCartProps) {
     isEmptyChecked,
     totalPrice,
     handleQuantity,
-    handleDelete,
+    handleDeleteAllChecked,
+    handleDeleteOneProduct,
   };
 }
 

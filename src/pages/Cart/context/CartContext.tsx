@@ -11,6 +11,7 @@ type CartContextState<T, K> = {
   cartData: T;
   error: AxiosError | null;
   mutateCart: KeyedMutator<ResponseReturn<K>> | undefined;
+  update: () => void;
 } & ReturnType<typeof useCart>;
 
 const CartContext = createContext<CartContextState<CartWithProductQuantity[], CartList>>({
@@ -25,7 +26,9 @@ const CartContext = createContext<CartContextState<CartWithProductQuantity[], Ca
   isEmptyChecked: false,
   totalPrice: 0,
   handleQuantity: () => {},
-  handleDelete: () => {},
+  handleDeleteAllChecked: () => {},
+  handleDeleteOneProduct: () => {},
+  update: () => {},
 });
 
 function useCartContext() {
@@ -40,7 +43,6 @@ function useCartContext() {
 
 function CartContextProvider({ children, ...props }: PropsWithChildren) {
   const { data, error, mutate: mutateCart } = useSWR<ResponseReturn<CartList>>('/carts');
-  // setCarts(state?.data?.map(cart => ({ ...cart, product: { ...cart.product, quantity: 1 } })) ?? [])
   const cartListWithQuantity = data?.data?.map(cart => ({ ...cart, product: { ...cart.product, quantity: 1 } })) || [];
   const {
     cartData,
@@ -52,8 +54,13 @@ function CartContextProvider({ children, ...props }: PropsWithChildren) {
     isAllChecked,
     isEmptyChecked,
     handleQuantity,
-    handleDelete,
-  } = useCart({ initialData: cartListWithQuantity });
+    handleDeleteAllChecked,
+    handleDeleteOneProduct,
+  } = useCart({ initialData: cartListWithQuantity, mutateCart });
+
+  const update = () => {
+    mutateCart();
+  };
 
   const value = useMemo(
     () => ({
@@ -68,7 +75,9 @@ function CartContextProvider({ children, ...props }: PropsWithChildren) {
       isAllChecked,
       isEmptyChecked,
       handleQuantity,
-      handleDelete,
+      handleDeleteAllChecked,
+      handleDeleteOneProduct,
+      update,
     }),
     [
       cartData,
@@ -81,7 +90,11 @@ function CartContextProvider({ children, ...props }: PropsWithChildren) {
       totalPrice,
       isAllChecked,
       isEmptyChecked,
-      handleDelete,
+      handleQuantity,
+      handleDeleteAllChecked,
+      handleDeleteOneProduct,
+      update,
+      cartData.length,
     ],
   );
 

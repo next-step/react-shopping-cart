@@ -35,17 +35,32 @@ export const cartsHandlers = [
     return res(ctx.status(201), ctx.json({ ok: true, message: '상품이 성공적으로 업데이트 되었습니다.' }));
   }),
 
-  rest.delete('/carts/:cartId', (req, res, ctx) => {
+  rest.delete('/carts', (req, res, ctx) => {
     const { cartId } = req.params;
+    const cardIds = req.url.searchParams.getAll('cardId');
+
     let updateCarts;
-    if (Array.isArray(cartId)) {
-      updateCarts = db.carts.filter(cart => !JSON.parse(JSON.stringify(cartId)).includes(cart.id.toString()));
+    if (cardIds) {
+      updateCarts = db.carts.filter(cart => cardIds.includes(cart.id.toString()));
     } else {
       updateCarts = db.carts.filter(cart => cart.id !== +cartId);
     }
 
     db.carts = updateCarts;
 
+    return res(
+      ctx.status(200),
+      ctx.json({
+        ok: true,
+        data: db.carts,
+      }),
+    );
+  }),
+  rest.delete('/carts/:cartId', (req, res, ctx) => {
+    const { cartId } = req.params;
+    console.log(cartId);
+
+    db.carts = db.carts.filter(cart => cart.id !== +cartId);
     return res(
       ctx.status(200),
       ctx.json({

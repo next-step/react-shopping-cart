@@ -1,8 +1,9 @@
 import type { SVGProps } from 'react';
 
-function TrashIcon({ fill = 'none', width, height, viewBox }: SVGProps<SVGSVGElement>) {
+function TrashIcon({ fill = 'none', width, height, viewBox, onClick }: SVGProps<SVGSVGElement>) {
   return (
     <svg
+      onClick={onClick}
       width={width || 24}
       height={height || 24}
       viewBox={viewBox || '0 0 31 27'}
