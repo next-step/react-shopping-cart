@@ -5,3 +5,8 @@ export interface Order {
   price: number
   quantity: number
 }
+
+export interface OrderList {
+  orderListId: string
+  orders: Order[]
+}

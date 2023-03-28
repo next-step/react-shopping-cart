@@ -12,4 +12,5 @@ export const API = {
   CARTS: `${API_ROOT}/${API_PATH.CARTS}`,
   CART: (id: number) => `${API_ROOT}/${API_PATH.CARTS}/${id}`,
   ORDERS: `${API_ROOT}/${API_PATH.ORDERS}`,
+  ORDER_LIST: `${API_ROOT}/${API_PATH.ORDERS}/list`,
 }

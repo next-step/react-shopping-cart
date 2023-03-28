@@ -35,9 +35,7 @@ function useMutation<TData, TVariables>(
       const responseData = (await response.json()) as TData
 
       if (!response.ok) {
-        return Promise.reject(
-          `response.ok에서 false가 반환됐어요. 에러 내용: ${response.status}, ${response.statusText}}`,
-        )
+        return Promise.reject(`${response.status}, ${response.statusText}}`)
       }
 
       setData(responseData)

@@ -4,19 +4,19 @@ import { useOrder } from '@/pages/Order/hooks'
 import { OrderItem } from './components'
 
 const Order = () => {
-  const { orderList, totalOrderPrice, totalOrderQuantity, openPaymentCheckModal } = useOrder()
+  const { orders, totalOrderPrice, totalOrderQuantity, openPaymentCheckModal } = useOrder()
 
   return (
     <section className="order-section">
       <SubHeader title="주문/결제" type="order" />
       <div className="grid grid-cols-5 gap-60">
         <section className="span-3 order-left-section">
-          <h3 className="order-title">주문 상품(3건)</h3>
+          <h3 className="order-title">주문 상품({orders?.length}건)</h3>
           <hr className="divide-line-thin mt-10" />
-          {orderList && orderList.length > 0 ? (
-            orderList?.map((item) => (
+          {orders && orders.length > 0 ? (
+            orders?.map((order) => (
               <>
-                <OrderItem key={item.id} item={item} />
+                <OrderItem key={order.id} item={order} />
                 <hr className="divide-line-thin mt-10" />
               </>
             ))

@@ -2,9 +2,16 @@ import { rest, RestRequest } from 'msw'
 import z from 'zod'
 
 import { API } from '@/config'
-import { ProductSchema, ProductSchemaInfer, OrderSchema, OrderSchemaInfer } from '@/schemas'
+import {
+  ProductSchema,
+  ProductSchemaInfer,
+  OrderSchema,
+  OrderSchemaInfer,
+  OrderListSchema,
+  OrderListSchemaInfer,
+} from '@/schemas'
 
-import { products, carts, orders } from './data'
+import { products, carts, orders, orderList } from './data'
 
 const getProduct = (products: ProductSchemaInfer[], schema: z.ZodTypeAny) =>
   rest.get(`${API.PRODUCTS}/:id`, (req, res, ctx) => {
@@ -183,11 +190,41 @@ const createOrders = (schema: z.ZodTypeAny) =>
     }
   })
 
-const gerOrders = (orders: OrderSchemaInfer[], schema: z.ZodTypeAny) =>
+const getOrders = (orders: OrderSchemaInfer[], schema: z.ZodTypeAny) =>
   rest.get(`${API.ORDERS}`, (_: RestRequest, res, ctx) => {
     try {
       const validatedOrders = orders.map((order) => schema.parse(order))
       return res(ctx.status(200), ctx.json(validatedOrders))
+    } catch (error) {
+      if (error instanceof Error) {
+        return res(ctx.status(400), ctx.json({ message: error.message }))
+      } else {
+        return res(ctx.status(400), ctx.json({ message: String(error) }))
+      }
+    }
+  })
+
+const createOrderList = (schema: z.ZodTypeAny) =>
+  rest.post(`${API.ORDER_LIST}`, async (req: RestRequest<{ orderListItem: OrderListSchemaInfer }>, res, ctx) => {
+    const { orderListItem } = await req.json()
+    try {
+      const validatedOrderListItem = schema.parse(orderListItem)
+      orderList.push(validatedOrderListItem)
+      return res(ctx.status(201))
+    } catch (error) {
+      if (error instanceof Error) {
+        return res(ctx.status(400), ctx.json({ message: error.message }))
+      } else {
+        return res(ctx.status(400), ctx.json({ message: String(error) }))
+      }
+    }
+  })
+
+const getOrderLists = (orderList: OrderListSchemaInfer[], schema: z.ZodTypeAny) =>
+  rest.get(`${API.ORDER_LIST}`, (_: RestRequest, res, ctx) => {
+    try {
+      const validatedOrderLists = orderList.map((orderList) => schema.parse(orderList))
+      return res(ctx.status(200), ctx.json(validatedOrderLists))
     } catch (error) {
       if (error instanceof Error) {
         return res(ctx.status(400), ctx.json({ message: error.message }))
@@ -206,6 +243,8 @@ export const handlers = [
   getCart(carts, ProductSchema),
   deleteCartItem(ProductSchema),
   deleteCartItems(ProductSchema),
-  gerOrders(orders, OrderSchema),
+  getOrders(orders, OrderSchema),
   createOrders(OrderSchema),
+  createOrderList(OrderListSchema),
+  getOrderLists(orderList, OrderListSchema),
 ]
