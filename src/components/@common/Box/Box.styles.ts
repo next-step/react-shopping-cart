@@ -15,4 +15,7 @@ export const Box = styled.div<BoxProps>`
   ${({ alignItems }) => css`
     align-items: ${alignItems};
   `}
+  ${({ gap }) => css`
+    gap: ${gap}px;
+  `}
 `;

@@ -7,4 +7,5 @@ export interface BoxProps extends HTMLAttributes<HTMLDivElement> {
   flexDirection?: CSSProperties['flexDirection'];
   justifyContent?: CSSProperties['justifyContent'];
   alignItems?: CSSProperties['alignItems'];
+  gap?: CSSProperties['gap'];
 }
