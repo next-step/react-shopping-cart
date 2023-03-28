@@ -4,13 +4,13 @@ import { CartInfoType } from '../types';
 import { cartDataStorage } from './util/storage';
 import { QUERY_PAGE } from '../domain/home/hooks/useProduct';
 
-const ITEM_COUNT = 8;
+const PRODUCTS_PER_PAGE_COUNT = 8;
 
 const getProductListPerPage = rest.get('/products', (req, res, ctx) => {
   const pageQuery = Number(req.url.searchParams.get(QUERY_PAGE));
   const productListPerPage = productData.slice(
-    (pageQuery - 1) * ITEM_COUNT,
-    ITEM_COUNT * pageQuery
+    (pageQuery - 1) * PRODUCTS_PER_PAGE_COUNT,
+    PRODUCTS_PER_PAGE_COUNT * pageQuery
   );
 
   return res(
