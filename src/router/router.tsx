@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Home, Cart, ProductDetail } from '../domain';
+import { Layout } from '../layout';
 
 export const ROUTE = {
   HOME: '/main',
@@ -12,16 +13,22 @@ export const ROUTE = {
 
 export const router = createBrowserRouter([
   {
-    path: ROUTE.HOME,
-    element: <Home />,
-  },
-  {
-    path: ROUTE.CART,
-    element: <Cart />,
-  },
+    path: '/',
+    element: <Layout />,
+    children: [
+      {
+        path: ROUTE.HOME,
+        element: <Home />,
+      },
+      {
+        path: ROUTE.CART,
+        element: <Cart />,
+      },
 
-  {
-    path: ROUTE.DETAIL + '/:id',
-    element: <ProductDetail />,
+      {
+        path: ROUTE.DETAIL + '/:id',
+        element: <ProductDetail />,
+      },
+    ],
   },
 ]);

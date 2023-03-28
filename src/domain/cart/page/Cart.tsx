@@ -1,6 +1,5 @@
 import { PageTitle } from '../../../components';
 import { CartLayout } from '../components';
-import { Layout } from '../../../layout';
 import useCart from '../hooks/useCart';
 import { CartInfoType } from '../../../types';
 
@@ -16,10 +15,10 @@ const Cart = () => {
   }
 
   return (
-    <Layout>
+    <>
       <PageTitle text="장바구니" />
       <CartLayout cartList={cartData as CartInfoType[]} />
-    </Layout>
+    </>
   );
 };
 
