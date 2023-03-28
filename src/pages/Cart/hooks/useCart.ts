@@ -1,6 +1,6 @@
 import { ResponseReturn } from '@/api';
 import { CART_PRODUCT_QUANTITY } from '@/constants';
-import { CartList, CartWithProductQuantity } from '@/types';
+import { CartList, CartWithProductQuantity, ProductWithQuantity } from '@/types';
 import { ChangeEvent, useCallback, useMemo, useState } from 'react';
 import { KeyedMutator } from 'swr';
 
@@ -74,6 +74,18 @@ function useCart({ initialData = [] }: UseCartProps) {
     [checkedList, isEmptyChecked],
   );
 
+  const onlyCheckedCartList = useMemo(
+    () =>
+      cartData.reduce((acc, cur) => {
+        console.log('hello');
+        if (checkedList.includes(cur.id)) {
+          return [...acc, cur.product];
+        }
+        return acc;
+      }, [] as ProductWithQuantity[]),
+    [cartData, checkedList],
+  );
+
   return {
     cartData,
     checkedList,
@@ -86,6 +98,7 @@ function useCart({ initialData = [] }: UseCartProps) {
     handleQuantity,
     handleDeleteAllChecked,
     handleDeleteOneProduct,
+    onlyCheckedCartList,
   };
 }
 

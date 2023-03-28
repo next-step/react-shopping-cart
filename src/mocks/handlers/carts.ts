@@ -36,29 +36,24 @@ export const cartsHandlers = [
   }),
 
   rest.delete('/carts', (req, res, ctx) => {
-    const { cartId } = req.params;
-    const cardIds = req.url.searchParams.getAll('cardId');
+    const cardIds = req.url.searchParams.getAll('cartId');
+    console.log(cardIds);
 
-    let updateCarts;
-    if (cardIds) {
-      updateCarts = db.carts.filter(cart => cardIds.includes(cart.id.toString()));
-    } else {
-      updateCarts = db.carts.filter(cart => cart.id !== +cartId);
+    if (!cardIds) {
+      return res(ctx.status(400), ctx.json({ ok: false, message: '삭제 대상 인덱스가 없습니다.' }));
     }
-
-    db.carts = updateCarts;
+    db.carts.filter(cart => !cardIds.includes(cart.id.toString()));
 
     return res(
       ctx.status(200),
       ctx.json({
         ok: true,
-        data: db.carts,
+        data: {},
       }),
     );
   }),
   rest.delete('/carts/:cartId', (req, res, ctx) => {
     const { cartId } = req.params;
-    console.log(cartId);
 
     db.carts = db.carts.filter(cart => cart.id !== +cartId);
     return res(

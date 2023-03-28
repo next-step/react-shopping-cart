@@ -18,7 +18,9 @@ function CartTableHeader({
   handleDelete: () => void;
   update: () => void;
 }) {
-  const [deleteProductAll, { loading, data }] = useMutation(
+  console.log(checkedList);
+  console.log(checkedList.map(id => `cartId=${id}`).join('&'));
+  const [deleteProductSelected, { loading, data }] = useMutation(
     `/carts?${checkedList.map(id => `cartId=${id}`).join('&')}`,
     'DELETE',
   );
@@ -29,11 +31,12 @@ function CartTableHeader({
     const result = window.confirm('선택한 상품을 모두 삭제 하시겠습니까?');
     if (!result) return;
 
-    deleteProductAll({});
+    deleteProductSelected({});
   };
 
   useEffect(() => {
     if (!loading && data && data?.ok) {
+      console.log('click');
       handleDelete();
       update();
     }

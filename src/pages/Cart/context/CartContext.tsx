@@ -29,6 +29,7 @@ const CartContext = createContext<CartContextState<CartWithProductQuantity[], Ca
   handleDeleteAllChecked: () => {},
   handleDeleteOneProduct: () => {},
   update: () => {},
+  onlyCheckedCartList: [],
 });
 
 function useCartContext() {
@@ -56,6 +57,7 @@ function CartContextProvider({ children, ...props }: PropsWithChildren) {
     handleQuantity,
     handleDeleteAllChecked,
     handleDeleteOneProduct,
+    onlyCheckedCartList,
   } = useCart({ initialData: cartListWithQuantity, mutateCart });
 
   const update = () => {
@@ -78,6 +80,7 @@ function CartContextProvider({ children, ...props }: PropsWithChildren) {
       handleDeleteAllChecked,
       handleDeleteOneProduct,
       update,
+      onlyCheckedCartList,
     }),
     [
       cartData,

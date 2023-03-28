@@ -1,21 +1,57 @@
 import { Button } from '@/components/Common';
 import OrderSummary from '@/components/Common/Summary';
 import { useCartContext } from '../context/CartContext';
+import useMutation from '@/hooks/useMutation';
+import { useNavigate } from 'react-router-dom';
+import { FormEvent, useEffect } from 'react';
+import { ProductWithQuantity } from '@/types';
+import { ROUTES_URL } from '@/RootRouter';
 
 function CartAside() {
-  const { totalPrice, isEmptyChecked, checkedList } = useCartContext();
+  const { checkedList, totalPrice, isEmptyChecked, onlyCheckedCartList, handleDeleteAllChecked } = useCartContext();
+  const navigate = useNavigate();
+
+  const [deleteProductSelected] = useMutation(`/carts?${checkedList.map(id => `cartId=${id}`).join('&')}`, 'DELETE');
+
+  const [onPayment, { data: paymentResponse }] = useMutation<ProductWithQuantity[]>(`/orders`, 'POST');
+
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const result = window.confirm('선택한 상품을 구매하시겠습니까?');
+
+    if (!result) return;
+
+    console.log(onlyCheckedCartList);
+
+    onPayment(onlyCheckedCartList);
+    deleteProductSelected({});
+  };
+
+  useEffect(() => {
+    if (paymentResponse && paymentResponse?.ok) {
+      handleDeleteAllChecked();
+      navigate(ROUTES_URL.PAYMENT);
+    }
+  }, [paymentResponse, paymentResponse?.ok]);
+
   return (
-    <div className="border-[1px] border-gray-200 p-6 my-20 rounded-md">
+    <form onSubmit={onSubmit} className="border-[1px] border-gray-200 p-6 my-20 rounded-md">
       <OrderSummary
         title="결제예상금액"
         totalPrice={totalPrice.toLocaleString()}
         renderButton={() => (
-          <Button isFullWidth size="lg" disabled={isEmptyChecked} variant={isEmptyChecked ? 'disabled' : 'primary'}>
+          <Button
+            type="submit"
+            isFullWidth
+            size="lg"
+            disabled={isEmptyChecked}
+            variant={isEmptyChecked ? 'disabled' : 'primary'}
+          >
             주문하기({checkedList.length}개)
           </Button>
         )}
       />
-    </div>
+    </form>
   );
 }
 
