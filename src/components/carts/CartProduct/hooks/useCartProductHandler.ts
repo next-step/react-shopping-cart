@@ -1,4 +1,4 @@
-import { ChangeEvent, useMemo, useReducer } from "react";
+import { useEffect, useMemo, useReducer } from "react";
 
 import type { Product } from "@/api/products";
 import { useItemSelector } from "@/hooks";
@@ -24,6 +24,10 @@ type CartProductsAction =
     ) & { id: number })
   | {
       type: "DELETE_ALL_CART_PRODUCTS";
+    }
+  | {
+      type: "INITIATE_CART_PRODUCTS";
+      payload: CartGroup[];
     };
 
 const cartProductsReducer = (states: CartGroup[], action: CartProductsAction) => {
@@ -56,6 +60,13 @@ const cartProductsReducer = (states: CartGroup[], action: CartProductsAction) =>
     case "DELETE_ALL_CART_PRODUCTS": {
       return [];
     }
+
+    case "INITIATE_CART_PRODUCTS": {
+      return action.payload;
+    }
+
+    default:
+      return states;
   }
 };
 
@@ -76,20 +87,26 @@ const useCartProductHandler = () => {
     }, [] as CartGroup[]);
   }, [initialCartProducts]);
 
+  const { selectedItems, ...rest } = useItemSelector(cartProductsGroup);
   const [cartProducts, dispatch] = useReducer(cartProductsReducer, cartProductsGroup);
 
-  const { selectedItems, ...rest } = useItemSelector(cartProductsGroup);
+  useEffect(() => {
+    dispatch({ type: "INITIATE_CART_PRODUCTS", payload: cartProductsGroup });
+  }, [cartProductsGroup]);
 
-  const onIncreaseCartProductCount = (e: ChangeEvent<HTMLInputElement>) => {
-    const { target } = e;
+  const onIncreaseCartProductCount = (id: number) => () => {
+    dispatch({ type: "INCREASE_CART_PRODUCT_COUNT", id });
+  };
 
-    dispatch({ type: "INCREASE_CART_PRODUCT_COUNT", id: parseInt(target.id) });
+  const onDecreaseCartProductCount = (id: number) => () => {
+    dispatch({ type: "DECREASE_CART_PRODUCT_COUNT", id });
   };
 
   return {
     cartProducts,
     selectedItems,
     onIncreaseCartProductCount,
+    onDecreaseCartProductCount,
     ...rest,
   };
 };
