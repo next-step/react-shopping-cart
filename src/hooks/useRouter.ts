@@ -1,7 +1,8 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const useRouter = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   const confirmAndRoute = (message: string, path: string) => {
     const confirmRes = confirm(message);
@@ -10,9 +11,14 @@ const useRouter = () => {
     }
   };
 
+  const getLocationQuery = (queryKey: string) => {
+    return searchParams.get(queryKey);
+  };
+
   return {
     routeTo: (path: string) => navigate(path),
     confirmAndRoute,
+    getLocationQuery,
   };
 };
 

@@ -9,13 +9,20 @@ interface ResponseType {
   response: ProductInfoType[];
 }
 
+export const QUERY_PAGE = 'page';
+const DEFAULT_QUERY_PAGE = 1;
+
 const useProduct = () => {
-  const { routeTo } = useRouter();
-  const { confirmAndRoute } = useRouter();
-  const { data, loading, error } = useCustomQuery<ResponseType>(`/products`);
+  const { routeTo, confirmAndRoute, getLocationQuery } = useRouter();
+
+  const pageValue = getLocationQuery(QUERY_PAGE) ?? DEFAULT_QUERY_PAGE;
+  const { data, loading, error } = useCustomQuery<ResponseType>(
+    `/products?${QUERY_PAGE}=${pageValue}`
+  );
   const { mutate } = useCustomMutation<unknown, CartInfoType>((payload) =>
     updateCartList(payload)
   );
+
   const addCart = useCallback(async (item: ProductInfoType) => {
     await mutate({ id: Number(item.id), product: item });
     confirmAndRoute(CONFIRM.CART_AND_ROUTE, ROUTE.CART);

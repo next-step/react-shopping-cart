@@ -2,17 +2,26 @@ import { rest } from 'msw';
 import productData from './data/products';
 import { CartInfoType } from '../types';
 import { cartDataStorage } from './util/storage';
+import { QUERY_PAGE } from '../domain/home/hooks/useProduct';
 
-const fetchProductData = rest.get('/products', (req, res, ctx) => {
+const ITEM_COUNT = 8;
+
+const getProductListPerPage = rest.get('/products', (req, res, ctx) => {
+  const pageQuery = Number(req.url.searchParams.get(QUERY_PAGE));
+  const productListPerPage = productData.slice(
+    (pageQuery - 1) * ITEM_COUNT,
+    ITEM_COUNT * pageQuery
+  );
+
   return res(
     ctx.status(200),
     ctx.json({
-      response: productData,
+      response: productListPerPage,
     })
   );
 });
 
-const fetchProductDetail = rest.get('/products/:productId', (req, res, ctx) => {
+const getProductDetail = rest.get('/products/:productId', (req, res, ctx) => {
   const { productId } = req.params;
   const productDetailData = productData.filter(
     (item) => item.id === Number(productId)
@@ -26,7 +35,7 @@ const fetchProductDetail = rest.get('/products/:productId', (req, res, ctx) => {
   );
 });
 
-const fetchCartsData = rest.get('/carts', (req, res, ctx) => {
+const getCartsList = rest.get('/carts', (req, res, ctx) => {
   const cartData = window.localStorage.getItem('cartData');
   let responseData = [];
   if (cartData) {
@@ -41,7 +50,7 @@ const fetchCartsData = rest.get('/carts', (req, res, ctx) => {
   );
 });
 
-const updateCartData = rest.post('/carts', (req, res, ctx) => {
+const addToCart = rest.post('/carts', (req, res, ctx) => {
   const productInfo = req.body as CartInfoType;
   const cartData = cartDataStorage.get();
   if (cartData) {
@@ -57,8 +66,8 @@ const updateCartData = rest.post('/carts', (req, res, ctx) => {
 });
 
 export const handlers = [
-  fetchProductData,
-  fetchProductDetail,
-  fetchCartsData,
-  updateCartData,
+  getProductListPerPage,
+  getProductDetail,
+  getCartsList,
+  addToCart,
 ];

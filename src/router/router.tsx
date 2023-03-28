@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { Home, Cart, ProductDetail } from '../domain';
 
 export const ROUTE = {
-  HOME: '/',
+  HOME: '/main',
   DETAIL: '/products',
   CART: '/cart',
   ORDER: '/order',
