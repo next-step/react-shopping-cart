@@ -53,10 +53,6 @@ const LeftSection = () => {
     });
   };
 
-  console.log("tempCart.length === carts.length", tempCart)
-  // console.log("tempCart.length === carts.length", carts)
-
-
   return (
     <section className="cart-left-section">
       <div className="flex justify-between items-center">

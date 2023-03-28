@@ -30,10 +30,18 @@ const Item = ({ item, isAllChecked }: ItemProps) => {
       setQuantity(quantity - 1); // 20개로 초기화
       return;
     }
-
+    
     updateCartQuantity(item.product.id, quantity);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quantity]);
+
+  useEffect(() => {
+    if(singleChecked) {
+      return addTempCart(singleChecked, item, quantity);
+    } 
+    return addTempCart(singleChecked, item, 0);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [singleChecked])
 
   const handleDeleteCartItem = () => {
     handleModal({
@@ -41,11 +49,6 @@ const Item = ({ item, isAllChecked }: ItemProps) => {
       message: "장바구니 목록에서 삭제하시겠습니까?",
       onConfirm: () => deleteCartItem(item.id),
     });
-  };
-
-  const handleAddCart = () => {
-    addTempCart(!singleChecked, item, quantity);
-    setSingleChecked(!singleChecked);
   };
 
   useEffect(() => {
@@ -65,7 +68,7 @@ const Item = ({ item, isAllChecked }: ItemProps) => {
             type="checkbox"
             readOnly
             checked={isAllChecked ? isAllChecked : singleChecked}
-            onClick={() => handleAddCart()}
+            onClick={() => setSingleChecked(!singleChecked)}
           />
           <img
             className="w-144 h-144"

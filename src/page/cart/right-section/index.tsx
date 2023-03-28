@@ -47,6 +47,7 @@ const RightSection = () => {
   };
 
   const deleteCartAndOrderItem = () => {
+    // TODO : 주문하기 버튼 클릭시 장바구니에서 삭제 refactor
     mutate(order);
     // eslint-disable-next-line array-callback-return
     return order.map((item) => {
@@ -66,7 +67,6 @@ const RightSection = () => {
           <span className="highlight-text">{printWon(totalPrice)}</span>
         </div>
         <div className="flex-center mt-30 mx-10" onClick={() => handleOrder()}>
-        {/* default-button */}
           <button className={order.length ? 'primary-button flex-center' : 'default-button flex-center'}>{orderText()}</button>
         </div>
       </div>

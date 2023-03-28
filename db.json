@@ -401,6 +401,18 @@
           "price": 11170
         }
       ]
+    },
+    {
+      "id": 1680021784347,
+      "orderDetails": [
+        {
+          "id": 6,
+          "imageUrl": "https://cdn-mart.baemin.com/goods/custom/20200427/9751-main-01.png",
+          "name": "야채고로케 (60g*18입) 1080g",
+          "quantity": 1,
+          "price": 11170
+        }
+      ]
     }
   ]
 }
