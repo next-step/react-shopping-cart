@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useReducer } from "react";
 
+import { deleteCart } from "@/api/carts";
 import type { Product } from "@/api/products";
+import { withAsync } from "@/helpers";
 import { useItemSelector } from "@/hooks";
 import { useFetchCartProducts } from "@/hooks/api";
 
@@ -54,7 +56,7 @@ const cartProductsReducer = (states: CartGroup[], action: CartProductsAction) =>
     }
 
     case "DELETE_CART_PRODUCT": {
-      return states.filter((state) => state.id !== action.id);
+      return states.filter((state) => state.productId !== action.id);
     }
 
     case "DELETE_ALL_CART_PRODUCTS": {
@@ -111,11 +113,23 @@ const useCartProductHandler = () => {
     dispatch({ type: "DECREASE_CART_PRODUCT_COUNT", id });
   };
 
+  const onDeleteCartProduct = (productId: number) => async () => {
+    const { result, error } = await withAsync(() => deleteCart(productId));
+
+    if (!error) {
+      console.log(result);
+      dispatch({ type: "DELETE_CART_PRODUCT", id: productId });
+    }
+  };
+
+  const onDeleteCartProducts = () => {};
+
   return {
     cartProducts,
     selectedItems,
     onIncreaseCartProductCount,
     onDecreaseCartProductCount,
+    onDeleteCartProduct,
     checkedTotalPrice,
     ...rest,
   };

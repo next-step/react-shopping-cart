@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, MouseEvent } from "react";
 import { FlattenSimpleInterpolation } from "styled-components";
 
 import { Trash } from "@/assets/svgs";
@@ -11,8 +11,9 @@ import * as S from "./cartProduct.style";
 export interface CartProductProps {
   id: string;
   cartProductInfo: CartGroup;
-  onIncreaseProductQuantity: () => void;
-  onDecreaseProductQuantity: () => void;
+  onIncreaseProductQuantity: (e: MouseEvent) => void;
+  onDecreaseProductQuantity: (e: MouseEvent) => void;
+  onDeleteProduct: (e: MouseEvent) => void;
   onCheckItem: (e: ChangeEvent<HTMLInputElement>) => void;
   isChecked: boolean;
   className?: string;
@@ -24,6 +25,7 @@ export default function CartProduct({
   cartProductInfo,
   onIncreaseProductQuantity,
   onDecreaseProductQuantity,
+  onDeleteProduct,
   onCheckItem,
   isChecked,
   className,
@@ -42,7 +44,7 @@ export default function CartProduct({
       <S.CartProductContentWrapper>
         <S.CartProductNameWrapper>
           <span>{name}</span>
-          <Button variant="text">
+          <Button variant="text" onClick={onDeleteProduct}>
             <Trash />
           </Button>
         </S.CartProductNameWrapper>
