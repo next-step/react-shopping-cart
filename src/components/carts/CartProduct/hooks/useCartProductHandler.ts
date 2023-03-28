@@ -2,6 +2,7 @@ import { useEffect, useMemo, useReducer } from "react";
 
 import { deleteCart, deleteCarts } from "@/api/carts";
 import type { Product } from "@/api/products";
+import { CART } from "@/constants/constants";
 import { CONFIRM_MESSAGES } from "@/constants/messages";
 import { withAsync } from "@/helpers";
 import { useItemSelector } from "@/hooks";
@@ -40,7 +41,7 @@ const cartProductsReducer = (states: CartGroup[], action: CartProductsAction) =>
       const findIdx = states.findIndex((state) => state.id === action.id);
       const increasedProduct = states[findIdx];
 
-      if (increasedProduct.count >= 20) {
+      if (increasedProduct.count >= CART.PRODUCT_MAX_NUMBER) {
         return states;
       }
 
@@ -53,7 +54,7 @@ const cartProductsReducer = (states: CartGroup[], action: CartProductsAction) =>
       const findIdx = states.findIndex((state) => state.id === action.id);
       const decreasedProduct = states[findIdx];
 
-      if (decreasedProduct.count <= 0) {
+      if (decreasedProduct.count <= CART.PRODUCT_MIN_NUMBER) {
         return states;
       }
 

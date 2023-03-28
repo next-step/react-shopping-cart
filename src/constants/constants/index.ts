@@ -1,0 +1,4 @@
+export const CART = {
+  PRODUCT_MAX_NUMBER: 20,
+  PRODUCT_MIN_NUMBER: 1,
+};
