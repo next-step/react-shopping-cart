@@ -2,6 +2,7 @@ import React from "react";
 import { Meta } from "@storybook/react/types-6-0";
 import { Story } from "@storybook/react";
 import Button, { ButtonProps } from "./Button";
+import { within, userEvent } from "@storybook/testing-library";
 require("../../../css/common/index.css");
 
 export default {
@@ -16,7 +17,7 @@ export const Navbar = Template.bind({});
 export const Primary = Template.bind({});
 export const PrimaryBrown = Template.bind({});
 export const PrimarySmall = Template.bind({});
-export const Emoji = Template.bind({});
+export const Icon = Template.bind({});
 
 Navbar.args = {
   children: "장바구니",
@@ -28,6 +29,7 @@ Primary.args = {
   children: "결제하기",
   className: "primary-button",
   onClick: () => alert("결제페이지 이동"),
+  dataTestid: "primary-button",
 };
 
 PrimaryBrown.args = {
@@ -42,10 +44,16 @@ PrimarySmall.args = {
   onClick: () => alert("장바구니 이동"),
 };
 
-Emoji.args = {
+Icon.args = {
   children: (
     <img className="cart-trash-svg" src="./assets/svgs/trash.svg" alt="삭제" />
   ),
   className: "cart-trash-svg",
   onClick: () => alert("삭제"),
+};
+
+Primary.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const 결제버튼 = await canvas.getByTestId("primary-button");
+  await userEvent.click(결제버튼);
 };

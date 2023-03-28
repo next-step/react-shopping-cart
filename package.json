@@ -71,6 +71,7 @@
     "@storybook/preset-typescript": "^3.0.0",
     "@storybook/react": "^6.5.16",
     "@storybook/testing-library": "^0.0.13",
+    "@testing-library/dom": "^9.2.0",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.56.0",
     "babel-plugin-named-exports-order": "^0.0.2",
