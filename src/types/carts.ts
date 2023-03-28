@@ -1,8 +1,8 @@
-import { Product, ProductList } from './products';
+import { Product } from './products';
 
 export type Cart = {
   id: number;
-  product: ProductList;
+  product: Product;
 };
 
 export type CartList = Cart[];
