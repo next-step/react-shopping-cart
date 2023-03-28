@@ -1,16 +1,16 @@
 import React from "react";
-import { CartItem } from "types/type";
+import { OrderDetail } from "types/type";
 
 const DEFAULT_QUANTITY = 1;
 
 type OrderLeftSectionProps = {
-  orderList: CartItem[];
+  orderList: OrderDetail[];
 };
 
 const OrderLeftSection = ({ orderList }: OrderLeftSectionProps) => {
   if (!orderList.length) return <></>;
 
-  const orderQuantity = (item: CartItem) => {
+  const orderQuantity = (item: OrderDetail) => {
     return item?.quantity ? item.quantity : DEFAULT_QUANTITY;
   };
 
@@ -24,11 +24,11 @@ const OrderLeftSection = ({ orderList }: OrderLeftSectionProps) => {
             <div className="flex gap-15 mt-10">
               <img
                 className="w-144 h-144"
-                src={item.product.imageUrl}
-                alt={`${item.product.name}`}
+                src={item.imageUrl}
+                alt={`${item.name}`}
               />
               <div className="flex-col gap-15">
-                <span className="order-name">{item.product.name}</span>
+                <span className="order-name">{item.name}</span>
                 <span>수량: {orderQuantity(item)}</span>
               </div>
             </div>

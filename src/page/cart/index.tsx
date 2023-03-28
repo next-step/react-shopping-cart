@@ -5,13 +5,11 @@ import "./style.css";
 import LeftSection from "./left-section";
 import RightSection from "./right-section";
 
-import { useCart } from "hooks/cart";
+import { useCartList } from "hooks/cart";
 import { Header } from "common/ui/header";
 
 const CartContent = () => {
-  const {
-    getCartItems: { data, isLoading, isError },
-  } = useCart();
+  const { data, isLoading, isError } = useCartList();
 
   if (isLoading) {
     return <div>Loading...</div>;

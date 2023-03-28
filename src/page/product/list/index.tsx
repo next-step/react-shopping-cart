@@ -12,6 +12,7 @@ const PAGE_SIZE = 10;
 const ProductListPageContent = () => {
   const [page, setPage] = useState<number>(0);
   const { data, isLoading, isError } = useProductList(page, PAGE_SIZE);
+
   const [products, setProducts] = useState<ProductItem[]>([]);
   const [hasMore, setHasMore] = useState<boolean>(true);
 
@@ -43,7 +44,7 @@ const ProductListPageContent = () => {
   return (
     <ProductContainer>
       {products.map((item: ProductItem) => (
-        <Item key={item.id} item={item} />
+        <Item key={"item" + item.id} item={item} />
       ))}
       {(isLoading || isScrollLoading) && hasMore && <div>Loading...</div>}
     </ProductContainer>

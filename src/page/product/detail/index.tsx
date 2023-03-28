@@ -11,12 +11,15 @@ import { useRouter } from "hooks/useRouter";
 import { ROUTE } from "router";
 import { ProductItem } from "types/type";
 import { useEffect, useState } from "react";
+import { useAddCart } from "hooks/cart";
+import { handleModal } from "common/modal";
 
 export const Contents = () => {
   const { id } = useParams<{ id: string }>();
   const { go } = useRouter();
-
+  const { mutate } = useAddCart();
   const { data, isLoading, isError } = useSelectedProduct(Number(id));
+
   const [product, setProduct] = useState<ProductItem>({} as ProductItem);
 
   useEffect(() => {
@@ -40,6 +43,19 @@ export const Contents = () => {
     return <div>상품이 없습니다.</div>;
   }
 
+  const HandleAddCart = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    item: ProductItem
+  ) => {
+    e.stopPropagation();
+    mutate(item);
+    handleModal({
+      title: "장바구니에 추가되었습니다",
+      message: "해당 페이지로 이동하시겠습니까?",
+      onConfirm: () => go(ROUTE.CART_LIST),
+    });
+  };
+
   return (
     <ProductContainer>
       <div className="flex-col-center w-520">
@@ -60,7 +76,7 @@ export const Contents = () => {
         </div>
         <button
           className="product-detail-button flex-center mt-20"
-          onClick={() => go(ROUTE.ORDER_LIST)}
+          onClick={(e) => HandleAddCart(e, product)}
         >
           장바구니
         </button>

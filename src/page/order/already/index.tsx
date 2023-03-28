@@ -4,10 +4,10 @@ import OrderLeftSection from "./left-section";
 import OrderRightSection from "./right-section";
 import Nav from "components/nav";
 import { useRecoilValue } from "recoil";
-import { tempCartState } from "hooks/cart";
+import { tempOrderState } from "hooks/order";
 
 const OrderContent = () => {
-  const orderList = useRecoilValue(tempCartState);
+  const orderList = useRecoilValue(tempOrderState);
 
   if (orderList.length === 0) {
     return <div className="flex justify-center my-20">주문 상품이 존재 하지 않습니다.</div>;

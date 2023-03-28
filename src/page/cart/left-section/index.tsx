@@ -1,33 +1,44 @@
 import { CartItem } from "types/type";
 import Item from "./item";
-import { useRecoilValue } from "recoil";
-import { cartState, tempCartState, useCart } from "hooks/cart";
+import { useCartList, useDeleteCart } from "hooks/cart";
 import { useEffect, useState } from "react";
 import { handleModal } from "common/modal";
+import { useRecoilValue } from "recoil";
+import { tempOrderState, useOrder } from "hooks/order";
+
+const cartOrderText = (items: CartItem[]) => {
+  return items.length ? `든든배송 상품(${items.length}개)` : "";
+};
 
 const LeftSection = () => {
-  const carts = useRecoilValue(cartState);
-  const tempCart = useRecoilValue(tempCartState);
+  const { data, isError } = useCartList();
 
+  const { addTempAllCart } = useOrder();
+
+  const { deleteCartItem } = useDeleteCart();
+
+  const tempCart = useRecoilValue(tempOrderState);
+
+  const [carts, setCarts] = useState<any>([]);
   const [checked, setChecked] = useState(false);
 
-  const { addShopingCart, updateCartQuantity, deleteCartItem } = useCart();
+  useEffect(() => {
+    if (isError) {
+      console.error("Error fetching cart list:", isError);
+      alert("Failed to load cart list.");
+      return;
+    }
 
-  const isAllChecked = () => {
-    return tempCart.length === carts.length;
-  };
+    if (data) {
+      setCarts(data);
+    }
+  }, [carts, data, isError]);
 
   useEffect(() => {
-    // eslint-disable-next-line array-callback-return
-    carts.map((item: CartItem) => {
-      addShopingCart(checked, item);
-    });
+    addTempAllCart(checked, carts.map((v: any) => v.product));
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checked]);
-
-  const cartOrderText = () => {
-    return carts.length ? `든든배송 상품(${carts.length}개)` : "";
-  };
 
   const handleDeleteAll = () => {
     handleModal({
@@ -42,6 +53,10 @@ const LeftSection = () => {
     });
   };
 
+  console.log("tempCart.length === carts.length", tempCart)
+  // console.log("tempCart.length === carts.length", carts)
+
+
   return (
     <section className="cart-left-section">
       <div className="flex justify-between items-center">
@@ -51,7 +66,7 @@ const LeftSection = () => {
             name="checkbox"
             type="checkbox"
             readOnly
-            checked={isAllChecked()}
+            checked={tempCart.length === carts.length}
             onChange={() => setChecked(!checked)}
           />
           <label className="checkbox-label" htmlFor="checkbox">
@@ -62,17 +77,10 @@ const LeftSection = () => {
           상품삭제
         </button>
       </div>
-      <h3 className="cart-title">{cartOrderText()}</h3>
+      <h3 className="cart-title">{cartOrderText(carts)}</h3>
       <hr className="divide-line-gray mt-10" />
       {carts.map((item: CartItem) => (
-        <Item
-          item={item}
-          key={item.id}
-          addShopingCart={addShopingCart}
-          updateCartQuantity={updateCartQuantity}
-          deleteCartItem={deleteCartItem}
-          isAllChecked={isAllChecked}
-        />
+        <Item item={item} key={item.id} isAllChecked={checked} />
       ))}
     </section>
   );

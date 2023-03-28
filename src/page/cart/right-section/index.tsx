@@ -1,41 +1,56 @@
 import { handleModal } from "common/modal";
 import { printWon } from "common/util";
-import { tempCartState } from "hooks/cart";
+import { useDeleteCart } from "hooks/cart";
+import { tempOrderState, useAddOrder } from "hooks/order";
 import { useRouter } from "hooks/useRouter";
 import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { ROUTE } from "router";
 
 const RightSection = () => {
-  const cart = useRecoilValue(tempCartState);
+  const order = useRecoilValue(tempOrderState);
 
   const [totalPrice, setTotalPrice] = useState(0);
   const { go } = useRouter();
 
+  const { deleteCartItem } = useDeleteCart();
+  const { mutate } = useAddOrder();
+
   useEffect(() => {
-    if (cart.length) {
+    if (order.length) {
       return setTotalPrice(
-        cart
-          .map((v) => (v.totalPrice ? v.totalPrice : 0))
+        order
+          .map((v) => (v.price * v.quantity))
           .reduce((a: number, b: number) => a + b)
       );
     }
     return setTotalPrice(0);
-  }, [cart]);
+  }, [order]);
 
   const orderText = () => {
-    return cart.length ? `주문하기 (${cart.length})` : "주문하기";
+    return order.length ? `주문하기 (${order.length})` : "주문하기";
   };
 
   const handleOrder = () => {
-    if (!cart.length) {
+    if (!order.length) {
       return alert("주문할 상품이 없습니다.");
     }
 
     return handleModal({
       title: `주문`,
-      message: `${cart.length} 개의 상품을 주문하시겠습니까?`,
-      onConfirm: () => go(ROUTE.ORDER_LIST),
+      message: `${order.length} 개의 상품을 주문하시겠습니까?`,
+      onConfirm: () => {
+        deleteCartAndOrderItem();
+        go(ROUTE.ORDER_LIST);
+      },
+    });
+  };
+
+  const deleteCartAndOrderItem = () => {
+    mutate(order);
+    // eslint-disable-next-line array-callback-return
+    return order.map((item) => {
+      deleteCartItem(item.id);
     });
   };
 
@@ -51,7 +66,8 @@ const RightSection = () => {
           <span className="highlight-text">{printWon(totalPrice)}</span>
         </div>
         <div className="flex-center mt-30 mx-10" onClick={() => handleOrder()}>
-          <button className="primary-button flex-center">{orderText()}</button>
+        {/* default-button */}
+          <button className={order.length ? 'primary-button flex-center' : 'default-button flex-center'}>{orderText()}</button>
         </div>
       </div>
     </section>

@@ -7,7 +7,7 @@ import { printWon } from "common/util";
 import { useRouter } from "hooks/useRouter";
 import { ROUTE } from "router";
 import { handleModal } from "common/modal";
-import { useCart } from "hooks/cart";
+import { useAddCart } from "hooks/cart";
 
 type ItemProps = {
   item: ProductItem;
@@ -16,9 +16,7 @@ type ItemProps = {
 const Item = ({ item }: ItemProps) => {
   const { go } = useRouter();
 
-  const {
-    addCartItem: { mutate },
-  } = useCart();
+  const { mutate } = useAddCart();
 
   const handleMoveToDetail = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,

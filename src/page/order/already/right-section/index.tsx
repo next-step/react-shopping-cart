@@ -1,18 +1,15 @@
 import { printWon } from "common/util";
-import { CartItem } from "types/type";
+import { OrderDetail } from "types/type";
 
 type OrderRightSectionProps = {
-  orderList: CartItem[];
+  orderList: OrderDetail[];
 };
 
 const OrderRightSection = ({ orderList }: OrderRightSectionProps) => {
 
   const totalPrice = orderList
     .map((v) => {
-      if (v?.totalPrice) {
-        return v.totalPrice;
-      }
-      return v.product.price;
+      return v.price * v.quantity;
     })
     .reduce((a: number, b: number) => a + b);
 
