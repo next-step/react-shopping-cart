@@ -1,7 +1,5 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-
-import { theme } from 'styles/theme';
 import { type DividerProps } from './Divider.types';
 
 export const HR = styled.hr<DividerProps>`
@@ -9,7 +7,7 @@ export const HR = styled.hr<DividerProps>`
   width: 100%;
   border: 0;
 
-  ${({ color = 'black' }) => css`
+  ${({ theme, color = 'black' }) => css`
     background-color: ${theme.color[color]};
   `};
 
