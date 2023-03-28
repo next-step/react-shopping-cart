@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useReducer } from "react";
 
-import { deleteCart } from "@/api/carts";
+import { Cart, deleteCart, deleteCarts } from "@/api/carts";
 import type { Product } from "@/api/products";
 import { withAsync } from "@/helpers";
 import { useItemSelector } from "@/hooks";
@@ -25,7 +25,8 @@ type CartProductsAction =
         }
     ) & { id: number })
   | {
-      type: "DELETE_ALL_CART_PRODUCTS";
+      type: "DELETE_CART_PRODUCTS";
+      selectedCartIds: Set<string>;
     }
   | {
       type: "INITIATE_CART_PRODUCTS";
@@ -37,6 +38,11 @@ const cartProductsReducer = (states: CartGroup[], action: CartProductsAction) =>
     case "INCREASE_CART_PRODUCT_COUNT": {
       const findIdx = states.findIndex((state) => state.id === action.id);
       const increasedProduct = states[findIdx];
+
+      if (increasedProduct.count >= 20) {
+        return states;
+      }
+
       increasedProduct.count += 1;
 
       return [...states.slice(0, findIdx), increasedProduct, ...states.slice(findIdx + 1)];
@@ -59,8 +65,8 @@ const cartProductsReducer = (states: CartGroup[], action: CartProductsAction) =>
       return states.filter((state) => state.productId !== action.id);
     }
 
-    case "DELETE_ALL_CART_PRODUCTS": {
-      return [];
+    case "DELETE_CART_PRODUCTS": {
+      return states.filter((state) => !action.selectedCartIds.has(state.id.toString()));
     }
 
     case "INITIATE_CART_PRODUCTS": {
@@ -114,15 +120,29 @@ const useCartProductHandler = () => {
   };
 
   const onDeleteCartProduct = (productId: number) => async () => {
-    const { result, error } = await withAsync(() => deleteCart(productId));
+    const { error } = await withAsync(() => deleteCart(productId));
 
     if (!error) {
-      console.log(result);
       dispatch({ type: "DELETE_CART_PRODUCT", id: productId });
     }
   };
 
-  const onDeleteCartProducts = () => {};
+  const onDeleteCartProducts = async () => {
+    const selectedProductIds = cartProducts.reduce((acc, { id, productId }) => {
+      if (selectedItems.has(id.toString())) {
+        return [...acc, productId];
+      }
+      return acc;
+    }, [] as number[]);
+
+    const { error } = await withAsync(() => deleteCarts(selectedProductIds));
+
+    if (!error) {
+      dispatch({ type: "DELETE_CART_PRODUCTS", selectedCartIds: selectedItems });
+    }
+
+    console.log(error);
+  };
 
   return {
     cartProducts,
@@ -130,6 +150,7 @@ const useCartProductHandler = () => {
     onIncreaseCartProductCount,
     onDecreaseCartProductCount,
     onDeleteCartProduct,
+    onDeleteCartProducts,
     checkedTotalPrice,
     ...rest,
   };

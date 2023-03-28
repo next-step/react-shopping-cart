@@ -23,6 +23,7 @@ export default function Carts() {
     isChecked,
     onIncreaseCartProductCount,
     onDecreaseCartProductCount,
+    onDeleteCartProducts,
     onDeleteCartProduct,
   } = useCartProductHandler();
 
@@ -31,7 +32,9 @@ export default function Carts() {
       <div>
         <S.CartProductDeleteButtonWrapper>
           <S.CartProductCheckBox width="20px" label="선택해제" onChange={onToggleAllItems} />
-          <S.CartProductDeleteButton variant="outlined">상품삭제</S.CartProductDeleteButton>
+          <S.CartProductDeleteButton variant="outlined" onClick={onDeleteCartProducts}>
+            상품삭제
+          </S.CartProductDeleteButton>
         </S.CartProductDeleteButtonWrapper>
 
         <S.CartSubHeader textAlign="left">{`든든배송 상품 (${cartProducts.length}개)`}</S.CartSubHeader>
