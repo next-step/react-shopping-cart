@@ -6,7 +6,11 @@ import { useRouter, useCustomMutation, useCustomQuery } from '../../../hooks';
 import { CartInfoType, ProductInfoType } from '../../../types';
 
 interface ResponseType {
-  response: ProductInfoType[];
+  response: ProductResponseType;
+}
+interface ProductResponseType {
+  productListPerPage: ProductInfoType[];
+  totalPage: number;
 }
 
 export const QUERY_PAGE = 'page';
@@ -15,9 +19,9 @@ const DEFAULT_QUERY_PAGE = 1;
 const useProduct = () => {
   const { routeTo, confirmAndRoute, getLocationQuery } = useRouter();
 
-  const pageValue = getLocationQuery(QUERY_PAGE) ?? DEFAULT_QUERY_PAGE;
+  const currentPage = getLocationQuery(QUERY_PAGE) ?? DEFAULT_QUERY_PAGE;
   const { data, loading, error } = useCustomQuery<ResponseType>(
-    `/products?${QUERY_PAGE}=${pageValue}`
+    `/products?${QUERY_PAGE}=${currentPage}`
   );
   const { mutate } = useCustomMutation<unknown, CartInfoType>((payload) =>
     updateCartList(payload)
@@ -33,11 +37,15 @@ const useProduct = () => {
   }, []);
 
   return {
-    products: data?.response,
+    products: data?.response.productListPerPage,
     loading,
     error,
     navigateToDetailedPage,
     addCart,
+    pagination: {
+      currentPage: Number(currentPage),
+      totalPage: data?.response.totalPage,
+    },
   };
 };
 

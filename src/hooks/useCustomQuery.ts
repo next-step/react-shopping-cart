@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import httpRequest from '../apiClient/httpRequest';
 import { AxiosError } from 'axios';
+import { useLocation } from 'react-router-dom';
 
 type UseQueryResultType<TData> = {
   data?: TData | null;
@@ -12,6 +13,7 @@ const useCustomQuery = <TData>(url: string): UseQueryResultType<TData> => {
   const [data, setData] = useState<TData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const location = useLocation();
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -30,7 +32,7 @@ const useCustomQuery = <TData>(url: string): UseQueryResultType<TData> => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [location.search]);
 
   return { data, loading, error };
 };

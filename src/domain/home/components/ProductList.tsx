@@ -1,7 +1,8 @@
 import { ProductItem } from '../components';
 import styled from '@emotion/styled';
 import { mediaQuery } from '../../../utils';
-import { ProductInfoType } from '../../../types';
+import { PaginationInfoType, ProductInfoType } from '../../../types';
+import Pagination from '../../../components/pagination/Pagination';
 
 const S = {
   Content: styled.div(
@@ -19,17 +20,19 @@ const S = {
   ),
 };
 
-interface SectionProductListProps {
+interface ProductListProps {
   products: ProductInfoType[];
   navigateToDetailedPage: (num?: number) => void;
   addCart: (item: ProductInfoType) => void;
+  pagination: PaginationInfoType;
 }
 
 const ProductList = ({
   products,
   navigateToDetailedPage,
   addCart,
-}: SectionProductListProps) => {
+  pagination,
+}: ProductListProps) => {
   return (
     <S.Content>
       {products?.map((item) => (
@@ -40,6 +43,7 @@ const ProductList = ({
           onClickAddCart={() => addCart(item)}
         />
       ))}
+      <Pagination {...pagination} />
     </S.Content>
   );
 };

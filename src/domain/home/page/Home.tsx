@@ -9,7 +9,7 @@ const Home = () => {
     loading,
     navigateToDetailedPage,
     addCart,
-    pageInfo,
+    pagination,
   } = useProduct();
 
   if (loading) {
@@ -26,7 +26,7 @@ const Home = () => {
         products={products as ProductInfoType[]}
         navigateToDetailedPage={navigateToDetailedPage}
         addCart={addCart}
-        pageInfo={pageInfo}
+        pagination={pagination}
       />
     </>
   );

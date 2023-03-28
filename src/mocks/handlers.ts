@@ -12,11 +12,12 @@ const getProductListPerPage = rest.get('/products', (req, res, ctx) => {
     (pageQuery - 1) * PRODUCTS_PER_PAGE_COUNT,
     PRODUCTS_PER_PAGE_COUNT * pageQuery
   );
+  const totalPage = Math.ceil(productData.length / PRODUCTS_PER_PAGE_COUNT);
 
   return res(
     ctx.status(200),
     ctx.json({
-      response: productListPerPage,
+      response: { productListPerPage, totalPage },
     })
   );
 });
