@@ -16,8 +16,8 @@ jobs:
         with:
           node-version: 16
           always-auth: true
-      - name: Install Pacakge
-      - run: npm ci
+      - name: Install Package
+        run: npm ci
       - name: Run Test
         run: npm run test
       - name: Install Vercel CLI

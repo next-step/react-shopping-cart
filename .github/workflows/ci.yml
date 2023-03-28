@@ -3,6 +3,7 @@ env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 on: [pull_request]
+
 jobs:
   runs-on: ubuntu-latest
 
@@ -12,7 +13,7 @@ jobs:
       with:
         node-version: 16
         always-auth: true
-    - name: Install Pacakge
-    - run: npm ci
+    - name: Install Package
+      run: npm ci
     # - name: Run Test
     #   run: npm run test
