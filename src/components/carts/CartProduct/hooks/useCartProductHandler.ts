@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useReducer } from "react";
 
-import { Cart, deleteCart, deleteCarts } from "@/api/carts";
+import { deleteCart, deleteCarts } from "@/api/carts";
 import type { Product } from "@/api/products";
+import { CONFIRM_MESSAGES } from "@/constants/messages";
 import { withAsync } from "@/helpers";
 import { useItemSelector } from "@/hooks";
 import { useFetchCartProducts } from "@/hooks/api";
@@ -120,6 +121,10 @@ const useCartProductHandler = () => {
   };
 
   const onDeleteCartProduct = (productId: number) => async () => {
+    const isDeleteConfirm = confirm(CONFIRM_MESSAGES.DELETE_CONFIRM_MESSAGE);
+
+    if (!isDeleteConfirm) return;
+
     const { error } = await withAsync(() => deleteCart(productId));
 
     if (!error) {
@@ -128,6 +133,12 @@ const useCartProductHandler = () => {
   };
 
   const onDeleteCartProducts = async () => {
+    if (selectedItems.size === 0) return;
+
+    const isDeleteConfirm = confirm(CONFIRM_MESSAGES.MULTIPLE_DELETE_CONFIRM_MESSAGE(selectedItems.size));
+
+    if (!isDeleteConfirm) return;
+
     const selectedProductIds = cartProducts.reduce((acc, { id, productId }) => {
       if (selectedItems.has(id.toString())) {
         return [...acc, productId];
@@ -140,8 +151,6 @@ const useCartProductHandler = () => {
     if (!error) {
       dispatch({ type: "DELETE_CART_PRODUCTS", selectedCartIds: selectedItems });
     }
-
-    console.log(error);
   };
 
   return {
