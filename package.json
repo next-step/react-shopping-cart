@@ -13,7 +13,8 @@
     "dev:mock": "vite --mode mock",
     "dev:test": "vite --mode test",
     "build:prod": "tsc && vite build --mode production",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": ""
   },
   "dependencies": {
     "axios": "^1.3.4",
