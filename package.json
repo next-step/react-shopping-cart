@@ -11,5 +11,7 @@
   "scripts": {
     "server": "node server.js"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@storybook/react": "^6.5.16"
+  }
 }
