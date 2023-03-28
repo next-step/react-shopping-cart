@@ -21,8 +21,6 @@ function CartAside() {
 
     if (!result) return;
 
-    console.log(onlyCheckedCartList);
-
     onPayment(onlyCheckedCartList);
     deleteProductSelected({});
   };

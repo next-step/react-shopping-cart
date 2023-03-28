@@ -53,7 +53,6 @@ function useCart({ initialData = [] }: UseCartProps) {
   const handleDeleteOneProduct = (id: number) => {
     setCartData(prevCartData => prevCartData.filter(cart => cart.id !== id));
     setCheckedList(prevCheckedList => prevCheckedList.filter(checkedId => checkedId !== id));
-    console.log(cartData);
   };
 
   const totalPrice = useMemo(
@@ -77,7 +76,6 @@ function useCart({ initialData = [] }: UseCartProps) {
   const onlyCheckedCartList = useMemo(
     () =>
       cartData.reduce((acc, cur) => {
-        console.log('hello');
         if (checkedList.includes(cur.id)) {
           return [...acc, cur.product];
         }

@@ -37,7 +37,6 @@ export const cartsHandlers = [
 
   rest.delete('/carts', (req, res, ctx) => {
     const cardIds = req.url.searchParams.getAll('cartId');
-    console.log(cardIds);
 
     if (!cardIds) {
       return res(ctx.status(400), ctx.json({ ok: false, message: '삭제 대상 인덱스가 없습니다.' }));
