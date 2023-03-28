@@ -94,6 +94,15 @@ const useCartProductHandler = () => {
     dispatch({ type: "INITIATE_CART_PRODUCTS", payload: cartProductsGroup });
   }, [cartProductsGroup]);
 
+  const checkedTotalPrice = useMemo(() => {
+    return cartProducts.reduce((prevTotalPrice, { id, price, count }) => {
+      if (selectedItems.has(id.toString())) {
+        return prevTotalPrice + price * count;
+      }
+      return prevTotalPrice;
+    }, 0);
+  }, [cartProducts, selectedItems]);
+
   const onIncreaseCartProductCount = (id: number) => () => {
     dispatch({ type: "INCREASE_CART_PRODUCT_COUNT", id });
   };
@@ -107,6 +116,7 @@ const useCartProductHandler = () => {
     selectedItems,
     onIncreaseCartProductCount,
     onDecreaseCartProductCount,
+    checkedTotalPrice,
     ...rest,
   };
 };
