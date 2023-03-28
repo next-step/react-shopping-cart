@@ -18,3 +18,7 @@ export const addCart = (product: Product) => {
 export const deleteCart = (productId: number) => {
   return axios.delete<Cart>(`${EndPoint.CARTS}/${productId}`);
 };
+
+export const deleteCarts = (productIds: number[]) => {
+  return axios.delete<Cart[]>(`${EndPoint.CARTS}`, { data: { productIds } });
+};
