@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 
 import { getCachedData, isOverCacheTime, setCachedData } from 'storages/memory';
 
@@ -31,7 +31,7 @@ function useFetch<T = unknown>({
   cacheTime,
   onSuccess,
   onError,
-}: UseFetchProps<T>): State<T> {
+}: UseFetchProps<T>) {
   const initialState: State<T> = {
     error: undefined,
     data: undefined,
@@ -56,6 +56,11 @@ function useFetch<T = unknown>({
   };
 
   const [state, dispatch] = useReducer(fetchReducer, initialState);
+  const [trigger, setTrigger] = useState(false);
+
+  function refetch() {
+    setTrigger((prevState) => !prevState);
+  }
 
   function resolvePromise(data: T) {
     setCachedData({ key: cacheKey, data, cacheTime });
@@ -88,7 +93,7 @@ function useFetch<T = unknown>({
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetcher]);
+  }, [fetcher, trigger]);
 
   if (state.status === 'pending' && state.promise) {
     throw state.promise;
@@ -98,7 +103,7 @@ function useFetch<T = unknown>({
     throw state.error;
   }
 
-  return state;
+  return { ...state, refetch };
 }
 
 export default useFetch;
