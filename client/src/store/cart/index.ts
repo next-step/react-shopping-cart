@@ -48,10 +48,14 @@ export const useCartActions = () => useCartStore((state) => state.actions);
 export const useCartsState = () => useCartStore((state) => state.carts);
 
 export const useIdsOfCheckedCarts = () => useCartStore((state) => idsOfCheckedCarts(state.carts));
+
 export const useIsCheckedCart = (id: number) =>
   useCartStore((state) => isCheckedCart(state.carts, id));
+
 export const useIsCheckedAll = () => useCartStore((state) => isCheckedAll(state.carts));
+
 export const useTotalPriceOfCheckedCarts = () =>
   useCartStore((state) => totalPriceOfCheckedCarts(state.carts));
+
 export const useTotalCountOfCheckedCarts = () =>
   useCartStore((state) => totalCountOfCheckedCarts(state.carts));
