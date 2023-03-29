@@ -18,7 +18,7 @@ const buildVariant = (
   as,
   fontWeight,
   fontSize,
-  lineHeight: lineHeight,
+  lineHeight,
 });
 
 export const variants = {
