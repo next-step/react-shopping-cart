@@ -1,14 +1,14 @@
 import { PaginationInfoType } from '../../types';
 import styled from '@emotion/styled';
 import { COLORS } from '../../constant';
-import { useRouter } from '../../hooks';
+import usePagination from '../../hooks/usePagination';
 
 const S = {
-  Ul: styled.ul`
+  PaginationList: styled.ul`
     display: flex;
     align-items: center;
   `,
-  Li: styled.li<{ isCurrent: boolean }>`
+  PaginationItem: styled.li<{ isCurrent: boolean }>`
     padding: 0 10px;
     cursor: pointer;
     color: ${(props) => (props.isCurrent ? COLORS.PRIMARY : COLORS.BLACK)};
@@ -19,24 +19,24 @@ const S = {
 };
 
 const Pagination = ({ totalPage, currentPage }: PaginationInfoType) => {
-  const { navigateToPage } = useRouter();
+  const { navigateToPage } = usePagination();
 
   const paginationArray = Array(totalPage)
     .fill(1)
     .map((n, idx) => n + idx);
 
   return (
-    <S.Ul>
+    <S.PaginationList>
       {paginationArray.map((pageIdx: number) => (
-        <S.Li
+        <S.PaginationItem
           key={pageIdx}
           isCurrent={currentPage === pageIdx}
           onClick={() => navigateToPage(pageIdx)}
         >
           {pageIdx}
-        </S.Li>
+        </S.PaginationItem>
       ))}
-    </S.Ul>
+    </S.PaginationList>
   );
 };
 

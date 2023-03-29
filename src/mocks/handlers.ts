@@ -2,24 +2,19 @@ import { rest } from 'msw';
 import productData from './data/products';
 import { CartInfoType } from '../types';
 import { cartDataStorage } from './util/storage';
-import { QUERY_PAGE } from '../domain/home/hooks/useProduct';
+import { KEY_PAGE } from '../hooks/usePagination';
 
 const PRODUCTS_PER_PAGE_COUNT = 8;
 
 const getProductListPerPage = rest.get('/products', (req, res, ctx) => {
-  const pageQuery = Number(req.url.searchParams.get(QUERY_PAGE));
+  const currentPage = Number(req.url.searchParams.get(KEY_PAGE));
   const productListPerPage = productData.slice(
-    (pageQuery - 1) * PRODUCTS_PER_PAGE_COUNT,
-    PRODUCTS_PER_PAGE_COUNT * pageQuery
+    (currentPage - 1) * PRODUCTS_PER_PAGE_COUNT,
+    PRODUCTS_PER_PAGE_COUNT * currentPage
   );
   const totalPage = Math.ceil(productData.length / PRODUCTS_PER_PAGE_COUNT);
 
-  return res(
-    ctx.status(200),
-    ctx.json({
-      response: { productListPerPage, totalPage },
-    })
-  );
+  return res(ctx.status(200), ctx.json({ productListPerPage, totalPage }));
 });
 
 const getProductDetail = rest.get('/products/:productId', (req, res, ctx) => {

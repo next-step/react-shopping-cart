@@ -22,15 +22,10 @@ const useRouter = () => {
     [location]
   );
 
-  const navigateToPage = useCallback((page: number) => {
-    routeTo(`${location.pathname}?page=${page}`);
-  }, []);
-
   return {
     routeTo,
     confirmAndRoute,
     getLocationQuery,
-    navigateToPage,
   };
 };
 
