@@ -1,7 +1,7 @@
 import { PaginationInfoType } from '../../types';
 import styled from '@emotion/styled';
 import { COLORS } from '../../constant';
-import usePagination from '../../hooks/usePagination';
+import { usePagination } from '../../hooks';
 
 const S = {
   PaginationList: styled.ul`
