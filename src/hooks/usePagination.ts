@@ -5,7 +5,7 @@ import { useRouter } from './index';
 export const KEY_PAGE = 'page';
 export const DEFAULT_PAGE = 1;
 
-const usePagination = () => {
+export const usePagination = () => {
   const { routeTo, getLocationQuery } = useRouter();
   const location = useLocation();
 
@@ -20,5 +20,3 @@ const usePagination = () => {
     navigateToPage,
   };
 };
-
-export default usePagination;
