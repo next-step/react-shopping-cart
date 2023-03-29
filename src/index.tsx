@@ -4,12 +4,10 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
 import App from './App';
+import { worker } from 'mocks/browser';
 
 if (process.env.NODE_ENV === 'development') {
-  (async () => {
-    const { worker } = await import('mocks/browser');
-    worker.start();
-  })();
+  worker.start();
 }
 
 const root = ReactDOM.createRoot(
