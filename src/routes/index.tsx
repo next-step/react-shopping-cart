@@ -7,11 +7,12 @@ import {
   ProductListPage,
   ProductDetailPage,
 } from 'pages';
+import { Layout } from 'components/@common';
 
 const Routes = () => {
   return (
     <ReactRouterRoutes>
-      <Route>
+      <Route element={<Layout />}>
         <Route path="/product-list" element={<ProductListPage />} />
         <Route path="/product/:id" element={<ProductDetailPage />} />
 
