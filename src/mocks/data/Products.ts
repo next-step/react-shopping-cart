@@ -1,9 +1,4 @@
-export interface Product {
-  id: number;
-  name: string;
-  price: number;
-  imageUrl: string;
-}
+import type { Product } from 'types/api';
 
 export const PRODUCTS: Product[] = [
   {
