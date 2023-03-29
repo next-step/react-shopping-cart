@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <Styled.Wrapper>
       <Styled.HeaderWrapper display="flex" justifyContent="space-between">
-        <Box display="flex">
+        <Box display="flex" alignItems="center">
           <CartIcon width={45} height={40} color="white" />
           <Typography variant="h1" color="white">
             NEXTSTEP

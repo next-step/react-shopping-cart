@@ -5,15 +5,15 @@ export const Wrapper = styled.header`
   background-color: ${({ theme }) => theme.color.cyan05};
   width: 100%;
   height: 80px;
-  padding: 20px;
   box-sizing: border-box;
 
   svg {
-    margin: 0 10px;
+    margin-right: 8px;
   }
 `;
 
 export const HeaderWrapper = styled(Box)`
   width: 90%;
+  height: 100%;
   margin: 0 auto;
 `;
