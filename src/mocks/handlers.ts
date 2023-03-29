@@ -3,16 +3,16 @@ import productData from './data/products';
 import { CartInfoType } from '../types';
 import { cartDataStorage } from './util/storage';
 import { KEY_PAGE } from '../hooks/usePagination';
-
-const PRODUCTS_PER_PAGE_COUNT = 8;
+import { KEY_PRODUCT_COUNT } from '../domain/home/hooks/useProduct';
 
 const getProductListPerPage = rest.get('/products', (req, res, ctx) => {
   const currentPage = Number(req.url.searchParams.get(KEY_PAGE));
+  const productCount = Number(req.url.searchParams.get(KEY_PRODUCT_COUNT));
   const productListPerPage = productData.slice(
-    (currentPage - 1) * PRODUCTS_PER_PAGE_COUNT,
-    PRODUCTS_PER_PAGE_COUNT * currentPage
+    (currentPage - 1) * productCount,
+    productCount * currentPage
   );
-  const totalPage = Math.ceil(productData.length / PRODUCTS_PER_PAGE_COUNT);
+  const totalPage = Math.ceil(productData.length / productCount);
 
   return res(ctx.status(200), ctx.json({ productListPerPage, totalPage }));
 });

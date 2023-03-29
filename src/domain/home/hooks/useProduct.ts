@@ -11,11 +11,14 @@ interface ProductResponseType {
   totalPage: number;
 }
 
+export const KEY_PRODUCT_COUNT = 'product_count';
+export const PRODUCT_COUNT = 8;
+
 const useProduct = () => {
   const { routeTo, confirmAndRoute } = useRouter();
   const { currentPage } = usePagination();
   const { data, loading, error } = useCustomQuery<ProductResponseType>(
-    `/products?${KEY_PAGE}=${currentPage}`
+    `/products?${KEY_PAGE}=${currentPage}&${KEY_PRODUCT_COUNT}=${PRODUCT_COUNT}`
   );
   const { mutate } = useCustomMutation<unknown, CartInfoType>((payload) =>
     updateCartList(payload)
