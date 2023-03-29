@@ -33,6 +33,7 @@
     "eslint-config-prettier": "^8.6.0",
     "json-server": "^0.17.0",
     "lowdb": "^1.0.0",
+    "msw": "^1.2.1",
     "prettier": "^2.8.3",
     "prop-types": "^15.8.1",
     "tsconfig-paths-webpack-plugin": "^4.0.1",
@@ -75,5 +76,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
