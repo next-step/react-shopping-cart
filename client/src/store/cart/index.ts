@@ -3,6 +3,7 @@ import { create } from 'zustand';
 import {
   checkAllCart,
   decreaseCartCount,
+  idsOfCheckedCarts,
   increaseCartCount,
   initializeCarts,
   isCheckedAll,
@@ -46,6 +47,7 @@ export const useCartStore = create<State & Action>()((set) => ({
 export const useCartActions = () => useCartStore((state) => state.actions);
 export const useCartsState = () => useCartStore((state) => state.carts);
 
+export const useIdsOfCheckedCarts = () => useCartStore((state) => idsOfCheckedCarts(state.carts));
 export const useIsCheckedCart = (id: number) =>
   useCartStore((state) => isCheckedCart(state.carts, id));
 export const useIsCheckedAll = () => useCartStore((state) => isCheckedAll(state.carts));

@@ -9,6 +9,7 @@ import {
   totalCountOfCheckedCarts,
   isCheckedCart,
   isCheckedAll,
+  idsOfCheckedCarts,
 } from 'store/cart/model';
 
 import { Carts } from 'types/cart';
@@ -114,5 +115,13 @@ describe('Cart Store Model', () => {
 
     carts = uncheckAllCart(carts);
     expect(isCheckedAll(carts)).toBe(false);
+  });
+
+  test('장바구니 목록에서 체크된 항목들의 id 목록를 알 수 있어야 한다.', () => {
+    let carts = initializeCarts([...INITIAL_STATE, ...INITIAL_STATE]);
+
+    carts = checkAllCart(carts);
+    const ids = idsOfCheckedCarts(carts);
+    expect(ids).toEqual([id, id]);
   });
 });
