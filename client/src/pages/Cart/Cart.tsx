@@ -10,14 +10,14 @@ const Cart = () => {
   return (
     <Styled.Container>
       <PageHeader>장바구니</PageHeader>
-      <Styled.FlexContainer>
+      <Styled.SectionContainer>
         <Styled.LeftSection>
           <Styled.CheckBoxContainer>
             <Styled.CheckBoxInputBox>
               <Styled.CheckBox type={'checkbox'} name="checkbox" onChange={handleCheckBox} checked={check} />
               <Styled.CheckBoxLabel htmlFor="checkbox">모두 선택</Styled.CheckBoxLabel>
             </Styled.CheckBoxInputBox>
-            <Styled.CheckBoxButton onClick={handleDeleteButton}>상품 삭제</Styled.CheckBoxButton>
+            <Styled.CheckBoxButton onClick={handleDeleteButton}>삭제</Styled.CheckBoxButton>
           </Styled.CheckBoxContainer>
           <Styled.CartTitle>든든 배송상품</Styled.CartTitle>
           <Styled.Divider />
@@ -42,7 +42,7 @@ const Cart = () => {
             type="cart"
           />
         </Styled.RightSection>
-      </Styled.FlexContainer>
+      </Styled.SectionContainer>
     </Styled.Container>
   );
 };

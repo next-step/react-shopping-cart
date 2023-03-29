@@ -5,6 +5,9 @@ import { ReactComponent as CartRemove } from 'assets/svgs/trash.svg';
 export const Contianer = styled.div`
   display: flex;
   justify-content: space-between;
+
+  margin: 10px;
+  padding: 10px;
 `;
 
 export const LeftBox = styled.div`
@@ -12,8 +15,28 @@ export const LeftBox = styled.div`
   margin-top: 10px;
   gap: 15px;
   align-items: center;
-`;
+  width: 100%;
+  overflow: scroll;
 
+  ::-webkit-scrollbar {
+    height: 7px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(42, 193, 188);
+    border-radius: 7px;
+  }
+
+  text-overflow: clip;
+  white-space: nowrap;
+  margin: 10px;
+`;
+export const RightBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  margin: 10px;
+`;
 export const CheckBox = styled(Input)`
   ::after {
     content: '✔';
@@ -29,21 +52,21 @@ export const CheckBox = styled(Input)`
     background-color: #2ac1bc;
   }
 `;
+
+export const CartItemBox = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 10px;
+`;
 export const CartItemImage = styled(Image)`
-  width: 144px;
-  height: 144px;
+  width: 128px;
+  height: 128px;
 `;
 export const CartItemName = styled.span`
-  font-size: 24px;
+  font-size: 22px;
 `;
 
-export const RightBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  align-items: center;
-  justify-content: center;
-`;
 export const CartRemoveButton = styled(CartRemove)`
   align-self: flex-end;
   cursor: pointer;

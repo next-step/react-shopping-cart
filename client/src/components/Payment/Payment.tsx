@@ -5,7 +5,7 @@ import type { PaymentProps } from './Payment.types';
 const Payment = ({ ...props }: PaymentProps) => {
   const { handleCartOrderButton, handleOrderButton } = useOrder();
   return (
-    <div>
+    <Styled.Container>
       <Styled.TitleBox>
         <Styled.Title>{props.title}</Styled.Title>
       </Styled.TitleBox>
@@ -27,7 +27,7 @@ const Payment = ({ ...props }: PaymentProps) => {
           {props.type === 'order' && <Styled.OrderButton onClick={handleOrderButton}>{`결제하기`}</Styled.OrderButton>}
         </Styled.ButtonBox>
       </div>
-    </div>
+    </Styled.Container>
   );
 };
 export default Payment;

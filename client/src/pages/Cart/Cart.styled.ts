@@ -1,19 +1,45 @@
 import styled, { css } from 'styled-components';
 import { Input, Button, HorizontalLine } from 'components/common';
 export const Container = styled.section`
-  padding: 24px 300px;
+  padding: 24px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;
-
-export const LeftSection = styled.section`
-  width: 60%;
+export const SectionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   margin-top: 50px;
 `;
-export const FlexContainer = styled.div`
-  display: flex;
+export const LeftSection = styled.section`
+  width: 100%;
+  overflow-y: scroll;
+  height: 500px;
+  padding: 30px;
+  border: 1px solid #dddddd;
+
+  ::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(42, 193, 188);
+    border-radius: 5px;
+  }
 `;
+export const RightSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 50px;
+  height: fit-content;
+  border: 1px solid #dddddd;
+  overflow: hidden;
+`;
+
 export const CheckBoxContainer = styled.div`
-  justify-content: space-around;
-  align-items: center;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const CheckBoxInputBox = styled.div`
@@ -41,7 +67,7 @@ export const CheckBoxLabel = styled.label`
   font-size: 16px;
 `;
 export const CheckBoxButton = styled(Button)`
-  padding: 18px;
+  padding: 14px;
   font-size: 20px;
   font-weight: 600;
 `;
@@ -54,12 +80,4 @@ export const CartTitle = styled.h3`
 export const Divider = styled(HorizontalLine)`
   margin-top: 10px;
   border: 2px solid #aaaaaa;
-`;
-
-export const RightSection = styled.section`
-  width: 35%;
-  height: 260px;
-  margin-left: 5%;
-  margin-top: 80px;
-  border: 1px solid #dddddd;
 `;

@@ -1,9 +1,13 @@
 import { HorizontalLine, Button } from 'components/common';
 import styled from 'styled-components';
 
-export const TitleBox = styled.div`
-  padding: 10px 20px;
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
 `;
+
+export const TitleBox = styled.div``;
 export const Title = styled.h3`
   display: flex;
   align-items: center;
@@ -16,15 +20,14 @@ export const ThinLine = styled(HorizontalLine)`
 export const ItemInfoBox = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
-  padding: 20px;
+  padding: 10px;
 `;
 export const Text = styled.span`
   position: relative;
   font-weight: 700;
   display: inline-block;
   text-align: center;
-  padding: 0 2px;
+
   font-size: 20px;
   ::after {
     content: '';
@@ -44,7 +47,6 @@ export const Price = styled.span`
   font-weight: 700;
   display: inline-block;
   text-align: center;
-  padding: 0 2px;
   font-size: 20px;
   ::after {
     content: '';
@@ -64,8 +66,7 @@ export const ButtonBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-top: 30px;
 `;
 export const OrderButton = styled(Button)`
   background: #2ac1bc;

@@ -13,8 +13,10 @@ const CartItem = ({ id, image, price, name, isOrder, amount }: CartItemProps) =>
     <Styled.Contianer>
       <Styled.LeftBox>
         <Styled.CheckBox type={'checkbox'} name="checkbox" onChange={handleCheckBox} checked={isOrder} />
-        <Styled.CartItemImage src={image} alt={name} />
-        <Styled.CartItemName>{name}</Styled.CartItemName>
+        <Styled.CartItemBox>
+          <Styled.CartItemImage src={image} alt={name} />
+          <Styled.CartItemName>{name}</Styled.CartItemName>
+        </Styled.CartItemBox>
       </Styled.LeftBox>
       <Styled.RightBox>
         <Styled.CartRemoveButton onClick={handleRemoveButton} />
