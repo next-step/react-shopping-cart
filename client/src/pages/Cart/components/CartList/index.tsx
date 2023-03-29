@@ -1,23 +1,37 @@
 import { ChangeEventHandler } from 'react';
 
 import { Button, Checkbox } from 'components';
-import { useCarts } from './hooks';
-import { useCartActions, useIsCheckedAll } from 'store/cart';
+import {
+  useCartActions,
+  useIdsOfCheckedCarts,
+  useIsCheckedAll,
+  useTotalCountOfCheckedCarts,
+} from 'store/cart';
 
-import CartItem from '../CartItem';
-import ExpectedPayment from '../ExpectedPayment';
+import { useCarts, useDeleteCarts } from '../../hooks';
+import { CartItem, ExpectedPayment } from '../../components';
 
 function CartList() {
-  const { data: carts = [] } = useCarts();
+  const { data: carts = [], refetch } = useCarts();
+  const { mutate: deleteCarts, isLoading } = useDeleteCarts({ onSuccess: refetch });
   const { checkAll, uncheckAll } = useCartActions();
 
   const isCheckedAll = useIsCheckedAll();
+  const totalCount = useTotalCountOfCheckedCarts();
+  const checkedCartIds = useIdsOfCheckedCarts();
+  const isDisabled = totalCount === 0;
 
   const handleChangeCheckbox: ChangeEventHandler<HTMLInputElement> = (e) => {
     if (e.target.checked) {
       checkAll();
     } else {
       uncheckAll();
+    }
+  };
+
+  const handleClickDeleteButton = () => {
+    if (window.confirm('선택하신 상품들을 모두 삭제하시겠습니까?')) {
+      deleteCarts(checkedCartIds);
     }
   };
 
@@ -28,12 +42,19 @@ function CartList() {
           <Checkbox checked={isCheckedAll} onChange={handleChangeCheckbox}>
             모두선택
           </Checkbox>
-          <Button type="default">상품삭제</Button>
+          <Button
+            type="default"
+            disabled={isDisabled}
+            loading={isLoading}
+            onClick={handleClickDeleteButton}
+          >
+            상품삭제
+          </Button>
         </div>
         <h3 className="cart-title my-20">배송 상품 (총 {carts.length}개)</h3>
         <hr className="divide-line-gray mt-10" />
         {carts.map((cart) => (
-          <CartItem key={cart.id} cart={cart} />
+          <CartItem key={cart.id} cart={cart} refetchCarts={refetch} />
         ))}
       </section>
       <ExpectedPayment />

@@ -4,6 +4,7 @@ import { css, cx } from '@emotion/css';
 import { Button, Checkbox, Counter } from 'components';
 import { useCounter } from 'hooks';
 import { useCartActions, useIsCheckedCart } from 'store/cart';
+import { useDeleteCarts } from '../../hooks';
 
 import { colors } from 'constants/colors';
 import { Cart } from 'types/cart';
@@ -11,12 +12,14 @@ import { TrashSVG } from 'assets/svgs';
 
 interface CartItemProps {
   cart: Cart;
+  refetchCarts: () => void;
 }
 
-function CartItem({ cart }: CartItemProps) {
+function CartItem({ cart, refetchCarts }: CartItemProps) {
   const { count: defaultCount, product, id } = cart;
   const { imageUrl, name, price } = product;
   const { count, minus, plus } = useCounter(defaultCount);
+  const { mutate: deleteCarts, isLoading } = useDeleteCarts({ onSuccess: refetchCarts });
   const {
     toggle: toggleIsChecked,
     increase: increaseCartById,
@@ -38,6 +41,12 @@ function CartItem({ cart }: CartItemProps) {
   const handleClickMinusButton = () => {
     minus();
     decreaseCartById(id);
+  };
+
+  const handlePressDeleteButton = () => {
+    if (window.confirm('선택하신 상품을 모두 삭제하시겠습니까?')) {
+      deleteCarts([id]);
+    }
   };
 
   return (
@@ -67,7 +76,7 @@ function CartItem({ cart }: CartItemProps) {
           gap: 15px;
         `}
       >
-        <Button>
+        <Button onClick={handlePressDeleteButton} loading={isLoading}>
           <TrashSVG width={18} />
         </Button>
         <Counter
