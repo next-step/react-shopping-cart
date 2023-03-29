@@ -2,7 +2,6 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
 
 body {
-  width: 1920px;
   margin: 0;
 }
 

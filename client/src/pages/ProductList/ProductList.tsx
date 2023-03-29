@@ -21,11 +21,10 @@ const ProductList = () => {
 };
 
 const Layout = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 50px 240px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 30px;
+  margin: 50px 100px;
 `;
 
 export default ProductList;

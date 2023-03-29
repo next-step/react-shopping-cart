@@ -9,8 +9,8 @@ const ProductItem = ({ name, price, image, id }: ItemProps) => {
   return (
     <Styled.Layout data-testid="product">
       <Styled.ItemImage src={image} alt={name} onClick={handleProductImage} />
-      <Styled.FlexContainer display="flex" justifyContent="space-between">
-        <Styled.FlexBox display="flex" flexDirection="column">
+      <Styled.FlexContainer>
+        <Styled.FlexBox>
           <Styled.NameText>{name}</Styled.NameText>
           <Styled.PriceText>{price}원</Styled.PriceText>
         </Styled.FlexBox>
