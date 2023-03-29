@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Header from './Header';
+import Header from './OrderListHeader';
 export default {
   title: 'Order',
   component: Header,

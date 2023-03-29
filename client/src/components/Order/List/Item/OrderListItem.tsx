@@ -1,6 +1,6 @@
-import * as Styled from './Item.styles';
+import * as Styled from './OrderListItem.styles';
 
-const Item = () => {
+const OrderListItem = () => {
   return (
     <Styled.Layout>
       <Styled.FlexBox display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
@@ -17,4 +17,4 @@ const Item = () => {
   );
 };
 
-export default Item;
+export default OrderListItem;

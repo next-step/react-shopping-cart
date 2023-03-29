@@ -1,9 +1,9 @@
-import * as Styled from './Item.styles';
+import * as Styled from './OrderItem.styles';
 import type { OrderProductType } from 'types';
 
-type ItemProps = OrderProductType;
+type OrderItemProps = OrderProductType;
 
-const Item = ({ amount, name, image, id, price }: ItemProps) => {
+const OrderItem = ({ amount, name, image, id, price }: OrderItemProps) => {
   return (
     <Styled.Container display={'flex'} justifyContent={'space-between'}>
       <Styled.FlexBox display={'flex'}>
@@ -17,4 +17,4 @@ const Item = ({ amount, name, image, id, price }: ItemProps) => {
     </Styled.Container>
   );
 };
-export default Item;
+export default OrderItem;

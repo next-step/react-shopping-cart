@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { OrderListHeader } from 'components/Order/Header';
+import { OrderListHeader } from 'components/Order/List/Header';
 import { OrderListItem } from 'components/Order/List/Item';
 import { PageHeader } from 'components/common/PageHeader';
 const OrderList = () => {

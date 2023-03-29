@@ -1,4 +1,4 @@
-import * as Styled from './Item.styles';
+import * as Styled from './CartItem.styles';
 import { CartProductType } from 'types';
 import { useCartItem } from 'hooks';
 
