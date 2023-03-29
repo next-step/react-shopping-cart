@@ -17,7 +17,7 @@ const Order = () => {
     <Styled.Container>
       <PageHeader>주문/결제</PageHeader>
       <Styled.SectionContainer>
-        <Styled.LeftSectionLayout>
+        <Styled.ItemSection>
           <Styled.Title>{`주문 상품(${totalAmount}건)`}</Styled.Title>
           <Styled.DivideLine />
           {orderList?.map((product) => (
@@ -30,10 +30,10 @@ const Order = () => {
               price={product.price}
             />
           ))}
-        </Styled.LeftSectionLayout>
-        <Styled.RightSectionLayout>
+        </Styled.ItemSection>
+        <Styled.PaymentSection>
           <Payment title="결제금액" text="총 결제금액" price={totalPrice} totalAmount={totalAmount} type="order" />
-        </Styled.RightSectionLayout>
+        </Styled.PaymentSection>
       </Styled.SectionContainer>
     </Styled.Container>
   );

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { HorizontalLine, Image } from 'components/common';
+import { Image } from 'components/common';
 
 export const Title = styled.h3`
   display: flex;
@@ -7,30 +7,34 @@ export const Title = styled.h3`
   font-size: 20px;
 `;
 
-export const DivideLine = styled(HorizontalLine)`
-  border: 2px solid #aaaaaa;
-  margin-top: 10px;
-`;
 export const Container = styled.div`
   display: flex;
-  justify-content: space-between;
+  margin: 20px 0px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 `;
 
 export const OrderContainer = styled.div`
   display: flex;
   gap: 15px;
-  margin-top: 10px;
+  padding: 10px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: nowrap;
 `;
 
-export const OrderInputBox = styled.div`
+export const OrderItemBox = styled.div`
   display: flex;
   flex-direction: column;
+  margin: 10px;
 `;
 export const OrderItemImage = styled(Image)`
   height: 144px;
   width: 144px;
 `;
 export const OrderName = styled.span`
-  font-size: 20px;
+  font-size: 18px;
 `;
-export const OrderNumber = styled.span``;
+export const OrderNumber = styled.span`
+  font-size: 16px;
+`;
