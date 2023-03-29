@@ -1,11 +1,11 @@
 import './css/index.css';
 
-import { BrowserRouter } from 'react-router-dom';
-import { createRoot } from 'react-dom/client';
 import { StrictMode } from 'react';
-import { worker } from './mocks/browser';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 
 import App from './App';
+import { worker } from './mocks/browser';
 
 function prepare() {
   if (import.meta.env.MODE === 'development') {

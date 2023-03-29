@@ -10,7 +10,7 @@ type HttpMethod = {
     ['x-username']?: string;
     ['Content-Type']?: 'application/json';
   };
-  body?: string | undefined;
+  body?: string;
 };
 
 export const HTTP_METHOD = {

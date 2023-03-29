@@ -1,18 +1,15 @@
-import { CartIcon, Loader } from '@/assets/svgs';
-
-import { LazyImage } from '@/components/common';
-import { currency } from '@/utils/filter/currency';
-import useHttp from '@/hooks/useHttp';
 import * as cartApi from '@/api/cart';
+import { CartIcon, LoaderIcon } from '@/assets/svgs';
+import { LazyImage } from '@/components/common';
+import useHttp from '@/hooks/useHttp';
+import { currency } from '@/utils/filter/currency';
 
 type Props = {
   product?: Product;
 };
 
 const ProductCard = ({ product }: Props) => {
-  const { sendRequest, loading = false } = useHttp((product) =>
-    cartApi.postAddCart(product as Product)
-  );
+  const { sendRequest, loading = false } = useHttp(cartApi.postAddCart);
 
   const handleClickCart = () => {
     sendRequest(product);
@@ -43,7 +40,7 @@ const ProductCard = ({ product }: Props) => {
           <span className="product-info__price">{currency(product.price)}</span>
         </div>
         <button onClick={handleClickCart}>
-          {loading ? <Loader /> : <CartIcon />}
+          {loading ? <LoaderIcon /> : <CartIcon />}
         </button>
       </div>
     </div>

@@ -1,5 +1,12 @@
+import Cart from '@/components/domain/Cart';
+import { CartContextProvider } from '@/components/domain/Cart/CartContext';
+
 const Carts = () => {
-  return <div>Carts</div>;
+  return (
+    <CartContextProvider>
+      <Cart />
+    </CartContextProvider>
+  );
 };
 
 export default Carts;

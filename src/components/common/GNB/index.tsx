@@ -1,6 +1,6 @@
-import type { RoutePath } from '@/routes/Route';
-
 import { Link } from 'react-router-dom';
+
+import type { RoutePath } from '@/routes/Route';
 
 type Props = {
   navList?: { path: RoutePath; text: string }[];

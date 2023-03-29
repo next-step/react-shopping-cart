@@ -1,14 +1,16 @@
+import { useCallback, useRef, useState } from 'react';
+
 import useIntersection from '@/hooks/useIntersection';
-import { useState, useRef, useCallback } from 'react';
 
 type Props = {
   src?: string;
   alt?: string;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
+  className?: string;
 };
 
-const LazyImage = ({ src, alt, width, height }: Props) => {
+const LazyImage = ({ src, alt, width, height, className }: Props) => {
   const [isInView, setIsInView] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -20,7 +22,7 @@ const LazyImage = ({ src, alt, width, height }: Props) => {
 
   return (
     <div
-      className="flex justify-between animated-bg"
+      className={`flex justify-between animated-bg ${className}`}
       ref={ref}
       style={{
         width,
