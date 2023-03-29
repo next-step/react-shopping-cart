@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { Home, Cart, ProductDetail } from '../domain';
 import { Layout } from '../layout';
 
@@ -17,6 +17,10 @@ export const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
+        path: '/',
+        element: <Navigate to={ROUTE.HOME} />,
+      },
+      {
         path: ROUTE.HOME,
         element: <Home />,
       },
@@ -24,10 +28,13 @@ export const router = createBrowserRouter([
         path: ROUTE.CART,
         element: <Cart />,
       },
-
       {
         path: ROUTE.DETAIL + '/:id',
         element: <ProductDetail />,
+      },
+      {
+        path: '/*',
+        element: <Navigate to={ROUTE.HOME} />,
       },
     ],
   },
