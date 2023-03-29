@@ -6,16 +6,16 @@ const Payment = ({ ...props }: PaymentProps) => {
   const { handleCartOrderButton, handleOrderButton } = useOrder();
   return (
     <div>
-      <Styled.Top>
+      <Styled.TitleBox>
         <Styled.Title>{props.title}</Styled.Title>
-      </Styled.Top>
+      </Styled.TitleBox>
       <Styled.ThinLine />
       <div>
-        <Styled.Bottom display={'flex'} justifyContent="space-between">
+        <Styled.ItemInfoBox>
           <Styled.Text>{props.text}</Styled.Text>
           <Styled.Price>{props.price}원</Styled.Price>
-        </Styled.Bottom>
-        <Styled.ButtonBox display={'flex'} justifyContent="center" alignItems="center">
+        </Styled.ItemInfoBox>
+        <Styled.ButtonBox>
           {props.type === 'cart' && (
             <Styled.OrderButton
               onClick={handleCartOrderButton}

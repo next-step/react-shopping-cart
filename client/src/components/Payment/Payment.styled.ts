@@ -1,7 +1,7 @@
-import { Box, HorizontalLine, Button } from 'components/common';
+import { HorizontalLine, Button } from 'components/common';
 import styled from 'styled-components';
 
-export const Top = styled(Box)`
+export const TitleBox = styled.div`
   padding: 10px 20px;
 `;
 export const Title = styled.h3`
@@ -13,7 +13,9 @@ export const Title = styled.h3`
 export const ThinLine = styled(HorizontalLine)`
   border: 1px solid #aaaaaa;
 `;
-export const Bottom = styled(Box)`
+export const ItemInfoBox = styled.div`
+  display: flex;
+  justify-content: space-between;
   margin-top: 20px;
   padding: 20px;
 `;
@@ -58,7 +60,10 @@ export const Price = styled.span`
   }
 `;
 
-export const ButtonBox = styled(Box)`
+export const ButtonBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-left: 10px;
   margin-right: 10px;
 `;

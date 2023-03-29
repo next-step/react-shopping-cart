@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
-import { Box, Input, Button, HorizontalLine } from 'components/common';
-export const Layout = styled.section`
+import { Input, Button, HorizontalLine } from 'components/common';
+export const Container = styled.section`
   padding: 24px 300px;
 `;
 
@@ -8,12 +8,17 @@ export const LeftSection = styled.section`
   width: 60%;
   margin-top: 50px;
 `;
-export const FlexContainer = styled(Box)`
+export const FlexContainer = styled.div`
   display: flex;
 `;
+export const CheckBoxContainer = styled.div`
+  justify-content: space-around;
+  align-items: center;
+`;
 
-export const CheckBoxContainer = styled(Box)`
+export const CheckBoxInputBox = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 export const CheckBox = styled(Input)`

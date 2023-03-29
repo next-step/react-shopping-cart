@@ -1,4 +1,4 @@
-import { Box, Button, Image, HorizontalLine } from 'components/common';
+import { Button, Image, HorizontalLine } from 'components/common';
 import styled from 'styled-components';
 
 export const Layout = styled.div`
@@ -23,7 +23,10 @@ export const Horizontal = styled(HorizontalLine)`
   border: 2px solid #aaaaaa;
 `;
 
-export const FlexBox = styled(Box)``;
+export const ItemInfoBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 export const Text = styled.span`
   font-size: 18px;
 `;
@@ -31,7 +34,7 @@ export const Price = styled.span`
   font-size: 24px;
 `;
 
-export const CartButton= styled(Button)`
+export const CartButton = styled(Button)`
   width: 100%;
   padding: 24px;
   font-size: 24px;

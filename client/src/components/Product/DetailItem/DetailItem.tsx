@@ -23,10 +23,10 @@ const DetailItem = ({ products }: DetailItemProps) => {
       <Styled.Container>
         <Styled.Name>{currentDetailItem.name}</Styled.Name>
         <Styled.Horizontal />
-        <Styled.FlexBox display={'flex'} justifyContent={'space-between'}>
+        <Styled.ItemInfoBox>
           <Styled.Text>금액</Styled.Text>
           <Styled.Price>{currentDetailItem.price}</Styled.Price>
-        </Styled.FlexBox>
+        </Styled.ItemInfoBox>
         <Styled.CartButton onClick={handleCartButton} theme="brown">
           장바구니
         </Styled.CartButton>

@@ -1,10 +1,12 @@
 import styled from 'styled-components';
-import { Box, HorizontalLine } from 'components/common';
-export const Layout = styled.section`
+import { HorizontalLine } from 'components/common';
+export const Container = styled.section`
   padding: 24px 300px;
 `;
 
-export const Container = styled(Box)``;
+export const SectionContainer = styled.div`
+  display: flex;
+`;
 export const Title = styled.h3`
   display: flex;
   align-items: center;

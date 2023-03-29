@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Box, HorizontalLine, Image } from 'components/common';
+import { HorizontalLine, Image } from 'components/common';
 
 export const Title = styled.h3`
   display: flex;
@@ -11,11 +11,20 @@ export const DivideLine = styled(HorizontalLine)`
   border: 2px solid #aaaaaa;
   margin-top: 10px;
 `;
-export const Container = styled(Box)``;
+export const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
-export const FlexBox = styled(Box)`
+export const OrderContainer = styled.div`
+  display: flex;
   gap: 15px;
   margin-top: 10px;
+`;
+
+export const OrderInputBox = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 export const OrderItemImage = styled(Image)`
   height: 144px;

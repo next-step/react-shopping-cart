@@ -1,21 +1,30 @@
-import { Box, Button, Image } from 'components/common';
+import { Button, Image } from 'components/common';
 import styled from 'styled-components';
 
-export const Layout = styled(Box)`
+export const Container = styled.div`
   width: 100%;
   padding: 20px 40px;
   border: 1px solid #aaaaaa;
 `;
 
-export const FlexBox = styled(Box)`
+export const FlexContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 10px;
   gap: 15px;
+`;
+export const ItemContainer = styled.div`
+  display: flex;
 `;
 export const ItemImage = styled(Image)`
   width: 144px;
   height: 144px;
 `;
-export const ItemBox = styled(Box)``;
+export const ItemBox = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 export const ItemName = styled.span`
   font-size: 20px;
 `;

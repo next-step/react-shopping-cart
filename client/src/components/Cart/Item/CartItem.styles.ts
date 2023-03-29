@@ -1,10 +1,13 @@
-import { Box, Image, Input } from 'components/common';
+import { Image, Input } from 'components/common';
 import styled from 'styled-components';
 import { ReactComponent as CartRemove } from 'assets/svgs/trash.svg';
 
-export const Layout = styled(Box)``;
+export const Contianer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
-export const LeftFlexBox = styled.div`
+export const LeftBox = styled.div`
   display: flex;
   margin-top: 10px;
   gap: 15px;
@@ -34,7 +37,7 @@ export const CartItemName = styled.span`
   font-size: 24px;
 `;
 
-export const RightFlexBox = styled.div`
+export const RightBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -45,7 +48,7 @@ export const CartRemoveButton = styled(CartRemove)`
   align-self: flex-end;
   cursor: pointer;
 `;
-export const FlexContainer = styled.div`
+export const CartInputContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

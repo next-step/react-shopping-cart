@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { Box, Button } from 'components/common';
+import { Button } from 'components/common';
 import { ReactComponent as Cart } from 'assets/svgs/cart.svg';
 
-export const Layout = styled(Box)`
+export const Container = styled.div`
   display: flex;
   position: sticky;
   top: 0;
@@ -32,7 +32,8 @@ export const TitleBox = styled.div`
   gap: 15px;
 `;
 
-export const ButtonBox = styled(Box)`
+export const ButtonBox = styled.div`
+  display: flex;
   gap: 15px;
 `;
 

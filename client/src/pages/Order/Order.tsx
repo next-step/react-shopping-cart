@@ -14,9 +14,9 @@ const Order = () => {
   }, []);
 
   return (
-    <Styled.Layout>
+    <Styled.Container>
       <PageHeader>주문/결제</PageHeader>
-      <Styled.Container display={'flex'}>
+      <Styled.SectionContainer>
         <Styled.LeftSectionLayout>
           <Styled.Title>{`주문 상품(${totalAmount}건)`}</Styled.Title>
           <Styled.DivideLine />
@@ -34,8 +34,8 @@ const Order = () => {
         <Styled.RightSectionLayout>
           <Payment title="결제금액" text="총 결제금액" price={totalPrice} totalAmount={totalAmount} type="order" />
         </Styled.RightSectionLayout>
-      </Styled.Container>
-    </Styled.Layout>
+      </Styled.SectionContainer>
+    </Styled.Container>
   );
 };
 
