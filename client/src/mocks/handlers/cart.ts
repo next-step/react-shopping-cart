@@ -5,8 +5,8 @@ import { API } from 'constants/api';
 
 let carts: Carts = [];
 
-const getCarts = rest.get<Carts>(API.CARTS, (_, res, ctx) => {
-  return res(ctx.status(200), ctx.delay(1000), ctx.json(carts));
+const getCarts = rest.get<Carts>(API.CART, (_, res, ctx) => {
+  return res(ctx.status(200), ctx.delay(0), ctx.json(carts));
 });
 
 const addCart = rest.post<Carts>(API.CART, async (req, res, ctx) => {
@@ -29,8 +29,7 @@ const addCart = rest.post<Carts>(API.CART, async (req, res, ctx) => {
 });
 
 const deleteCarts = rest.delete<Carts>(API.CART, async (req, res, ctx) => {
-  const selectedCarts = await req.json<Carts>();
-  const ids = selectedCarts.map((cart) => cart.id);
+  const ids = await req.json<number[]>();
 
   const filteredCarts = carts.filter((cart) => !ids.includes(cart.id));
 

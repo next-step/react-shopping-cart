@@ -2,7 +2,7 @@ import { API } from 'constants/api';
 import { CartsSchema } from 'types/cart';
 
 export default async function fetchCarts() {
-  const response = await fetch(API.CARTS);
+  const response = await fetch(API.CART);
 
   if (!response.ok) {
     throw new Error(response.statusText);
