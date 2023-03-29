@@ -7,6 +7,7 @@ const S = {
   PaginationList: styled.ul`
     display: flex;
     align-items: center;
+    justify-content: center;
   `,
   PaginationItem: styled.li<{ isCurrent: boolean }>`
     padding: 0 10px;

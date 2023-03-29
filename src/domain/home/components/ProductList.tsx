@@ -7,6 +7,11 @@ import Pagination from '../../../components/pagination/Pagination';
 const S = {
   Content: styled.div(
     mediaQuery({
+      margin: ['50px 0', '60px 0'],
+    })
+  ),
+  ProductList: styled.div(
+    mediaQuery({
       display: 'grid',
       gridTemplateColumns: [
         'repeat(1, minmax(0, 1fr))',
@@ -15,7 +20,7 @@ const S = {
       ],
       columnGap: ['0', '20px', '40px'],
       rowGap: ['20px', '20px', '30px'],
-      margin: ['50px 0', '60px 0'],
+      marginBottom: ['20px', '30px'],
     })
   ),
 };
@@ -35,14 +40,16 @@ const ProductList = ({
 }: ProductListProps) => {
   return (
     <S.Content>
-      {products?.map((item) => (
-        <ProductItem
-          key={item.id}
-          {...item}
-          onClickProductImage={() => navigateToDetailedPage(item.id)}
-          onClickAddCart={() => addCart(item)}
-        />
-      ))}
+      <S.ProductList>
+        {products?.map((item) => (
+          <ProductItem
+            key={item.id}
+            {...item}
+            onClickProductImage={() => navigateToDetailedPage(item.id)}
+            onClickAddCart={() => addCart(item)}
+          />
+        ))}
+      </S.ProductList>
       <Pagination {...pagination} />
     </S.Content>
   );

@@ -21,6 +21,7 @@ const S = {
   Name: styled.span`
     display: block;
     margin-bottom: 10px;
+    height: 40px;
     font-size: 15px;
   `,
   Price: styled.strong`
