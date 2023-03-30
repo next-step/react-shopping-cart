@@ -11,7 +11,7 @@ const Cart = () => {
     <Styled.Container>
       <PageHeader>장바구니</PageHeader>
       <Styled.SectionContainer>
-        <Styled.LeftSection>
+        <Styled.ItemSection>
           <Styled.CheckBoxContainer>
             <Styled.CheckBoxInputBox>
               <Styled.CheckBox type={'checkbox'} name="checkbox" onChange={handleCheckBox} checked={check} />
@@ -32,8 +32,8 @@ const Cart = () => {
               amount={product.amount}
             />
           ))}
-        </Styled.LeftSection>
-        <Styled.RightSection>
+        </Styled.ItemSection>
+        <Styled.PaymentSection>
           <Payment
             title="결제예상금액"
             text="결제 예상 금액"
@@ -41,7 +41,7 @@ const Cart = () => {
             totalAmount={totalAmount}
             type="cart"
           />
-        </Styled.RightSection>
+        </Styled.PaymentSection>
       </Styled.SectionContainer>
     </Styled.Container>
   );

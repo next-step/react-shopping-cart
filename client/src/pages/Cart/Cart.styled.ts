@@ -11,7 +11,7 @@ export const SectionContainer = styled.div`
   flex-direction: column;
   margin-top: 50px;
 `;
-export const LeftSection = styled.section`
+export const ItemSection = styled.section`
   width: 100%;
   overflow-y: scroll;
   height: 500px;
@@ -27,7 +27,7 @@ export const LeftSection = styled.section`
     border-radius: 5px;
   }
 `;
-export const RightSection = styled.section`
+export const PaymentSection = styled.section`
   display: flex;
   flex-direction: column;
   width: 100%;
