@@ -1,4 +1,4 @@
-import { ElementType, HTMLAttributes } from 'react';
+import { CSSProperties, ElementType, HTMLAttributes } from 'react';
 import { theme } from 'styles/theme';
 
 export const FontWeights = {
@@ -39,5 +39,6 @@ export interface TypographyProps
   as?: ElementType;
   color?: keyof typeof theme.color;
   variant?: keyof typeof variants;
+  height?: CSSProperties['height'];
   lineHeight?: number;
 }

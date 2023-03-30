@@ -7,14 +7,7 @@ const Typography = React.forwardRef<
   TypographyProps
 >(
   (
-    {
-      as,
-      color = 'black',
-      variant = 'body1',
-      lineHeight,
-      children,
-      ...attributes
-    },
+    { as, color = 'black', variant = 'body1', children, ...attributes },
     ref
   ) => {
     return (
@@ -22,7 +15,6 @@ const Typography = React.forwardRef<
         as={as || variants[variant].as}
         color={color}
         variant={variant}
-        lineHeight={lineHeight}
         ref={ref}
         {...attributes}
       >
