@@ -1,3 +1,4 @@
+import { useOrderListItem } from '@/pages/OrderList/hooks'
 import { Order } from '@/types'
 
 interface OrderListItemProps {
@@ -5,6 +6,7 @@ interface OrderListItemProps {
 }
 
 const OrderListItem = ({ orderItem }: OrderListItemProps) => {
+  const { openCheckCartNavigationModal } = useOrderListItem({ orderItem })
   return (
     <div className="order-list-item">
       <div className="flex gap-15 mt-10">
@@ -16,7 +18,9 @@ const OrderListItem = ({ orderItem }: OrderListItemProps) => {
           </span>
         </div>
       </div>
-      <button className="primary-button-small flex-center self-start">장바구니</button>
+      <button className="primary-button-small flex-center self-start" onClick={openCheckCartNavigationModal}>
+        장바구니
+      </button>
     </div>
   )
 }
