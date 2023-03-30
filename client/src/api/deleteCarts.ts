@@ -2,7 +2,7 @@ import { API } from 'constants/api';
 import { CartsSchema } from 'types/cart';
 
 export default async function deleteCarts(params: number[]) {
-  const response = await fetch(API.CART, {
+  const response = await fetch(API.CARTS, {
     method: 'DELETE',
     body: JSON.stringify(params),
   });

@@ -2,7 +2,7 @@ import { API } from 'constants/api';
 import { Cart, CartsSchema } from 'types/cart';
 
 export default async function addCart(params: Omit<Cart, 'id'>) {
-  const response = await fetch(API.CART, {
+  const response = await fetch(API.CARTS, {
     method: 'POST',
     body: JSON.stringify(params),
   });
