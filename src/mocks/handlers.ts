@@ -204,6 +204,20 @@ const getOrders = (orders: OrderSchemaInfer[], schema: z.ZodTypeAny) =>
     }
   })
 
+const deleteOrders = () =>
+  rest.delete(`${API.ORDERS}`, async (_, res, ctx) => {
+    try {
+      orders.splice(0, orders.length)
+      return res(ctx.status(200), ctx.json(orders))
+    } catch (error) {
+      if (error instanceof Error) {
+        return res(ctx.status(400), ctx.json({ message: error.message }))
+      } else {
+        return res(ctx.status(400), ctx.json({ message: String(error) }))
+      }
+    }
+  })
+
 const createOrderList = (schema: z.ZodTypeAny) =>
   rest.post(`${API.ORDER_LIST}`, async (req: RestRequest<{ orderListItem: OrderListSchemaInfer }>, res, ctx) => {
     const { orderListItem } = await req.json()
@@ -247,4 +261,5 @@ export const handlers = [
   createOrders(OrderSchema),
   createOrderList(OrderListSchema),
   getOrderLists(orderList, OrderListSchema),
+  deleteOrders(),
 ]

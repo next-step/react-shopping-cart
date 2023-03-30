@@ -20,6 +20,8 @@ const useOrder = () => {
   })
   const createOrderListMutation = useMutation(`${API.ORDER_LIST}`, 'POST')
 
+  const deleteAllOrdersMutation = useMutation(`${API.ORDERS}`, 'DELETE')
+
   const handleConfirmButtonClick = async () => {
     await createOrderListMutation.mutate({
       orderListItem: {
@@ -27,6 +29,7 @@ const useOrder = () => {
         orders,
       },
     })
+    await deleteAllOrdersMutation.mutate()
 
     closeModal({ element: <PaymentCheckModal /> })
     navigate('/order-list')

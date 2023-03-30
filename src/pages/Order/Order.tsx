@@ -28,7 +28,7 @@ const Order = () => {
           <AmountBox
             title="결제금액"
             price={`${totalOrderPrice?.toLocaleString()} 원`}
-            disabled={false}
+            disabled={orders && orders.length <= 0 ? true : false}
             onClick={openPaymentCheckModal}
             buttonText={`결제하기 (${totalOrderQuantity}개)`}
           />
