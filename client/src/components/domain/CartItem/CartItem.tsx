@@ -1,11 +1,11 @@
 import * as Styled from './CartItem.styles';
 import { CartProductType } from 'types';
-import { useCartItem } from 'hooks';
+import useCartItem from './useCartItem';
 
 type CartItemProps = CartProductType;
 
 const CartItem = ({ id, image, price, name, isOrder, amount }: CartItemProps) => {
-  const currentCartItem = { id, image, price: price, name, amount, isOrder };
+  const currentCartItem = { id, image, price, name, amount, isOrder };
   const { handleIncreaseButton, handleDecreaseButton, inputNumber, handleRemoveButton, handleCheckBox } =
     useCartItem(currentCartItem);
 

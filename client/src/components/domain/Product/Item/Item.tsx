@@ -1,6 +1,6 @@
-import { useProductItem } from 'hooks';
 import * as Styled from './Item.styles';
 import { ItemProps } from './Item.types';
+import useProductItem from '../useProductItem';
 
 const ProductItem = ({ name, price, image, id }: ItemProps) => {
   const currentItem = { name, price, image, id };

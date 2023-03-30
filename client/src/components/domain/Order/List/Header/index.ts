@@ -1,1 +1,1 @@
-export { default as OrderListHeader } from './OrderListHeader';
+export { default } from './OrderListHeader';

@@ -1,11 +1,11 @@
-import * as Styled from './ProductList.styles';
+import * as Styled from './ProductListPage.styles';
 
 import uuid from 'react-uuid';
 
-import { ProductItem } from 'components/domain/Product/Item';
-import useProducts from 'hooks/useProducts';
+import ProductItem from 'components/domain/Product/Item';
+import useProducts from 'hooks/useProductList';
 
-const ProductList = () => {
+const ProductListPage = () => {
   const { products, status } = useProducts();
 
   if (status === 'Loading') {
@@ -21,4 +21,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default ProductListPage;

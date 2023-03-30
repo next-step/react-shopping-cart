@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ProductDetailItem } from '.';
+import ProductDetailItem from '.';
 
 export default {
   title: 'Product',

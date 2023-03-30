@@ -1,7 +1,7 @@
-import * as Styled from './Order.styles';
+import * as Styled from './OrderPage.styles';
 
-import { Payment } from 'components/domain/Payment';
-import { OrderItem } from 'components/domain/Order/Item';
+import Payment from 'components/domain/Payment';
+import OrderItem from 'components/domain/Order/Item';
 import { PageHeader } from 'components/common/PageHeader';
 import { useEffect } from 'react';
 import { useOrder } from 'hooks';

@@ -1,7 +1,8 @@
-import { useProductItem } from 'hooks';
 import { useParams } from 'react-router-dom';
 import * as Styled from './DetailItem.styles';
 import type { ProductType } from 'types';
+import useProductItem from '../useProductItem';
+
 type DetailItemProps = {
   products: ProductType[];
 };

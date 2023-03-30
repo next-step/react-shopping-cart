@@ -1,6 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { rest } from 'msw';
-import { CartItem } from '.';
+import CartItem from './CartItem';
 
 export default {
   title: 'Cart',

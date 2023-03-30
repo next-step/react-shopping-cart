@@ -1,9 +1,8 @@
-import * as Styled from './OrderListDetail.styles';
-
+import * as Styled from './OrderListDetailPage.styles';
 import { PageHeader } from 'components/common/PageHeader';
-import { OrderListHeader } from 'components/domain/Order/List/Header';
-import { OrderListItem } from 'components/domain/Order/List/Item';
-import { Payment } from 'components/domain/Payment';
+import OrderListHeader from 'components/domain/Order/List/Header';
+import OrderListItem from 'components/domain/Order/List/Item';
+import Payment from 'components/domain/Payment';
 
 const OrderListDetailPage = () => {
   return (

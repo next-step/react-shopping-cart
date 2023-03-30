@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { fetchProductList } from 'store/feature/product/productslice';
 import { useAppDispatch, useAppSelector } from '../store/index';
 
-const useProducts = () => {
+const useProductList = () => {
   const dispatch = useAppDispatch();
   const productStore = useAppSelector((state) => state.product);
   const products = productStore.productList;
@@ -14,4 +14,4 @@ const useProducts = () => {
 
   return { products, status };
 };
-export default useProducts;
+export default useProductList;
