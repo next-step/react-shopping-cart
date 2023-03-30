@@ -13,10 +13,9 @@ const ProductDetail = () => {
 
 const Layout = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
-  margin-top: 50px;
-  padding: 24px 300px;
+  justify-content: center;
+  margin: 50px;
 `;
 
 export default ProductDetail;

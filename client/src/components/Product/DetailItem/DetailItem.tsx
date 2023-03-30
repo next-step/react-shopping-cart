@@ -13,14 +13,9 @@ const DetailItem = ({ products }: DetailItemProps) => {
   const { handleCartButton } = useProductItem(currentDetailItem);
 
   return (
-    <Styled.Layout>
-      <Styled.ItemImage
-        src={currentDetailItem.image}
-        alt={currentDetailItem.name}
-        width={480}
-        height={480}
-      ></Styled.ItemImage>
-      <Styled.Container>
+    <Styled.Container>
+      <Styled.ItemImage src={currentDetailItem.image} alt={currentDetailItem.name} width={640}></Styled.ItemImage>
+      <Styled.ItemInfoContainer>
         <Styled.Name>{currentDetailItem.name}</Styled.Name>
         <Styled.Horizontal />
         <Styled.ItemInfoBox>
@@ -30,8 +25,8 @@ const DetailItem = ({ products }: DetailItemProps) => {
         <Styled.CartButton onClick={handleCartButton} theme="brown">
           장바구니
         </Styled.CartButton>
-      </Styled.Container>
-    </Styled.Layout>
+      </Styled.ItemInfoContainer>
+    </Styled.Container>
   );
 };
 
