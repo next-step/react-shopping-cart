@@ -1,5 +1,5 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
-import { Home, Cart, ProductDetail } from '../domain';
+import { Home, Cart, ProductDetail, Order } from '../domain';
 import { Layout } from '../layout';
 
 export const ROUTE = {
@@ -31,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: ROUTE.DETAIL + '/:id',
         element: <ProductDetail />,
+      },
+      {
+        path: ROUTE.ORDER,
+        element: <Order />,
       },
       {
         path: '/*',
