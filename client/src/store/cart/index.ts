@@ -29,6 +29,7 @@ type Action = {
     toggle: (id: number) => void;
     checkAll: () => void;
     uncheckAll: () => void;
+    remove: (ids: number[]) => void;
   };
 };
 
@@ -41,6 +42,8 @@ export const useCartStore = create<State & Action>()((set) => ({
     toggle: (id: number) => set((state) => ({ carts: toggleCart(state.carts, id) })),
     checkAll: () => set((state) => ({ carts: checkAllCart(state.carts) })),
     uncheckAll: () => set((state) => ({ carts: uncheckAllCart(state.carts) })),
+    remove: (ids: number[]) =>
+      set((state) => ({ carts: state.carts.filter((cart) => !ids.includes(cart.id)) })),
   },
 }));
 
