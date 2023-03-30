@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 
-import { DeleteModal, OrderCheckModal } from '@/components/modals'
+import { DeleteModal, CheckModal } from '@/components/modals'
 import { API } from '@/config'
 import { useModal, useMutation, useFetch } from '@/hooks'
 import { ProductSchema, ProductSchemaInfer, ProductSchemaWithCheckedAndQuantityInfer } from '@/schemas'
@@ -117,7 +117,7 @@ const useCart = () => {
 
   const openOrderCheckModal = () => {
     openModal({
-      element: <OrderCheckModal text="선택한 상품을 주문하시겠어요?" onClick={updateCartListAfterOrder} />,
+      element: <CheckModal text="선택한 상품을 주문하시겠어요?" onConfirmButtonClick={updateCartListAfterOrder} />,
     })
   }
 

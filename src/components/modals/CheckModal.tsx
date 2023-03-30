@@ -3,22 +3,22 @@ import { useRef } from 'react'
 import { CenterModalContainer } from '@/components/modals'
 import { useModal, useOutsideClick } from '@/hooks'
 
-interface PaymentCheckModalProps {
+interface CheckModalProps {
   text?: string
   onConfirmButtonClick?: () => void
 }
 
-const PaymentCheckModal = ({ onConfirmButtonClick, text = '주문 내역을 결제하시겠어요?' }: PaymentCheckModalProps) => {
+const CheckModal = ({ onConfirmButtonClick, text }: CheckModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null)
 
   const { closeModal } = useModal()
 
   useOutsideClick(modalRef, () => {
-    closeModal({ element: <PaymentCheckModal /> })
+    closeModal({ element: <CheckModal /> })
   })
 
   const closeOrderCheckModal = () => {
-    closeModal({ element: <PaymentCheckModal /> })
+    closeModal({ element: <CheckModal /> })
   }
 
   return (
@@ -40,4 +40,4 @@ const PaymentCheckModal = ({ onConfirmButtonClick, text = '주문 내역을 결�
   )
 }
 
-export default PaymentCheckModal
+export default CheckModal

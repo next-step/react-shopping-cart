@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
-import { GoToPageCheckModal } from '@/components'
+import { CheckModal } from '@/components'
 import { API } from '@/config'
 import { useModal, useMutation } from '@/hooks'
 import { Order } from '@/types'
@@ -23,15 +23,13 @@ const useOrderListItem = ({ orderItem }: OrderListItemProps) => {
       },
     })
 
-    closeModal({ element: <GoToPageCheckModal /> })
+    closeModal({ element: <CheckModal /> })
     navigate('/cart')
   }
 
   const openCheckCartNavigationModal = () => {
     openModal({
-      element: (
-        <GoToPageCheckModal text="장바구니 목록을 확인하시겠어요?" onConfirmButtonClick={handleConfirmButtonClick} />
-      ),
+      element: <CheckModal text="장바구니 목록을 확인하시겠어요?" onConfirmButtonClick={handleConfirmButtonClick} />,
     })
   }
   return { openCheckCartNavigationModal }
