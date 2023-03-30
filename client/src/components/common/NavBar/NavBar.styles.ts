@@ -15,15 +15,14 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 32px;
   margin: 10px;
   position: sticky;
   font-weight: 900;
-  font-weight: bold;
   text-align: center;
   vertical-align: middle;
   color: #ffffff;
   cursor: pointer;
+  font-size: 1.8rem;
 `;
 export const TitleBox = styled.div`
   display: flex;
@@ -39,7 +38,7 @@ export const ButtonBox = styled.div`
 
 export const NavButton = styled(Button)`
   font-weight: 500;
-  font-size: 24px;
+  font-size: 1.2rem;
   color: #ffffff;
   background-color: transparent;
   border: none;

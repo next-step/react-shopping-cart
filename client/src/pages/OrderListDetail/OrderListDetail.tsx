@@ -1,10 +1,11 @@
-import { PageHeader } from 'components/common/PageHeader';
-import { OrderListHeader } from 'components/Order/List/Header';
-import { OrderListItem } from 'components/Order/List/Item';
-import { Payment } from 'components/Payment';
 import * as Styled from './OrderListDetail.styles';
 
-const OrderListDetail = () => {
+import { PageHeader } from 'components/common/PageHeader';
+import { OrderListHeader } from 'components/domain/Order/List/Header';
+import { OrderListItem } from 'components/domain/Order/List/Item';
+import { Payment } from 'components/domain/Payment';
+
+const OrderListDetailPage = () => {
   return (
     <Styled.Layout>
       <PageHeader>주문내역 상세</PageHeader>
@@ -21,4 +22,4 @@ const OrderListDetail = () => {
     </Styled.Layout>
   );
 };
-export default OrderListDetail;
+export default OrderListDetailPage;

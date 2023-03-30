@@ -1,14 +1,14 @@
 import * as Styled from './Cart.styled';
 import uuid from 'react-uuid';
-import { CartItem } from 'components/Cart/Item';
-import { Payment } from 'components/Payment';
+import { CartItem } from 'components/domain/Cart/Item';
+import { Payment } from 'components/domain/Payment';
 import { PageHeader } from 'components/common/PageHeader';
 import { useCartPage } from 'hooks';
-const Cart = () => {
+const CartPage = () => {
   const { check, handleCheckBox, handleDeleteButton, cartList, totalAmount, totalPrice } = useCartPage();
 
   return (
-    <Styled.Container>
+    <Styled.Layout>
       <PageHeader>장바구니</PageHeader>
       <Styled.SectionContainer>
         <Styled.ItemSection>
@@ -43,8 +43,8 @@ const Cart = () => {
           />
         </Styled.PaymentSection>
       </Styled.SectionContainer>
-    </Styled.Container>
+    </Styled.Layout>
   );
 };
 
-export default Cart;
+export default CartPage;

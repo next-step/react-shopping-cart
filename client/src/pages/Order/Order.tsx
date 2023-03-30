@@ -1,20 +1,20 @@
 import * as Styled from './Order.styles';
 
-import { Payment } from 'components/Payment';
-import { OrderItem } from 'components/Order/Item';
+import { Payment } from 'components/domain/Payment';
+import { OrderItem } from 'components/domain/Order/Item';
 import { PageHeader } from 'components/common/PageHeader';
 import { useEffect } from 'react';
 import { useOrder } from 'hooks';
 import uuid from 'react-uuid';
 
-const Order = () => {
+const OrderPage = () => {
   const { GetOrder, orderList, totalPrice, totalAmount } = useOrder();
   useEffect(() => {
     GetOrder();
   }, []);
 
   return (
-    <Styled.Container>
+    <Styled.Layout>
       <PageHeader>주문/결제</PageHeader>
       <Styled.SectionContainer>
         <Styled.ItemSection>
@@ -35,8 +35,8 @@ const Order = () => {
           <Payment title="결제금액" text="총 결제금액" price={totalPrice} totalAmount={totalAmount} type="order" />
         </Styled.PaymentSection>
       </Styled.SectionContainer>
-    </Styled.Container>
+    </Styled.Layout>
   );
 };
 
-export default Order;
+export default OrderPage;

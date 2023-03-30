@@ -1,21 +1,14 @@
-import styled from 'styled-components';
-import { ProductDetailItem } from 'components/Product/DetailItem';
+import * as Styled from './ProductDetail.styles';
+import { ProductDetailItem } from 'components/domain/Product/DetailItem';
 import { useProducts } from 'hooks';
 
-const ProductDetail = () => {
+const ProductDetailPage = () => {
   const { products } = useProducts();
   return (
-    <Layout>
+    <Styled.Layout>
       <ProductDetailItem products={products} />
-    </Layout>
+    </Styled.Layout>
   );
 };
 
-const Layout = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 50px;
-`;
-
-export default ProductDetail;
+export default ProductDetailPage;

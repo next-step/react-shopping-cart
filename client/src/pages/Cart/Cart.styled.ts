@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Input, Button, HorizontalLine } from 'components/common';
-export const Container = styled.section`
+export const Layout = styled.section`
   padding: 24px 100px;
   display: flex;
   flex-direction: column;

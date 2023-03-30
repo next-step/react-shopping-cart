@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { HorizontalLine } from 'components/common';
-export const Container = styled.section`
+export const Layout = styled.section`
   padding: 24px 100px;
   display: flex;
   flex-direction: column;
