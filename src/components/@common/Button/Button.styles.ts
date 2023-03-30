@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import { type ButtonProps, ButtonSize } from './Button.types';
 
 export const Button = styled.button<ButtonProps>`
-  padding: 15px 20px;
   border-radius: 10px;
 
   ${({ fullWidth }) =>
