@@ -3,7 +3,7 @@ import { rest } from 'msw';
 import { Cart, Carts } from 'types/cart';
 import { API } from 'constants/api';
 
-let carts: Carts = [];
+export let carts: Carts = [];
 
 const getCarts = rest.get<Carts>(API.CARTS, (_, res, ctx) => {
   return res(ctx.status(200), ctx.delay(0), ctx.json(carts));
