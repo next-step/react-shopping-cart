@@ -7,7 +7,7 @@ const Button = ({ children, ...attributes }: ButtonProps) => {
 
 Button.defaultProps = {
   theme: 'primary',
-  active: true,
+  disabled: false,
 };
 
 export default Button;

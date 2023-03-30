@@ -3,7 +3,7 @@ import * as Styled from './Payment.styled';
 import type { PaymentProps } from './Payment.types';
 
 const Payment = ({ ...props }: PaymentProps) => {
-  const { handleCartOrderButton, handleOrderButton } = useOrder();
+  const { handleCartPageOrderButton, handleOrderButton } = useOrder();
   return (
     <Styled.Container>
       <Styled.TitleBox>
@@ -18,8 +18,8 @@ const Payment = ({ ...props }: PaymentProps) => {
         <Styled.ButtonBox>
           {props.type === 'cart' && (
             <Styled.OrderButton
-              onClick={handleCartOrderButton}
-              active={props.totalAmount && props.totalAmount > 0 ? true : false}
+              onClick={handleCartPageOrderButton}
+              disabled={props.totalAmount && props.totalAmount > 0 ? false : true}
             >
               {`주문하기 ${props.totalAmount}개`}
             </Styled.OrderButton>

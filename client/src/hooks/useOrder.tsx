@@ -13,7 +13,7 @@ const useOrder = () => {
   const dispatch = useAppDispatch();
   const { showDialogUI } = useDialog();
 
-  const handleCartOrderButton = async () => {
+  const handleCartPageOrderButton = async () => {
     // 현재 order된 아이템을 가져온다. 가져온 아이템을 /order/update 보내서 orderitem을 갱신하고 orderTrue삭제후 orderpage이동
     const cartItem = (await getData('/carts')) as CartProductType[];
     const orderItems = cartItem.filter((item) => {
@@ -28,6 +28,6 @@ const useOrder = () => {
     dispatch(getOrder('/orders'));
   };
 
-  return { handleCartOrderButton, handleOrderButton, orderList, GetOrder, totalPrice, totalAmount };
+  return { handleCartPageOrderButton, handleOrderButton, orderList, GetOrder, totalPrice, totalAmount };
 };
 export default useOrder;

@@ -5,10 +5,6 @@ const useCartPage = () => {
   const { GetCart, CheckAllCart, cartList, totalAmount, totalPrice } = useCart();
   const { showDialogUI } = useDialog();
 
-  useEffect(() => {
-    GetCart();
-  }, []);
-
   const handleCheckBox = () => {
     setCheck(!check);
     CheckAllCart(check);
@@ -16,6 +12,10 @@ const useCartPage = () => {
   const handleDeleteButton = () => {
     showDialogUI('deleteCheckCart');
   };
+
+  useEffect(() => {
+    GetCart();
+  }, []);
 
   return { check, handleCheckBox, handleDeleteButton, cartList, totalAmount, totalPrice };
 };

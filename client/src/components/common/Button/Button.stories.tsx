@@ -17,7 +17,7 @@ const Template2: ComponentStory<typeof Button> = () => (
   </Button>
 );
 const Template3: ComponentStory<typeof Button> = () => (
-  <Button theme="primary" style={{ padding: '15px', fontSize: '30px', width: '10%' }} active={false}>
+  <Button theme="primary" style={{ padding: '15px', fontSize: '30px', width: '10%' }} disabled={true}>
     버튼
   </Button>
 );

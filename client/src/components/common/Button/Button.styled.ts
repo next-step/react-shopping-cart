@@ -5,8 +5,8 @@ export const Button = styled.button<ButtonProps>`
   cursor: pointer;
   border: none;
 
-  ${({ active }) =>
-    active === false
+  ${({ disabled }) =>
+    disabled === true
       ? css`
           opacity: 0.5;
           pointer-events: none;
@@ -14,6 +14,7 @@ export const Button = styled.button<ButtonProps>`
       : css`
           opacity: 1;
         `}
+
   ${({ theme }) =>
     theme === 'primary'
       ? css`

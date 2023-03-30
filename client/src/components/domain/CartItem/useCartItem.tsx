@@ -2,13 +2,16 @@ import { useState } from 'react';
 import type { CartProductType } from 'types';
 import { useDialog, useCart } from 'hooks';
 
+const MAX_NUMBER = 20;
+const MIN_NUMBER = 1;
+
 const useCartItem = (cartItem: CartProductType) => {
   const [inputNumber, setInputNumber] = useState(cartItem.amount);
   const { UpdateCart } = useCart();
   const { showDialogUI, selectProduct } = useDialog();
 
   const handleIncreaseButton = () => {
-    if (inputNumber === 20) {
+    if (inputNumber === MAX_NUMBER) {
       alert('더이상 증가할수 없습니다!');
       return;
     }
@@ -20,7 +23,7 @@ const useCartItem = (cartItem: CartProductType) => {
   };
 
   const handleDecreaseButton = () => {
-    if (inputNumber === 1) {
+    if (inputNumber === MIN_NUMBER) {
       alert('더이상 감소할수 없습니다!');
       return;
     }
