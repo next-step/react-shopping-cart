@@ -49,4 +49,8 @@ export const globalStyles = css`
     padding: 0;
     margin: 0;
   }
+
+  svg {
+    vertical-align: middle;
+  }
 `;
