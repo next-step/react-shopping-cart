@@ -29,7 +29,6 @@ Primary.args = {
   children: "결제하기",
   className: "primary-button",
   onClick: () => alert("결제페이지 이동"),
-  dataTestid: "primary-button",
 };
 
 PrimaryBrown.args = {
@@ -54,6 +53,6 @@ Icon.args = {
 
 Primary.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const 결제버튼 = await canvas.getByTestId("primary-button");
+  const 결제버튼 = await canvas.getByRole("button");
   await userEvent.click(결제버튼);
 };
