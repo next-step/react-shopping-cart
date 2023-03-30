@@ -1,25 +1,23 @@
 import { CartItem } from "types/type";
 import Item from "./item";
-import { useCartList, useDeleteCart } from "hooks/cart";
+import { useCart, useCartList, useDeleteCart } from "hooks/cart";
 import { useEffect, useState } from "react";
 import { handleModal } from "common/modal";
-import { useRecoilValue } from "recoil";
-import { tempOrderState, useOrder } from "hooks/order";
+import { useOrder } from "hooks/order";
 
 const cartOrderText = (items: CartItem[]) => {
   return items.length ? `든든배송 상품(${items.length}개)` : "";
 };
 
 const LeftSection = () => {
-  const { data, isError } = useCartList();
+  const { carts, setCarts, addTempAllCart } = useCart();
 
-  const { addTempAllCart } = useOrder();
+  const { data, isError } = useCartList();
 
   const { deleteCartItem } = useDeleteCart();
 
-  const tempCart = useRecoilValue(tempOrderState);
+  // const tempCart = useRecoilValue(tempOrderState);
 
-  const [carts, setCarts] = useState<any>([]);
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
@@ -29,14 +27,18 @@ const LeftSection = () => {
       return;
     }
 
+    console.log("data", data)
+
     if (data) {
-      setCarts(data);
+      setCarts(data.map((cart) => ({ ...cart, checked: false, quantity: 1 })));
     }
-  }, [carts, data, isError]);
+  }, [data, isError, setCarts]);
 
   useEffect(() => {
-    addTempAllCart(checked, carts.map((v: any) => v.product));
-
+    addTempAllCart(
+      checked,
+      carts
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checked]);
 
@@ -53,6 +55,8 @@ const LeftSection = () => {
     });
   };
 
+  console.log("carts", carts)
+
   return (
     <section className="cart-left-section">
       <div className="flex justify-between items-center">
@@ -62,7 +66,8 @@ const LeftSection = () => {
             name="checkbox"
             type="checkbox"
             readOnly
-            checked={tempCart.length === carts.length}
+            // checked={tempCart.length === carts.length}
+            checked={checked}
             onChange={() => setChecked(!checked)}
           />
           <label className="checkbox-label" htmlFor="checkbox">

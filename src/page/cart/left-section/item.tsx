@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { printWon } from "common/util";
 
 import { handleModal } from "common/modal";
-import { useDeleteCart } from "hooks/cart";
+import { useCart, useDeleteCart } from "hooks/cart";
 import { useOrder } from "hooks/order";
 
 type ItemProps = {
@@ -14,7 +14,8 @@ type ItemProps = {
 };
 
 const Item = ({ item, isAllChecked }: ItemProps) => {
-  const { addTempCart, updateCartQuantity } = useOrder();
+  const { addTempCart } = useCart();
+  const { updateCartQuantity } = useOrder();
   const { deleteCartItem } = useDeleteCart();
   const [quantity, setQuantity] = useState(1);
   const [singleChecked, setSingleChecked] = useState(false);
@@ -30,18 +31,15 @@ const Item = ({ item, isAllChecked }: ItemProps) => {
       setQuantity(quantity - 1); // 20개로 초기화
       return;
     }
-    
+
     updateCartQuantity(item.product.id, quantity);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quantity]);
 
   useEffect(() => {
-    if(singleChecked) {
-      return addTempCart(singleChecked, item, quantity);
-    } 
-    return addTempCart(singleChecked, item, 0);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [singleChecked])
+    return addTempCart(singleChecked, item, quantity);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [singleChecked]);
 
   const handleDeleteCartItem = () => {
     handleModal({
@@ -51,13 +49,8 @@ const Item = ({ item, isAllChecked }: ItemProps) => {
     });
   };
 
-  useEffect(() => {
-    // isAllChecked 상태가 변경되면 singleChecked 상태를 업데이트 한다.
-    setSingleChecked(isAllChecked);
-  }, [isAllChecked]);
-
+  console.log("item", item)
   if (item.product === null) return <></>;
-
   return (
     <>
       <div className="cart-container">
@@ -67,7 +60,7 @@ const Item = ({ item, isAllChecked }: ItemProps) => {
             name="checkbox"
             type="checkbox"
             readOnly
-            checked={isAllChecked ? isAllChecked : singleChecked}
+            checked={item?.checked ? item.checked : singleChecked}
             onClick={() => setSingleChecked(!singleChecked)}
           />
           <img

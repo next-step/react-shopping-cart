@@ -31,34 +31,36 @@ export function useAddOrder() {
 export function useOrder() {
   const setTempOrderState = useSetRecoilState(tempOrderState);
 
-  const addTempCart = (checked: boolean, item: any, quantity?: number) => {
-    const { product: { id, imageUrl, name, price } } = item
-    if (checked) {
-      setTempOrderState((prevTempCartState) => [
-        ...prevTempCartState,
-        {
-          id,
-          imageUrl,
-          name,
-          quantity: quantity ? quantity : 1,
-          price,
-        },
-      ]);
-    } else {
-      setTempOrderState((prevTempCartState) => {
-        const updatedTempCartItems = prevTempCartState.filter(
-          (tempCartItem) => tempCartItem.id !== id
-        );
-        return updatedTempCartItems;
-      });
-    }
-  }
+  // const addTempCart = (checked: boolean, item: any, quantity?: number) => {
+  //   const { product: { id, imageUrl, name, price } } = item
+  //   if (checked) {
+  //     console.log("if :: ", checked)
+  //     setTempOrderState((prevTempCartState) => [
+  //       ...prevTempCartState,
+  //       {
+  //         id,
+  //         imageUrl,
+  //         name,
+  //         quantity: quantity ? quantity : 1,
+  //         price,
+  //         checked
+  //       },
+  //     ]);
+  //   } else {
+  //     setTempOrderState((prevTempCartState) => {
+  //       const updatedTempCartItems = prevTempCartState.filter(
+  //         (tempCartItem) => tempCartItem.id !== id
+  //       );
+  //       return updatedTempCartItems;
+  //     })
+  //   }
+  // }
 
   const addTempAllCart = (checked: boolean, items: any) => {
+    console.log("checked :: ", checked)
     if (checked) {
-      setTempOrderState((prevTempCartState) => [
-        ...prevTempCartState,
-        ...items.map((item: any) => {
+      setTempOrderState(() => {
+        const tempCartItems = items.map((item: any) => {
           const { id, imageUrl, name, price } = item
           return {
             id,
@@ -66,16 +68,13 @@ export function useOrder() {
             name,
             quantity: 1,
             price,
+            checked
           }
-        })
-      ]);
+        });
+        return tempCartItems;
+      })
     } else {
-      setTempOrderState((prevTempCartState) => {
-        const updatedTempCartItems = prevTempCartState.filter(
-          (tempCartItem) => !items.find((item: any) => item.id === tempCartItem.id)
-        );
-        return updatedTempCartItems;
-      });
+      setTempOrderState([]);
     }
   }
 
@@ -95,6 +94,5 @@ export function useOrder() {
     });
   }
 
-  return { updateCartQuantity, addTempCart, addTempAllCart }
+  return { updateCartQuantity, addTempAllCart }
 }
-
