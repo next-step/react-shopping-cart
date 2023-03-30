@@ -10,6 +10,7 @@ import {
   isCheckedCart,
   isCheckedAll,
   idsOfCheckedCarts,
+  removeCartByIds,
 } from 'store/cart/model';
 
 import { Carts } from 'types/cart';
@@ -123,5 +124,13 @@ describe('Cart Store Model', () => {
     carts = checkAllCart(carts);
     const ids = idsOfCheckedCarts(carts);
     expect(ids).toEqual([id, id]);
+  });
+
+  test('장바구니 목록에서 특정 id에 해당하는 상품 목록을 필터링할 수 있어야 한다.', () => {
+    let carts = initializeCarts(INITIAL_STATE);
+
+    expect(carts.length).toBe(1);
+    carts = removeCartByIds(carts, [id]);
+    expect(carts.length).toBe(0);
   });
 });

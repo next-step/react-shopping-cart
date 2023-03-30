@@ -72,4 +72,14 @@ describe('Cart Store', () => {
     expect(useCartStore.getState().carts[0].isChecked).toBe(false);
     expect(useCartStore.getState().carts[1].isChecked).toBe(false);
   });
+
+  test('장바구니 목록에서 특정 id에 해당하는 상품 목록을 필터링할 수 있어야 한다.', () => {
+    const {
+      actions: { remove },
+    } = useCartStore.getState();
+
+    expect(useCartStore.getState().carts.length).toBe(1);
+    remove([id]);
+    expect(useCartStore.getState().carts.length).toBe(0);
+  });
 });

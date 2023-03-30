@@ -45,3 +45,6 @@ export const isCheckedAll = (carts: CheckableCart[]) => {
 
 export const idsOfCheckedCarts = (carts: CheckableCart[]) =>
   carts.filter((cart) => cart.isChecked).map((cart) => cart.id);
+
+export const removeCartByIds = (carts: CheckableCart[], ids: number[]) =>
+  carts.filter((cart) => !ids.includes(cart.id));
