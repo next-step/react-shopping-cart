@@ -1,7 +1,7 @@
 import { CartList, CartTotal } from '../components';
 import styled from '@emotion/styled';
 import { mediaQuery } from '../../../utils';
-import { CartInfoType } from '../../../types';
+import { CartDispatchType, CartType } from '../../../context/CartContext';
 
 const S = {
   Content: styled.div(
@@ -16,17 +16,18 @@ const S = {
 };
 
 interface SectionCartListProps {
-  cartList: CartInfoType[];
+  cartState: CartType;
+  cartDispatch: CartDispatchType;
 }
-const CartLayout = ({ cartList }: SectionCartListProps) => {
+const CartLayout = ({ cartState, cartDispatch }: SectionCartListProps) => {
   return (
     <S.Content>
-      <CartList items={cartList} />
+      <CartList items={cartState.products} cartDispatch={cartDispatch} />
       <CartTotal
         title="결제예상금액"
         label="결제예상금액"
-        totalPrice={21700}
-        buttonText="주문하기(2개)"
+        totalPrice={cartState.totalPrice}
+        buttonText={`주문하기(${cartState.totalCount}개)`}
       />
     </S.Content>
   );

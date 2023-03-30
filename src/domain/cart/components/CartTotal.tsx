@@ -34,7 +34,12 @@ const CartTotal = ({
           <span className="highlight-text">{priceFormat(totalPrice)}</span>
         </div>
         <div className="flex-center mt-30 mx-10">
-          <button className="primary-button flex-center">{buttonText}</button>
+          <button
+            className="primary-button flex-center"
+            disabled={totalPrice === 0}
+          >
+            {buttonText}
+          </button>
         </div>
       </div>
     </S.Wrapper>

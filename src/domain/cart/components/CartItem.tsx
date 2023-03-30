@@ -1,10 +1,33 @@
-import { ProductInfoType } from '../../../types';
+import { CartInfoType } from '../../../types';
+import { CartDispatchType } from '../../../context/CartContext';
+import Checkbox from '../../../components/input/Checkbox';
+import { CONFIRM } from '../../../constant';
 
-const CartItem = ({ name, price, imageUrl }: ProductInfoType) => {
+interface CartItemProps {
+  productInfo: CartInfoType;
+  cartDispatch: CartDispatchType;
+}
+
+const CartItem = ({
+  productInfo: {
+    id,
+    select,
+    product: { imageUrl, totalQuantity, name, totalPrice },
+  },
+  cartDispatch,
+}: CartItemProps) => {
+  const deleteProduct = () => {
+    const confirmRes = confirm(CONFIRM.CART_DELETE);
+    if (confirmRes) cartDispatch({ type: 'DELETE', selectId: id });
+  };
+
   return (
     <div className="cart-container">
       <div className="flex gap-15 mt-10">
-        <input className="checkbox" name="checkbox" type="checkbox" />
+        <Checkbox
+          initValue={select}
+          onClick={() => cartDispatch({ type: 'CHECKED', selectId: id })}
+        />
         <img className="w-144 h-144" src={imageUrl} alt={name} />
         <span className="cart-name">{name}</span>
       </div>
@@ -13,15 +36,26 @@ const CartItem = ({ name, price, imageUrl }: ProductInfoType) => {
           className="cart-trash-svg"
           src="./assets/svgs/trash.svg"
           alt="삭제"
+          onClick={deleteProduct}
         />
         <div className="number-input-container">
-          <input type="number" className="number-input" value="1" />
+          <input type="number" className="number-input" value={totalQuantity} />
           <div>
-            <button className="number-input-button">▲</button>
-            <button className="number-input-button">▼</button>
+            <button
+              className="number-input-button"
+              onClick={() => cartDispatch({ type: 'COUNT_UP', selectId: id })}
+            >
+              ▲
+            </button>
+            <button
+              className="number-input-button"
+              onClick={() => cartDispatch({ type: 'COUNT_DOWN', selectId: id })}
+            >
+              ▼
+            </button>
           </div>
         </div>
-        <span className="cart-price">{price.toLocaleString()} 원</span>
+        <span className="cart-price">{totalPrice.toLocaleString()} 원</span>
       </div>
     </div>
   );

@@ -3,6 +3,8 @@ export interface ProductInfoType extends ProductEventType {
   name: string;
   price: number;
   imageUrl: string;
+  totalQuantity: number;
+  totalPrice: number;
 }
 
 export interface ProductEventType {
@@ -12,5 +14,6 @@ export interface ProductEventType {
 
 export interface CartInfoType {
   id: number;
+  select: boolean;
   product: ProductInfoType;
 }

@@ -50,6 +50,7 @@
 
 .cart-trash-svg {
   align-self: flex-end;
+  cursor:pointer;
 }
 
 .cart-name {

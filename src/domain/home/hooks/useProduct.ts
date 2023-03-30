@@ -25,7 +25,7 @@ const useProduct = () => {
   );
 
   const addCart = useCallback(async (item: ProductInfoType) => {
-    await mutate({ id: Number(item.id), product: item });
+    await mutate({ id: Number(item.id), select: true, product: item });
     confirmAndRoute(CONFIRM.CART_AND_ROUTE, ROUTE.CART);
   }, []);
 
