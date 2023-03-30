@@ -23,7 +23,7 @@ const useOrderListItem = ({ orderItem }: OrderListItemProps) => {
       },
     })
 
-    closeModal({ element: <CheckModal /> })
+    closeModal({ element: CheckModal })
     navigate('/cart')
   }
 

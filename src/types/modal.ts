@@ -1,11 +1,11 @@
-import { ReactElement } from 'react'
+import { ReactElement, ComponentType } from 'react'
 
 export type ModalState = {
   element: ReactElement
   props?: { [key: string]: unknown }
 }
 export type ModalClose = {
-  element: ReactElement
+  element: ComponentType
 }
 export type ModalDispatch = {
   open: ({ element, props }: ModalState) => void

@@ -31,7 +31,7 @@ const useOrder = () => {
     })
     await deleteAllOrdersMutation.mutate()
 
-    closeModal({ element: <CheckModal /> })
+    closeModal({ element: CheckModal })
     navigate('/order-list')
   }
 

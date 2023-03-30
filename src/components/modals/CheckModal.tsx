@@ -14,11 +14,11 @@ const CheckModal = ({ onConfirmButtonClick, text }: CheckModalProps) => {
   const { closeModal } = useModal()
 
   useOutsideClick(modalRef, () => {
-    closeModal({ element: <CheckModal /> })
+    closeModal({ element: CheckModal })
   })
 
   const closeOrderCheckModal = () => {
-    closeModal({ element: <CheckModal /> })
+    closeModal({ element: CheckModal })
   }
 
   return (

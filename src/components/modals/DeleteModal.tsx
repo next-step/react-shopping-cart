@@ -14,11 +14,11 @@ const DeleteModal = ({ onDelete, text = '장바구니에서 모두 삭제하시�
   const { closeModal } = useModal()
 
   useOutsideClick(modalRef, () => {
-    closeModal({ element: <DeleteModal /> })
+    closeModal({ element: DeleteModal })
   })
 
   const closeDeleteModal = () => {
-    closeModal({ element: <DeleteModal /> })
+    closeModal({ element: DeleteModal })
   }
 
   return (

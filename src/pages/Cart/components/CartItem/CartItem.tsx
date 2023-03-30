@@ -20,7 +20,7 @@ const CartItem = ({ item, handleQuantityChange, handleCheckedChange, updateCartL
 
     updateCartList(item.id)
 
-    closeModal({ element: <DeleteModal /> })
+    closeModal({ element: DeleteModal })
   }
 
   const openDeleteModal = (productName: string) => {

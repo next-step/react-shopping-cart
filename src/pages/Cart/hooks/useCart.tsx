@@ -33,7 +33,7 @@ const useCart = () => {
     const unCheckedCartList = cartList.filter((item) => !item.checked)
     setCartList(unCheckedCartList)
 
-    closeModal({ element: <DeleteModal /> })
+    closeModal({ element: DeleteModal })
   }
 
   const updateCartListAfterDeletion = async (id: number) => {
@@ -111,7 +111,7 @@ const useCart = () => {
     await createOrdersMutation.mutate({ orderList: checkedCartList })
 
     setCartList(unCheckedCartList)
-    closeModal({ element: <DeleteModal /> })
+    closeModal({ element: DeleteModal })
     navigate('/order')
   }
 
