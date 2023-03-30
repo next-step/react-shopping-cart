@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import ProductDetailItem from '.';
 
 export default {
-  title: 'Product',
+  title: 'Domain/Product/DetailItem',
   component: ProductDetailItem,
 } as ComponentMeta<typeof ProductDetailItem>;
 

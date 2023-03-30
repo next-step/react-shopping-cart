@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Item from './OrderItem';
 
 export default {
-  title: 'Order',
+  title: 'Domain/Order',
   component: Item,
 } as ComponentMeta<typeof Item>;
 
@@ -15,4 +15,4 @@ const OrderMockData = {
 };
 const Template: ComponentStory<typeof Item> = () => <Item {...OrderMockData} />;
 
-export const OrderItem = Template.bind({});
+export const Default = Template.bind({});

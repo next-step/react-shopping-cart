@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Button } from '..';
 export default {
-  title: 'common',
+  title: 'common/Button',
   component: Button,
 } as ComponentMeta<typeof Button>;
 
@@ -22,6 +22,6 @@ const Template3: ComponentStory<typeof Button> = () => (
   </Button>
 );
 
-export const PrimaryButton = Template.bind({});
-export const BrownButton = Template2.bind({});
-export const DisabledButton = Template3.bind({});
+export const Primary = Template.bind({});
+export const Brown = Template2.bind({});
+export const Disabled = Template3.bind({});

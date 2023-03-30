@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import CartItem from './CartItem';
 
 export default {
-  title: 'Cart',
+  title: 'Domain/Cart',
   component: CartItem,
 } as ComponentMeta<typeof CartItem>;
 
@@ -28,4 +28,4 @@ const Template2: ComponentStory<typeof CartItem> = () => <CartItem {...OrderMock
 
 export const DefaultItem = Template.bind({});
 
-export const OrderItem = Template2.bind({});
+export const OrderedItem = Template2.bind({});
