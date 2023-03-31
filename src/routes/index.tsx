@@ -8,19 +8,23 @@ import {
   ProductDetailPage,
 } from 'pages';
 import { Layout } from 'components/@common';
+import { ROUTES } from 'constants/routes';
 
 const Routes = () => {
   return (
     <ReactRouterRoutes>
       <Route element={<Layout />}>
-        <Route path="/product-list" element={<ProductListPage />} />
-        <Route path="/product/:id" element={<ProductDetailPage />} />
+        <Route path={ROUTES.PRODUCT_LIST} element={<ProductListPage />} />
+        <Route path={ROUTES.PRODUCT_DETAIL} element={<ProductDetailPage />} />
 
-        <Route path="/cart" element={<CartPage />} />
+        <Route path={ROUTES.CART} element={<CartPage />} />
 
-        <Route path="/order" element={<OrderPage />} />
-        <Route path="/order/:id" element={<OrderListDetailPage />} />
-        <Route path="/order-list" element={<OrderListPage />} />
+        <Route path={ROUTES.ORDER} element={<OrderPage />} />
+        <Route path={ROUTES.ORDER_LIST} element={<OrderListPage />} />
+        <Route
+          path={ROUTES.ORDER_LIST_DETAIL}
+          element={<OrderListDetailPage />}
+        />
 
         <Route path="*" element={<Navigate replace to="/product-list" />} />
       </Route>
