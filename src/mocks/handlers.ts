@@ -33,31 +33,81 @@ const getProductDetail = rest.get('/products/:productId', (req, res, ctx) => {
 
 const getCartsList = rest.get('/carts', (req, res, ctx) => {
   const cartData = cartDataStorage.get();
-  let responseData = [];
-  if (cartData) {
-    responseData = JSON.parse(cartData);
-  }
 
   return res(
     ctx.status(200),
     ctx.json({
-      response: responseData,
+      response: cartData,
     })
   );
 });
 
-const addToCart = rest.post('/carts', (req, res, ctx) => {
-  const productInfo = req.body as CartItemType;
-
+const addItem = rest.post('/carts', (req, res, ctx) => {
+  const productData = req.body as CartItemType;
   const cartData = cartDataStorage.get();
-  if (cartData) {
-    const currentCartData = JSON.parse(cartData);
-    const newCartData = [...currentCartData, productInfo];
-    cartDataStorage.set(newCartData);
-  } else {
-    const newCartData = [productInfo];
-    cartDataStorage.set(newCartData);
-  }
+  const newCartData = {
+    ...cartData,
+    products: [...cartData.products, productData],
+  };
+  cartDataStorage.set(newCartData);
+
+  console.log('현재 DB State', cartDataStorage.get());
+
+  return res(ctx.status(200));
+});
+
+const deleteItem = rest.delete('/carts', (req, res, ctx) => {
+  const selectId = req.body as number;
+  const currentData = cartDataStorage.get();
+  cartDataStorage.set({
+    ...currentData,
+    products: currentData.products.filter((item) => item.id !== selectId),
+  });
+
+  console.log('현재 DB State', cartDataStorage.get());
+
+  return res(ctx.status(200));
+});
+
+const deleteSelectItem = rest.delete('/carts', (req, res, ctx) => {
+  const currentData = cartDataStorage.get();
+  cartDataStorage.set({
+    ...currentData,
+    products: currentData.products.filter((item) => !item.select),
+  });
+
+  console.log('현재 DB State', cartDataStorage.get());
+
+  return res(ctx.status(200));
+});
+interface updateType {
+  selectId: number;
+  count: number;
+}
+const updateItemCount = rest.put('/carts', (req, res, ctx) => {
+  const { selectId, count } = req.body as updateType;
+
+  const currentData = cartDataStorage.get();
+
+  cartDataStorage.set({
+    ...currentData,
+    products: currentData.products.map((item) => {
+      if (item.id === selectId) {
+        return {
+          ...item,
+          product: {
+            ...item.product,
+            totalQuantity: count,
+            totalPrice: item.product.price * count,
+          },
+        };
+      } else {
+        return item;
+      }
+    }),
+  });
+
+  console.log('현재 DB State', cartDataStorage.get());
 
   return res(ctx.status(200));
 });
@@ -66,5 +116,8 @@ export const handlers = [
   getProductListPerPage,
   getProductDetail,
   getCartsList,
-  addToCart,
+  addItem,
+  deleteItem,
+  deleteSelectItem,
+  updateItemCount,
 ];
