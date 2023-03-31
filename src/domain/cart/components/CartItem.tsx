@@ -37,12 +37,14 @@ const CartItem = ({
           <div>
             <button
               className="number-input-button"
+              disabled={totalQuantity >= 20}
               onClick={() => cartDispatch.countUp(id)}
             >
               ▲
             </button>
             <button
               className="number-input-button"
+              disabled={totalQuantity <= 1}
               onClick={() => cartDispatch.countDown(id)}
             >
               ▼

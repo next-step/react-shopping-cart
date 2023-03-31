@@ -61,8 +61,8 @@ const cartReducer = (
         ...state,
         products: state.products.map((item) => {
           if (item.id === action.selectId) {
-            if (item.product.totalQuantity === 20) {
-              return item;
+            if (item.product.totalQuantity >= 20) {
+              throw Error('수량은 20이상 증가 불가능합니다!');
             }
             return {
               ...item,
@@ -83,8 +83,8 @@ const cartReducer = (
         ...state,
         products: state.products.map((item) => {
           if (item.id === action.selectId) {
-            if (item.product.totalQuantity === 1) {
-              return item;
+            if (item.product.totalQuantity <= 1) {
+              throw Error('수량은 1이하로 감소 불가능합니다!');
             }
             return {
               ...item,
