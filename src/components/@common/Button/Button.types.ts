@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes, ElementType } from 'react';
 import { theme } from 'styles/theme';
 
 export const ButtonSize = {
@@ -19,6 +19,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size: keyof typeof ButtonSize;
   variant: keyof typeof ButtonVariant;
 
+  href?: string;
   color?: keyof typeof theme.color;
   fullWidth?: boolean;
 }

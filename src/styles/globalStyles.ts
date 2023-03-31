@@ -30,9 +30,13 @@ export const globalStyles = css`
   }
 
   a {
+    display: block;
+    cursor: pointer;
     font-weight: 600;
     text-decoration: none;
     color: inherit;
+    width: max-content;
+
     &:hover {
       text-decoration: underline;
     }

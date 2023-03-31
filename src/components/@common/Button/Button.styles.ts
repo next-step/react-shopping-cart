@@ -4,6 +4,7 @@ import { type ButtonProps, ButtonSize } from './Button.types';
 
 export const Button = styled.button<ButtonProps>`
   border-radius: 10px;
+  text-align: center;
 
   ${({ fullWidth }) =>
     fullWidth &&
