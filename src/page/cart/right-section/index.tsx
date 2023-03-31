@@ -15,8 +15,9 @@ const RightSection = () => {
 
   const { mutate } = useOrder();
 
+  const orderCounter = carts.filter((v) => v.checked).length;
+  
   const orderText = () => {
-    const orderCounter = carts.filter((v) => v.checked).length;
     return orderCounter ? `주문하기 (${orderCounter})` : "주문하기";
   };
 
@@ -27,7 +28,7 @@ const RightSection = () => {
 
     return handleModal({
       title: `주문`,
-      message: `${carts.length} 개의 상품을 주문하시겠습니까?`,
+      message: `${orderCounter} 개의 상품을 주문하시겠습니까?`,
       onConfirm: () => {
         order();
         go(ROUTE.ORDER_LIST);

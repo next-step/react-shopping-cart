@@ -4,8 +4,8 @@ import { addOrder, getOrders } from 'services/order';
 
 const ORDER = 'order'
 
-export const tempOrderState = atom<OrderDetail[]>({
-  key: 'tempCartState',
+export const orderState = atom<OrderDetail[]>({
+  key: 'orderState',
   default: [] as OrderDetail[]
 });
 

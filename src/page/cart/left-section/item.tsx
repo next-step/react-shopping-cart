@@ -28,7 +28,7 @@ const Item = ({ item }: ItemProps) => {
     handleModal({
       title: "삭제",
       message: "장바구니 목록에서 삭제하시겠습니까?",
-      onConfirm: () => deleteCartItem(String(item.id)),
+      onConfirm: () => deleteCartItem(item.id),
     });
   };
 

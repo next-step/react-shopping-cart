@@ -3,13 +3,24 @@ import "../order.css";
 import OrderLeftSection from "./left-section";
 import OrderRightSection from "./right-section";
 import Nav from "components/nav";
-import { useRecoilValue } from "recoil";
-import { tempOrderState, useOrderList } from "hooks/order";
+import { useOrderList } from "hooks/order";
+import { useEffect } from "react";
 
 const OrderContent = () => {
-  const orderList = useRecoilValue(tempOrderState);
-
   const { data, isError, isLoading } = useOrderList();
+
+  useEffect(() => {
+    if (isError) {
+      console.error("Error fetching cart list:", isError);
+      alert("Failed to load order list.");
+      return;
+    }
+
+  }, [data, isError]);
+
+  if (isLoading) {
+    return <div className="flex justify-center my-20">Loading...</div>;
+  }
 
   if (!data) {
     return (
@@ -17,10 +28,6 @@ const OrderContent = () => {
         주문 상품이 존재 하지 않습니다.
       </div>
     );
-  }
-
-  if (isLoading) {
-    return <div className="flex justify-center my-20">Loading...</div>;
   }
 
   const orderDetailList = data.map((v) => v.orderDetails).flat();

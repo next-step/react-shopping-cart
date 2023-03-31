@@ -12,6 +12,6 @@ export const addCart = async (item: Product): Promise<Cart> => {
   return data;
 }
 
-export const deleteCart = async (id: string): Promise<any> => {
+export const deleteCart = async (id: number): Promise<any> => {
   return destroy(`${CARTS}/${id}`);
 }

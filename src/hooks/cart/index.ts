@@ -38,11 +38,11 @@ export function useCart() {
       .map(checkItems => checkItems.id)
 
     deleteIds.forEach((cartId) => {
-      deleteCart(cartId.toString());
+      deleteCart(cartId);
     });
   }
 
-  const deleteCartItem = async (itemId: string) => {
+  const deleteCartItem = async (itemId: number) => {
     deleteCart(itemId);
   }
 
