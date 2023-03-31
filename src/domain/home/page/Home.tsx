@@ -1,6 +1,6 @@
 import { ProductList } from '../components';
 import useProduct from '../hooks/useProduct';
-import { ProductInfoType } from '../../../types';
+import { ProductDataType } from '../../../types';
 
 const Home = () => {
   const {
@@ -23,7 +23,7 @@ const Home = () => {
   return (
     <>
       <ProductList
-        products={products as ProductInfoType[]}
+        products={products as ProductDataType[]}
         navigateToDetailedPage={navigateToDetailedPage}
         addCart={addCart}
         pagination={pagination}

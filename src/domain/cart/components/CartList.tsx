@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { CartInfoType } from '../../../types';
+import { CartItemType } from '../../../types';
 import { CartItem } from '../components';
 import { CartDispatchType } from '../../../context/CartContext';
 import Checkbox from '../../../components/input/Checkbox';
@@ -16,17 +16,17 @@ const S = {
 };
 
 interface CartListProps {
-  items: CartInfoType[];
+  items: CartItemType[];
   cartDispatch: CartDispatchType;
 }
 
 const CartList = ({ items, cartDispatch }: CartListProps) => {
   const allChecked = () => {
-    cartDispatch({ type: 'All_CHECKED' });
+    cartDispatch({ type: 'SELECT_ALL_ITEM' });
   };
   const deleteProduct = () => {
     const confirmRes = confirm(CONFIRM.CART_DELETE);
-    if (confirmRes) cartDispatch({ type: 'SELECT_DELETE' });
+    if (confirmRes) cartDispatch({ type: 'DELETE_SELECT_ITEM' });
   };
 
   return (

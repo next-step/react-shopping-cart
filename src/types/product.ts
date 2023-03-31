@@ -1,10 +1,8 @@
-export interface ProductInfoType extends ProductEventType {
-  id?: number;
+export interface ProductDataType extends ProductEventType {
+  id: number;
   name: string;
   price: number;
   imageUrl: string;
-  totalQuantity: number;
-  totalPrice: number;
 }
 
 export interface ProductEventType {
@@ -12,8 +10,13 @@ export interface ProductEventType {
   onClickAddCart?: () => void;
 }
 
-export interface CartInfoType {
+export interface CartProductType extends ProductDataType {
+  totalPrice: number;
+  totalQuantity: number;
+}
+
+export interface CartItemType {
   id: number;
   select: boolean;
-  product: ProductInfoType;
+  product: CartProductType;
 }

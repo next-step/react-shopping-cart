@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { CartInfoType } from '../../../types';
+import { CartItemType } from '../../../types';
 import { CartDispatchType } from '../../../context/CartContext';
 import OrderItem from './OrderItem';
 
@@ -14,7 +14,7 @@ const S = {
 };
 
 interface CartListProps {
-  items: CartInfoType[];
+  items: CartItemType[];
   cartDispatch: CartDispatchType;
 }
 

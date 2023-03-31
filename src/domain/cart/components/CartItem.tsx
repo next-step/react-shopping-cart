@@ -1,10 +1,10 @@
-import { CartInfoType } from '../../../types';
+import { CartItemType } from '../../../types';
 import { CartDispatchType } from '../../../context/CartContext';
 import Checkbox from '../../../components/input/Checkbox';
 import { CONFIRM } from '../../../constant';
 
 interface CartItemProps {
-  productInfo: CartInfoType;
+  productInfo: CartItemType;
   cartDispatch: CartDispatchType;
 }
 
@@ -18,7 +18,7 @@ const CartItem = ({
 }: CartItemProps) => {
   const deleteProduct = () => {
     const confirmRes = confirm(CONFIRM.CART_DELETE);
-    if (confirmRes) cartDispatch({ type: 'DELETE', selectId: id });
+    if (confirmRes) cartDispatch({ type: 'DELETE_ITEM', selectId: id });
   };
 
   return (
@@ -26,7 +26,7 @@ const CartItem = ({
       <div className="flex gap-15 mt-10">
         <Checkbox
           initValue={select}
-          onClick={() => cartDispatch({ type: 'CHECKED', selectId: id })}
+          onClick={() => cartDispatch({ type: 'SELECT_ITEM', selectId: id })}
         />
         <img className="w-144 h-144" src={imageUrl} alt={name} />
         <span className="cart-name">{name}</span>
@@ -43,13 +43,17 @@ const CartItem = ({
           <div>
             <button
               className="number-input-button"
-              onClick={() => cartDispatch({ type: 'COUNT_UP', selectId: id })}
+              onClick={() =>
+                cartDispatch({ type: 'COUNT_UP_ITEM', selectId: id })
+              }
             >
               ▲
             </button>
             <button
               className="number-input-button"
-              onClick={() => cartDispatch({ type: 'COUNT_DOWN', selectId: id })}
+              onClick={() =>
+                cartDispatch({ type: 'COUNT_DOWN_ITEM', selectId: id })
+              }
             >
               ▼
             </button>

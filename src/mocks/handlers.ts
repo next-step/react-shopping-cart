@@ -1,8 +1,8 @@
 import { rest } from 'msw';
 import productData from './data/products';
-import { CartInfoType } from '../types';
+import { CartItemType } from '../types';
 import { cartDataStorage } from './util/storage';
-import { KEY_PAGE } from '../hooks/usePagination';
+import { KEY_PAGE } from '../hooks';
 import { KEY_PRODUCT_COUNT } from '../domain/home/hooks/useProduct';
 
 const getProductListPerPage = rest.get('/products', (req, res, ctx) => {
@@ -32,7 +32,7 @@ const getProductDetail = rest.get('/products/:productId', (req, res, ctx) => {
 });
 
 const getCartsList = rest.get('/carts', (req, res, ctx) => {
-  const cartData = window.localStorage.getItem('cartData');
+  const cartData = cartDataStorage.get();
   let responseData = [];
   if (cartData) {
     responseData = JSON.parse(cartData);
@@ -47,7 +47,8 @@ const getCartsList = rest.get('/carts', (req, res, ctx) => {
 });
 
 const addToCart = rest.post('/carts', (req, res, ctx) => {
-  const productInfo = req.body as CartInfoType;
+  const productInfo = req.body as CartItemType;
+
   const cartData = cartDataStorage.get();
   if (cartData) {
     const currentCartData = JSON.parse(cartData);

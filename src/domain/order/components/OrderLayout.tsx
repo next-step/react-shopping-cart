@@ -1,7 +1,7 @@
 import { CartTotal } from '../../cart/components';
 import styled from '@emotion/styled';
 import { mediaQuery } from '../../../utils';
-import { CartDispatchType, CartType } from '../../../context/CartContext';
+import { CartDispatchType, CartListType } from '../../../context/CartContext';
 import OrderList from './OrderList';
 
 const S = {
@@ -17,7 +17,7 @@ const S = {
 };
 
 interface SectionCartListProps {
-  cartState: CartType;
+  cartState: CartListType;
   cartDispatch: CartDispatchType;
 }
 const OrderLayout = ({ cartState, cartDispatch }: SectionCartListProps) => {

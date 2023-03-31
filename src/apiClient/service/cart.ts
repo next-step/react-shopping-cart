@@ -1,7 +1,7 @@
 import httpRequest from '../httpRequest';
-import { CartInfoType } from '../../types';
+import { CartItemType } from '../../types';
 
-export const updateCartList = (payload?: CartInfoType) =>
+export const updateCartList = (payload?: CartItemType) =>
   httpRequest({
     url: `/carts`,
     method: 'POST',

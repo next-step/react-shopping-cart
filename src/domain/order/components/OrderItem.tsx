@@ -1,10 +1,10 @@
-import { CartInfoType } from '../../../types';
+import { CartItemType } from '../../../types';
 import { CartDispatchType } from '../../../context/CartContext';
 import Checkbox from '../../../components/input/Checkbox';
 import { CONFIRM } from '../../../constant';
 
 interface CartItemProps {
-  productInfo: CartInfoType;
+  productInfo: CartItemType;
   cartDispatch: CartDispatchType;
 }
 

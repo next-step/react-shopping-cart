@@ -6,71 +6,57 @@ import {
   useEffect,
   useReducer,
 } from 'react';
-import { CartInfoType } from '../types';
+import { CartItemType, ProductDataType } from '../types';
 
-export interface CartType {
+export interface CartListType {
   totalPrice: number;
   totalCount: number;
-  products: CartInfoType[];
+  products: CartItemType[];
 }
 
-export type CartDispatchType = Dispatch<Action>;
-const CartStateContext = createContext<CartType | null>(null);
-const CartDispatchContext = createContext<CartDispatchType | null>(null);
-const initData = {
-  totalPrice: 2,
-  totalCount: 1,
-  products: [
-    {
-      id: 1675351764412,
-      select: true,
-      product: {
-        id: 1,
-        name: '[리뉴얼]젓가락(종이)-정성을 담아',
-        price: 21800,
-        imageUrl:
-          'https://cdn-mart.baemin.com/sellergoods/main/5297837f-5ecd-4945-be2f-4a75854cd06e.jpg',
-        totalQuantity: 1,
-        totalPrice: 21800,
-      },
-    },
-    {
-      id: 1675352324224,
-      select: true,
-      product: {
-        id: 2,
-        name: '젓가락(종이)-웬만해선 이 맛을 막을 수 없다',
-        price: 21800,
-        imageUrl:
-          'https://cdn-mart.baemin.com/sellergoods/main/1b6e926b-52a3-4a92-8db5-fddaccdb2583.jpg',
-        totalQuantity: 1,
-        totalPrice: 21800,
-      },
-    },
-  ],
+type CartDispatchAction =
+  | { type: 'ADD_CART'; product: ProductDataType }
+  | { type: 'COUNT_UP_ITEM'; selectId: number }
+  | { type: 'COUNT_DOWN_ITEM'; selectId: number }
+  | { type: 'DELETE_ITEM'; selectId: number }
+  | { type: 'DELETE_SELECT_ITEM' }
+  | { type: 'SELECT_ITEM'; selectId: number }
+  | { type: 'SELECT_ALL_ITEM' }
+  | { type: 'CALCULATE_CART' };
+
+const initCartData = {
+  totalCount: 0,
+  totalPrice: 0,
+  products: [],
 };
 
-type Action =
-  | { type: 'CALCULATE_CART' }
-  | { type: 'COUNT_UP'; selectId: number }
-  | { type: 'COUNT_DOWN'; selectId: number }
-  | { type: 'DELETE'; selectId: number }
-  | { type: 'SELECT_DELETE' }
-  | { type: 'CHECKED'; selectId: number }
-  | { type: 'All_CHECKED' };
+export type CartDispatchType = Dispatch<CartDispatchAction>;
+const CartStateContext = createContext<CartListType | null>(null);
+const CartDispatchContext = createContext<CartDispatchType | null>(null);
 
-const cartReducer = (state: CartType, action: Action): CartType => {
+const cartReducer = (
+  state: CartListType,
+  action: CartDispatchAction
+): CartListType => {
   switch (action.type) {
-    case 'CALCULATE_CART':
+    case 'ADD_CART':
       return {
         ...state,
-        totalCount: state.products.filter((item) => item.select).length,
-        totalPrice: state.products
-          .filter((item) => item.select)
-          .map((item) => item.product.totalPrice)
-          .reduce((a, b) => a + b, 0),
+        products: [
+          ...state.products,
+          {
+            id: action.product.id,
+            select: true,
+            product: {
+              ...action.product,
+              totalPrice: action.product.price,
+              totalQuantity: 1,
+            },
+          },
+        ],
       };
-    case 'COUNT_UP':
+
+    case 'COUNT_UP_ITEM':
       return {
         ...state,
         products: state.products.map((item) => {
@@ -92,7 +78,7 @@ const cartReducer = (state: CartType, action: Action): CartType => {
           }
         }),
       };
-    case 'COUNT_DOWN':
+    case 'COUNT_DOWN_ITEM':
       return {
         ...state,
         products: state.products.map((item) => {
@@ -114,17 +100,31 @@ const cartReducer = (state: CartType, action: Action): CartType => {
           }
         }),
       };
-    case 'SELECT_DELETE':
-      return {
-        ...state,
-        products: state.products.filter((item) => !item.select),
-      };
-    case 'DELETE':
+    case 'DELETE_ITEM':
       return {
         ...state,
         products: state.products.filter((item) => item.id !== action.selectId),
       };
-    case 'All_CHECKED':
+    case 'DELETE_SELECT_ITEM':
+      return {
+        ...state,
+        products: state.products.filter((item) => !item.select),
+      };
+    case 'SELECT_ITEM':
+      return {
+        ...state,
+        products: state.products.map((item) => {
+          if (item.id === action.selectId) {
+            return {
+              ...item,
+              select: !item.select,
+            };
+          } else {
+            return item;
+          }
+        }),
+      };
+    case 'SELECT_ALL_ITEM':
       if (state.products.some((item) => item.select)) {
         return {
           ...state,
@@ -146,31 +146,24 @@ const cartReducer = (state: CartType, action: Action): CartType => {
           }),
         };
       }
-
-    case 'CHECKED':
+    case 'CALCULATE_CART':
       return {
         ...state,
-        products: state.products.map((item) => {
-          if (item.id === action.selectId) {
-            return {
-              ...item,
-              select: !item.select,
-            };
-          } else {
-            return item;
-          }
-        }),
+        totalCount: state.products.filter((item) => item.select).length,
+        totalPrice: state.products
+          .filter((item) => item.select)
+          .map((item) => item.product.totalPrice)
+          .reduce((a, b) => a + b, 0),
       };
   }
 };
 
 export const CartProvider = ({ children }: PropsWithChildren) => {
-  const [cartState, cartDispatch] = useReducer(cartReducer, initData);
+  const [cartState, cartDispatch] = useReducer(cartReducer, initCartData);
 
   useEffect(() => {
-    console.log(cartState.totalPrice);
     cartDispatch({ type: 'CALCULATE_CART' });
-  }, [cartState.totalPrice, cartState.products]);
+  }, [cartState.products]);
 
   return (
     <CartStateContext.Provider value={cartState}>
@@ -183,12 +176,12 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
 
 export const useCartState = () => {
   const state = useContext(CartStateContext);
-  if (!state) throw new Error('Cannot CartStateContext ');
+  if (!state) throw new Error('Cannot found CartStateContext ');
   return state;
 };
 
 export const useCartDispatch = () => {
   const dispatch = useContext(CartDispatchContext);
-  if (!dispatch) throw new Error('Cannot CartDispatchContext ');
+  if (!dispatch) throw new Error('Cannot found CartDispatchContext ');
   return dispatch;
 };

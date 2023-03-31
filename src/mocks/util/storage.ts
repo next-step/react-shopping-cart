@@ -1,8 +1,8 @@
-import { CartInfoType } from '../../types';
+import { CartItemType } from '../../types';
 
 export const cartDataStorage = {
   get: () => window.localStorage.getItem('cartData'),
-  set: (newCartData: CartInfoType[]) => {
+  set: (newCartData: CartItemType[]) => {
     window.localStorage.setItem('cartData', JSON.stringify(newCartData));
   },
 };

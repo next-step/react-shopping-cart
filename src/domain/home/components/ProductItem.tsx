@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { ProductInfoType } from '../../../types';
+import { ProductDataType } from '../../../types';
 import { SvgCart } from '../../../assets/svg';
 import { priceFormat } from '../../../utils';
 
@@ -40,7 +40,7 @@ const ProductItem = ({
   imageUrl,
   onClickProductImage,
   onClickAddCart,
-}: ProductInfoType) => {
+}: ProductDataType) => {
   return (
     <S.Wrapper>
       <S.ImgWrap onClick={onClickProductImage}>
