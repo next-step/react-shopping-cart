@@ -12,9 +12,11 @@ export const Button = styled.button<ButtonProps>`
       width: 100%;
     `}
 
-  ${({ size }) => css`
-    padding: ${ButtonSize[size]};
-  `}
+  ${({ size }) =>
+    size &&
+    css`
+      padding: ${ButtonSize[size]};
+    `}
 
   ${({ theme, color = 'gray07', variant }) =>
     variant === 'outlined'

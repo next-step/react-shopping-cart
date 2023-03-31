@@ -9,7 +9,12 @@ const Button = ({
   ...attributes
 }: ButtonProps) => {
   return (
-    <Styled.Button as={href ? 'a' : 'button'} color={color} {...attributes}>
+    <Styled.Button
+      as={href ? 'a' : 'button'}
+      href={href}
+      color={color}
+      {...attributes}
+    >
       {children}
     </Styled.Button>
   );

@@ -16,7 +16,7 @@ export const ButtonVariant = {
 };
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  size: keyof typeof ButtonSize;
+  size?: keyof typeof ButtonSize;
   variant: keyof typeof ButtonVariant;
 
   href?: string;
