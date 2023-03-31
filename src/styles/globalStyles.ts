@@ -36,10 +36,6 @@ export const globalStyles = css`
     text-decoration: none;
     color: inherit;
     width: max-content;
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
 
   ol,

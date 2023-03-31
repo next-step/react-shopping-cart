@@ -1,3 +1,4 @@
+/* margin */
 .mt-1 {
   margin-top: 1px;
 }
@@ -9,4 +10,14 @@
 }
 .mt-10 {
   margin-top: 10px;
+}
+
+/* height */
+.h-full {
+  height: 100%;
+}
+
+/* user-select */
+.select-none {
+  user-select: none;
 }
