@@ -1,15 +1,13 @@
-import * as orderApi from '@/api/order';
 import { Button, Divider, Text } from '@/components/common';
 import { useCartContext } from '@/components/domain/Cart/CartContext';
 import { ORDER_CONFIRM_MESSAGE } from '@/constant/message';
-import useHttp from '@/hooks/useHttp';
+import { ORDER } from '@/constant/stateKey';
 import { useRouter } from '@/routes/useRouter';
 import { currency } from '@/utils/filter/currency';
 
 const CartOrderDisplaySection = () => {
   const { go } = useRouter();
   const { selectedItems, removeSelectedItems } = useCartContext();
-  const { sendRequest } = useHttp(orderApi.postAddOrder);
   const selectedCounts = selectedItems.reduce(
     (accQty, { quantity }) => accQty + quantity,
     0
@@ -23,8 +21,11 @@ const CartOrderDisplaySection = () => {
   const handleClickOrder = async () => {
     const result = confirm(ORDER_CONFIRM_MESSAGE);
     if (!result) return;
-    await sendRequest(generateOrderObj(selectedItems));
-    go('/payment');
+    go('/payment', {
+      state: {
+        [ORDER]: selectedItems,
+      },
+    });
     removeSelectedItems();
   };
 
