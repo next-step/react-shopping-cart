@@ -11,7 +11,6 @@ const Payment = () => {
   const { state: orderState } = useLocation();
   const { [ORDER]: order = [] } = orderState;
   const hasOrder = order.length > 0;
-  console.log(hasOrder);
 
   if (!hasOrder) {
     return (
