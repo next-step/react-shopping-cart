@@ -27,3 +27,14 @@ export const postCart = rest.post(`${process.env.REACT_APP_SERVER_HOST}/carts`, 
     })
   );
 })
+
+export const deleteCart = rest.delete(`${process.env.REACT_APP_SERVER_HOST}/carts/:id`, (req, res, ctx) => {
+  const { id } = req.params;
+
+  return res(
+    ctx.status(200),
+    ctx.json({
+      id: Number(id),
+    })
+  );
+})

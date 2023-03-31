@@ -1,17 +1,24 @@
-import { useMutation, useQuery } from 'react-query';
 import { atom, useSetRecoilState } from 'recoil';
-import { addCart, deleteCart, getCarts } from 'services/cart';
+import { deleteCart } from 'services/cart';
 import { MAX_QUANTITY, MIN_QUANTITY } from 'constant';
-
-const CART = 'cart'
 
 export const cartsState = atom<UserCart[]>({
   key: 'selectCartsState',
   default: [] as UserCart[]
 });
 
-export function useCart() {
+type UserCartType = {
+  selectCart: (item: UserCart) => void;
+  setAllChecked: (checked: boolean, items: UserCart[]) => void;
+  setCarts: (items: UserCart[]) => void;
+  deleteCartItem: (itemId: number) => void;
+  deleteCartItems: (items: UserCart[]) => void;
+  increaseCartItemQuantity: (itemId: number) => void;
+  decreaseCartItemQuantity: (itemId: number) => void;
+};
 
+export function useCart(): UserCartType {
+  // TODO useState
   const setUserCartsState = useSetRecoilState(cartsState)
 
   const selectCart = (item: UserCart) => {
@@ -69,17 +76,3 @@ export function useCart() {
   return { selectCart, setAllChecked, setCarts, deleteCartItem, deleteCartItems, increaseCartItemQuantity, decreaseCartItemQuantity };
 }
 
-export function useCartList() {
-  return useQuery(CART, getCarts);
-}
-
-export function useAddCart() {
-  return useMutation((item: Product) => addCart(item), {
-    onSuccess: (newCartItem) => {
-      console.log("success", newCartItem)
-    },
-    onError: (error: Error) => {
-      throw new Error(`Failed to add cart item: ${error.message}`);
-    },
-  });
-}

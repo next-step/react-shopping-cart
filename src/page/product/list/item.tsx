@@ -6,7 +6,7 @@ import { printWon } from "common/util";
 import { useRouter } from "hooks/useRouter";
 import { ROUTE } from "router";
 import { handleModal } from "common/modal";
-import { useAddCart } from "hooks/cart";
+import { useAddCart } from "hooks/cart/useAddCart";
 
 type ItemProps = {
   item: Product;

@@ -455,6 +455,54 @@
           "quantity": 12
         }
       ]
+    },
+    {
+      "id": 1680279039577,
+      "orderDetails": [
+        {
+          "id": 4,
+          "name": "리치스 스위트콘 대 2.95kg",
+          "price": 4780,
+          "imageUrl": "https://cdn-mart.baemin.com/sellergoods/main/ff297e50-7d6b-4a87-8509-b387442ff877.jpg",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 1680279050756,
+      "orderDetails": [
+        {
+          "id": 4,
+          "name": "리치스 스위트콘 대 2.95kg",
+          "price": 4780,
+          "imageUrl": "https://cdn-mart.baemin.com/sellergoods/main/ff297e50-7d6b-4a87-8509-b387442ff877.jpg",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 1680279177526,
+      "orderDetails": [
+        {
+          "id": 4,
+          "name": "리치스 스위트콘 대 2.95kg",
+          "price": 4780,
+          "imageUrl": "https://cdn-mart.baemin.com/sellergoods/main/ff297e50-7d6b-4a87-8509-b387442ff877.jpg",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 1680279184296,
+      "orderDetails": [
+        {
+          "id": 4,
+          "name": "리치스 스위트콘 대 2.95kg",
+          "price": 4780,
+          "imageUrl": "https://cdn-mart.baemin.com/sellergoods/main/ff297e50-7d6b-4a87-8509-b387442ff877.jpg",
+          "quantity": 1
+        }
+      ]
     }
   ]
 }

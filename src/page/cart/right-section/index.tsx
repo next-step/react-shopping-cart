@@ -1,6 +1,6 @@
 import { handleModal } from "common/modal";
 import { printWon } from "common/util";
-import { cartsState, useCart } from "hooks/cart";
+import { cartsState, useCart } from "hooks/cart/useCart";
 import { useOrder } from "hooks/order";
 import { useRouter } from "hooks/useRouter";
 import { useRecoilValue } from "recoil";

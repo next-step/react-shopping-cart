@@ -10,8 +10,8 @@ import { printWon } from "common/util";
 import { useRouter } from "hooks/useRouter";
 import { ROUTE } from "router";
 import { useEffect, useState } from "react";
-import { useAddCart } from "hooks/cart";
 import { handleModal } from "common/modal";
+import { useAddCart } from "hooks/cart/useAddCart";
 
 export const Contents = () => {
   const { id } = useParams<{ id: string }>();

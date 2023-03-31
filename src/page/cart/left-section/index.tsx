@@ -1,11 +1,13 @@
 import Item from "./item";
-import { cartsState, useCart, useCartList } from "hooks/cart";
+import { cartsState, useCart } from "hooks/cart/useCart";
 import { useEffect } from "react";
 import { useRecoilValue } from "recoil";
-import CheckBox, { useCheckBox } from "components/common/checkBox";
+import CheckBox from "components/common/checkBox";
 import Button from "components/common/button";
 import Divider from "components/common/dvider";
 import { handleModal } from "common/modal";
+import { useCheckBox } from "hooks/\buseCheckBox";
+import { useCartList } from "hooks/cart/useCartList";
 
 const cartOrderText = (items: UserCart[]) => {
   return items.length ? `든든배송 상품(${items.length} 개)` : "";
@@ -48,9 +50,8 @@ const LeftSection = () => {
     });
   };
 
-  const isAllCheck = () => {
-    return carts.every((item) => item.checked);
-  };
+  // useMemo, useCallBack 활용
+  const isAllCheck = carts.every((item) => item.checked);
 
   return (
     <section className="cart-left-section">
@@ -58,7 +59,7 @@ const LeftSection = () => {
         <CheckBox
           label="선택해제"
           onSelect={handleSelect}
-          checked={isAllCheck()}
+          checked={isAllCheck}
         />
         <Button handleDeleteAll={handleDeleteAll} text="상품삭제" />
       </div>

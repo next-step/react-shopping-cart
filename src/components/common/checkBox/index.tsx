@@ -1,18 +1,9 @@
-import { useState } from "react";
-
 type Props = {
   label?: string;
   checked?: boolean;
   onSelect?: () => void;
 };
 
-export const useCheckBox = (initialState = false) => {
-  const [checked, setChecked] = useState(initialState);
-  return {
-    checked,
-    handleSelect: () => setChecked((prev) => !prev),
-  };
-};
 
 const CheckBox = ({ checked, onSelect, label }: Props) => {
   return (

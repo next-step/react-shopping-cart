@@ -2,8 +2,9 @@ import trash from "assets/svgs/trash.svg";
 import { printWon } from "common/util";
 
 import { handleModal } from "common/modal";
-import { useCart } from "hooks/cart";
-import CheckBox, { useCheckBox } from "components/common/checkBox";
+import { useCart } from "hooks/cart/useCart";
+import CheckBox from "components/common/checkBox";
+import { useCheckBox } from "hooks/\buseCheckBox";
 
 type ItemProps = {
   item: UserCart;

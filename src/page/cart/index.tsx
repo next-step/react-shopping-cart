@@ -5,8 +5,8 @@ import "./style.css";
 import LeftSection from "./left-section";
 import RightSection from "./right-section";
 
-import { useCartList } from "hooks/cart";
 import { Header } from "common/ui/header";
+import { useCartList } from "hooks/cart/useCartList";
 
 const CartContent = () => {
   const { data, isLoading, isError } = useCartList();
