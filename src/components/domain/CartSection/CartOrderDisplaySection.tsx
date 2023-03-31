@@ -6,7 +6,7 @@ import useHttp from '@/hooks/useHttp';
 import { useRouter } from '@/routes/useRouter';
 import { currency } from '@/utils/filter/currency';
 
-const CartRightSection = () => {
+const CartOrderDisplaySection = () => {
   const { go } = useRouter();
   const { selectedItems, removeSelectedItems } = useCartContext();
   const { sendRequest } = useHttp(orderApi.postAddOrder);
@@ -51,7 +51,7 @@ const CartRightSection = () => {
   );
 };
 
-export default CartRightSection;
+export default CartOrderDisplaySection;
 
 const generateOrderObj = (
   selectedItems: UserCart[]

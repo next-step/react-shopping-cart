@@ -9,7 +9,7 @@ import { REMOVE_CONFIRM_MESSAGE } from '@/constant/message';
 import useEffectOnce from '@/hooks/useEffectOnce';
 import useHttp from '@/hooks/useHttp';
 
-const CartLeftSection = () => {
+const CartListSection = () => {
   const {
     sendRequest,
     loading,
@@ -76,6 +76,6 @@ const CartLeftSection = () => {
   );
 };
 
-export default CartLeftSection;
+export default CartListSection;
 
 const SINGLE_PAGE_SIZE = 5;
