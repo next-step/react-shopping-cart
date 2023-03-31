@@ -25,7 +25,7 @@ const CheckBox = ({ checked, onSelect, label }: PropsWithChildren<Props>) => {
           checked={checked}
           readOnly
         />
-        <span>{label && label}</span>
+        {label && <span>{label}</span>}
       </label>
     </div>
   );
