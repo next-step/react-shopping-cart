@@ -1,51 +1,72 @@
-import { useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
+import { atom, useSetRecoilState } from 'recoil';
 import { addCart, deleteCart, getCarts } from 'services/cart';
-import { CartItem, ProductItem } from 'types/type';
+import { MAX_QUANTITY, MIN_QUANTITY } from 'constant';
 
 const CART = 'cart'
 
+export const cartsState = atom<UserCart[]>({
+  key: 'selectCartsState',
+  default: [] as UserCart[]
+});
+
 export function useCart() {
-  const [carts, setCarts] = useState<CartItem[]>([]);
 
-  console.log("testtest")
-  const addTempCart = (checked: boolean, item: any, quantity?: number) => {
-    if (checked) {
-      console.log("if :: ", checked)
-      setCarts((prevTempCartState) => [
-        ...prevTempCartState,
-        {
-          id: item.id,
-          product: {
-            id: item.id,
-            imageUrl: item.imageUrl,
-            name: item.name,
-            price: item.price
-          },
-          quantity: quantity ? quantity : 1,
-          checked
-        },
-      ]);
-    } else {
-      setCarts((prevTempCartState) => {
-        const updatedTempCartItems = prevTempCartState.filter(
-          (tempCartItem) => tempCartItem.id !== item.id
-        );
-        return updatedTempCartItems;
+  const setUserCartsState = useSetRecoilState(cartsState)
+
+  const selectCart = (item: UserCart) => {
+    setUserCartsState((prevState) =>
+      prevState.map((cart: UserCart) => {
+        return cart.id === item.id
+          ? { ...cart, checked: !cart.checked }
+          : cart;
       })
-    }
+    );
   }
 
-  const addTempAllCart = (checked: boolean, items: any) => {
-    console.log("checked :: ", checked)
-    if (checked) {
-      setCarts(items)
-    } else {
-      setCarts([]);
-    }
+  const setCarts = (items: UserCart[]) => {
+    setUserCartsState(items);
   }
 
-  return { carts, setCarts, addTempCart, addTempAllCart };
+  const setAllChecked = (checked: boolean, items: UserCart[]) => {
+    setUserCartsState(items.map((cart: UserCart) => ({ ...cart, checked: checked })));
+  }
+
+  const deleteCartItems = async (items: UserCart[]) => {
+    const deleteIds = items
+      .filter(item => item.checked)
+      .map(checkItems => checkItems.id)
+
+    deleteIds.forEach((cartId) => {
+      deleteCart(cartId.toString());
+    });
+  }
+
+  const deleteCartItem = async (itemId: string) => {
+    deleteCart(itemId);
+  }
+
+  const increaseCartItemQuantity = (itemId: number) => {
+    setUserCartsState((prevState) =>
+      prevState.map((cart) => {
+        return cart.id === itemId
+          ? { ...cart, quantity: (cart.quantity === 20 ? MAX_QUANTITY : cart.quantity + 1) }
+          : cart;
+      })
+    );
+  }
+
+  const decreaseCartItemQuantity = (itemId: number) => {
+    setUserCartsState((prevState) =>
+      prevState.map((cart) => {
+        return cart.id === itemId
+          ? { ...cart, quantity: (cart.quantity === 1 ? MIN_QUANTITY : cart.quantity - 1) }
+          : cart;
+      })
+    );
+  }
+
+  return { selectCart, setAllChecked, setCarts, deleteCartItem, deleteCartItems, increaseCartItemQuantity, decreaseCartItemQuantity };
 }
 
 export function useCartList() {
@@ -53,7 +74,7 @@ export function useCartList() {
 }
 
 export function useAddCart() {
-  return useMutation((item: ProductItem) => addCart(item), {
+  return useMutation((item: Product) => addCart(item), {
     onSuccess: (newCartItem) => {
       console.log("success", newCartItem)
     },
@@ -62,12 +83,3 @@ export function useAddCart() {
     },
   });
 }
-
-export function useDeleteCart() {
-
-  const deleteCartItem = async (itemId: number) => {
-    deleteCart(itemId);
-  }
-
-  return { deleteCartItem }
-};

@@ -1,5 +1,4 @@
 import { printWon } from "common/util";
-import { OrderDetail } from "types/type";
 
 type OrderRightSectionProps = {
   orderList: OrderDetail[];

@@ -1,4 +1,3 @@
-import { OrderDetail } from "types/type";
 import DetailItem from "../detail";
 
 type OrderListHeaderProps = {

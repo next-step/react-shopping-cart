@@ -1,68 +1,44 @@
-import { CartItem } from "types/type";
-
 import trash from "assets/svgs/trash.svg";
-import { useEffect, useState } from "react";
 import { printWon } from "common/util";
 
 import { handleModal } from "common/modal";
-import { useCart, useDeleteCart } from "hooks/cart";
-import { useOrder } from "hooks/order";
+import { useCart } from "hooks/cart";
+import CheckBox, { useCheckBox } from "components/common/checkBox";
 
 type ItemProps = {
-  item: CartItem;
-  isAllChecked: boolean;
+  item: UserCart;
 };
 
-const Item = ({ item, isAllChecked }: ItemProps) => {
-  const { addTempCart } = useCart();
-  const { updateCartQuantity } = useOrder();
-  const { deleteCartItem } = useDeleteCart();
-  const [quantity, setQuantity] = useState(1);
-  const [singleChecked, setSingleChecked] = useState(false);
+const Item = ({ item }: ItemProps) => {
+  const {
+    selectCart,
+    deleteCartItem,
+    increaseCartItemQuantity,
+    decreaseCartItemQuantity,
+  } = useCart();
 
-  useEffect(() => {
-    if (quantity < 1) {
-      alert("최소 수량은 1개 입니다.");
-      setQuantity(quantity + 1); // 1개로 초기화
-      return;
-    }
-    if (quantity > 20) {
-      alert("최대 수량은 20개 입니다.");
-      setQuantity(quantity - 1); // 20개로 초기화
-      return;
-    }
+  const { handleSelect } = useCheckBox();
 
-    updateCartQuantity(item.product.id, quantity);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [quantity]);
-
-  useEffect(() => {
-    return addTempCart(singleChecked, item, quantity);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [singleChecked]);
+  const handleSelectItem = () => {
+    handleSelect();
+    selectCart(item);
+  };
 
   const handleDeleteCartItem = () => {
     handleModal({
       title: "삭제",
       message: "장바구니 목록에서 삭제하시겠습니까?",
-      onConfirm: () => deleteCartItem(item.id),
+      onConfirm: () => deleteCartItem(String(item.id)),
     });
   };
 
-  console.log("item", item)
   if (item.product === null) return <></>;
+
   return (
     <>
       <div className="cart-container">
         <div className="flex gap-15 mt-10">
-          <input
-            className="checkbox"
-            name="checkbox"
-            type="checkbox"
-            readOnly
-            checked={item?.checked ? item.checked : singleChecked}
-            onClick={() => setSingleChecked(!singleChecked)}
-          />
+          <CheckBox checked={item.checked} onSelect={handleSelectItem} />
           <img
             className="w-144 h-144"
             src={item.product.imageUrl}
@@ -82,25 +58,25 @@ const Item = ({ item, isAllChecked }: ItemProps) => {
               type="number"
               className="number-input"
               readOnly
-              value={quantity}
+              value={item.quantity}
             />
             <div>
               <button
                 className="number-input-button"
-                onClick={() => setQuantity(quantity + 1)}
+                onClick={() => increaseCartItemQuantity(item.id)}
               >
                 ▲
               </button>
               <button
                 className="number-input-button"
-                onClick={() => setQuantity(quantity - 1)}
+                onClick={() => decreaseCartItemQuantity(item.id)}
               >
                 ▼
               </button>
             </div>
           </div>
           <span className="cart-price">
-            {printWon(item.product.price * quantity)}
+            {printWon(item.product.price * item.quantity)}
           </span>
         </div>
       </div>

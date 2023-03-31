@@ -9,7 +9,6 @@ import { useSelectedProduct } from "hooks/product";
 import { printWon } from "common/util";
 import { useRouter } from "hooks/useRouter";
 import { ROUTE } from "router";
-import { ProductItem } from "types/type";
 import { useEffect, useState } from "react";
 import { useAddCart } from "hooks/cart";
 import { handleModal } from "common/modal";
@@ -20,7 +19,7 @@ export const Contents = () => {
   const { mutate } = useAddCart();
   const { data, isLoading, isError } = useSelectedProduct(Number(id));
 
-  const [product, setProduct] = useState<ProductItem>({} as ProductItem);
+  const [product, setProduct] = useState<Product>({} as Product);
 
   useEffect(() => {
     if (isError) {
@@ -45,7 +44,7 @@ export const Contents = () => {
 
   const HandleAddCart = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    item: ProductItem
+    item: Product
   ) => {
     e.stopPropagation();
     mutate(item);

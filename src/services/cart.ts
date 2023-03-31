@@ -1,18 +1,17 @@
 import { destroy, get, post } from "services";
-import { CartItem, ProductItem } from "types/type";
 
 const CARTS = "/carts";
 
-export const getCarts = async (): Promise<CartItem[]> => {
+export const getCarts = async (): Promise<Cart[]> => {
   const { data } = await get(CARTS);
   return data;
 }
 
-export const addCart = async (item: ProductItem): Promise<CartItem> => {
+export const addCart = async (item: Product): Promise<Cart> => {
   const { data } = await post(CARTS, { product: item });
   return data;
 }
 
-export const deleteCart = async (id: number): Promise<any> => {
+export const deleteCart = async (id: string): Promise<any> => {
   return destroy(`${CARTS}/${id}`);
 }

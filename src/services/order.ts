@@ -1,5 +1,4 @@
 import { get, post } from "services";
-import { Order, OrderDetail } from "types/type";
 
 const ORDERS = "/orders";
 

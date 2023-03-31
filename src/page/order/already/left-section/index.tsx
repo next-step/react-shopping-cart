@@ -1,5 +1,4 @@
 import React from "react";
-import { OrderDetail } from "types/type";
 
 const DEFAULT_QUANTITY = 1;
 

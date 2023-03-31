@@ -1,7 +1,6 @@
 import { UseQueryResult, useMutation, useQuery } from 'react-query';
-import { atom, useSetRecoilState } from 'recoil';
+import { atom } from 'recoil';
 import { addOrder, getOrders } from 'services/order';
-import { Order, OrderDetail } from 'types/type';
 
 const ORDER = 'order'
 
@@ -16,7 +15,8 @@ export function useOrderList(): UseQueryResult<Order[], Error> {
   return { data, isLoading, isError } as UseQueryResult<Order[], Error>;
 }
 
-export function useAddOrder() {
+export function useOrder() {
+
   return useMutation((item: OrderDetail[]) => addOrder(item), {
     onSuccess: (orderItem) => {
       console.log("success", orderItem)
@@ -25,74 +25,4 @@ export function useAddOrder() {
       throw new Error(`Failed to add cart item: ${error.message}`);
     },
   });
-}
-
-
-export function useOrder() {
-  const setTempOrderState = useSetRecoilState(tempOrderState);
-
-  // const addTempCart = (checked: boolean, item: any, quantity?: number) => {
-  //   const { product: { id, imageUrl, name, price } } = item
-  //   if (checked) {
-  //     console.log("if :: ", checked)
-  //     setTempOrderState((prevTempCartState) => [
-  //       ...prevTempCartState,
-  //       {
-  //         id,
-  //         imageUrl,
-  //         name,
-  //         quantity: quantity ? quantity : 1,
-  //         price,
-  //         checked
-  //       },
-  //     ]);
-  //   } else {
-  //     setTempOrderState((prevTempCartState) => {
-  //       const updatedTempCartItems = prevTempCartState.filter(
-  //         (tempCartItem) => tempCartItem.id !== id
-  //       );
-  //       return updatedTempCartItems;
-  //     })
-  //   }
-  // }
-
-  const addTempAllCart = (checked: boolean, items: any) => {
-    console.log("checked :: ", checked)
-    if (checked) {
-      setTempOrderState(() => {
-        const tempCartItems = items.map((item: any) => {
-          const { id, imageUrl, name, price } = item
-          return {
-            id,
-            imageUrl,
-            name,
-            quantity: 1,
-            price,
-            checked
-          }
-        });
-        return tempCartItems;
-      })
-    } else {
-      setTempOrderState([]);
-    }
-  }
-
-  const updateCartQuantity = (itemId: number, quantity: number) => {
-
-    setTempOrderState((prevTempCartState) => {
-      const updatedTempCartItems = prevTempCartState.map((tempCartItem) => {
-        if (tempCartItem.id === itemId) {
-          return {
-            ...tempCartItem,
-            quantity
-          };
-        }
-        return tempCartItem;
-      });
-      return updatedTempCartItems;
-    });
-  }
-
-  return { updateCartQuantity, addTempAllCart }
 }

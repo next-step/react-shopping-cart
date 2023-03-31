@@ -1,59 +1,72 @@
 import { handleModal } from "common/modal";
 import { printWon } from "common/util";
-import { useDeleteCart } from "hooks/cart";
-import { tempOrderState, useAddOrder } from "hooks/order";
+import { cartsState, useCart } from "hooks/cart";
+import { useOrder } from "hooks/order";
 import { useRouter } from "hooks/useRouter";
-import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { ROUTE } from "router";
 
 const RightSection = () => {
-  const order = useRecoilValue(tempOrderState);
+  const carts = useRecoilValue(cartsState);
 
-  const [totalPrice, setTotalPrice] = useState(0);
   const { go } = useRouter();
 
-  const { deleteCartItem } = useDeleteCart();
-  const { mutate } = useAddOrder();
+  const { deleteCartItems } = useCart();
 
-  useEffect(() => {
-    if (order.length) {
-      return setTotalPrice(
-        order
-          .map((v) => (v.price * v.quantity))
-          .reduce((a: number, b: number) => a + b)
-      );
-    }
-    return setTotalPrice(0);
-  }, [order]);
+  const { mutate } = useOrder();
 
   const orderText = () => {
-    return order.length ? `주문하기 (${order.length})` : "주문하기";
+    const orderCounter = carts.filter((v) => v.checked).length;
+    return orderCounter ? `주문하기 (${orderCounter})` : "주문하기";
   };
 
   const handleOrder = () => {
-    if (!order.length) {
+    if (!carts.length) {
       return alert("주문할 상품이 없습니다.");
     }
 
     return handleModal({
       title: `주문`,
-      message: `${order.length} 개의 상품을 주문하시겠습니까?`,
+      message: `${carts.length} 개의 상품을 주문하시겠습니까?`,
       onConfirm: () => {
-        deleteCartAndOrderItem();
+        order();
         go(ROUTE.ORDER_LIST);
       },
     });
   };
 
-  const deleteCartAndOrderItem = () => {
-    // TODO : 주문하기 버튼 클릭시 장바구니에서 삭제 refactor
-    mutate(order);
-    // eslint-disable-next-line array-callback-return
-    return order.map((item) => {
-      deleteCartItem(item.id);
-    });
+  const order = () => {
+    orderItem();
+    deleteCart();
   };
+
+  const deleteCart = () => {
+    deleteCartItems(carts);
+  };
+
+  const orderItem = () => {
+    const orderItem = carts
+      .filter((item) => item.checked)
+      .map(({ product, quantity }) => {
+        return {
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          imageUrl: product.imageUrl,
+          quantity,
+        };
+      }) as OrderDetail[];
+
+    mutate(orderItem);
+  };
+
+  const totalPrice = carts
+    .filter((v) => v.checked)
+    .reduce((acc, cur) => {
+      return acc + cur.product.price * cur.quantity;
+    }, 0);
+
+  const isOrder = carts.filter((v) => v.checked).length;
 
   return (
     <section className="cart-right-section">
@@ -66,8 +79,17 @@ const RightSection = () => {
           <span className="highlight-text">결제예상금액</span>
           <span className="highlight-text">{printWon(totalPrice)}</span>
         </div>
-        <div className="flex-center mt-30 mx-10" onClick={() => handleOrder()}>
-          <button className={order.length ? 'primary-button flex-center' : 'default-button flex-center'}>{orderText()}</button>
+        <div className="flex-center mt-30 mx-10">
+          <button
+            onClick={handleOrder}
+            className={
+              isOrder
+                ? "primary-button flex-center"
+                : "default-button flex-center"
+            }
+          >
+            {orderText()}
+          </button>
         </div>
       </div>
     </section>

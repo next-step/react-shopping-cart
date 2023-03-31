@@ -1,5 +1,4 @@
 import { printQuantity, printWon } from "common/util";
-import { OrderDetail } from "types/type";
 
 type DetailItemProps = {
   detailItem: OrderDetail;

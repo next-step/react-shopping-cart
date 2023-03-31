@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { ProductItem } from "types/type";
 import { ProductContainer } from "../style";
 import Item from "./item";
 import GlobalHeader from "components/header";
@@ -13,7 +12,7 @@ const ProductListPageContent = () => {
   const [page, setPage] = useState<number>(0);
   const { data, isLoading, isError } = useProductList(page, PAGE_SIZE);
 
-  const [products, setProducts] = useState<ProductItem[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [hasMore, setHasMore] = useState<boolean>(true);
 
   const { isLoading: isScrollLoading, setIsLoading: setScrollLoading } =
@@ -43,7 +42,7 @@ const ProductListPageContent = () => {
 
   return (
     <ProductContainer>
-      {products.map((item: ProductItem) => (
+      {products.map((item: Product) => (
         <Item key={"item" + item.id} item={item} />
       ))}
       {(isLoading || isScrollLoading) && hasMore && <div>Loading...</div>}

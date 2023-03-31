@@ -29,6 +29,7 @@
   "include": [
     "src",
     "src/**/*.ts",
+    "src/global.d.ts",
     "tests/**/*.ts"
   ]
 }

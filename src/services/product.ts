@@ -1,5 +1,4 @@
 import { get } from "services";
-import { ProductItem } from "types/type";
 
 const PRODUCTS = "/products";
 
@@ -8,13 +7,13 @@ type FetchProductsOptions = {
   limit: number;
 };
 
-export const fetchProducts = async (options: FetchProductsOptions): Promise<ProductItem[]> => {
+export const fetchProducts = async (options: FetchProductsOptions): Promise<Product[]> => {
   const { page, limit } = options;
   const { data } = await get(`${PRODUCTS}?_page=${page}&_limit=${limit}`);
   return data;
 }
 
-export const getProduct = async (id: number): Promise<ProductItem> => {
+export const getProduct = async (id: number): Promise<Product> => {
   const { data } = await get(`${PRODUCTS}/${id}`);
   return data;
 }

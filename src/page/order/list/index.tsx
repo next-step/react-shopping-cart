@@ -1,4 +1,3 @@
-import { Order } from "types/type";
 import "../order.css";
 import Nav from "components/nav";
 import { useOrderList } from "hooks/order";

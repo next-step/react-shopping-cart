@@ -1,5 +1,4 @@
 import { Icon } from "common/icon";
-import { ProductItem } from "types/type";
 import { Image, ItemInfo, ItemWrapper, Price, Title } from "../style";
 
 import cartSvg from "assets/svgs/cart.svg";
@@ -10,7 +9,7 @@ import { handleModal } from "common/modal";
 import { useAddCart } from "hooks/cart";
 
 type ItemProps = {
-  item: ProductItem;
+  item: Product;
 };
 
 const Item = ({ item }: ItemProps) => {
@@ -28,7 +27,7 @@ const Item = ({ item }: ItemProps) => {
 
   const HandleAddCart = (
     e: React.MouseEvent<HTMLImageElement, MouseEvent>,
-    item: ProductItem
+    item: Product
   ) => {
     e.stopPropagation();
     mutate(item);

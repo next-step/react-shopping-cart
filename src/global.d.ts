@@ -1,23 +1,26 @@
-export type ProductItem = {
+declare interface Product {
   id: number;
   name: string;
   price: number;
   imageUrl: string;
 }
 
-export type CartItem = {
+declare interface Cart {
   id: number;
-  product: ProductItem
-  quantity?: number;
-  checked?: boolean;
+  product: Product
 }
 
-export type Order = {
+declare interface UserCart extends Cart {
+  checked?: boolean;
+  quantity: number;
+}
+
+declare interface Order {
   id: number;
   orderDetails: OrderDetail[];
 }
 
-export type OrderDetail = {
+declare interface OrderDetail {
   id: number,
   name: string,
   price: number,
