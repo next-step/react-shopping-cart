@@ -1,19 +1,26 @@
-const PaymentTotalDisplaySection = () => {
+import { Button, Divider, Text } from '@/components/common';
+import { currency } from '@/utils/filter/currency';
+
+type Props = {
+  totalPrice: number;
+};
+
+const PaymentTotalDisplaySection = ({ totalPrice }: Props) => {
   return (
     <section className="order-right-section">
       <div className="order-right-section__top">
-        <h3 className="order-title">결제금액</h3>
+        <Text as="h3" className="order-title">
+          총 결제금액
+        </Text>
       </div>
-      <hr className="divide-line-thin" />
+      <Divider type="thin" />
       <div className="order-right-section__bottom">
         <div className="flex justify-between p-20 mt-20">
-          <span className="highlight-text">총 결제금액</span>
-          <span className="highlight-text">21,800원</span>
+          <Text>총 결제금액</Text>
+          <Text highlight>{currency(totalPrice)}</Text>
         </div>
         <div className="flex-center mt-30 mx-10">
-          <button className="primary-button flex-center">
-            21,800원 결제하기
-          </button>
+          <Button theme="primary">{currency(totalPrice)} 결제하기</Button>
         </div>
       </div>
     </section>

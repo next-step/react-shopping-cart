@@ -9,8 +9,12 @@ import { ORDER } from '@/constant/stateKey';
 
 const Payment = () => {
   const { state: orderState } = useLocation();
-  const { [ORDER]: order = [] } = orderState;
+  const { [ORDER]: order = [] } = orderState as { order: UserCart[] };
   const hasOrder = order.length > 0;
+  const orderTotalPrice = order.reduce(
+    (accPrice, { product, quantity }) => accPrice + product.price * quantity,
+    0
+  );
 
   if (!hasOrder) {
     return (
@@ -30,7 +34,7 @@ const Payment = () => {
       <Header title="주문/결제" />
       <div className="flex">
         <PaymentListSection order={order} />
-        <PaymentTotalDisplaySection />
+        <PaymentTotalDisplaySection totalPrice={orderTotalPrice} />
       </div>
     </section>
   );
