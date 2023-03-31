@@ -45,10 +45,8 @@ const getCartsList = rest.get('/carts', (req, res, ctx) => {
 const addItem = rest.post('/carts', (req, res, ctx) => {
   const productData = req.body as CartItemType;
   const cartData = cartDataStorage.get();
-  const newCartData = {
-    ...cartData,
-    products: [...cartData.products, productData],
-  };
+  const newCartData = [...cartData, productData];
+
   cartDataStorage.set(newCartData);
 
   console.log('현재 DB State', cartDataStorage.get());
@@ -59,10 +57,7 @@ const addItem = rest.post('/carts', (req, res, ctx) => {
 const deleteItem = rest.delete('/carts', (req, res, ctx) => {
   const selectId = req.body as number;
   const currentData = cartDataStorage.get();
-  cartDataStorage.set({
-    ...currentData,
-    products: currentData.products.filter((item) => item.id !== selectId),
-  });
+  cartDataStorage.set(currentData.filter((item) => item.id !== selectId));
 
   console.log('현재 DB State', cartDataStorage.get());
 
@@ -71,15 +66,13 @@ const deleteItem = rest.delete('/carts', (req, res, ctx) => {
 
 const deleteSelectItem = rest.delete('/carts', (req, res, ctx) => {
   const currentData = cartDataStorage.get();
-  cartDataStorage.set({
-    ...currentData,
-    products: currentData.products.filter((item) => !item.select),
-  });
+  cartDataStorage.set(currentData.filter((item) => !item.select));
 
   console.log('현재 DB State', cartDataStorage.get());
 
   return res(ctx.status(200));
 });
+
 interface updateType {
   selectId: number;
   count: number;
@@ -89,9 +82,8 @@ const updateItemCount = rest.put('/carts', (req, res, ctx) => {
 
   const currentData = cartDataStorage.get();
 
-  cartDataStorage.set({
-    ...currentData,
-    products: currentData.products.map((item) => {
+  cartDataStorage.set(
+    currentData.map((item) => {
       if (item.id === selectId) {
         return {
           ...item,
@@ -104,8 +96,8 @@ const updateItemCount = rest.put('/carts', (req, res, ctx) => {
       } else {
         return item;
       }
-    }),
-  });
+    })
+  );
 
   console.log('현재 DB State', cartDataStorage.get());
 
