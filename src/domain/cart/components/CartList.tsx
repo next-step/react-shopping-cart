@@ -13,6 +13,11 @@ const S = {
     fontSize: '20px',
     marginTop: '20px',
   }),
+  H4: styled.h4({
+    marginTop: '50px',
+    textAlign: 'center',
+    fontSize: '18px',
+  }),
 };
 
 interface CartListProps {
@@ -55,7 +60,7 @@ const CartList = ({ items, cartDispatch }: CartListProps) => {
           cartDispatch={cartDispatch}
         />
       ))}
-      {items.length === 0 && <div>장바구니가 비어있습니다.</div>}
+      {items.length === 0 && <S.H4>장바구니가 비어있습니다.</S.H4>}
     </S.Wrapper>
   );
 };
