@@ -45,7 +45,7 @@ const cartReducer = (
         products: [
           ...state.products,
           {
-            id: action.product.id,
+            id: state.products.length + 1,
             select: true,
             product: {
               ...action.product,
