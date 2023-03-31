@@ -4,7 +4,7 @@ import { AxiosError } from 'axios';
 import { useLocation } from 'react-router-dom';
 
 type UseQueryResultType<TData> = {
-  data?: TData | null;
+  data: TData | null;
   error: string | null;
   loading: boolean;
 };

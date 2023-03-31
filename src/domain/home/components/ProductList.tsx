@@ -1,7 +1,11 @@
 import { ProductItem } from '../components';
 import styled from '@emotion/styled';
 import { mediaQuery } from '../../../utils';
-import { PaginationInfoType, ProductDataType } from '../../../types';
+import {
+  CartProductType,
+  PaginationInfoType,
+  ProductDataType,
+} from '../../../types';
 import Pagination from '../../../components/pagination/Pagination';
 
 const S = {
@@ -28,7 +32,7 @@ const S = {
 interface ProductListProps {
   products: ProductDataType[];
   navigateToDetailedPage: (num?: number) => void;
-  addCart: (item: ProductDataType) => void;
+  addCart: (item: CartProductType) => void;
   pagination: PaginationInfoType;
 }
 
@@ -46,7 +50,9 @@ const ProductList = ({
             key={item.id}
             {...item}
             onClickProductImage={() => navigateToDetailedPage(item.id)}
-            onClickAddCart={() => addCart(item)}
+            onClickAddCart={() =>
+              addCart({ ...item, totalQuantity: 1, totalPrice: item.price })
+            }
           />
         ))}
       </S.ProductList>

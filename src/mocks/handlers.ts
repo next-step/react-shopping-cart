@@ -98,7 +98,6 @@ const updateItemCount = rest.put('/carts', (req, res, ctx) => {
       }
     })
   );
-
   console.log('현재 DB State', cartDataStorage.get());
 
   return res(ctx.status(200));

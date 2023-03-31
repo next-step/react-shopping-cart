@@ -1,10 +1,10 @@
 import { useCallback } from 'react';
 import { ROUTE } from '../../../router';
 import { CONFIRM } from '../../../constant';
-import { useRouter, useCustomQuery } from '../../../hooks';
-import { ProductDataType } from '../../../types';
+import { useRouter, useCustomQuery, useCustomMutation } from '../../../hooks';
+import { CartItemType, CartProductType, ProductDataType } from '../../../types';
 import { usePagination, KEY_PAGE } from '../../../hooks';
-import { useCartDispatch } from '../../../context/CartContext';
+import { addCartItem } from '../../../apiClient';
 
 interface ProductResponseType {
   productListPerPage: ProductDataType[];
@@ -20,14 +20,12 @@ const useProduct = () => {
   const { data, loading, error } = useCustomQuery<ProductResponseType>(
     `/products?${KEY_PAGE}=${currentPage}&${KEY_PRODUCT_COUNT}=${PRODUCT_COUNT}`
   );
-  // const { mutate } = useCustomMutation<unknown, CartItemType>((payload) =>
-  //   updateCartList(payload)
-  // );
-  const cartDispatch = useCartDispatch();
+  const { mutate } = useCustomMutation<unknown, CartItemType>((payload) =>
+    addCartItem(payload)
+  );
 
-  const addCart = useCallback(async (item: ProductDataType) => {
-    // await mutate({ id: Number(item.id), select: true, product: item });
-    cartDispatch({ type: 'ADD_CART', product: item });
+  const addCart = useCallback(async (item: CartProductType) => {
+    await mutate({ id: Number(item.id), select: true, product: item });
     confirmAndRoute(CONFIRM.CART_AND_ROUTE, ROUTE.CART);
   }, []);
 
