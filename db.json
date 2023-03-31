@@ -335,71 +335,7 @@
   ],
   "orders": [
     {
-      "id": 1680020433664,
-      "orderDetails": [
-        {
-          "id": 1,
-          "name": "리치스 스위트콘 대 2.95kg",
-          "price": 23900,
-          "imageUrl": "https://cdn-mart.baemin.com/sellergoods/main/ff297e50-7d6b-4a87-8509-b387442ff877.jpg",
-          "quantity": 5
-        },
-        {
-          "id": 2,
-          "imageUrl": "https://cdn-mart.baemin.com/sellergoods/main/6b95c66a-c13d-4ccd-9df5-b1af1428a225.jpg",
-          "name": "생새우살 (71/90) 500g 4개",
-          "quantity": 1,
-          "price": 29000
-        },
-        {
-          "id": 3,
-          "imageUrl": "https://cdn-mart.baemin.com/sellergoods/main/84fc0238-0239-4d0e-870b-a9daa6f2c42c.jpg",
-          "name": "펩시 콜라 355ml 24캔",
-          "quantity": 1,
-          "price": 83700
-        },
-        {
-          "id": 2,
-          "imageUrl": "https://cdn-mart.baemin.com/sellergoods/main/6b95c66a-c13d-4ccd-9df5-b1af1428a225.jpg",
-          "name": "생새우살 (71/90) 500g 4개",
-          "quantity": 1,
-          "price": 29000
-        },
-        {
-          "id": 6,
-          "imageUrl": "https://cdn-mart.baemin.com/goods/custom/20200427/9751-main-01.png",
-          "name": "야채고로케 (60g*18입) 1080g",
-          "quantity": 5,
-          "price": 11170
-        }
-      ]
-    },
-    {
-      "id": 1680021784347,
-      "orderDetails": [
-        {
-          "id": 6,
-          "imageUrl": "https://cdn-mart.baemin.com/goods/custom/20200427/9751-main-01.png",
-          "name": "야채고로케 (60g*18입) 1080g",
-          "quantity": 1,
-          "price": 11170
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "orderDetails": [
-        {
-          "id": 1,
-          "name": "펩시 콜라 355ml 24캔",
-          "price": 83700,
-          "imageUrl": "https://cdn-mart.baemin.com/sellergoods/main/84fc0238-0239-4d0e-870b-a9daa6f2c42c.jpg",
-          "quantity": 3
-        }
-      ]
-    },
-    {
-      "id": 1680257576470,
+      "id": 1680258852436,
       "orderDetails": [
         {
           "id": 6,
@@ -408,37 +344,6 @@
           "imageUrl": "https://cdn-mart.baemin.com/goods/custom/20200427/9751-main-01.png",
           "quantity": 1
         },
-        {
-          "id": 7,
-          "name": "식자재왕 김말이튀김 야채맛 1kg",
-          "price": 6580,
-          "imageUrl": "https://cdn-mart.baemin.com/sellergoods/bulk/20211210-155432/9416-main-01.jpg",
-          "quantity": 1
-        }
-      ]
-    },
-    {
-      "id": 1680257828780,
-      "orderDetails": [
-        {
-          "id": 7,
-          "name": "식자재왕 김말이튀김 야채맛 1kg",
-          "price": 6580,
-          "imageUrl": "https://cdn-mart.baemin.com/sellergoods/bulk/20211210-155432/9416-main-01.jpg",
-          "quantity": 1
-        },
-        {
-          "id": 8,
-          "name": "삼양 야채튀김 (60g*50±1/박스) 3kg",
-          "price": 24610,
-          "imageUrl": "https://cdn-mart.baemin.com/sellergoods/main/8916edff-9fa9-4538-95c3-13d463f58a86.jpg",
-          "quantity": 1
-        }
-      ]
-    },
-    {
-      "id": 1680257836261,
-      "orderDetails": [
         {
           "id": 7,
           "name": "식자재왕 김말이튀김 야채맛 1kg",
