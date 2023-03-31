@@ -14,7 +14,7 @@ export interface CartListType {
   products: CartItemType[];
 }
 
-type CartDispatchAction =
+export type CartDispatchAction =
   | { type: 'ADD_CART'; product: ProductDataType }
   | { type: 'COUNT_UP_ITEM'; selectId: number }
   | { type: 'COUNT_DOWN_ITEM'; selectId: number }

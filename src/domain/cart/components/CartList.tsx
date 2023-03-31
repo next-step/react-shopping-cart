@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
 import { CartItemType } from '../../../types';
 import { CartItem } from '../components';
-import { CartDispatchType } from '../../../context/CartContext';
 import Checkbox from '../../../components/input/Checkbox';
-import { CONFIRM } from '../../../constant';
+import { CartDispatchFunctionType } from '../hooks/useCart';
 
 const S = {
   Wrapper: styled.div({
@@ -22,31 +21,26 @@ const S = {
 
 interface CartListProps {
   items: CartItemType[];
-  cartDispatch: CartDispatchType;
+  cartDispatch: CartDispatchFunctionType;
 }
 
 const CartList = ({ items, cartDispatch }: CartListProps) => {
-  const allChecked = () => {
-    cartDispatch({ type: 'SELECT_ALL_ITEM' });
-  };
-  const deleteProduct = () => {
-    const confirmRes = confirm(CONFIRM.CART_DELETE);
-    if (confirmRes) cartDispatch({ type: 'DELETE_SELECT_ITEM' });
-  };
-
   return (
     <S.Wrapper>
       <div className="flex justify-between items-center">
         <div className="checkbox-container">
           <Checkbox
             initValue={items.every((item) => item.select)}
-            onClick={allChecked}
+            onClick={cartDispatch.selectAllProduct}
           />
           <label className="checkbox-label" htmlFor="checkbox">
             전체 선택
           </label>
         </div>
-        <button className="delete-button" onClick={deleteProduct}>
+        <button
+          className="delete-button"
+          onClick={cartDispatch.deleteSelectedProduct}
+        >
           선택 삭제
         </button>
       </div>
