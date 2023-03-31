@@ -1,11 +1,7 @@
-import { Header } from '@/components/common';
+import { Payment } from '@/components/domain';
 
-const Payment = () => {
-  return (
-    <div className="order-section">
-      <Header title="주문/결제" />
-    </div>
-  );
+const PaymentPage = () => {
+  return <Payment />;
 };
 
-export default Payment;
+export default PaymentPage;
