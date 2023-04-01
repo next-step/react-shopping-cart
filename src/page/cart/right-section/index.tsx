@@ -1,17 +1,15 @@
 import { handleModal } from "common/modal";
 import { printWon } from "common/util";
-import { useCart } from "hooks/cart/useCart";
 import { useOrder } from "hooks/order";
 import { useRouter } from "hooks/useRouter";
 import { ROUTE } from "router";
 
 type RightSectionProps = {
   carts: UserCart[];
+  deleteCartItems: (items: UserCart[]) => void;
 };
-const RightSection = ({ carts }: RightSectionProps) => {
+const RightSection = ({ carts, deleteCartItems }: RightSectionProps) => {
   const { go } = useRouter();
-
-  const { deleteCartItems } = useCart();
 
   const { mutate } = useOrder();
 

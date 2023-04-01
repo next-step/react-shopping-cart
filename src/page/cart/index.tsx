@@ -31,9 +31,10 @@ const CartContent = () => {
     }
 
     if (data) {
-      setUserCartsState(data.map((cart) => ({ ...cart, checked: false, quantity: 1 })));
+      setUserCartsState(
+        data.map((cart) => ({ ...cart, checked: false, quantity: 1 }))
+      );
     }
-
   }, [data, isError, setUserCartsState]);
 
   return (
@@ -49,7 +50,7 @@ const CartContent = () => {
           increaseCartItemQuantity={increaseCartItemQuantity}
           decreaseCartItemQuantity={decreaseCartItemQuantity}
         />
-        <RightSection carts={carts} />
+        <RightSection carts={carts} deleteCartItems={deleteCartItems} />
       </div>
     </section>
   );
