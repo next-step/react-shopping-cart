@@ -1,8 +1,8 @@
 import React from 'react'
-import { convertCurrencyFormet } from 'shared/utils/formatter'
 import { ProductType } from 'products/components/Product/Product'
 import { Button } from 'shared/components/ui/Button'
 import { BsFillTrashFill } from 'react-icons/bs'
+import { LANGUAGE } from 'shared/constants/lang'
 
 export type CartItemProductType = Omit<ProductType, 'id'>
 export interface CartItemType {
@@ -32,7 +32,7 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
           width='auto'
         />
         <div>숫자 셀렉터 들어갈 곳</div>
-        <span>{convertCurrencyFormet(price)}원</span>
+        <span>{price.toLocaleString(LANGUAGE.KOREA)}원</span>
       </div>
     </div>
   )

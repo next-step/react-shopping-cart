@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ProductType } from '../components/Product/Product'
-import { Button } from '../../shared/components/ui/Button'
-import { useApiClient } from '../../shared/context/ApiClientContext'
-import { convertCurrencyFormet } from '../../shared/utils/formatter'
-import NotFound from '../../shared/pages/NotFound'
+import { Button } from 'shared/components/ui/Button'
+import { useApiClient } from 'shared/context/ApiClientContext'
+import NotFound from 'shared/pages/NotFound'
 import { CARTS_PATH } from '../../carts/routers'
+import { LANGUAGE } from 'shared/constants/lang'
 
 function ProductDetail() {
   const { productId } = useParams()
@@ -15,10 +15,14 @@ function ProductDetail() {
   const [error, setError] = useState(null)
   const [product, setProduct] = useState<ProductType | null>(null)
   useEffect(() => {
+    if (!productId) {
+      return
+    }
+
     setLoading(true)
     setError(null)
     productHttpClient
-      ?.getProduct(productId ?? '')
+      ?.getProduct(productId)
       .then((product) => {
         setProduct(product)
       })
@@ -33,7 +37,7 @@ function ProductDetail() {
   if (loading) return <div>loading...</div>
   if (!product) return <NotFound />
 
-  const onNavigateCartPage = async (product: ProductType) => {
+  const onNavigateCartPage = async () => {
     await cartHttpClient?.addCart(product)
     navigate(CARTS_PATH.CARTS)
   }
@@ -53,7 +57,7 @@ function ProductDetail() {
             </h3>
             <p className='flex justify-between text-xl'>
               <span>가격</span>
-              <span>{convertCurrencyFormet(product.price)}원</span>
+              <span>{product.price.toLocaleString(LANGUAGE.KOREA)}원</span>
             </p>
           </div>
           <Button
@@ -62,7 +66,7 @@ function ProductDetail() {
             size='xl'
             width='100%'
             textArea='장바구니'
-            onClick={() => onNavigateCartPage(product)}
+            onClick={onNavigateCartPage}
           />
         </article>
       </section>

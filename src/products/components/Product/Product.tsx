@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { convertCurrencyFormet } from '../../../shared/utils/formatter'
-import { Button } from '../../../shared/components/ui/Button'
 import { FaShoppingCart } from 'react-icons/fa'
+
+import { Button } from 'shared/components/ui/Button'
+import { LANGUAGE } from 'shared/constants/lang'
 
 export interface ProductType {
   id: number
@@ -35,7 +36,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
         <div>
           <p className='mt-2 text-xl font-semibold'>{product.name}</p>
           <p className='text-gray-800 text-lg'>
-            {convertCurrencyFormet(product.price)}원
+            {product.price.toLocaleString(LANGUAGE.KOREA)}원
           </p>
         </div>
 

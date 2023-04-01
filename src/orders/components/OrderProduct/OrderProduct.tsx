@@ -1,10 +1,10 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApiClient } from 'shared/context/ApiClientContext'
-import { convertCurrencyFormet } from 'shared/utils/formatter'
 import { ProductType } from 'products/components/Product/Product'
 import { Button } from 'shared/components/ui/Button'
 import { CARTS_PATH } from 'carts/routers'
+import { LANGUAGE } from 'shared/constants/lang'
 
 export interface OrderProductType extends ProductType {
   quantity: number
@@ -34,7 +34,7 @@ const OrderProduct: React.FC<OrderProductProps> = ({ orderItem }) => {
         <div className='pt-4'>
           <p className='text-lg pb-3'>{orderItem.name}</p>
           <span className='text-gray-400'>
-            {convertCurrencyFormet(orderItem.price * 3)}원 / 수량{' '}
+            {orderItem.price.toLocaleString(LANGUAGE.KOREA)}원 / 수량{' '}
             {orderItem.quantity}개
           </span>
         </div>

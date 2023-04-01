@@ -1,6 +1,6 @@
 import React from 'react'
-import { convertCurrencyFormet } from '../../../shared/utils/formatter'
-import { Button } from '../../../shared/components/ui/Button'
+import { Button } from 'shared/components/ui/Button'
+import { LANGUAGE } from 'shared/constants/lang'
 
 type PaymentInfoProps = {
   totalPrice: number
@@ -21,7 +21,7 @@ const PaymentInfo: React.FC<PaymentInfoProps> = ({
       <div className='p-5'>
         <p className='flex text-xl font-bold justify-between decoration-violet-700 underline decoration-8 pb-20'>
           <span>결제 예상 금액</span>
-          <span>{convertCurrencyFormet(totalPrice)}원</span>
+          <span>{totalPrice.toLocaleString(LANGUAGE.KOREA)}원</span>
         </p>
         <Button
           textArea={`주문하기(${totalCount}개)`}

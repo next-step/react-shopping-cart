@@ -36,7 +36,7 @@ const Button: React.FC<ButtonProps> = ({
         styles[`${variant}_${color}`]
       }`}
     >
-      <span>{iconArea}</span>
+      {iconArea && <span>{iconArea}</span>}
       {textArea}
     </button>
   )

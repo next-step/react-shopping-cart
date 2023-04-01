@@ -7,7 +7,7 @@ function Cart() {
   const { cartHttpClient } = useApiClient()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
-  const [carts, setCarts] = useState<CartItemType[] | []>([])
+  const [carts, setCarts] = useState<CartItemType[]>([])
   useEffect(() => {
     setLoading(true)
     setError(null)
