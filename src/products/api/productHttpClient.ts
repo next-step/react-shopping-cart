@@ -12,15 +12,15 @@ export interface ProductClientType {
 }
 
 const getProducts: getProductsFn = async () => {
-  return axios.get('/api/products').then((res) => res.data)
+  return axios.get('/api/products')
 }
 
 const addProduct: addProductFn = async (product: ProductType) => {
-  return axios.get('/api/product', { params: product }).then((res) => res.data)
+  return axios.get('/api/product', { params: product })
 }
 
 const getProduct: getProductFn = async (productId: string) => {
-  return axios.get(`/api/product/${productId}`).then((res) => res.data)
+  return axios.get(`/api/product/${productId}`)
 }
 
 export const productHttpClient: ProductClientType = {

@@ -2,9 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import reportWebVitals from './reportWebVitals'
-import { RouterProvider } from 'react-router-dom'
+
 import { setupWorker } from 'msw'
 import { handlers } from './shared/mocks/handlers'
+import { RouterProvider } from 'react-router-dom'
 import { router } from './routers'
 
 if (process.env.NODE_ENV === 'development') {

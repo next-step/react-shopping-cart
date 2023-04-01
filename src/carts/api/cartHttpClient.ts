@@ -11,11 +11,11 @@ export interface CartHttpClientType {
 }
 
 const getCarts: GetCartsFn = async () => {
-  return axios.get('/api/carts').then((res) => res.data)
+  return axios.get('/api/carts')
 }
 
-const addCart: AddCartFn = async (cartItem: ProductType) => {
-  return axios.post('/api/cart', { params: cartItem }).then((res) => res.data)
+const addCart: AddCartFn = async (cartItem) => {
+  return axios.post('/api/cart', { params: cartItem })
 }
 
 export const cartHttpClient: CartHttpClientType = {

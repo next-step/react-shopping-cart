@@ -3,15 +3,12 @@ import React from 'react'
 import {
   ProductClientType,
   productHttpClient,
-} from '../../products/api/productHttpClient'
-import {
-  CartHttpClientType,
-  cartHttpClient,
-} from '../../carts/api/cartHttpClient'
+} from 'products/api/productHttpClient'
+import { CartHttpClientType, cartHttpClient } from 'carts/api/cartHttpClient'
 import {
   OrderHttpClientType,
   ordersHttpClient,
-} from '../../orders/api/ordersHttpClient'
+} from 'orders/api/ordersHttpClient'
 
 type ApiClientContextProps = {
   productHttpClient: ProductClientType | null
