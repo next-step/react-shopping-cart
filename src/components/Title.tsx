@@ -4,6 +4,7 @@ type StyledProps = {
   color?: string;
   fontSize?: string;
   fontWeight?: string;
+  highlight?: boolean;
 };
 
 const Title = ({
@@ -16,12 +17,21 @@ const Title = ({
 export default Title;
 
 const H4 = styled.h4<StyledProps>(
-  ({ color = 'black', fontSize = '12px', fontWeight = 'normal' }) => `
+  ({
+    color = 'black',
+    fontSize = '12px',
+    fontWeight = 'normal',
+    highlight,
+  }) => `
   color: ${color};
   font-weight: ${fontWeight};
   font-size :${fontSize};
   overflow:hidden;
   text-overflow:ellipsis;
   white-space:nowrap;
+  ${
+    highlight &&
+    `background: linear-gradient(to top, #ffd7c0 50%, transparent 55%);`
+  }
 `
 );
