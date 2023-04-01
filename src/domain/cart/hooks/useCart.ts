@@ -79,7 +79,7 @@ const useCart = () => {
   };
   useEffect(() => {
     if (data) {
-      cartDispatch({ type: 'FETCH_CART_STATE', products: data.response });
+      cartDispatch({ type: 'UPDATE_CART_STATE', products: data.response });
     }
   }, [data]);
 

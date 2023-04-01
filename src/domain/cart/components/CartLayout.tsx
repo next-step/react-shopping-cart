@@ -16,11 +16,11 @@ const S = {
   ),
 };
 
-interface SectionCartListProps {
+interface CartLayoutProps {
   cartState: CartListType;
   cartDispatch: CartDispatchFunctionType;
 }
-const CartLayout = ({ cartState, cartDispatch }: SectionCartListProps) => {
+const CartLayout = ({ cartState, cartDispatch }: CartLayoutProps) => {
   return (
     <S.Content>
       <CartList items={cartState.products} cartDispatch={cartDispatch} />

@@ -15,15 +15,15 @@ export interface CartListType {
 }
 
 export type CartDispatchAction =
-  | { type: 'FETCH_CART_STATE'; products: CartItemType[] }
-  | { type: 'ADD_CART'; product: ProductDataType }
+  | { type: 'UPDATE_CART_STATE'; products: CartItemType[] }
+  | { type: 'CALCULATE_CART_STATE' }
+  | { type: 'ADD_ITEM'; product: ProductDataType }
   | { type: 'COUNT_UP_ITEM'; selectId: number }
   | { type: 'COUNT_DOWN_ITEM'; selectId: number }
   | { type: 'DELETE_ITEM'; selectId: number }
   | { type: 'DELETE_SELECT_ITEM' }
   | { type: 'SELECT_ITEM'; selectId: number }
-  | { type: 'SELECT_ALL_ITEM' }
-  | { type: 'CALCULATE_CART' };
+  | { type: 'SELECT_ALL_ITEM' };
 
 const initCartData = {
   totalCount: 0,
@@ -40,7 +40,7 @@ const cartReducer = (
   action: CartDispatchAction
 ): CartListType => {
   switch (action.type) {
-    case 'FETCH_CART_STATE':
+    case 'UPDATE_CART_STATE':
       return {
         products: action.products,
         totalCount: action.products.length,
@@ -48,7 +48,7 @@ const cartReducer = (
           .map((item) => item.product.totalPrice)
           .reduce((a, b) => a + b, 0),
       };
-    case 'ADD_CART':
+    case 'ADD_ITEM':
       return {
         ...state,
         products: [
@@ -155,7 +155,7 @@ const cartReducer = (
           }),
         };
       }
-    case 'CALCULATE_CART':
+    case 'CALCULATE_CART_STATE':
       return {
         ...state,
         totalCount: state.products.filter((item) => item.select).length,
@@ -171,7 +171,7 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
   const [cartState, cartDispatch] = useReducer(cartReducer, initCartData);
 
   useEffect(() => {
-    cartDispatch({ type: 'CALCULATE_CART' });
+    cartDispatch({ type: 'CALCULATE_CART_STATE' });
   }, [cartState.products]);
 
   return (
