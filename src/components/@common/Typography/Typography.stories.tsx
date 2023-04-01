@@ -1,4 +1,5 @@
 import type { ComponentStory, Story } from '@storybook/react';
+import { Box } from 'components/@common';
 
 import Typography from './Typography';
 import { variants } from './Typography.types';
@@ -33,7 +34,7 @@ Primary.args = {
 };
 
 export const Overview: Story<{}> = () => (
-  <>
+  <Box display="grid" gap={10}>
     <Typography variant="h1">h1. Heading</Typography>
     <Typography variant="h2">h2. Heading</Typography>
     <Typography variant="h3">h3. Heading</Typography>
@@ -57,5 +58,5 @@ export const Overview: Story<{}> = () => (
       neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti?
       Eum quasi quidem quibusdam.{' '}
     </Typography>
-  </>
+  </Box>
 );
