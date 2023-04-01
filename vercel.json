@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "server.js",
+      "src": "server.ts",
       "use": "@vercel/node",
       "config": {
         "includeFiles": ["./src/mocks/db.json"]
