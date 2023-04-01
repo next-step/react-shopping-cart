@@ -4,9 +4,7 @@ import { Button } from '../ui/Button'
 
 export interface OrderProductsType {
   id: string
-  totalPrice: number
-  totalQuantity: string
-  orderItems: OrderProductType[]
+  orderDetails: OrderProductType[]
 }
 
 type OrderProductsProps = {
@@ -14,7 +12,7 @@ type OrderProductsProps = {
 }
 
 const OrderProducts: React.FC<OrderProductsProps> = ({ order }) => {
-  const { orderItems } = order
+  const { orderDetails } = order
   return (
     <li className='border-2 border-gray-300 border-solid mb-10'>
       <div className='border-b-2 border-gray-300 border-solid py-4 px-2 flex justify-between bg-neutral-100 items-center'>
@@ -28,9 +26,9 @@ const OrderProducts: React.FC<OrderProductsProps> = ({ order }) => {
           textArea='상세보기 >'
         />
       </div>
-      {orderItems?.length && (
+      {orderDetails?.length && (
         <ul className='bg-white'>
-          {orderItems.map((orderItem) => (
+          {orderDetails.map((orderItem) => (
             <OrderProduct key={orderItem.id} orderItem={orderItem} />
           ))}
         </ul>
