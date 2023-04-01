@@ -1,5 +1,5 @@
 import type { Meta, ComponentStory } from '@storybook/react';
-import * as Styled from './Divider.styles';
+import styled from '@emotion/styled';
 
 import Divider from './Divider';
 
@@ -23,44 +23,48 @@ Primary.args = {
 
 export const Size: ComponentStory<typeof Divider> = () => (
   <>
-    <Styled.Wrapper>
+    <Wrapper>
       위
       <Divider size={3} color="gray04" height={1} />
       아래
-    </Styled.Wrapper>
+    </Wrapper>
 
-    <Styled.Wrapper>
+    <Wrapper>
       위
       <Divider size={10} color="gray04" height={1} />
       아래
-    </Styled.Wrapper>
+    </Wrapper>
 
-    <Styled.Wrapper>
+    <Wrapper>
       위
       <Divider size={20} color="gray04" height={1} />
       아래
-    </Styled.Wrapper>
+    </Wrapper>
   </>
 );
 
 export const Height: ComponentStory<typeof Divider> = () => (
   <>
-    <Styled.Wrapper>
+    <Wrapper>
       위
       <Divider size={7} color="gray04" height={1} />
       아래
-    </Styled.Wrapper>
+    </Wrapper>
 
-    <Styled.Wrapper>
+    <Wrapper>
       위
       <Divider size={7} color="gray04" height={4} />
       아래
-    </Styled.Wrapper>
+    </Wrapper>
 
-    <Styled.Wrapper>
+    <Wrapper>
       위
       <Divider size={7} color="gray04" height={10} />
       아래
-    </Styled.Wrapper>
+    </Wrapper>
   </>
 );
+
+const Wrapper = styled.div`
+  margin-bottom: 35px;
+`;

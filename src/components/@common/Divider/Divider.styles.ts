@@ -18,7 +18,3 @@ export const HR = styled.hr<DividerProps>`
     margin: ${size}px 0;
   `};
 `;
-
-export const Wrapper = styled.div`
-  margin-bottom: 35px;
-`;

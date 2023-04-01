@@ -1,5 +1,4 @@
 import type { Meta, ComponentStory } from '@storybook/react';
-import { Link } from 'react-router-dom';
 
 import Button from './Button';
 import { type ButtonProps, ButtonSize, ButtonVariant } from './Button.types';

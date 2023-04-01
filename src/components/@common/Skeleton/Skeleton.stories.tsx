@@ -1,6 +1,5 @@
 import type { Meta, ComponentStory } from '@storybook/react';
-import { Box } from '../Box';
-import { Typography } from '../Typography';
+import { Box, Typography } from 'components/@common';
 
 import Skeleton from './Skeleton';
 import { SkeletonVariant } from './Skeleton.types';
