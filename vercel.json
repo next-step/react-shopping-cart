@@ -7,8 +7,7 @@
       "config": {
         "includeFiles": ["./src/mocks/db.json"]
       }
-    },
-    { "src": "package.json", "use": "@now/static-build" }
+    }
   ],
   "routes": [
     {
