@@ -4,10 +4,12 @@ import { DefaultTheme } from 'styled-components';
 const size = {
   mobile: 420,
   tablet: 768,
+  desktop: 1024,
 };
 const media = {
-  tablet: `(min-width: ${size.mobile}px)`,
-  desktop: `(min-width: ${size.tablet}px)`,
+  mobile: `(min-width: ${size.mobile}px)`,
+  tablet: `(min-width: ${size.tablet}px)`,
+  desktop: `(min-width: ${size.desktop}px)`,
 };
 
 // 주로 사용되는 컬러
