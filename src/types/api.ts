@@ -4,3 +4,8 @@ export interface Product {
   price: number;
   imageUrl: string;
 }
+
+export interface Cart {
+  id: number;
+  product: Partial<Product>;
+}
