@@ -55,19 +55,19 @@ export const Animation: ComponentStory<typeof Skeleton> = () => (
       <Typography variant="body1" className="mb-5">
         false
       </Typography>
-      <Skeleton width={170} height={100} variant="rounded" />
+      <Skeleton width={200} height={100} variant="rounded" />
     </div>
     <div>
       <Typography variant="body1" className="mb-5">
         pulse
       </Typography>
-      <Skeleton width={170} height={100} variant="rounded" animation="pulse" />
+      <Skeleton width={200} height={100} variant="rounded" animation="pulse" />
     </div>
     <div>
       <Typography variant="body1" className="mb-5">
         wave
       </Typography>
-      <Skeleton width={170} height={100} variant="rounded" animation="wave" />
+      <Skeleton width={200} height={100} variant="rounded" animation="wave" />
     </div>
   </Box>
 );

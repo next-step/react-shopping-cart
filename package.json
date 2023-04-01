@@ -29,6 +29,7 @@
     "@typescript-eslint/eslint-plugin": "^5.51.0",
     "@typescript-eslint/parser": "^5.51.0",
     "babel-plugin-named-exports-order": "^0.0.2",
+    "chromatic": "^6.17.2",
     "eslint": "^8.33.0",
     "eslint-config-prettier": "^8.6.0",
     "json-server": "^0.17.0",
@@ -79,5 +80,7 @@
   },
   "msw": {
     "workerDirectory": "public"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "server@1.0.0"
 }
