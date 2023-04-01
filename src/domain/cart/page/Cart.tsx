@@ -4,7 +4,7 @@ import useCart from '../hooks/useCart';
 import { useCartState } from '../../../context/CartContext';
 
 const Cart = () => {
-  const { error, loading, cartDispatchFunction } = useCart();
+  const { error, loading, cartFunction } = useCart();
   const cartState = useCartState();
 
   if (loading) {
@@ -18,7 +18,7 @@ const Cart = () => {
   return (
     <>
       <PageTitle text="장바구니" />
-      <CartLayout cartState={cartState} cartDispatch={cartDispatchFunction} />
+      <CartLayout cartState={cartState} cartDispatch={cartFunction} />
     </>
   );
 };

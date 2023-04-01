@@ -23,7 +23,7 @@ interface ResponseType {
   response: CartItemType[];
 }
 
-export interface CartDispatchFunctionType {
+export interface cartFunctionType {
   selectProduct: (selectRange: SelectType, selectId?: number) => void;
   deleteProduct: (method: DeleteType, id?: number) => void;
   updateCount: ({ selectId, type }: UpdateCountType) => void;
@@ -34,11 +34,11 @@ const useCart = () => {
   const updateCountMutation = useCustomMutation<unknown, UpdateType>(
     (payload) => updateItemCount(payload)
   );
-  const deleteItem = useCustomMutation<unknown, SelectIdType>((payload) =>
-    deleteCartItem(payload)
+  const deleteItemMutation = useCustomMutation<unknown, SelectIdType>(
+    (payload) => deleteCartItem(payload)
   );
-  const deleteSelectItem = useCustomMutation<unknown, SelectIdArr>((payload) =>
-    deleteSelectedCartItem(payload)
+  const deleteSelectItemMutation = useCustomMutation<unknown, SelectIdArr>(
+    (payload) => deleteSelectedCartItem(payload)
   );
   const cartState = useCartState();
   const cartDispatch = useCartDispatch();
@@ -88,7 +88,7 @@ const useCart = () => {
 
     if (method === DELETE_TYPE.DIRECT) {
       if (!id) throw Error('선택된 ID값이 없습니다!');
-      deleteItem.mutate({ selectId: id });
+      deleteItemMutation.mutate({ selectId: id });
       cartDispatch({
         type: 'DELETE_ITEM',
         selectId: id,
@@ -103,7 +103,7 @@ const useCart = () => {
           return;
         }
       });
-      deleteSelectItem.mutate(selectIdArray as SelectIdArr);
+      deleteSelectItemMutation.mutate(selectIdArray as SelectIdArr);
       cartDispatch({ type: 'DELETE_ITEM', deleteMethod: DELETE_TYPE.SELECT });
     }
   };
@@ -117,7 +117,7 @@ const useCart = () => {
   return {
     loading,
     error,
-    cartDispatchFunction: {
+    cartFunction: {
       selectProduct,
       deleteProduct,
       updateCount,

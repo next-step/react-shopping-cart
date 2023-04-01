@@ -1,11 +1,11 @@
 import { CartItemType } from '../../../types';
 import Checkbox from '../../../components/input/Checkbox';
-import { CartDispatchFunctionType } from '../hooks/useCart';
+import { cartFunctionType } from '../hooks/useCart';
 import { COUNT_TYPE, DELETE_TYPE, SELECT_TYPE } from '../../../constant';
 
 interface CartItemProps {
   productInfo: CartItemType;
-  cartDispatch: CartDispatchFunctionType;
+  cartDispatch: cartFunctionType;
 }
 
 const CartItem = ({

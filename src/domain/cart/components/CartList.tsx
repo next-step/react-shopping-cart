@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { CartItemType } from '../../../types';
 import { CartItem } from '../components';
 import Checkbox from '../../../components/input/Checkbox';
-import { CartDispatchFunctionType } from '../hooks/useCart';
+import { cartFunctionType } from '../hooks/useCart';
 import { DELETE_TYPE, SELECT_TYPE } from '../../../constant';
 
 const S = {
@@ -22,7 +22,7 @@ const S = {
 
 interface CartListProps {
   items: CartItemType[];
-  cartDispatch: CartDispatchFunctionType;
+  cartDispatch: cartFunctionType;
 }
 
 const CartList = ({ items, cartDispatch }: CartListProps) => {
