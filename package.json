@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "msw init public/ --save && react-scripts start",
-    "build": "react-scripts build && node server.ts",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
