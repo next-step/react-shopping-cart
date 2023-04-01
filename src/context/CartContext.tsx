@@ -7,6 +7,8 @@ import {
   useReducer,
 } from 'react';
 import { CartItemType, ProductDataType } from '../types';
+import { countError } from '../utils';
+import { COUNT_TYPE } from '../constant';
 
 export interface CartListType {
   totalPrice: number;
@@ -18,8 +20,7 @@ export type CartDispatchAction =
   | { type: 'UPDATE_CART_STATE'; products: CartItemType[] }
   | { type: 'CALCULATE_CART_STATE' }
   | { type: 'ADD_ITEM'; product: ProductDataType }
-  | { type: 'COUNT_UP_ITEM'; selectId: number }
-  | { type: 'COUNT_DOWN_ITEM'; selectId: number }
+  | { type: 'COUNT_UPDATE'; selectId: number; direction: 'UP' | 'DOWN' }
   | { type: 'DELETE_ITEM'; selectId: number }
   | { type: 'DELETE_SELECT_ITEM' }
   | { type: 'SELECT_ITEM'; selectId: number }
@@ -64,44 +65,21 @@ const cartReducer = (
           },
         ],
       };
-
-    case 'COUNT_UP_ITEM':
+    case 'COUNT_UPDATE':
       return {
         ...state,
         products: state.products.map((item) => {
           if (item.id === action.selectId) {
-            if (item.product.totalQuantity >= 20) {
-              throw Error('수량은 20이상 증가 불가능합니다!');
-            }
+            countError(item.product.totalQuantity, action.direction);
+            const countValue = action.direction === COUNT_TYPE.UP ? +1 : -1;
             return {
               ...item,
               product: {
                 ...item.product,
-                totalQuantity: item.product.totalQuantity + 1,
+                totalQuantity: item.product.totalQuantity + countValue,
                 totalPrice:
-                  item.product.price * (item.product.totalQuantity + 1),
-              },
-            };
-          } else {
-            return item;
-          }
-        }),
-      };
-    case 'COUNT_DOWN_ITEM':
-      return {
-        ...state,
-        products: state.products.map((item) => {
-          if (item.id === action.selectId) {
-            if (item.product.totalQuantity <= 1) {
-              throw Error('수량은 1이하로 감소 불가능합니다!');
-            }
-            return {
-              ...item,
-              product: {
-                ...item.product,
-                totalQuantity: item.product.totalQuantity - 1,
-                totalPrice:
-                  item.product.price * (item.product.totalQuantity - 1),
+                  item.product.price *
+                  (item.product.totalQuantity + countValue),
               },
             };
           } else {

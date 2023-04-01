@@ -1,7 +1,7 @@
 import { useCustomMutation, useCustomQuery } from '../../../hooks';
-import { CartItemType } from '../../../types';
+import { CartItemType, UpdateCountType } from '../../../types';
 import { useCartDispatch, useCartState } from '../../../context/CartContext';
-import { CONFIRM } from '../../../constant';
+import { CONFIRM, COUNT_TYPE } from '../../../constant';
 import { useEffect } from 'react';
 import {
   deleteCartItem,
@@ -22,20 +22,19 @@ export interface CartDispatchFunctionType {
   selectAllProduct: () => void;
   deleteSelectedProduct: () => void;
   deleteProduct: (id: number) => void;
-  countUp: (id: number) => void;
-  countDown: (id: number) => void;
+  updateCount: ({ selectId, type }: UpdateCountType) => void;
 }
 
 const useCart = () => {
   const { data, loading, error } = useCustomQuery<ResponseType>(`/carts`);
+  const updateCountMutation = useCustomMutation<unknown, UpdateType>(
+    (payload) => updateItemCount(payload)
+  );
   const deleteItem = useCustomMutation<unknown, SelectIdType>((payload) =>
     deleteCartItem(payload)
   );
   const deleteSelectItem = useCustomMutation<unknown, SelectIdArr>((payload) =>
     deleteSelectedCartItem(payload)
-  );
-  const updateCount = useCustomMutation<unknown, UpdateType>((payload) =>
-    updateItemCount(payload)
   );
   const cartState = useCartState();
   const cartDispatch = useCartDispatch();
@@ -44,6 +43,26 @@ const useCart = () => {
     cartDispatch({ type: 'SELECT_ITEM', selectId: id });
 
   const selectAllProduct = () => cartDispatch({ type: 'SELECT_ALL_ITEM' });
+
+  const updateCount = ({ selectId, type }: UpdateCountType) => {
+    if (type === COUNT_TYPE.UP) {
+      updateCountMutation.mutate({ selectId: selectId, type: COUNT_TYPE.UP });
+      cartDispatch({
+        type: 'COUNT_UPDATE',
+        selectId: selectId,
+        direction: COUNT_TYPE.UP,
+      });
+    }
+
+    if (type === COUNT_TYPE.DOWN) {
+      updateCountMutation.mutate({ selectId: selectId, type: COUNT_TYPE.DOWN });
+      cartDispatch({
+        type: 'COUNT_UPDATE',
+        selectId: selectId,
+        direction: COUNT_TYPE.DOWN,
+      });
+    }
+  };
 
   const deleteSelectedProduct = () => {
     const confirmRes = confirm(CONFIRM.CART_DELETE);
@@ -68,15 +87,6 @@ const useCart = () => {
     }
   };
 
-  const countUp = (id: number) => {
-    updateCount.mutate({ selectId: id, type: 'UP' });
-    cartDispatch({ type: 'COUNT_UP_ITEM', selectId: id });
-  };
-
-  const countDown = (id: number) => {
-    updateCount.mutate({ selectId: id, type: 'DOWN' });
-    cartDispatch({ type: 'COUNT_DOWN_ITEM', selectId: id });
-  };
   useEffect(() => {
     if (data) {
       cartDispatch({ type: 'UPDATE_CART_STATE', products: data.response });
@@ -91,8 +101,7 @@ const useCart = () => {
       selectAllProduct,
       deleteSelectedProduct,
       deleteProduct,
-      countUp,
-      countDown,
+      updateCount,
     },
   };
 };

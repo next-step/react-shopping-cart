@@ -1,6 +1,7 @@
 import { CartItemType } from '../../../types';
 import Checkbox from '../../../components/input/Checkbox';
 import { CartDispatchFunctionType } from '../hooks/useCart';
+import { COUNT_TYPE } from '../../../constant';
 
 interface CartItemProps {
   productInfo: CartItemType;
@@ -38,14 +39,21 @@ const CartItem = ({
             <button
               className="number-input-button"
               disabled={totalQuantity >= 20}
-              onClick={() => cartDispatch.countUp(id)}
+              onClick={() =>
+                cartDispatch.updateCount({ selectId: id, type: COUNT_TYPE.UP })
+              }
             >
               ▲
             </button>
             <button
               className="number-input-button"
               disabled={totalQuantity <= 1}
-              onClick={() => cartDispatch.countDown(id)}
+              onClick={() =>
+                cartDispatch.updateCount({
+                  selectId: id,
+                  type: COUNT_TYPE.DOWN,
+                })
+              }
             >
               ▼
             </button>

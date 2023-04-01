@@ -5,6 +5,7 @@ import { cartDataStorage } from './util/storage';
 import { KEY_PAGE } from '../hooks';
 import { KEY_PRODUCT_COUNT } from '../domain/home/hooks/useProduct';
 import { SelectIdArr, SelectIdType } from '../apiClient';
+import { COUNT_TYPE } from '../constant';
 
 const getProductListPerPage = rest.get('/products', (req, res, ctx) => {
   const currentPage = Number(req.url.searchParams.get(KEY_PAGE));
@@ -78,7 +79,7 @@ export interface UpdateType {
 const updateItemCount = rest.put('/carts/count', (req, res, ctx) => {
   const { selectId, type } = req.body as UpdateType;
   const currentData = cartDataStorage.get();
-  const countValue = type === 'UP' ? +1 : -1;
+  const countValue = type === COUNT_TYPE.UP ? +1 : -1;
   cartDataStorage.set(
     currentData.map((item) => {
       if (item.id === selectId) {
