@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import styled from 'styled-components';
 
 interface ModalProps {
-  handleToggleModal: () => void;
+  handleModalToggle: () => void;
   children: React.ReactNode;
 }
 
-const Modal = ({ handleToggleModal, children }: ModalProps) => {
+const Modal = ({ handleModalToggle, children }: ModalProps) => {
   useEffect(() => {
     document.body.style.cssText = `
     position: fixed; 
@@ -22,13 +22,13 @@ const Modal = ({ handleToggleModal, children }: ModalProps) => {
 
   return (
     <ModalContainer>
-      <ModalBackground onClick={handleToggleModal}></ModalBackground>
+      <ModalBackground onClick={handleModalToggle}></ModalBackground>
       <ModalBody
         onClick={(e: React.MouseEvent<HTMLDivElement>) => {
           e.stopPropagation();
         }}
       >
-        <ModalCloseButton type={'button'} onClick={handleToggleModal}>
+        <ModalCloseButton type={'button'} onClick={handleModalToggle}>
           ✖
         </ModalCloseButton>
         {children}
