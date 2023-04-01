@@ -2,6 +2,7 @@ import { CartItemType } from '../../../types';
 import Checkbox from '../../../components/input/Checkbox';
 import { cartFunctionType } from '../hooks/useCart';
 import { COUNT_TYPE, DELETE_TYPE, SELECT_TYPE } from '../../../constant';
+import { priceFormat } from '../../../utils';
 
 interface CartItemProps {
   productInfo: CartItemType;
@@ -59,7 +60,7 @@ const CartItem = ({
             </button>
           </div>
         </div>
-        <span className="cart-price">{totalPrice.toLocaleString()} 원</span>
+        <span className="cart-price">{priceFormat(totalPrice)}</span>
       </div>
     </div>
   );
