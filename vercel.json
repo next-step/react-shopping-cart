@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.ts",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["./src/mocks/db.json"]
+      }
+    },
+    { "src": "package.json", "use": "@now/static-build" }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "./build/index.html"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "server.ts"
+    }
+  ]
+}
