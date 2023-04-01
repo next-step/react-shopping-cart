@@ -1,12 +1,12 @@
 import React from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import App from "./App";
-import ProductsPage from "./pages/ProductsPage";
-import CartPage from "./pages/CartPage";
-import OrdersPage from "./pages/OrdersPage";
-import ProductDetailPage from "./pages/ProductDetailPage";
+import App from "../App";
+import ProductsPage from "../pages/ProductsPage";
+import CartPage from "../pages/CartPage";
+import OrdersPage from "../pages/OrdersPage";
+import ProductDetailPage from "../pages/ProductDetailPage";
 import { Provider } from "react-redux";
-import { store } from "./store/store";
+import { store } from "../store/store";
 
 export const router = createBrowserRouter([
   {
