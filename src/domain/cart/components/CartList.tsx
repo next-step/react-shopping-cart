@@ -3,6 +3,7 @@ import { CartItemType } from '../../../types';
 import { CartItem } from '../components';
 import Checkbox from '../../../components/input/Checkbox';
 import { CartDispatchFunctionType } from '../hooks/useCart';
+import { DELETE_TYPE } from '../../../constant';
 
 const S = {
   Wrapper: styled.div({
@@ -39,7 +40,7 @@ const CartList = ({ items, cartDispatch }: CartListProps) => {
         </div>
         <button
           className="delete-button"
-          onClick={cartDispatch.deleteSelectedProduct}
+          onClick={() => cartDispatch.deleteProduct(DELETE_TYPE.SELECT)}
         >
           선택 삭제
         </button>

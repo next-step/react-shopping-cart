@@ -1,7 +1,7 @@
 import { CartItemType } from '../../../types';
 import Checkbox from '../../../components/input/Checkbox';
 import { CartDispatchFunctionType } from '../hooks/useCart';
-import { COUNT_TYPE } from '../../../constant';
+import { COUNT_TYPE, DELETE_TYPE } from '../../../constant';
 
 interface CartItemProps {
   productInfo: CartItemType;
@@ -31,7 +31,7 @@ const CartItem = ({
           className="cart-trash-svg"
           src="./assets/svgs/trash.svg"
           alt="삭제"
-          onClick={() => cartDispatch.deleteProduct(id)}
+          onClick={() => cartDispatch.deleteProduct(DELETE_TYPE.DIRECT, id)}
         />
         <div className="number-input-container">
           <input type="number" className="number-input" value={totalQuantity} />

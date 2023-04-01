@@ -21,8 +21,11 @@ export type CartDispatchAction =
   | { type: 'CALCULATE_CART_STATE' }
   | { type: 'ADD_ITEM'; product: ProductDataType }
   | { type: 'COUNT_UPDATE'; selectId: number; direction: 'UP' | 'DOWN' }
-  | { type: 'DELETE_ITEM'; selectId: number }
-  | { type: 'DELETE_SELECT_ITEM' }
+  | {
+      type: 'DELETE_ITEM';
+      selectId?: number;
+      deleteMethod: 'DIRECT' | 'SELECT';
+    }
   | { type: 'SELECT_ITEM'; selectId: number }
   | { type: 'SELECT_ALL_ITEM' };
 
@@ -90,12 +93,14 @@ const cartReducer = (
     case 'DELETE_ITEM':
       return {
         ...state,
-        products: state.products.filter((item) => item.id !== action.selectId),
-      };
-    case 'DELETE_SELECT_ITEM':
-      return {
-        ...state,
-        products: state.products.filter((item) => !item.select),
+        products: state.products.filter((item) => {
+          if (action.deleteMethod === 'DIRECT') {
+            return item.id !== action.selectId;
+          }
+          if (action.deleteMethod === 'SELECT') {
+            return !item.select;
+          }
+        }),
       };
     case 'SELECT_ITEM':
       return {
