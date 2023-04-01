@@ -8,10 +8,13 @@ import { handlers } from './shared/mocks/handlers'
 import { RouterProvider } from 'react-router-dom'
 import { router } from './routers'
 
-if (process.env.NODE_ENV === 'development') {
-  const msw = setupWorker(...handlers)
-  msw.start()
-}
+// if (process.env.NODE_ENV === 'development') {
+//   const msw = setupWorker(...handlers)
+//   msw.start()
+// }
+
+const msw = setupWorker(...handlers)
+msw.start()
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
