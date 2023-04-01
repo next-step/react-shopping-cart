@@ -82,7 +82,11 @@ const CartsList = () => {
         </PageTitle>
 
         <FlexContainer direction="column">
-          <FlexContainer margin="20px 0">
+          <FlexContainer
+            flex="1 0 20px"
+            margin="20px 0"
+            justifyContent="space-between"
+          >
             <Checkbox
               id="all"
               value="선택해제"
