@@ -11,11 +11,14 @@ import { useContext, useMemo } from 'react';
 import { ThemeContext } from 'styled-components';
 import Button from 'components/Button';
 import FlexContainer from 'components/FlexContainer';
+import CartConfirmModal from 'pages/shopping/components/CartConfirmModal';
+import useModal from 'hooks/useModal';
 
 const ProductsDetails = () => {
   const { colors } = useContext(ThemeContext);
 
   const { id } = useParams();
+  const { isOpen, handleModalToggle } = useModal();
   const { isLoading, data } = useAxios<Product>({ url: `/${PRODUCTS}/${id}` });
 
   const img = useMemo(() => {
@@ -26,8 +29,12 @@ const ProductsDetails = () => {
   }, [data]);
 
   const handleAddCartClick = () => {
-    console.log('add cart click');
+    handleModalToggle();
   };
+
+  if (isLoading) {
+    return <div>loading...</div>;
+  }
 
   return (
     <PageContainer>
@@ -59,6 +66,7 @@ const ProductsDetails = () => {
           </div>
         </ProductDetail.SectionContainer>
       </ProductDetail.ProductDetailsContainer>
+      {isOpen && <CartConfirmModal handleModalToggle={handleModalToggle} />}
     </PageContainer>
   );
 };
