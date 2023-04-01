@@ -3,7 +3,7 @@ import { CSSProperties } from 'react';
 export const SkeletonVariant = {
   circular: '50%',
   rounded: '10px',
-  rectangular: 'none',
+  rectangular: 'initial',
 } as const;
 
 export interface SkeletonProps {

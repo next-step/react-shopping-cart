@@ -31,8 +31,7 @@ const waveKeyframe = keyframes`
 
 export const Wrapper = styled.span<SkeletonProps>`
   display: block;
-  width: 100%;
-  background-color: ${({ theme }) => theme.color.gray02};
+  background-color: ${({ theme }) => theme.color.gray03};
   border-radius: ${({ variant = 'rectangular' }) => SkeletonVariant[variant]};
 
   width: ${({ width = DEFAULT_SIZE }) =>
