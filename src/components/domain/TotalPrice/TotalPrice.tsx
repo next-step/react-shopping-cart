@@ -1,4 +1,5 @@
 import React from "react";
+import { numberFormat } from "../../../utils/numberFormat";
 
 export type TotalPriceProps = {
   title: string;
@@ -7,14 +8,6 @@ export type TotalPriceProps = {
 };
 
 const TotalPrice = ({ title, price, button }: TotalPriceProps) => {
-  const NumberFormat = (price: number) => {
-    const number = price;
-
-    const formattedNumber = new Intl.NumberFormat("en-US").format(number);
-
-    return <span>{formattedNumber}</span>;
-  };
-
   return (
     <section className="cart-right-section">
       <div className="cart-right-section__top">
@@ -24,7 +17,7 @@ const TotalPrice = ({ title, price, button }: TotalPriceProps) => {
       <div className="cart-right-section__bottom">
         <div className="flex justify-between p-20 mt-20">
           <span className="highlight-text">{title}</span>
-          <span className="highlight-text">{NumberFormat(price)}원</span>
+          <span className="highlight-text">{numberFormat(price)}원</span>
         </div>
         {button}
       </div>
