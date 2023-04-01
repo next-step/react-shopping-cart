@@ -22,6 +22,7 @@ const StyledTrash = styled(Trash)`
   justify-self: flex-end;
   align-self: flex-end;
   margin-right: 8px;
+  cursor: pointer;
 `;
 
 export { ImageContainer, GridContainer, GridItem, StyledTrash };

@@ -25,7 +25,7 @@ const handlers = [
     );
   }),
   // 카트 아이템 삭제
-  rest.delete(`/${CARTS}/:id`, (req, res, ctx) => {
+  rest.delete(`/${CARTS}/:id`, async (req, res, ctx) => {
     return res(ctx.status(204));
   }),
 ];
