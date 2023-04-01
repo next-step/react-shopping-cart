@@ -25,3 +25,8 @@
 .number-input-button:focus {
   outline: none;
 }
+
+.number-input-button:disabled {
+  color:#dddddd;
+  cursor:default;
+}

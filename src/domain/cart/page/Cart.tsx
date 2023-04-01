@@ -1,11 +1,11 @@
 import { PageTitle } from '../../../components';
 import { CartLayout } from '../components';
-import { Layout } from '../../../layout';
 import useCart from '../hooks/useCart';
-import { CartInfoType } from '../../../types';
+import { useCartState } from '../../../context/CartContext';
 
 const Cart = () => {
-  const { cartData, error, loading } = useCart();
+  const { error, loading, cartFunction } = useCart();
+  const cartState = useCartState();
 
   if (loading) {
     return <div>페이지 로딩 중...</div>;
@@ -16,10 +16,10 @@ const Cart = () => {
   }
 
   return (
-    <Layout>
+    <>
       <PageTitle text="장바구니" />
-      <CartLayout cartList={cartData as CartInfoType[]} />
-    </Layout>
+      <CartLayout cartState={cartState} cartDispatch={cartFunction} />
+    </>
   );
 };
 

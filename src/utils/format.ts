@@ -1,4 +1,4 @@
 export const priceFormat = (value: number | undefined) => {
-  if (!value) return null;
+  if (value === undefined) throw Error('priceFormat value is undefined!');
   return value.toLocaleString() + ' 원';
 };

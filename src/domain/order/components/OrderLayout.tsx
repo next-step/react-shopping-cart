@@ -1,8 +1,8 @@
-import { CartList, CartTotal } from '../components';
+import { CartTotal } from '../../cart/components';
 import styled from '@emotion/styled';
 import { mediaQuery } from '../../../utils';
-import { CartListType } from '../../../context/CartContext';
-import { cartFunctionType } from '../hooks/useCart';
+import { CartDispatchType, CartListType } from '../../../context/CartContext';
+import OrderList from './OrderList';
 
 const S = {
   Content: styled.div(
@@ -16,22 +16,24 @@ const S = {
   ),
 };
 
-interface CartLayoutProps {
+interface SectionCartListProps {
   cartState: CartListType;
-  cartDispatch: cartFunctionType;
+  cartDispatch: CartDispatchType;
 }
-const CartLayout = ({ cartState, cartDispatch }: CartLayoutProps) => {
+const OrderLayout = ({ cartState, cartDispatch }: SectionCartListProps) => {
   return (
     <S.Content>
-      <CartList items={cartState.products} cartDispatch={cartDispatch} />
+      {/*<OrderList items={} cartDispatch={} />*/}
       <CartTotal
-        title="결제예상금액"
-        label="결제예상금액"
+        title="결제금액"
+        label="총 결제금액"
         totalPrice={cartState.totalPrice}
         buttonText={`주문하기(${cartState.totalCount}개)`}
       />
     </S.Content>
   );
 };
+// 총 결제금액
+// 21,800원 결제하기
 
-export default CartLayout;
+export default OrderLayout;

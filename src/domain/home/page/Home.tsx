@@ -1,11 +1,16 @@
-import { Layout } from '../../../layout';
 import { ProductList } from '../components';
 import useProduct from '../hooks/useProduct';
-import { ProductInfoType } from '../../../types';
+import { ProductDataType } from '../../../types';
 
 const Home = () => {
-  const { products, error, loading, navigateToDetailedPage, addCart } =
-    useProduct();
+  const {
+    products,
+    error,
+    loading,
+    navigateToDetailedPage,
+    addCart,
+    pagination,
+  } = useProduct();
 
   if (loading) {
     return <div>페이지 로딩 중...</div>;
@@ -16,13 +21,14 @@ const Home = () => {
   }
 
   return (
-    <Layout>
+    <>
       <ProductList
-        products={products as ProductInfoType[]}
+        products={products as ProductDataType[]}
         navigateToDetailedPage={navigateToDetailedPage}
         addCart={addCart}
+        pagination={pagination}
       />
-    </Layout>
+    </>
   );
 };
 

@@ -1,9 +1,9 @@
 import useCustomQuery from '../../../hooks/useCustomQuery';
-import { ProductInfoType } from '../../../types';
+import { ProductDataType } from '../../../types';
 import { useParams } from 'react-router-dom';
 
 interface ResponseType {
-  response: ProductInfoType;
+  response: ProductDataType;
 }
 const useProductDetail = () => {
   const { id } = useParams();

@@ -1,10 +1,20 @@
 import { ProductItem } from '../components';
 import styled from '@emotion/styled';
 import { mediaQuery } from '../../../utils';
-import { ProductInfoType } from '../../../types';
+import {
+  CartProductType,
+  PaginationInfoType,
+  ProductDataType,
+} from '../../../types';
+import Pagination from '../../../components/pagination/Pagination';
 
 const S = {
   Content: styled.div(
+    mediaQuery({
+      margin: ['50px 0', '60px 0'],
+    })
+  ),
+  ProductList: styled.div(
     mediaQuery({
       display: 'grid',
       gridTemplateColumns: [
@@ -14,32 +24,39 @@ const S = {
       ],
       columnGap: ['0', '20px', '40px'],
       rowGap: ['20px', '20px', '30px'],
-      margin: ['50px 0', '60px 0'],
+      marginBottom: ['20px', '30px'],
     })
   ),
 };
 
-interface SectionProductListProps {
-  products: ProductInfoType[];
+interface ProductListProps {
+  products: ProductDataType[];
   navigateToDetailedPage: (num?: number) => void;
-  addCart: (item: ProductInfoType) => void;
+  addCart: (item: CartProductType) => void;
+  pagination: PaginationInfoType;
 }
 
 const ProductList = ({
   products,
   navigateToDetailedPage,
   addCart,
-}: SectionProductListProps) => {
+  pagination,
+}: ProductListProps) => {
   return (
     <S.Content>
-      {products?.map((item) => (
-        <ProductItem
-          key={item.id}
-          {...item}
-          onClickProductImage={() => navigateToDetailedPage(item.id)}
-          onClickAddCart={() => addCart(item)}
-        />
-      ))}
+      <S.ProductList>
+        {products?.map((item) => (
+          <ProductItem
+            key={item.id}
+            {...item}
+            onClickProductImage={() => navigateToDetailedPage(item.id)}
+            onClickAddCart={() =>
+              addCart({ ...item, totalQuantity: 1, totalPrice: item.price })
+            }
+          />
+        ))}
+      </S.ProductList>
+      <Pagination {...pagination} />
     </S.Content>
   );
 };

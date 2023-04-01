@@ -1,8 +1,8 @@
 import Header from './parts/Header';
 import styled from '@emotion/styled';
-import { PropsWithChildren } from 'react';
 import { mediaQuery } from '../utils';
 import { FRAME_PADDING, MAX_WIDTH } from '../constant';
+import { Outlet } from 'react-router-dom';
 
 const S = {
   Layout: styled.div(),
@@ -18,11 +18,13 @@ const S = {
     })
   ),
 };
-const Layout = ({ children }: PropsWithChildren) => {
+const Layout = () => {
   return (
     <S.Layout>
       <Header />
-      <S.LayoutWrapper>{children}</S.LayoutWrapper>
+      <S.LayoutWrapper>
+        <Outlet />
+      </S.LayoutWrapper>
     </S.Layout>
   );
 };
