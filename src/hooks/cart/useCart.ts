@@ -1,16 +1,12 @@
-import { atom, useSetRecoilState } from 'recoil';
 import { deleteCart } from 'services/cart';
 import { MAX_QUANTITY, MIN_QUANTITY } from 'constant';
-
-export const cartsState = atom<UserCart[]>({
-  key: 'selectCartsState',
-  default: [] as UserCart[]
-});
+import { useState } from 'react';
 
 type UserCartType = {
+  userCartsState: UserCart[];
+  setUserCartsState: (items: UserCart[]) => void;
   selectCart: (item: UserCart) => void;
   setAllChecked: (checked: boolean, items: UserCart[]) => void;
-  setCarts: (items: UserCart[]) => void;
   deleteCartItem: (itemId: number) => void;
   deleteCartItems: (items: UserCart[]) => void;
   increaseCartItemQuantity: (itemId: number) => void;
@@ -18,21 +14,13 @@ type UserCartType = {
 };
 
 export function useCart(): UserCartType {
-  // TODO useState
-  const setUserCartsState = useSetRecoilState(cartsState)
-
+  const [userCartsState, setUserCartsState] = useState<UserCart[]>([]);
   const selectCart = (item: UserCart) => {
     setUserCartsState((prevState) =>
-      prevState.map((cart: UserCart) => {
-        return cart.id === item.id
-          ? { ...cart, checked: !cart.checked }
-          : cart;
+      prevState.map((cart) => {
+        return cart.id === item.id ? { ...cart, checked: !cart.checked } : cart;
       })
     );
-  }
-
-  const setCarts = (items: UserCart[]) => {
-    setUserCartsState(items);
   }
 
   const setAllChecked = (checked: boolean, items: UserCart[]) => {
@@ -73,6 +61,6 @@ export function useCart(): UserCartType {
     );
   }
 
-  return { selectCart, setAllChecked, setCarts, deleteCartItem, deleteCartItems, increaseCartItemQuantity, decreaseCartItemQuantity };
+  return { userCartsState, setUserCartsState, selectCart, setAllChecked, deleteCartItem, deleteCartItems, increaseCartItemQuantity, decreaseCartItemQuantity };
 }
 

@@ -51,7 +51,6 @@
     "lowdb": "^1.0.0",
     "msw": "^1.1.0",
     "react-query": "^3.39.3",
-    "recoil": "^0.7.7",
     "react-confirm-alert": "^3.0.6"
   }
 }

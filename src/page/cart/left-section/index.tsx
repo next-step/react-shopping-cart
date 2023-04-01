@@ -1,40 +1,33 @@
 import Item from "./item";
-import { cartsState, useCart } from "hooks/cart/useCart";
-import { useEffect } from "react";
-import { useRecoilValue } from "recoil";
 import CheckBox from "components/common/checkBox";
 import Button from "components/common/button";
 import Divider from "components/common/dvider";
 import { handleModal } from "common/modal";
-import { useCheckBox } from "hooks/\buseCheckBox";
-import { useCartList } from "hooks/cart/useCartList";
+import { useCheckBox } from "hooks/useCheckBox";
 
 const cartOrderText = (items: UserCart[]) => {
   return items.length ? `든든배송 상품(${items.length} 개)` : "";
 };
 
-const LeftSection = () => {
-  const carts = useRecoilValue(cartsState);
-
-  const { setCarts, setAllChecked, deleteCartItems } = useCart();
-
-  const { data, isError } = useCartList();
-
+type LeftSectionProps = {
+  carts: UserCart[];
+  selectCart: (cart: UserCart) => void;
+  setAllChecked: (checked: boolean, carts: UserCart[]) => void;
+  deleteCartItem: (itemId: number) => void;
+  deleteCartItems: (items: UserCart[]) => void;
+  increaseCartItemQuantity: (itemId: number) => void;
+  decreaseCartItemQuantity: (itemId: number) => void;
+};
+const LeftSection = ({
+  carts,
+  selectCart,
+  setAllChecked,
+  deleteCartItem,
+  deleteCartItems,
+  increaseCartItemQuantity,
+  decreaseCartItemQuantity,
+}: LeftSectionProps) => {
   const { checked: checkedAll, handleSelect: handleSelectAll } = useCheckBox();
-
-  useEffect(() => {
-    if (isError) {
-      console.error("Error fetching cart list:", isError);
-      alert("Failed to load cart list.");
-      return;
-    }
-
-    if (data) {
-      setCarts(data.map((cart) => ({ ...cart, checked: false, quantity: 1 })));
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, isError]);
 
   const handleSelect = () => {
     handleSelectAll();
@@ -66,7 +59,14 @@ const LeftSection = () => {
       <h3 className="cart-title">{cartOrderText(carts)}</h3>
       <Divider />
       {carts.map((item: UserCart) => (
-        <Item item={item} key={item.id} />
+        <Item
+          item={item}
+          key={item.id}
+          selectCart={selectCart}
+          deleteCartItem={deleteCartItem}
+          increaseCartItemQuantity={increaseCartItemQuantity}
+          decreaseCartItemQuantity={decreaseCartItemQuantity}
+        />
       ))}
     </section>
   );

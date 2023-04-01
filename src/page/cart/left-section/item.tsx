@@ -2,22 +2,24 @@ import trash from "assets/svgs/trash.svg";
 import { printWon } from "common/util";
 
 import { handleModal } from "common/modal";
-import { useCart } from "hooks/cart/useCart";
 import CheckBox from "components/common/checkBox";
-import { useCheckBox } from "hooks/\buseCheckBox";
+import { useCheckBox } from "hooks/useCheckBox";
 
 type ItemProps = {
   item: UserCart;
+  selectCart: (cart: UserCart) => void;
+  deleteCartItem: (itemId: number) => void;
+  increaseCartItemQuantity: (itemId: number) => void;
+  decreaseCartItemQuantity: (itemId: number) => void;
 };
 
-const Item = ({ item }: ItemProps) => {
-  const {
-    selectCart,
-    deleteCartItem,
-    increaseCartItemQuantity,
-    decreaseCartItemQuantity,
-  } = useCart();
-
+const Item = ({
+  item,
+  selectCart,
+  deleteCartItem,
+  increaseCartItemQuantity,
+  decreaseCartItemQuantity,
+}: ItemProps) => {
   const { handleSelect } = useCheckBox();
 
   const handleSelectItem = () => {
