@@ -1,3 +1,4 @@
+import { ShoppingProvider } from 'pages/shopping/modules/ShoppingContext';
 import { RouterProvider } from 'react-router-dom';
 import router from 'routes';
 import { ThemeProvider } from 'styled-components';
@@ -9,7 +10,9 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <RouterProvider router={router} />
+        <ShoppingProvider>
+          <RouterProvider router={router} />
+        </ShoppingProvider>
       </ThemeProvider>
     </>
   );
