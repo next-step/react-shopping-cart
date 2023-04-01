@@ -3,10 +3,12 @@ import type { Product } from 'types/api';
 
 import styled from '@emotion/styled';
 
+import { API } from 'constants/api';
 import { Box, Button, Typography } from 'components/@common';
 import { ReactComponent as CartIcon } from 'assets/CartIcon.svg';
 import { theme } from 'styles/theme';
 import { formatComma } from 'utils/format';
+import httpRequest from 'utils/http';
 
 interface Props {
   key: Key;
@@ -16,11 +18,23 @@ interface Props {
 const ProductItem = ({ product }: Props) => {
   const { name, price, imageUrl } = product;
 
+  const addProduct = async () => {
+    await httpRequest(API.CARTS, {
+      method: 'POST',
+      body: JSON.stringify(product),
+    });
+  };
+
   return (
     <div>
       <ProductImageWrapper>
         <img src={imageUrl} alt={name} />
-        <ShoppingCartButton size="xs" variant="solid" color="white">
+        <ShoppingCartButton
+          size="xs"
+          variant="solid"
+          color="white"
+          onClick={addProduct}
+        >
           <CartIcon width={25} height={25} fill={theme.color.cyan05} />
         </ShoppingCartButton>
       </ProductImageWrapper>

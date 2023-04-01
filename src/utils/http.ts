@@ -2,6 +2,7 @@ import type { APIPath } from 'constants/api';
 
 export interface RequestOptions {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE';
+  body: string;
 }
 
 async function httpRequest<T>(
