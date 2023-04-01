@@ -1,29 +1,35 @@
 import { axiosInstance } from 'apis';
-import axios, { AxiosError, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { useEffect, useState } from 'react';
 
 interface ReturnType<T> {
   data: T | null;
   isLoading: boolean;
   error: Error | AxiosError | unknown;
+  fetchData: <K>(payload?: K & AxiosRequestConfig<K>) => Promise<void>;
 }
 
 interface useAxiosProps {
   url: string;
   method?: 'get' | 'post' | 'put' | 'delete';
+  immediate?: boolean;
 }
 
 const useAxios = <T,>({
   url,
   method = 'get',
+  immediate = true,
 }: useAxiosProps): ReturnType<T> => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<unknown>(null);
 
-  const fetchData = async () => {
+  const fetchData = async <K,>(payload?: K & AxiosRequestConfig<K>) => {
     try {
-      const response: AxiosResponse<T> = await axiosInstance[method](url);
+      const response: AxiosResponse<T> = await axiosInstance[method](
+        url,
+        payload
+      );
       setIsLoading(false);
       setData(response.data);
     } catch (err: unknown) {
@@ -42,10 +48,12 @@ const useAxios = <T,>({
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (immediate) {
+      fetchData();
+    }
+  }, [immediate]);
 
-  return { isLoading, data, error };
+  return { isLoading, data, error, fetchData };
 };
 
 export default useAxios;
