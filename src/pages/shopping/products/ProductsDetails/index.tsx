@@ -13,6 +13,7 @@ import Button from 'components/Button';
 import FlexContainer from 'components/FlexContainer';
 import CartConfirmModal from 'pages/shopping/components/CartConfirmModal';
 import useModal from 'hooks/useModal';
+import Loading from 'components/Loading';
 
 const ProductsDetails = () => {
   const { colors } = useContext(ThemeContext);
@@ -33,7 +34,7 @@ const ProductsDetails = () => {
   };
 
   if (isLoading) {
-    return <div>loading...</div>;
+    return <Loading />;
   }
 
   return (

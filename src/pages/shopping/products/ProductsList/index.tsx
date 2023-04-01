@@ -7,6 +7,7 @@ import { Product } from 'types/products';
 import VerticalProductCard from 'pages/shopping/components/VerticalProductCard';
 import * as StyledProductsList from './ProductsList.styled';
 import CartConfirmModal from 'pages/shopping/components/CartConfirmModal';
+import Loading from 'components/Loading';
 
 const ProductsList = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const ProductsList = () => {
   };
 
   if (isLoading) {
-    return <div>loading...</div>;
+    return <Loading />;
   }
 
   return (

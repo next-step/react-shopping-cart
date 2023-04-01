@@ -1,4 +1,5 @@
 import FlexContainer from 'components/FlexContainer';
+import Loading from 'components/Loading';
 import PageContainer from 'components/PageContainer';
 import { ORDERS } from 'constants/orders';
 import useAxios from 'hooks/useAxios';
@@ -15,6 +16,10 @@ const OrdersList = () => {
   const { colors } = useContext(ThemeContext);
 
   const { isLoading, data } = useAxios<Order[]>({ url: `/${ORDERS}` });
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <PageContainer>

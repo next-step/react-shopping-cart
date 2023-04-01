@@ -1,4 +1,5 @@
 import FlexContainer from 'components/FlexContainer';
+import Loading from 'components/Loading';
 import PageContainer from 'components/PageContainer';
 import { ORDERS } from 'constants/orders';
 import useAxios from 'hooks/useAxios';
@@ -16,6 +17,10 @@ const OrdersDetails = () => {
 
   const { id } = useParams();
   const { isLoading, data } = useAxios<Order>({ url: `/${ORDERS}/${id}` });
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <PageContainer>

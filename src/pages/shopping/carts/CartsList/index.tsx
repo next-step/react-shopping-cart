@@ -67,9 +67,9 @@ const CartsList = () => {
     navigate(`/carts/details`);
   };
 
-  // if (true) {
-  return <Loading />;
-  // }
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <PageContainer>
