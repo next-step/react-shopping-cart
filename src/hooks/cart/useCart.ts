@@ -35,10 +35,12 @@ export function useCart(): UserCartType {
     deleteIds.forEach((cartId) => {
       deleteCart(cartId);
     });
+    setUserCartsState((prevState) => prevState.filter((cart) => !deleteIds.includes(cart.id)));
   }
 
   const deleteCartItem = async (itemId: number) => {
     deleteCart(itemId);
+    setUserCartsState((prevState) => prevState.filter((cart) => cart.id !== itemId));
   }
 
   const increaseCartItemQuantity = (itemId: number) => {

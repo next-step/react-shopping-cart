@@ -243,33 +243,6 @@
   ],
   "carts": [
     {
-      "id": 1679828051375,
-      "product": {
-        "id": 6,
-        "name": "야채고로케 (60g*18입) 1080g",
-        "price": 11170,
-        "imageUrl": "https://cdn-mart.baemin.com/goods/custom/20200427/9751-main-01.png"
-      }
-    },
-    {
-      "id": 1679828053501,
-      "product": {
-        "id": 7,
-        "name": "식자재왕 김말이튀김 야채맛 1kg",
-        "price": 6580,
-        "imageUrl": "https://cdn-mart.baemin.com/sellergoods/bulk/20211210-155432/9416-main-01.jpg"
-      }
-    },
-    {
-      "id": 1679828055603,
-      "product": {
-        "id": 8,
-        "name": "삼양 야채튀김 (60g*50±1/박스) 3kg",
-        "price": 24610,
-        "imageUrl": "https://cdn-mart.baemin.com/sellergoods/main/8916edff-9fa9-4538-95c3-13d463f58a86.jpg"
-      }
-    },
-    {
       "id": 1679828058351,
       "product": {
         "id": 9,
