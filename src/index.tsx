@@ -4,8 +4,8 @@ import './index.css'
 import reportWebVitals from './reportWebVitals'
 import { RouterProvider } from 'react-router-dom'
 import { setupWorker } from 'msw'
-import { handlers } from './mocks/handlers'
-import { router } from './utils/routers'
+import { handlers } from './shared/mocks/handlers'
+import { router } from './routers'
 
 if (process.env.NODE_ENV === 'development') {
   const msw = setupWorker(...handlers)
