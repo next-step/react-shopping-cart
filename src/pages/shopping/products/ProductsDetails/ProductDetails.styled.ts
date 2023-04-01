@@ -18,7 +18,9 @@ const SectionContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-between;
+  justify-content: space-between;
+  width: 500px;
+  height: 500px;
 `;
 
 const ImageContainer = styled.div``;

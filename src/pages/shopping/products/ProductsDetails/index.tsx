@@ -45,25 +45,27 @@ const ProductsDetails = () => {
         </ProductDetail.ImageContainer>
 
         <ProductDetail.SectionContainer>
-          <Title fontSize="20px" fontWeight="bold">
-            {data?.name}
-          </Title>
-
-          <div>
+          <FlexContainer direction="column" gap="10px">
+            <Title fontSize="20px" fontWeight="bold">
+              {data?.name}
+            </Title>
             <HorizontalBar thickness="3px" color={colors.purple} />
-
-            <FlexContainer>
+          </FlexContainer>
+          <div>
+            <FlexContainer justifyContent="space-between" margin="20px 0">
               <div>금액</div>
               <div>{data?.price}원</div>
             </FlexContainer>
 
-            <Button
-              backgroundColor={colors.purple}
-              color={colors.white}
-              onClick={handleAddCartClick}
-            >
-              장바구니
-            </Button>
+            <div>
+              <Button
+                backgroundColor={colors.purple}
+                color={colors.white}
+                onClick={handleAddCartClick}
+              >
+                장바구니
+              </Button>
+            </div>
           </div>
         </ProductDetail.SectionContainer>
       </ProductDetail.ProductDetailsContainer>
