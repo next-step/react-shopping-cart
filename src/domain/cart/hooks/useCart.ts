@@ -1,7 +1,16 @@
-import { useCustomQuery } from '../../../hooks';
+import { useCustomMutation, useCustomQuery } from '../../../hooks';
 import { CartItemType } from '../../../types';
-import { useCartDispatch } from '../../../context/CartContext';
+import { useCartDispatch, useCartState } from '../../../context/CartContext';
 import { CONFIRM } from '../../../constant';
+import { useEffect } from 'react';
+import {
+  deleteCartItem,
+  SelectIdArr,
+  SelectIdType,
+  deleteSelectedCartItem,
+  updateItemCount,
+} from '../../../apiClient';
+import { UpdateType } from '../../../mocks/handlers';
 
 interface ResponseType {
   response: CartItemType[];
@@ -16,8 +25,19 @@ export interface CartDispatchFunctionType {
   countUp: (id: number) => void;
   countDown: (id: number) => void;
 }
+
 const useCart = () => {
   const { data, loading, error } = useCustomQuery<ResponseType>(`/carts`);
+  const deleteItem = useCustomMutation<unknown, SelectIdType>((payload) =>
+    deleteCartItem(payload)
+  );
+  const deleteSelectItem = useCustomMutation<unknown, SelectIdArr>((payload) =>
+    deleteSelectedCartItem(payload)
+  );
+  const updateCount = useCustomMutation<unknown, UpdateType>((payload) =>
+    updateItemCount(payload)
+  );
+  const cartState = useCartState();
   const cartDispatch = useCartDispatch();
 
   const selectProduct = (id: number) =>
@@ -27,24 +47,43 @@ const useCart = () => {
 
   const deleteSelectedProduct = () => {
     const confirmRes = confirm(CONFIRM.CART_DELETE);
-    if (confirmRes) cartDispatch({ type: 'DELETE_SELECT_ITEM' });
+    if (confirmRes) {
+      const selectIdArray = cartState.products.map((item) => {
+        if (item.select) {
+          return item.id;
+        } else {
+          return;
+        }
+      });
+      deleteSelectItem.mutate(selectIdArray as SelectIdArr);
+      cartDispatch({ type: 'DELETE_SELECT_ITEM' });
+    }
   };
 
   const deleteProduct = (id: number) => {
     const confirmRes = confirm(CONFIRM.CART_DELETE);
-    if (confirmRes) cartDispatch({ type: 'DELETE_ITEM', selectId: id });
+    if (confirmRes) {
+      deleteItem.mutate({ selectId: id });
+      cartDispatch({ type: 'DELETE_ITEM', selectId: id });
+    }
   };
 
-  const countUp = (id: number) =>
+  const countUp = (id: number) => {
+    updateCount.mutate({ selectId: id, type: 'UP' });
     cartDispatch({ type: 'COUNT_UP_ITEM', selectId: id });
+  };
 
-  const countDown = (id: number) =>
+  const countDown = (id: number) => {
+    updateCount.mutate({ selectId: id, type: 'DOWN' });
     cartDispatch({ type: 'COUNT_DOWN_ITEM', selectId: id });
-
-  const cartData = data?.response;
+  };
+  useEffect(() => {
+    if (data) {
+      cartDispatch({ type: 'FETCH_CART_STATE', products: data.response });
+    }
+  }, [data]);
 
   return {
-    cartData,
     loading,
     error,
     cartDispatchFunction: {

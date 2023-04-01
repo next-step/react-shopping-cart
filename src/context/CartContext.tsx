@@ -15,6 +15,7 @@ export interface CartListType {
 }
 
 export type CartDispatchAction =
+  | { type: 'FETCH_CART_STATE'; products: CartItemType[] }
   | { type: 'ADD_CART'; product: ProductDataType }
   | { type: 'COUNT_UP_ITEM'; selectId: number }
   | { type: 'COUNT_DOWN_ITEM'; selectId: number }
@@ -39,6 +40,14 @@ const cartReducer = (
   action: CartDispatchAction
 ): CartListType => {
   switch (action.type) {
+    case 'FETCH_CART_STATE':
+      return {
+        products: action.products,
+        totalCount: action.products.length,
+        totalPrice: action.products
+          .map((item) => item.product.totalPrice)
+          .reduce((a, b) => a + b, 0),
+      };
     case 'ADD_CART':
       return {
         ...state,

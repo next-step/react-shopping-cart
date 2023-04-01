@@ -4,10 +4,8 @@ import useCart from '../hooks/useCart';
 import { useCartState } from '../../../context/CartContext';
 
 const Cart = () => {
-  const { cartData, error, loading, cartDispatchFunction } = useCart();
+  const { error, loading, cartDispatchFunction } = useCart();
   const cartState = useCartState();
-
-  console.log(cartData);
 
   if (loading) {
     return <div>페이지 로딩 중...</div>;
