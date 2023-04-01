@@ -1,3 +1,4 @@
+import { randomInt } from 'crypto'
 import { rest } from 'msw'
 
 import MOCK_DATA from '../../shared/mocks/db.json'
@@ -9,7 +10,7 @@ export const productsHandler = [
   }),
   rest.post('/api/product', async (req, res, ctx) => {
     const product = await req.json()
-    const currentProduct = { ...product, id: products.length + 1 }
+    const currentProduct = { ...product, id: randomInt(10000000) }
     products.push(currentProduct)
 
     return res(ctx.status(201), ctx.json(currentProduct))
