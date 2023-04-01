@@ -1,7 +1,7 @@
 import { CartItemType } from '../../../types';
 import Checkbox from '../../../components/input/Checkbox';
 import { CartDispatchFunctionType } from '../hooks/useCart';
-import { COUNT_TYPE, DELETE_TYPE } from '../../../constant';
+import { COUNT_TYPE, DELETE_TYPE, SELECT_TYPE } from '../../../constant';
 
 interface CartItemProps {
   productInfo: CartItemType;
@@ -21,7 +21,7 @@ const CartItem = ({
       <div className="flex gap-15 mt-10">
         <Checkbox
           initValue={select}
-          onClick={() => cartDispatch.selectProduct(id)}
+          onClick={() => cartDispatch.selectProduct(SELECT_TYPE.SINGLE, id)}
         />
         <img className="w-144 h-144" src={imageUrl} alt={name} />
         <span className="cart-name">{name}</span>

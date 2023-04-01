@@ -3,7 +3,7 @@ import { CartItemType } from '../../../types';
 import { CartItem } from '../components';
 import Checkbox from '../../../components/input/Checkbox';
 import { CartDispatchFunctionType } from '../hooks/useCart';
-import { DELETE_TYPE } from '../../../constant';
+import { DELETE_TYPE, SELECT_TYPE } from '../../../constant';
 
 const S = {
   Wrapper: styled.div({
@@ -32,7 +32,7 @@ const CartList = ({ items, cartDispatch }: CartListProps) => {
         <div className="checkbox-container">
           <Checkbox
             initValue={items.every((item) => item.select)}
-            onClick={cartDispatch.selectAllProduct}
+            onClick={() => cartDispatch.selectProduct(SELECT_TYPE.ALL)}
           />
           <label className="checkbox-label" htmlFor="checkbox">
             전체 선택

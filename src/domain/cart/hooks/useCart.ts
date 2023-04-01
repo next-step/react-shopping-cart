@@ -6,6 +6,8 @@ import {
   COUNT_TYPE,
   DELETE_TYPE,
   DeleteType,
+  SELECT_TYPE,
+  SelectType,
 } from '../../../constant';
 import { useEffect } from 'react';
 import {
@@ -22,9 +24,7 @@ interface ResponseType {
 }
 
 export interface CartDispatchFunctionType {
-  selectProduct: (id: number) => void;
-
-  selectAllProduct: () => void;
+  selectProduct: (selectRange: SelectType, selectId?: number) => void;
   deleteProduct: (method: DeleteType, id?: number) => void;
   updateCount: ({ selectId, type }: UpdateCountType) => void;
 }
@@ -43,10 +43,20 @@ const useCart = () => {
   const cartState = useCartState();
   const cartDispatch = useCartDispatch();
 
-  const selectProduct = (id: number) =>
-    cartDispatch({ type: 'SELECT_ITEM', selectId: id });
+  const selectProduct = (selectRange: SelectType, id?: number) => {
+    if (selectRange === SELECT_TYPE.ALL)
+      cartDispatch({
+        type: 'SELECT_ITEM',
+        selectRange: SELECT_TYPE.ALL,
+      });
 
-  const selectAllProduct = () => cartDispatch({ type: 'SELECT_ALL_ITEM' });
+    if (selectRange === SELECT_TYPE.SINGLE)
+      cartDispatch({
+        type: 'SELECT_ITEM',
+        selectRange: SELECT_TYPE.SINGLE,
+        selectId: id,
+      });
+  };
 
   const updateCount = ({ selectId, type }: UpdateCountType) => {
     if (type === COUNT_TYPE.UP) {
@@ -109,7 +119,6 @@ const useCart = () => {
     error,
     cartDispatchFunction: {
       selectProduct,
-      selectAllProduct,
       deleteProduct,
       updateCount,
     },

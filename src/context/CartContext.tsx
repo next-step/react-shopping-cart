@@ -8,7 +8,13 @@ import {
 } from 'react';
 import { CartItemType, ProductDataType } from '../types';
 import { countError } from '../utils';
-import { COUNT_TYPE } from '../constant';
+import {
+  COUNT_TYPE,
+  CountType,
+  DeleteType,
+  SELECT_TYPE,
+  SelectType,
+} from '../constant';
 
 export interface CartListType {
   totalPrice: number;
@@ -20,14 +26,13 @@ export type CartDispatchAction =
   | { type: 'UPDATE_CART_STATE'; products: CartItemType[] }
   | { type: 'CALCULATE_CART_STATE' }
   | { type: 'ADD_ITEM'; product: ProductDataType }
-  | { type: 'COUNT_UPDATE'; selectId: number; direction: 'UP' | 'DOWN' }
+  | { type: 'COUNT_UPDATE'; selectId: number; direction: CountType }
   | {
       type: 'DELETE_ITEM';
       selectId?: number;
-      deleteMethod: 'DIRECT' | 'SELECT';
+      deleteMethod: DeleteType;
     }
-  | { type: 'SELECT_ITEM'; selectId: number }
-  | { type: 'SELECT_ALL_ITEM' };
+  | { type: 'SELECT_ITEM'; selectId?: number; selectRange: SelectType };
 
 const initCartData = {
   totalCount: 0,
@@ -52,6 +57,7 @@ const cartReducer = (
           .map((item) => item.product.totalPrice)
           .reduce((a, b) => a + b, 0),
       };
+
     case 'ADD_ITEM':
       return {
         ...state,
@@ -68,6 +74,7 @@ const cartReducer = (
           },
         ],
       };
+
     case 'COUNT_UPDATE':
       return {
         ...state,
@@ -90,6 +97,7 @@ const cartReducer = (
           }
         }),
       };
+
     case 'DELETE_ITEM':
       return {
         ...state,
@@ -102,42 +110,48 @@ const cartReducer = (
           }
         }),
       };
+
     case 'SELECT_ITEM':
-      return {
-        ...state,
-        products: state.products.map((item) => {
-          if (item.id === action.selectId) {
-            return {
-              ...item,
-              select: !item.select,
-            };
-          } else {
-            return item;
-          }
-        }),
-      };
-    case 'SELECT_ALL_ITEM':
-      if (state.products.some((item) => item.select)) {
+      if (action.selectRange === SELECT_TYPE.SINGLE) {
         return {
           ...state,
           products: state.products.map((item) => {
-            return {
-              ...item,
-              select: false,
-            };
-          }),
-        };
-      } else {
-        return {
-          ...state,
-          products: state.products.map((item) => {
-            return {
-              ...item,
-              select: true,
-            };
+            if (item.id === action.selectId) {
+              return {
+                ...item,
+                select: !item.select,
+              };
+            } else {
+              return item;
+            }
           }),
         };
       }
+      if (action.selectRange === SELECT_TYPE.ALL) {
+        if (state.products.some((item) => item.select)) {
+          return {
+            ...state,
+            products: state.products.map((item) => {
+              return {
+                ...item,
+                select: false,
+              };
+            }),
+          };
+        } else {
+          return {
+            ...state,
+            products: state.products.map((item) => {
+              return {
+                ...item,
+                select: true,
+              };
+            }),
+          };
+        }
+      }
+      throw Error('선택된 상품이 없습니다');
+
     case 'CALCULATE_CART_STATE':
       return {
         ...state,
