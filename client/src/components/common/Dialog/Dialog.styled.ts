@@ -1,5 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Button } from '../Button';
+import { ReactComponent as Image } from 'assets/svgs/error.svg';
 
 export const OverLay = styled.div`
   position: fixed;
@@ -25,8 +26,13 @@ export const FlexContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 `;
-
-export const FlexBox = styled.div`
+export const TitleBox = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  gap: 10px;
+`;
+export const ButtonBox = styled.div`
   display: flex;
   gap: 50px;
 `;
@@ -43,6 +49,10 @@ export const DiaLogButton = styled(Button)`
 export const Title = styled.h3`
   color: black;
   font-weight: 500;
-
   font-size: 25px;
+`;
+
+export const ErrorIcon = styled(Image)`
+  width: 24px;
+  height: 24px;
 `;
