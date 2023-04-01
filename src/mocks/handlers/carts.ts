@@ -12,10 +12,17 @@ const handlers = [
   rest.post<Cart[]>(`/${CARTS}`, async (req, res, ctx) => {
     const selectedCart: Cart = await req.json();
 
-    const selected: Cart | undefined = cartsData.carts.find(
-      (cart) => cart.id === selectedCart.id
+    return res(
+      ctx.status(201),
+      ctx.json<Cart | undefined>({
+        ...selectedCart,
+        product: {
+          ...selectedCart.product,
+          quantity: selectedCart.product.quantity,
+          price: selectedCart.product.quantity * selectedCart.product.price,
+        },
+      })
     );
-    return res(ctx.status(201), ctx.json<Cart | undefined>(selected));
   }),
   // 카트 아이템 삭제
   rest.delete(`/${CARTS}/:id`, (req, res, ctx) => {

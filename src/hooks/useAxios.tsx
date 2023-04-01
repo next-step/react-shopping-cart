@@ -6,7 +6,9 @@ interface ReturnType<T> {
   data: T | null;
   isLoading: boolean;
   error: Error | AxiosError | unknown;
-  fetchData: <K>(payload?: K & AxiosRequestConfig<K>) => Promise<void>;
+  fetchData: <K>(
+    payload?: K & AxiosRequestConfig<K>
+  ) => Promise<AxiosResponse<T> | undefined>;
 }
 
 interface useAxiosProps {
@@ -32,6 +34,7 @@ const useAxios = <T,>({
       );
       setIsLoading(false);
       setData(response.data);
+      return response;
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
         setIsLoading(false);

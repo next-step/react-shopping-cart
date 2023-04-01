@@ -22,9 +22,10 @@ const CartsItem = ({
   selected,
   handleCheckboxChange,
 }: CartsItemProps) => {
-  const { id, name, imageUrl, price } = product;
+  const { id, name, imageUrl } = product;
   const [quantity, setQuantity] = useState<number>(product.quantity);
-  const { fetchData: addCart } = useAxios<Cart[]>({
+  const [price, setPrice] = useState<number>(product.price);
+  const { fetchData: addCart } = useAxios<Cart>({
     url: `/${CARTS}`,
     method: 'post',
     immediate: false,
@@ -35,9 +36,22 @@ const CartsItem = ({
     [imageUrl, name]
   );
 
-  const handleQuantityClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleQuantityClick = async (
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
     const { id } = e.currentTarget.dataset;
-    addCart({ id: cartId, product });
+
+    const response = await addCart({
+      id: cartId,
+      product: {
+        ...product,
+        quantity: id === INCREASE ? quantity + 1 : quantity - 1,
+      },
+    });
+    if (response) {
+      setQuantity(response.data.product.quantity);
+      setPrice(response.data.product.price);
+    }
   };
 
   return (
