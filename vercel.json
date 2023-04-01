@@ -1,18 +1,18 @@
-{
-  "version": 2,
-  "builds": [
-    {
-      "src": "server.ts",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": ["./src/mocks/db.json"]
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "server.ts"
-    }
-  ]
-}
+// {
+//   "version": 2,
+//   "builds": [
+//     {
+//       "src": "server.ts",
+//       "use": "@vercel/node",
+//       "config": {
+//         "includeFiles": ["./src/mocks/db.json"]
+//       }
+//     }
+//   ],
+//   "routes": [
+//     {
+//       "src": "/(.*)",
+//       "dest": "server.ts"
+//     }
+//   ]
+// }
