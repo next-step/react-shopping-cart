@@ -1,4 +1,5 @@
 import { useFetch } from 'hooks';
+
 import { useCartActions } from 'store/cart';
 
 import { fetchCarts } from 'api';
@@ -6,15 +7,15 @@ import { Carts } from 'types/cart';
 
 const CACHE_KEY = 'carts';
 
-function useCarts() {
+function useCartList() {
   const { initialize } = useCartActions();
 
   return useFetch<Carts>({
     fetcher: fetchCarts,
     cacheKey: CACHE_KEY,
     cacheTime: 0,
-    onSuccess: (carts) => initialize(carts),
+    onSuccess: (data) => initialize(data),
   });
 }
 
-export default useCarts;
+export default useCartList;
