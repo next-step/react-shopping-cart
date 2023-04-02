@@ -1,9 +1,7 @@
 import * as Styled from './ProductListPage.styles';
-
 import uuid from 'react-uuid';
-
 import ProductItem from 'components/domain/Product/Item';
-import { Spinner } from 'components/common';
+import { Spinner, ErrorMessage } from 'components/common';
 
 import useProducts from 'hooks/useProductList';
 
@@ -12,6 +10,8 @@ const ProductListPage = () => {
 
   if (status === 'Loading') {
     return <Spinner />;
+  } else if (status === 'Fail') {
+    return <ErrorMessage />;
   }
 
   return (

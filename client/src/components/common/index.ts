@@ -5,3 +5,4 @@ export { Input } from './Input';
 export { PageHeader } from './PageHeader';
 export { NavBar } from './NavBar';
 export { Spinner } from './Spinner';
+export { ErrorMessage } from './ErrorMessage';
