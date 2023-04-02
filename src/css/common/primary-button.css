@@ -1,0 +1,21 @@
+.primary-button {
+  background: #2ac1bc;
+  font-size: 24px;
+  color: white;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.primary-button-small {
+  background: #2ac1bc;
+  font-size: 20px;
+  color: white;
+  padding: 14px 28px;
+}
+
+.primary-button-brown {
+  background-color: #73675c;
+}
