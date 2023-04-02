@@ -3,12 +3,13 @@ import { css, cx } from '@emotion/css';
 
 import { Button, Checkbox, Counter } from 'components';
 import { useCounter } from 'hooks';
-import { useCartActions, useIsCheckedCart } from 'store/cart';
-import { useDeleteCarts } from '../../hooks';
+import { useCartActions, useCheckedCartIds } from 'store/cart';
 
 import { colors } from 'constants/colors';
 import { Cart } from 'types/cart';
 import { TrashSVG } from 'assets/svgs';
+
+import { useDeleteCarts } from '../../hooks';
 
 interface CartItemProps {
   cart: Cart;
@@ -25,8 +26,9 @@ function CartItem({ cart, refetchCarts }: CartItemProps) {
     increase: increaseCartById,
     decrease: decreaseCartById,
   } = useCartActions();
+  const checkedCartIds = useCheckedCartIds();
 
-  const isChecked = useIsCheckedCart(id);
+  const isChecked = checkedCartIds.has(id);
   const totalPrice = price * count;
 
   const handleChangeCheckbox: ChangeEventHandler<HTMLInputElement> = (e) => {

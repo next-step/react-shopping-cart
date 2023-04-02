@@ -1,25 +1,20 @@
 import { ChangeEventHandler } from 'react';
 
 import { Button, Checkbox } from 'components';
-import {
-  useCartActions,
-  useIdsOfCheckedCarts,
-  useIsCheckedAll,
-  useTotalCountOfCheckedCarts,
-} from 'store/cart';
+import { useCartActions, useCheckedCartIds, useIsCheckedAll } from 'store/cart';
 
-import { useCarts, useDeleteCarts } from '../../hooks';
+import { useCartList, useDeleteCarts } from '../../hooks';
 import { CartItem, ExpectedPayment } from '../../components';
 
 function CartList() {
-  const { data: carts = [], refetch } = useCarts();
+  const { data: carts = [], refetch } = useCartList();
   const { mutate: deleteCarts, isLoading } = useDeleteCarts({ onSuccess: refetch });
   const { checkAll, uncheckAll } = useCartActions();
 
+  const checkedCartIds = useCheckedCartIds();
   const isCheckedAll = useIsCheckedAll();
-  const totalCount = useTotalCountOfCheckedCarts();
-  const checkedCartIds = useIdsOfCheckedCarts();
-  const isDisabled = totalCount === 0;
+
+  const isDisabled = checkedCartIds.size === 0;
 
   const handleChangeCheckbox: ChangeEventHandler<HTMLInputElement> = (e) => {
     if (e.target.checked) {
@@ -31,7 +26,7 @@ function CartList() {
 
   const handleClickDeleteButton = () => {
     if (window.confirm('선택하신 상품들을 모두 삭제하시겠습니까?')) {
-      deleteCarts(checkedCartIds);
+      deleteCarts(Array.from(checkedCartIds));
     }
   };
 

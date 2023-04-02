@@ -2,24 +2,20 @@ import { css } from '@emotion/css';
 
 import { Button } from 'components';
 
-import {
-  useTotalPriceOfCheckedCarts,
-  useTotalCountOfCheckedCarts,
-  useIdsOfCheckedCarts,
-} from 'store/cart';
+import { useTotalPriceOfCheckedCarts, useCheckedCartIds } from 'store/cart';
 import { useAddOrder } from '../../hooks';
 
 function ExpectedPayment() {
-  const totalPrice = useTotalPriceOfCheckedCarts();
-  const totalCount = useTotalCountOfCheckedCarts();
-  const checkedCartIds = useIdsOfCheckedCarts();
   const { mutate: addOrder, isLoading } = useAddOrder();
+  const totalPrice = useTotalPriceOfCheckedCarts();
+  const checkedCartIds = useCheckedCartIds();
+  const totalCount = checkedCartIds.size;
 
   const isDisabled = totalCount === 0;
 
   const handleClickOrderButton = () => {
     if (window.confirm('선택하신 상품들을 주문하시겠습니까?')) {
-      addOrder(checkedCartIds);
+      addOrder(Array.from(checkedCartIds));
     }
   };
 
