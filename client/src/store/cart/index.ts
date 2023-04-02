@@ -29,7 +29,7 @@ export const useCartStore = create<State & Action>()((set) => ({
   carts: [],
   checked: new Set(),
   actions: {
-    initialize: (carts: Carts) => set(() => ({ carts })),
+    initialize: (carts: Carts) => set(() => ({ carts, checked: new Set() })),
     increase: (id: number) => set((state) => ({ carts: increaseCartCount(state.carts, id) })),
     decrease: (id: number) => set((state) => ({ carts: decreaseCartCount(state.carts, id) })),
     remove: (ids: number[]) =>
