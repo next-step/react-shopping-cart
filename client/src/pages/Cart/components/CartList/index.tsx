@@ -15,6 +15,7 @@ function CartList() {
   const isCheckedAll = useIsCheckedAll();
 
   const isDisabled = checkedCartIds.size === 0;
+  const isEmpty = carts.length === 0;
 
   const handleChangeCheckbox: ChangeEventHandler<HTMLInputElement> = (e) => {
     if (e.target.checked) {
@@ -48,6 +49,7 @@ function CartList() {
         </div>
         <h3 className="cart-title my-20">배송 상품 (총 {carts.length}개)</h3>
         <hr className="divide-line-gray mt-10" />
+        {isEmpty && <h3 className="flex-center p-20 mt-40">장바구니에 담긴 상품이 없습니다.</h3>}
         {carts.map((cart) => (
           <CartItem key={cart.id} cart={cart} refetchCarts={refetch} />
         ))}
