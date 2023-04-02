@@ -33,7 +33,7 @@ describe('Cart Store', () => {
 
     increase(id);
 
-    expect(useCartStore.getState().carts[0].count).toBe(2);
+    expect(useCartStore.getState().carts).toEqual([{ ...INITIAL_STATE[0], count: 2 }]);
   });
 
   test('장바구니 목록 중 특정 항목의 수량을 줄일 수 있어야 한다.', () => {
@@ -43,7 +43,7 @@ describe('Cart Store', () => {
 
     decrease(id);
 
-    expect(useCartStore.getState().carts[0].count).toBe(0);
+    expect(useCartStore.getState().carts).toEqual([{ ...INITIAL_STATE[0], count: 0 }]);
   });
 
   test('장바구니 목록에서 특정 id에 해당하는 상품 목록을 필터링할 수 있어야 한다.', () => {
