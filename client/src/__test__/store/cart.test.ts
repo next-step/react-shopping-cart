@@ -46,32 +46,20 @@ describe('Cart Store', () => {
     expect(useCartStore.getState().carts[0].count).toBe(0);
   });
 
-  test('장바구니 목록 중 특정 항목을 체크 또는 체크 해제할 수 있어야 한다.', () => {
-    const {
-      actions: { toggle },
-    } = useCartStore.getState();
+  // test('장바구니 목록 전체 항목을 체크 또는 체크 해제할 수 있어야 한다.', () => {
+  //   const {
+  //     actions: { checkAll, uncheckAll, initialize },
+  //   } = useCartStore.getState();
+  //   initialize([...INITIAL_STATE, ...INITIAL_STATE]);
 
-    toggle(id);
-    expect(useCartStore.getState().carts[0].isChecked).toBe(true);
+  //   checkAll();
+  //   expect(useCartStore.getState().carts[0].isChecked).toBe(true);
+  //   expect(useCartStore.getState().carts[1].isChecked).toBe(true);
 
-    toggle(id);
-    expect(useCartStore.getState().carts[0].isChecked).toBe(false);
-  });
-
-  test('장바구니 목록 전체 항목을 체크 또는 체크 해제할 수 있어야 한다.', () => {
-    const {
-      actions: { checkAll, uncheckAll, initialize },
-    } = useCartStore.getState();
-    initialize([...INITIAL_STATE, ...INITIAL_STATE]);
-
-    checkAll();
-    expect(useCartStore.getState().carts[0].isChecked).toBe(true);
-    expect(useCartStore.getState().carts[1].isChecked).toBe(true);
-
-    uncheckAll();
-    expect(useCartStore.getState().carts[0].isChecked).toBe(false);
-    expect(useCartStore.getState().carts[1].isChecked).toBe(false);
-  });
+  //   uncheckAll();
+  //   expect(useCartStore.getState().carts[0].isChecked).toBe(false);
+  //   expect(useCartStore.getState().carts[1].isChecked).toBe(false);
+  // });
 
   test('장바구니 목록에서 특정 id에 해당하는 상품 목록을 필터링할 수 있어야 한다.', () => {
     const {

@@ -1,15 +1,9 @@
 import {
-  checkAllCart,
   decreaseCartCount,
   increaseCartCount,
-  initializeCarts,
   toggleCart,
-  uncheckAllCart,
   totalPriceOfCheckedCarts,
-  totalCountOfCheckedCarts,
-  isCheckedCart,
   isCheckedAll,
-  idsOfCheckedCarts,
   removeCartByIds,
 } from 'store/cart/model';
 
@@ -31,103 +25,49 @@ const INITIAL_STATE: Carts = [
 ];
 
 describe('Cart Store Model', () => {
-  test('장바구니 목록을 체크 가능한 장바구니 목록으로 초기화할 수 있어야 한다.', () => {
-    const carts = INITIAL_STATE;
-    const cart = carts[0];
-
-    const initializedCarts = initializeCarts(carts);
-    const initializedCart = initializedCarts[0];
-
-    expect(initializedCart).toEqual({ ...cart, isChecked: false });
-  });
-
   test('장바구니 목록 중 특정 항목의 수량을 늘릴 수 있어야 한다.', () => {
-    const carts = initializeCarts(INITIAL_STATE);
-
-    const increasedCarts = increaseCartCount(carts, id);
+    const increasedCarts = increaseCartCount(INITIAL_STATE, id);
     const increasedCart = increasedCarts[0];
 
     expect(increasedCart.count).toBe(2);
   });
 
   test('장바구니 목록 중 특정 항목의 수량을 줄일 수 있어야 한다.', () => {
-    const carts = initializeCarts(INITIAL_STATE);
-
-    const decreasedCarts = decreaseCartCount(carts, id);
+    const decreasedCarts = decreaseCartCount(INITIAL_STATE, id);
     const decreasedCart = decreasedCarts[0];
 
     expect(decreasedCart.count).toBe(0);
   });
 
   test('장바구니 목록 중 특정 항목을 체크 또는 체크 해제할 수 있어야 한다.', () => {
-    let carts = initializeCarts(INITIAL_STATE);
+    let checkedIds = new Set<number>();
 
-    carts = toggleCart(carts, id);
-    expect(carts[0].isChecked).toBe(true);
+    checkedIds = toggleCart(checkedIds, id);
+    expect(checkedIds.has(id)).toBe(true);
 
-    carts = toggleCart(carts, id);
-    expect(carts[0].isChecked).toBe(false);
-  });
-
-  test('장바구니 목록 전체 항목을 체크 또는 체크 해제할 수 있어야 한다.', () => {
-    let carts = initializeCarts([...INITIAL_STATE, ...INITIAL_STATE]);
-
-    carts = checkAllCart(carts);
-    expect(carts[0].isChecked).toBe(true);
-    expect(carts[1].isChecked).toBe(true);
-
-    carts = uncheckAllCart(carts);
-    expect(carts[0].isChecked).toBe(false);
-    expect(carts[1].isChecked).toBe(false);
+    checkedIds = toggleCart(checkedIds, id);
+    expect(checkedIds.has(id)).toBe(false);
   });
 
   test('장비구니 목록에서 체크된 항목들의 금액 총합을 알 수 있어야 한다.', () => {
-    let carts = initializeCarts(INITIAL_STATE);
+    const carts = [...INITIAL_STATE];
+    const checkedIds = new Set([id]);
 
-    expect(totalPriceOfCheckedCarts(carts)).toBe(0);
-
-    carts = toggleCart(carts, id);
-    expect(totalPriceOfCheckedCarts(carts)).toBe(4700);
-  });
-
-  test('장비구니 목록에서 체크된 항목들의 총 개수를 알 수 있어야 한다.', () => {
-    let carts = initializeCarts(INITIAL_STATE);
-
-    expect(totalCountOfCheckedCarts(carts)).toBe(0);
-
-    carts = toggleCart(carts, id);
-    expect(totalCountOfCheckedCarts(carts)).toBe(1);
-  });
-
-  test('장바구니 목록 중 특정 항목을 체크 여부를 알 수 있어야 한다.', () => {
-    let carts = initializeCarts(INITIAL_STATE);
-
-    expect(carts[0].isChecked).toBe(false);
-    carts = toggleCart(carts, id);
-
-    expect(isCheckedCart(carts, id)).toBe(true);
+    expect(totalPriceOfCheckedCarts(carts, checkedIds)).toBe(4700);
   });
 
   test('장바구니 목록 전체 항목의 체크 여부를 알 수 있어야 한다.', () => {
-    let carts = initializeCarts([...INITIAL_STATE, ...INITIAL_STATE]);
+    let carts = [...INITIAL_STATE];
+    let checkedIds = new Set<number>();
 
-    carts = checkAllCart(carts);
-    expect(isCheckedAll(carts)).toBe(true);
+    expect(isCheckedAll(carts, checkedIds)).toBe(false);
 
-    carts = uncheckAllCart(carts);
-    expect(isCheckedAll(carts)).toBe(false);
-  });
-
-  test('장바구니 목록에서 체크된 항목들의 id 목록를 알 수 있어야 한다.', () => {
-    let carts = initializeCarts([...INITIAL_STATE, ...INITIAL_STATE]);
-
-    carts = checkAllCart(carts);
-    const ids = idsOfCheckedCarts(carts);
-    expect(ids).toEqual([id, id]);
+    checkedIds = new Set<number>([id]);
+    expect(isCheckedAll(carts, checkedIds)).toBe(true);
   });
 
   test('장바구니 목록에서 특정 id에 해당하는 상품 목록을 필터링할 수 있어야 한다.', () => {
-    let carts = initializeCarts(INITIAL_STATE);
+    let carts = INITIAL_STATE;
 
     expect(carts.length).toBe(1);
     carts = removeCartByIds(carts, [id]);

@@ -1,50 +1,40 @@
 import { Carts } from 'types/cart';
-import { CheckableCart } from './types';
 
-export const initializeCarts = (carts: Carts) =>
-  carts.map((cart) => ({ ...cart, isChecked: false }));
-
-export const increaseCartCount = (carts: CheckableCart[], id: number) =>
+export const increaseCartCount = (carts: Carts, id: number) =>
   carts.map((cart) => (cart.id === id ? { ...cart, count: cart.count + 1 } : cart));
 
-export const decreaseCartCount = (carts: CheckableCart[], id: number) =>
+export const decreaseCartCount = (carts: Carts, id: number) =>
   carts.map((cart) => (cart.id === id ? { ...cart, count: cart.count - 1 } : cart));
 
-export const toggleCart = (carts: CheckableCart[], id: number) =>
-  carts.map((cart) => (cart.id === id ? { ...cart, isChecked: !cart.isChecked } : cart));
+export const toggleCart = (checkedIds: Set<number>, id: number) => {
+  const newCheckedIds = new Set(checkedIds);
 
-export const checkAllCart = (carts: CheckableCart[]) =>
-  carts.map((cart) => ({ ...cart, isChecked: true }));
+  if (newCheckedIds.has(id)) {
+    newCheckedIds.delete(id);
+  } else {
+    newCheckedIds.add(id);
+  }
 
-export const uncheckAllCart = (carts: CheckableCart[]) =>
-  carts.map((cart) => ({ ...cart, isChecked: false }));
-
-export const totalPriceOfCheckedCarts = (carts: CheckableCart[]) => {
-  return carts.reduce(
-    (total, { isChecked, product, count }) => (isChecked ? total + product.price * count : total),
-    0
-  );
+  return newCheckedIds;
 };
 
-export const totalCountOfCheckedCarts = (carts: CheckableCart[]) =>
-  carts.reduce((acc, { isChecked, count }) => (isChecked ? acc + count : acc), 0);
-
-export const isCheckedCart = (carts: CheckableCart[], id: number) => {
-  const cart = carts.find((cart) => cart.id === id);
-
-  return cart?.isChecked ?? false;
+export const totalPriceOfCheckedCarts = (carts: Carts, checkedIds: Set<number>) => {
+  return carts.reduce((total, { id, product: { price }, count }) => {
+    if (checkedIds.has(id)) {
+      return total + price * count;
+    } else {
+      return total;
+    }
+  }, 0);
 };
 
-export const isCheckedAll = (carts: CheckableCart[]) => {
-  if (carts.length === 0) {
+export const isCheckedAll = (carts: Carts, checkedIds: Set<number>) => {
+  if (checkedIds.size === 0) {
     return false;
   }
 
-  return carts.every((cart) => cart.isChecked);
+  return carts.length === checkedIds.size;
 };
 
-export const idsOfCheckedCarts = (carts: CheckableCart[]) =>
-  carts.filter((cart) => cart.isChecked).map((cart) => cart.id);
-
-export const removeCartByIds = (carts: CheckableCart[], ids: number[]) =>
+export const removeCartByIds = (carts: Carts, ids: number[]) =>
   carts.filter((cart) => !ids.includes(cart.id));

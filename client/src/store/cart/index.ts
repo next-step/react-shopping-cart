@@ -1,25 +1,19 @@
 import { create } from 'zustand';
 
 import {
-  checkAllCart,
   decreaseCartCount,
   removeCartByIds,
-  idsOfCheckedCarts,
   increaseCartCount,
-  initializeCarts,
   isCheckedAll,
-  isCheckedCart,
   toggleCart,
-  totalCountOfCheckedCarts,
   totalPriceOfCheckedCarts,
-  uncheckAllCart,
 } from './model';
 
-import { CheckableCart } from './types';
 import { Carts } from 'types/cart';
 
 type State = {
-  carts: CheckableCart[];
+  carts: Carts;
+  checked: Set<number>;
 };
 
 type Action = {
@@ -27,38 +21,56 @@ type Action = {
     initialize: (carts: Carts) => void;
     increase: (id: number) => void;
     decrease: (id: number) => void;
-    toggle: (id: number) => void;
-    checkAll: () => void;
-    uncheckAll: () => void;
     remove: (ids: number[]) => void;
   };
 };
 
 export const useCartStore = create<State & Action>()((set) => ({
   carts: [],
+  checked: new Set(),
   actions: {
-    initialize: (carts: Carts) => set(() => ({ carts: initializeCarts(carts) })),
+    initialize: (carts: Carts) => set(() => ({ carts })),
     increase: (id: number) => set((state) => ({ carts: increaseCartCount(state.carts, id) })),
     decrease: (id: number) => set((state) => ({ carts: decreaseCartCount(state.carts, id) })),
-    toggle: (id: number) => set((state) => ({ carts: toggleCart(state.carts, id) })),
-    checkAll: () => set((state) => ({ carts: checkAllCart(state.carts) })),
-    uncheckAll: () => set((state) => ({ carts: uncheckAllCart(state.carts) })),
-    remove: (ids: number[]) => set((state) => ({ carts: removeCartByIds(state.carts, ids) })),
+    remove: (ids: number[]) =>
+      set((state) => ({ carts: removeCartByIds(state.carts, ids), checked: new Set() })),
   },
 }));
 
-export const useCartActions = () => useCartStore((state) => state.actions);
-export const useCartsState = () => useCartStore((state) => state.carts);
+export const useCarts = () => useCartStore((state) => state.carts);
+export const useCheckedCartIds = () => useCartStore((state) => state.checked);
 
-export const useIdsOfCheckedCarts = () => useCartStore((state) => idsOfCheckedCarts(state.carts));
-
-export const useIsCheckedCart = (id: number) =>
-  useCartStore((state) => isCheckedCart(state.carts, id));
-
-export const useIsCheckedAll = () => useCartStore((state) => isCheckedAll(state.carts));
+export const useIsCheckedAll = () =>
+  useCartStore((state) => isCheckedAll(state.carts, state.checked));
 
 export const useTotalPriceOfCheckedCarts = () =>
-  useCartStore((state) => totalPriceOfCheckedCarts(state.carts));
+  useCartStore((state) => totalPriceOfCheckedCarts(state.carts, state.checked));
 
-export const useTotalCountOfCheckedCarts = () =>
-  useCartStore((state) => totalCountOfCheckedCarts(state.carts));
+export const useCartActions = () => {
+  const actions = useCartStore((state) => state.actions);
+  const checked = useCartStore((state) => state.checked);
+  const carts = useCartStore((state) => state.carts);
+
+  const toggle = (id: number) => {
+    const newCheckedIds = toggleCart(checked, id);
+
+    useCartStore.setState(() => ({ checked: newCheckedIds }));
+  };
+
+  const checkAll = () => {
+    const ids = carts.map((cart) => cart.id);
+
+    useCartStore.setState(() => ({ checked: new Set(ids) }));
+  };
+
+  const uncheckAll = () => {
+    useCartStore.setState(() => ({ checked: new Set() }));
+  };
+
+  return {
+    ...actions,
+    toggle,
+    checkAll,
+    uncheckAll,
+  };
+};
