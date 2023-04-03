@@ -36,19 +36,17 @@ function CartTable() {
             <TableRow
               productName={cart.product.name}
               imgUrl={cart.product.imageUrl}
-              addOnComponent={{
-                checkboxComponent: (
-                  <Checkbox value={cart.id} checked={checkedList.includes(cart.id)} onChange={handleCheckList} />
-                ),
-                sideComponent: (
-                  <CartController
-                    cart={cart}
-                    handleQuantity={handleQuantity}
-                    handleDelete={handleDeleteOneProduct}
-                    update={update}
-                  />
-                ),
-              }}
+              leftAddon={
+                <Checkbox value={cart.id} checked={checkedList.includes(cart.id)} onChange={handleCheckList} />
+              }
+              rightAddon={
+                <CartController
+                  cart={cart}
+                  handleQuantity={handleQuantity}
+                  handleDelete={handleDeleteOneProduct}
+                  update={update}
+                />
+              }
             />
           </div>
         ))}

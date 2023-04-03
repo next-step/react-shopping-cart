@@ -1,23 +1,30 @@
 import type { PropsWithChildren, ReactNode } from 'react';
 import Image from './Image';
 
-interface AddOnComponent {
-  checkboxComponent?: ReactNode;
-  sideComponent?: ReactNode;
-}
+// interface AddOnComponent {
+//   checkboxComponent?: ReactNode;
+//   sideComponent?: ReactNode;
+// }
 
-interface ProductRowProps {
+interface TableRowProps {
   productName?: string;
   subText?: string;
   imgUrl?: string;
-  addOnComponent?: AddOnComponent;
+  leftAddon: ReactNode;
+  rightAddon: ReactNode;
 }
 
-function ProductRow({ productName = '상품명', imgUrl, subText, addOnComponent }: PropsWithChildren<ProductRowProps>) {
+function TableRow({
+  productName = '상품명',
+  imgUrl,
+  subText,
+  leftAddon,
+  rightAddon,
+}: PropsWithChildren<TableRowProps>) {
   return (
     <div className="h-full flex justify-between">
       <div className="flex px-2 gap-4">
-        <div>{addOnComponent?.checkboxComponent}</div>
+        <div>{leftAddon}</div>
         <div className="w-[144px] h-[144px]">
           <Image src={imgUrl || ''} alt={productName} />
         </div>
@@ -26,9 +33,9 @@ function ProductRow({ productName = '상품명', imgUrl, subText, addOnComponent
           {subText ? <div>{subText}</div> : null}
         </div>
       </div>
-      <div>{addOnComponent?.sideComponent}</div>
+      <div>{rightAddon}</div>
     </div>
   );
 }
 
-export default ProductRow;
+export default TableRow;
