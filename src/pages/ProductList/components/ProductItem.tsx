@@ -1,5 +1,5 @@
 import { CartIcon } from '@/assets/svgs';
-import Img from '@/components/Common/Image';
+import { Image } from '@/components/Common';
 
 import type { Product } from '@/types';
 
@@ -11,7 +11,7 @@ function ProductItem({ product }: ProductItemProps) {
   return (
     <div className="flex-1  h-full flex flex-col rounded-lg overflow-hidden shadow-lg">
       <div className="flex-[8] w-full flex">
-        <Img src={product.imageUrl} className="object-cover w-full h-full" />
+        <Image src={product.imageUrl} className="object-cover w-full h-full" />
       </div>
       <div className="flex-[2] w-full py-6 px-2 flex justify-between">
         <div className="px-1 flex flex-col">
