@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { AxiosError, AxiosResponse } from 'axios';
 
 type UseMutationResultType<TData, TPayload> = {
@@ -15,7 +15,7 @@ const useCustomMutation = <TData, TPayload>(
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const mutate = async (payload: TPayload) => {
+  const mutate = useCallback(async (payload: TPayload) => {
     setLoading(true);
     setData(null);
     setError(null);
@@ -29,7 +29,7 @@ const useCustomMutation = <TData, TPayload>(
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
   return {
     data,
     error,

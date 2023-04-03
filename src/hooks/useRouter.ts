@@ -8,12 +8,15 @@ const useRouter = () => {
 
   const routeTo = (path: string) => navigate(path);
 
-  const confirmAndRoute = (message: string, path: string) => {
-    const confirmRes = confirm(message);
-    if (confirmRes) {
-      navigate(path);
-    }
-  };
+  const confirmAndRoute = useCallback(
+    (message: string, path: string) => {
+      const confirmRes = confirm(message);
+      if (confirmRes) {
+        navigate(path);
+      }
+    },
+    [location]
+  );
 
   const getLocationQuery = useCallback(
     (queryKey: string) => {

@@ -9,7 +9,7 @@ import {
   SELECT_TYPE,
   SelectType,
 } from '../../../constant';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import {
   deleteCartItem,
   SelectIdArr,
@@ -43,7 +43,7 @@ const useCart = () => {
   const cartState = useCartState();
   const cartDispatch = useCartDispatch();
 
-  const selectProduct = (selectRange: SelectType, id?: number) => {
+  const selectProduct = useCallback((selectRange: SelectType, id?: number) => {
     if (selectRange === SELECT_TYPE.ALL)
       cartDispatch({
         type: 'SELECT_ITEM',
@@ -56,9 +56,9 @@ const useCart = () => {
         selectRange: SELECT_TYPE.SINGLE,
         selectId: id,
       });
-  };
+  }, []);
 
-  const updateCount = ({ selectId, type }: UpdateCountType) => {
+  const updateCount = useCallback(({ selectId, type }: UpdateCountType) => {
     if (type === COUNT_TYPE.UP) {
       // 서버 상태 업데이트
       updateCountMutation.mutate({ selectId: selectId, type: COUNT_TYPE.UP });
@@ -80,9 +80,9 @@ const useCart = () => {
         direction: COUNT_TYPE.DOWN,
       });
     }
-  };
+  }, []);
 
-  const deleteProduct = (method: DeleteType, id?: number) => {
+  const deleteProduct = useCallback((method: DeleteType, id?: number) => {
     const confirmRes = confirm(CONFIRM.CART_DELETE);
     if (!confirmRes) return;
 
@@ -106,7 +106,7 @@ const useCart = () => {
       deleteSelectItemMutation.mutate(selectIdArray as SelectIdArr);
       cartDispatch({ type: 'DELETE_ITEM', deleteMethod: DELETE_TYPE.SELECT });
     }
-  };
+  }, []);
 
   useEffect(() => {
     if (data) {
