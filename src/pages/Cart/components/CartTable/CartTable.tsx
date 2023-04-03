@@ -15,7 +15,6 @@ function CartTable() {
     isEmptyChecked,
     handleQuantity,
     checkedListIds,
-    update,
   } = useCartContext();
 
   return (
@@ -26,7 +25,6 @@ function CartTable() {
         isEmptyChecked={isEmptyChecked}
         onChange={isAllChecked ? handleAllCheckCancel : handleAllCheck}
         handleDelete={console.log}
-        update={update}
       />
       <CartTableContainer desc={`든든배송 상품(${cartData?.length})개`}>
         {cartData?.map(cart => (
@@ -34,15 +32,15 @@ function CartTable() {
             <TableRow
               productName={cart.product.name}
               imgUrl={cart.product.imageUrl}
-              leftAddon={<Checkbox value={cart.id} checked={cart.product.checked} onChange={handleCheckList} />}
-              rightAddon={
-                <CartController
-                  cart={cart}
-                  handleQuantity={handleQuantity}
-                  handleDelete={console.log}
-                  update={update}
+              leftAddon={
+                <Checkbox
+                  value={cart.id}
+                  checked={cart.product.checked}
+                  onChange={handleCheckList}
+                  disabled={cartData.length === 0}
                 />
               }
+              rightAddon={<CartController cart={cart} handleQuantity={handleQuantity} />}
             />
           </div>
         ))}

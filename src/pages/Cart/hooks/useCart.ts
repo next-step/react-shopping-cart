@@ -1,8 +1,6 @@
-import { ResponseReturn } from '@/api';
 import { CART_PRODUCT_QUANTITY } from '@/constants';
 import { CartList, CartWithQuantityAndChecked, ProductWithQuantityAndChecked } from '@/types';
-import { ChangeEvent, useCallback, useMemo, useState } from 'react';
-import { KeyedMutator } from 'swr';
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
 
 export type QuantityButtonType = 'up' | 'down';
 
@@ -15,8 +13,8 @@ const quantityCalc = (type: QuantityButtonType, quantity: number) => {
 
 interface UseCartProps {
   initialData: CartList;
-  mutateCart: KeyedMutator<ResponseReturn<CartList>> | undefined;
 }
+
 function useCart({ initialData = [] }: UseCartProps) {
   const [items, setItems] = useState<CartWithQuantityAndChecked[]>(() => {
     return initialData.map(item => ({
@@ -31,6 +29,7 @@ function useCart({ initialData = [] }: UseCartProps) {
 
   const handleCheckList = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const id = Number(e.target.value);
+    console.log(id);
     setItems(prevItems =>
       prevItems.map(item =>
         item.id === id
@@ -98,11 +97,14 @@ function useCart({ initialData = [] }: UseCartProps) {
     [items],
   );
 
+  const checkedListIds = useMemo(() => items.filter(item => item.product.checked).map(item => item.id), [items]);
+
   const isEmptyChecked = useMemo(() => items.filter(item => item.product.checked).length === 0, [items]);
 
-  const isAllChecked = useMemo(() => items.every(item => item.product.checked), [items, isEmptyChecked]);
-
-  const checkedListIds = useMemo(() => items.filter(item => item.product.checked).map(item => item.id), [items]);
+  const isAllChecked = useMemo(
+    () => items.length > 0 && items.every(item => item.product.checked),
+    [items, initialData],
+  );
 
   const onlyCheckedCartList = useMemo(
     () =>
@@ -115,8 +117,23 @@ function useCart({ initialData = [] }: UseCartProps) {
     [items],
   );
 
+  useEffect(() => {
+    setItems(
+      initialData.map(item => ({
+        ...item,
+        product: {
+          ...item.product,
+          quantity: 1,
+          checked: true,
+        },
+      })),
+    );
+  }, [initialData]);
+
+  console.log('items', items);
+
   return {
-    cartData: useMemo(() => items, [initialData]),
+    cartData: items,
     handleCheckList,
     handleAllCheckCancel,
     handleAllCheck,

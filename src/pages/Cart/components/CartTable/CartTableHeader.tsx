@@ -1,41 +1,30 @@
 import { Button } from '@/components/Common';
 import Checkbox from '@/components/Common/Checkbox';
 import useMutation from '@/hooks/useMutation';
-import { useEffect } from 'react';
+import useCartData from '../../hooks/useCartData';
 
 function CartTableHeader({
   checkedList,
   isAllChecked,
   isEmptyChecked,
   onChange,
-  handleDelete,
-  update,
 }: {
   checkedList: number[];
   isAllChecked: boolean;
   isEmptyChecked: boolean;
   onChange: () => void;
   handleDelete: () => void;
-  update: () => void;
 }) {
-  const [deleteProductSelected, { loading, data }] = useMutation(
-    `/carts?${checkedList.map(id => `cartId=${id}`).join('&')}`,
-    'DELETE',
-  );
+  const { refreshCart } = useCartData();
+  const [deleteProductSelected] = useMutation(`/carts?${checkedList.map(id => `cartId=${id}`).join('&')}`, 'DELETE');
 
   const onClick = () => {
     const result = window.confirm('선택한 상품을 모두 삭제 하시겠습니까?');
     if (!result) return;
 
     deleteProductSelected({});
+    refreshCart();
   };
-
-  useEffect(() => {
-    if (!loading && data && data?.ok) {
-      handleDelete();
-      update();
-    }
-  }, [data?.ok]);
 
   return (
     <div className="flex justify-between items-center pl-2 py-5 ">
