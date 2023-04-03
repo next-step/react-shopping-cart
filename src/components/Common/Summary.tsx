@@ -5,9 +5,9 @@ interface OrderSummaryProps {
   title: string;
   totalPrice: string;
   transparent?: boolean;
-  renderButton?: (buttonText?: string) => ReactNode;
+  rightAddon?: ReactNode;
 }
-function OrderSummary({ title, totalPrice, transparent, renderButton }: PropsWithChildren<OrderSummaryProps>) {
+function OrderSummary({ title, totalPrice, transparent, rightAddon }: PropsWithChildren<OrderSummaryProps>) {
   const bgColor = transparent ? 'bg-transparent' : 'bg-white';
   return (
     <div className={cls('h-full w-full flex flex-col justify-evenly gap-16', bgColor)}>
@@ -18,7 +18,7 @@ function OrderSummary({ title, totalPrice, transparent, renderButton }: PropsWit
         <div className="font-bold text-lg">총 결제금액</div>
         <div className="font-bold text-lg">{totalPrice}원</div>
       </div>
-      <div className="">{renderButton?.()}</div>
+      <div className="">{rightAddon}</div>
     </div>
   );
 }

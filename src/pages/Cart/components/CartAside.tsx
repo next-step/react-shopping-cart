@@ -37,7 +37,7 @@ function CartAside() {
       <OrderSummary
         title="결제예상금액"
         totalPrice={totalPrice.toLocaleString()}
-        renderButton={() => (
+        rightAddon={
           <Button
             type="submit"
             isFullWidth
@@ -47,7 +47,7 @@ function CartAside() {
           >
             주문하기({checkedList.length}개)
           </Button>
-        )}
+        }
       />
     </form>
   );
