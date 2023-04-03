@@ -1,9 +1,11 @@
 import { rest } from 'msw';
-import db from '../db.json';
+import dbJson from '../db.json';
 import { Product } from '@/types';
 import { sleep } from '../lib';
 
 type ProductBody = Omit<Product, 'id'>;
+
+const db = dbJson;
 
 export const productHandlers = [
   rest.get('/products', async (_req, res, ctx) => {

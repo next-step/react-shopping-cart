@@ -102,8 +102,6 @@ function useCart({ initialData = [] }: UseCartProps) {
     );
   }, [initialData]);
 
-  console.log('items', items);
-
   return {
     cartData: items,
     handleCheckList,
