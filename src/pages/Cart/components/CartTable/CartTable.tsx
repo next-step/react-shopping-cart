@@ -8,26 +8,24 @@ import { useCartContext } from '../../context/CartContext';
 function CartTable() {
   const {
     cartData,
-    checkedList,
     handleCheckList,
     handleAllCheckCancel,
     handleAllCheck,
     isAllChecked,
     isEmptyChecked,
     handleQuantity,
-    handleDeleteAllChecked,
-    handleDeleteOneProduct,
+    checkedListIds,
     update,
   } = useCartContext();
 
   return (
     <div className="flex flex-col">
       <CartTableHeader
-        checkedList={checkedList}
+        checkedList={checkedListIds}
         isAllChecked={isAllChecked}
         isEmptyChecked={isEmptyChecked}
         onChange={isAllChecked ? handleAllCheckCancel : handleAllCheck}
-        handleDelete={handleDeleteAllChecked}
+        handleDelete={console.log}
         update={update}
       />
       <CartTableContainer desc={`든든배송 상품(${cartData?.length})개`}>
@@ -36,14 +34,12 @@ function CartTable() {
             <TableRow
               productName={cart.product.name}
               imgUrl={cart.product.imageUrl}
-              leftAddon={
-                <Checkbox value={cart.id} checked={checkedList.includes(cart.id)} onChange={handleCheckList} />
-              }
+              leftAddon={<Checkbox value={cart.id} checked={cart.product.checked} onChange={handleCheckList} />}
               rightAddon={
                 <CartController
                   cart={cart}
                   handleQuantity={handleQuantity}
-                  handleDelete={handleDeleteOneProduct}
+                  handleDelete={console.log}
                   update={update}
                 />
               }

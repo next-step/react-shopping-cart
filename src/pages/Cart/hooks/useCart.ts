@@ -1,6 +1,6 @@
 import { ResponseReturn } from '@/api';
 import { CART_PRODUCT_QUANTITY } from '@/constants';
-import { CartList, CartWithProductQuantity, ProductWithQuantity } from '@/types';
+import { CartList, CartWithQuantityAndChecked, ProductWithQuantityAndChecked } from '@/types';
 import { ChangeEvent, useCallback, useMemo, useState } from 'react';
 import { KeyedMutator } from 'swr';
 
@@ -14,23 +14,66 @@ const quantityCalc = (type: QuantityButtonType, quantity: number) => {
 };
 
 interface UseCartProps {
-  initialData: CartWithProductQuantity[];
+  initialData: CartList;
   mutateCart: KeyedMutator<ResponseReturn<CartList>> | undefined;
 }
 function useCart({ initialData = [] }: UseCartProps) {
-  const [cartData, setCartData] = useState<CartWithProductQuantity[]>(initialData);
-  const [checkedList, setCheckedList] = useState<number[]>(initialData.map(cart => cart.id));
+  const [cartData, setCartData] = useState<CartWithQuantityAndChecked[]>(() => {
+    return initialData.map(cart => ({
+      ...cart,
+      product: {
+        ...cart.product,
+        quantity: 1,
+        checked: true,
+      },
+    }));
+  });
 
   const handleCheckList = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const id = Number(e.target.value);
-    setCheckedList(prev => (prev.includes(id) ? prev.filter(existId => existId !== id) : [...prev, id]));
+    setCartData(prevItems =>
+      prevItems.map(item =>
+        item.id === id
+          ? {
+              ...item,
+              product: {
+                ...item.product,
+                checked: !item.product.checked,
+              },
+            }
+          : item,
+      ),
+    );
   }, []);
 
-  const handleAllCheckCancel = useCallback(() => {
-    setCheckedList([]);
-  }, []);
+  // TODO: 반복로직 분리
+  const handleAllCheckCancel = useCallback(
+    () =>
+      setCartData(prevItems =>
+        prevItems.map(item => ({
+          ...item,
+          product: {
+            ...item.product,
+            checked: false,
+          },
+        })),
+      ),
+    [],
+  );
 
-  const handleAllCheck = useCallback(() => setCheckedList(cartData.map(cart => cart.id)), []);
+  const handleAllCheck = useCallback(
+    () =>
+      setCartData(prevItems =>
+        prevItems.map(item => ({
+          ...item,
+          product: {
+            ...item.product,
+            checked: true,
+          },
+        })),
+      ),
+    [],
+  );
 
   const handleQuantity = (id: string, type: QuantityButtonType) => {
     setCartData(prevCartData =>
@@ -45,57 +88,43 @@ function useCart({ initialData = [] }: UseCartProps) {
     );
   };
 
-  const handleDeleteAllChecked = () => {
-    setCartData(prevCartData => prevCartData.filter(cart => !checkedList.includes(cart.id)));
-    setCheckedList([]);
-  };
-
-  const handleDeleteOneProduct = (id: number) => {
-    setCartData(prevCartData => prevCartData.filter(cart => cart.id !== id));
-    setCheckedList(prevCheckedList => prevCheckedList.filter(checkedId => checkedId !== id));
-  };
-
   const totalPrice = useMemo(
     () =>
-      cartData.reduce((acc, cur) => {
-        if (checkedList.includes(cur.id)) {
+      cartData
+        .filter(item => item.product.checked)
+        .reduce((acc, cur) => {
           return (acc += cur.product.price * cur.product.quantity);
-        }
-        return (acc += 0);
-      }, 0),
-    [cartData, checkedList.length],
+        }, 0),
+    [cartData],
   );
 
-  const isEmptyChecked = useMemo(() => checkedList.length === 0, [checkedList]);
+  const isEmptyChecked = useMemo(() => cartData.filter(item => item.product.checked).length === 0, [cartData]);
 
-  const isAllChecked = useMemo(
-    () => !isEmptyChecked && cartData.every(cart => checkedList.includes(cart.id)),
-    [checkedList, isEmptyChecked],
-  );
+  const isAllChecked = useMemo(() => cartData.every(item => item.product.checked), [cartData, isEmptyChecked]);
+
+  const checkedListIds = useMemo(() => cartData.filter(item => item.product.checked).map(item => item.id), [cartData]);
 
   const onlyCheckedCartList = useMemo(
     () =>
       cartData.reduce((acc, cur) => {
-        if (checkedList.includes(cur.id)) {
+        if (cur.product.checked) {
           return [...acc, cur.product];
         }
         return acc;
-      }, [] as ProductWithQuantity[]),
-    [cartData, checkedList],
+      }, [] as ProductWithQuantityAndChecked[]),
+    [cartData],
   );
 
   return {
     cartData,
-    checkedList,
     handleCheckList,
     handleAllCheckCancel,
     handleAllCheck,
     isAllChecked,
     isEmptyChecked,
+    checkedListIds,
     totalPrice,
     handleQuantity,
-    handleDeleteAllChecked,
-    handleDeleteOneProduct,
     onlyCheckedCartList,
   };
 }

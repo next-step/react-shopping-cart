@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 
 import { ResponseReturn } from '@/api';
-import { CartList, CartWithProductQuantity } from '@/types';
+import { CartList, CartWithQuantityAndChecked } from '@/types';
 import { AxiosError } from 'axios';
 import { PropsWithChildren, createContext, useContext, useMemo } from 'react';
 import useSWR, { KeyedMutator } from 'swr';
@@ -14,20 +14,18 @@ type CartContextState<T, K> = {
   update: () => void;
 } & ReturnType<typeof useCart>;
 
-const CartContext = createContext<CartContextState<CartWithProductQuantity[], CartList>>({
+const CartContext = createContext<CartContextState<CartWithQuantityAndChecked[], CartList>>({
   cartData: [],
   error: null,
   mutateCart: undefined,
-  checkedList: [],
   handleCheckList: () => {},
   handleAllCheckCancel: () => {},
   handleAllCheck: () => {},
   isAllChecked: false,
   isEmptyChecked: false,
+  checkedListIds: [],
   totalPrice: 0,
   handleQuantity: () => {},
-  handleDeleteAllChecked: () => {},
-  handleDeleteOneProduct: () => {},
   update: () => {},
   onlyCheckedCartList: [],
 });
@@ -44,21 +42,19 @@ function useCartContext() {
 
 function CartContextProvider({ children, ...props }: PropsWithChildren) {
   const { data, error, mutate: mutateCart } = useSWR<ResponseReturn<CartList>>('/carts');
-  const cartListWithQuantity = data?.data?.map(cart => ({ ...cart, product: { ...cart.product, quantity: 1 } })) || [];
+  const cartList = data?.data || [];
   const {
     cartData,
-    checkedList,
     handleCheckList,
     handleAllCheckCancel,
     handleAllCheck,
     totalPrice,
     isAllChecked,
     isEmptyChecked,
+    checkedListIds,
     handleQuantity,
-    handleDeleteAllChecked,
-    handleDeleteOneProduct,
     onlyCheckedCartList,
-  } = useCart({ initialData: cartListWithQuantity, mutateCart });
+  } = useCart({ initialData: cartList, mutateCart });
 
   const update = () => {
     mutateCart();
@@ -69,16 +65,14 @@ function CartContextProvider({ children, ...props }: PropsWithChildren) {
       cartData,
       error,
       mutateCart,
-      checkedList,
       handleCheckList,
       handleAllCheckCancel,
       handleAllCheck,
       totalPrice,
       isAllChecked,
       isEmptyChecked,
+      checkedListIds,
       handleQuantity,
-      handleDeleteAllChecked,
-      handleDeleteOneProduct,
       update,
       onlyCheckedCartList,
     }),
@@ -86,16 +80,14 @@ function CartContextProvider({ children, ...props }: PropsWithChildren) {
       cartData,
       error,
       mutateCart,
-      checkedList,
       handleCheckList,
       handleAllCheckCancel,
       handleAllCheck,
       totalPrice,
       isAllChecked,
       isEmptyChecked,
+      checkedListIds,
       handleQuantity,
-      handleDeleteAllChecked,
-      handleDeleteOneProduct,
       update,
       cartData.length,
     ],

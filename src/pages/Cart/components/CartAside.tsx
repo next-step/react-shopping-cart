@@ -8,10 +8,10 @@ import { ProductWithQuantity } from '@/types';
 import { ROUTES_URL } from '@/RootRouter';
 
 function CartAside() {
-  const { checkedList, totalPrice, isEmptyChecked, onlyCheckedCartList, handleDeleteAllChecked } = useCartContext();
+  const { checkedListIds, totalPrice, isEmptyChecked, onlyCheckedCartList } = useCartContext();
   const navigate = useNavigate();
 
-  const [deleteProductSelected] = useMutation(`/carts?${checkedList.map(id => `cartId=${id}`).join('&')}`, 'DELETE');
+  const [deleteProductSelected] = useMutation(`/carts?${checkedListIds.map(id => `cartId=${id}`).join('&')}`, 'DELETE');
 
   const [onPayment, { data: paymentResponse }] = useMutation<ProductWithQuantity[]>(`/orders`, 'POST');
 
@@ -27,10 +27,12 @@ function CartAside() {
 
   useEffect(() => {
     if (paymentResponse && paymentResponse?.ok) {
-      handleDeleteAllChecked();
+      console.log('hello');
       navigate(ROUTES_URL.PAYMENT);
     }
   }, [paymentResponse, paymentResponse?.ok]);
+
+  console.log(isEmptyChecked);
 
   return (
     <form onSubmit={onSubmit} className="border-[1px] border-gray-200 p-6 my-20 rounded-md">
@@ -45,7 +47,7 @@ function CartAside() {
             disabled={isEmptyChecked}
             variant={isEmptyChecked ? 'disabled' : 'primary'}
           >
-            주문하기({checkedList.length}개)
+            주문하기({checkedListIds.length}개)
           </Button>
         }
       />
