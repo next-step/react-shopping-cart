@@ -18,11 +18,11 @@ interface UseCartProps {
   mutateCart: KeyedMutator<ResponseReturn<CartList>> | undefined;
 }
 function useCart({ initialData = [] }: UseCartProps) {
-  const [cartData, setCartData] = useState<CartWithQuantityAndChecked[]>(() => {
-    return initialData.map(cart => ({
-      ...cart,
+  const [items, setItems] = useState<CartWithQuantityAndChecked[]>(() => {
+    return initialData.map(item => ({
+      ...item,
       product: {
-        ...cart.product,
+        ...item.product,
         quantity: 1,
         checked: true,
       },
@@ -31,7 +31,7 @@ function useCart({ initialData = [] }: UseCartProps) {
 
   const handleCheckList = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const id = Number(e.target.value);
-    setCartData(prevItems =>
+    setItems(prevItems =>
       prevItems.map(item =>
         item.id === id
           ? {
@@ -49,7 +49,7 @@ function useCart({ initialData = [] }: UseCartProps) {
   // TODO: 반복로직 분리
   const handleAllCheckCancel = useCallback(
     () =>
-      setCartData(prevItems =>
+      setItems(prevItems =>
         prevItems.map(item => ({
           ...item,
           product: {
@@ -63,7 +63,7 @@ function useCart({ initialData = [] }: UseCartProps) {
 
   const handleAllCheck = useCallback(
     () =>
-      setCartData(prevItems =>
+      setItems(prevItems =>
         prevItems.map(item => ({
           ...item,
           product: {
@@ -75,9 +75,9 @@ function useCart({ initialData = [] }: UseCartProps) {
     [],
   );
 
-  const handleQuantity = (id: string, type: QuantityButtonType) => {
-    setCartData(prevCartData =>
-      prevCartData.map(cart =>
+  const handleQuantity = useCallback((id: string, type: QuantityButtonType) => {
+    setItems(prevItems =>
+      prevItems.map(cart =>
         cart.id === Number(id)
           ? {
               ...cart,
@@ -86,37 +86,37 @@ function useCart({ initialData = [] }: UseCartProps) {
           : cart,
       ),
     );
-  };
+  }, []);
 
   const totalPrice = useMemo(
     () =>
-      cartData
+      items
         .filter(item => item.product.checked)
         .reduce((acc, cur) => {
           return (acc += cur.product.price * cur.product.quantity);
         }, 0),
-    [cartData],
+    [items],
   );
 
-  const isEmptyChecked = useMemo(() => cartData.filter(item => item.product.checked).length === 0, [cartData]);
+  const isEmptyChecked = useMemo(() => items.filter(item => item.product.checked).length === 0, [items]);
 
-  const isAllChecked = useMemo(() => cartData.every(item => item.product.checked), [cartData, isEmptyChecked]);
+  const isAllChecked = useMemo(() => items.every(item => item.product.checked), [items, isEmptyChecked]);
 
-  const checkedListIds = useMemo(() => cartData.filter(item => item.product.checked).map(item => item.id), [cartData]);
+  const checkedListIds = useMemo(() => items.filter(item => item.product.checked).map(item => item.id), [items]);
 
   const onlyCheckedCartList = useMemo(
     () =>
-      cartData.reduce((acc, cur) => {
+      items.reduce((acc, cur) => {
         if (cur.product.checked) {
           return [...acc, cur.product];
         }
         return acc;
       }, [] as ProductWithQuantityAndChecked[]),
-    [cartData],
+    [items],
   );
 
   return {
-    cartData,
+    cartData: useMemo(() => items, [initialData]),
     handleCheckList,
     handleAllCheckCancel,
     handleAllCheck,
