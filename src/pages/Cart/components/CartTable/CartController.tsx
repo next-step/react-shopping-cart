@@ -1,10 +1,10 @@
+import { useEffect } from 'react';
 import { TrashIcon } from '@/assets/svgs';
-import { NumberInput } from '@/components/Common';
+import NumberInput from './NumberInput';
 import { CART_PRODUCT_QUANTITY } from '@/constants';
 import { CartWithProductQuantity } from '@/types';
 import { QuantityButtonType } from '../../hooks/useCart';
 import useMutation from '@/hooks/useMutation';
-import { useEffect } from 'react';
 
 interface CartControllerProps {
   cart: CartWithProductQuantity;
