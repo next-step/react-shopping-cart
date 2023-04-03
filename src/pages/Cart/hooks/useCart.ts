@@ -1,6 +1,7 @@
 import { CART_PRODUCT_QUANTITY } from '@/constants';
-import { CartList, CartWithQuantityAndChecked, ProductWithQuantityAndChecked } from '@/types';
+import { CartList, CartWithQuantityAndChecked, ProductWithQuantity } from '@/types';
 import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import { toggleAllChecked, toggleOneChecked } from '../lib';
 
 export type QuantityButtonType = 'up' | 'down';
 
@@ -29,50 +30,12 @@ function useCart({ initialData = [] }: UseCartProps) {
 
   const handleCheckList = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const id = Number(e.target.value);
-    console.log(id);
-    setItems(prevItems =>
-      prevItems.map(item =>
-        item.id === id
-          ? {
-              ...item,
-              product: {
-                ...item.product,
-                checked: !item.product.checked,
-              },
-            }
-          : item,
-      ),
-    );
+    setItems(prevItems => toggleOneChecked(prevItems, id));
   }, []);
 
-  // TODO: 반복로직 분리
-  const handleAllCheckCancel = useCallback(
-    () =>
-      setItems(prevItems =>
-        prevItems.map(item => ({
-          ...item,
-          product: {
-            ...item.product,
-            checked: false,
-          },
-        })),
-      ),
-    [],
-  );
+  const handleAllCheckCancel = useCallback(() => setItems(prevItems => toggleAllChecked(prevItems, false)), []);
 
-  const handleAllCheck = useCallback(
-    () =>
-      setItems(prevItems =>
-        prevItems.map(item => ({
-          ...item,
-          product: {
-            ...item.product,
-            checked: true,
-          },
-        })),
-      ),
-    [],
-  );
+  const handleAllCheck = useCallback(() => setItems(prevItems => toggleAllChecked(prevItems, true)), []);
 
   const handleQuantity = useCallback((id: string, type: QuantityButtonType) => {
     setItems(prevItems =>
@@ -110,10 +73,19 @@ function useCart({ initialData = [] }: UseCartProps) {
     () =>
       items.reduce((acc, cur) => {
         if (cur.product.checked) {
-          return [...acc, cur.product];
+          return [
+            ...acc,
+            {
+              id: cur.product.id,
+              name: cur.product.name,
+              imageUrl: cur.product.imageUrl,
+              quantity: cur.product.quantity,
+              price: cur.product.price,
+            },
+          ];
         }
         return acc;
-      }, [] as ProductWithQuantityAndChecked[]),
+      }, [] as ProductWithQuantity[]),
     [items],
   );
 
