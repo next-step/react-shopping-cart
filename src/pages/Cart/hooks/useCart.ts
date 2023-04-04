@@ -1,16 +1,13 @@
-import { CART_PRODUCT_QUANTITY } from '@/constants';
 import { CartList, CartWithQuantityAndChecked, ProductWithQuantity } from '@/types';
 import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
-import { toggleAllChecked, toggleOneChecked } from '../lib';
-
-export type QuantityButtonType = 'up' | 'down';
-
-const quantityCalc = (type: QuantityButtonType, quantity: number) => {
-  const { MIN, MAX } = CART_PRODUCT_QUANTITY;
-  if (type === 'up') return quantity === MAX ? MAX : quantity + 1;
-  if (type === 'down') return quantity === MIN ? MIN : quantity - 1;
-  return 0;
-};
+import {
+  createCartListWithQuantityAndChecked,
+  quantityCalc,
+  toggleAllChecked,
+  toggleOneChecked,
+  getCheckedItems,
+} from '../lib';
+import type { QuantityButtonType } from '../lib';
 
 interface UseCartProps {
   initialData: CartList;
@@ -18,14 +15,7 @@ interface UseCartProps {
 
 function useCart({ initialData = [] }: UseCartProps) {
   const [items, setItems] = useState<CartWithQuantityAndChecked[]>(() => {
-    return initialData.map(item => ({
-      id: item.id,
-      product: {
-        ...item.product,
-        quantity: 1,
-        checked: true,
-      },
-    }));
+    return createCartListWithQuantityAndChecked(initialData);
   });
 
   const handleCheckList = useCallback((e: ChangeEvent<HTMLInputElement>) => {
@@ -52,17 +42,15 @@ function useCart({ initialData = [] }: UseCartProps) {
 
   const totalPrice = useMemo(
     () =>
-      items
-        .filter(item => item.product.checked)
-        .reduce((acc, cur) => {
-          return (acc += cur.product.price * cur.product.quantity);
-        }, 0),
+      getCheckedItems(items).reduce((acc, cur) => {
+        return (acc += cur.product.price * cur.product.quantity);
+      }, 0),
     [items],
   );
 
-  const checkedListIds = useMemo(() => items.filter(item => item.product.checked).map(item => item.id), [items]);
+  const checkedListIds = useMemo(() => getCheckedItems(items).map(item => item.id), [items]);
 
-  const isEmptyChecked = useMemo(() => items.filter(item => item.product.checked).length === 0, [items]);
+  const isEmptyChecked = useMemo(() => getCheckedItems(items).length === 0, [items]);
 
   const isAllChecked = useMemo(
     () => items.length > 0 && items.every(item => item.product.checked),
