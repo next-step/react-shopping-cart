@@ -23,8 +23,8 @@ function CartTable() {
         checkedList={checkedListIds}
         isAllChecked={isAllChecked}
         isEmptyChecked={isEmptyChecked}
+        isEmptyCart={cartData.length === 0}
         onChange={isAllChecked ? handleAllCheckCancel : handleAllCheck}
-        handleDelete={console.log}
       />
       <CartTableContainer desc={`든든배송 상품(${cartData?.length})개`}>
         {cartData?.map(cart => (

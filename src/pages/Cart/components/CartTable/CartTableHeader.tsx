@@ -8,13 +8,14 @@ function CartTableHeader({
   checkedList,
   isAllChecked,
   isEmptyChecked,
+  isEmptyCart,
   onChange,
 }: {
   checkedList: number[];
   isAllChecked: boolean;
   isEmptyChecked: boolean;
   onChange: () => void;
-  handleDelete: () => void;
+  isEmptyCart: boolean;
 }) {
   const { refreshCart } = useCartData();
   const [deleteProductSelected, { fetchStatus, error }] = useMutation(
@@ -40,7 +41,12 @@ function CartTableHeader({
 
   return (
     <div className="flex justify-between items-center pl-2 py-5 ">
-      <Checkbox label={isAllChecked ? '선택해제' : '전체선택'} checked={isAllChecked} onChange={onChange} />
+      <Checkbox
+        label={isAllChecked ? '선택해제' : '전체선택'}
+        checked={isAllChecked}
+        onChange={onChange}
+        disabled={isEmptyCart}
+      />
       <Button variant={isEmptyChecked ? 'disabled' : 'info'} disabled={isEmptyChecked} onClick={onClick}>
         선택삭제
       </Button>
