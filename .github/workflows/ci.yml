@@ -16,5 +16,5 @@ jobs:
           always-auth: true
       - name: Install Package
         run: npm ci
-      # - name: Run Test
-      #   run: npm run test
+      - name: Run Test
+        run: npm run test
