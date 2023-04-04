@@ -15,14 +15,16 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  margin: 10px;
   position: sticky;
   font-weight: 900;
   text-align: center;
   vertical-align: middle;
   color: #ffffff;
   cursor: pointer;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
+  @media screen and (max-width: 450px) {
+    font-size: 1.2rem;
+  }
 `;
 export const TitleBox = styled.div`
   display: flex;
@@ -42,9 +44,12 @@ export const NavButton = styled(Button)`
   color: #ffffff;
   background-color: transparent;
   border: none;
+  @media screen and (max-width: 450px) {
+    font-size: 1rem;
+  }
 `;
 export const CartIcon = styled(Cart)`
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
 `;

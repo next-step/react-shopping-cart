@@ -58,7 +58,7 @@ export const CartItemImage = styled(Image)`
   width: 128px;
   height: auto;
   @media screen and (max-width: 450px) {
-    width: 240px;
+    width: 192px;
   }
 `;
 export const CartItemName = styled.span`

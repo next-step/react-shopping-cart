@@ -7,7 +7,7 @@ const NavBar = () => {
     <Styled.Container>
       <Styled.TitleBox onClick={() => push('/products')}>
         <Styled.CartIcon />
-        <Styled.Title>CLEAN CODE SHOP</Styled.Title>
+        <Styled.Title>JunYoung SHOP</Styled.Title>
       </Styled.TitleBox>
       <Styled.ButtonBox>
         <Styled.NavButton onClick={() => push('/carts')}>장바구니</Styled.NavButton>
