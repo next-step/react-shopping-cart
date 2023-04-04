@@ -15,4 +15,5 @@ export const Image = styled.img<ImageProps>`
   `};
 
   max-width: 100%;
+  height: auto;
 `;

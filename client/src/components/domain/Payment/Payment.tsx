@@ -12,7 +12,7 @@ const Payment = ({ ...props }: PaymentProps) => {
       <Styled.ThinLine />
       <div>
         <Styled.ItemInfoBox>
-          <Styled.Text>{props.text}</Styled.Text>
+          <div />
           <Styled.Price>{props.price}원</Styled.Price>
         </Styled.ItemInfoBox>
         <Styled.ButtonBox>

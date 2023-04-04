@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components';
 import { Input, Button, HorizontalLine } from 'components/common';
+import { ReactComponent as CartRemove } from 'assets/svgs/trash.svg';
+
 export const Layout = styled.section`
-  padding: 24px 100px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -9,7 +11,7 @@ export const Layout = styled.section`
 export const SectionContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 50px;
+  margin-top: 10px;
 `;
 export const ItemSection = styled.section`
   width: 100%;
@@ -68,7 +70,7 @@ export const CheckBoxLabel = styled.label`
 `;
 export const CheckBoxButton = styled(Button)`
   padding: 14px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
 `;
 export const CartTitle = styled.h3`
@@ -80,4 +82,11 @@ export const CartTitle = styled.h3`
 export const Divider = styled(HorizontalLine)`
   margin-top: 10px;
   border: 2px solid #aaaaaa;
+`;
+
+export const CartRemoveButton = styled(CartRemove)`
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.16);
+  }
 `;

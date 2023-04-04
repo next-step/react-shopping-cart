@@ -33,14 +33,11 @@ const useCartItem = (cartItem: CartProductType) => {
       amount: inputNumber - 1,
     });
   };
-  const handleRemoveButton = () => {
-    showDialogUI('deleteCart');
-    selectProduct(cartItem);
-  };
+
   const handleCheckBox = () => {
     UpdateCart({ ...cartItem, isOrder: !cartItem.isOrder });
   };
 
-  return { handleIncreaseButton, handleDecreaseButton, inputNumber, handleRemoveButton, handleCheckBox };
+  return { handleIncreaseButton, handleDecreaseButton, inputNumber, handleCheckBox };
 };
 export default useCartItem;

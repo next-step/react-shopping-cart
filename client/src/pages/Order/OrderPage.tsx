@@ -32,7 +32,7 @@ const OrderPage = () => {
           ))}
         </Styled.ItemSection>
         <Styled.PaymentSection>
-          <Payment title="결제금액" text="총 결제금액" price={totalPrice} totalAmount={totalAmount} type="order" />
+          <Payment title="결제금액" price={totalPrice} totalAmount={totalAmount} type="order" />
         </Styled.PaymentSection>
       </Styled.SectionContainer>
     </Styled.Layout>

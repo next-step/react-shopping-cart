@@ -5,13 +5,14 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
+  font-size: 20px;
 `;
 
 export const TitleBox = styled.div``;
 export const Title = styled.h3`
   display: flex;
-  align-items: center;
   font-size: 20px;
+  align-items: center;
 `;
 
 export const ThinLine = styled(HorizontalLine)`
@@ -21,14 +22,15 @@ export const ItemInfoBox = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px;
+  @media screen and (max-width: 450px) {
+    flex-direction: column;
+  }
 `;
 export const Text = styled.span`
   position: relative;
   font-weight: 700;
   display: inline-block;
   text-align: center;
-
-  font-size: 20px;
   ::after {
     content: '';
     display: block;
@@ -47,7 +49,7 @@ export const Price = styled.span`
   font-weight: 700;
   display: inline-block;
   text-align: center;
-  font-size: 20px;
+
   ::after {
     content: '';
     display: block;
@@ -70,8 +72,8 @@ export const ButtonBox = styled.div`
 `;
 export const OrderButton = styled(Button)`
   background: #2ac1bc;
-  font-size: 24px;
   color: white;
   width: 100%;
   padding: 20px;
+  font-size: 24px;
 `;

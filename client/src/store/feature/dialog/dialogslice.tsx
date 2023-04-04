@@ -31,9 +31,6 @@ export const dialogSlice = createSlice({
         case '장바구니로 이동하시겠습니까?':
           state.type = 'cart';
           break;
-        case '상품을 삭제하시겠습니까?':
-          state.type = 'deleteCart';
-          break;
         case '체크된 상품을 삭제하시겠습니까?':
           state.type = 'deleteCheckCart';
           break;

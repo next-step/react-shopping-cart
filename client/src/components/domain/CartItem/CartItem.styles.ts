@@ -1,43 +1,35 @@
 import { Image, Input } from 'components/common';
 import styled from 'styled-components';
-import { ReactComponent as CartRemove } from 'assets/svgs/trash.svg';
 
 export const Contianer = styled.div`
   display: flex;
   justify-content: space-between;
-
-  margin: 10px;
+  align-items: center;
+  border: 1px solid rgb(221, 221, 221);
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  margin-bottom: 10px;
   padding: 10px;
+  @media screen and (max-width: 450px) {
+    flex-direction: column;
+  }
 `;
 
 export const LeftBox = styled.div`
   display: flex;
-  margin-top: 10px;
-  gap: 15px;
   align-items: center;
-  width: 100%;
-  overflow: scroll;
-
-  ::-webkit-scrollbar {
-    height: 7px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: rgb(42, 193, 188);
-    border-radius: 7px;
-  }
-
-  text-overflow: clip;
-  white-space: nowrap;
-  margin: 10px;
+  gap: 5px;
 `;
 export const RightBox = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 15px;
   align-items: center;
-  margin: 10px;
+  gap: 7px;
 `;
 export const CheckBox = styled(Input)`
+  width: 20px;
+  height: 20px;
   ::after {
     content: '✔';
     width: 100%;
@@ -55,39 +47,43 @@ export const CheckBox = styled(Input)`
 
 export const CartItemBox = styled.div`
   display: flex;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
   gap: 10px;
+  @media screen and (max-width: 450px) {
+    flex-direction: column;
+  }
 `;
 export const CartItemImage = styled(Image)`
   width: 128px;
-  height: 128px;
+  height: auto;
+  @media screen and (max-width: 450px) {
+    width: 240px;
+  }
 `;
 export const CartItemName = styled.span`
-  font-size: 22px;
+  font-size: 1.25rem;
 `;
 
-export const CartRemoveButton = styled(CartRemove)`
-  align-self: flex-end;
-  cursor: pointer;
-`;
 export const CartInputContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
 `;
 export const CartInputNumber = styled(Input)`
-  width: 72px;
-  height: 58px;
+  width: 48px;
+  height: 48px;
   border: 1px solid #dddddd;
   text-align: center;
-  font-size: 24px;
+  font-size: 1.2rem;
 `;
 export const CartInputNumberButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 4px 12px;
+  padding: 2px 12px;
   border: 1px solid #dddddd;
   font-size: 100%;
   cursor: pointer;
@@ -95,6 +91,6 @@ export const CartInputNumberButton = styled.button`
 `;
 export const CartPriceText = styled.span`
   color: #333333;
-  font-size: 20px;
+  font-size: 1.2rem;
   align-self: flex-end;
 `;

@@ -6,8 +6,7 @@ type CartItemProps = CartProductType;
 
 const CartItem = ({ id, image, price, name, isOrder, amount }: CartItemProps) => {
   const currentCartItem = { id, image, price, name, amount, isOrder };
-  const { handleIncreaseButton, handleDecreaseButton, inputNumber, handleRemoveButton, handleCheckBox } =
-    useCartItem(currentCartItem);
+  const { handleIncreaseButton, handleDecreaseButton, inputNumber, handleCheckBox } = useCartItem(currentCartItem);
 
   return (
     <Styled.Contianer>
@@ -19,7 +18,6 @@ const CartItem = ({ id, image, price, name, isOrder, amount }: CartItemProps) =>
         </Styled.CartItemBox>
       </Styled.LeftBox>
       <Styled.RightBox>
-        <Styled.CartRemoveButton onClick={handleRemoveButton} />
         <Styled.CartInputContainer>
           <Styled.CartInputNumber type="text" value={inputNumber} readOnly={true} />
           <div>
@@ -27,7 +25,6 @@ const CartItem = ({ id, image, price, name, isOrder, amount }: CartItemProps) =>
             <Styled.CartInputNumberButton onClick={handleDecreaseButton}>▼</Styled.CartInputNumberButton>
           </div>
         </Styled.CartInputContainer>
-
         <Styled.CartPriceText>{price * inputNumber}원</Styled.CartPriceText>
       </Styled.RightBox>
     </Styled.Contianer>
