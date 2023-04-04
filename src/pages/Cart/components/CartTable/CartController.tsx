@@ -2,9 +2,8 @@ import { TrashIcon } from '@/assets/svgs';
 import NumberInput from './NumberInput';
 import { CART_PRODUCT_QUANTITY } from '@/constants';
 import { CartWithProductQuantity } from '@/types';
-import { QuantityButtonType } from '../../hooks/useCart';
-import useMutation from '@/hooks/useMutation';
-import useCartData from '../../hooks/useCartData';
+import { QuantityButtonType } from '../../lib';
+import useDelete from '../../hooks/useDelete';
 
 interface CartControllerProps {
   cart: CartWithProductQuantity;
@@ -12,15 +11,13 @@ interface CartControllerProps {
 }
 
 function CartController({ cart, handleQuantity }: CartControllerProps) {
-  const { refreshCart } = useCartData();
-  const [deleteProduct] = useMutation(`/carts/${cart.id}`, 'DELETE');
+  const { onDelete } = useDelete(cart.id);
 
   const onClick = () => {
     const result = window.confirm('삭제 하시겠습니까?');
     if (!result) return;
 
-    deleteProduct({});
-    refreshCart();
+    onDelete();
   };
 
   return (

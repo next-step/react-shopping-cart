@@ -1,19 +1,16 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 
 import { CartWithQuantityAndChecked } from '@/types';
-import { AxiosError } from 'axios';
-import { PropsWithChildren, createContext, useContext, useMemo } from 'react';
+import { PropsWithChildren, createContext, useContext } from 'react';
 import useCart from '../hooks/useCart';
-import useCartData from '../hooks/useCartData';
+import useFetchCartData from '../hooks/useFetchCartData';
 
 type CartContextState<T> = {
   cartData: T;
-  error: AxiosError | null;
 } & ReturnType<typeof useCart>;
 
 const CartContext = createContext<CartContextState<CartWithQuantityAndChecked[]>>({
   cartData: [],
-  error: null,
   handleCheckList: () => {},
   handleAllCheckCancel: () => {},
   handleAllCheck: () => {},
@@ -36,49 +33,8 @@ function useCartContext() {
 }
 
 function CartContextProvider({ children, ...props }: PropsWithChildren) {
-  const { data, error } = useCartData();
-  const {
-    cartData,
-    handleCheckList,
-    handleAllCheckCancel,
-    handleAllCheck,
-    totalPrice,
-    isAllChecked,
-    isEmptyChecked,
-    checkedListIds,
-    handleQuantity,
-    onlyCheckedCartList,
-  } = useCart({ initialData: data });
-
-  const value = useMemo(
-    () => ({
-      cartData,
-      handleCheckList,
-      handleAllCheckCancel,
-      handleAllCheck,
-      totalPrice,
-      isAllChecked,
-      isEmptyChecked,
-      checkedListIds,
-      handleQuantity,
-      onlyCheckedCartList,
-      error,
-    }),
-    [
-      data,
-      cartData,
-      handleCheckList,
-      handleAllCheckCancel,
-      handleAllCheck,
-      totalPrice,
-      isAllChecked,
-      isEmptyChecked,
-      checkedListIds,
-      handleQuantity,
-      cartData.length,
-      error,
-    ],
-  );
+  const { data } = useFetchCartData();
+  const value = useCart({ initialData: data });
 
   return (
     <CartContext.Provider value={value} {...props}>

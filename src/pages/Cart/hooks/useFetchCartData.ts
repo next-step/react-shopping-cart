@@ -3,20 +3,20 @@ import { CartList } from '@/types';
 
 import useSWR, { useSWRConfig } from 'swr';
 
-function useCartData() {
+function useFetchCartData() {
   const { mutate } = useSWRConfig();
 
   const { data, error, isLoading, mutate: boundMutate } = useSWR<ResponseReturn<CartList>>('/carts');
 
-  const refreshCart = () => mutate('/carts');
+  const refetchCartData = () => mutate('/carts');
 
   return {
     data: data?.data || [],
     error,
     isLoading,
-    refreshCart,
+    refetchCartData,
     boundMutate,
   };
 }
 
-export default useCartData;
+export default useFetchCartData;

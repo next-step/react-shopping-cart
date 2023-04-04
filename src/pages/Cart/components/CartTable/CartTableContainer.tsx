@@ -1,5 +1,5 @@
 import { Heading } from '@/components/Common';
-import React, { PropsWithChildren, ReactNode } from 'react';
+import { PropsWithChildren, ReactNode } from 'react';
 
 function CartTableContainer({ children, desc }: PropsWithChildren<{ desc: ReactNode }>) {
   return (

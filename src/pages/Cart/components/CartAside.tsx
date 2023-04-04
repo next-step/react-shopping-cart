@@ -6,14 +6,18 @@ import { useNavigate } from 'react-router-dom';
 import { FormEvent, useEffect } from 'react';
 import { ProductWithQuantity } from '@/types';
 import { ROUTES_URL } from '@/RootRouter';
+import useSelectedDelete from '../hooks/useSelectedDelete';
 
 function CartAside() {
   const { checkedListIds, totalPrice, isEmptyChecked, onlyCheckedCartList } = useCartContext();
+  const { onSelectedDelete } = useSelectedDelete(checkedListIds);
+
   const navigate = useNavigate();
 
-  const [deleteProductSelected] = useMutation(`/carts?${checkedListIds.map(id => `cartId=${id}`).join('&')}`, 'DELETE');
-
-  const [onPayment, { data: paymentResponse }] = useMutation<ProductWithQuantity[]>(`/orders`, 'POST');
+  const [onPayment, { fetchStatus: paymentFetchStatus, error: paymentError }] = useMutation<ProductWithQuantity[]>(
+    `/orders`,
+    'POST',
+  );
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,14 +26,17 @@ function CartAside() {
     if (!result) return;
 
     onPayment(onlyCheckedCartList);
-    deleteProductSelected({});
   };
 
   useEffect(() => {
-    if (paymentResponse && paymentResponse?.ok) {
+    if (paymentFetchStatus === 'SUCCESS') {
+      onSelectedDelete();
       navigate(ROUTES_URL.PAYMENT);
     }
-  }, [paymentResponse, paymentResponse?.ok]);
+    if (paymentFetchStatus === 'FAIL') {
+      window.alert(`Error: ${paymentError?.response?.data?.message}`);
+    }
+  }, [paymentFetchStatus]);
 
   return (
     <form onSubmit={onSubmit} className="border-[1px] border-gray-200 p-6 my-20 rounded-md">

@@ -87,7 +87,7 @@ function useCart({ initialData = [] }: UseCartProps) {
   }, [initialData]);
 
   return {
-    cartData: items,
+    cartData: useMemo(() => items, [items]),
     handleCheckList,
     handleAllCheckCancel,
     handleAllCheck,
