@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Cart, Order, OrderList, OrderListDetail, ProductDetail, ProductList } from 'pages';
+import { CartPage, OrderPage, OrderListPage, OrderListDetailPage, PrdouctDetailPage, ProductListPage } from 'pages';
 import { App } from 'pages/App';
 import { Error } from 'pages/Error';
 
@@ -18,13 +18,13 @@ export const router = createBrowserRouter([
     element: <App />,
     errorElement: <Error />,
     children: [
-      { index: true, element: <ProductList /> },
-      { path: ROUTE_URL.PRODUCT_LIST, element: <ProductList /> },
-      { path: ROUTE_URL.PRODUCT_DETAIL, element: <ProductDetail /> },
-      { path: ROUTE_URL.ORDER, element: <Order /> },
-      { path: ROUTE_URL.CART_LIST, element: <Cart /> },
-      { path: ROUTE_URL.ORDER_LIST, element: <OrderList /> },
-      { path: ROUTE_URL.ORDER_DETAIL, element: <OrderListDetail /> },
+      { index: true, element: <ProductListPage /> },
+      { path: ROUTE_URL.PRODUCT_LIST, element: <ProductListPage /> },
+      { path: ROUTE_URL.PRODUCT_DETAIL, element: <PrdouctDetailPage /> },
+      { path: ROUTE_URL.ORDER, element: <OrderPage /> },
+      { path: ROUTE_URL.CART_LIST, element: <CartPage /> },
+      { path: ROUTE_URL.ORDER_LIST, element: <OrderListPage /> },
+      { path: ROUTE_URL.ORDER_DETAIL, element: <OrderListDetailPage /> },
     ],
   },
 ]);

@@ -1,15 +1,18 @@
 import GlobalStyle from 'styles/GlobalStyle';
-import { CartContextProvider } from 'context/Cart';
 import { NavBar } from 'components/common/NavBar';
 import { Outlet } from 'react-router-dom';
-
+import { Dialog } from 'components/common/Dialog';
+import { useDialog } from 'hooks';
 function App() {
+  const { dialogTitle, isOpenDialog } = useDialog();
+
   return (
-    <CartContextProvider>
+    <>
       <GlobalStyle />
       <NavBar />
+      <Dialog title={dialogTitle} isOpen={isOpenDialog} />
       <Outlet />
-    </CartContextProvider>
+    </>
   );
 }
 

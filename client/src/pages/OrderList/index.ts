@@ -1,1 +1,1 @@
-export { default as OrderList } from './OrderList';
+export { default } from './OrderListPage';

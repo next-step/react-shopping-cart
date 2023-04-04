@@ -1,23 +1,17 @@
 import { initialize, mswDecorator } from 'msw-storybook-addon';
-import { rest } from 'msw';
-import products from '../src/mocks/server/data/products.json';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import { withReactContext } from 'storybook-react-context';
-import { ROUTE_URL } from '../src/routes/index';
+import store from 'store';
+import { handlers } from '../src/mocks/server/handlers/index';
+import { reduxDecorator } from '../src/decorator/index';
 
 initialize();
-// Provide the MSW addon decorator globally
-export const decorators = [mswDecorator, withRouter, withReactContext];
-
+export const decorators = [mswDecorator, withRouter, reduxDecorator];
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   msw: {
-    handlers: [
-      rest.get('/products', (req, res, ctx) => {
-        return res(ctx.json(products));
-      }),
-    ],
+    handlers: [handlers],
   },
+
   controls: {
     matchers: {
       color: /(background|color)$/i,
