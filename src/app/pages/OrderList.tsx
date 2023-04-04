@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { IOrderDetailTypes, IOrderTypes } from '../../@interface';
+import { getAllOrders } from '../../api/order';
+import { LOCALSTORAGE } from '../../constants/dataKey';
+import { getJSONData, setJSONData } from '../../utils/localStorage';
 
-interface IOrderListProp {
-  data: Array<IOrderTypes>;
-}
+interface IOrderListProp {}
 
 interface IDetailProp<T> {
   data: Array<T>;
@@ -11,7 +13,7 @@ interface IDetailProp<T> {
 const DetailList = ({ data }: IDetailProp<IOrderDetailTypes>) => (
   <div>
     {data.map((item: IOrderDetailTypes) => (
-      <div className="order-list-item">
+      <div className="order-list-item" key={item.id}>
         <div className="flex gap-15 mt-10">
           <img className="w-144 h-144" src={item.imageUrl} alt={item.name} />
           <div className="flex-col gap-15">
@@ -26,7 +28,14 @@ const DetailList = ({ data }: IDetailProp<IOrderDetailTypes>) => (
     ))}
   </div>
 );
-const OrderList = ({ data }: IOrderListProp) => {
+const OrderList = () => {
+  const [data, setData] = useState(getJSONData(LOCALSTORAGE.ORDER));
+  if (data.length === 0) {
+    getAllOrders().then((res) => {
+      setJSONData(LOCALSTORAGE.ORDER, res);
+      setData(res);
+    });
+  }
   return (
     <main className="order-section">
       <header className="flex-col-center mt-20">
@@ -34,7 +43,7 @@ const OrderList = ({ data }: IOrderListProp) => {
         <hr className="divide-line mt-20" />
       </header>
       {data.map((item: IOrderTypes) => (
-        <div className="order-list">
+        <div className="order-list" key={item.id}>
           <div className="order-list__header">
             <span>주문번호: {item.id}</span>
             <span>상세보기 &gt;</span>

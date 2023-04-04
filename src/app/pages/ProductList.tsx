@@ -1,11 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IProductTypes } from '../../@interface';
+import styled from 'styled-components';
+import { getJSONData, setJSONData } from '../../utils/localStorage';
+import { getAllProducts } from '../../api/product';
+import { LOCALSTORAGE } from '../../constants/dataKey';
 
-interface IProductListProp {
-  data: Array<IProductTypes>;
-}
+const ActivedImg = styled.img`
+  cursor: pointer;
+`;
 
-const ProductList = ({ data }: IProductListProp) => {
+interface IProductListProp {}
+
+const ProductList = ({}) => {
+  const [data, setData] = useState(getJSONData(LOCALSTORAGE.PRODUCT));
+  if (data.length === 0) {
+    getAllProducts().then((res) => {
+      setJSONData(LOCALSTORAGE.PRODUCT, res);
+      setData(res);
+    });
+  }
+
   return (
     <main className="product-container">
       {data.map((item: IProductTypes) => (
@@ -16,7 +30,7 @@ const ProductList = ({ data }: IProductListProp) => {
               <span className="product-info__name">{item.name}</span>
               <span className="product-info__price">{item.price}원</span>
             </div>
-            <img src="assets/svgs/cart.svg" alt="장바구니" />
+            <ActivedImg src="assets/svgs/cart.svg" alt="장바구니" data-id={item.id} />
           </div>
         </div>
       ))}
