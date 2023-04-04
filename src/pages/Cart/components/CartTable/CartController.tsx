@@ -15,9 +15,7 @@ function CartController({ cart, handleQuantity }: CartControllerProps) {
 
   const onClick = () => {
     const result = window.confirm('삭제 하시겠습니까?');
-    if (!result) return;
-
-    onDelete();
+    result && onDelete();
   };
 
   return (

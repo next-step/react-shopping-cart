@@ -21,11 +21,9 @@ function CartAside() {
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const result = window.confirm('선택한 상품을 구매하시겠습니까?');
-
-    if (!result) return;
-
-    onPayment(onlyCheckedCartList);
+    result && onPayment(onlyCheckedCartList);
   };
 
   useEffect(() => {
