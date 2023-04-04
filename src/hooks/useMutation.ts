@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { AxiosError, Method } from 'axios';
 import client from '@/api/client';
 
-type FetchStatus = 'IDLE' | 'FETCHING' | 'SUCCESS' | 'FAIL';
+type FetchStatus = 'IDLE' | 'FETCHING' | 'SUCCESS' | 'FAIL' | 'END';
 interface UseMutationState<K> {
   fetchStatus?: FetchStatus;
   loading: boolean;
@@ -32,7 +32,7 @@ function useMutation<T = any, K = any>(endpoint: string, method: HttpMethod): Us
         setState(prev => ({ ...prev, data, fetchStatus: 'SUCCESS' }));
       })
       .catch(error => setState(prev => ({ ...prev, error, fetchStatus: 'FAIL' })))
-      .finally(() => setState(prev => ({ ...prev, loading: false })));
+      .finally(() => setState(prev => ({ ...prev, loading: false, FetchStatus: 'END' })));
   }
 
   return [customMutation, state];
