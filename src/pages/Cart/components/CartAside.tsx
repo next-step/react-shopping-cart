@@ -27,12 +27,9 @@ function CartAside() {
 
   useEffect(() => {
     if (paymentResponse && paymentResponse?.ok) {
-      console.log('hello');
       navigate(ROUTES_URL.PAYMENT);
     }
   }, [paymentResponse, paymentResponse?.ok]);
-
-  console.log(isEmptyChecked);
 
   return (
     <form onSubmit={onSubmit} className="border-[1px] border-gray-200 p-6 my-20 rounded-md">

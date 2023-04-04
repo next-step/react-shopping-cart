@@ -19,7 +19,7 @@ interface UseCartProps {
 function useCart({ initialData = [] }: UseCartProps) {
   const [items, setItems] = useState<CartWithQuantityAndChecked[]>(() => {
     return initialData.map(item => ({
-      ...item,
+      id: item.id,
       product: {
         ...item.product,
         quantity: 1,
@@ -90,16 +90,12 @@ function useCart({ initialData = [] }: UseCartProps) {
   );
 
   useEffect(() => {
-    setItems(
-      initialData.map(item => ({
-        ...item,
-        product: {
-          ...item.product,
-          quantity: 1,
-          checked: true,
-        },
-      })),
-    );
+    setItems(prevItems => {
+      const currentIds = initialData.map(item => item.id);
+      const filteredPreviousItems = prevItems.filter(item => currentIds.includes(item.id));
+
+      return filteredPreviousItems;
+    });
   }, [initialData]);
 
   return {

@@ -2,6 +2,7 @@ import { Button } from '@/components/Common';
 import Checkbox from '@/components/Common/Checkbox';
 import useMutation from '@/hooks/useMutation';
 import useCartData from '../../hooks/useCartData';
+import { useEffect } from 'react';
 
 function CartTableHeader({
   checkedList,
@@ -16,15 +17,26 @@ function CartTableHeader({
   handleDelete: () => void;
 }) {
   const { refreshCart } = useCartData();
-  const [deleteProductSelected] = useMutation(`/carts?${checkedList.map(id => `cartId=${id}`).join('&')}`, 'DELETE');
+  const [deleteProductSelected, { fetchStatus, error }] = useMutation(
+    `/carts?${checkedList.map(id => `cartId=${id}`).join('&')}`,
+    'DELETE',
+  );
 
   const onClick = () => {
     const result = window.confirm('선택한 상품을 모두 삭제 하시겠습니까?');
     if (!result) return;
 
     deleteProductSelected({});
-    refreshCart();
   };
+
+  useEffect(() => {
+    if (fetchStatus === 'SUCCESS') {
+      refreshCart();
+    }
+    if (fetchStatus === 'FAIL') {
+      window.alert(`Error: ${error?.response?.data?.message}`);
+    }
+  }, [fetchStatus]);
 
   return (
     <div className="flex justify-between items-center pl-2 py-5 ">
