@@ -29,13 +29,13 @@ export const dialogSlice = createSlice({
       state.message = action.payload;
       switch (action.payload) {
         case '장바구니로 이동하시겠습니까?':
-          state.type = 'cart';
+          state.type = 'moveCartPage';
           break;
-        case '체크된 상품을 삭제하시겠습니까?':
-          state.type = 'deleteCheckCart';
+        case '상품을 삭제하시겠습니까?':
+          state.type = 'deleteCheckedCartItem';
           break;
         case '주문 하시겠습니까?':
-          state.type = 'cartorder';
+          state.type = 'orderCartItem';
           break;
         default:
           break;

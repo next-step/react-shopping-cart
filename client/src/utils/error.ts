@@ -6,6 +6,6 @@ export class FetchError extends Error {
 }
 export const reportError = (error: unknown) => {
   if (error instanceof FetchError) {
-    alert(error.message + 'Fetch Error!!');
+    alert(error.message);
   }
 };

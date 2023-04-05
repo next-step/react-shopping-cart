@@ -1,13 +1,14 @@
 import { useAppSelector, useAppDispatch } from 'store';
-import { addCart, updateCart, getCart, deleteCart } from 'store/feature/cart/cartSlice';
+import { updateCart, getCart, deleteCartItem } from 'store/feature/cart/cartSlice';
 
 import { CartProductType } from 'types';
 import { calculateCartProductTotal, calculateCartTotalAmount } from 'utils/app';
-import { getData } from 'utils/fetch';
+import { getData, postData } from 'utils/fetch';
 
 const useCart = () => {
   const cartList = useAppSelector((state) => state.cart.cartList);
   const dispatch = useAppDispatch();
+
   const totalAmount = cartList && calculateCartTotalAmount(cartList);
   const totalPrice = cartList && calculateCartProductTotal(cartList);
 
@@ -16,26 +17,19 @@ const useCart = () => {
   };
 
   const AddCart = async (product: CartProductType) => {
-    const cartData = (await getData('/carts')) as CartProductType[];
-    const myCartListProduct = cartData.find((cartProduct) => cartProduct.id === product.id);
-    if (myCartListProduct) {
-      alert('이미 추가하였습니다!');
-      return;
+    try {
+      const response = await postData('/carts', product);
+      if (response.status === 400) {
+        throw new Error();
+      }
+      return true;
+    } catch (error) {
+      return false;
     }
-    dispatch(addCart(product)); // 서버에 저장
-    alert('장바구니에 상품이 추가되었습니다!');
   };
 
   const UpdateCart = (product: CartProductType) => {
-    dispatch(
-      updateCart({
-        ...product,
-      })
-    );
-  };
-  const DeleteCart = (product: CartProductType) => {
-    dispatch(deleteCart(product));
-    alert('장바구니에서 아이템이 삭제되었습니다!');
+    dispatch(updateCart(product));
   };
 
   const CheckAllCart = async (checked: boolean) => {
@@ -48,11 +42,11 @@ const useCart = () => {
     });
   };
 
-  const DeleteCheckedCart = async () => {
+  const DeleteCartItem = async () => {
     const cartData = (await getData('/carts')) as CartProductType[];
     cartData.forEach((product) => {
       if (product.isOrder) {
-        dispatch(deleteCart(product));
+        dispatch(deleteCartItem(product));
       }
     });
   };
@@ -60,13 +54,12 @@ const useCart = () => {
   return {
     AddCart,
     cartList,
-    DeleteCart,
     UpdateCart,
     GetCart,
     totalAmount,
     totalPrice,
     CheckAllCart,
-    DeleteCheckedCart,
+    DeleteCartItem,
   };
 };
 export default useCart;

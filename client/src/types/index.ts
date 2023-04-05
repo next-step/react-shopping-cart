@@ -17,10 +17,5 @@ export interface OrderProductType extends ProductType {
 }
 export type OrderListType = OrderProductType[];
 
-export type DialogType = 'deleteCart' | 'deleteCheckCart' | 'cartorder' | '' | 'cart';
-export type DialogMessage =
-  | '상품을 삭제하시겠습니까?'
-  | '주문 하시겠습니까?'
-  | '체크된 상품을 삭제하시겠습니까?'
-  | '장바구니로 이동하시겠습니까?'
-  | '';
+export type DialogType = 'deleteCheckedCartItem' | 'orderCartItem' | '' | 'moveCartPage';
+export type DialogMessage = '상품을 삭제하시겠습니까?' | '주문 하시겠습니까?' | '장바구니로 이동하시겠습니까?' | '';

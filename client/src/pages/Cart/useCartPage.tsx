@@ -10,7 +10,7 @@ const useCartPage = () => {
     CheckAllCart(check);
   };
   const handleDeleteButton = () => {
-    showDialogUI('deleteCheckCart');
+    showDialogUI('deleteCheckedCartItem');
   };
 
   useEffect(() => {

@@ -20,7 +20,7 @@ const useOrder = () => {
       return item.isOrder === true;
     });
     dispatch(updateOrder(orderItems));
-    await showDialogUI('cartorder');
+    await showDialogUI('orderCartItem');
   };
   const handleOrderButton = () => {};
 

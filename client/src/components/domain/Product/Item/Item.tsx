@@ -4,6 +4,7 @@ import useProductItem from '../useProductItem';
 
 const ProductItem = ({ name, price, image, id }: ItemProps) => {
   const currentItem = { name, price, image, id };
+
   const { handleCartButton, handleProductImage } = useProductItem(currentItem);
 
   return (

@@ -12,15 +12,15 @@ export const postData = async (url: string, data: any) => {
   try {
     const response = await axios.post(url, JSON.stringify(data));
     return response;
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    return error.response;
   }
 };
 export const updateData = async (url: string, data: any) => {
   try {
     const response = await axios.put(url, JSON.stringify(data));
     return response;
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    return error.response;
   }
 };
