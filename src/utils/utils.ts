@@ -14,3 +14,7 @@ export function formatToCurrencyNumber(number: number | string, divideCount: num
 
   return arrayNumber.join('');
 }
+
+export function isNil<T>(param: T) {
+  return typeof param === 'undefined' || param === null;
+}
