@@ -17,6 +17,7 @@ export function Product({ product }: ProductProps) {
   const handleCartButtonClick = useCallback(
     (e: MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation();
+      // TODO: api Post로 바꾸기 = loading도 넣기
       cartContextApis?.dispatch({ type: 'add', payload: [{ product }] });
     },
     [product, cartContextApis]
@@ -24,6 +25,7 @@ export function Product({ product }: ProductProps) {
 
   return (
     <StyledProduct>
+      {/* TODO: alt 올바르게 바꾸기 */}
       <img src={product.imageUrl} alt="PET보틀-정사각(420ml)" />
       <StyledProductBottom>
         <div className="product-info">
@@ -31,6 +33,7 @@ export function Product({ product }: ProductProps) {
           <Currency price={product.price} />
         </div>
         <StyledCardButton onClick={handleCartButtonClick}>
+          {/* TODO: cart 클릭시 interaction 주기 */}
           <CartIcon />
         </StyledCardButton>
       </StyledProductBottom>

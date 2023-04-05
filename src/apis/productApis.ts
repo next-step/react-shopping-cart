@@ -2,6 +2,12 @@ import axios from 'axios';
 
 import type { ProductPOJO } from '@/models';
 
-export function getProducts(): Promise<ProductPOJO[]> {
-  return axios.get('/products').then((res) => res.data as ProductPOJO[]);
+interface GetProductsProps {
+  page?: number;
+}
+
+export function getProducts({ page }: GetProductsProps) {
+  return axios
+    .get('/products', { params: { page } })
+    .then((res) => res.data as { products: ProductPOJO[]; nextPage: number });
 }

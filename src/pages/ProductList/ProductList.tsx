@@ -1,10 +1,9 @@
 import React, { Suspense } from 'react';
 
-import { getProducts } from '@/apis';
 import { LayeredWrapper, CartLoader } from '@/components';
-import { useSuspenseFetch, useIntersectionObserver } from '@/hooks';
-import { ProductModel } from '@/models';
+import { useIntersectionObserver } from '@/hooks';
 
+import { useGetProductList } from './queries';
 import { Product } from './Product';
 import {
   ProductListInnerStyle,
@@ -29,12 +28,13 @@ export function ProductList() {
 }
 
 function ProductListContent() {
-  // TODO: react-query와 연결하기
-  const products = useSuspenseFetch('/products', getProducts) as unknown as ProductModel[];
-
   // TODO: Suspense 아래 scroll Restore를 둬서 loading이 끝나면 scroll이 복구되도록 하기
 
-  const intersectRef = useIntersectionObserver<HTMLDivElement>((e, o) => console.log(e, o), { threshold: 0.6 });
+  const { products, hasNextPage, fetchNextPage } = useGetProductList();
+
+  const intersectRef = useIntersectionObserver<HTMLDivElement>(() => hasNextPage && fetchNextPage(), {
+    threshold: 0.6,
+  });
 
   return (
     <StyledProductListWrapper>
@@ -43,6 +43,7 @@ function ProductListContent() {
           <Product key={product.id} product={product} />
         ))}
       </LayeredWrapper>
+      {/* TODO: isFetching중이라는 것을 받아서 loading 상태로 변환해주는 거 만들기 */}
       {products && <StyledBottomBuffer ref={intersectRef} />}
     </StyledProductListWrapper>
   );
