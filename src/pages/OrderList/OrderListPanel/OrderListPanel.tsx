@@ -1,7 +1,7 @@
 import React, { MouseEvent } from 'react';
 
 import { CartSidePanel, Currency } from '@/components';
-import { routes } from '@/routes';
+import { routes } from '@/router';
 import { TOrderStore } from '@/stores/OrderContext';
 
 interface OrderListPanelProps {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { CartIcon } from '@/components/Icons';
-import { routes } from '@/routes';
+import { routes } from '@/router';
 
 import { LayeredWrapper } from '../LayeredWrapper';
 import {

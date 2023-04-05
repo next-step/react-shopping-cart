@@ -1,8 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import { HeaderLayout } from './layouts';
-import { Cart, ProductList, OrderList } from './pages';
+import { HeaderLayout } from '../layouts';
+import { Cart, ProductList, OrderList } from '../pages';
 import { routes } from './routes';
 
 function Router() {

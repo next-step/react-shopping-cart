@@ -1,7 +1,7 @@
 import React, { MouseEvent } from 'react';
 
 import { CartSidePanel } from '@/components';
-import { routes } from '@/routes';
+import { routes } from '@/router';
 import { TCartStore } from '@/stores/CartContext';
 import { useOrderContextApiSelector } from '@/stores/OrderContext';
 
