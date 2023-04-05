@@ -1,5 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Button } from 'components/common';
+import type { PaginationItemProps } from './Pagination.types';
 export const PaginationList = styled.div`
   display: flex;
   align-items: center;
@@ -8,9 +9,17 @@ export const PaginationList = styled.div`
   margin: 10px;
 `;
 
-export const PaginationItem = styled(Button)`
+export const PaginationItem = styled(Button)<PaginationItemProps>`
   cursor: pointer;
   font-size: 32px;
   padding: 10px;
   border-radius: 5px;
+  ${({ isActive }) =>
+    isActive === false
+      ? css`
+          opacity: 0.3;
+        `
+      : css`
+          opacity: 1;
+        `}
 `;
