@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
+import { ReactQueryProvider } from './configs';
 import { Router } from './router';
 import { CartContextProvider } from './stores/CartContext';
 import { OrderContextProvider } from './stores/OrderContext';
@@ -18,7 +19,9 @@ root.render(
     <BrowserRouter>
       <CartContextProvider>
         <OrderContextProvider>
-          <Router />
+          <ReactQueryProvider>
+            <Router />
+          </ReactQueryProvider>
         </OrderContextProvider>
       </CartContextProvider>
     </BrowserRouter>
