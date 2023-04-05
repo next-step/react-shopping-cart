@@ -1,20 +1,22 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
-type RoutePath = '/order' | '/orders' | '/products' | '/carts';
+type RoutePath = '/order' | '/orders' | '/products' | '/carts' | string;
 
 const useRouter = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   const back = (step = 1) => {
     navigate(-step);
   };
 
   const push = (path: RoutePath) => {
-    navigate({
-      pathname: path,
-    });
+    navigate(path);
   };
-  return { back, push };
+  const getLocationQuery = (query: string) => {
+    return searchParams.get(query);
+  };
+  return { back, push, getLocationQuery };
 };
 
 export default useRouter;

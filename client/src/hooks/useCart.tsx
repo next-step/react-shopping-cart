@@ -32,7 +32,7 @@ const useCart = () => {
     dispatch(updateCart(product));
   };
 
-  const CheckAllCart = async (checked: boolean) => {
+  const checkAllCartItem = async (checked: boolean) => {
     const cartData = (await getData('/carts')) as CartProductType[];
     cartData.forEach((product) => {
       UpdateCart({
@@ -58,7 +58,7 @@ const useCart = () => {
     GetCart,
     totalAmount,
     totalPrice,
-    CheckAllCart,
+    checkAllCartItem,
     DeleteCartItem,
   };
 };

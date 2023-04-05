@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { useCart, useDialog } from 'hooks';
 const useCartPage = () => {
   const [check, setCheck] = useState(false);
-  const { GetCart, CheckAllCart, cartList, totalAmount, totalPrice } = useCart();
+  const { GetCart, checkAllCartItem, cartList, totalAmount, totalPrice } = useCart();
   const { showDialogUI } = useDialog();
 
   const handleCheckBox = () => {
     setCheck(!check);
-    CheckAllCart(check);
+    checkAllCartItem(check);
   };
   const handleDeleteButton = () => {
     showDialogUI('deleteCheckedCartItem');
