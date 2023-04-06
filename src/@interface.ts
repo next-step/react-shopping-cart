@@ -1,3 +1,4 @@
+import { AxiosResponse } from 'axios';
 import { MouseEvent } from 'react';
 
 export interface IProductTypes {
@@ -18,6 +19,13 @@ export interface IOrderDetailTypes extends IProductTypes {
 export interface ICartTypes {
   id: number;
   product: IProductTypes;
+}
+export interface ICartRequestBody {
+  product: IProductTypes;
+}
+export interface IResponse {
+  ok: string;
+  message: string;
 }
 
 export type CustomMouseEvent<T = HTMLElement> = MouseEvent<T>;

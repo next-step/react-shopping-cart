@@ -36,9 +36,9 @@ const CartList = () => {
           </div>
           <h3 className="cart-title">든든배송 상품({data.length}개)</h3>
           <hr className="divide-line-gray mt-10" />
-          {data.map(({ product }: ICartTypes) => (
+          {data.map(({ product }: ICartTypes, idx: number) => (
             <>
-              <div className="cart-container" key={product.id}>
+              <div className="cart-container" key={idx}>
                 <div className="flex gap-15 mt-10">
                   <input className="checkbox" name="checkbox" type="checkbox" />
                   <img className="w-144 h-144" src={product.imageUrl} alt={product.name} />
