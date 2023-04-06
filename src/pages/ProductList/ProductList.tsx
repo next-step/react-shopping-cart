@@ -9,7 +9,6 @@ import {
   ProductListInnerStyle,
   ProductListOuterStyle,
   StyledProductListLoader,
-  StyledProductListWrapper,
   StyledBottomBuffer,
 } from './ProductList.styled';
 
@@ -37,7 +36,7 @@ function ProductListContent() {
   });
 
   return (
-    <StyledProductListWrapper>
+    <>
       <LayeredWrapper outer={{ className: ProductListOuterStyle() }} inner={{ className: ProductListInnerStyle() }}>
         {products?.map((product) => (
           <Product key={product.id} product={product} />
@@ -45,6 +44,6 @@ function ProductListContent() {
       </LayeredWrapper>
       {/* TODO: isFetching중이라는 것을 받아서 loading 상태로 변환해주는 거 만들기 */}
       {products && <StyledBottomBuffer ref={intersectRef} />}
-    </StyledProductListWrapper>
+    </>
   );
 }

@@ -8,12 +8,6 @@ export const StyledProductListLoader = styled('div', {
   height: '100%',
 });
 
-export const StyledProductListWrapper = styled('div', {
-  width: '100%',
-  height: 'calc(100% - 50px)',
-  overflowY: 'auto',
-});
-
 export const StyledBottomBuffer = styled('div', {
   content: 'none',
   width: '100%',
