@@ -13,18 +13,15 @@ context: Context utilities specific to the current request handler. */
 export const handlers = [
   /* product */
   rest.get('/products', (req, res, ctx) => {
-    return res(ctx.status(HttpStatusCode.Accepted), ctx.json(productData));
+    return res(ctx.status(HttpStatusCode.Ok), ctx.json(productData));
   }),
   rest.get('/products/:id', (req, res, ctx) => {
     const { id } = req.params;
-    return res(
-      ctx.status(HttpStatusCode.Accepted),
-      ctx.json(productData.filter((product) => product.id === Number(id)))
-    );
+    return res(ctx.status(HttpStatusCode.Ok), ctx.json(productData.filter((product) => product.id === Number(id))));
   }),
   /* cart */
   rest.get('/carts', (req, res, ctx) => {
-    return res(ctx.status(HttpStatusCode.Accepted), ctx.json(cartData));
+    return res(ctx.status(HttpStatusCode.Ok), ctx.json(cartData));
   }),
 
   rest.post<ICartRequestBody>('/carts', (req, res, ctx) => {
