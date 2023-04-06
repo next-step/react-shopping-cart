@@ -7,6 +7,7 @@ export const HeaderWrapperOuterStyle = css({
   top: 0,
   height: HEADER_HEIGHT,
   backgroundColor: '#2BC1BC',
+  zIndex: '9999',
 });
 
 export const HeaderWrapperInnerStyle = css({
