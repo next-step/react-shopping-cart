@@ -8,9 +8,9 @@ import { useOrder } from 'hooks';
 import uuid from 'react-uuid';
 
 const OrderPage = () => {
-  const { GetOrder, orderList, totalPrice, totalAmount } = useOrder();
+  const { getOrderItem, orderList, totalPrice, totalAmount } = useOrder();
   useEffect(() => {
-    GetOrder();
+    getOrderItem();
   }, []);
 
   return (

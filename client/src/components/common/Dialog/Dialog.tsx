@@ -3,7 +3,7 @@ import * as Styled from './Dialog.styled';
 import type { DialogProps } from './Dialog.types';
 
 const Dialog = ({ title, isOpen }: DialogProps) => {
-  const { handleOpenDialogUI, handleConfirmButton } = useDialog();
+  const { handleDialogUI, handleConfirmButton } = useDialog();
   return isOpen ? (
     <Styled.OverLay>
       <Styled.FlexContainer>
@@ -14,7 +14,7 @@ const Dialog = ({ title, isOpen }: DialogProps) => {
           <Styled.DiaLogButton theme="primary" onClick={handleConfirmButton}>
             확인
           </Styled.DiaLogButton>
-          <Styled.DiaLogButton theme="primary" onClick={() => handleOpenDialogUI(false)}>
+          <Styled.DiaLogButton theme="primary" onClick={() => handleDialogUI(false)}>
             취소
           </Styled.DiaLogButton>
         </Styled.ButtonBox>

@@ -13,7 +13,7 @@ const useDialog = () => {
   const dialogTitle = dialogStore.message;
   const dialogType = dialogStore.type;
 
-  const handleOpenDialogUI = (isOpen: boolean) => {
+  const handleDialogUI = (isOpen: boolean) => {
     dispatch(handleOpenDialog(isOpen));
   };
   const showDialogUI = (type: DialogType) => {
@@ -36,7 +36,7 @@ const useDialog = () => {
   };
 
   const handleConfirmButton = () => {
-    handleOpenDialogUI(false);
+    handleDialogUI(false);
     switch (dialogType) {
       case 'deleteCheckedCartItem':
         DeleteCartItem();
@@ -57,7 +57,7 @@ const useDialog = () => {
   return {
     isOpenDialog,
     dialogTitle,
-    handleOpenDialogUI,
+    handleDialogUI,
     showDialogUI,
     handleConfirmButton,
     selectProduct,

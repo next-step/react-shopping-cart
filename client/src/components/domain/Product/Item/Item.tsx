@@ -5,17 +5,17 @@ import useProductItem from '../useProductItem';
 const ProductItem = ({ name, price, image, id }: ItemProps) => {
   const currentItem = { name, price, image, id };
 
-  const { handleCartButton, handleProductImage } = useProductItem(currentItem);
+  const { addToCart, moveToProductDetailPage } = useProductItem(currentItem);
 
   return (
     <Styled.Layout data-testid="product">
-      <Styled.ItemImage src={image} alt={name} onClick={handleProductImage} />
+      <Styled.ItemImage src={image} alt={name} onClick={moveToProductDetailPage} />
       <Styled.FlexContainer>
         <Styled.FlexBox>
           <Styled.NameText>{name}</Styled.NameText>
           <Styled.PriceText>{price}원</Styled.PriceText>
         </Styled.FlexBox>
-        <Styled.CartIcon onClick={handleCartButton} />
+        <Styled.CartIcon onClick={addToCart} />
       </Styled.FlexContainer>
     </Styled.Layout>
   );

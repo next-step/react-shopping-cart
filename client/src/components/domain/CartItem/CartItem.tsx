@@ -6,12 +6,12 @@ type CartItemProps = CartProductType;
 
 const CartItem = ({ id, image, price, name, isOrder, amount }: CartItemProps) => {
   const currentCartItem = { id, image, price, name, amount, isOrder };
-  const { handleIncreaseButton, handleDecreaseButton, inputNumber, handleCheckBox } = useCartItem(currentCartItem);
+  const { increaseInputNumber, decreaseInputNumber, inputNumber, updateCart } = useCartItem(currentCartItem);
 
   return (
     <Styled.Contianer>
       <Styled.LeftBox>
-        <Styled.CheckBox type={'checkbox'} name="checkbox" onChange={handleCheckBox} checked={isOrder} />
+        <Styled.CheckBox type={'checkbox'} name="checkbox" onChange={updateCart} checked={isOrder} />
         <Styled.CartItemBox>
           <Styled.CartItemImage src={image} alt={name} />
           <Styled.CartItemName>{name}</Styled.CartItemName>
@@ -21,8 +21,8 @@ const CartItem = ({ id, image, price, name, isOrder, amount }: CartItemProps) =>
         <Styled.CartInputContainer>
           <Styled.CartInputNumber type="text" value={inputNumber} readOnly={true} />
           <div>
-            <Styled.CartInputNumberButton onClick={handleIncreaseButton}>▲</Styled.CartInputNumberButton>
-            <Styled.CartInputNumberButton onClick={handleDecreaseButton}>▼</Styled.CartInputNumberButton>
+            <Styled.CartInputNumberButton onClick={increaseInputNumber}>▲</Styled.CartInputNumberButton>
+            <Styled.CartInputNumberButton onClick={decreaseInputNumber}>▼</Styled.CartInputNumberButton>
           </div>
         </Styled.CartInputContainer>
         <Styled.CartPriceText>{price * inputNumber}원</Styled.CartPriceText>

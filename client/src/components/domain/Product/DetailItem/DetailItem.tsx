@@ -12,7 +12,7 @@ const DetailItem = ({ products }: DetailItemProps) => {
   const { id } = params;
 
   const currentDetailItem = products.filter((product) => product.id === Number(id))[0];
-  const { handleCartButton } = useProductItem(currentDetailItem);
+  const { addToCart } = useProductItem(currentDetailItem);
 
   return (
     <Styled.Container>
@@ -24,7 +24,7 @@ const DetailItem = ({ products }: DetailItemProps) => {
           <Styled.Text>금액</Styled.Text>
           <Styled.Price>{currentDetailItem.price}</Styled.Price>
         </Styled.ItemInfoBox>
-        <Styled.CartButton onClick={handleCartButton} theme="brown">
+        <Styled.CartButton onClick={addToCart} theme="brown">
           장바구니
         </Styled.CartButton>
       </Styled.ItemInfoContainer>
