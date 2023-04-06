@@ -25,8 +25,7 @@ export function Product({ product }: ProductProps) {
 
   return (
     <StyledProduct>
-      {/* TODO: alt 올바르게 바꾸기 */}
-      <img src={product.imageUrl} alt="PET보틀-정사각(420ml)" />
+      <img src={product.imageUrl} alt={product.name} />
       <StyledProductBottom>
         <div className="product-info">
           <span className="product-info__name">{product.name}</span>
