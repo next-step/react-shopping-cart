@@ -1,16 +1,9 @@
 import * as Styled from './ProductDetailPage.styles';
 import ProductDetailItem from 'components/domain/Product/DetailItem';
-import { useProductList } from 'hooks';
-import { ErrorMessage, Spinner } from 'components/common';
+import { useAppSelector } from 'store';
 
 const ProductDetailPage = () => {
-  const { products, status } = useProductList();
-
-  if (status === 'Loading') {
-    return <Spinner />;
-  } else if (status === 'Fail') {
-    return <ErrorMessage />;
-  }
+  const products = useAppSelector((state) => state.product.productList.products);
 
   return (
     <Styled.Layout>

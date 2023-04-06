@@ -10,6 +10,7 @@ type DetailItemProps = {
 const DetailItem = ({ products }: DetailItemProps) => {
   const params = useParams();
   const { id } = params;
+
   const currentDetailItem = products.filter((product) => product.id === Number(id))[0];
   const { handleCartButton } = useProductItem(currentDetailItem);
 

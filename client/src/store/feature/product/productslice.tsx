@@ -1,41 +1,49 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { ProductType } from 'types';
-import { getData } from 'utils/fetch';
+import { getProductItems } from 'utils/fetch';
 
+type ProductListType = {
+  products: ProductType[];
+  TOTAL_PAGE: number;
+};
 type ProductStateType = {
-  productList: ProductType[];
+  productList: ProductListType;
   status: 'Loading' | 'Complete' | 'Fail';
 };
 
-const fetchProductList = createAsyncThunk('product', async (url: string, thunkApi: any) => {
+const initialState: ProductStateType = {
+  productList: {
+    products: [],
+    TOTAL_PAGE: 0,
+  },
+  status: 'Loading',
+};
+
+const getProductList = createAsyncThunk('product', async (param: number, thunkApi: any) => {
   try {
-    const response = await getData(url);
-    return response.products;
+    const response = await getProductItems(param);
+    console.log(response);
+    return response;
   } catch (error: any) {
     return thunkApi.rejectWithValue(error.message);
   }
 });
-
-const initialState: ProductStateType = {
-  productList: [],
-  status: 'Loading',
-};
 
 export const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchProductList.pending, (state: ProductStateType) => {
+    builder.addCase(getProductList.pending, (state: ProductStateType) => {
       state.status = 'Loading';
     });
-    builder.addCase(fetchProductList.fulfilled, (state: ProductStateType, action: PayloadAction<ProductType[]>) => {
+    builder.addCase(getProductList.fulfilled, (state: ProductStateType, action: PayloadAction<ProductListType>) => {
       state.status = 'Complete';
       state.productList = action.payload;
     });
-    builder.addCase(fetchProductList.rejected, (state) => {
+    builder.addCase(getProductList.rejected, (state) => {
       state.status = 'Fail';
     });
   },
 });
-export { fetchProductList };
+export { getProductList };

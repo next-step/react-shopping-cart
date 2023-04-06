@@ -1,20 +1,19 @@
 import { usePagination } from 'hooks';
 import { useEffect } from 'react';
-import { fetchProductList } from 'store/feature/product/productslice';
+import { getProductList } from 'store/feature/product/productslice';
 import { useAppDispatch, useAppSelector } from '../../store/index';
 
 const useProductListPage = () => {
   const { currentPage } = usePagination();
   const dispatch = useAppDispatch();
   const productStore = useAppSelector((state) => state.product);
+  const products = productStore.productList.products;
+
   const status = productStore.status;
-  const limit = 8;
-  const offset = (currentPage - 1) * limit;
-  const products = productStore.productList.slice(offset, offset + limit);
-  const totalPage = Math.ceil(productStore.productList.length / limit);
+  const totalPage = productStore.productList.TOTAL_PAGE;
 
   useEffect(() => {
-    dispatch(fetchProductList('/products'));
+    dispatch(getProductList(currentPage));
   }, []);
 
   return { products, status, totalPage };
