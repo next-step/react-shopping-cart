@@ -1,0 +1,35 @@
+.fill_primary {
+  @apply bg-violet-600 text-white;
+}
+
+.outline_primary {
+  @apply text-violet-600 border-solid border-violet-500 border-[1px];
+}
+
+.text_primary {
+  @apply text-violet-600 border-none;
+}
+
+.fill_secondary {
+  @apply bg-gray-400 text-white;
+}
+
+.outline_secondary {
+  @apply text-gray-400 border-solid border-gray-300 border-[1px];
+}
+
+.text_secondary {
+  @apply text-gray-400 border-none;
+}
+
+.fill_danger {
+  @apply bg-red-600 text-white;
+}
+
+.outline_danger {
+  @apply text-red-600 border-solid border-red-500 border-[1px];
+}
+
+.text_danger {
+  @apply text-red-600 border-none;
+}
