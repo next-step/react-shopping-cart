@@ -6,6 +6,7 @@ let userCarts: UserCartType = [];
 
 export const addCart = rest.post('/carts', async (req, res, ctx) => {
   const product = (await req.json()) as CartProductType;
+
   const cartList = userCarts.find((cartProduct) => cartProduct.id === product.id);
   if (!cartList) {
     userCarts.push(product);
@@ -19,14 +20,21 @@ export const getCarts = rest.get('/carts', (req, res, ctx) => {
 });
 
 export const deleteCart = rest.post('/cart/delete', async (req, res, ctx) => {
-  const product = await req.json();
-  const newCarts = userCarts.filter((item) => item.id !== product.id);
+  const product = (await req.json()) as CartProductType;
 
+  if (!product.id) {
+    return res(ctx.status(400));
+  }
+  const newCarts = userCarts.filter((item) => item.id !== product.id);
   userCarts = newCarts;
   return res(ctx.status(200), ctx.json(newCarts));
 });
 export const updateCart = rest.put('/cart/update', async (req, res, ctx) => {
-  const product = await req.json();
+  const product = (await req.json()) as CartProductType;
+
+  if (!product.id) {
+    return res(ctx.status(400));
+  }
   const newCarts = userCarts.map((item) => {
     if (item.id === product.id) {
       return product;
