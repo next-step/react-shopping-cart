@@ -27,8 +27,6 @@ export function ProductList() {
 }
 
 function ProductListContent() {
-  // TODO: Suspense 아래 scroll Restore를 둬서 loading이 끝나면 scroll이 복구되도록 하기
-
   const { products, hasNextPage, fetchNextPage } = useGetProductList();
 
   const intersectRef = useIntersectionObserver<HTMLDivElement>(() => hasNextPage && fetchNextPage(), {
