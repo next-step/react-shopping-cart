@@ -32,7 +32,7 @@ export function CartSidePanel({ cart, title, body, buttonContent, to, onSubmit }
         </StyledTotalPrice>
       }
       bottomSection={
-        <StyledSubmitButton to={to} onClick={onSubmit}>
+        <StyledSubmitButton to={to} onClick={onSubmit} disable={cartProducts.length <= 0}>
           {buttonContent}
         </StyledSubmitButton>
       }

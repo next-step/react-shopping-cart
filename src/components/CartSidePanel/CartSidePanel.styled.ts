@@ -25,4 +25,12 @@ export const StyledSubmitButton = styled(Link, {
   height: '80px',
   backgroundColor: '$mint',
   color: 'White',
+
+  variants: {
+    disable: {
+      true: {
+        opacity: '0.6',
+      },
+    },
+  },
 });
