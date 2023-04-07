@@ -11,3 +11,5 @@ export * from './OrderProduct';
 export * from './CartLoader';
 export * from './Spinner';
 export * from './Loader';
+export * from './PopOverFrame';
+export * from './FadeOut';
