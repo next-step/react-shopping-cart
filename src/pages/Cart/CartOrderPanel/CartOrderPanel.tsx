@@ -1,11 +1,11 @@
-import React, { MouseEvent } from 'react';
+import React from 'react';
 
 import { CartSidePanel } from '@/components';
 import { OrderProductList } from '@/containers';
 import { useModal } from '@/hooks';
 import { routes } from '@/router';
 import { TCartStore, useCartContextApiSelector } from '@/stores/CartContext';
-import { useOrderContextApiSelector } from '@/stores/OrderContext';
+import { usePaymentContextApis } from '@/stores/PaymentContext';
 
 import { ModalBackgroundStyle, StyledConfirmModal, StyledOrderButton, StyledOrderList } from './CartOrderPanel.styled';
 
@@ -17,7 +17,7 @@ export function CartOrderPanel({ cart }: CartOrderPanelProps) {
   const cartProducts = Object.values(cart);
 
   const cartContextApis = useCartContextApiSelector();
-  const orderContextApis = useOrderContextApiSelector();
+  const orderContextApis = usePaymentContextApis();
   const { Modal, showModal } = useModal();
 
   const checkedCartProducts = cartProducts.filter((cartProduct) => cartProduct.isChecked);

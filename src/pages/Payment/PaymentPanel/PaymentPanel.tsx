@@ -3,7 +3,7 @@ import React, { MouseEvent } from 'react';
 import { postOrder } from '@/apis';
 import { CartSidePanel, Currency, LayeredTitleLayout } from '@/components';
 import { routes } from '@/router';
-import { TOrderStore } from '@/stores/OrderContext';
+import { TPaymentStore } from '@/stores/PaymentContext';
 import { useModal } from '@/hooks';
 
 import {
@@ -12,13 +12,13 @@ import {
   StyledPaymentButtonWrapper,
   StyledPaymentButton,
   PaymentModalStyle,
-} from './OrderListPanel.styled';
+} from './PaymentPanel.styled';
 
-interface OrderListPanelProps {
-  order: TOrderStore;
+interface PaymentPanelProps {
+  order: TPaymentStore;
 }
 
-export function OrderListPanel({ order }: OrderListPanelProps) {
+export function PaymentPanel({ order }: PaymentPanelProps) {
   const orderProducts = Object.values(order);
 
   const { Modal, showModal } = useModal();

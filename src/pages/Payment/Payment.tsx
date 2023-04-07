@@ -2,13 +2,13 @@ import React from 'react';
 
 import { LayeredTitleLayout } from '@/components';
 import { OrderProductList } from '@/containers';
-import { useOrderSelector } from '@/stores/OrderContext';
+import { usePaymentContext } from '@/stores/PaymentContext';
 
-import { OrderListPanel } from './OrderListPanel';
-import { StyledOrderListBody, StyledLeftSection } from './OrderList.styled';
+import { PaymentPanel } from './PaymentPanel';
+import { StyledOrderListBody, StyledLeftSection } from './Payment.styled';
 
-export function OrderList() {
-  const orderStore = useOrderSelector();
+export function Payment() {
+  const orderStore = usePaymentContext();
 
   if (!orderStore) return null;
 
@@ -18,7 +18,7 @@ export function OrderList() {
         <StyledLeftSection>
           <OrderProductList order={orderStore} />
         </StyledLeftSection>
-        <OrderListPanel order={orderStore} />
+        <PaymentPanel order={orderStore} />
       </StyledOrderListBody>
     </LayeredTitleLayout>
   );

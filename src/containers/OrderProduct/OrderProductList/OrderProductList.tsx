@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { ThreeLayeredFrame, OrderProduct } from '@/components';
-import { TOrderStore } from '@/stores/OrderContext';
+import { TPaymentStore } from '@/stores/PaymentContext';
 
 import { StyledOrderProductListTitle, OrderStyle } from './OrderProductList.styled';
 
 interface OrderProductListProps {
-  order: TOrderStore;
+  order: TPaymentStore;
 }
 
 export function OrderProductList({ order }: OrderProductListProps) {

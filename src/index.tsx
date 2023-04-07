@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { ReactQueryProvider } from './configs';
 import { Router } from './router';
 import { CartContextProvider } from './stores/CartContext';
-import { OrderContextProvider } from './stores/OrderContext';
+import { PaymentContextProvider } from './stores/PaymentContext';
 
 if (process.env.NODE_ENV === 'development') {
   await import('./mocks/browser').then(({ worker }) => worker.start());
@@ -18,11 +18,11 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <CartContextProvider>
-        <OrderContextProvider>
+        <PaymentContextProvider>
           <ReactQueryProvider>
             <Router />
           </ReactQueryProvider>
-        </OrderContextProvider>
+        </PaymentContextProvider>
       </CartContextProvider>
     </BrowserRouter>
   </React.StrictMode>
