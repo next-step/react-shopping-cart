@@ -50,7 +50,17 @@ export function PaymentPanel({ orderStore }: PaymentPanelProps) {
       <Modal verticalAlign="center">
         <StyledPaymentModal>
           <LayeredTitleLayout title="결제">
-            <div style={{ textAlign: 'center' }}>여기 payment가 들어옵니다!</div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '80px',
+                backgroundColor: 'whitesmoke',
+              }}
+            >
+              여기 payment가 들어옵니다!
+            </div>
             <StyledModalBottomContainer>
               <CartSidePanel className={PaymentModalStyle()} cart={orderStore} title="결제금액" body="총 결제금액" />
               <StyledPaymentButtonWrapper>
