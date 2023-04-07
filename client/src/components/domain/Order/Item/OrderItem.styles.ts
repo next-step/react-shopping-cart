@@ -21,6 +21,14 @@ export const OrderContainer = styled.div`
   overflow: hidden;
   text-overflow: clip;
   white-space: nowrap;
+
+  @media (max-width: 450px) {
+    flex-direction: column;
+    img {
+      width: 100%;
+      height: fit-content;
+    }
+  }
 `;
 
 export const OrderItemBox = styled.div`

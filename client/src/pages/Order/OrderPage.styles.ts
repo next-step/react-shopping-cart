@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { HorizontalLine } from 'components/common';
 export const Layout = styled.section`
-  padding: 24px 100px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 20px;

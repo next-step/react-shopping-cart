@@ -12,6 +12,7 @@ const useProductListPage = () => {
   const status = productStore.status;
   const totalPage = productStore.productList.TOTAL_PAGE;
 
+  console.log(currentPage);
   useEffect(() => {
     dispatch(getProductList(currentPage));
   }, []);
