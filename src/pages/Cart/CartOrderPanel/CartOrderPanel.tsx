@@ -4,7 +4,7 @@ import { CartSidePanel } from '@/components';
 import { OrderProductList } from '@/containers';
 import { useModal } from '@/hooks';
 import { routes } from '@/router';
-import { TCartStore } from '@/stores/CartContext';
+import { TCartStore, useCartContextApiSelector } from '@/stores/CartContext';
 import { useOrderContextApiSelector } from '@/stores/OrderContext';
 
 import { ModalBackgroundStyle, StyledConfirmModal, StyledOrderButton, StyledOrderList } from './CartOrderPanel.styled';
@@ -16,6 +16,7 @@ interface CartOrderPanelProps {
 export function CartOrderPanel({ cart }: CartOrderPanelProps) {
   const cartProducts = Object.values(cart);
 
+  const cartContextApis = useCartContextApiSelector();
   const orderContextApis = useOrderContextApiSelector();
   const { Modal, showModal } = useModal();
 
@@ -33,6 +34,7 @@ export function CartOrderPanel({ cart }: CartOrderPanelProps) {
   };
 
   const handleConfirmButtonClick = () => {
+    cartContextApis?.dispatch({ type: 'delete', payload: checkedCartProducts });
     orderContextApis?.dispatch({ type: 'add', payload: checkedCartProducts });
   };
 
@@ -45,7 +47,7 @@ export function CartOrderPanel({ cart }: CartOrderPanelProps) {
         buttonContent={
           <>
             <span>주문하기</span>
-            <span>{`${cartProducts?.length}개`}</span>
+            <span>{`${checkedCartProducts?.length}개`}</span>
           </>
         }
         to={routes.orderList}
