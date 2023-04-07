@@ -1,11 +1,17 @@
 import React, { MouseEvent, useCallback } from 'react';
 
 import { ProductModel } from '@/models';
-import { Currency } from '@/components';
+import { Currency, PopOverFrame } from '@/components';
 import { CartIcon } from '@/components/Icons';
 import { useCartContextApiSelector } from '@/stores/CartContext';
 
-import { StyledProduct, StyledProductBottom, StyledCardButton } from './Product.styled';
+import {
+  StyledProduct,
+  StyledProductBottom,
+  StyledCardButton,
+  StyledPopOver,
+  PopOverElementStyle,
+} from './Product.styled';
 
 interface ProductProps {
   product: ProductModel;
@@ -32,8 +38,13 @@ export function Product({ product }: ProductProps) {
           <Currency price={product.price} />
         </div>
         <StyledCardButton onClick={handleCartButtonClick}>
-          {/* TODO: cart 클릭시 interaction 주기 */}
-          <CartIcon />
+          <PopOverFrame
+            popOverClassName={PopOverElementStyle()}
+            onMouseOverElement={<StyledPopOver>장바구니 등록 🛒</StyledPopOver>}
+            onClickElement={<StyledPopOver>장바구니에 등록되었습니다! 🎉</StyledPopOver>}
+          >
+            <CartIcon />
+          </PopOverFrame>
         </StyledCardButton>
       </StyledProductBottom>
     </StyledProduct>
