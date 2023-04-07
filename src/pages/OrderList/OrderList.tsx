@@ -5,23 +5,23 @@ import { getOrders } from '@/apis';
 import { LayeredTitleLayout, CartLoader } from '@/components';
 
 import { Order } from './Order';
-import { StyledOrderHistory, StyledOrderHistoryLoader } from './OrderHistory.styled';
+import { StyledOrderList, StyledOrderListLoader } from './OrderList.styled';
 
-export function OrderHistory() {
+export function OrderList() {
   return (
     <Suspense
       fallback={
-        <StyledOrderHistoryLoader>
+        <StyledOrderListLoader>
           <CartLoader />
-        </StyledOrderHistoryLoader>
+        </StyledOrderListLoader>
       }
     >
-      <OrderHistoryContent />
+      <OrderListContent />
     </Suspense>
   );
 }
 
-function OrderHistoryContent() {
+function OrderListContent() {
   const { data: orders } = useQuery(
     ['orders'],
     () => {
@@ -34,7 +34,7 @@ function OrderHistoryContent() {
   );
 
   return (
-    <StyledOrderHistory>
+    <StyledOrderList>
       {orders && (
         <LayeredTitleLayout title="주문목록">
           {Object.entries(orders).map(([id, orders]) => (
@@ -42,6 +42,6 @@ function OrderHistoryContent() {
           ))}
         </LayeredTitleLayout>
       )}
-    </StyledOrderHistory>
+    </StyledOrderList>
   );
 }

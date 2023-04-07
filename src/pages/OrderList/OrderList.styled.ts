@@ -1,6 +1,6 @@
 import { styled } from '@/stitches.config';
 
-export const StyledOrderHistoryLoader = styled('div', {
+export const StyledOrderListLoader = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -8,7 +8,7 @@ export const StyledOrderHistoryLoader = styled('div', {
   height: '100%',
 });
 
-export const StyledOrderHistory = styled('div', {
+export const StyledOrderList = styled('div', {
   width: '100%',
   minHeight: 'calc(100% - 50px)',
   paddingBottom: '80px',
