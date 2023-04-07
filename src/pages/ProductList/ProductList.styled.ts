@@ -8,6 +8,11 @@ export const StyledProductListLoader = styled('div', {
   height: '100%',
 });
 
+export const LoaderStyle = css({
+  width: '100%',
+  height: '100px',
+});
+
 export const StyledBottomBuffer = styled('div', {
   content: 'none',
   width: '100%',

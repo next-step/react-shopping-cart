@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 
-import { LayeredWrapper, CartLoader } from '@/components';
+import { LayeredWrapper, CartLoader, Loader } from '@/components';
 import { useIntersectionObserver } from '@/hooks';
 
 import { useGetProductList } from './queries';
@@ -8,6 +8,7 @@ import { Product } from './Product';
 import {
   ProductListInnerStyle,
   ProductListOuterStyle,
+  LoaderStyle,
   StyledProductListLoader,
   StyledBottomBuffer,
 } from './ProductList.styled';
@@ -27,7 +28,7 @@ export function ProductList() {
 }
 
 function ProductListContent() {
-  const { products, hasNextPage, fetchNextPage } = useGetProductList();
+  const { products, hasNextPage, fetchNextPage, isFetchingNextPage } = useGetProductList();
 
   const intersectRef = useIntersectionObserver<HTMLDivElement>(() => hasNextPage && fetchNextPage(), {
     threshold: 0.6,
@@ -40,8 +41,9 @@ function ProductListContent() {
           <Product key={product.id} product={product} />
         ))}
       </LayeredWrapper>
-      {/* TODO: isFetching중이라는 것을 받아서 loading 상태로 변환해주는 거 만들기 */}
-      {products && <StyledBottomBuffer ref={intersectRef} />}
+      <Loader showLoader={isFetchingNextPage} className={LoaderStyle()}>
+        <StyledBottomBuffer ref={intersectRef} />
+      </Loader>
     </>
   );
 }

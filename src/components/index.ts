@@ -9,3 +9,5 @@ export * from './ThreeLayeredFrame';
 export * from './CartSidePanel';
 export * from './OrderProduct';
 export * from './CartLoader';
+export * from './Spinner';
+export * from './Loader';
