@@ -47,7 +47,8 @@ export function CartProduct({ cartProduct }: CartProductProps) {
         <StyledCartProductController>
           <TrashIcon className="pointer" onClick={handleCartProductDeleteIconClick} />
           <CounterWithInput
-            onlyNaturalNumber
+            max={20}
+            min={1}
             className={CounterWithInputStyle()}
             stateBundle={[cartProduct.count, handleCartProductCountChange]}
           />
