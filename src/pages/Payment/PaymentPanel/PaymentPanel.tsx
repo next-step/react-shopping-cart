@@ -15,11 +15,11 @@ import {
 } from './PaymentPanel.styled';
 
 interface PaymentPanelProps {
-  order: TPaymentStore;
+  orderStore: TPaymentStore;
 }
 
-export function PaymentPanel({ order }: PaymentPanelProps) {
-  const orderProducts = Object.values(order);
+export function PaymentPanel({ orderStore }: PaymentPanelProps) {
+  const orderProducts = Object.values(orderStore);
 
   const { Modal, showModal } = useModal();
 
@@ -35,7 +35,7 @@ export function PaymentPanel({ order }: PaymentPanelProps) {
   return (
     <>
       <CartSidePanel
-        cart={order}
+        cart={orderStore}
         title="결제금액"
         body="총 결제금액"
         buttonContent={
@@ -52,7 +52,7 @@ export function PaymentPanel({ order }: PaymentPanelProps) {
           <LayeredTitleLayout title="결제">
             <div style={{ textAlign: 'center' }}>여기 payment가 들어옵니다!</div>
             <StyledModalBottomContainer>
-              <CartSidePanel className={PaymentModalStyle()} cart={order} title="결제금액" body="총 결제금액" />
+              <CartSidePanel className={PaymentModalStyle()} cart={orderStore} title="결제금액" body="총 결제금액" />
               <StyledPaymentButtonWrapper>
                 <StyledPaymentButton to={routes.orders} onClick={handlePaymentModalButtonClick}>
                   결제하기

@@ -1,24 +1,24 @@
 import React from 'react';
 
 import { LayeredTitleLayout } from '@/components';
-import { OrderProductList } from '@/containers';
+import { CartProductList } from '@/containers';
 import { usePaymentContext } from '@/stores/PaymentContext';
 
 import { PaymentPanel } from './PaymentPanel';
 import { StyledOrderListBody, StyledLeftSection } from './Payment.styled';
 
 export function Payment() {
-  const orderStore = usePaymentContext();
+  const paymentStore = usePaymentContext();
 
-  if (!orderStore) return null;
+  if (!paymentStore) return null;
 
   return (
     <LayeredTitleLayout title="주문/결제">
       <StyledOrderListBody>
         <StyledLeftSection>
-          <OrderProductList order={orderStore} />
+          <CartProductList orderStore={paymentStore} />
         </StyledLeftSection>
-        <PaymentPanel order={orderStore} />
+        <PaymentPanel orderStore={paymentStore} />
       </StyledOrderListBody>
     </LayeredTitleLayout>
   );

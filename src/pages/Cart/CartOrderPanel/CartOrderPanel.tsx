@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { CartSidePanel } from '@/components';
-import { OrderProductList } from '@/containers';
+import { CartProductList } from '@/containers';
 import { useModal } from '@/hooks';
 import { routes } from '@/router';
 import { TCartStore, useCartContextApiSelector } from '@/stores/CartContext';
@@ -54,7 +54,7 @@ export function CartOrderPanel({ cart }: CartOrderPanelProps) {
       <Modal className={ModalBackgroundStyle()}>
         <StyledConfirmModal>
           <StyledOrderList>
-            <OrderProductList order={checkedCartProducts} />
+            <CartProductList orderStore={checkedCartProducts} />
           </StyledOrderList>
           <StyledOrderButton to={routes.payment} onClick={handleConfirmButtonClick}>
             확인

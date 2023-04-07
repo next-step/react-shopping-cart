@@ -3,14 +3,14 @@ import React from 'react';
 import { ThreeLayeredFrame, OrderProduct } from '@/components';
 import { TPaymentStore } from '@/stores/PaymentContext';
 
-import { StyledOrderProductListTitle, OrderStyle } from './OrderProductList.styled';
+import { StyledOrderProductListTitle, OrderStyle } from './CartProductList.styled';
 
-interface OrderProductListProps {
-  order: TPaymentStore;
+interface CartProductListProps {
+  orderStore: TPaymentStore;
 }
 
-export function OrderProductList({ order }: OrderProductListProps) {
-  const orderList = Object.values(order);
+export function CartProductList({ orderStore }: CartProductListProps) {
+  const orderList = Object.values(orderStore);
   const orderCount = orderList.length;
 
   return (
