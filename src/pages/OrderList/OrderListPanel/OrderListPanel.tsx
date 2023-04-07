@@ -1,6 +1,6 @@
 import React, { MouseEvent } from 'react';
 
-import { Link } from 'react-router-dom';
+import { postOrder } from '@/apis';
 import { CartSidePanel, Currency, LayeredTitleLayout } from '@/components';
 import { routes } from '@/router';
 import { TOrderStore } from '@/stores/OrderContext';
@@ -28,11 +28,8 @@ export function OrderListPanel({ order }: OrderListPanelProps) {
   };
 
   const handlePaymentModalButtonClick = (e: MouseEvent<HTMLAnchorElement>) => {
-    // TODO: 결제 히스토리 페이지넣고 빼기
-    e.preventDefault();
     e.stopPropagation();
-    alert('서비스 준비중입니다!');
-    // TODO: api를 통해 주문 전송하기
+    postOrder(orderProducts);
   };
 
   return (
@@ -57,7 +54,7 @@ export function OrderListPanel({ order }: OrderListPanelProps) {
             <StyledModalBottomContainer>
               <CartSidePanel className={PaymentModalStyle()} cart={order} title="결제금액" body="총 결제금액" />
               <StyledPaymentButtonWrapper>
-                <StyledPaymentButton to="/order_history" onClick={handlePaymentModalButtonClick}>
+                <StyledPaymentButton to={routes.orderHistory} onClick={handlePaymentModalButtonClick}>
                   결제하기
                 </StyledPaymentButton>
               </StyledPaymentButtonWrapper>
