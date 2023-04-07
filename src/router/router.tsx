@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { HomeLayout } from '../layouts';
-import { Cart, ProductList, OrderList } from '../pages';
+import { Cart, ProductList, OrderList, OrderHistory } from '../pages';
 import { routes } from './routes';
 
 function Router() {
@@ -10,6 +10,7 @@ function Router() {
     <Routes>
       <Route path={routes.home} element={<HomeLayout />}>
         <Route path={routes.orderList} element={<OrderList />} />
+        <Route path={routes.orderHistory} element={<OrderHistory />} />
         <Route path={routes.cart} element={<Cart />} />
         <Route path={routes.home} element={<ProductList />} />
       </Route>

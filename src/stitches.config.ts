@@ -4,6 +4,8 @@ export const { styled, css, globalCss, keyframes, getCssText, theme, createTheme
   theme: {
     colors: {
       mint: 'rgb(43, 193, 188)',
+      ghostGray: '#EEEEEE',
+      asphalt: '#CCCCCC',
     },
   },
   utils: {
