@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { LayeredTitleLayout } from '@/components';
+import { OrderProductList } from '@/containers';
 import { useOrderSelector } from '@/stores/OrderContext';
 
 import { OrderListPanel } from './OrderListPanel';
 import { StyledOrderListBody, StyledLeftSection } from './OrderList.styled';
-import { OrderProductList } from './OrderProductList';
 
 export function OrderList() {
   const orderStore = useOrderSelector();
