@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import { styled, css } from '@/stitches.config';
 
 export const PaymentModalStyle = css({
-  border: 'none',
-  height: 'fit-content',
+  border: 'none !important',
+  height: 'fit-content !important',
 });
 
 export const StyledPaymentModal = styled('div', {
@@ -30,7 +30,7 @@ export const StyledPaymentButton = styled(Link, {
   flexCenter: '',
   width: '200px',
   height: '100%',
-  borderRadius: '20px',
+  borderRadius: '10px',
   backgroundColor: '$mint',
   fontWeight: 'bold',
 });
