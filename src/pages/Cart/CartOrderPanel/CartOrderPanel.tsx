@@ -22,9 +22,7 @@ export function CartOrderPanel({ cart }: CartOrderPanelProps) {
 
   const checkedCartProducts = cartProducts.filter((cartProduct) => cartProduct.isChecked);
 
-  const handleOrderButtonClick = (e: MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-
+  const handleOrderButtonClick = () => {
     if (!checkedCartProducts || checkedCartProducts.length <= 0) {
       alert('주문하실 상품을 선택해주세요.');
       return;
@@ -50,8 +48,7 @@ export function CartOrderPanel({ cart }: CartOrderPanelProps) {
             <span>{`${checkedCartProducts?.length}개`}</span>
           </>
         }
-        to={routes.orderList}
-        onSubmit={handleOrderButtonClick}
+        onButtonClick={handleOrderButtonClick}
       />
 
       <Modal className={ModalBackgroundStyle()}>

@@ -9,17 +9,17 @@ interface CartSidePanelProps {
   cart: TCartStore;
   title: string;
   body: string;
-  buttonContent: string | ReactElement;
-  to: string;
-  onSubmit: MouseEventHandler<HTMLAnchorElement>;
+  className?: string;
+  buttonContent?: string | ReactElement;
+  onButtonClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-export function CartSidePanel({ cart, title, body, buttonContent, to, onSubmit }: CartSidePanelProps) {
+export function CartSidePanel({ cart, title, body, className, buttonContent, onButtonClick }: CartSidePanelProps) {
   const cartProducts = Object.values(cart);
 
   return (
     <ThreeLayeredFrame
-      className={CartSidePanelStyle()}
+      className={`${CartSidePanelStyle()} ${className}`}
       padding="20px"
       dividerCss={{ backgroundColor: 'rgba(0,0,0,.1)' }}
       titleSection={title}
@@ -32,9 +32,11 @@ export function CartSidePanel({ cart, title, body, buttonContent, to, onSubmit }
         </StyledTotalPrice>
       }
       bottomSection={
-        <StyledSubmitButton to={to} onClick={onSubmit} disable={cartProducts.length <= 0}>
-          {buttonContent}
-        </StyledSubmitButton>
+        buttonContent && (
+          <StyledSubmitButton type="button" onClick={onButtonClick} disable={cartProducts.length <= 0}>
+            {buttonContent}
+          </StyledSubmitButton>
+        )
       }
     />
   );
