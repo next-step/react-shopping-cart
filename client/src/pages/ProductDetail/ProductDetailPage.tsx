@@ -1,5 +1,5 @@
 import * as Styled from './ProductDetailPage.styles';
-import ProductDetailItem from 'components/domain/Product/DetailItem';
+import { ProductDetailItem } from 'common/components/Domain';
 import { useAppSelector } from 'store';
 
 const ProductDetailPage = () => {

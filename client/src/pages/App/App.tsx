@@ -1,8 +1,7 @@
 import GlobalStyle from 'styles/GlobalStyle';
-import { NavBar } from 'components/common/NavBar';
+import { NavBar, Dialog } from 'common/components';
 import { Outlet } from 'react-router-dom';
-import { Dialog } from 'components/common/Dialog';
-import { useDialog } from 'hooks';
+import { useDialog } from 'common/hooks';
 function App() {
   const { dialogTitle, isOpenDialog } = useDialog();
 

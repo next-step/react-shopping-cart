@@ -3,4 +3,4 @@ export { default as ProductListPage } from './ProductList';
 export { default as PrdouctDetailPage } from './ProductDetail';
 export { default as OrderPage } from './Order';
 export { default as MyOrderListPage } from './MyOrderList';
-export { default as OrderListDetailPage } from './OrderListDetail';
+export { default as MyOrderListDetailPage } from './MyOrderListDetail';

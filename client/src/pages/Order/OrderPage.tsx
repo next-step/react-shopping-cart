@@ -1,9 +1,8 @@
 import * as Styled from './OrderPage.styles';
-import Payment from 'components/domain/Payment';
-import OrderdItem from 'components/domain/Order/OrdredItem';
-import { PageHeader } from 'components/common/PageHeader';
+import { OrderdItem, Payment } from 'common/components/Domain';
+import { PageHeader } from 'common/components';
 import { useEffect } from 'react';
-import { useOrder } from 'hooks';
+import { useOrder } from 'common/hooks';
 import uuid from 'react-uuid';
 import { useAppSelector } from 'store';
 

@@ -1,8 +1,7 @@
 import * as Styled from './CartPage.styled';
 import uuid from 'react-uuid';
-import CartItem from 'components/domain/CartItem';
-import Payment from 'components/domain/Payment';
-import { PageHeader } from 'components/common/PageHeader';
+import { CartItem, Payment } from 'common/components/Domain';
+import { PageHeader } from 'common/components';
 import useCartPage from './useCartPage';
 const CartPage = () => {
   const { check, handleCheckBox, handleDeleteButton, cartList, totalAmount, totalPrice } = useCartPage();

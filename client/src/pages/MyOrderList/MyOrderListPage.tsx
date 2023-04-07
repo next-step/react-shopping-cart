@@ -1,11 +1,10 @@
 import * as Styled from './MyOrderListPage.styles';
-
-import { useOrder } from 'hooks';
+import { PageHeader } from 'common/components';
+import { MyOrderListItem, MyOrderListHeader } from 'common/components/Domain';
+import { useOrder } from 'common/hooks';
 import { useEffect } from 'react';
 import { useAppSelector } from 'store';
-import { PageHeader } from 'components/common/PageHeader';
-import MyOrderListHeader from 'components/domain/Order/MyOrderList/Header/MyOrderListHeader.';
-import MyOrderListItem from 'components/domain/Order/MyOrderList/Item/MyOrderListItem';
+
 import uuid from 'react-uuid';
 
 const MyOrderListPage = () => {

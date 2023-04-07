@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Input, Button, HorizontalLine } from 'components/common';
+import { Input, Button, HorizontalLine } from 'common/components';
 import { ReactComponent as CartRemove } from 'assets/svgs/trash.svg';
 
 export const Layout = styled.section`

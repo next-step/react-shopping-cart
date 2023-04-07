@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useCartStore, useDialog } from 'hooks';
+import { useCartStore, useDialog } from 'common/hooks';
 const useCartPage = () => {
   const [check, setCheck] = useState(false);
   const { GetCart, checkAllCartItem, cartList, totalAmount, totalPrice } = useCartStore();

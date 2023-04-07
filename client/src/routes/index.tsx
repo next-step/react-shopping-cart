@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { CartPage, OrderPage, MyOrderListPage, OrderListDetailPage, PrdouctDetailPage, ProductListPage } from 'pages';
+import { CartPage, OrderPage, MyOrderListPage, MyOrderListDetailPage, PrdouctDetailPage, ProductListPage } from 'pages';
 import { App } from 'pages/App';
 import { Error } from 'pages/Error';
 
@@ -24,7 +24,7 @@ export const router = createBrowserRouter([
       { path: ROUTE_URL.ORDER, element: <OrderPage /> },
       { path: ROUTE_URL.CART_LIST, element: <CartPage /> },
       { path: ROUTE_URL.MY_ORDER_LIST, element: <MyOrderListPage /> },
-      { path: ROUTE_URL.ORDER_DETAIL, element: <OrderListDetailPage /> },
+      { path: ROUTE_URL.ORDER_DETAIL, element: <MyOrderListDetailPage /> },
     ],
   },
 ]);

@@ -1,18 +1,30 @@
 import * as Styled from './ProductListPage.styles';
 import uuid from 'react-uuid';
-import { Spinner, ErrorMessage } from 'components/common';
-import Pagination from 'components/domain/Product/Pagination';
-import ProductItem from 'components/domain/Product/Item';
-import useProductListPage from 'pages/ProductList/useProductListPage';
+import { Spinner, ErrorMessage, Pagination } from 'common/components';
+import { ProductItem } from 'common/components/Domain';
+import { usePagination } from 'common/hooks';
+import { useAppDispatch, useAppSelector } from 'store';
+import { useEffect } from 'react';
+import { getProductList } from 'store/feature/product/productslice';
 
 const ProductListPage = () => {
-  const { products, status, totalPage } = useProductListPage();
+  const { currentPage } = usePagination();
+  const dispatch = useAppDispatch();
+  const productStore = useAppSelector((state) => state.product);
+  const products = productStore.productList.products;
+  const status = productStore.status;
+  const totalPage = productStore.productList.TOTAL_PAGE;
+
+  useEffect(() => {
+    dispatch(getProductList(currentPage));
+  }, []);
 
   if (status === 'Loading') {
     return <Spinner />;
   } else if (status === 'Fail') {
     return <ErrorMessage />;
   }
+
   return (
     <div>
       <Styled.Grid>
