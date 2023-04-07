@@ -9,8 +9,8 @@ function Router() {
   return (
     <Routes>
       <Route path={routes.home} element={<HomeLayout />}>
-        <Route path={routes.orderList} element={<Payment />} />
-        <Route path={routes.orderHistory} element={<OrderHistory />} />
+        <Route path={routes.payment} element={<Payment />} />
+        <Route path={routes.orders} element={<OrderHistory />} />
         <Route path={routes.cart} element={<Cart />} />
         <Route path={routes.home} element={<ProductList />} />
       </Route>

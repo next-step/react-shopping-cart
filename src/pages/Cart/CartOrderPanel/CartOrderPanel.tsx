@@ -56,7 +56,7 @@ export function CartOrderPanel({ cart }: CartOrderPanelProps) {
           <StyledOrderList>
             <OrderProductList order={checkedCartProducts} />
           </StyledOrderList>
-          <StyledOrderButton to={routes.orderList} onClick={handleConfirmButtonClick}>
+          <StyledOrderButton to={routes.payment} onClick={handleConfirmButtonClick}>
             확인
           </StyledOrderButton>
         </StyledConfirmModal>

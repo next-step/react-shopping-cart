@@ -28,7 +28,7 @@ export function Header() {
           <Link to={routes.cart}>
             <span>장바구니</span>
           </Link>
-          <Link to={routes.orderList}>
+          <Link to={routes.payment}>
             <span>주문목록</span>
           </Link>
         </StyledButtonContainer>

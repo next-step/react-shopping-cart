@@ -54,7 +54,7 @@ export function PaymentPanel({ order }: PaymentPanelProps) {
             <StyledModalBottomContainer>
               <CartSidePanel className={PaymentModalStyle()} cart={order} title="결제금액" body="총 결제금액" />
               <StyledPaymentButtonWrapper>
-                <StyledPaymentButton to={routes.orderHistory} onClick={handlePaymentModalButtonClick}>
+                <StyledPaymentButton to={routes.orders} onClick={handlePaymentModalButtonClick}>
                   결제하기
                 </StyledPaymentButton>
               </StyledPaymentButtonWrapper>
