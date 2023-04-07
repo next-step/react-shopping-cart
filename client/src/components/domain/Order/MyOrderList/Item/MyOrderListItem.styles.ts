@@ -1,4 +1,6 @@
 import { Button, Image } from 'components/common';
+import { ReactComponent as Cart } from 'assets/svgs/cart.svg';
+
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -16,6 +18,10 @@ export const FlexContainer = styled.div`
 `;
 export const ItemContainer = styled.div`
   display: flex;
+  gap: 15px;
+  @media screen and (max-width: 450px) {
+    flex-direction: column;
+  }
 `;
 export const ItemImage = styled(Image)`
   width: 144px;
@@ -31,13 +37,14 @@ export const ItemName = styled.span`
 export const ItemInfo = styled.span`
   color: #888888;
 `;
-export const OrderButton = styled(Button)`
+export const CartButton = styled(Cart)`
   display: flex;
   justify-content: center;
   align-items: center;
   align-self: flex-start;
-  background: #2ac1bc;
-  font-size: 20px;
-  color: white;
-  padding: 14px 28px;
+  width: 32px;
+
+  @media screen and (max-width: 450px) {
+    align-self: auto;
+  }
 `;

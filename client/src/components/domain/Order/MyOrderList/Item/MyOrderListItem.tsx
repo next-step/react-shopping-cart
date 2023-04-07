@@ -12,7 +12,7 @@ const MyOrderListItem = ({ amount, name, price, image }: MyOrderListItemProps) =
             <Styled.ItemInfo>{`${price}원 / 수량 : ${amount}개`}</Styled.ItemInfo>
           </Styled.ItemBox>
         </Styled.ItemContainer>
-        <Styled.OrderButton>장바구니</Styled.OrderButton>
+        <Styled.CartButton />
       </Styled.FlexContainer>
     </Styled.Container>
   );

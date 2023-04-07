@@ -26,10 +26,10 @@ const MyOrderListPage = () => {
     <Styled.Layout>
       <PageHeader>주문 목록</PageHeader>
       {MyorderListHeaderItems.map((value, idx) => (
-        <div key={uuid()}>
+        <Styled.ItemBox key={uuid()}>
           {MyorderListHeaderItems[idx]}
           {MyorderListOrdredItems[idx]}
-        </div>
+        </Styled.ItemBox>
       ))}
     </Styled.Layout>
   );
