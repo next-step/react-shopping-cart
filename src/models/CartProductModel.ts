@@ -14,8 +14,8 @@ export class CartProductModel implements CartProductModelPOJO {
   product: ProductModel;
 
   constructor({ isChecked, count, product }: CartProductModelPOJO) {
-    this.isChecked = isChecked || true;
-    this.count = count || 1;
+    this.isChecked = isChecked ?? true;
+    this.count = count ?? 1;
     this.product = product;
   }
 
