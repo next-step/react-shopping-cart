@@ -1,7 +1,7 @@
 import * as Styled from './OrderListDetailPage.styles';
 import { PageHeader } from 'components/common/PageHeader';
-import OrderListHeader from 'components/domain/Order/List/Header';
-import OrderListItem from 'components/domain/Order/List/Item';
+import OrderListHeader from 'components/domain/Order/MyOrderList/Header';
+import OrderListItem from 'components/domain/Order/MyOrderList/Item';
 import Payment from 'components/domain/Payment';
 
 const OrderListDetailPage = () => {

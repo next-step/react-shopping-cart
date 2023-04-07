@@ -1,9 +1,9 @@
-import * as Styled from './OrderItem.styles';
+import * as Styled from './OrderdItem.styles';
 import type { OrderProductType } from 'types';
 
 type OrderItemProps = OrderProductType;
 
-const OrderItem = ({ amount, name, image, id, price }: OrderItemProps) => {
+const OrderdItem = ({ amount, name, image, id, price }: OrderItemProps) => {
   return (
     <Styled.Container>
       <Styled.OrderContainer>
@@ -17,4 +17,4 @@ const OrderItem = ({ amount, name, image, id, price }: OrderItemProps) => {
     </Styled.Container>
   );
 };
-export default OrderItem;
+export default OrderdItem;

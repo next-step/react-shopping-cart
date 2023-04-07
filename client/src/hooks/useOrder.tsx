@@ -1,15 +1,10 @@
 import { getData } from 'utils/fetch';
 import type { CartProductType } from 'types';
-import { useAppDispatch, useAppSelector } from 'store';
+import { useAppDispatch } from 'store';
 import { getOrder, updateOrder } from 'store/feature/order/orderSlice';
 import { useDialog } from 'hooks';
-import { calculateOrderProductTotal, calculateOrderTotalAmount } from 'utils/app';
 
 const useOrder = () => {
-  const orderList = useAppSelector((state) => state.order.orderList);
-  const totalPrice = orderList && calculateOrderProductTotal(orderList);
-  const totalAmount = orderList && calculateOrderTotalAmount(orderList);
-
   const dispatch = useAppDispatch();
   const { showDialogUI } = useDialog();
 
@@ -22,12 +17,14 @@ const useOrder = () => {
     await showDialogUI('orderCartItem');
   };
 
-  const payment = () => {};
+  const payment = () => {
+    showDialogUI('payment');
+  };
 
   const getOrderItem = () => {
     dispatch(getOrder('/orders'));
   };
 
-  return { payment, orderCart, orderList, getOrderItem, totalPrice, totalAmount };
+  return { payment, orderCart, getOrderItem };
 };
 export default useOrder;

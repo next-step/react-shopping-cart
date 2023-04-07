@@ -37,6 +37,9 @@ export const dialogSlice = createSlice({
         case '주문 하시겠습니까?':
           state.type = 'orderCartItem';
           break;
+        case '결제 하시겠습니까?':
+          state.type = 'payment';
+          break;
         default:
           break;
       }

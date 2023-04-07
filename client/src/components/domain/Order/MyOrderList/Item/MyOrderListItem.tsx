@@ -1,6 +1,6 @@
-import * as Styled from './OrderListItem.styles';
+import * as Styled from './MyOrderListItem.styles';
 
-const OrderListItem = () => {
+const MyOrderListItem = () => {
   return (
     <Styled.Container>
       <Styled.FlexContainer>
@@ -17,4 +17,4 @@ const OrderListItem = () => {
   );
 };
 
-export default OrderListItem;
+export default MyOrderListItem;

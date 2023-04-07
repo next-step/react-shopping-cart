@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Item from './OrderItem';
+import Item from './OrderdItem';
 
 export default {
   title: 'Domain/Order',

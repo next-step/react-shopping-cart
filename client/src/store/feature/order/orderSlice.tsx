@@ -1,13 +1,22 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import type { OrderListType } from 'types';
+import type { OrderedItemType, OrderedItemsType } from 'types';
 import { getData, postData } from 'utils/fetch';
 
 type OrderStateType = {
-  orderList: OrderListType;
+  orderedList: OrderedItemsType[];
 };
 
 const initialState: OrderStateType = {
-  orderList: [],
+  orderedList: [
+    {
+      id: 0,
+      ordered: {
+        item: [],
+        totalAmount: 0,
+        totalPrice: 0,
+      },
+    },
+  ],
 };
 
 const getOrder = createAsyncThunk('getOrder', async (url: string, thunkApi: any) => {
@@ -19,7 +28,7 @@ const getOrder = createAsyncThunk('getOrder', async (url: string, thunkApi: any)
   }
 });
 
-const updateOrder = createAsyncThunk('updateOrder', async (data: OrderListType, thunkApi: any) => {
+const updateOrder = createAsyncThunk('updateOrder', async (data: OrderedItemType, thunkApi: any) => {
   try {
     const response = (await postData('/order/update', data)) as any;
     return response.data;
@@ -33,11 +42,11 @@ export const orderSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getOrder.fulfilled, (state: OrderStateType, action: PayloadAction<OrderListType>) => {
-      state.orderList = action.payload;
+    builder.addCase(getOrder.fulfilled, (state: OrderStateType, action: PayloadAction<OrderedItemsType[]>) => {
+      state.orderedList = action.payload;
     });
-    builder.addCase(updateOrder.fulfilled, (state: OrderStateType, action: PayloadAction<OrderListType>) => {
-      state.orderList = action.payload;
+    builder.addCase(updateOrder.fulfilled, (state: OrderStateType, action: PayloadAction<OrderedItemsType[]>) => {
+      state.orderedList = action.payload;
     });
   },
 });

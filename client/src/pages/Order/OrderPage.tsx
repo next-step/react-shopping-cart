@@ -1,14 +1,20 @@
 import * as Styled from './OrderPage.styles';
-
 import Payment from 'components/domain/Payment';
-import OrderItem from 'components/domain/Order/Item';
+import OrderdItem from 'components/domain/Order/OrdredItem';
 import { PageHeader } from 'components/common/PageHeader';
 import { useEffect } from 'react';
 import { useOrder } from 'hooks';
 import uuid from 'react-uuid';
+import { useAppSelector } from 'store';
 
 const OrderPage = () => {
-  const { getOrderItem, orderList, totalPrice, totalAmount } = useOrder();
+  const { getOrderItem } = useOrder();
+
+  const orderedList = useAppSelector((state) => state.order.orderedList[0]);
+  const totalAmount = orderedList.ordered.totalAmount;
+  const totalPrice = orderedList.ordered.totalPrice;
+  const ordredItems = orderedList.ordered.item;
+
   useEffect(() => {
     getOrderItem();
   }, []);
@@ -20,8 +26,8 @@ const OrderPage = () => {
         <Styled.ItemSection>
           <Styled.Title>{`주문 상품(${totalAmount}건)`}</Styled.Title>
           <Styled.DivideLine />
-          {orderList?.map((product) => (
-            <OrderItem
+          {ordredItems.map((product) => (
+            <OrderdItem
               key={uuid()}
               image={product.image}
               name={product.name}

@@ -1,10 +1,9 @@
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-type RoutePath = '/order' | '/orders' | '/products' | '/carts' | string;
+type RoutePath = '/order' | '/orders' | '/products' | '/carts';
 
 const useRouter = () => {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
 
   const back = (step = 1) => {
     navigate(-step);
@@ -13,10 +12,8 @@ const useRouter = () => {
   const push = (path: RoutePath) => {
     navigate(path);
   };
-  const getLocationQuery = (query: string) => {
-    return searchParams.get(query);
-  };
-  return { back, push, getLocationQuery };
+
+  return { back, push };
 };
 
 export default useRouter;

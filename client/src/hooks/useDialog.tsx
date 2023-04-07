@@ -27,6 +27,9 @@ const useDialog = () => {
       case 'orderCartItem':
         dispatch(handleDialogMessage('주문 하시겠습니까?'));
         break;
+      case 'payment':
+        dispatch(handleDialogMessage('결제 하시겠습니까?'));
+        break;
       default:
         break;
     }
@@ -46,8 +49,11 @@ const useDialog = () => {
         push('/carts');
         break;
       case 'orderCartItem':
-        DeleteCartItem();
         push('/order');
+        break;
+      case 'payment':
+        DeleteCartItem();
+        push('/orders');
         break;
       default:
         break;
