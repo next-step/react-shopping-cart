@@ -4,6 +4,7 @@ import { OrderProduct } from '@/components';
 import { useModal } from '@/hooks';
 import type { CartProductModel } from '@/models';
 import { routes } from '@/router';
+import { useCartContextApiSelector } from '@/stores/CartContext';
 
 import { StyledOrder, StyledOrderHeader, StyledCartButton, StyledToCartButton, OrderStyle } from './Order.styled';
 
@@ -15,6 +16,13 @@ interface OrderProps {
 export function Order({ id, orderProducts }: OrderProps) {
   const { Modal, showModal } = useModal();
 
+  const cartContextApis = useCartContextApiSelector();
+
+  const createCartButtonClickHandler = (orderProduct: CartProductModel) => () => {
+    cartContextApis?.dispatch({ type: 'add', payload: [orderProduct] });
+    showModal();
+  };
+
   return (
     <StyledOrder>
       <StyledOrderHeader>
@@ -25,7 +33,7 @@ export function Order({ id, orderProducts }: OrderProps) {
         <OrderProduct
           order={orderProduct}
           additionalElement={
-            <StyledCartButton type="button" onClick={() => showModal()}>
+            <StyledCartButton type="button" onClick={createCartButtonClickHandler(orderProduct)}>
               장바구니
             </StyledCartButton>
           }
