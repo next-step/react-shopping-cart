@@ -7,7 +7,7 @@ import { routes } from '@/router';
 import { TCartStore, useCartContextApiSelector } from '@/stores/CartContext';
 import { usePaymentContextApis } from '@/stores/PaymentContext';
 
-import { ModalBackgroundStyle, StyledConfirmModal, StyledOrderButton, StyledOrderList } from './CartOrderPanel.styled';
+import { StyledConfirmModal, StyledOrderButton, StyledOrderList } from './CartOrderPanel.styled';
 
 interface CartOrderPanelProps {
   cart: TCartStore;
@@ -51,7 +51,7 @@ export function CartOrderPanel({ cart }: CartOrderPanelProps) {
         onButtonClick={handleOrderButtonClick}
       />
 
-      <Modal className={ModalBackgroundStyle()}>
+      <Modal verticalAlign="center">
         <StyledConfirmModal>
           <StyledOrderList>
             <CartProductList orderStore={checkedCartProducts} />

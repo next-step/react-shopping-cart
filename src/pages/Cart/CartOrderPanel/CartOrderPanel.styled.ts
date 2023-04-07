@@ -1,10 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { styled, css } from '@/stitches.config';
-
-export const ModalBackgroundStyle = css({
-  justifyContent: 'center !important',
-});
+import { styled } from '@/stitches.config';
 
 export const StyledConfirmModal = styled('div', {
   flexCenter: 'column',
@@ -13,13 +9,15 @@ export const StyledConfirmModal = styled('div', {
   minWidth: '350px',
   height: '80vh',
   minHeight: '350px',
+  boxSizing: 'border-box',
 });
 
 export const StyledOrderList = styled('div', {
-  backgroundColor: 'White',
-  borderRadius: '20px',
   flex: 1,
   width: '100%',
+  padding: '30px',
+  backgroundColor: 'White',
+  borderRadius: '20px',
   overflowY: 'auto',
 });
 
