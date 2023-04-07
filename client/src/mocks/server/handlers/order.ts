@@ -23,9 +23,11 @@ export const updateOrders = rest.post('/order/update', async (req, res, ctx) => 
   const newOrderItem = [...userOrderItem];
   const totalAmount = calculateOrderTotalAmount(newOrderItem);
   const totalPrice = calculateOrderProductTotal(newOrderItem);
-  if (OrderedItems.length === 1) {
+
+  if (OrderedItems[0].id === 0) {
     OrderedItems.pop();
   }
+
   OrderedItems.push({
     id: OrderedItems.length + 1,
     ordered: {

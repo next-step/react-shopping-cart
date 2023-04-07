@@ -3,7 +3,7 @@ import type { OrderProductType } from 'types';
 
 type OrderItemProps = OrderProductType;
 
-const OrderdItem = ({ amount, name, image, id, price }: OrderItemProps) => {
+const OrderdItem = ({ amount, name, image, price }: OrderItemProps) => {
   return (
     <Styled.Container>
       <Styled.OrderContainer>

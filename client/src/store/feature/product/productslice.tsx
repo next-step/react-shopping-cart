@@ -22,7 +22,6 @@ const initialState: ProductStateType = {
 const getProductList = createAsyncThunk('product', async (param: number, thunkApi: any) => {
   try {
     const response = await getProductItems(param);
-    console.log(response);
     return response;
   } catch (error: any) {
     return thunkApi.rejectWithValue(error.message);

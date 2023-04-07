@@ -8,10 +8,10 @@ const OrderListDetailPage = () => {
   return (
     <Styled.Layout>
       <PageHeader>주문내역 상세</PageHeader>
-      <div>
+      {/* <div>
         <OrderListHeader />
         <OrderListItem />
-      </div>
+      </div> */}
 
       <Styled.Container>
         <Styled.Box>

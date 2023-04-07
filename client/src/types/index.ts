@@ -12,7 +12,10 @@ export interface CartProductType extends ProductType {
 
 export type CartListType = CartProductType[];
 
-export interface OrderProductType extends ProductType {
+export interface OrderProductType {
+  price: number;
+  image: string;
+  name: string;
   amount: number;
 }
 export type OrderedItemType = OrderProductType[];

@@ -10,10 +10,13 @@ import { useAppSelector } from 'store';
 const OrderPage = () => {
   const { getOrderItem } = useOrder();
 
-  const orderedList = useAppSelector((state) => state.order.orderedList[0]);
-  const totalAmount = orderedList.ordered.totalAmount;
-  const totalPrice = orderedList.ordered.totalPrice;
-  const ordredItems = orderedList.ordered.item;
+  const orderedList = useAppSelector((state) => state.order.orderedList);
+  const orderListLength = orderedList.length;
+
+  const recentlyOrderedItem = orderedList[orderListLength - 1];
+  const totalAmount = recentlyOrderedItem.ordered.totalAmount;
+  const totalPrice = recentlyOrderedItem.ordered.totalPrice;
+  const ordredItems = recentlyOrderedItem.ordered.item;
 
   useEffect(() => {
     getOrderItem();
@@ -31,7 +34,6 @@ const OrderPage = () => {
               key={uuid()}
               image={product.image}
               name={product.name}
-              id={product.id}
               amount={product.amount}
               price={product.price}
             />
