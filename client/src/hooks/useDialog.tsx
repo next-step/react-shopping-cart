@@ -1,10 +1,10 @@
 import { handleOpenDialog, handleDialogMessage, handleProduct } from 'store/feature/dialog/dialogslice';
 import { useAppDispatch, useAppSelector } from 'store';
 import type { DialogType, CartProductType } from 'types';
-import { useCart, useRouter } from 'hooks';
+import { useCartStore, useRouter } from 'hooks';
 
 const useDialog = () => {
-  const { DeleteCartItem } = useCart();
+  const { DeleteCartItem } = useCartStore();
   const { push } = useRouter();
 
   const dispatch = useAppDispatch();

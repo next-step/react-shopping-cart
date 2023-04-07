@@ -1,9 +1,9 @@
-import { useCart, useDialog } from 'hooks';
+import { useCartStore, useDialog } from 'hooks';
 import { useNavigate } from 'react-router-dom';
 import type { ProductType } from 'types';
 
 const useProductItem = (product: ProductType) => {
-  const { AddCart } = useCart();
+  const { AddCart } = useCartStore();
   const navigate = useNavigate();
 
   const { showDialogUI } = useDialog();

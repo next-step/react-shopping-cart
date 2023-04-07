@@ -31,6 +31,7 @@ const OrderPage = () => {
           <Styled.DivideLine />
           {ordredItems.map((product) => (
             <OrderdItem
+              id={product.id}
               key={uuid()}
               image={product.image}
               name={product.name}

@@ -10,11 +10,19 @@ import uuid from 'react-uuid';
 
 const MyOrderListPage = () => {
   const { getOrderItem } = useOrder();
+
   const orderedList = useAppSelector((state) => state.order.orderedList);
   const MyorderListHeaderItems = orderedList.map((item) => <MyOrderListHeader id={item.id} key={uuid()} />);
   const MyorderListOrdredItems = orderedList.map((items) =>
     items.ordered.item.map((item) => (
-      <MyOrderListItem price={item.price} amount={item.amount} name={item.name} image={item.image} key={uuid()} />
+      <MyOrderListItem
+        id={item.id}
+        price={item.price}
+        amount={item.amount}
+        name={item.name}
+        image={item.image}
+        key={uuid()}
+      />
     ))
   );
 

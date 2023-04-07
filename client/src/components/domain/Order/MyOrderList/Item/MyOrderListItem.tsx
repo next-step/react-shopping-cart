@@ -1,7 +1,10 @@
 import * as Styled from './MyOrderListItem.styles';
 import type { MyOrderListItemProps } from './MyOrderListItem.types';
+import useMyOrderList from '../../hooks/useMyOrderList';
 
-const MyOrderListItem = ({ amount, name, price, image }: MyOrderListItemProps) => {
+const MyOrderListItem = ({ id, amount, name, price, image }: MyOrderListItemProps) => {
+  const { addToCart } = useMyOrderList();
+
   return (
     <Styled.Container>
       <Styled.FlexContainer>
@@ -12,7 +15,7 @@ const MyOrderListItem = ({ amount, name, price, image }: MyOrderListItemProps) =
             <Styled.ItemInfo>{`${price}원 / 수량 : ${amount}개`}</Styled.ItemInfo>
           </Styled.ItemBox>
         </Styled.ItemContainer>
-        <Styled.CartButton />
+        <Styled.CartButton onClick={() => addToCart({ id, amount, name, price, image, isOrder: false })} />
       </Styled.FlexContainer>
     </Styled.Container>
   );

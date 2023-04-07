@@ -1,3 +1,5 @@
 import type { OrderProductType } from 'types';
 
-export type MyOrderListItemProps = OrderProductType;
+export interface MyOrderListItemProps extends OrderProductType {
+  id: number;
+}

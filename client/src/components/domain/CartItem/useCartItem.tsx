@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import type { CartProductType } from 'types';
-import { useCart } from 'hooks';
+import { useCartStore } from 'hooks';
 
 const MAX_NUMBER = 20;
 const MIN_NUMBER = 1;
 
 const useCartItem = (cartItem: CartProductType) => {
   const [inputNumber, setInputNumber] = useState(cartItem.amount);
-  const { UpdateCart } = useCart();
+  const { UpdateCart } = useCartStore();
 
   const increaseInputNumber = () => {
     if (inputNumber === MAX_NUMBER) {

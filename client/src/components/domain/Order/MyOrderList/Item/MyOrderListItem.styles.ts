@@ -43,6 +43,7 @@ export const CartButton = styled(Cart)`
   align-items: center;
   align-self: flex-start;
   width: 32px;
+  cursor: pointer;
 
   @media screen and (max-width: 450px) {
     align-self: auto;

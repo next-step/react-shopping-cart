@@ -17,6 +17,7 @@ export interface OrderProductType {
   image: string;
   name: string;
   amount: number;
+  id: number;
 }
 export type OrderedItemType = OrderProductType[];
 

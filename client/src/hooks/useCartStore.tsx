@@ -5,7 +5,7 @@ import { CartProductType } from 'types';
 import { calculateCartProductTotal, calculateCartTotalAmount } from 'utils/app';
 import { getData, postData } from 'utils/fetch';
 
-const useCart = () => {
+const useCartStore = () => {
   const cartList = useAppSelector((state) => state.cart.cartList);
   const dispatch = useAppDispatch();
   const totalAmount = cartList && calculateCartTotalAmount(cartList);
@@ -61,4 +61,4 @@ const useCart = () => {
     DeleteCartItem,
   };
 };
-export default useCart;
+export default useCartStore;

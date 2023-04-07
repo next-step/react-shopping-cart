@@ -8,6 +8,7 @@ export const addCart = rest.post('/carts', async (req, res, ctx) => {
   const product = (await req.json()) as CartProductType;
 
   const cartList = userCarts.find((cartProduct) => cartProduct.id === product.id);
+  console.log(cartList);
   if (!cartList) {
     userCarts.push(product);
     return res(ctx.status(201));
