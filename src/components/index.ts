@@ -13,3 +13,4 @@ export * from './Spinner';
 export * from './Loader';
 export * from './PopOverFrame';
 export * from './FadeOut';
+export * from './Portal';
