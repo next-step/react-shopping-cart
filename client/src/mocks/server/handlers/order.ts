@@ -1,12 +1,12 @@
 import { rest } from 'msw';
-import type { OrderedItemType, OrderedItemsType } from 'types';
+import type { OrderProductType, OrderedItemsType } from 'types';
 import { calculateOrderProductTotal, calculateOrderTotalAmount } from 'utils/app';
 
 const OrderedItems: OrderedItemsType[] = [
   {
     id: 0,
     ordered: {
-      item: [],
+      items: [],
       totalAmount: 0,
       totalPrice: 0,
     },
@@ -14,15 +14,15 @@ const OrderedItems: OrderedItemsType[] = [
 ];
 
 export const updateOrders = rest.post('/order/update', async (req, res, ctx) => {
-  const userOrderItem = (await req.json()) as OrderedItemType;
+  const userOrderItems = (await req.json()) as OrderProductType[];
 
   // 유효성 스키마 검사
-  if (!userOrderItem.length) {
+  if (!userOrderItems.length) {
     return res(ctx.status(400));
   }
-  const newOrderItem = [...userOrderItem];
-  const totalAmount = calculateOrderTotalAmount(newOrderItem);
-  const totalPrice = calculateOrderProductTotal(newOrderItem);
+  const newOrderItems = [...userOrderItems];
+  const totalAmount = calculateOrderTotalAmount(newOrderItems);
+  const totalPrice = calculateOrderProductTotal(newOrderItems);
 
   if (OrderedItems[0].id === 0) {
     OrderedItems.pop();
@@ -31,13 +31,12 @@ export const updateOrders = rest.post('/order/update', async (req, res, ctx) => 
   OrderedItems.push({
     id: OrderedItems.length + 1,
     ordered: {
-      item: newOrderItem,
+      items: newOrderItems,
       totalAmount,
       totalPrice,
     },
   });
 
-  console.log(OrderedItems);
   return res(ctx.status(200), ctx.json(OrderedItems));
 });
 

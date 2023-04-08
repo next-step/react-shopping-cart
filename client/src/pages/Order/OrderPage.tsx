@@ -15,7 +15,7 @@ const OrderPage = () => {
   const recentlyOrderedItem = orderedList[orderListLength - 1];
   const totalAmount = recentlyOrderedItem.ordered.totalAmount;
   const totalPrice = recentlyOrderedItem.ordered.totalPrice;
-  const ordredItems = recentlyOrderedItem.ordered.item;
+  const ordredItems = recentlyOrderedItem.ordered.items;
 
   useEffect(() => {
     getOrderItem();

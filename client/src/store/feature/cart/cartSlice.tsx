@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import type { CartProductType, CartListType } from 'types';
+import type { CartProductType, CartProductListType } from 'types';
 
 import { getData, postData, updateData } from 'utils/fetch';
 
 type CartStateType = {
-  cartList: CartListType;
+  cartList: CartProductListType;
 };
 
 const initialState: CartStateType = {
@@ -42,13 +42,13 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getCart.fulfilled, (state: CartStateType, action: PayloadAction<CartProductType[]>) => {
+    builder.addCase(getCart.fulfilled, (state: CartStateType, action: PayloadAction<CartProductListType>) => {
       state.cartList = action.payload;
     });
-    builder.addCase(deleteCartItem.fulfilled, (state: CartStateType, action: PayloadAction<CartProductType[]>) => {
+    builder.addCase(deleteCartItem.fulfilled, (state: CartStateType, action: PayloadAction<CartProductListType>) => {
       state.cartList = action.payload;
     });
-    builder.addCase(updateCart.fulfilled, (state: CartStateType, action: PayloadAction<CartProductType[]>) => {
+    builder.addCase(updateCart.fulfilled, (state: CartStateType, action: PayloadAction<CartProductListType>) => {
       state.cartList = action.payload;
     });
   },

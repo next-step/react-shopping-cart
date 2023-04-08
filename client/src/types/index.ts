@@ -10,7 +10,7 @@ export interface CartProductType extends ProductType {
   amount: number;
 }
 
-export type CartListType = CartProductType[];
+export type CartProductListType = CartProductType[];
 
 export interface OrderProductType {
   price: number;
@@ -19,12 +19,11 @@ export interface OrderProductType {
   amount: number;
   id: number;
 }
-export type OrderedItemType = OrderProductType[];
 
 export type OrderedItemsType = {
   id: number;
   ordered: {
-    item: OrderedItemType;
+    items: OrderProductType[];
     totalAmount: number;
     totalPrice: number;
   };

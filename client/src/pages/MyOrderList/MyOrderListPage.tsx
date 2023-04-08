@@ -12,8 +12,8 @@ const MyOrderListPage = () => {
 
   const orderedList = useAppSelector((state) => state.order.orderedList);
   const MyorderListHeaderItems = orderedList.map((item) => <MyOrderListHeader id={item.id} key={uuid()} />);
-  const MyorderListOrdredItems = orderedList.map((items) =>
-    items.ordered.item.map((item) => (
+  const MyorderListOrdredItems = orderedList.map((orderListProducts) =>
+    orderListProducts.ordered.items.map((item) => (
       <MyOrderListItem
         id={item.id}
         price={item.price}

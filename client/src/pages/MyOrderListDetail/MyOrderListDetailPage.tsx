@@ -12,13 +12,13 @@ const MyOrderListDetailPage = () => {
   const MyorderedListItem = orderedList.filter((item) => item.id === Number(id))[0].ordered;
   const MyorderListTotalPrice = MyorderedListItem.totalPrice;
   const MyorderListSelectedHeader = <MyOrderListHeader id={Number(id)} />;
-  const MyorderListSelectedItems = MyorderedListItem.item.map((item) => (
+  const MyorderListSelectedItems = MyorderedListItem.items.map((orderListProduct) => (
     <MyOrderListItem
-      id={item.id}
-      price={item.price}
-      amount={item.amount}
-      name={item.name}
-      image={item.image}
+      id={orderListProduct.id}
+      price={orderListProduct.price}
+      amount={orderListProduct.amount}
+      name={orderListProduct.name}
+      image={orderListProduct.image}
       key={uuid()}
     />
   ));
