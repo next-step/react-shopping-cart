@@ -23,7 +23,6 @@ export function Product({ product }: ProductProps) {
   const handleCartButtonClick = useCallback(
     (e: MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation();
-      // TODO: api Post로 바꾸기 = loading도 넣기
       cartContextApis?.dispatch({ type: 'add', payload: [{ product }] });
     },
     [product, cartContextApis]
