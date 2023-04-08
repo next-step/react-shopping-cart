@@ -1,6 +1,6 @@
 // TODO : 재사용성으로 components로 분류했는데 공통 레이아웃 관련파일은 어떻게 분류?
 import { useNavigate } from "react-router-dom";
-import { ROUTE_PATH } from "../constants/page";
+import { ROUTE_PATH } from "../../constants/page";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ export default function Header() {
         </button>
         <button
           className="nav-button"
-          onClick={() => navigate(ROUTE_PATH.ORDER_LIST)}
+          onClick={() => navigate(ROUTE_PATH.ORDER)}
         >
           주문목록
         </button>

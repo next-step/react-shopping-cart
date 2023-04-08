@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ROUTE_PATH } from "./constants/page";
-import Header from "./components/Header";
+import Header from "./components/layouts/Header";
 import ProductList from "./pages/ProductList";
 import Cart from "./pages/Cart";
-import OrderList from "./pages/OrderList";
+import Order from "./pages/Order";
 
 export default function App() {
   return (
@@ -18,7 +18,7 @@ export default function App() {
             element={<ProductList />}
           />
           <Route exact path={ROUTE_PATH.CART} element={<Cart />} />
-          <Route exact path={ROUTE_PATH.ORDER_LIST} element={<OrderList />} />
+          <Route exact path={ROUTE_PATH.ORDER} element={<Order />} />
         </Routes>
       </BrowserRouter>
     </div>
