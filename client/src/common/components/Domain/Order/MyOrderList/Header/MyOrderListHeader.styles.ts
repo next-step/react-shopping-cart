@@ -11,4 +11,9 @@ export const Layout = styled.header`
   background: #f6f6f6;
   border: 1px solid #aaaaaa;
 `;
-export const Text = styled.span``;
+export const Text = styled.span`
+  &:hover {
+    transform: scale(1.16);
+  }
+  cursor: pointer;
+`;

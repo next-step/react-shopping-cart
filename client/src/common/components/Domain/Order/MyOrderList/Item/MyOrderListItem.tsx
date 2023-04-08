@@ -3,7 +3,7 @@ import type { MyOrderListItemProps } from './MyOrderListItem.types';
 import useMyOrderList from '../../hooks/useMyOrderList';
 
 const MyOrderListItem = ({ id, amount, name, price, image }: MyOrderListItemProps) => {
-  const { addToCart } = useMyOrderList();
+  const { addToCart } = useMyOrderList(id);
 
   return (
     <Styled.Container>

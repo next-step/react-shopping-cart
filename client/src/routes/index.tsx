@@ -8,7 +8,7 @@ export const ROUTE_URL = {
   PRODUCT_DETAIL: '/product/:id',
   CART_LIST: '/carts',
   MY_ORDER_LIST: '/orders',
-  ORDER_DETAIL: '/order/:id',
+  MY_ORDER_LIST_DETAIL: '/orders/:id',
   ORDER: '/order',
 } as const;
 
@@ -24,7 +24,7 @@ export const router = createBrowserRouter([
       { path: ROUTE_URL.ORDER, element: <OrderPage /> },
       { path: ROUTE_URL.CART_LIST, element: <CartPage /> },
       { path: ROUTE_URL.MY_ORDER_LIST, element: <MyOrderListPage /> },
-      { path: ROUTE_URL.ORDER_DETAIL, element: <MyOrderListDetailPage /> },
+      { path: ROUTE_URL.MY_ORDER_LIST_DETAIL, element: <MyOrderListDetailPage /> },
     ],
   },
 ]);
