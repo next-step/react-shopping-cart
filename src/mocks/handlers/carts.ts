@@ -1,6 +1,10 @@
 import { rest } from 'msw';
-import db from '../db.json';
+import jsonDB from '../db.json';
 import { Product } from '@/types';
+import { sleep } from '../lib';
+
+// eslint-disable-next-line prefer-const
+let db = jsonDB;
 
 export const cartsHandlers = [
   rest.get('/carts', (_req, res, ctx) => {
@@ -35,12 +39,28 @@ export const cartsHandlers = [
     return res(ctx.status(201), ctx.json({ ok: true, message: '상품이 성공적으로 업데이트 되었습니다.' }));
   }),
 
+  rest.delete('/carts', async (req, res, ctx) => {
+    await sleep(500);
+    const cardIds = req.url.searchParams.getAll('cartId');
+
+    if (!cardIds) {
+      return res(ctx.status(400), ctx.json({ ok: false, message: '삭제 대상 인덱스가 없습니다.' }));
+    }
+
+    db.carts = db.carts.filter(cart => !cardIds.includes(cart.id.toString()));
+
+    return res(
+      ctx.status(200),
+      ctx.json({
+        ok: true,
+        data: {},
+      }),
+    );
+  }),
   rest.delete('/carts/:cartId', (req, res, ctx) => {
     const { cartId } = req.params;
-    const updateCarts = db.carts.filter(cart => cart.id !== +cartId);
 
-    db.carts = updateCarts;
-
+    db.carts = db.carts.filter(cart => cart.id !== +cartId);
     return res(
       ctx.status(200),
       ctx.json({

@@ -1,6 +1,8 @@
 import { rest } from 'msw';
-import db from '../db.json';
+import dbJson from '../db.json';
 import { OrderDetail } from '@/types';
+
+const db = dbJson;
 
 export const ordersHandlers = [
   rest.get('/orders', async (_req, res, ctx) => {

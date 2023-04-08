@@ -9,6 +9,15 @@ interface ProductItemProps {
 }
 
 function ProductCards({ products = [] }: ProductItemProps) {
+  if (products === null) {
+    // TODO: Loading Component
+    return <div>로딩중...</div>;
+  }
+
+  if (products.length === 0) {
+    return <div>등록된 상품이 없습니다.</div>;
+  }
+
   return (
     <>
       {products?.map(product => {
