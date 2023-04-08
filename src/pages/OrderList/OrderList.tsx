@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import { getOrders } from '@/apis';
+import { ORDERS_KEY } from '@/constants';
 import { LayeredTitleLayout, CartLoader } from '@/components';
 
 import { Order } from './Order';
@@ -23,13 +24,13 @@ export function OrderList() {
 
 function OrderListContent() {
   const { data: orders } = useQuery(
-    ['orders'],
+    ORDERS_KEY,
     () => {
       return getOrders();
     },
     {
       suspense: true,
-      staleTime: 0,
+      refetchOnMount: true,
     }
   );
 

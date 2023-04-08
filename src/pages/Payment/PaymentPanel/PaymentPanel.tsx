@@ -2,9 +2,9 @@ import React, { MouseEvent } from 'react';
 
 import { postOrder } from '@/apis';
 import { CartSidePanel, Currency, LayeredTitleLayout } from '@/components';
+import { useModal } from '@/hooks';
 import { routes } from '@/router';
 import { TPaymentStore } from '@/stores/PaymentContext';
-import { useModal } from '@/hooks';
 
 import {
   StyledPaymentModal,
