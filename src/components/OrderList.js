@@ -4,14 +4,14 @@ import OrderListItem from "./OrderListItem";
 export default function OrderList({ orders }) {
   return (
     <div className="order-list">
-      {orders.map((order, idx) => {
+      {orders.map((order) => {
         return (
           <>
-            <OrderListHeader key={idx} order={order}></OrderListHeader>
-            {order.orderDetails.map((orderDetail, idx) => {
+            <OrderListHeader key={order.id} order={order}></OrderListHeader>
+            {order.orderDetails.map((orderDetail) => {
               return (
                 <OrderListItem
-                  key={idx}
+                  key={orderDetail.id}
                   orderDetail={orderDetail}
                 ></OrderListItem>
               );

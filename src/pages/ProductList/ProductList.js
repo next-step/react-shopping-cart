@@ -14,10 +14,9 @@ export default function ProductList() {
 
   return (
     <section className="product-container">
-      {products.map((product, idx) => (
+      {products.map((product) => (
         <Product
-          key={idx}
-          id={product.id}
+          key={product.id}
           name={product.name}
           price={product.price}
           imageUrl={product.imageUrl}

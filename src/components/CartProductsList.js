@@ -13,8 +13,8 @@ export default function CartProductsList({ carts }) {
       </div>
       <h3 className="cart-title">든든배송 상품({carts.length}개)</h3>
       <hr className="divide-line-gray mt-10" />
-      {carts.map((item, idx) => {
-        return <CartContainer key={idx} id={item.id} product={item.product} />;
+      {carts.map((item) => {
+        return <CartContainer key={item.id} product={item.product} />;
       })}
     </>
   );
