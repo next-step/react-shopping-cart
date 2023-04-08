@@ -20,7 +20,7 @@ const CartPage = () => {
           </Styled.CheckBoxContainer>
           <Styled.CartTitle>든든 배송상품</Styled.CartTitle>
           <Styled.Divider />
-          {cartList.map((product) => (
+          {cartList?.map((product) => (
             <CartItem
               key={uuid()}
               price={product.price}

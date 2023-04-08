@@ -1,5 +1,5 @@
 import * as Styled from './MyOrderListPage.styles';
-import { PageHeader } from 'common/components';
+import { ErrorMessage, PageHeader, Spinner } from 'common/components';
 import { MyOrderListItem, MyOrderListHeader } from 'common/components/Domain';
 import { useOrder } from 'common/hooks';
 import { useEffect } from 'react';
@@ -10,7 +10,9 @@ import uuid from 'react-uuid';
 const MyOrderListPage = () => {
   const { getOrderItem } = useOrder();
 
-  const orderedList = useAppSelector((state) => state.order.orderedList);
+  const orderStore = useAppSelector((state) => state.order);
+  const orderedList = orderStore.orderedList;
+  const status = orderStore.status;
   const MyorderListHeaderItems = orderedList.map((item) => <MyOrderListHeader id={item.id} key={uuid()} />);
   const MyorderListOrdredItems = orderedList.map((orderListProducts) =>
     orderListProducts.ordered.items.map((item) => (
@@ -28,6 +30,12 @@ const MyOrderListPage = () => {
   useEffect(() => {
     getOrderItem();
   }, []);
+
+  if (status === 'Loading') {
+    return <Spinner />;
+  } else if (status === 'Fail') {
+    return <ErrorMessage />;
+  }
 
   return (
     <Styled.Layout>

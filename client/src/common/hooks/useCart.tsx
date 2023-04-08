@@ -1,21 +1,26 @@
 import { useAppSelector, useAppDispatch } from 'store';
-import { updateCart, getCart, deleteCartItem } from 'store/feature/cart/cartSlice';
+import { updateCart, getCart, deleteCartItem, selectCartItem } from 'store/feature/cart/cartSlice';
 
 import { CartProductType } from 'types';
 import { calculateCartProductTotal, calculateCartTotalAmount } from 'utils/app';
 import { getData, postData } from 'utils/fetch';
 
-const useCartStore = () => {
+const useCart = () => {
   const cartList = useAppSelector((state) => state.cart.cartList);
+  const selectedCartItem = useAppSelector((state) => state.cart.selectedCartItem);
   const dispatch = useAppDispatch();
   const totalAmount = cartList && calculateCartTotalAmount(cartList);
   const totalPrice = cartList && calculateCartProductTotal(cartList);
 
-  const GetCart = () => {
+  const getCartFromServer = () => {
     dispatch(getCart('/carts'));
   };
 
-  const AddCart = async (product: CartProductType) => {
+  const SelectCartItem = (cartProduct: CartProductType) => {
+    dispatch(selectCartItem(cartProduct));
+  };
+
+  const addServerCartItem = async (product: CartProductType) => {
     try {
       const response = await postData('/carts', product);
       if (response.status === 400) {
@@ -27,21 +32,21 @@ const useCartStore = () => {
     }
   };
 
-  const UpdateCart = (product: CartProductType) => {
+  const updateSeverCartItem = (product: CartProductType) => {
     dispatch(updateCart(product));
   };
 
-  const checkAllCartItem = async (checked: boolean) => {
+  const updateCheckAllServerCartItem = async (checked: boolean) => {
     const cartData = (await getData('/carts')) as CartProductType[];
     cartData.forEach((product) => {
-      UpdateCart({
+      updateSeverCartItem({
         ...product,
         isOrder: !checked,
       });
     });
   };
 
-  const DeleteCartItem = async () => {
+  const deleteServerCartItem = async () => {
     const cartData = (await getData('/carts')) as CartProductType[];
     cartData.forEach((product) => {
       if (product.isOrder) {
@@ -51,14 +56,16 @@ const useCartStore = () => {
   };
 
   return {
-    AddCart,
+    addServerCartItem,
     cartList,
-    UpdateCart,
-    GetCart,
+    getCartFromServer,
     totalAmount,
     totalPrice,
-    checkAllCartItem,
-    DeleteCartItem,
+    updateCheckAllServerCartItem,
+    deleteServerCartItem,
+    selectedCartItem,
+    SelectCartItem,
+    updateSeverCartItem,
   };
 };
-export default useCartStore;
+export default useCart;

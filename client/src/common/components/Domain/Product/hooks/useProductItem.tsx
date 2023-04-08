@@ -1,16 +1,15 @@
-import { useCartStore, useDialog } from 'common/hooks';
+import { useCart, useDialog } from 'common/hooks';
 import { useNavigate } from 'react-router-dom';
 import type { ProductType } from 'types';
 
 const useProductItem = (product: ProductType) => {
-  const { AddCart } = useCartStore();
+  const { SelectCartItem } = useCart();
   const navigate = useNavigate();
-
   const { showDialogUI } = useDialog();
 
   const addToCart = async () => {
-    const isValid = await AddCart({ ...product, isOrder: false, amount: 1 });
-    return isValid ? showDialogUI('moveCartPage') : alert('장바구니에 이미 추가된 상품입니다');
+    SelectCartItem({ ...product, isOrder: false, amount: 1 });
+    showDialogUI('addCartItem');
   };
   const moveToProductDetailPage = () => {
     navigate('/product/' + product.id);

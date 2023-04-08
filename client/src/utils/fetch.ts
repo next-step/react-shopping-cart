@@ -12,6 +12,7 @@ export const getProductItems = async (page: number) => {
 export const getData = async (url: string) => {
   try {
     const response = await axios.get(url);
+
     return response.data;
   } catch (error) {
     console.log(error);

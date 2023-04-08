@@ -17,7 +17,7 @@ const ProductListPage = () => {
 
   useEffect(() => {
     dispatch(getProductList(currentPage));
-  }, []);
+  }, [currentPage]);
 
   if (status === 'Loading') {
     return <Spinner />;
@@ -32,7 +32,6 @@ const ProductListPage = () => {
           <ProductItem key={uuid()} price={product.price} image={product.image} name={product.name} id={product.id} />
         ))}
       </Styled.Grid>
-
       <Pagination totalPage={totalPage} />
     </div>
   );

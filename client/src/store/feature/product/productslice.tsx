@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { ProductType } from 'types';
+import type { ProductType, StatusType } from 'types';
 import { getProductItems } from 'utils/fetch';
 
 type ProductListType = {
@@ -8,7 +8,7 @@ type ProductListType = {
 };
 type ProductStateType = {
   productList: ProductListType;
-  status: 'Loading' | 'Complete' | 'Fail';
+  status: StatusType;
 };
 
 const initialState: ProductStateType = {

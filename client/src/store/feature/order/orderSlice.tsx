@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import type { OrderProductType, OrderedItemsType } from 'types';
+import type { OrderProductType, OrderedItemsType, StatusType } from 'types';
 import { getData, postData } from 'utils/fetch';
 
 type OrderStateType = {
   orderedList: OrderedItemsType[];
+  status: StatusType;
 };
 
 const initialState: OrderStateType = {
@@ -17,6 +18,7 @@ const initialState: OrderStateType = {
       },
     },
   ],
+  status: 'Loading',
 };
 
 const getOrder = createAsyncThunk('getOrder', async (url: string, thunkApi: any) => {
@@ -42,11 +44,25 @@ export const orderSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(getOrder.pending, (state: OrderStateType) => {
+      state.status = 'Loading';
+    });
+    builder.addCase(getOrder.rejected, (state: OrderStateType) => {
+      state.status = 'Fail';
+    });
     builder.addCase(getOrder.fulfilled, (state: OrderStateType, action: PayloadAction<OrderedItemsType[]>) => {
       state.orderedList = action.payload;
+      state.status = 'Complete';
     });
     builder.addCase(updateOrder.fulfilled, (state: OrderStateType, action: PayloadAction<OrderedItemsType[]>) => {
       state.orderedList = action.payload;
+      state.status = 'Complete';
+    });
+    builder.addCase(updateOrder.pending, (state: OrderStateType) => {
+      state.status = 'Loading';
+    });
+    builder.addCase(updateOrder.rejected, (state: OrderStateType) => {
+      state.status = 'Fail';
     });
   },
 });

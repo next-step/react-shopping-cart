@@ -1,8 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { CartPage, OrderPage, MyOrderListPage, MyOrderListDetailPage, PrdouctDetailPage, ProductListPage } from 'pages';
 import { App } from 'pages/App';
-import { Error } from 'pages/Error';
-
+import { ErrorMessage } from 'common/components';
 export const ROUTE_URL = {
   PRODUCT_LIST: '/products',
   PRODUCT_DETAIL: '/product/:id',
@@ -16,7 +15,7 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: <Error />,
+    errorElement: <ErrorMessage />,
     children: [
       { index: true, element: <ProductListPage /> },
       { path: ROUTE_URL.PRODUCT_LIST, element: <ProductListPage /> },

@@ -1,10 +1,10 @@
-import { handleOpenDialog, handleDialogMessage, handleProduct } from 'store/feature/dialog/dialogslice';
+import { handleOpenDialog, handleDialogMessage } from 'store/feature/dialog/dialogslice';
 import { useAppDispatch, useAppSelector } from 'store';
-import type { DialogType, CartProductType } from 'types';
-import { useCartStore, useRouter } from 'common/hooks';
+import type { DialogType } from 'types';
+import { useCart, useRouter } from 'common/hooks';
 
 const useDialog = () => {
-  const { DeleteCartItem } = useCartStore();
+  const { deleteServerCartItem, selectedCartItem, addServerCartItem } = useCart();
   const { push } = useRouter();
 
   const dispatch = useAppDispatch();
@@ -18,11 +18,11 @@ const useDialog = () => {
   };
   const showDialogUI = (type: DialogType) => {
     switch (type) {
-      case 'deleteCheckedCartItem':
+      case 'deleteCartItem':
         dispatch(handleDialogMessage('상품을 삭제하시겠습니까?'));
         break;
-      case 'moveCartPage':
-        dispatch(handleDialogMessage('장바구니로 이동하시겠습니까?'));
+      case 'addCartItem':
+        dispatch(handleDialogMessage('장바구니에 추가 하시겠습니까?'));
         break;
       case 'orderCartItem':
         dispatch(handleDialogMessage('주문 하시겠습니까?'));
@@ -34,25 +34,21 @@ const useDialog = () => {
         break;
     }
   };
-  const selectProduct = (product: CartProductType) => {
-    dispatch(handleProduct(product));
-  };
 
-  const handleConfirmButton = () => {
+  const handleConfirmButton = async () => {
     handleDialogUI(false);
     switch (dialogType) {
-      case 'deleteCheckedCartItem':
-        DeleteCartItem();
+      case 'deleteCartItem':
+        deleteServerCartItem();
         break;
-      case 'moveCartPage':
-        alert('장바구니에 상품을 추가하였습니다!');
-        push('/carts');
-        break;
+      case 'addCartItem':
+        const isValid = await addServerCartItem(selectedCartItem);
+        return isValid ? alert('장바구니에 상품을 추가하였습니다!') : alert('장바구니에 이미 추가된 상품입니다');
       case 'orderCartItem':
         push('/order');
         break;
       case 'payment':
-        DeleteCartItem();
+        deleteServerCartItem();
         push('/orders');
         break;
       default:
@@ -66,7 +62,6 @@ const useDialog = () => {
     handleDialogUI,
     showDialogUI,
     handleConfirmButton,
-    selectProduct,
   };
 };
 export default useDialog;

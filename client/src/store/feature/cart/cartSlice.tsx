@@ -5,10 +5,12 @@ import { getData, postData, updateData } from 'utils/fetch';
 
 type CartStateType = {
   cartList: CartProductListType;
+  selectedCartItem: CartProductType;
 };
 
 const initialState: CartStateType = {
   cartList: [],
+  selectedCartItem: { price: 0, image: '', name: '', id: 0, isOrder: false, amount: 0 },
 };
 
 const getCart = createAsyncThunk('getCart', async (url: string, thunkApi: any) => {
@@ -40,7 +42,11 @@ const updateCart = createAsyncThunk('updateCart', async (data: CartProductType, 
 export const cartSlice = createSlice({
   name: 'cart',
   initialState,
-  reducers: {},
+  reducers: {
+    selectCartItem: (state: CartStateType, action: PayloadAction<CartProductType>) => {
+      state.selectedCartItem = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getCart.fulfilled, (state: CartStateType, action: PayloadAction<CartProductListType>) => {
       state.cartList = action.payload;
@@ -54,3 +60,5 @@ export const cartSlice = createSlice({
   },
 });
 export { getCart, deleteCartItem, updateCart };
+
+export const { selectCartItem } = cartSlice.actions;
