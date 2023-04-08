@@ -1,8 +1,9 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import { HomeLayout } from '../layouts';
-import { Cart, ProductList, Payment, OrderList } from '../pages';
+import { HomeLayout } from '@/layouts';
+import { Cart, ProductList, Payment, OrderList, Error } from '@/pages';
+
 import { routes } from './routes';
 
 function Router() {
@@ -14,6 +15,7 @@ function Router() {
         <Route path={routes.cart} element={<Cart />} />
         <Route path={routes.home} element={<ProductList />} />
       </Route>
+      <Route path="*" element={<Error errorState={404} />} />
     </Routes>
   );
 }
