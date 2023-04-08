@@ -7,6 +7,42 @@ export const Layout = styled.div`
   flex-direction: column;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   width: 100%;
+
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+
+  &:hover {
+    animation-name: bounce;
+    -moz-animation-name: bounce;
+  }
+
+  @keyframes bounce {
+    0%,
+    100%,
+    20%,
+    50%,
+    80% {
+      -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+      transform: translateY(0);
+    }
+    40% {
+      -webkit-transform: translateY(-30px);
+      -ms-transform: translateY(-30px);
+      transform: translateY(-30px);
+    }
+    60% {
+      -webkit-transform: translateY(-15px);
+      -ms-transform: translateY(-15px);
+      transform: translateY(-15px);
+    }
+  }
 `;
 
 export const FlexBox = styled.div`
@@ -30,6 +66,7 @@ export const ItemImage = styled(Image)`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  cursor: pointer;
 `;
 export const CartIcon = styled(Cart)`
   cursor: pointer;

@@ -15,7 +15,7 @@ export const addCart = rest.post('/carts', async (req, res, ctx) => {
     return res(ctx.status(400));
   }
 });
-export const getCarts = rest.get('/carts', (req, res, ctx) => {
+export const getCarts = rest.get('/carts', async (req, res, ctx) => {
   return res(ctx.status(200), ctx.json(userCarts));
 });
 

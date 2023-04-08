@@ -40,6 +40,12 @@ export const updateOrders = rest.post('/order/update', async (req, res, ctx) => 
   return res(ctx.status(200), ctx.json(OrderedItems));
 });
 
-export const getOrders = rest.get('/orders', (req, res, ctx) => {
+export const getOrders = rest.get('/orders', async (req, res, ctx) => {
+  await sleep(1000);
+
   return res(ctx.status(200), ctx.json(OrderedItems));
 });
+
+const sleep = (sec: number) => {
+  return new Promise((resolve) => setTimeout(resolve, sec));
+};
