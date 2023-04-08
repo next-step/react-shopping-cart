@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Product from "../../components/product";
+import Product from "../../components/Product";
 
 export default function ProductList() {
   const [products, setProducts] = useState([]);
@@ -15,12 +15,7 @@ export default function ProductList() {
   return (
     <section className="product-container">
       {products.map((product) => (
-        <Product
-          key={product.id}
-          name={product.name}
-          price={product.price}
-          imageUrl={product.imageUrl}
-        ></Product>
+        <Product key={product.id} product={product}></Product>
       ))}
     </section>
   );
