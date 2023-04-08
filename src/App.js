@@ -1,63 +1,35 @@
-import { useEffect, useState } from "react";
-
-function App() {
-  const [todos, setTodos] = useState([]);
-  const [todo, setTodo] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-    fetch("/todos")
-      .then((res) => res.json())
-      .then((data) => {
-        setTodos(data);
-        setLoading(false);
-      });
-  }, []);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setLoading(true);
-    fetch("todos", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: todo,
-    }).then((res) => {
-      fetch("/todos")
-        .then((res) => res.json())
-        .then((data) => {
-          setTodo("");
-          setTodos(data);
-          setLoading(false);
-        });
-    });
-  };
-
+export default function App() {
   return (
-    <div>
-      <h2>할일 목록</h2>
-
-      <ul>
-        {todos.map((todo, idx) => (
-          <li key={idx}>{todo}</li>
-        ))}
-      </ul>
-
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="todo"
-          placeholder="새로운 할일"
-          disabled={loading}
-          value={todo}
-          onChange={({ target: { value } }) => setTodo(value)}
-        />
-        <button disabled={!todo}>추가</button>
-      </form>
+    <div class="root">
+      <header class="flex-col-center">
+        <h1 class="global-nav-title">
+          React Clean Code Shopping Cart CSS example
+        </h1>
+        <br />
+        <div class="global-nav-button-box">
+          <a class="global-nav-button" href="./index.html">
+            홈으로
+          </a>
+          <a class="global-nav-button" href="./list.html">
+            상품 목록
+          </a>
+          <a class="global-nav-button" href="./detail.html">
+            상품 상세
+          </a>
+          <a class="global-nav-button" href="./cart.html">
+            장바구니
+          </a>
+          <a class="global-nav-button" href="./order.html">
+            주문/결제
+          </a>
+          <a class="global-nav-button" href="./orderList.html">
+            주문 목록
+          </a>
+          <a class="global-nav-button" href="./orderDetail.html">
+            주문 상세
+          </a>
+        </div>
+      </header>
     </div>
   );
 }
-
-export default App;
