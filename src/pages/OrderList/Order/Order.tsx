@@ -4,7 +4,7 @@ import { OrderProduct } from '@/components';
 import { useModal } from '@/hooks';
 import type { CartProductModel } from '@/models';
 import { routes } from '@/router';
-import { useCartContextApiSelector } from '@/stores/CartContext';
+import { useCartContextApis } from '@/stores/CartContext';
 
 import { StyledOrder, StyledOrderHeader, StyledCartButton, StyledToCartButton, OrderStyle } from './Order.styled';
 
@@ -16,7 +16,7 @@ interface OrderProps {
 export function Order({ id, orderProducts }: OrderProps) {
   const { Modal, showModal } = useModal();
 
-  const cartContextApis = useCartContextApiSelector();
+  const cartContextApis = useCartContextApis();
 
   const createCartButtonClickHandler = (orderProduct: CartProductModel) => () => {
     cartContextApis?.dispatch({ type: 'add', payload: [orderProduct] });

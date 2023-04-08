@@ -4,7 +4,7 @@ import { CartSidePanel } from '@/components';
 import { CartProductList } from '@/containers';
 import { useModal } from '@/hooks';
 import { routes } from '@/router';
-import { TCartStore, useCartContextApiSelector } from '@/stores/CartContext';
+import { TCartStore, useCartContextApis } from '@/stores/CartContext';
 import { usePaymentContextApis } from '@/stores/PaymentContext';
 
 import { StyledConfirmModal, StyledOrderButton, StyledOrderList } from './CartOrderPanel.styled';
@@ -16,7 +16,7 @@ interface CartOrderPanelProps {
 export function CartOrderPanel({ cart }: CartOrderPanelProps) {
   const cartProducts = Object.values(cart);
 
-  const cartContextApis = useCartContextApiSelector();
+  const cartContextApis = useCartContextApis();
   const orderContextApis = usePaymentContextApis();
   const { Modal, showModal } = useModal();
 

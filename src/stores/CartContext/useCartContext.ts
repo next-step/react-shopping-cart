@@ -2,10 +2,10 @@ import { useContext } from 'react';
 
 import { CartApiContext, CartContext } from './cartStore';
 
-export function useCartSelector() {
+export function useCartContext() {
   return useContext(CartContext);
 }
 
-export function useCartContextApiSelector() {
+export function useCartContextApis() {
   return useContext(CartApiContext);
 }

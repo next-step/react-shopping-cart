@@ -3,7 +3,7 @@ import React, { MouseEvent, useCallback } from 'react';
 import { ProductModel } from '@/models';
 import { Currency, PopOverFrame } from '@/components';
 import { CartIcon } from '@/components/Icons';
-import { useCartContextApiSelector } from '@/stores/CartContext';
+import { useCartContextApis } from '@/stores/CartContext';
 
 import {
   StyledProduct,
@@ -18,7 +18,7 @@ interface ProductProps {
 }
 
 export function Product({ product }: ProductProps) {
-  const cartContextApis = useCartContextApiSelector();
+  const cartContextApis = useCartContextApis();
 
   const handleCartButtonClick = useCallback(
     (e: MouseEvent<HTMLButtonElement>) => {

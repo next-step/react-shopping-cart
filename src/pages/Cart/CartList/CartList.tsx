@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { InputWithLabel } from '@/components';
-import { TCartStore, useCartContextApiSelector } from '@/stores/CartContext';
+import { TCartStore, useCartContextApis } from '@/stores/CartContext';
 
 import { StyledCartList, StyledCartListHeader, StyledCartCounter, StyledCartContent } from './CartList.styled';
 import { CartProduct } from './CartProduct';
@@ -11,7 +11,7 @@ interface CartListProps {
 }
 
 export function CartList({ cart }: CartListProps) {
-  const cartContextApis = useCartContextApiSelector();
+  const cartContextApis = useCartContextApis();
 
   const cartProducts = Object.values(cart);
   const isCartProductChecked = cartProducts.some((cartProduct) => cartProduct.isChecked);
