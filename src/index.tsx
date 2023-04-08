@@ -5,9 +5,9 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
 import { ReactQueryProvider } from './configs';
-import { Router } from './router';
 import { CartContextProvider } from './stores/CartContext';
 import { PaymentContextProvider } from './stores/PaymentContext';
+import { App } from './App';
 
 if (process.env.NODE_ENV === 'development') {
   await import('./mocks/browser').then(({ worker }) => worker.start());
@@ -20,7 +20,7 @@ root.render(
       <CartContextProvider>
         <PaymentContextProvider>
           <ReactQueryProvider>
-            <Router />
+            <App />
           </ReactQueryProvider>
         </PaymentContextProvider>
       </CartContextProvider>
