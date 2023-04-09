@@ -2,12 +2,12 @@
   "name": "react-shopping-cart",
   "version": "0.1.0",
   "main": "index.js",
-  "type": "module",
   "license": "MIT",
   "devDependencies": {
     "json-server": "^0.17.0",
     "lowdb": "^1.0.0",
-    "msw": "^1.1.0"
+    "msw": "^1.1.0",
+    "webpack": "^4.44.2"
   },
   "scripts": {
     "build": "react-scripts build",
@@ -21,7 +21,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.9.0",
-    "react-scripts": "^4.0.3"
+    "react-scripts": "^5.0.1"
   },
   "msw": {
     "workerDirectory": "public"
