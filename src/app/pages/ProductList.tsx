@@ -1,50 +1,24 @@
-import { MouseEventHandler, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IProductTypes } from '../../@interface';
 import styled from 'styled-components';
 import { getJSONData, setJSONData } from '../../utils/localStorage';
 import { getAllProducts } from '../../api/product';
 import { LOCALSTORAGE } from '../../constants/dataKey';
-import { insertCarts } from '../../api/cart';
+import ProductBox from '../components/product/ProductBox';
 
-const ActivedImg = styled.img`
-  cursor: pointer;
-`;
-
-interface IProductListProp {}
-
-const ProductList = ({}) => {
+const ProductList = () => {
   const [data, setData] = useState<IProductTypes[]>(getJSONData(LOCALSTORAGE.PRODUCT));
-  if (data.length === 0) {
+  useEffect(() => {
     getAllProducts().then((res) => {
       setJSONData(LOCALSTORAGE.PRODUCT, res);
       setData(res);
     });
-  }
-
-  const handleCartClick: MouseEventHandler = (evt) => {
-    const { target } = evt;
-    if (!(target instanceof HTMLElement)) return;
-    const { id } = target.dataset;
-    if (!id) return;
-    insertCarts(data.filter((item: IProductTypes) => String(item.id) === id)[0]).then((res) => {
-      if (res.ok) setData((prev) => prev.filter((item: IProductTypes) => String(item.id) !== id));
-      alert(res.message);
-    });
-  };
+  }, []);
 
   return (
     <main className="product-container">
-      {data.map((item: IProductTypes) => (
-        <div key={item.id}>
-          <img src={item.imageUrl} alt={item.name} className="w-280 h-280" />
-          <div className="flex justify-between w-280 p-5">
-            <div className="product-info">
-              <span className="product-info__name">{item.name}</span>
-              <span className="product-info__price">{item.price}원</span>
-            </div>
-            <ActivedImg src="assets/svgs/cart.svg" alt="장바구니" data-id={item.id} onClick={handleCartClick} />
-          </div>
-        </div>
+      {data.map(({ id, imageUrl, name, price }: IProductTypes) => (
+        <ProductBox key={id} id={id} price={price} name={name} imageUrl={imageUrl} />
       ))}
     </main>
   );
