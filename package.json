@@ -12,10 +12,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject",
     "server": "node server.js"
   },
   "eslintConfig": {
@@ -37,6 +37,7 @@
     ]
   },
   "devDependencies": {
+    "@craco/craco": "^7.1.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -49,6 +50,7 @@
     "json-server": "^0.17.0",
     "lowdb": "^1.0.0",
     "msw": "^1.1.1",
+    "tsconfig-paths-webpack-plugin": "^4.0.1",
     "typescript": "^4.9.5"
   },
   "msw": {
