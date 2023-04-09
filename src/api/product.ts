@@ -9,7 +9,7 @@ export const getAllProducts = async (): Promise<IProductTypes[]> => {
   return data;
 };
 
-export const getProduct = async (id: number): Promise<IProductTypes> => {
+export const getProduct = async (id: number | string): Promise<IProductTypes> => {
   const { data } = await httpGet(`${URL}/${id}`, '', true);
   console.log(data);
   return data;

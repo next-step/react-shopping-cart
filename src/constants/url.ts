@@ -3,5 +3,5 @@ export const URL = {
   CART: '/cart',
   ORDER: '/order',
   PAYMENT: '/payment',
-  PRODUCT: '/product'
+  PRODUCT: '/product/:id'
 };

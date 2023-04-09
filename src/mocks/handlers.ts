@@ -17,7 +17,7 @@ export const handlers = [
   }),
   rest.get('/products/:id', (req, res, ctx) => {
     const { id } = req.params;
-    return res(ctx.status(HttpStatusCode.Ok), ctx.json(productData.filter((product) => product.id === Number(id))));
+    return res(ctx.status(HttpStatusCode.Ok), ctx.json(productData.filter((product) => product.id === Number(id))[0]));
   }),
   /* cart */
   rest.get('/carts', (req, res, ctx) => {

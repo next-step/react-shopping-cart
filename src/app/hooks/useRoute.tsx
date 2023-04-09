@@ -6,9 +6,7 @@ const useRoute = () => {
   const currentPage = useLocation().pathname;
 
   const movePage = (path: string) => {
-    if (!path || !Object.values(URL).includes(path)) {
-      throw new Error('Invalid path');
-    }
+    if (!path) throw new Error('Invalid path');
     navigate(path);
   };
   const movePrevPage = () => {
