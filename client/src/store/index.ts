@@ -1,3 +1,4 @@
+import type { PreloadedState } from '@reduxjs/toolkit';
 import { configureStore } from '@reduxjs/toolkit';
 import { PERSIST, PURGE } from 'redux-persist';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,6 +14,14 @@ export const store = configureStore({
       },
     }),
 });
+
+export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
+  configureStore({
+    reducer: rootReducer,
+    preloadedState,
+  });
+};
+
 export default store;
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

@@ -15,7 +15,7 @@ const ProductItem = ({ name, price, image, id }: ItemProps) => {
           <Styled.NameText>{name}</Styled.NameText>
           <Styled.PriceText>{price}원</Styled.PriceText>
         </Styled.FlexBox>
-        <Styled.CartIcon onClick={addToCart} />
+        <Styled.CartIcon onClick={addToCart} data-testid="cart-button" />
       </Styled.FlexContainer>
     </Styled.Layout>
   );
