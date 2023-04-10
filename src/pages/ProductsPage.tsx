@@ -10,13 +10,13 @@ type ProductType = {
 
 type ProductsType = ProductType[];
 
-const Products = () => {
+const ProductsPage = () => {
   const [products, setProducts] = useState([
     { id: "", price: 0, name: "", imageUrl: "" },
   ]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/products").then((res) =>
+    fetch("http://localhost:3000/").then((res) =>
       res.json().then((res) => {
         setProducts(res);
       })
@@ -37,4 +37,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default ProductsPage;

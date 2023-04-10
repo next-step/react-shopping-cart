@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav className="nav flex justify-around">
       <div className="flex-center">
-        <Link to="products">
+        <Link to="">
           <h1 className="nav-title">CLEAN CODE SHOP</h1>
         </Link>
       </div>

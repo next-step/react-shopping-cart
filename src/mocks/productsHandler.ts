@@ -52,17 +52,17 @@ const PRODUCTS = [
 ];
 
 export const productsHandler = [
-  rest.get("/products", (req, res, ctx) => {
+  rest.get("/", (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(PRODUCTS));
   }),
-  rest.post("/products", async (req, res, ctx) => {
+  rest.post("/", async (req, res, ctx) => {
     const product = await req.json();
     const currentProduct = { ...product, id: new Date().getTime() };
     PRODUCTS.push(currentProduct);
 
     return res(ctx.status(201), ctx.json(currentProduct));
   }),
-  rest.get("/products/:productId", (req, res, ctx) => {
+  rest.get("/:productId", (req, res, ctx) => {
     const { productId } = req.params;
     const product = PRODUCTS.find((product) => product.id === productId);
 
@@ -72,7 +72,7 @@ export const productsHandler = [
 
     return res(ctx.status(200), ctx.json(product));
   }),
-  rest.delete("/products/:productId", (req, res, ctx) => {
+  rest.delete("/:productId", (req, res, ctx) => {
     const { productId } = req.params;
     const productIdx = PRODUCTS.findIndex(
       (product) => product.id === productId

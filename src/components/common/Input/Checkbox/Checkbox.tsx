@@ -2,13 +2,16 @@ import React from "react";
 
 export type CheckboxProps = {
   label?: string;
+  id: number;
+  handleToggle: () => void;
 };
 
-const Checkbox = ({ label }: CheckboxProps) => {
+const Checkbox = ({ id, label, handleToggle }: CheckboxProps) => {
   const [checked, setChecked] = React.useState(false);
+
   const handleClick = () => {
     setChecked(!checked);
-    console.log(checked);
+    handleToggle();
   };
 
   return (

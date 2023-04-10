@@ -4,7 +4,9 @@ const QuantityCounter = () => {
   const [count, setCount] = useState(1);
 
   const handleIncrement = () => {
-    setCount((prevCount) => prevCount + 1);
+    if (count < 20) {
+      setCount((prevCount) => prevCount + 1);
+    }
   };
 
   const handleDecrement = () => {
@@ -17,10 +19,10 @@ const QuantityCounter = () => {
     <div className="number-input-container">
       <input type="number" className="number-input" value={count} />
       <div>
-        <button className="number-input-button" onClick={handleDecrement}>
+        <button className="number-input-button" onClick={handleIncrement}>
           ▲
         </button>
-        <button className="number-input-button" onClick={handleIncrement}>
+        <button className="number-input-button" onClick={handleDecrement}>
           ▼
         </button>
       </div>
