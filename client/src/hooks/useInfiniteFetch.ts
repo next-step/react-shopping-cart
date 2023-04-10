@@ -105,6 +105,7 @@ function useInfiniteFetch<T = unknown>({
       dispatch({ type: 'fetched', payload: cachedData });
 
       setPage(cachedData[cachedData.length - 1].pageNumber);
+      setHasNextPage(!cachedData[cachedData.length - 1].isLastPage);
 
       return;
     }
@@ -122,7 +123,13 @@ function useInfiniteFetch<T = unknown>({
     throw state.error;
   }
 
-  return { ...state, refetch, fetchMore };
+  return {
+    ...state,
+    refetch,
+    fetchMore,
+    hasNextPage,
+    isLoading: state.status === 'loading',
+  };
 }
 
 export default useInfiniteFetch;
