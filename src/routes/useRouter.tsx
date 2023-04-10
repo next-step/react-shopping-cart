@@ -14,19 +14,21 @@ export const useRouter = () => {
   );
 
   const go = useCallback(
-    (path: Route.RoutePath, option: Partial<{ search: any; state: any }>) => {
+    (path: Route.RoutePath, option?: Partial<{ search: any; state: any }>) => {
       navigate(
         {
           pathname: path,
           /**
            * {@see https://github.com/remix-run/react-router/issues/7743}
            */
-          search: createSearchParams({
-            ...option.search,
-          }).toString(),
+          search: option
+            ? createSearchParams({
+              ...option?.search,
+            }).toString()
+            : '',
         },
         {
-          state: { ...option.state },
+          state: { ...option?.state },
         }
       );
     },
