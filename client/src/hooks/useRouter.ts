@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { NavigateOptions, useLocation, useNavigate } from 'react-router-dom';
 
 import { PATHS } from 'constants/router';
@@ -10,17 +11,23 @@ const useRouter = <T>() => {
 
   const locationState = location.state as T;
 
-  const goBack = () => {
+  const goBack = useCallback(() => {
     navigate(-1);
-  };
+  }, [navigate]);
 
-  const go = (to: Paths, options?: NavigateOptions) => {
-    navigate(to, options);
-  };
+  const go = useCallback(
+    (to: Paths, options?: NavigateOptions) => {
+      navigate(to, options);
+    },
+    [navigate]
+  );
 
-  const replace = (to: Paths, options?: NavigateOptions) => {
-    navigate(to, { replace: true, ...options });
-  };
+  const replace = useCallback(
+    (to: Paths, options?: NavigateOptions) => {
+      navigate(to, { replace: true, ...options });
+    },
+    [navigate]
+  );
 
   return {
     navigate,

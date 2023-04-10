@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { create } from 'zustand';
 
 import {
@@ -51,21 +52,24 @@ export const useCartActions = () => {
   const checked = useCartStore((state) => state.checked);
   const carts = useCartStore((state) => state.carts);
 
-  const toggle = (id: number) => {
-    const newCheckedIds = toggleCart(checked, id);
+  const toggle = useCallback(
+    (id: number) => {
+      const newCheckedIds = toggleCart(checked, id);
 
-    useCartStore.setState(() => ({ checked: newCheckedIds }));
-  };
+      useCartStore.setState(() => ({ checked: newCheckedIds }));
+    },
+    [checked]
+  );
 
-  const checkAll = () => {
+  const checkAll = useCallback(() => {
     const ids = carts.map((cart) => cart.id);
 
     useCartStore.setState(() => ({ checked: new Set(ids) }));
-  };
+  }, [carts]);
 
-  const uncheckAll = () => {
+  const uncheckAll = useCallback(() => {
     useCartStore.setState(() => ({ checked: new Set() }));
-  };
+  }, []);
 
   return {
     ...actions,
