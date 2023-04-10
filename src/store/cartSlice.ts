@@ -3,7 +3,7 @@ import { Product, Cart } from "../types/cartTypes";
 
 const initialState: Cart = {
   products: [
-    { id: 0, name: "", price: 0, quantity: 0, imageUrl: "", isChecked: false },
+    { id: 0, name: "", price: 0, quantity: 1, imageUrl: "", isChecked: false },
   ],
   totalQuantity: 0,
 };
@@ -14,7 +14,7 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action: PayloadAction<Product>) => {
       const existingItem = state.products.find(
-        (item) => item.id === action.payload.id
+        (item) => item.id === action.payload.id - 1
       );
       if (existingItem) {
         existingItem.quantity += action.payload.quantity;
@@ -25,7 +25,7 @@ const cartSlice = createSlice({
     },
     removeFromCart: (state, action: PayloadAction<number>) => {
       const existingItem = state.products.find(
-        (item) => item.id === action.payload
+        (item) => item.id === action.payload - 1
       );
       if (existingItem) {
         state.totalQuantity -= existingItem.quantity;
@@ -38,8 +38,42 @@ const cartSlice = createSlice({
       state.products = [];
       state.totalQuantity = 0;
     },
+    increaseQuantity: (state, action: PayloadAction<number>) => {
+      const existingItem = state.products.find(
+        (item) => item.id === action.payload - 1
+      );
+      if (existingItem) {
+        existingItem.quantity += 1;
+        state.totalQuantity += 1;
+      }
+    },
+    decreaseQuantity: (state, action: PayloadAction<number>) => {
+      const existingItem = state.products.find(
+        (item) => item.id === action.payload - 1
+      );
+      if (existingItem && existingItem.quantity > 1) {
+        existingItem.quantity -= 1;
+        state.totalQuantity -= 1;
+      }
+    },
+    toggleCheck: (state, action: PayloadAction<number>) => {
+      const existingItem = state.products.find(
+        (item) => item.id === action.payload - 1
+      );
+
+      if (existingItem) {
+        existingItem.isChecked = !existingItem.isChecked;
+      }
+    },
   },
 });
 
-export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  clearCart,
+  increaseQuantity,
+  decreaseQuantity,
+  toggleCheck,
+} = cartSlice.actions;
 export default cartSlice;

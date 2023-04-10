@@ -1,5 +1,8 @@
+import { State } from "@storybook/api";
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { toggleCheck } from "../../../store/cartSlice";
+import { Cart, Product } from "../../../types/cartTypes";
 
 import { numberFormat } from "../../../utils/numberFormat";
 import Checkbox from "../../common/Input/Checkbox/Checkbox";
@@ -13,10 +16,16 @@ export type CartItemProps = {
 };
 
 const CartItem = ({ id, name, price, imageUrl }: CartItemProps) => {
+  const priceTimesQuantity = useSelector((state: State) => {
+    //TODO: products[0] -> products.find()로 변경하기
+    const quantity = state.cart.products[0].quantity;
+    return quantity * price;
+  });
+
   return (
     <div className="cart-container">
       <div className="flex gap-15 mt-10">
-        <Checkbox id={id} handleToggle={() => alert("toggle!")} />
+        <Checkbox id={id} />
         <img className="w-144 h-144" src={imageUrl} alt={name} />
         <span className="cart-name">{name}</span>
       </div>
@@ -26,8 +35,8 @@ const CartItem = ({ id, name, price, imageUrl }: CartItemProps) => {
           src="./assets/svgs/trash.svg"
           alt="삭제"
         />
-        <QuantityCounter />
-        <span className="cart-price">{numberFormat(price)}원</span>
+        <QuantityCounter productId={id} />
+        <span className="cart-price">{numberFormat(priceTimesQuantity)}원</span>
       </div>
     </div>
   );
