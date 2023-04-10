@@ -3,7 +3,7 @@ import { HTTP_METHOD, request } from '@/api/core';
 const cache: { [key: string]: PaginationResponse<Product> } = {};
 
 export const getAllProducts = async (): Promise<Product[]> => {
-  const data = await request('/products', HTTP_METHOD.GET());
+  const data = await request<Product[]>('/products', HTTP_METHOD.GET());
   return data;
 };
 
@@ -11,7 +11,7 @@ export const getPaginatedProducts = async ({
   page = 1,
   limit = 10,
 }): Promise<PaginationResponse<Product>> => {
-  const data = await request(
+  const data = await request<PaginationResponse<Product>>(
     `/products?_page=${page}&_limit=${limit}`,
     HTTP_METHOD.GET()
   );
@@ -23,5 +23,5 @@ export const getPaginatedProducts = async ({
     page,
     nextPage: page + 1,
     limit,
-  };
+  } as unknown as PaginationResponse<Product>;
 };
