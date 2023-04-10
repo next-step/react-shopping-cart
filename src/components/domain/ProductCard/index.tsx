@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import * as cartApi from '@/api/cart';
 import { CartIcon, LoaderIcon } from '@/assets/svgs';
 import { LazyImage } from '@/components/common';
@@ -6,15 +8,10 @@ import { currency } from '@/utils/filter/currency';
 
 type Props = {
   product?: Product;
+  onOpenModal?: () => void;
 };
 
-const ProductCard = ({ product }: Props) => {
-  const { sendRequest, loading = false } = useHttp(cartApi.postAddCart);
-
-  const handleClickCart = () => {
-    sendRequest(product);
-  };
-
+const ProductCard = ({ product, onOpenModal }: Props) => {
   if (!product) {
     return (
       <div className="product-card flex-col gap-10">
@@ -25,6 +22,14 @@ const ProductCard = ({ product }: Props) => {
       </div>
     );
   }
+
+  const { sendRequest, loading = false } = useHttp<Cart>(cartApi.postAddCart);
+
+  const handleClickCart = async () => {
+    const newCart = await sendRequest(product);
+    if (!newCart) return;
+    onOpenModal?.();
+  };
 
   return (
     <div>
@@ -47,4 +52,4 @@ const ProductCard = ({ product }: Props) => {
   );
 };
 
-export default ProductCard;
+export default memo(ProductCard);

@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { memo, useCallback, useRef } from 'react';
 
 import * as productApi from '@/api/product';
 import { LoaderIcon } from '@/assets/svgs';
@@ -8,7 +8,11 @@ import useIntersection from '@/hooks/useIntersection';
 
 import ProductCard from '../ProductCard';
 
-const Products = () => {
+type Props = {
+  onOpenModal: () => void;
+};
+
+const Products = ({ onOpenModal }: Props) => {
   const {
     sendRequest,
     loading,
@@ -31,7 +35,11 @@ const Products = () => {
     <div className="product-container">
       <div className="grid py-300 gap-50">
         {data?.map((product, index) => (
-          <ProductCard key={`${product.id}-${index}`} product={product} />
+          <ProductCard
+            onOpenModal={onOpenModal}
+            key={`${product.id}-${index}`}
+            product={product}
+          />
         ))}
         {loading &&
           Array.from({ length: SINGLE_PAGE_SIZE }).map((_, index) => (
@@ -45,6 +53,6 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default memo(Products);
 
 const SINGLE_PAGE_SIZE = 20;
