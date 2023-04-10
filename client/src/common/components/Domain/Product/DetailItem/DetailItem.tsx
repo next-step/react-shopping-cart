@@ -25,7 +25,7 @@ const DetailItem = ({ products }: DetailItemProps) => {
           <Styled.Text>금액</Styled.Text>
           <Styled.Price>{currentDetailItem.price}</Styled.Price>
         </Styled.ItemInfoBox>
-        <Styled.CartButton onClick={addToCart} theme="brown">
+        <Styled.CartButton onClick={addToCart} theme="brown" data-testid="cart-brown-button">
           장바구니
         </Styled.CartButton>
       </Styled.ItemInfoContainer>

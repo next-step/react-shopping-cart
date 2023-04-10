@@ -1,14 +1,15 @@
 import * as Styled from './ProductListPage.styles';
 import uuid from 'react-uuid';
-import { Spinner, ErrorMessage, Pagination } from 'common/components';
+import { Spinner, ErrorMessage, Pagination, Dialog } from 'common/components';
 import { ProductItem } from 'common/components/Domain';
-import { usePagination } from 'common/hooks';
+import { usePagination, useDialog } from 'common/hooks';
 import { useAppDispatch, useAppSelector } from 'store';
 import { useEffect } from 'react';
 import { getProductList } from 'store/feature/product/productslice';
 
 const ProductListPage = () => {
   const { currentPage } = usePagination();
+  const { dialogTitle, isOpenDialog } = useDialog();
   const dispatch = useAppDispatch();
   const productStore = useAppSelector((state) => state.product);
   const products = productStore.productList.products;
@@ -27,6 +28,7 @@ const ProductListPage = () => {
 
   return (
     <div>
+      <Dialog isOpen={isOpenDialog} title={dialogTitle} />
       <Styled.Grid>
         {products?.map((product) => (
           <ProductItem key={uuid()} price={product.price} image={product.image} name={product.name} id={product.id} />

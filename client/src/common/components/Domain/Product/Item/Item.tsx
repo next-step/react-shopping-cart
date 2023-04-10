@@ -8,8 +8,8 @@ const ProductItem = ({ name, price, image, id }: ItemProps) => {
   const { addToCart, moveToProductDetailPage } = useProductItem(currentItem);
 
   return (
-    <Styled.Layout data-testid="product">
-      <Styled.ItemImage src={image} alt={name} onClick={moveToProductDetailPage} />
+    <Styled.Layout>
+      <Styled.ItemImage src={image} alt={name} onClick={moveToProductDetailPage} data-testid="product" />
       <Styled.FlexContainer>
         <Styled.FlexBox>
           <Styled.NameText>{name}</Styled.NameText>
