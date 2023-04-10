@@ -3,7 +3,7 @@ import ProductAddCartSuccessModal from '@/components/domain/ProductAddCartSucces
 import useBooleanState from '@/hooks/useBooleanState';
 
 const Products = () => {
-  const [open, onOpen, onClose] = useBooleanState(true);
+  const [open, onOpen, onClose] = useBooleanState();
 
   return (
     <>
