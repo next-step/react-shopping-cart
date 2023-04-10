@@ -1,4 +1,7 @@
-export const request = async (url: string, option: HttpMethod) => {
+export const request = async <T>(
+  url: string,
+  option: HttpMethod
+): Promise<T> => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
   const response = await fetch(`${BASE_URL + url}`, option);
   return response.json();
