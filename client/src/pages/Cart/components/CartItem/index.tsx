@@ -19,30 +19,26 @@ interface CartItemProps {
 function CartItem({ cart, refetchCarts }: CartItemProps) {
   const { count: defaultCount, product, id } = cart;
   const { imageUrl, name, price } = product;
-  const { count, minus, plus } = useCounter(defaultCount);
   const { mutate: deleteCarts, isLoading } = useDeleteCarts({ onSuccess: refetchCarts });
-  const {
-    toggle: toggleIsChecked,
-    increase: increaseCartById,
-    decrease: decreaseCartById,
-  } = useCartActions();
+  const counter = useCounter(defaultCount);
+  const cartAction = useCartActions();
   const checkedCartIds = useCheckedCartIds();
 
   const isChecked = checkedCartIds.has(id);
-  const totalPrice = price * count;
+  const totalPrice = price * counter.count;
 
   const handleChangeCheckbox: ChangeEventHandler<HTMLInputElement> = (e) => {
-    toggleIsChecked(id);
+    cartAction.toggle(id);
   };
 
   const handleClickPlusButton = () => {
-    plus();
-    increaseCartById(id);
+    counter.plus();
+    cartAction.increase(id);
   };
 
   const handleClickMinusButton = () => {
-    minus();
-    decreaseCartById(id);
+    counter.minus();
+    cartAction.decrease(id);
   };
 
   const handlePressDeleteButton = () => {
@@ -82,7 +78,7 @@ function CartItem({ cart, refetchCarts }: CartItemProps) {
           <TrashSVG width={18} />
         </Button>
         <Counter
-          count={count}
+          count={counter.count}
           onMinus={handleClickMinusButton}
           onPlus={handleClickPlusButton}
           min={1}
