@@ -1,28 +1,26 @@
-import { render } from '@testing-library/react';
-import { configureStore } from '@reduxjs/toolkit';
+import { render as rtlRender } from '@testing-library/react';
+import type { PreloadedState } from '@reduxjs/toolkit';
+import type { RenderOptions } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { rootReducer } from 'store/reducer';
 import type { PropsWithChildren, ReactElement } from 'react';
 import { MemoryRouter } from 'react-router-dom';
-export function renderWithRtkProvider(
+import { RootState, AppStore, setupStore } from 'store';
+
+interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
+  preloadedState?: PreloadedState<RootState>;
+  store?: AppStore;
+}
+
+export const render = (
   ui: ReactElement,
-  {
-    preloadedState = {},
-    store = configureStore({
-      reducer: rootReducer,
-      preloadedState,
-    }),
-    ...renderOptions
-  } = {}
-) {
-  function Wrapper({ children }: PropsWithChildren) {
+  { preloadedState = {}, store = setupStore(preloadedState), ...renderOptions }: ExtendedRenderOptions = {}
+) => {
+  function Wrapper({ children }: PropsWithChildren): JSX.Element {
     return (
       <MemoryRouter>
         <Provider store={store}>{children}</Provider>;
       </MemoryRouter>
     );
   }
-  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
-}
-
-export * from '@testing-library/react';
+  return { store, ...rtlRender(ui, { wrapper: Wrapper, ...renderOptions }) };
+};
