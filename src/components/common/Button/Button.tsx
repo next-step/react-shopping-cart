@@ -1,10 +1,9 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
-export type ButtonProps = {
-  children: React.ReactNode;
+export type ButtonProps = PropsWithChildren<{
   className: string;
   onClick?: () => void;
-};
+}>;
 
 const Button = ({ children, className, onClick }: ButtonProps): JSX.Element => (
   <button className={className} onClick={onClick}>
