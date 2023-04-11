@@ -2,7 +2,7 @@ import React from "react";
 import { Meta } from "@storybook/react/types-6-0";
 import { Story } from "@storybook/react";
 import Header, { HeaderProps } from "./Header";
-require("../../../css/common/index.css");
+// require("../../../css/common/index.css");
 
 export default {
   title: "Components/Header",
