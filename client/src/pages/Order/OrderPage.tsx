@@ -1,13 +1,14 @@
 import * as Styled from './OrderPage.styles';
 import { OrderdItem, Payment } from 'common/components/Domain';
-import { ErrorMessage, PageHeader, Spinner } from 'common/components';
+import { Dialog, ErrorMessage, PageHeader, Spinner } from 'common/components';
 import { useEffect } from 'react';
-import { useOrder } from 'common/hooks';
+import { useOrder, useDialog } from 'common/hooks';
 import uuid from 'react-uuid';
 import { useAppSelector } from 'store';
 
 const OrderPage = () => {
   const { getOrderItem } = useOrder();
+  const { isOpenDialog, dialogTitle } = useDialog();
   const orderStore = useAppSelector((state) => state.order);
   const orderedList = orderStore.orderedList;
   const orderListLength = orderedList.length;
@@ -29,6 +30,7 @@ const OrderPage = () => {
 
   return (
     <Styled.Layout>
+      <Dialog isOpen={isOpenDialog} title={dialogTitle} />
       <PageHeader>주문/결제</PageHeader>
       <Styled.SectionContainer>
         <Styled.ItemSection>

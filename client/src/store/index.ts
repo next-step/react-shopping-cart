@@ -1,18 +1,11 @@
 import type { PreloadedState } from '@reduxjs/toolkit';
 import { configureStore } from '@reduxjs/toolkit';
-import { PERSIST, PURGE } from 'redux-persist';
 import { useDispatch, useSelector } from 'react-redux';
 import type { TypedUseSelectorHook } from 'react-redux';
-import rootReducer from './reducer/index';
+import { rootReducer } from './reducer/index';
 
 export const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoreActions: [PERSIST, PURGE] as any,
-      },
-    }),
 });
 
 export const setupStore = (preloadedState?: PreloadedState<RootState>) =>

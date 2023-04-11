@@ -1,13 +1,16 @@
 import * as Styled from './CartPage.styled';
 import uuid from 'react-uuid';
 import { CartItem, Payment } from 'common/components/Domain';
-import { PageHeader } from 'common/components';
+import { Dialog, PageHeader } from 'common/components';
 import useCartPage from './useCartPage';
+import { useDialog } from 'common/hooks';
 const CartPage = () => {
   const { check, handleCheckBox, handleDeleteButton, cartList, totalAmount, totalPrice } = useCartPage();
+  const { isOpenDialog, dialogTitle } = useDialog();
 
   return (
     <Styled.Layout>
+      <Dialog isOpen={isOpenDialog} title={dialogTitle} />
       <PageHeader>장바구니</PageHeader>
       <Styled.SectionContainer>
         <Styled.ItemSection>
