@@ -4,6 +4,8 @@ export { default as CartCardSkeleton } from './CartCard/CartCardSkeleton';
 export { default as CartListSection } from './CartSection/CartListSection';
 export { default as CartOrderDisplaySection } from './CartSection/CartOrderDisplaySection';
 export { default as Order } from './Order';
+export { default as OrderList } from './OrderList';
+export { default as OrderListItem } from './OrderListItem';
 export { default as Payment } from './Payment';
 export { default as PaymentListSection } from './Payment/PaymentListSection';
 export { default as PaymentTotalDisplaySection } from './Payment/PaymentTotalDisplaySection';

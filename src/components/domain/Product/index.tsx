@@ -5,6 +5,9 @@ import { LoaderIcon } from '@/assets/svgs';
 import useEffectOnce from '@/hooks/useEffectOnce';
 import useHttp from '@/hooks/useHttp';
 import useIntersection from '@/hooks/useIntersection';
+import useIntersectionObserver from '@/hooks/useIntersectionObserver';
+import { debounce } from '@/utils/debounce';
+import { throttle } from '@/utils/throttle';
 
 import ProductCard from '../ProductCard';
 
@@ -18,18 +21,25 @@ const Products = ({ onOpenModal }: Props) => {
     loading,
     data: productResult = { data: [], page: 0, nextPage: 1 },
   } = useHttp(productApi.getPaginatedProducts);
-  const { data } = productResult;
+  const { data, nextPage } = productResult;
   const ref = useRef<HTMLDivElement>(null);
 
-  const callback = useCallback(() => {
-    sendRequest({ page: productResult.nextPage, limit: 20 });
-  }, [productResult.nextPage]);
+  console.log(sendRequest);
 
-  useIntersection(ref, () => {
-    !loading && callback();
+  const throttleHandler = throttle(() => {
+    sendRequest({ page: nextPage, limit: 3 });
+  }, 3000);
+
+  useIntersectionObserver(ref, () => {
+    console.log('useIntersectionObserver');
+
+    if (!loading) {
+      // sendRequest({ page: nextPage, limit: 3 });
+      throttleHandler();
+    }
   });
 
-  useEffectOnce(() => sendRequest({ page: 0, limit: 20 }));
+  useEffectOnce(() => sendRequest({ page: 0, limit: 3 }));
 
   return (
     <div className="product-container">
