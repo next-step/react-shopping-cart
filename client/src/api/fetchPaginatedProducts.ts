@@ -3,8 +3,10 @@ import { API } from 'constants/api';
 import { PaginatedProductsSchema } from 'types/product';
 import { PaginationParams } from 'types/api';
 
+import apiClient from './apiClient';
+
 export default async function fetchPaginatedProducts({ page, size }: PaginationParams) {
-  const response = await fetch(`${API.PRODUCTS}?page=${page}&size=${size}`);
+  const response = await apiClient.get(API.PRODUCTS, { page: String(page), size: String(size) });
 
   if (!response.ok) {
     throw new Error(response.statusText);

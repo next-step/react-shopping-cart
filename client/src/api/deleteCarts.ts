@@ -1,11 +1,10 @@
 import { API } from 'constants/api';
 import { CartsSchema } from 'types/cart';
 
+import apiClient from './apiClient';
+
 export default async function deleteCarts(params: number[]) {
-  const response = await fetch(API.CARTS, {
-    method: 'DELETE',
-    body: JSON.stringify(params),
-  });
+  const response = await apiClient.delete(API.CARTS, { body: params });
 
   if (!response.ok) {
     throw new Error(response.statusText);

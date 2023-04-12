@@ -1,11 +1,10 @@
 import { API } from 'constants/api';
 import { Cart, CartsSchema } from 'types/cart';
 
+import apiClient from './apiClient';
+
 export default async function addCart(params: Omit<Cart, 'id'>) {
-  const response = await fetch(API.CARTS, {
-    method: 'POST',
-    body: JSON.stringify(params),
-  });
+  const response = await apiClient.post(API.CARTS, { body: params });
 
   if (!response.ok) {
     throw new Error(response.statusText);

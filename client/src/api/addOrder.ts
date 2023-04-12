@@ -1,11 +1,10 @@
 import { API } from 'constants/api';
 import { OrderSchema } from 'types/order';
 
+import apiClient from './apiClient';
+
 export default async function addOrder(ids: number[]) {
-  const response = await fetch(API.ORDERS, {
-    method: 'POST',
-    body: JSON.stringify(ids),
-  });
+  const response = await apiClient.post(API.ORDERS, { body: ids });
 
   if (!response.ok) {
     throw new Error(response.statusText);
