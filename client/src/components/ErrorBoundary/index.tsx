@@ -11,7 +11,9 @@ interface State {
   hasError: boolean;
 }
 
-// https://ko.reactjs.org/docs/error-boundaries.html
+/**
+ * @see https://ko.reactjs.org/docs/error-boundaries.html
+ */
 class ErrorBoundary extends Component<Props, State> {
   public state: State = {
     hasError: false,
