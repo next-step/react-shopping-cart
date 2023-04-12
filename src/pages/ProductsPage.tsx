@@ -1,17 +1,27 @@
 import React, { useEffect, useState } from "react";
 import ProductInfo from "../components/domain/Product/ProductInfo/ProductInfo";
 
+const PRODUCTS_URL = "http://localhost:3000/";
+
+const fetchProducts = async (options = {}) => {
+  const response = await fetch(PRODUCTS_URL, options);
+
+  if (!response.ok) {
+    throw new Error(`Fetch failed with status ${response.status}`);
+  }
+
+  return response.json();
+};
+
 const ProductsPage = () => {
   const [products, setProducts] = useState([
     { id: "", price: 0, name: "", imageUrl: "" },
   ]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/").then((res) =>
-      res.json().then((res) => {
-        setProducts(res);
-      })
-    );
+    fetchProducts()
+      .then((res) => setProducts(res))
+      .catch((err) => console.log(err));
   }, []);
 
   return (
