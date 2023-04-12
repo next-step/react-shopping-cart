@@ -7,7 +7,7 @@ const TOTAL_PAGE = Math.ceil(data.products.length / PRODUCT_LENGTH);
 export const getProducts = rest.get('/products', async (req, res, ctx) => {
   const currentPage = Number(req.url.searchParams.get('page'));
 
-  if (!isNaN(currentPage)) {
+  if (typeof currentPage !== 'number') {
     return res(ctx.status(400));
   }
 
