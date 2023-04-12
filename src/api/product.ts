@@ -14,7 +14,7 @@ export const getPaginatedProducts = async ({
   const url = `/products?_page=${page}&_limit=${limit}`;
   const data = await request<PaginationResponse<Product>>(
     url,
-    HTTP_METHOD.GET({ cache: 'max-age=31536000' })
+    HTTP_METHOD.GET({ cache: 'public max-age=31536000' })
   );
 
   localCache[page] = data;

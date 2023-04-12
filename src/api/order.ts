@@ -12,7 +12,5 @@ export const getAllOrders = async (): Promise<Order[]> => {
     '/orders',
     HTTP_METHOD.GET({ cache: 'no-cache' })
   );
-  console.log(data);
-
   return data;
 };

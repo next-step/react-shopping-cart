@@ -1,13 +1,10 @@
-import { memo, useCallback, useRef } from 'react';
+import { memo, useRef } from 'react';
 
 import * as productApi from '@/api/product';
 import { LoaderIcon } from '@/assets/svgs';
 import useEffectOnce from '@/hooks/useEffectOnce';
 import useHttp from '@/hooks/useHttp';
-import useIntersection from '@/hooks/useIntersection';
 import useIntersectionObserver from '@/hooks/useIntersectionObserver';
-import { debounce } from '@/utils/debounce';
-import { throttle } from '@/utils/throttle';
 
 import ProductCard from '../ProductCard';
 
@@ -24,22 +21,13 @@ const Products = ({ onOpenModal }: Props) => {
   const { data, nextPage } = productResult;
   const ref = useRef<HTMLDivElement>(null);
 
-  console.log(sendRequest);
-
-  const throttleHandler = throttle(() => {
-    sendRequest({ page: nextPage, limit: 3 });
-  }, 3000);
-
   useIntersectionObserver(ref, () => {
-    console.log('useIntersectionObserver');
-
     if (!loading) {
-      // sendRequest({ page: nextPage, limit: 3 });
-      throttleHandler();
+      sendRequest({ page: nextPage, limit: SINGLE_PAGE_SIZE });
     }
   });
 
-  useEffectOnce(() => sendRequest({ page: 0, limit: 3 }));
+  useEffectOnce(() => sendRequest({ page: 0, limit: SINGLE_PAGE_SIZE }));
 
   return (
     <div className="product-container">
