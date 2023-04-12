@@ -1,5 +1,5 @@
 import * as Styled from './MyOrderListPage.styles';
-import { ErrorMessage, PageHeader, Spinner } from 'common/components';
+import { ErrorMessage, PageHeader, Spinner } from 'common/components/UI';
 import { MyOrderListItem, MyOrderListHeader } from 'common/components/Domain';
 import { useOrder } from 'common/hooks';
 import { useEffect } from 'react';

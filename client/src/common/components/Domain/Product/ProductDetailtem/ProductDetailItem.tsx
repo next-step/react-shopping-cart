@@ -1,14 +1,9 @@
 import { useParams } from 'react-router-dom';
-import * as Styled from './DetailItem.styles';
-import type { ProductType } from 'types';
+import * as Styled from './ProductDetailItem.styles';
+import type { ProductDetailItemProps } from './ProductDetailItem.types';
 import useProductItem from '../hooks/useProductItem';
-import ErrorMessage from 'common/components/UI/ErrorMessage';
 
-type DetailItemProps = {
-  products: ProductType[];
-};
-
-const DetailItem = ({ products }: DetailItemProps) => {
+const ProductDetailItem = ({ products }: ProductDetailItemProps) => {
   const params = useParams();
   const { id } = params;
 
@@ -33,4 +28,4 @@ const DetailItem = ({ products }: DetailItemProps) => {
   );
 };
 
-export default DetailItem;
+export default ProductDetailItem;

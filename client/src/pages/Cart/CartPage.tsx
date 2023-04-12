@@ -1,7 +1,7 @@
 import * as Styled from './CartPage.styled';
 import uuid from 'react-uuid';
 import { CartItem, Payment } from 'common/components/Domain';
-import { Dialog, PageHeader } from 'common/components';
+import { Dialog, PageHeader } from 'common/components/UI';
 import useCartPage from './useCartPage';
 import { useDialog } from 'common/hooks';
 const CartPage = () => {

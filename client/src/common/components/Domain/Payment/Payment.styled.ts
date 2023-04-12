@@ -1,4 +1,4 @@
-import { HorizontalLine, Button } from 'common/components';
+import { HorizontalLine, Button } from 'common/components/UI';
 import styled from 'styled-components';
 
 export const Container = styled.div`

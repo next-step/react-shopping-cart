@@ -1,4 +1,4 @@
-import { Image } from 'common/components';
+import { Image } from 'common/components/UI';
 import { ReactComponent as Cart } from 'assets/svgs/cart.svg';
 
 import styled from 'styled-components';

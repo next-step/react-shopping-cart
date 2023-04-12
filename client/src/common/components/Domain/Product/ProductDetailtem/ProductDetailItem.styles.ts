@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button, Image, HorizontalLine } from 'common/components';
+import { Button, Image, HorizontalLine } from 'common/components/UI';
 
 export const Container = styled.div`
   display: flex;

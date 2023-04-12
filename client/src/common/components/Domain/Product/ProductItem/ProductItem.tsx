@@ -1,5 +1,5 @@
-import * as Styled from './Item.styles';
-import { ItemProps } from './Item.types';
+import * as Styled from './ProductItem.styles';
+import { ItemProps } from './ProductItem.types';
 import useProductItem from '../hooks/useProductItem';
 
 const ProductItem = ({ name, price, image, id }: ItemProps) => {

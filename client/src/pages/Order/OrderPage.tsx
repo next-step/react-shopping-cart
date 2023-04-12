@@ -1,6 +1,6 @@
 import * as Styled from './OrderPage.styles';
 import { OrderdItem, Payment } from 'common/components/Domain';
-import { Dialog, ErrorMessage, PageHeader, Spinner } from 'common/components';
+import { Dialog, ErrorMessage, PageHeader, Spinner } from 'common/components/UI';
 import { useEffect } from 'react';
 import { useOrder, useDialog } from 'common/hooks';
 import uuid from 'react-uuid';

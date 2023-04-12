@@ -1,7 +1,7 @@
 import * as Styled from './ProductDetailPage.styles';
 import { ProductDetailItem } from 'common/components/Domain';
 import { useAppSelector } from 'store';
-import { Spinner, ErrorMessage, Dialog } from 'common/components';
+import { Spinner, ErrorMessage, Dialog } from 'common/components/UI';
 import { useDialog } from 'common/hooks';
 
 const ProductDetailPage = () => {

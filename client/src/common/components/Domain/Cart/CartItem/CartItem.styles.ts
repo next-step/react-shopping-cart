@@ -1,4 +1,4 @@
-import { Image, Input } from 'common/components';
+import { Image, Input } from 'common/components/UI';
 import styled from 'styled-components';
 
 export const Contianer = styled.div`

@@ -1,5 +1,5 @@
 import * as Styled from './MyOrderListDetailPage.styles';
-import { ErrorMessage, PageHeader, Spinner } from 'common/components';
+import { ErrorMessage, PageHeader, Spinner } from 'common/components/UI';
 import { MyOrderListHeader, MyOrderListItem, Payment } from 'common/components/Domain';
 import { useAppSelector } from 'store';
 import { useParams } from 'react-router-dom';

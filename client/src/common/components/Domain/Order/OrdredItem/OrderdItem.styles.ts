@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Image } from 'common/components';
+import { Image } from 'common/components/UI';
 export const Title = styled.h3`
   display: flex;
   align-items: center;

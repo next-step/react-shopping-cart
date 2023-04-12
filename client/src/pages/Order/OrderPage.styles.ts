@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { HorizontalLine } from 'common/components';
+import { HorizontalLine } from 'common/components/UI';
 export const Layout = styled.section`
   padding: 24px;
   display: flex;

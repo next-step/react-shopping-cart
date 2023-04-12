@@ -1,6 +1,6 @@
 import * as Styled from './ProductListPage.styles';
 import uuid from 'react-uuid';
-import { Spinner, ErrorMessage, Pagination, Dialog } from 'common/components';
+import { Spinner, ErrorMessage, Pagination, Dialog } from 'common/components/UI';
 import { ProductItem } from 'common/components/Domain';
 import { usePagination, useDialog } from 'common/hooks';
 import { useAppDispatch, useAppSelector } from 'store';

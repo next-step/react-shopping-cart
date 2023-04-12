@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Image } from 'common/components';
+import { Image } from 'common/components/UI';
 import { ReactComponent as Cart } from 'assets/svgs/cart.svg';
 
 export const Layout = styled.div`
