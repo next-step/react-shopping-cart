@@ -16,7 +16,6 @@ const OrderedItems: OrderedItemsType[] = [
 export const updateOrders = rest.post('/order/update', async (req, res, ctx) => {
   const userOrderItems = (await req.json()) as OrderProductType[];
 
-  // 유효성 스키마 검사
   if (!userOrderItems.length) {
     return res(ctx.status(400));
   }
