@@ -13,7 +13,7 @@ interface State<T> {
 
 type Action<T> =
   | { type: 'loading' }
-  | { type: 'pending'; payload: any }
+  | { type: 'pending'; payload: Promise<any> }
   | { type: 'fetched'; payload: T }
   | { type: 'error'; payload: Error };
 
@@ -43,9 +43,8 @@ function useFetch<T = unknown>({
     switch (action.type) {
       case 'loading':
         return { ...initialState, status: 'loading' };
-      case 'pending': {
+      case 'pending':
         return { ...initialState, status: 'pending', promise: action.payload };
-      }
       case 'fetched':
         return { ...initialState, status: 'fetched', data: action.payload };
       case 'error':
@@ -56,10 +55,10 @@ function useFetch<T = unknown>({
   };
 
   const [state, dispatch] = useReducer(fetchReducer, initialState);
-  const [trigger, setTrigger] = useState(false);
+  const [shouldRefetch, setShouldRefetch] = useState(false);
 
   function refetch() {
-    setTrigger((prevState) => !prevState);
+    setShouldRefetch((prevState) => !prevState);
   }
 
   function resolvePromise(data: T) {
@@ -75,8 +74,6 @@ function useFetch<T = unknown>({
   useEffect(() => {
     if (!fetcher) return;
 
-    const abortController = new AbortController();
-
     dispatch({ type: 'loading' });
 
     const cachedData = getCachedData<T>(cacheKey);
@@ -88,12 +85,8 @@ function useFetch<T = unknown>({
 
     dispatch({ type: 'pending', payload: fetcher().then(resolvePromise, rejectPromise) });
 
-    return () => {
-      abortController.abort();
-    };
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetcher, trigger]);
+  }, [fetcher, shouldRefetch]);
 
   if (state.status === 'pending' && state.promise) {
     throw state.promise;
