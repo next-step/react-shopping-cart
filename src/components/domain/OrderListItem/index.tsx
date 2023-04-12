@@ -1,21 +1,20 @@
-import { Button, LazyImage } from '@/components/common';
+import { Text } from '@/components/common';
+import { OrderListItemDetail } from '@/components/domain';
 
-const OrderListItem = () => {
+type Props = {
+  order: Order;
+};
+
+const OrderListItem = ({ order }: Props) => {
   return (
-    <div className="order-list-item">
-      <div className="flex gap-15 mt-10">
-        <LazyImage src="./assets/images/product.png" width={144} height={144} />
-        <div className="flex-col gap-15">
-          <span className="order-name">PET보틀-정사각(420ml)</span>
-          <span className="order-info">54,800원 / 수량: 3개</span>
-        </div>
+    <>
+      <div className="order-list__header">
+        <Text>주문번호: {order.id}</Text>
       </div>
-      <div className="flex-center">
-        <Button theme="primary" size="small">
-          장바구니
-        </Button>
-      </div>
-    </div>
+      {order.orderDetails.map((orderDetail) => (
+        <OrderListItemDetail key={orderDetail.id} orderDetail={orderDetail} />
+      ))}
+    </>
   );
 };
 

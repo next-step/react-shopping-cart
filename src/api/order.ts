@@ -6,3 +6,13 @@ export const postAddOrder = async (
   const data = await request<Order>('/orders', HTTP_METHOD.POST(orderDetails));
   return data;
 };
+
+export const getAllOrders = async (): Promise<Order[]> => {
+  const data = await request<Order[]>(
+    '/orders',
+    HTTP_METHOD.GET({ cache: 'no-cache' })
+  );
+  console.log(data);
+
+  return data;
+};
