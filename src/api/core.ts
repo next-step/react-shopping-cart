@@ -7,18 +7,27 @@ export const request = async <T>(
   return response.json();
 };
 
+type CacheControl =
+  | 'no-cache'
+  | 's-maxage=31536000, max-age=0'
+  | 'public max-age=31536000';
+
 type HttpMethod = {
   method: string;
   headers?: {
     ['x-username']?: string;
     ['Content-Type']?: 'application/json';
+    ['Cache-Control']?: CacheControl;
   };
   body?: string;
 };
 
 export const HTTP_METHOD = {
-  GET(): HttpMethod {
+  GET(option?: { cache: CacheControl }): HttpMethod {
     return {
+      headers: {
+        ['Cache-Control']: option?.cache ?? 'no-cache',
+      },
       method: 'GET',
     };
   },

@@ -6,7 +6,10 @@ export const postAddCart = async (product: Product): Promise<Cart> => {
 };
 
 export const getAllCarts = async (): Promise<Cart[]> => {
-  const data = await request<Cart[]>('/carts', HTTP_METHOD.GET());
+  const data = await request<Cart[]>(
+    '/carts',
+    HTTP_METHOD.GET({ cache: 's-maxage=31536000, max-age=0' })
+  );
   return data;
 };
 
