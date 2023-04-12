@@ -1,7 +1,6 @@
 import { memo } from 'react';
 
-import { Button, Text } from '@/components/common';
-import Modal from '@/components/common/Modal';
+import { Button, Modal, Text } from '@/components/common';
 import { useRouter } from '@/routes/useRouter';
 
 type Props = {
