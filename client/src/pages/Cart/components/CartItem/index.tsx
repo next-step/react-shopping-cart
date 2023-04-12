@@ -13,13 +13,13 @@ import { useDeleteCarts } from '../../hooks';
 
 interface CartItemProps {
   cart: Cart;
-  refetchCarts: () => void;
+  refetchCartList: () => void;
 }
 
-function CartItem({ cart, refetchCarts }: CartItemProps) {
+function CartItem({ cart, refetchCartList }: CartItemProps) {
   const { count: defaultCount, product, id } = cart;
   const { imageUrl, name, price } = product;
-  const { mutate: deleteCarts, isLoading } = useDeleteCarts({ onSuccess: refetchCarts });
+  const { mutateAsync: deleteCarts, isLoading } = useDeleteCarts();
   const counter = useCounter(defaultCount);
   const cartAction = useCartActions();
   const checkedCartIds = useCheckedCartIds();
@@ -41,9 +41,10 @@ function CartItem({ cart, refetchCarts }: CartItemProps) {
     cartAction.decrease(id);
   };
 
-  const handlePressDeleteButton = () => {
+  const handlePressDeleteButton = async () => {
     if (window.confirm('선택하신 상품을 모두 삭제하시겠습니까?')) {
-      deleteCarts([id]);
+      await deleteCarts([id]);
+      refetchCartList();
     }
   };
 

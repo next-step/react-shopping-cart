@@ -7,8 +7,8 @@ import { useCartList, useDeleteCarts } from '../../hooks';
 import { CartItem, ExpectedPayment } from '../../components';
 
 function CartList() {
-  const { data: carts = [], refetch } = useCartList();
-  const { mutate: deleteCarts, isLoading } = useDeleteCarts({ onSuccess: refetch });
+  const { data: carts = [], refetch: refetchCartList } = useCartList();
+  const { mutateAsync: deleteCarts, isLoading } = useDeleteCarts();
   const { checkAll, uncheckAll } = useCartActions();
 
   const checkedCartIds = useCheckedCartIds();
@@ -25,9 +25,10 @@ function CartList() {
     }
   };
 
-  const handleClickDeleteButton = () => {
+  const handleClickDeleteButton = async () => {
     if (window.confirm('선택하신 상품들을 모두 삭제하시겠습니까?')) {
-      deleteCarts(Array.from(checkedCartIds));
+      await deleteCarts(Array.from(checkedCartIds));
+      refetchCartList();
     }
   };
 
@@ -51,7 +52,7 @@ function CartList() {
         <hr className="divide-line-gray mt-10" />
         {isEmpty && <h3 className="flex-center p-20 mt-40">장바구니에 담긴 상품이 없습니다.</h3>}
         {carts.map((cart) => (
-          <CartItem key={cart.id} cart={cart} refetchCarts={refetch} />
+          <CartItem key={cart.id} cart={cart} refetchCartList={refetchCartList} />
         ))}
       </section>
       <ExpectedPayment />
