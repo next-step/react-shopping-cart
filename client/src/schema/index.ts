@@ -29,13 +29,16 @@ const OrderProductSchema = object({
   name: string().defined(),
   amount: number().defined(),
   id: number().defined(),
+  isOrder: boolean().defined(),
 });
 
-export const OrdersSchema = object({
-  id: number().defined(),
-  ordered: object({
-    items: OrderProductSchema,
-    totalAmount: number().defined(),
-    totalPrice: number().defined(),
-  }),
-});
+export const OrdersSchema = array(
+  object({
+    id: number().defined(),
+    ordered: object({
+      items: array(OrderProductSchema),
+      totalAmount: number().defined(),
+      totalPrice: number().defined(),
+    }),
+  })
+);

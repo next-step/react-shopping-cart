@@ -26,7 +26,6 @@ const getOrder = createAsyncThunk('getOrder', async (url: string, thunkApi: any)
   try {
     const response = await getData(url);
     await OrdersSchema.validate(response);
-
     return response;
   } catch (error: any) {
     return thunkApi.rejectWithValue(error.message);
@@ -35,7 +34,8 @@ const getOrder = createAsyncThunk('getOrder', async (url: string, thunkApi: any)
 
 const updateOrder = createAsyncThunk('updateOrder', async (data: OrderProductType[], thunkApi: any) => {
   try {
-    const response = (await postData('/order/update', data)) as any;
+    const response = await postData('/order/update', data);
+
     await OrdersSchema.validate(response.data);
     return response.data;
   } catch (error: any) {
