@@ -1,14 +1,19 @@
+import { memo } from 'react';
+
 import { Header } from '@/components/common';
+import { OrderList } from '@/components/domain';
 
-import OrderList from '../OrderList';
+type Props = {
+  onOpen: () => void;
+};
 
-const Order = () => {
+const Order = ({ onOpen }: Props) => {
   return (
     <section className="order-section">
       <Header title="주문목록" />
-      <OrderList />
+      <OrderList onOpen={onOpen} />
     </section>
   );
 };
 
-export default Order;
+export default memo(Order);

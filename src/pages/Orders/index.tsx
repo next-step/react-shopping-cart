@@ -1,7 +1,14 @@
-import { Order } from '@/components/domain';
+import { Order, ProductAddCartSuccessModal } from '@/components/domain';
+import useBooleanState from '@/hooks/useBooleanState';
 
 const Orders = () => {
-  return <Order />;
+  const [open, onOpen, onClose] = useBooleanState();
+  return (
+    <>
+      <Order onOpen={onOpen} />
+      {open && <ProductAddCartSuccessModal onClose={onClose} />}
+    </>
+  );
 };
 
 export default Orders;

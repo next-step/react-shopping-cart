@@ -1,5 +1,4 @@
-import { Product } from '@/components/domain';
-import ProductAddCartSuccessModal from '@/components/domain/ProductAddCartSuccessModal';
+import { Product, ProductAddCartSuccessModal } from '@/components/domain';
 import useBooleanState from '@/hooks/useBooleanState';
 
 const Products = () => {

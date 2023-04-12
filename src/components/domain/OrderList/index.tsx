@@ -4,7 +4,11 @@ import { OrderListItem, OrderSkeleton } from '@/components/domain';
 import useHttp from '@/hooks/useHttp';
 import useOnMounted from '@/hooks/useOnMounted';
 
-const OrderList = () => {
+type Props = {
+  onOpen: () => void;
+};
+
+const OrderList = ({ onOpen }: Props) => {
   const { sendRequest, loading, data: orders } = useHttp(orderApi.getAllOrders);
 
   useOnMounted(() => {
@@ -17,7 +21,7 @@ const OrderList = () => {
   return (
     <div className="order-list">
       {orders.map((order) => (
-        <OrderListItem key={order.id} order={order} />
+        <OrderListItem key={order.id} order={order} onOpen={onOpen} />
       ))}
     </div>
   );
