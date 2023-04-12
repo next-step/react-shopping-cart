@@ -1,12 +1,18 @@
 import * as Styled from './CartPage.styled';
 import uuid from 'react-uuid';
 import { CartItem, Payment } from 'common/components/Domain';
-import { Dialog, PageHeader } from 'common/components/UI';
+import { Dialog, ErrorMessage, PageHeader, Spinner } from 'common/components/UI';
 import useCartPage from './useCartPage';
 import { useDialog } from 'common/hooks';
 const CartPage = () => {
-  const { check, handleCheckBox, handleDeleteButton, cartList, totalAmount, totalPrice } = useCartPage();
+  const { check, handleCheckBox, handleDeleteButton, cartList, totalAmount, totalPrice, status } = useCartPage();
   const { isOpenDialog, dialogTitle } = useDialog();
+
+  if (status === 'Loading') {
+    return <Spinner />;
+  } else if (status === 'Fail') {
+    return <ErrorMessage />;
+  }
 
   return (
     <Styled.Layout>

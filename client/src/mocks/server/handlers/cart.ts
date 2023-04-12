@@ -23,7 +23,6 @@ export const deleteCart = rest.post('/cart/delete', async (req, res, ctx) => {
   const product = (await req.json()) as CartProductType;
 
   // Todo : product에대해 스키마 유효성검사
-
   const newCarts = userCarts.filter((item) => item.id !== product.id);
   userCarts = newCarts;
   return res(ctx.status(200), ctx.json(newCarts));

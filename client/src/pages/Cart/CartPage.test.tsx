@@ -41,9 +41,9 @@ describe('CartPage 테스트', () => {
 
     const selectBox = await screen.findByTestId('checkbox');
     await userEvent.click(selectBox);
+    await store.dispatch(getCart('/carts'));
 
-    // await store.dispatch(getCart('/carts'));
-    expect(store.getState().cart.cartList[0].isOrder).toEqual(false);
+    expect(store.getState().cart.cartList[0].isOrder).toEqual(true);
   });
   test('모두 선택 체크 박스를 누르면 장바구니에 추가된 아이템들의 store의 isOrder는 true가 된다,', async () => {
     // 나중에 작성 todo

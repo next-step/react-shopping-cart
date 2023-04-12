@@ -8,6 +8,7 @@ import { getData, postData } from 'utils/fetch';
 const useCart = () => {
   const cartList = useAppSelector((state) => state.cart.cartList);
   const selectedCartItem = useAppSelector((state) => state.cart.selectedCartItem);
+  const status = useAppSelector((state) => state.cart.status);
   const dispatch = useAppDispatch();
   const totalAmount = cartList && calculateCartTotalAmount(cartList);
   const totalPrice = cartList && calculateCartProductTotal(cartList);
@@ -66,6 +67,7 @@ const useCart = () => {
     selectedCartItem,
     SelectCartItem,
     updateSeverCartItem,
+    status,
   };
 };
 export default useCart;
