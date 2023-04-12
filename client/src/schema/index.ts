@@ -22,3 +22,20 @@ export const ProductsSchema = object({
   ),
   TOTAL_PAGE: number().defined(),
 });
+
+const OrderProductSchema = object({
+  price: number().defined(),
+  image: string().defined(),
+  name: string().defined(),
+  amount: number().defined(),
+  id: number().defined(),
+});
+
+export const OrdersSchema = object({
+  id: number().defined(),
+  ordered: object({
+    items: OrderProductSchema,
+    totalAmount: number().defined(),
+    totalPrice: number().defined(),
+  }),
+});
