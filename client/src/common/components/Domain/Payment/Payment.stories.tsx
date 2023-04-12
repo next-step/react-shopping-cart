@@ -13,6 +13,6 @@ const Template3: ComponentStory<typeof Payment> = () => (
   <Payment type="orderDetail" title="결제 예상 금액" price={1000} />
 );
 
-export const Order = Template.bind({});
-export const Cart = Template2.bind({});
+export const OrderPage = Template.bind({});
+export const CartPage = Template2.bind({});
 export const Default = Template3.bind({});

@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Item from './OrderdItem';
 
 export default {
-  title: 'Domain/Order',
+  title: 'Domain/Order/OrderdItem',
   component: Item,
 } as ComponentMeta<typeof Item>;
 
