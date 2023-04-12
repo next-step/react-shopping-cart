@@ -3,9 +3,10 @@ import { currency } from '@/utils/filter/currency';
 
 type Props = {
   totalPrice: number;
+  onClickPayment: () => void;
 };
 
-const PaymentTotalDisplaySection = ({ totalPrice }: Props) => {
+const PaymentTotalDisplaySection = ({ totalPrice, onClickPayment }: Props) => {
   return (
     <section className="order-right-section">
       <div className="order-right-section__top">
@@ -20,7 +21,9 @@ const PaymentTotalDisplaySection = ({ totalPrice }: Props) => {
           <Text highlight>{currency(totalPrice)}</Text>
         </div>
         <div className="flex-center mt-30 mx-10">
-          <Button theme="primary">{currency(totalPrice)} 결제하기</Button>
+          <Button theme="primary" onClick={onClickPayment}>
+            {currency(totalPrice)} 결제하기
+          </Button>
         </div>
       </div>
     </section>
