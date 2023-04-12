@@ -1,5 +1,5 @@
 import { object, string, number, boolean, array } from 'yup';
-import type { InferType } from 'yup';
+// import type { InferType } from 'yup';
 export const CartProductsSchema = array(
   object({
     price: number().defined(),
@@ -11,4 +11,14 @@ export const CartProductsSchema = array(
   })
 );
 
-export type CartProductSchemaType = InferType<typeof CartProductsSchema>;
+export const ProductsSchema = object({
+  products: array(
+    object({
+      id: number().defined(),
+      name: string().defined(),
+      price: number().defined(),
+      image: string().defined(),
+    })
+  ),
+  TOTAL_PAGE: number().defined(),
+});
