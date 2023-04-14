@@ -7,7 +7,7 @@ import {
   removeCartByIds,
 } from 'store/cart/model';
 
-import { Carts } from 'types/cart';
+import { Cart, Carts } from 'types/cart';
 
 const id = 1679917164549;
 const INITIAL_STATE: Carts = [
@@ -40,30 +40,30 @@ describe('Cart Store Model', () => {
   });
 
   test('장바구니 목록 중 특정 항목을 체크 또는 체크 해제할 수 있어야 한다.', () => {
-    let checkedIds = new Set<number>();
+    let checkedCarts = new Set<Cart>();
+    const cart = INITIAL_STATE[0];
 
-    checkedIds = toggleCart(checkedIds, id);
-    expect(checkedIds.has(id)).toBe(true);
+    checkedCarts = toggleCart(checkedCarts, cart);
+    expect(checkedCarts.has(cart)).toBe(true);
 
-    checkedIds = toggleCart(checkedIds, id);
-    expect(checkedIds.has(id)).toBe(false);
+    checkedCarts = toggleCart(checkedCarts, cart);
+    expect(checkedCarts.has(cart)).toBe(false);
   });
 
   test('장비구니 목록에서 체크된 항목들의 금액 총합을 알 수 있어야 한다.', () => {
-    const carts = [...INITIAL_STATE];
-    const checkedIds = new Set([id]);
+    const checkedCarts = new Set(INITIAL_STATE);
 
-    expect(totalPriceOfCheckedCarts(carts, checkedIds)).toBe(4700);
+    expect(totalPriceOfCheckedCarts(checkedCarts)).toBe(4700);
   });
 
   test('장바구니 목록 전체 항목의 체크 여부를 알 수 있어야 한다.', () => {
     let carts = [...INITIAL_STATE];
-    let checkedIds = new Set<number>();
+    let checkedCarts = new Set<Cart>();
 
-    expect(isCheckedAll(carts, checkedIds)).toBe(false);
+    expect(isCheckedAll(carts, checkedCarts)).toBe(false);
 
-    checkedIds = new Set<number>([id]);
-    expect(isCheckedAll(carts, checkedIds)).toBe(true);
+    checkedCarts = new Set<Cart>(carts);
+    expect(isCheckedAll(carts, checkedCarts)).toBe(true);
   });
 
   test('장바구니 목록에서 특정 id에 해당하는 상품 목록을 필터링할 수 있어야 한다.', () => {

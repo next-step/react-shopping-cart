@@ -10,11 +10,11 @@ import {
   totalPriceOfCheckedCarts,
 } from './model';
 
-import { Carts } from 'types/cart';
+import { Carts, Cart } from 'types/cart';
 
 type State = {
   carts: Carts;
-  checked: Set<number>;
+  checked: Set<Cart>;
 };
 
 type Action = {
@@ -39,13 +39,13 @@ export const useCartStore = create<State & Action>()((set) => ({
 }));
 
 export const useCarts = () => useCartStore((state) => state.carts);
-export const useCheckedCartIds = () => useCartStore((state) => state.checked);
+export const useCheckedCarts = () => useCartStore((state) => state.checked);
 
 export const useIsCheckedAll = () =>
   useCartStore((state) => isCheckedAll(state.carts, state.checked));
 
 export const useTotalPriceOfCheckedCarts = () =>
-  useCartStore((state) => totalPriceOfCheckedCarts(state.carts, state.checked));
+  useCartStore((state) => totalPriceOfCheckedCarts(state.checked));
 
 export const useCartActions = () => {
   const actions = useCartStore((state) => state.actions);
@@ -53,18 +53,16 @@ export const useCartActions = () => {
   const carts = useCartStore((state) => state.carts);
 
   const toggle = useCallback(
-    (id: number) => {
-      const newCheckedIds = toggleCart(checked, id);
+    (cart: Cart) => {
+      const newCheckedCarts = toggleCart(checked, cart);
 
-      useCartStore.setState(() => ({ checked: newCheckedIds }));
+      useCartStore.setState(() => ({ checked: newCheckedCarts }));
     },
     [checked]
   );
 
   const checkAll = useCallback(() => {
-    const ids = carts.map((cart) => cart.id);
-
-    useCartStore.setState(() => ({ checked: new Set(ids) }));
+    useCartStore.setState(() => ({ checked: new Set(carts) }));
   }, [carts]);
 
   const uncheckAll = useCallback(() => {

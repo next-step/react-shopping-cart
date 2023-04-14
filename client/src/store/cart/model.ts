@@ -1,4 +1,4 @@
-import { Carts } from 'types/cart';
+import { Cart, Carts } from 'types/cart';
 
 export const increaseCartCount = (carts: Carts, id: number) =>
   carts.map((cart) => (cart.id === id ? { ...cart, count: cart.count + 1 } : cart));
@@ -6,34 +6,30 @@ export const increaseCartCount = (carts: Carts, id: number) =>
 export const decreaseCartCount = (carts: Carts, id: number) =>
   carts.map((cart) => (cart.id === id ? { ...cart, count: cart.count - 1 } : cart));
 
-export const toggleCart = (checkedIds: Set<number>, id: number) => {
-  const newCheckedIds = new Set(checkedIds);
+export const toggleCart = (checkedCarts: Set<Cart>, cart: Cart) => {
+  const newCheckedCarts = new Set(checkedCarts);
 
-  if (newCheckedIds.has(id)) {
-    newCheckedIds.delete(id);
+  if (newCheckedCarts.has(cart)) {
+    newCheckedCarts.delete(cart);
   } else {
-    newCheckedIds.add(id);
+    newCheckedCarts.add(cart);
   }
 
-  return newCheckedIds;
+  return newCheckedCarts;
 };
 
-export const totalPriceOfCheckedCarts = (carts: Carts, checkedIds: Set<number>) => {
-  return carts.reduce((total, { id, product: { price }, count }) => {
-    if (checkedIds.has(id)) {
-      return total + price * count;
-    } else {
-      return total;
-    }
-  }, 0);
-};
+export const totalPriceOfCheckedCarts = (checkedCarts: Set<Cart>) =>
+  Array.from(checkedCarts).reduce(
+    (total, { product: { price }, count }) => total + price * count,
+    0
+  );
 
-export const isCheckedAll = (carts: Carts, checkedIds: Set<number>) => {
-  if (checkedIds.size === 0) {
+export const isCheckedAll = (carts: Carts, checkedCarts: Set<Cart>) => {
+  if (checkedCarts.size === 0) {
     return false;
   }
 
-  return carts.length === checkedIds.size;
+  return carts.length === checkedCarts.size;
 };
 
 export const removeCartByIds = (carts: Carts, ids: number[]) =>

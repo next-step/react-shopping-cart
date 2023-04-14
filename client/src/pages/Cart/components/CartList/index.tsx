@@ -1,7 +1,7 @@
 import { ChangeEventHandler } from 'react';
 
 import { Button, Checkbox } from 'components';
-import { useCartActions, useCheckedCartIds, useIsCheckedAll } from 'store/cart';
+import { useCartActions, useCheckedCarts, useIsCheckedAll } from 'store/cart';
 
 import { useCartList, useDeleteCarts } from '../../hooks';
 import { CartItem, ExpectedPayment } from '../../components';
@@ -11,10 +11,10 @@ function CartList() {
   const { mutateAsync: deleteCarts, isLoading } = useDeleteCarts();
   const { checkAll, uncheckAll } = useCartActions();
 
-  const checkedCartIds = useCheckedCartIds();
+  const checkedCarts = useCheckedCarts();
   const isCheckedAll = useIsCheckedAll();
 
-  const isDisabled = checkedCartIds.size === 0;
+  const isDisabled = checkedCarts.size === 0;
   const isEmpty = carts.length === 0;
 
   const handleChangeCheckbox: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -27,7 +27,9 @@ function CartList() {
 
   const handleClickDeleteButton = async () => {
     if (window.confirm('선택하신 상품들을 모두 삭제하시겠습니까?')) {
-      await deleteCarts(Array.from(checkedCartIds));
+      const ids = Array.from(checkedCarts).map(({ id }) => id);
+
+      await deleteCarts(ids);
       refetchCartList();
     }
   };
