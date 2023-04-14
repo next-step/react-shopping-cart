@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { toggleCheck } from "../../../../store/cartSlice";
 
 export type CheckboxProps = {
   label?: string;
   id: number;
-  handleToggle: () => void;
 };
 
-const Checkbox = ({ id, label, handleToggle }: CheckboxProps) => {
+const Checkbox = ({ id, label }: CheckboxProps) => {
   const [checked, setChecked] = React.useState(false);
+  const dispatch = useDispatch();
 
-  const handleClick = () => {
-    setChecked(!checked);
-    handleToggle();
-  };
+  const handleClick = useCallback(() => {
+    setChecked((prevState) => !prevState);
+    dispatch(toggleCheck(id));
+  }, [dispatch, id]);
 
   return (
     <div className="checkbox-container">

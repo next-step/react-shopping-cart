@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import ProductInfo from "../components/domain/Product/ProductInfo/ProductInfo";
 
-type ProductType = {
-  id: string;
-  price: number;
-  name: string;
-  imageUrl: string;
-};
+const PRODUCTS_URL = "http://localhost:3000/";
 
-type ProductsType = ProductType[];
+const fetchProducts = async (options = {}) => {
+  const response = await fetch(PRODUCTS_URL, options);
+
+  if (!response.ok) {
+    throw new Error(`Fetch failed with status ${response.status}`);
+  }
+
+  return response.json();
+};
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([
@@ -16,21 +19,19 @@ const ProductsPage = () => {
   ]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/").then((res) =>
-      res.json().then((res) => {
-        setProducts(res);
-      })
-    );
+    fetchProducts()
+      .then((res) => setProducts(res))
+      .catch((err) => console.warn(err));
   }, []);
 
   return (
     <section className="product-container">
-      {products.map((product: ProductType) => (
+      {products.map(({ id, name, price }) => (
         <ProductInfo
-          key={product.id}
+          key={id}
           imageUrl="./assets/images/product.png"
-          name={product.name}
-          price={product.price}
+          name={name}
+          price={price}
         />
       ))}
     </section>
