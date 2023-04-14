@@ -1,12 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Product, Cart } from "../types/cartTypes";
-
-const initialState: Cart = {
-  products: [
-    { id: 0, name: "", price: 0, quantity: 1, imageUrl: "", isChecked: false },
-  ],
-  totalQuantity: 0,
-};
+import { initialState, Product } from "./store";
 
 const cartSlice = createSlice({
   name: "cart",
@@ -60,7 +53,6 @@ const cartSlice = createSlice({
       const existingItem = state.products.find(
         (item) => item.id === action.payload - 1
       );
-
       if (existingItem) {
         existingItem.isChecked = !existingItem.isChecked;
       }

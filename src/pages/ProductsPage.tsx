@@ -1,17 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ProductInfo from "../components/domain/Product/ProductInfo/ProductInfo";
+import { fetchProducts } from "../hooks/httpHooks";
 
 const PRODUCTS_URL = "http://localhost:3000/";
-
-const fetchProducts = async (options = {}) => {
-  const response = await fetch(PRODUCTS_URL, options);
-
-  if (!response.ok) {
-    throw new Error(`Fetch failed with status ${response.status}`);
-  }
-
-  return response.json();
-};
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([
@@ -19,7 +10,7 @@ const ProductsPage = () => {
   ]);
 
   useEffect(() => {
-    fetchProducts()
+    fetchProducts(PRODUCTS_URL)
       .then((res) => setProducts(res))
       .catch((err) => console.warn(err));
   }, []);

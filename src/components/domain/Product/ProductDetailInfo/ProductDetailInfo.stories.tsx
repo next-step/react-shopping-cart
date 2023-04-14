@@ -1,7 +1,7 @@
 import React from "react";
 import ProductDetailInfo from "./ProductDetailInfo";
 import { Meta, Story } from "@storybook/react/types-6-0";
-import { db } from "../../../../store/db";
+import { db } from "../../../../../db";
 require("../../../../css/common/index.css");
 
 export default {
