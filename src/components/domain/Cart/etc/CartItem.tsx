@@ -1,12 +1,10 @@
-import { State } from "@storybook/api";
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleCheck } from "../../../store/cartSlice";
-import { Cart, Product } from "../../../types/cartTypes";
 
-import { numberFormat } from "../../../utils/numberFormat";
-import Checkbox from "../../common/Input/Checkbox/Checkbox";
-import QuantityCounter from "../../common/Input/QuantityCounter/QuantityCounter";
+import { numberFormat } from "../../../../utils/numberFormat";
+import Checkbox from "../../../common/Input/Checkbox/Checkbox";
+import QuantityCounter from "../../../common/Input/QuantityCounter/QuantityCounter";
+import { RootState } from "../../../../store/store";
 
 export type CartItemProps = {
   id: number;
@@ -16,7 +14,7 @@ export type CartItemProps = {
 };
 
 const CartItem = ({ id, name, price, imageUrl }: CartItemProps) => {
-  const priceTimesQuantity = useSelector((state: State) => {
+  const priceTimesQuantity = useSelector((state: RootState) => {
     //TODO: products[0] -> products.find()로 변경하기
     const quantity = state.cart.products[0].quantity;
     return quantity * price;
