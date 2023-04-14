@@ -1,40 +1,39 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import {
   increaseQuantity,
   decreaseQuantity,
 } from "../../../../store/cartSlice";
+import { Product } from "../../../../store/store";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/storeHooks";
 
-export type QuantityCounterProps = {
-  productId: number;
+export type Props = {
+  product: Product;
 };
-// 고민: 전역 데이터(카트)의 아이템 수량을 바꾸는 dispatch는 어디서 써야하는 걸까? QuantityInput? 아니면 그 상위 컴포넌트? id는 어디까지 propsDrilling 되어야하나...
-const QuantityCounter = ({ productId }: QuantityCounterProps) => {
-  const [count, setCount] = useState(1);
-  const dispatch = useDispatch();
 
-  const handleIncrement = () => {
-    if (count < 20) {
-      setCount((prevCount) => prevCount + 1);
-      dispatch(increaseQuantity(productId));
-    }
+const QuantityCounter = ({ product }: Props) => {
+  const dispatch = useAppDispatch();
+  const updatedQuantity = useAppSelector((state) => {
+    const theItem = state.cart.products.find(
+      (globalCartProduct) => globalCartProduct.id === product.id
+    );
+    return theItem?.quantity;
+  });
+
+  const handleIncrease = () => {
+    dispatch(increaseQuantity(product));
   };
-
-  const handleDecrement = () => {
-    if (count > 1) {
-      setCount((prevCount) => prevCount - 1);
-      dispatch(decreaseQuantity(productId));
-    }
+  const handleDecrease = () => {
+    dispatch(decreaseQuantity(product));
   };
 
   return (
     <div className="number-input-container">
-      <input type="number" className="number-input" value={count} />
+      <input type="number" className="number-input" value={updatedQuantity} />
       <div>
-        <button className="number-input-button" onClick={handleIncrement}>
+        <button className="number-input-button" onClick={handleIncrease}>
           ▲
         </button>
-        <button className="number-input-button" onClick={handleDecrement}>
+        <button className="number-input-button" onClick={handleDecrease}>
           ▼
         </button>
       </div>

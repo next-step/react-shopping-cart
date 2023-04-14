@@ -1,5 +1,19 @@
+/* eslint-disable no-console */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { initialState, Product } from "./store";
+import { Product, SliceState } from "./store";
+
+const initialState: SliceState = {
+  products: [
+    {
+      id: 1,
+      name: "test_product",
+      price: 0,
+      imageUrl: "",
+      quantity: 1,
+      isChecked: false,
+    },
+  ],
+};
 
 const cartSlice = createSlice({
   name: "cart",
@@ -14,14 +28,14 @@ const cartSlice = createSlice({
       } else {
         state.products.push(action.payload);
       }
-      state.totalQuantity += action.payload.quantity;
+      state.products.length += action.payload.quantity;
     },
     removeFromCart: (state, action: PayloadAction<number>) => {
       const existingItem = state.products.find(
         (item) => item.id === action.payload - 1
       );
       if (existingItem) {
-        state.totalQuantity -= existingItem.quantity;
+        state.products.length -= existingItem.quantity;
         state.products = state.products.filter(
           (item) => item.id !== action.payload
         );
@@ -29,29 +43,29 @@ const cartSlice = createSlice({
     },
     clearCart: (state) => {
       state.products = [];
-      state.totalQuantity = 0;
+      state.products.length = 0;
     },
-    increaseQuantity: (state, action: PayloadAction<number>) => {
+    increaseQuantity: (state, action: PayloadAction<Product>) => {
+      const selectedProduct = action.payload;
       const existingItem = state.products.find(
-        (item) => item.id === action.payload - 1
+        (item) => item.id === selectedProduct.id
       );
-      if (existingItem) {
+      if (existingItem && existingItem.quantity < 20) {
         existingItem.quantity += 1;
-        state.totalQuantity += 1;
       }
     },
-    decreaseQuantity: (state, action: PayloadAction<number>) => {
+    decreaseQuantity: (state, action: PayloadAction<Product>) => {
+      const selectedProduct = action.payload;
       const existingItem = state.products.find(
-        (item) => item.id === action.payload - 1
+        (item) => item.id === selectedProduct.id
       );
       if (existingItem && existingItem.quantity > 1) {
         existingItem.quantity -= 1;
-        state.totalQuantity -= 1;
       }
     },
-    toggleCheck: (state, action: PayloadAction<number>) => {
+    toggleCheck: (state, action: PayloadAction<Product>) => {
       const existingItem = state.products.find(
-        (item) => item.id === action.payload - 1
+        (item) => item.id === action.payload.id - 1
       );
       if (existingItem) {
         existingItem.isChecked = !existingItem.isChecked;

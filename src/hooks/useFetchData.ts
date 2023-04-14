@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 export const fetchProducts = async (url: string, options = {}) => {
   const response = await fetch(url, options);
 

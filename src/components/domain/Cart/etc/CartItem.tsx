@@ -1,23 +1,21 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-
+import React from "react";
 import { numberFormat } from "../../../../utils/numberFormat";
 import Checkbox from "../../../common/Input/Checkbox/Checkbox";
 import QuantityCounter from "../../../common/Input/QuantityCounter/QuantityCounter";
-import { RootState } from "../../../../store/store";
+import { Product } from "../../../../store/store";
+import { useAppSelector } from "../../../../hooks/storeHooks";
 
-export type CartItemProps = {
-  id: number;
-  name: string;
-  price: number;
-  imageUrl: string;
+type Props = {
+  product: Product;
 };
 
-const CartItem = ({ id, name, price, imageUrl }: CartItemProps) => {
-  const priceTimesQuantity = useSelector((state: RootState) => {
-    //TODO: products[0] -> products.find()로 변경하기
-    const quantity = state.cart.products[0].quantity;
-    return quantity * price;
+const CartProductContainer = ({ product }: Props) => {
+  const { id, name, price, imageUrl } = product;
+  const updatedQuantity = useAppSelector((state) => {
+    const theItem = state.cart.products.find(
+      (globalCartProduct) => globalCartProduct.id === product.id
+    );
+    return theItem?.quantity;
   });
 
   return (
@@ -33,11 +31,13 @@ const CartItem = ({ id, name, price, imageUrl }: CartItemProps) => {
           src="./assets/svgs/trash.svg"
           alt="삭제"
         />
-        <QuantityCounter productId={id} />
-        <span className="cart-price">{numberFormat(priceTimesQuantity)}원</span>
+        <QuantityCounter product={product} />
+        <span className="cart-price">
+          {numberFormat(price * updatedQuantity!)}원
+        </span>
       </div>
     </div>
   );
 };
 
-export default CartItem;
+export default CartProductContainer;

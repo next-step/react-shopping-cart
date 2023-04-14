@@ -1,18 +1,29 @@
 import React, { useEffect, useState } from "react";
 import CheckboxContainer from "../etc/CheckboxContainer";
 import CartTitle from "../etc/CartTitle";
-import CartItem from "../etc/CartItem";
+import CartProductContainer from "../etc/CartItem";
 import Divider from "../../../common/Divider/Divider";
-import { fetchProducts } from "../../../../hooks/httpHooks";
+import { fetchProducts } from "../../../../hooks/useFetchData";
+import { Product } from "../../../../store/store";
+import { useAppSelector } from "../../../../hooks/storeHooks";
 
 const CartItemsSection = () => {
-  const [cartItems, setCartItems] = useState([
-    { id: 0, price: 0, name: "", imageUrl: "" },
-  ]);
+  const globalCart = useAppSelector((state) => state.cart.products);
+  const [cart, setCart] = useState(globalCart);
 
   useEffect(() => {
     fetchProducts(CART_PRODUCTS_URL)
-      .then((res) => setCartItems(res))
+      .then((products) => {
+        if (products.length > 0) {
+          setCart(
+            products.map((product: Product) => ({
+              ...product,
+              quantity: 1,
+              isChecked: false,
+            }))
+          );
+        }
+      })
       .catch((err) => console.warn(err));
   }, []);
 
@@ -20,11 +31,10 @@ const CartItemsSection = () => {
     <section className="cart-left-section">
       <CheckboxContainer />
       <CartTitle />
-      {cartItems.map((cartItem) => {
-        const { id, name, price, imageUrl } = cartItem;
+      {cart.map((product) => {
         return (
-          <div key={id}>
-            <CartItem id={id} price={price} name={name} imageUrl={imageUrl} />
+          <div key={product.id}>
+            <CartProductContainer product={product} />
             <Divider />
           </div>
         );

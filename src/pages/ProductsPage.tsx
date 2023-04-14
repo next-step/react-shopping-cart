@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ProductInfo from "../components/domain/Product/ProductInfo/ProductInfo";
-import { fetchProducts } from "../hooks/httpHooks";
+import { fetchProducts } from "../hooks/useFetchData";
 
 const PRODUCTS_URL = "http://localhost:3000/";
 
