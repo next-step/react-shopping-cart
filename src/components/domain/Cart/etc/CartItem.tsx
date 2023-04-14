@@ -21,7 +21,7 @@ const CartProductContainer = ({ product }: Props) => {
   return (
     <div className="cart-container">
       <div className="flex gap-15 mt-10">
-        <Checkbox id={id} />
+        <Checkbox product={product} />
         <img className="w-144 h-144" src={imageUrl} alt={name} />
         <span className="cart-name">{name}</span>
       </div>

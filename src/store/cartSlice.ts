@@ -63,9 +63,10 @@ const cartSlice = createSlice({
         existingItem.quantity -= 1;
       }
     },
-    toggleCheck: (state, action: PayloadAction<Product>) => {
+    selectItem: (state, action: PayloadAction<Product>) => {
+      const selectedProduct = action.payload;
       const existingItem = state.products.find(
-        (item) => item.id === action.payload.id - 1
+        (item) => item.id === selectedProduct.id
       );
       if (existingItem) {
         existingItem.isChecked = !existingItem.isChecked;
@@ -80,6 +81,6 @@ export const {
   clearCart,
   increaseQuantity,
   decreaseQuantity,
-  toggleCheck,
+  selectItem,
 } = cartSlice.actions;
 export default cartSlice;

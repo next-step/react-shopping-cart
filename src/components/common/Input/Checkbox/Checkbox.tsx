@@ -1,20 +1,25 @@
 /* eslint-disable no-console */
 import React, { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../../store/store";
+import { Product } from "../../../../store/store";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/storeHooks";
+import { selectItem } from "../../../../store/cartSlice";
 
-export type CheckboxProps = {
+export type Props = {
+  product: Product;
   label?: string;
-  id: number;
 };
 
-const Checkbox = ({ id, label }: CheckboxProps) => {
-  const [checked, setChecked] = React.useState(false);
-  const dispatch = useDispatch();
-  const cart = useSelector((state: RootState) => state.cart);
+const Checkbox = ({ product, label }: Props) => {
+  const dispatch = useAppDispatch();
+  const isChecked = useAppSelector((state) => {
+    const theItem = state.cart.products.find(
+      (globalCartProduct) => globalCartProduct.id === product.id
+    );
+    return theItem?.isChecked;
+  });
 
   const handleClick = () => {
-    setChecked((prevState) => !prevState);
+    dispatch(selectItem(product));
   };
 
   return (
@@ -23,7 +28,7 @@ const Checkbox = ({ id, label }: CheckboxProps) => {
         className="checkbox"
         name="checkbox"
         type="checkbox"
-        checked={checked}
+        checked={isChecked}
         onClick={handleClick}
       />
       {label && (
