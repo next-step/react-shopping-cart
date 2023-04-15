@@ -1,5 +1,5 @@
 import CartTrashImage from "./CartTrashImage";
-import { maskingProductPrice } from "../utils/index";
+import { maskingProductPrice } from "../utils/product";
 
 export default function CartContainer({ product }) {
   return (

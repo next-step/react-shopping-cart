@@ -1,4 +1,4 @@
-import { maskingProductPrice } from "../utils/index";
+import { maskingProductPrice } from "../utils/product";
 
 export default function OrderListItem({ orderDetail }) {
   return (

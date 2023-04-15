@@ -1,7 +1,7 @@
 import CartIcon from "../assets/svgs/cart.svg";
 import { Link } from "react-router-dom";
 import { ROUTE_PATH } from "../constants/page";
-import { maskingProductPrice } from "../utils/index";
+import { maskingProductPrice } from "../utils/product";
 
 export default function Product({ product }) {
   function handleCartClick(event) {
