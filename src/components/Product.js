@@ -1,13 +1,11 @@
 import CartIcon from "../assets/svgs/cart.svg";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ROUTE_PATH } from "../constants/page";
 
 export default function Product({ product }) {
-  const navigate = useNavigate();
-
-  function handleCartClick() {
-    if (confirm("장바구니에 물건이 담겼습니다. 장바구니로 이동하시겠습니까?"))
-      navigate(ROUTE_PATH.CART);
+  function handleCartClick(event) {
+    if (!confirm("장바구니에 물건이 담겼습니다. 장바구니로 이동하시겠습니까?"))
+      event.preventDefault();
   }
 
   return (
@@ -18,7 +16,9 @@ export default function Product({ product }) {
           <span className="product-info__name">{product.name}</span>
           <span className="product-info__price">{product.price}원</span>
         </div>
-        <img src={CartIcon} alt="장바구니" onClick={handleCartClick} />
+        <Link to={ROUTE_PATH.CART} onClick={handleCartClick}>
+          <img src={CartIcon} alt="장바구니" />
+        </Link>
       </div>
     </div>
   );
