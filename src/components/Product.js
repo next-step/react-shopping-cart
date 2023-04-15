@@ -18,7 +18,7 @@ export default function Product({ product }) {
           <span className="product-info__name">{product.name}</span>
           <span className="product-info__price">{product.price}원</span>
         </div>
-        <img src={CartIcon} alt="장바구니" onClick={() => handleCartClick()} />
+        <img src={CartIcon} alt="장바구니" onClick={handleCartClick} />
       </div>
     </div>
   );
