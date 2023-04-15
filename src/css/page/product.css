@@ -36,6 +36,11 @@
   font-size: 24px;
 }
 
+.product-empty {
+  margin-top: 50px;
+  font-size: 24px;
+}
+
 .product-detail-button {
   width: 100%;
   padding: 24px;

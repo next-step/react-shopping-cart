@@ -11,12 +11,17 @@ export default function ProductList() {
         setProducts(data);
       });
   }, []);
-
   return (
-    <section className="product-container">
-      {products.map((product) => (
-        <Product key={product.id} product={product}></Product>
-      ))}
-    </section>
+    <>
+      {products.length > 0 ? (
+        <section className="product-container">
+          products.map((product) => (
+          <Product key={product.id} product={product}></Product>
+          ))
+        </section>
+      ) : (
+        <h1 className="product-empty flex-center">등록된 상품이 없습니다.</h1>
+      )}
+    </>
   );
 }
