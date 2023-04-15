@@ -1,6 +1,7 @@
 import CartIcon from "../assets/svgs/cart.svg";
 import { Link } from "react-router-dom";
 import { ROUTE_PATH } from "../constants/page";
+import { maskingProductPrice } from "../utils/index";
 
 export default function Product({ product }) {
   function handleCartClick(event) {
@@ -14,7 +15,9 @@ export default function Product({ product }) {
       <div className="flex justify-between w-280 p-5">
         <div className="product-info">
           <span className="product-info__name">{product.name}</span>
-          <span className="product-info__price">{product.price}원</span>
+          <span className="product-info__price">
+            {maskingProductPrice(product.price)}원
+          </span>
         </div>
         <Link to={ROUTE_PATH.CART} onClick={handleCartClick}>
           <img className="cart-icon" src={CartIcon} alt="장바구니" />

@@ -1,4 +1,5 @@
 import CartTrashImage from "./CartTrashImage";
+import { maskingProductPrice } from "../utils/index";
 
 export default function CartContainer({ product }) {
   return (
@@ -27,7 +28,9 @@ export default function CartContainer({ product }) {
               <button className="number-input-button">▼</button>
             </div>
           </div>
-          <span className="cart-price">{product.price}원</span>
+          <span className="cart-price">
+            {maskingProductPrice(product.price)}원
+          </span>
         </div>
       </div>
       <hr className="divide-line-thin mt-10" />

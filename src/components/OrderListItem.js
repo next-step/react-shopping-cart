@@ -1,3 +1,5 @@
+import { maskingProductPrice } from "../utils/index";
+
 export default function OrderListItem({ orderDetail }) {
   return (
     <div className="order-list-item">
@@ -10,7 +12,8 @@ export default function OrderListItem({ orderDetail }) {
         <div className="flex-col gap-15">
           <span className="order-name">{orderDetail.name}</span>
           <span className="order-info">
-            {orderDetail.price}원 / 수량: {orderDetail.quantity}개
+            {maskingProductPrice(orderDetail.price)}원 / 수량:{" "}
+            {orderDetail.quantity}개
           </span>
         </div>
       </div>
