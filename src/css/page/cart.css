@@ -58,3 +58,11 @@
   color: #333333;
   align-self: flex-end;
 }
+
+.cart-icon {
+  cursor: pointer;
+}
+
+.trash-icon {
+  cursor: pointer;
+}

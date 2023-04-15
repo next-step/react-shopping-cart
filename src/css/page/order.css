@@ -88,3 +88,7 @@
 .order-detail-title {
   font-size: 24px;
 }
+
+.order-list__span {
+  cursor: pointer;
+}

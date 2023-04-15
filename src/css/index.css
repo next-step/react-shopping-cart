@@ -6,6 +6,10 @@ body {
   margin: 24px auto 0;
 }
 
+button {
+  cursor: pointer;
+}
+
 .divide-line {
   width: 100%;
   border: 2px solid black;

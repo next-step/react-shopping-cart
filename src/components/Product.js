@@ -17,7 +17,7 @@ export default function Product({ product }) {
           <span className="product-info__price">{product.price}원</span>
         </div>
         <Link to={ROUTE_PATH.CART} onClick={handleCartClick}>
-          <img src={CartIcon} alt="장바구니" />
+          <img className="cart-icon" src={CartIcon} alt="장바구니" />
         </Link>
       </div>
     </div>
