@@ -11,7 +11,9 @@ export default function Product({ product }) {
 
   return (
     <div data-id={product.id}>
-      <img src={product.imageUrl} alt={product.name} />
+      <div className="product-div-inner">
+        <img src={product.imageUrl} alt={product.name} />
+      </div>
       <div className="flex justify-between w-280 p-5">
         <div className="product-info">
           <span className="product-info__name">{product.name}</span>

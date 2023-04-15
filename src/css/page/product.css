@@ -2,9 +2,9 @@
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(4, 1fr);
-  flex-wrap: wrap;  
+  flex-wrap: wrap;
   gap: 20px;
-  padding: 50px 240px;  
+  padding: 50px 240px;
 }
 
 .product-info {
@@ -14,9 +14,6 @@
 
 .product-info__name {
   font-size: 12px;
-}
-
-.product-info__price {
 }
 
 .product-detail-container {
@@ -45,4 +42,10 @@
   background: #73675c;
   font-size: 24px;
   color: white;
+}
+
+.product-div-inner {
+  padding-bottom: 100%;
+  height: 0;
+  position: relative;
 }
