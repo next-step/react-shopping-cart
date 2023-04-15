@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import Product from "../../components/Product";
+import apiClient from "../../api/apiClient";
+import { API } from "../../constants/api";
 
 export default function ProductList() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("/products")
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data);
-      });
+    async function getProductData() {
+      const products = await apiClient(API.PRODUCTS);
+      setProducts(products);
+    }
+    getProductData();
   }, []);
   return (
     <>
