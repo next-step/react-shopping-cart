@@ -60,7 +60,7 @@ function useInfiniteFetch<T = unknown>({
 
   const [state, dispatch] = useReducer(fetchReducer, initialState);
   const [shouldRefetch, setShouldRefetch] = useState(false);
-  const [page, setPage] = useState(-1);
+  const [page, setPage] = useState<number | null>(null);
   const [hasNextPage, setHasNextPage] = useState(true);
 
   function refetch() {
@@ -87,9 +87,11 @@ function useInfiniteFetch<T = unknown>({
   function fetchMore() {
     if (!hasNextPage) return;
 
+    const newPage = page !== null ? page + 1 : 0;
+
     dispatch({
       type: 'pending',
-      payload: fetcher({ page: page + 1, size }).then(resolvePromise, rejectPromise),
+      payload: fetcher({ page: newPage, size }).then(resolvePromise, rejectPromise),
     });
   }
 
