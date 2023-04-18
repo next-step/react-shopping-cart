@@ -1,21 +1,7 @@
 import { rest } from "msw";
+import { db } from "../store/db";
 
-const ORDERS = [
-  {
-    id: "1",
-    price: 10000,
-    name: "치킨",
-    imageUrl: "http://example.com/chicken.jpg",
-    quantity: 5,
-  },
-  {
-    id: "2",
-    price: 20000,
-    name: "피자",
-    imageUrl: "http://example.com/pizza.jpg",
-    quantity: 3,
-  },
-];
+const ORDERS = db.orders;
 
 export const ordersHandlers = [
   rest.get("/orders", (req, res, ctx) => {
@@ -30,7 +16,7 @@ export const ordersHandlers = [
   }),
   rest.get("/orders/:orderId", (req, res, ctx) => {
     const { orderId } = req.params;
-    const orderItem = ORDERS.find((order) => order.id === orderId);
+    const orderItem = ORDERS.find((order) => order.id === +orderId);
     return res(
       ctx.status(200),
       ctx.json(orderItem || { message: "product not found" })

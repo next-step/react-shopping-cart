@@ -17,5 +17,5 @@
     "jsx": "react-jsx",
     "types": ["@reduxjs/toolkit"]
   },
-  "include": ["src/**/*", "public/mockServiceWorker.js", "db.js"]
+  "include": ["src/**/*", "public/mockServiceWorker.js", "src/store/db.js"]
 }
