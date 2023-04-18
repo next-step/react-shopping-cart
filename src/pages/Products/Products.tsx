@@ -3,7 +3,7 @@ import React from "react";
 import { ProductItem } from "../../components/ProductItem";
 
 //TODO: 지우기
-import { sampleProducts } from "../../tododelete/sampledb";
+import sampleProducts from "../../samplejson/products";
 
 function Products() {
   return (

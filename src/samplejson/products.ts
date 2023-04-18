@@ -1,4 +1,4 @@
-export const sampleProducts = [
+export default [
   {
     id: 1,
     name: "냉면용기(대)",
