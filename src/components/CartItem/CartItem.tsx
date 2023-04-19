@@ -31,7 +31,6 @@ function CartItem({ item: { product, checked } }: TCartItem) {
       <div className="flex-col-center justify-end gap-15">
         <img className="cart-trash-svg" src={deleteSvg} alt="삭제" />
         <AmountHandler amount={amount} onIncrement={handleIncrement} onDecrement={handleDecrement} />
-        {/* TODO: 수량에 맞춰 계산하기 */}
         <span className="cart-price">{totalPrice.toLocaleString()}원</span>
       </div>
     </div>

@@ -22,12 +22,28 @@ function Cart() {
             <button className="delete-button">상품삭제</button>
           </div>
           <h3 className="cart-title">든든배송 상품(3개)</h3>
+          <hr className="divide-line-gray mt-10" />
           {sampleCartItems.map((cartItem) => (
             <React.Fragment key={cartItem.id}>
               <CartItem item={cartItem} />
-              <hr className="divide-line-gray mt-10" />
+              <hr className="divide-line-thin mt-10" />
             </React.Fragment>
           ))}
+        </section>
+        <section className="cart-right-section">
+          <div className="cart-right-section__top">
+            <h3 className="cart-title">결제예상금액</h3>
+          </div>
+          <hr className="divide-line-thin" />
+          <div className="cart-right-section__bottom">
+            <div className="flex justify-between p-20 mt-20">
+              <span className="highlight-text">결제예상금액</span>
+              <span className="highlight-text">21,800원</span>
+            </div>
+            <div className="flex-center mt-30 mx-10">
+              <button className="primary-button flex-center">주문하기(3개)</button>
+            </div>
+          </div>
         </section>
       </div>
     </section>
