@@ -5,8 +5,8 @@ import { Product, SliceState } from "./store";
 const initialState: SliceState = {
   products: [
     {
-      id: 1,
-      name: "test_product",
+      id: 0,
+      name: "",
       price: 0,
       imageUrl: "",
       quantity: 1,
@@ -21,14 +21,15 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action: PayloadAction<Product>) => {
       const existingItem = state.products.find(
-        (item) => item.id === action.payload.id - 1
+        (item) => item.id === action.payload.id
       );
       if (existingItem) {
         existingItem.quantity += action.payload.quantity;
+        alert("exist");
       } else {
-        state.products.push(action.payload);
+        state.products = [...state.products, action.payload];
+        alert("pushed");
       }
-      state.products.length += action.payload.quantity;
     },
     removeFromCart: (state, action: PayloadAction<number>) => {
       const existingItem = state.products.find(

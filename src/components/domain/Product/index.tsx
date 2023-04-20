@@ -9,13 +9,8 @@ const Products = () => {
 
   return (
     <section className="product-container">
-      {products.map(({ id, name, price }) => (
-        <ProductInfo
-          key={id}
-          imageUrl="./assets/images/product.png"
-          name={name}
-          price={price}
-        />
+      {products.map((product) => (
+        <ProductInfo key={product.id} product={product} />
       ))}
     </section>
   );

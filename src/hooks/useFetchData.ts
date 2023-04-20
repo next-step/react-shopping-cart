@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
-import { SliceState } from "../store/store";
 import { Product } from "../store/store";
 
-export const useFetchData = (url: string, slice: Product[], options = {}) => {
-  const [data, setData] = useState(slice);
+export const useFetchData = (
+  url: string,
+  initialState: Product[],
+  options = {}
+) => {
+  const [data, setData] = useState(initialState);
 
   useEffect(() => {
     async function fetchProducts() {

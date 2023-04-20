@@ -12,7 +12,5 @@ const Template: Story<ProductInfoProps> = (args) => <ProductInfo {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  name: db.products[0].name,
-  price: db.products[0].price,
-  imageUrl: db.products[0].imageUrl,
+  product: { ...db.products[0], isChecked: false, quantity: 2 },
 };
