@@ -24,7 +24,9 @@ const CartItemsSection = () => {
           );
         }
       })
-      .catch((err) => console.warn(err));
+      .catch((err) => {
+        throw new Error(err);
+      });
   }, []);
 
   return (

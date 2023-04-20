@@ -27,7 +27,7 @@
       }
     ],
     "@typescript-eslint/no-var-requires": "off",
-    "no-console": ["error", { "allow": ["warn", "error"] }]
+    "no-console": ["error"]
   },
   "settings": {
     "react": {

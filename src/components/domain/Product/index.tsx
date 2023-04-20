@@ -10,7 +10,9 @@ const Products = () => {
   useEffect(() => {
     fetchProducts(PRODUCTS_URL)
       .then((res) => setProducts(res))
-      .catch((err) => console.warn(err));
+      .catch((err) => {
+        throw new Error(err);
+      });
   }, []);
 
   return (
