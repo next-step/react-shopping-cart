@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Product } from "../../../../store/store";
 import Button from "../../../common/Button/Button";
 import { useAppDispatch } from "../../../../hooks/storeHooks";
@@ -12,10 +12,11 @@ export type ProductInfoProps = {
 const ProductInfo = ({ product }: ProductInfoProps) => {
   const { name, price, imageUrl } = product;
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleClick = () => {
-    alert(product.id);
     dispatch(addToCart(product));
+    navigate("/cart");
   };
 
   return (
