@@ -1,19 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ProductInfo from "./ProductInfo/ProductInfo";
-import { fetchProducts } from "../../../hooks/useFetchData";
+import { useFetchData } from "../../../hooks/useFetchData";
+import { useAppSelector } from "../../../hooks/storeHooks";
 
 const Products = () => {
-  const [products, setProducts] = useState([
-    { id: "", price: 0, name: "", imageUrl: "" },
-  ]);
-
-  useEffect(() => {
-    fetchProducts(PRODUCTS_URL)
-      .then((res) => setProducts(res))
-      .catch((err) => {
-        throw new Error(err);
-      });
-  }, []);
+  const globalProduct = useAppSelector((state) => state.cart.products);
+  const products = useFetchData(PRODUCTS_URL, globalProduct);
 
   return (
     <section className="product-container">

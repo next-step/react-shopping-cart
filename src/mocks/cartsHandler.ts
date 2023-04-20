@@ -16,7 +16,7 @@ export const cartsHandlers = [
   }),
   rest.delete("/cart/:cardId", (req, res, ctx) => {
     const { cardId } = req.params;
-    const cartIndex = CARTS.findIndex((cart) => cart.id + "" === cardId);
+    const cartIndex = CARTS.findIndex((cart) => cart.id === +cardId);
 
     CARTS.splice(cartIndex, 1);
 

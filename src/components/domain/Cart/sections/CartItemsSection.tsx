@@ -3,31 +3,14 @@ import CheckboxContainer from "../etc/CheckboxContainer";
 import CartTitle from "../etc/CartTitle";
 import CartProductContainer from "../etc/CartItem";
 import Divider from "../../../common/Divider/Divider";
-import { fetchProducts } from "../../../../hooks/useFetchData";
+import { useFetchData } from "../../../../hooks/useFetchData";
 import { Product } from "../../../../store/store";
 import { useAppSelector } from "../../../../hooks/storeHooks";
 
 const CartItemsSection = () => {
   const globalCart = useAppSelector((state) => state.cart.products);
-  const [cart, setCart] = useState(globalCart);
 
-  useEffect(() => {
-    fetchProducts(CART_PRODUCTS_URL)
-      .then((products) => {
-        if (products.length > 0) {
-          setCart(
-            products.map((product: Product) => ({
-              ...product,
-              quantity: 1,
-              isChecked: false,
-            }))
-          );
-        }
-      })
-      .catch((err) => {
-        throw new Error(err);
-      });
-  }, []);
+  const cart = useFetchData(CART_PRODUCTS_URL, globalCart);
 
   return (
     <section className="cart-left-section">
