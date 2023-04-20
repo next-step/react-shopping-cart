@@ -23,12 +23,11 @@ const cartSlice = createSlice({
       const existingItem = state.products.find(
         (item) => item.id === action.payload.id
       );
+
       if (existingItem) {
         existingItem.quantity += action.payload.quantity;
-        alert("exist");
       } else {
         state.products = [...state.products, action.payload];
-        alert("pushed");
       }
     },
     removeFromCart: (state, action: PayloadAction<number>) => {
