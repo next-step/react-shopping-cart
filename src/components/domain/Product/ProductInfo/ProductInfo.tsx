@@ -6,6 +6,7 @@ import { useAppDispatch } from "../../../../hooks/storeHooks";
 import { addToCart } from "../../../../store/cartSlice";
 
 export type ProductInfoProps = {
+  ref?: ((node: HTMLElement | null) => void) | null;
   product: Product;
 };
 
