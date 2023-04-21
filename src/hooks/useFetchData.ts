@@ -7,21 +7,31 @@ export const useFetchData = (
   options = {}
 ) => {
   const [data, setData] = useState(initialState);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [hasMore, setHasMore] = useState(false);
 
   useEffect(() => {
-    async function fetchProducts() {
-      const products = await fetch(url);
-      const data = await products.json();
-      setData(
-        data.map((product: Product) => ({
+    setLoading(true);
+    setError(null);
+    fetch(url)
+      .then((res) => res.json())
+      .then((res) =>
+        res.map((product: Product) => ({
           ...product,
           quantity: 1,
           isChecked: false,
         }))
-      );
-    }
-    fetchProducts();
+      )
+      .then((res) => {
+        setData(res);
+        setHasMore(res.length > 0);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error);
+      });
   }, [url]);
 
-  return data;
+  return { data, loading, error, hasMore };
 };

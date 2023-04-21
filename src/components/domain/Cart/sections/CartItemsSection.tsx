@@ -6,11 +6,14 @@ import Divider from "../../../common/Divider/Divider";
 import { useFetchData } from "../../../../hooks/useFetchData";
 import { Product } from "../../../../store/store";
 import { useAppSelector } from "../../../../hooks/storeHooks";
+import { initialState } from "../../../../store/cartSlice";
 
 const CartItemsSection = () => {
   const globalCart = useAppSelector((state) => state.cart.products);
 
-  const cart = useFetchData(CART_PRODUCTS_URL, globalCart);
+  // 디버깅 위한 일시적 변경
+  // const cart = useFetchData(CART_PRODUCTS_URL, globalCart);
+  const cart = initialState.products;
 
   return (
     <section className="cart-left-section">

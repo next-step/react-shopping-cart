@@ -2,7 +2,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Product, SliceState } from "./store";
 
-const initialState: SliceState = {
+export const initialState: SliceState = {
   products: [
     {
       id: 0,
