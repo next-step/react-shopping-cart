@@ -1,7 +1,5 @@
 export const numberFormat = (price: number) => {
-  const number = price;
-
-  const formattedNumber = new Intl.NumberFormat("en-US").format(number);
+  const formattedNumber = new Intl.NumberFormat("en-US").format(price);
 
   return formattedNumber;
 };

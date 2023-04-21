@@ -26,7 +26,8 @@
         "usePrettierrc": false
       }
     ],
-    "@typescript-eslint/no-var-requires": "off"
+    "@typescript-eslint/no-var-requires": "off",
+    "no-console": ["error"]
   },
   "settings": {
     "react": {

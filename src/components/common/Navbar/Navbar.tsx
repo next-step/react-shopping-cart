@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
 
@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav className="nav flex justify-around">
       <div className="flex-center">
-        <Link to="products">
+        <Link to="">
           <h1 className="nav-title">CLEAN CODE SHOP</h1>
         </Link>
       </div>
@@ -22,4 +22,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default memo(Navbar);

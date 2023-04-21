@@ -1,13 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Product } from "../../../../store/store";
+import Button from "../../../common/Button/Button";
+import { useAppDispatch } from "../../../../hooks/storeHooks";
+import { addToCart } from "../../../../store/cartSlice";
 
 export type ProductInfoProps = {
-  imageUrl: string;
-  name: string;
-  price: number;
+  ref?: ((node: HTMLElement | null) => void) | null;
+  product: Product;
 };
 
-const ProductInfo = ({ imageUrl, name, price }: ProductInfoProps) => {
+const ProductInfo = ({ product }: ProductInfoProps) => {
+  const { name, price, imageUrl } = product;
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    dispatch(addToCart(product));
+    navigate("/cart");
+  };
+
   return (
     <div className="w-280">
       <img src={imageUrl} alt="PET보틀-정사각(420ml)" />
@@ -16,9 +28,9 @@ const ProductInfo = ({ imageUrl, name, price }: ProductInfoProps) => {
           <p className="product-info__name">{name}</p>
           <p className="product-info__price">{price}</p>
         </div>
-        <Link to="cart">
+        <Button onClick={handleClick} className="">
           <img src="assets/svgs/cart.svg" alt="장바구니" />
-        </Link>
+        </Button>
       </div>
     </div>
   );
