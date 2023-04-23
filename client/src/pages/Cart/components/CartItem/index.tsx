@@ -1,20 +1,56 @@
+import { ChangeEventHandler } from 'react';
+import { css, cx } from '@emotion/css';
+
 import { Button, Checkbox, Counter } from 'components';
 import { useCounter } from 'hooks';
+import { useCartActions, useCheckedCarts } from 'store/cart';
 
+import { colors } from 'constants/colors';
 import { Cart } from 'types/cart';
 import { TrashSVG } from 'assets/svgs';
-import { css, cx } from '@emotion/css';
-import { colors } from 'constants/colors';
+
+import { useDeleteCarts } from '../../hooks';
 
 interface CartItemProps {
   cart: Cart;
+  refetchCartList: () => void;
 }
 
-function CartItem({ cart }: CartItemProps) {
-  const { count: defaultCount, product } = cart;
-  const { imageUrl, name, price } = product;
-  const { count, minus, plus } = useCounter(defaultCount);
-  const totalPrice = price * count;
+function CartItem({ cart, refetchCartList }: CartItemProps) {
+  const {
+    count: defaultCount,
+    product: { imageUrl, name, price },
+    id,
+  } = cart;
+
+  const { mutateAsync: deleteCarts, isLoading } = useDeleteCarts();
+  const counter = useCounter(defaultCount);
+  const cartAction = useCartActions();
+  const checkedCarts = useCheckedCarts();
+
+  const isChecked = checkedCarts.has(cart);
+  const totalPrice = price * counter.count;
+
+  const handleChangeCheckbox: ChangeEventHandler<HTMLInputElement> = (e) => {
+    cartAction.toggle(cart);
+  };
+
+  const handleClickPlusButton = () => {
+    counter.plus();
+    cartAction.increase(id);
+  };
+
+  const handleClickMinusButton = () => {
+    counter.minus();
+    cartAction.decrease(id);
+  };
+
+  const handlePressDeleteButton = async () => {
+    if (window.confirm('선택하신 상품을 모두 삭제하시겠습니까?')) {
+      await deleteCarts([id]);
+      refetchCartList();
+    }
+  };
 
   return (
     <div
@@ -30,7 +66,7 @@ function CartItem({ cart }: CartItemProps) {
       )}
     >
       <div className="flex gap-15 mt-10">
-        <Checkbox />
+        <Checkbox checked={isChecked} onChange={handleChangeCheckbox} />
         <img className="w-144 h-144" src={imageUrl} alt={name} />
         <span className="cart-name">{name}</span>
       </div>
@@ -43,10 +79,16 @@ function CartItem({ cart }: CartItemProps) {
           gap: 15px;
         `}
       >
-        <Button>
+        <Button onClick={handlePressDeleteButton} loading={isLoading}>
           <TrashSVG width={18} />
         </Button>
-        <Counter count={count} onMinus={minus} onPlus={plus} min={1} />
+        <Counter
+          count={counter.count}
+          onMinus={handleClickMinusButton}
+          onPlus={handleClickPlusButton}
+          min={1}
+          max={20}
+        />
         <span className="cart-price">{totalPrice.toLocaleString('ko')}원</span>
       </div>
     </div>

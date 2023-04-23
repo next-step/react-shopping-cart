@@ -45,27 +45,34 @@ function useMutation<T = unknown, P = unknown>({
 
   const [state, dispatch] = useReducer(mutateReducer, initialState);
 
-  const mutate = async (params: P) => {
+  function resolvePromise(data: T) {
+    dispatch({ type: 'mutated', payload: data });
+    onSuccess?.(data);
+  }
+  function rejectPromise(error: Error) {
+    dispatch({ type: 'error', payload: error });
+    onError?.(error);
+  }
+
+  const mutate = (params: P) => {
+    if (!mutation) return;
+
     dispatch({ type: 'loading' });
 
-    try {
-      const data = await mutation(params);
-
-      dispatch({ type: 'mutated', payload: data });
-      onSuccess?.(data);
-    } catch (error: unknown) {
-      if (isError(error) && error.name === 'AbortError') {
-        return;
-      }
-
-      dispatch({ type: 'error', payload: error as Error });
-      onError?.(error);
-    }
+    mutation(params).then(resolvePromise, rejectPromise);
   };
 
-  return { ...state, mutate, isLoading: state.status === 'loading' };
-}
+  const mutateAsync = async (params: P) => {
+    dispatch({ type: 'loading' });
 
-const isError = (args: any): args is Error => args !== undefined;
+    return mutation(params).then((data) => {
+      resolvePromise(data);
+
+      return data;
+    });
+  };
+
+  return { ...state, mutate, mutateAsync, isLoading: state.status === 'loading' };
+}
 
 export default useMutation;

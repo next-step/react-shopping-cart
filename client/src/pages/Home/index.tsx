@@ -1,12 +1,17 @@
 import { Suspense } from 'react';
+
+import { ErrorBoundary } from 'components';
+
 import { ProductList, ProductListFallback } from './components';
 
 function Home() {
   return (
     <div className="container">
-      <Suspense fallback={<ProductListFallback />}>
-        <ProductList />
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={<ProductListFallback />}>
+          <ProductList />
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 }

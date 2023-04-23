@@ -1,4 +1,7 @@
 import { Suspense } from 'react';
+
+import { ErrorBoundary } from 'components';
+
 import { CartList, CartListFallback } from './components';
 
 function Cart() {
@@ -8,9 +11,11 @@ function Cart() {
         <h2 className="cart-section__title">장바구니</h2>
         <hr className="divide-line mt-20" />
       </header>
-      <Suspense fallback={<CartListFallback />}>
-        <CartList />
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={<CartListFallback />}>
+          <CartList />
+        </Suspense>
+      </ErrorBoundary>
     </section>
   );
 }
