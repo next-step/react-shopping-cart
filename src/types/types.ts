@@ -1,18 +1,21 @@
 export interface IProduct {
-  id?: number;
+  id: number | string;
   name: string;
   price: number;
-  amount?: number;
   imageUrl: string;
+  amount?: number;
+  checked?: boolean;
+
+  createdAt?: number;
+  updatedAt?: number;
 }
 
-export interface ICartItem {
-  id: number;
-  product: IProduct;
-  checked?: boolean;
+export interface ICart {
+  // id: number | string;
+  products: IProduct[];
 }
 
 export interface IOrderItem {
-  id: number;
+  id: number | string;
   orderDetails: IProduct[];
 }

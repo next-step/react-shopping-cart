@@ -9,12 +9,12 @@ type TAmountHandlerProps = {
 function AmountHandler({ amount, onIncrement, onDecrement }: TAmountHandlerProps) {
   return (
     <div className="number-input-container">
-      <input type="number" className="number-input" value={amount} />
+      <input type="number" className="number-input" value={amount} readOnly />
       <div>
-        <button type="button" className="number-input-button" onClick={onIncrement}>
+        <button type="button" className="number-input-button" onClick={() => onIncrement?.()}>
           ▲
         </button>
-        <button type="button" className="number-input-button" onClick={onDecrement}>
+        <button type="button" className="number-input-button" onClick={() => onDecrement?.()}>
           ▼
         </button>
       </div>
