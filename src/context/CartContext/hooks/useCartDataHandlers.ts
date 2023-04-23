@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
-import { ICart, IProduct } from '../../../types/types';
+import { useState } from 'react';
+import { ICart, IProduct } from '../../../domain/shopping-cart/types';
+import { CART } from '../../../domain/shopping-cart/constants';
 
 const CART_INITIAL_VALUE = { products: [] };
 
 export type TCartDataHandlers = {
   insertProducts: (products: IProduct[]) => void;
   updateProducts: (products: IProduct[]) => void;
-  removeProducts: (products: IProduct[]) => void;
+  deleteProducts: (products: IProduct[]) => void;
 
   insertProduct: (product: IProduct) => void;
   updateProduct: (product: IProduct) => void;
-  removeProduct: (product: IProduct) => void;
+  deleteProduct: (product: IProduct) => void;
 };
 
 type THookCartDataHandlers = () => {
@@ -18,10 +19,14 @@ type THookCartDataHandlers = () => {
   cartDataHandlers: TCartDataHandlers;
 };
 
+const {
+  PRODUCTS: { AMOUNT_UNIT },
+} = CART;
+
 const sortProducts = (products: IProduct[]) => products.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
 
 const insertAndUpdateProducts = (oldProducts: IProduct[], newProducts: IProduct[], isIncreasingAmount = false) => {
-  const currentTime = new Date().getTime();
+  const currentTime = Date.now();
   const newProductIds = newProducts.map(({ id }) => id);
 
   return [
@@ -30,7 +35,7 @@ const insertAndUpdateProducts = (oldProducts: IProduct[], newProducts: IProduct[
       if (oldProduct) {
         return {
           ...product,
-          amount: isIncreasingAmount ? (oldProduct?.amount || 0) + 1 : product.amount,
+          amount: isIncreasingAmount ? (oldProduct?.amount || 0) + AMOUNT_UNIT : product.amount,
           updatedAt: currentTime,
         };
       }
@@ -69,7 +74,7 @@ const useCartDataHandlers: THookCartDataHandlers = () => {
     });
   };
 
-  const removeProducts = (products: IProduct[]) => {
+  const deleteProducts = (products: IProduct[]) => {
     const { products: oldProducts } = cart;
     const ids = products.map(({ id }) => id);
 
@@ -81,16 +86,16 @@ const useCartDataHandlers: THookCartDataHandlers = () => {
 
   const insertProduct = (product: IProduct) => insertProducts([product]);
   const updateProduct = (product: IProduct) => updateProducts([product]);
-  const removeProduct = (product: IProduct) => removeProducts([product]);
+  const deleteProduct = (product: IProduct) => deleteProducts([product]);
 
   const cartDataHandlers = {
     insertProducts,
     updateProducts,
-    removeProducts,
+    deleteProducts,
 
     insertProduct,
     updateProduct,
-    removeProduct,
+    deleteProduct,
   };
 
   return { cart, cartDataHandlers };

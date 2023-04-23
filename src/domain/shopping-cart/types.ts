@@ -1,3 +1,4 @@
+// 규격은 README.md에 안내된 Mock Server 데이터의 규격을 참고하였습니다.
 export interface IProduct {
   id: number | string;
   name: string;

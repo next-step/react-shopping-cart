@@ -1,5 +1,5 @@
-import React from "react";
-import { IProduct } from "../../types/types";
+import React from 'react';
+import { IProduct } from '../../domain/shopping-cart/types';
 
 type TOrderItemProps = {
   item: IProduct;

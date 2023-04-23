@@ -8,7 +8,7 @@ function Cart() {
     estimatedPrice,
     checkedProducts,
     allChecked,
-    cartDataHandlers: { updateProducts, removeProducts },
+    cartDataHandlers: { updateProducts, deleteProducts },
   } = useCartContext();
 
   const handleAllCheck = useCallback(() => {
@@ -19,7 +19,7 @@ function Cart() {
     if (checkedProducts.length === 0) return;
     if (!confirm(`정말 선택하신 ${checkedProducts.length}개의 상품을 삭제하시겠습니까?`)) return;
 
-    removeProducts(checkedProducts);
+    deleteProducts(checkedProducts);
   }, [cart]);
 
   return (

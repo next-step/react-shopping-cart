@@ -1,40 +1,22 @@
-import React, { useCallback, useMemo } from 'react';
-import { IProduct } from '../../types/types';
+import React from 'react';
 import deleteSvg from '../../assets/svgs/trash.svg';
 import AmountHandler from './AmountHandler';
-import { useCartContext } from '../../context/CartContext/CartContext';
+import useCartItem from './hooks/useCartItem';
+import { IProduct } from '../../domain/shopping-cart/types';
+import { CART } from '../../domain/shopping-cart/constants';
 
 type TCartItemProps = {
   product: IProduct;
 };
 
+const {
+  PRODUCTS: { DEFAULT_INITIAL_AMOUNT },
+} = CART;
+
 function CartItem({ product }: TCartItemProps) {
-  const {
-    cart,
-    cartDataHandlers: { updateProduct, removeProduct },
-  } = useCartContext();
-  const { name, imageUrl, price, checked, amount = 1 } = product;
-  const totalPrice = useMemo(() => price * amount, [amount]);
-
-  const handleToggleChecked = useCallback(() => {
-    updateProduct({ ...product, checked: !checked });
-  }, [cart]);
-
-  const handleRemovingProduct = useCallback(() => {
-    if (!confirm('장바구니에서 선택한 상품을 삭제하시겠습니까?')) return;
-
-    removeProduct(product);
-  }, [cart]);
-
-  const handleIncrement = useCallback(() => {
-    updateProduct({ ...product, amount: amount + 1 });
-  }, [cart]);
-
-  const handleDecrement = useCallback(() => {
-    if (amount - 1 === 0) return;
-
-    updateProduct({ ...product, amount: amount - 1 });
-  }, [cart]);
+  const { name, imageUrl, checked, amount = DEFAULT_INITIAL_AMOUNT } = product;
+  const { totalPrice, handleToggleChecked, handleRemovingProduct, handleIncrement, handleDecrement } =
+    useCartItem(product);
 
   return (
     <div className="cart-container">

@@ -1,6 +1,6 @@
 import React from 'react';
 import cartIcon from '../../assets/svgs/cart.svg';
-import { IProduct } from '../../types/types';
+import { IProduct } from '../../domain/shopping-cart/types';
 import { useCartContext } from '../../context/CartContext/CartContext';
 
 type TProductItem = {

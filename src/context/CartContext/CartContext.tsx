@@ -1,12 +1,17 @@
-import React, { useContext, useMemo } from 'react';
+import React, { PropsWithChildren, useContext, useMemo } from 'react';
 import { createContext } from 'react';
-import { ICart } from '../../types/types';
 import useCartDataHandlers, { TCartDataHandlers } from './hooks/useCartDataHandlers';
+import { ICart } from '../../domain/shopping-cart/types';
+import { CART } from '../../domain/shopping-cart/constants';
+
+const {
+  PRODUCTS: { DEFAULT_INITIAL_AMOUNT },
+} = CART;
 
 const CartContext = createContext<ICart | null>(null);
 const CartDataHandlingContext = createContext<TCartDataHandlers | null>(null);
 
-export function CartContextProvider({ children }: { children: React.ReactNode }) {
+export function CartContextProvider({ children }: PropsWithChildren) {
   const { cart, cartDataHandlers } = useCartDataHandlers();
 
   return (
@@ -29,7 +34,10 @@ export function useCartContext() {
 
   const estimatedPrice = useMemo(
     () =>
-      cart.products.reduce((result, { checked, price, amount = 1 }) => (checked ? result + price * amount : result), 0),
+      cart.products.reduce(
+        (result, { checked, price, amount = DEFAULT_INITIAL_AMOUNT }) => (checked ? result + price * amount : result),
+        0
+      ),
     [cart]
   );
 
