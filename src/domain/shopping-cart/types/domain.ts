@@ -16,7 +16,7 @@ export interface ICart {
   products: IProduct[];
 }
 
-export interface IOrderItem {
+export interface IOrder {
   id: number | string;
   orderDetails: IProduct[];
 }

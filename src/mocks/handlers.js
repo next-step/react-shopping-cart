@@ -3,16 +3,16 @@ import db from './db';
 
 const {
   products,
-  // carts, orders
+  orders,
+  // carts
 } = db;
 
-export const handlers = [
-  rest.get('/api/products', (_, res, context) => {
-    return res(
-      context.status(200),
-      context.json({
-        products,
-      })
-    );
-  }),
-];
+const API_PREFIX = '/api';
+const APIS = {
+  products,
+  orders,
+};
+
+export const handlers = Object.keys(APIS).map((api) =>
+  rest.get(`${API_PREFIX}/${api}`, (_, res, context) => res(context.status(200), context.json({ [api]: APIS[api] })))
+);

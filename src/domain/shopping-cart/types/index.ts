@@ -1,2 +1,2 @@
-export type { IProductResponse } from './response';
-export type { IProduct, ICart, IOrderItem } from './domain';
+export type { IProductResponse, IOrderResponse } from './response';
+export type { IProduct, ICart, IOrder } from './domain';

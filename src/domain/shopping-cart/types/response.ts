@@ -1,5 +1,9 @@
-import { IProduct } from './domain';
+import { IOrder, IProduct } from './domain';
 
 export interface IProductResponse {
   products: IProduct[];
+}
+
+export interface IOrderResponse {
+  orders: IOrder[];
 }

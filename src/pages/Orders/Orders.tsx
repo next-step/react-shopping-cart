@@ -1,8 +1,21 @@
-import React from "react";
-import sampleOrderItems from "../../samplejson/orders";
-import { OrderItem } from "../../components/OrderItem";
+import React, { useEffect, useState } from 'react';
+import { OrderItem } from '../../components/OrderItem';
+import { IOrder, IOrderResponse } from '../../domain/shopping-cart/types';
 
 function Orders() {
+  const [orders, setOrders] = useState<IOrder[]>([]);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      const response = await fetch('/api/orders');
+      const json = (await response.json()) as IOrderResponse;
+
+      setOrders(json.orders);
+    };
+
+    loadProducts();
+  }, []);
+
   return (
     <section className="order-section">
       <header className="flex-col-center mt-20">
@@ -10,7 +23,7 @@ function Orders() {
         <hr className="divide-line mt-20" />
       </header>
 
-      {sampleOrderItems.map((item) => (
+      {orders.map((item) => (
         <div key={item.id} className="order--list">
           <div className="order-list__header">
             <span>주문번호: 1</span>
