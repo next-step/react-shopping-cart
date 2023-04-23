@@ -3,13 +3,13 @@ import { useEffect } from 'react';
 import * as cartApi from '@/api/cart';
 import { Button, Divider, Text } from '@/components/common';
 import CheckBox, { useCheckBox } from '@/components/common/CheckBox';
-import { CartCard } from '@/components/domain';
+import { CartCardContainer, CartCardSkeleton } from '@/components/domain';
 import { useCartContext } from '@/components/domain/Cart/CartContext';
 import { REMOVE_CONFIRM_MESSAGE } from '@/constant/message';
-import useEffectOnce from '@/hooks/useEffectOnce';
 import useHttp from '@/hooks/useHttp';
+import useOnMounted from '@/hooks/useOnMounted';
 
-const CartLeftSection = () => {
+const CartListSection = () => {
   const {
     sendRequest,
     loading,
@@ -42,7 +42,9 @@ const CartLeftSection = () => {
     }
   }, [cartData]);
 
-  useEffectOnce(sendRequest);
+  useOnMounted(() => {
+    sendRequest();
+  });
 
   return (
     <section className="cart-left-section">
@@ -62,20 +64,20 @@ const CartLeftSection = () => {
       {carts.map((cart) => (
         <div key={cart.id}>
           <Divider type="gray" />
-          <CartCard cart={cart} />
+          <CartCardContainer cart={cart} />
         </div>
       ))}
       {loading &&
         Array.from({ length: SINGLE_PAGE_SIZE }).map((_, index) => (
           <div key={index}>
             <Divider type="gray" />
-            <CartCard />
+            <CartCardSkeleton />
           </div>
         ))}
     </section>
   );
 };
 
-export default CartLeftSection;
+export default CartListSection;
 
 const SINGLE_PAGE_SIZE = 5;

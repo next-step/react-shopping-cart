@@ -1,11 +1,11 @@
 import { createElement, PropsWithChildren } from 'react';
 
-type Props = {
-  as?: string;
-  highlight?: boolean;
-  className?: string;
-  loading?: boolean;
-};
+type Props = Partial<{
+  as: string;
+  highlight: boolean;
+  className: string;
+  loading: boolean;
+}>;
 
 const Text = ({
   highlight = false,

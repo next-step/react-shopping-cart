@@ -6,7 +6,7 @@ const CartCardSkeleton = () => {
     <div className="cart-container">
       <div className="flex gap-15 mt-10">
         <CheckBox />
-        <LazyImage className="w-144 h-144" width={144} height={144} />
+        <LazyImage width={144} height={144} />
       </div>
     </div>
   );

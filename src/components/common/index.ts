@@ -4,4 +4,5 @@ export { default as Divider } from './Divider';
 export { default as GNB } from './GNB';
 export { default as Header } from './Header';
 export { default as LazyImage } from './LazyImage';
+export { default as Modal } from './Modal';
 export { default as Text } from './Text';

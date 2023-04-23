@@ -1,3 +1,4 @@
+const svgr = require('vite-plugin-svgr');
 const viteTsconfig = require('vite-tsconfig-paths');
 const tsconfigPaths = viteTsconfig.default;
 const { mergeConfig } = require('vite');
@@ -27,7 +28,7 @@ module.exports = {
   },
   async viteFinal(config) {
     return mergeConfig(config, {
-      plugins: [tsconfigPaths()],
+      plugins: [tsconfigPaths(), svgr({ exportAsDefault: true })],
     });
   },
 };

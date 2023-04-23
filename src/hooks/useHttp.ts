@@ -58,12 +58,14 @@ function useHttp<ResponseData>(requestFunction: RequestFunction<ResponseData>) {
   const loading = httpState.status === 'pending';
 
   const sendRequest = useCallback(
-    async function (...requestData: Parameters<typeof requestFunction>) {
+    async function (
+      ...requestData: Parameters<typeof requestFunction>
+    ): Promise<ResponseData | void> {
       dispatch({ type: 'SEND' });
       try {
         const responseData = await requestFunction(...requestData);
-
         dispatch({ type: 'SUCCESS', responseData });
+        return responseData;
       } catch (error: Error | unknown) {
         if (!(error instanceof Error)) {
           dispatch({
