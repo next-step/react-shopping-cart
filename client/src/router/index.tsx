@@ -10,9 +10,8 @@ const router = createBrowserRouter(
     <Route path={PATHS.HOME} element={<Layout />}>
       <Route index element={<Home />} />
       <Route path={PATHS.CART} element={<Cart />} />
-      <Route path={PATHS.ORDER} element={<OrderList />}>
-        <Route path={PATHS.ORDER_CHECKOUT} element={<OrderCheckout />} />
-      </Route>
+      <Route path={PATHS.ORDER} element={<OrderList />} />
+      <Route path={PATHS.ORDER_CHECKOUT} element={<OrderCheckout />} />
     </Route>
   )
 );
