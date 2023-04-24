@@ -4,6 +4,7 @@ import { ProductSchema } from './product';
 const OrderDetailSchema = ProductSchema.extend({
   count: z.number(),
 });
+export type OrderDetail = z.infer<typeof OrderDetailSchema>;
 
 export const OrderCheckoutSchema = z.array(OrderDetailSchema);
 export type OrderCheckout = z.infer<typeof OrderCheckoutSchema>;
