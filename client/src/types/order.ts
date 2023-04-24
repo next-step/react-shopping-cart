@@ -5,6 +5,9 @@ const OrderDetailSchema = ProductSchema.extend({
   count: z.number(),
 });
 
+export const OrderCheckoutSchema = z.array(OrderDetailSchema);
+export type OrderCheckout = z.infer<typeof OrderCheckoutSchema>;
+
 export const OrderSchema = z.object({
   id: z.number(),
   orderDetails: z.array(OrderDetailSchema),
