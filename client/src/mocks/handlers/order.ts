@@ -15,14 +15,7 @@ const addOrder = rest.post<Order>(API.ORDERS, async (req, res, ctx) => {
     .filter((cart) => cartIds.includes(cart.id))
     .map(({ product, count }) => ({ ...product, count }));
 
-  for (let i = 0; i < cartIds.length; i++) {
-    const id = cartIds[i];
-
-    const index = carts.findIndex((cart) => cart.id === id);
-    if (index !== -1) {
-      carts.splice(index, 1);
-    }
-  }
+  orderCheckout = [];
 
   const newOrder: Order = {
     id: new Date().getTime(),
@@ -66,7 +59,7 @@ const updateOrderCheckout = rest.post<Order>(API.ORDER_CHECKOUT, async (req, res
 const getOrderCheckout = rest.get<OrderCheckout>(API.ORDER_CHECKOUT, (_, res, ctx) => {
   console.log('mock apu getOrderCheckout: ', orderCheckout);
 
-  return res(ctx.status(200), ctx.delay(1000), ctx.json(orderCheckout));
+  return res(ctx.status(200), ctx.delay(500), ctx.json(orderCheckout));
 });
 
 export const orderHandlers = [addOrder, getOrder, updateOrderCheckout, getOrderCheckout];

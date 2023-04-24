@@ -8,7 +8,7 @@ function useAddOrder() {
   return useMutation({
     mutation: addOrder,
     onSuccess: () => {
-      navigate(PATHS.ORDER_CHECKOUT);
+      navigate(PATHS.ORDER);
     },
   });
 }
