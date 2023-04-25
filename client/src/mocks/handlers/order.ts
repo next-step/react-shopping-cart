@@ -9,11 +9,7 @@ let orders: Orders = [];
 let orderCheckout: OrderCheckout = [];
 
 const addOrder = rest.post<Order>(API.ORDERS, async (req, res, ctx) => {
-  const cartIds = await req.json<number[]>();
-
-  const orderDetails = carts
-    .filter((cart) => cartIds.includes(cart.id))
-    .map(({ product, count }) => ({ ...product, count }));
+  const orderDetails = orderCheckout.slice(0);
 
   orderCheckout = [];
 
@@ -33,6 +29,12 @@ const getOrder = rest.get<Order>(`${API.ORDERS}/:id`, (req, res, ctx) => {
   const order = orders.find((order) => order.id === +id);
 
   return res(ctx.status(200), ctx.delay(500), ctx.json(order));
+});
+
+const getOrders = rest.get<Orders>(API.ORDERS, (_, res, ctx) => {
+  console.log(orders);
+
+  return res(ctx.status(200), ctx.delay(500), ctx.json(orders));
 });
 
 const updateOrderCheckout = rest.post<Order>(API.ORDER_CHECKOUT, async (req, res, ctx) => {
@@ -57,9 +59,7 @@ const updateOrderCheckout = rest.post<Order>(API.ORDER_CHECKOUT, async (req, res
 });
 
 const getOrderCheckout = rest.get<OrderCheckout>(API.ORDER_CHECKOUT, (_, res, ctx) => {
-  console.log('mock apu getOrderCheckout: ', orderCheckout);
-
   return res(ctx.status(200), ctx.delay(500), ctx.json(orderCheckout));
 });
 
-export const orderHandlers = [addOrder, getOrder, updateOrderCheckout, getOrderCheckout];
+export const orderHandlers = [addOrder, getOrder, getOrders, updateOrderCheckout, getOrderCheckout];

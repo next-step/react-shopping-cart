@@ -14,9 +14,7 @@ function OrderCheckoutList() {
 
   const handleClickOrderButton = async () => {
     if (window.confirm('결제를 진행하시겠습니까?')) {
-      const ids = products.map((product) => product.id);
-
-      addOrder(ids);
+      addOrder(products);
     }
   };
 

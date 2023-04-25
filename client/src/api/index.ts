@@ -6,3 +6,4 @@ export { default as deleteCarts } from './cart/deleteCarts';
 export { default as addOrder } from './order/addOrder';
 export { default as updateOrderCheckout } from './order/updateOrderCheckout';
 export { default as fetchOrderCheckout } from './order/fetchOrderCheckout';
+export { default as fetchOrders } from './order/fetchOrders';
