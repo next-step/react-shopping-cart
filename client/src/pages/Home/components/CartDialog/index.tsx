@@ -1,15 +1,11 @@
-import { createPortal } from 'react-dom';
 import { css } from '@emotion/css';
 
-import { Button, Counter } from 'components';
+import { Button, Counter, Dialog } from 'components';
 import { useCounter, useMutation } from 'hooks';
 import { addCart } from 'api';
 
-import { colors } from 'constants/colors';
 import { Product } from 'types/product';
 import { Carts, Cart } from 'types/cart';
-
-const dialogRootEl = document.getElementById('dialog-root');
 
 interface CartDialogProps {
   product: Product;
@@ -34,26 +30,11 @@ function CartDialog({ product, closeDialog }: CartDialogProps) {
     mutate({ product, count });
   };
 
-  return createPortal(
-    <div
-      className={css`
-        position: fixed;
-        inset: 0;
-        transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      `}
-    >
+  return (
+    <Dialog onClose={closeDialog}>
       <div
         className={css`
-          height: auto;
-          width: 440px;
-          overflow-x: hidden;
           padding: 30px;
-          border-radius: 12px;
-          background-color: ${colors.white};
         `}
       >
         <div
@@ -104,8 +85,7 @@ function CartDialog({ product, closeDialog }: CartDialogProps) {
           </Button>
         </div>
       </div>
-    </div>,
-    dialogRootEl as Element
+    </Dialog>
   );
 }
 
