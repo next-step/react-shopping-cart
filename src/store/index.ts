@@ -2,7 +2,7 @@ import type { PreloadedState } from '@reduxjs/toolkit';
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 import type { TypedUseSelectorHook } from 'react-redux';
-import { rootReducer } from './reducer/index';
+import { rootReducer } from 'store/reducer';
 
 export const store = configureStore({
   reducer: rootReducer,

@@ -17,6 +17,6 @@
     "outDir": "./dist",
     "baseUrl": "src"
   },
-  "include": ["src","public","./types/assets.d.ts","src/setupTests.ts", ".storybook/decorator"],
+  "include": ["src","public","./types/assets.d.ts","src/test-utils/setupTests.ts", ".storybook/decorator"],
 
 }
