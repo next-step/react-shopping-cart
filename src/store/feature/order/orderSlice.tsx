@@ -6,6 +6,7 @@ import { OrdersSchema } from 'schema';
 type OrderStateType = {
   orderedList: OrderedItemsType[];
   status: StatusType;
+  isOpenPaymentApp: boolean;
 };
 
 const initialState: OrderStateType = {
@@ -20,6 +21,7 @@ const initialState: OrderStateType = {
     },
   ],
   status: 'Loading',
+  isOpenPaymentApp: false,
 };
 
 const getOrder = createAsyncThunk('getOrder', async (url: string, thunkApi: any) => {
@@ -46,7 +48,11 @@ const updateOrder = createAsyncThunk('updateOrder', async (data: OrderProductTyp
 export const orderSlice = createSlice({
   name: 'order',
   initialState,
-  reducers: {},
+  reducers: {
+    handlePaymentApp: (state: OrderStateType, action: PayloadAction<boolean>) => {
+      state.isOpenPaymentApp = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getOrder.pending, (state: OrderStateType) => {
       state.status = 'Loading';
@@ -71,3 +77,4 @@ export const orderSlice = createSlice({
   },
 });
 export { getOrder, updateOrder };
+export const { handlePaymentApp } = orderSlice.actions;

@@ -2,13 +2,18 @@ import * as Styled from './OrderPage.styles';
 import { OrderdItem, Payment } from 'common/components/Domain';
 import { Dialog, ErrorMessage, PageHeader, Spinner } from 'common/components/UI';
 import { useEffect } from 'react';
-import { useOrder, useDialog } from 'common/hooks';
+import { useOrder, useDialog, useCart, useRouter } from 'common/hooks';
 import uuid from 'react-uuid';
-import { useAppSelector } from 'store';
+import { useAppSelector, useAppDispatch } from 'store';
+import { usePayment } from 'payment-junyoung';
+import { handlePaymentApp } from 'store/feature/order/orderSlice';
 
 const OrderPage = () => {
   const { getOrderItem } = useOrder();
+  const { deleteServerCartItem } = useCart();
   const { isOpenDialog, dialogTitle } = useDialog();
+  const { push } = useRouter();
+
   const orderStore = useAppSelector((state) => state.order);
   const orderedList = orderStore.orderedList;
   const orderListLength = orderedList.length;
@@ -17,10 +22,22 @@ const OrderPage = () => {
   const totalPrice = recentlyOrderedItem.ordered.totalPrice;
   const ordredItems = recentlyOrderedItem.ordered.items;
   const status = orderStore.status;
+  const isOpenPaymentUI = orderStore.isOpenPaymentApp;
+  const dispatch = useAppDispatch();
+
+  const { isPayment } = usePayment();
 
   useEffect(() => {
     getOrderItem();
   }, []);
+
+  useEffect(() => {
+    if (isPayment) {
+      deleteServerCartItem();
+      dispatch(handlePaymentApp(false));
+      push('/orders');
+    }
+  }, [isPayment]);
 
   if (status === 'Loading') {
     return <Spinner />;
@@ -30,6 +47,7 @@ const OrderPage = () => {
 
   return (
     <Styled.Layout>
+      {isOpenPaymentUI && <Styled.CustomPaymentApp onCloseButton={() => dispatch(handlePaymentApp(false))} />}
       <Dialog isOpen={isOpenDialog} title={dialogTitle} />
       <PageHeader>주문/결제</PageHeader>
       <Styled.SectionContainer>

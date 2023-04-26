@@ -1,4 +1,6 @@
 import { handleOpenDialog, handleDialogMessage } from 'store/feature/dialog/dialogslice';
+import { handlePaymentApp } from 'store/feature/order/orderSlice';
+
 import { useAppDispatch, useAppSelector } from 'store';
 import type { DialogType } from 'types';
 import { useCart, useRouter } from 'common/hooks';
@@ -6,7 +8,6 @@ import { useCart, useRouter } from 'common/hooks';
 const useDialog = () => {
   const { deleteServerCartItem, selectedCartItem, addServerCartItem } = useCart();
   const { push } = useRouter();
-
   const dispatch = useAppDispatch();
   const dialogStore = useAppSelector((state) => state.dialog);
   const isOpenDialog = dialogStore.isOpen;
@@ -48,8 +49,7 @@ const useDialog = () => {
         push('/order');
         break;
       case 'payment':
-        deleteServerCartItem();
-        push('/orders');
+        dispatch(handlePaymentApp(true));
         break;
       default:
         break;

@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 import { HorizontalLine } from 'common/components/UI';
+import { PaymentApp } from 'payment-junyoung';
+
 export const Layout = styled.section`
+  position: relative;
   padding: 24px;
   display: flex;
   flex-direction: column;
+
   gap: 20px;
 `;
 
@@ -43,4 +47,12 @@ export const PaymentSection = styled.section`
 `;
 export const DivideLine = styled(HorizontalLine)`
   border: 2px solid #aaaaaa;
+`;
+
+export const CustomPaymentApp = styled(PaymentApp)`
+  position: fixed;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  bottom: 5px;
 `;
