@@ -5,7 +5,8 @@ import { Dialog, ErrorMessage, PageHeader } from 'common/components';
 import useCartPage from '../hooks/useCartPage';
 import { useDialog } from 'common/hooks';
 const CartPage = () => {
-  const { check, handleCheckBox, handleDeleteButton, cartList, totalAmount, totalPrice, status } = useCartPage();
+  const { check, handleSelectAllCheckBox, handleRemoveButton, cartList, totalAmount, totalPrice, status } =
+    useCartPage();
   const { isOpenDialog, dialogTitle } = useDialog();
 
   if (status === 'Fail') {
@@ -20,10 +21,10 @@ const CartPage = () => {
         <Styled.ItemSection>
           <Styled.CheckBoxContainer>
             <Styled.CheckBoxInputBox>
-              <Styled.CheckBox type={'checkbox'} name="checkbox" onChange={handleCheckBox} checked={check} />
+              <Styled.CheckBox type={'checkbox'} name="checkbox" onChange={handleSelectAllCheckBox} checked={check} />
               <Styled.CheckBoxLabel htmlFor="checkbox">모두 선택</Styled.CheckBoxLabel>
             </Styled.CheckBoxInputBox>
-            <Styled.CartRemoveButton onClick={handleDeleteButton} />
+            <Styled.CartRemoveButton onClick={handleRemoveButton} />
           </Styled.CheckBoxContainer>
           <Styled.CartTitle>든든 배송상품</Styled.CartTitle>
           <Styled.Divider />

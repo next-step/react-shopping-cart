@@ -2,42 +2,19 @@ import uuid from 'react-uuid';
 import * as Styled from './OrderPage.styles';
 import { OrderdItem, Payment } from 'domain/components';
 import { Dialog, ErrorMessage, PageHeader, Spinner } from 'common/components';
-import { useEffect } from 'react';
-import { useOrder, useDialog, useCart, useRouter } from 'common/hooks';
-import { useAppSelector, useAppDispatch } from 'store';
-import { usePayment } from 'payment-junyoung';
-import { handlePaymentApp } from 'domain/store/feature/order/orderSlice';
+import useOrderPage from '../hooks/useOrderPage';
 
 const OrderPage = () => {
-  const { getOrderItem } = useOrder();
-  const { deleteServerCartItem } = useCart();
-  const { isOpenDialog, dialogTitle } = useDialog();
-  const { push } = useRouter();
-
-  const orderStore = useAppSelector((state) => state.orderReducer);
-  const orderedList = orderStore.orderedList;
-  const orderListLength = orderedList.length;
-  const recentlyOrderedItem = orderedList[orderListLength - 1];
-  const totalAmount = recentlyOrderedItem.ordered.totalAmount;
-  const totalPrice = recentlyOrderedItem.ordered.totalPrice;
-  const ordredItems = recentlyOrderedItem.ordered.items;
-  const status = orderStore.status;
-  const isOpenPaymentUI = orderStore.isOpenPaymentApp;
-  const dispatch = useAppDispatch();
-
-  const { isPayment } = usePayment();
-
-  useEffect(() => {
-    getOrderItem();
-  }, []);
-
-  useEffect(() => {
-    if (isPayment) {
-      deleteServerCartItem();
-      dispatch(handlePaymentApp(false));
-      push('/orders');
-    }
-  }, [isPayment]);
+  const {
+    status,
+    isOpenPaymentUI,
+    isOpenDialog,
+    dialogTitle,
+    handlePaymentAppCloseButton,
+    totalAmount,
+    ordredItems,
+    totalPrice,
+  } = useOrderPage();
 
   if (status === 'Loading') {
     return <Spinner />;
@@ -47,7 +24,7 @@ const OrderPage = () => {
 
   return (
     <Styled.Layout>
-      {isOpenPaymentUI && <Styled.CustomPaymentApp onCloseButton={() => dispatch(handlePaymentApp(false))} />}
+      {isOpenPaymentUI && <Styled.CustomPaymentApp onCloseButton={handlePaymentAppCloseButton} />}
       <Dialog isOpen={isOpenDialog} title={dialogTitle} />
       <PageHeader>주문/결제</PageHeader>
       <Styled.SectionContainer>

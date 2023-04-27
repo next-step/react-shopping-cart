@@ -5,11 +5,11 @@ import type { ProductType } from 'domain/types';
 const useProductItem = (product: ProductType) => {
   const { SelectCartItem } = useCart();
   const navigate = useNavigate();
-  const { showDialogUI } = useDialog();
+  const { setDialogUI } = useDialog();
 
   const addToCart = async () => {
     SelectCartItem({ ...product, isOrder: false, amount: 1 });
-    showDialogUI('addCartItem');
+    setDialogUI('addCartItem');
   };
   const moveToProductDetailPage = () => {
     navigate('/product/' + product.id);

@@ -2,23 +2,10 @@ import * as Styled from './ProductListPage.styles';
 import uuid from 'react-uuid';
 import { Spinner, ErrorMessage, Pagination, Dialog } from 'common/components';
 import { ProductItem } from 'domain/components';
-import { usePagination, useDialog } from 'common/hooks';
-import { useAppDispatch, useAppSelector } from 'store';
-import { useEffect } from 'react';
-import { getProductList } from 'domain/store/feature/product/productslice';
+import useProductListPage from '../hooks/useProductListPage';
 
 const ProductListPage = () => {
-  const { currentPage } = usePagination();
-  const { dialogTitle, isOpenDialog } = useDialog();
-  const dispatch = useAppDispatch();
-  const productStore = useAppSelector((state) => state.productReducer);
-  const products = productStore.productList.products;
-  const status = productStore.status;
-  const totalPage = productStore.productList.TOTAL_PAGE;
-
-  useEffect(() => {
-    dispatch(getProductList(currentPage));
-  }, [currentPage]);
+  const { status, isOpenDialog, dialogTitle, products, totalPage } = useProductListPage();
 
   if (status === 'Loading') {
     return <Spinner />;

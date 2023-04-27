@@ -6,7 +6,7 @@ type CartItemProps = CartProductType;
 
 const CartItem = ({ id, image, price, name, isOrder, amount }: CartItemProps) => {
   const currentCartItem = { id, image, price, name, amount, isOrder };
-  const { increaseInputNumber, decreaseInputNumber, inputNumber, updateCart } = useCartItem(currentCartItem);
+  const { increaseCartItem, decreaseCartItem, cartIteminput, updateOrder } = useCartItem(currentCartItem);
 
   return (
     <Styled.Contianer>
@@ -14,7 +14,7 @@ const CartItem = ({ id, image, price, name, isOrder, amount }: CartItemProps) =>
         <Styled.CheckBox
           type={'checkbox'}
           name="checkbox"
-          onChange={updateCart}
+          onChange={updateOrder}
           checked={isOrder}
           data-testid="checkbox"
         />
@@ -25,13 +25,13 @@ const CartItem = ({ id, image, price, name, isOrder, amount }: CartItemProps) =>
       </Styled.LeftBox>
       <Styled.RightBox>
         <Styled.CartInputContainer>
-          <Styled.CartInputNumber type="text" value={inputNumber} readOnly={true} />
+          <Styled.CartInputNumber type="text" value={cartIteminput} readOnly={true} />
           <div>
-            <Styled.CartInputNumberButton onClick={increaseInputNumber}>▲</Styled.CartInputNumberButton>
-            <Styled.CartInputNumberButton onClick={decreaseInputNumber}>▼</Styled.CartInputNumberButton>
+            <Styled.CartInputNumberButton onClick={increaseCartItem}>▲</Styled.CartInputNumberButton>
+            <Styled.CartInputNumberButton onClick={decreaseCartItem}>▼</Styled.CartInputNumberButton>
           </div>
         </Styled.CartInputContainer>
-        <Styled.CartPriceText>{price * inputNumber}원</Styled.CartPriceText>
+        <Styled.CartPriceText>{price * cartIteminput}원</Styled.CartPriceText>
       </Styled.RightBox>
     </Styled.Contianer>
   );

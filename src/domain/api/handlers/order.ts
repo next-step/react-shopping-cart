@@ -15,7 +15,6 @@ const OrderedItems: OrderedItemsType[] = [
 
 export const updateOrders = rest.post('/order/update', async (req, res, ctx) => {
   const userOrderItems = (await req.json()) as OrderProductType[];
-
   if (!userOrderItems.length) {
     return res(ctx.status(400));
   }
@@ -40,11 +39,5 @@ export const updateOrders = rest.post('/order/update', async (req, res, ctx) => 
 });
 
 export const getOrders = rest.get('/orders', async (req, res, ctx) => {
-  await sleep(1000);
-
-  return res(ctx.status(200), ctx.json(OrderedItems));
+  return res(ctx.delay(1000), ctx.status(200), ctx.json(OrderedItems));
 });
-
-const sleep = (sec: number) => {
-  return new Promise((resolve) => setTimeout(resolve, sec));
-};

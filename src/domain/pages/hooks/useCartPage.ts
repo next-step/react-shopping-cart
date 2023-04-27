@@ -2,22 +2,22 @@ import { useState, useEffect } from 'react';
 import { useCart, useDialog } from 'common/hooks';
 const useCartPage = () => {
   const [check, setCheck] = useState(false);
-  const { getCartFromServer, updateCheckAllServerCartItem, cartList, totalAmount, totalPrice, status } = useCart();
-  const { showDialogUI } = useDialog();
+  const { getCartItems, updateOrderCartItem, cartList, totalAmount, totalPrice, status } = useCart();
+  const { setDialogUI } = useDialog();
 
-  const handleCheckBox = () => {
+  const handleSelectAllCheckBox = () => {
     setCheck(!check);
-    updateCheckAllServerCartItem(check);
+    updateOrderCartItem(check);
   };
-  const handleDeleteButton = () => {
-    showDialogUI('deleteCartItem');
+  const handleRemoveButton = () => {
+    setDialogUI('deleteCartItem');
   };
 
   useEffect(() => {
-    getCartFromServer();
+    getCartItems();
   }, []);
 
-  return { check, handleCheckBox, handleDeleteButton, cartList, totalAmount, totalPrice, status };
+  return { check, handleSelectAllCheckBox, handleRemoveButton, cartList, totalAmount, totalPrice, status };
 };
 
 export default useCartPage;

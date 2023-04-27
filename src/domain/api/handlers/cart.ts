@@ -23,10 +23,6 @@ export const deleteCart = rest.post('/cart/delete', async (req, res, ctx) => {
   const product = (await req.json()) as CartProductType;
   const newCarts = userCarts.filter((item) => item.id !== product.id);
 
-  if (!newCarts.length) {
-    return res(ctx.status(400));
-  }
-
   userCarts = newCarts;
   return res(ctx.status(200), ctx.json(newCarts));
 });

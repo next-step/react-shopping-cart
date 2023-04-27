@@ -13,7 +13,7 @@ const useCart = () => {
   const totalAmount = cartList && calculateCartTotalAmount(cartList);
   const totalPrice = cartList && calculateCartProductTotal(cartList);
 
-  const getCartFromServer = () => {
+  const getCartItems = () => {
     dispatch(getCart('/carts'));
   };
 
@@ -21,7 +21,7 @@ const useCart = () => {
     dispatch(selectCartItem(cartProduct));
   };
 
-  const addServerCartItem = async (product: CartProductType) => {
+  const addCartItem = async (product: CartProductType) => {
     try {
       const response = await postData('/carts', product);
       if (response.status === 400) {
@@ -33,23 +33,23 @@ const useCart = () => {
     }
   };
 
-  const updateSeverCartItem = (product: CartProductType) => {
+  const updateCartItem = (product: CartProductType) => {
     dispatch(updateCart(product));
   };
 
-  const updateCheckAllServerCartItem = async (checked: boolean) => {
-    const cartData = (await getData('/carts')) as CartProductType[];
-    cartData.forEach((product) => {
-      updateSeverCartItem({
+  const updateOrderCartItem = async (checked: boolean) => {
+    const cartItem = (await getData('/carts')) as CartProductType[];
+    cartItem.forEach((product) => {
+      updateCartItem({
         ...product,
         isOrder: !checked,
       });
     });
   };
 
-  const deleteServerCartItem = async () => {
-    const cartData = (await getData('/carts')) as CartProductType[];
-    cartData.forEach((product) => {
+  const deleteOrderedCartItem = async () => {
+    const cartItem = (await getData('/carts')) as CartProductType[];
+    cartItem.forEach((product) => {
       if (product.isOrder) {
         dispatch(deleteCartItem(product));
       }
@@ -57,16 +57,16 @@ const useCart = () => {
   };
 
   return {
-    addServerCartItem,
+    addCartItem,
     cartList,
-    getCartFromServer,
+    getCartItems,
     totalAmount,
     totalPrice,
-    updateCheckAllServerCartItem,
-    deleteServerCartItem,
+    updateOrderCartItem,
+    deleteOrderedCartItem,
     selectedCartItem,
     SelectCartItem,
-    updateSeverCartItem,
+    updateCartItem,
     status,
   };
 };

@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 const useMyOrderList = (id: number) => {
   const { SelectCartItem } = useCart();
-  const { showDialogUI } = useDialog();
+  const { setDialogUI } = useDialog();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -12,7 +12,7 @@ const useMyOrderList = (id: number) => {
 
   const addToCart = async (product: CartProductType) => {
     SelectCartItem({ ...product, isOrder: false, amount: 1 });
-    showDialogUI('addCartItem');
+    setDialogUI('addCartItem');
   };
   const moveToDetailPage = (url: string) => {
     navigate({ pathname: url });

@@ -5,11 +5,10 @@ import { Spinner, ErrorMessage, Dialog } from 'common/components';
 import { useDialog } from 'common/hooks';
 
 const ProductDetailPage = () => {
+  const { isOpenDialog, dialogTitle } = useDialog();
   const productStore = useAppSelector((state) => state.productReducer);
   const products = productStore.productList.products;
   const status = productStore.status;
-
-  const { isOpenDialog, dialogTitle } = useDialog();
 
   if (status === 'Loading') {
     return <Spinner />;

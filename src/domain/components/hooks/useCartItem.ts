@@ -6,37 +6,37 @@ const MAX_NUMBER = 20;
 const MIN_NUMBER = 1;
 
 const useCartItem = (cartItem: CartProductType) => {
-  const [inputNumber, setInputNumber] = useState(cartItem.amount);
-  const { updateSeverCartItem } = useCart();
+  const [cartIteminput, setCartIteminput] = useState(cartItem.amount);
+  const { updateCartItem } = useCart();
 
-  const increaseInputNumber = () => {
-    if (inputNumber === MAX_NUMBER) {
+  const increaseCartItem = () => {
+    if (cartIteminput === MAX_NUMBER) {
       alert('더이상 증가할수 없습니다!');
       return;
     }
-    setInputNumber(inputNumber + 1);
-    updateSeverCartItem({
+    setCartIteminput(cartIteminput + 1);
+    updateCartItem({
       ...cartItem,
-      amount: inputNumber + 1,
+      amount: cartIteminput + 1,
     });
   };
 
-  const decreaseInputNumber = () => {
-    if (inputNumber === MIN_NUMBER) {
+  const decreaseCartItem = () => {
+    if (cartIteminput === MIN_NUMBER) {
       alert('더이상 감소할수 없습니다!');
       return;
     }
-    setInputNumber(inputNumber - 1);
-    updateSeverCartItem({
+    setCartIteminput(cartIteminput - 1);
+    updateCartItem({
       ...cartItem,
-      amount: inputNumber - 1,
+      amount: cartIteminput - 1,
     });
   };
 
-  const updateCart = () => {
-    updateSeverCartItem({ ...cartItem, isOrder: !cartItem.isOrder });
+  const updateOrder = () => {
+    updateCartItem({ ...cartItem, isOrder: !cartItem.isOrder });
   };
 
-  return { increaseInputNumber, decreaseInputNumber, inputNumber, updateCart };
+  return { increaseCartItem, decreaseCartItem, cartIteminput, updateOrder };
 };
 export default useCartItem;
