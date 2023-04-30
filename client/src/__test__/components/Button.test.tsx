@@ -20,7 +20,7 @@ describe('Button 컴포넌트', () => {
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  test('disabled prop 검증', () => {
+  test('disabled 상태의 버튼은 클릭할 수 없어야 한다.', () => {
     const onClick = jest.fn();
     render(
       <Button onClick={onClick} disabled>
@@ -34,7 +34,7 @@ describe('Button 컴포넌트', () => {
     expect(onClick).toHaveBeenCalledTimes(0);
   });
 
-  test('loading prop 검증', () => {
+  test('loading 상태의 버튼은 클릭할 수 없어야 한다.', () => {
     const onClick = jest.fn();
     render(
       <Button onClick={onClick} loading>
