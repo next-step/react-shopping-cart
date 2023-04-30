@@ -8,6 +8,7 @@ function useOrders() {
   return useFetch({
     fetcher: fetchOrders,
     cacheKey: CACHE_KEY,
+    cacheTime: 0,
   });
 }
 

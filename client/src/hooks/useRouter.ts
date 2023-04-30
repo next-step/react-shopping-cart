@@ -16,14 +16,14 @@ const useRouter = <T>() => {
   }, [navigate]);
 
   const go = useCallback(
-    (to: Paths, options?: NavigateOptions) => {
+    (to: Paths | string, options?: NavigateOptions) => {
       navigate(to, options);
     },
     [navigate]
   );
 
   const replace = useCallback(
-    (to: Paths, options?: NavigateOptions) => {
+    (to: Paths | string, options?: NavigateOptions) => {
       navigate(to, { replace: true, ...options });
     },
     [navigate]
