@@ -1,17 +1,17 @@
 import { css } from '@emotion/css';
 
 import { Button, Dialog } from 'components';
-import { colors } from 'constants/colors';
 import { useRouter } from 'hooks';
 
+import { colors } from 'constants/colors';
 import { OrderDetail } from 'types/order';
 
-interface OrderDialogProps {
+interface OrderItemDialogProps {
   onClose: () => void;
   product: OrderDetail;
 }
 
-function OrderDialog({ onClose, product }: OrderDialogProps) {
+function OrderItemDialog({ onClose, product }: OrderItemDialogProps) {
   const { name, count } = product;
   const router = useRouter();
 
@@ -75,4 +75,4 @@ function OrderDialog({ onClose, product }: OrderDialogProps) {
   );
 }
 
-export default OrderDialog;
+export default OrderItemDialog;

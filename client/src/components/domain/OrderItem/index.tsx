@@ -4,7 +4,7 @@ import { addCart } from 'api';
 
 import { OrderDetail } from 'types/order';
 
-import OrderDialog from '../OrderDialog';
+import OrderItemDialog from '../OrderItemDialog';
 
 interface OrderItemProps {
   product: OrderDetail;
@@ -38,7 +38,7 @@ function OrderItem({ product }: OrderItemProps) {
         </div>
       </div>
 
-      {dialog.isOpen && <OrderDialog onClose={dialog.close} product={product} />}
+      {dialog.isOpen && <OrderItemDialog onClose={dialog.close} product={product} />}
       <Button type="primary" size="large" loading={isLoading} onClick={handleClickCartButton}>
         장바구니
       </Button>
