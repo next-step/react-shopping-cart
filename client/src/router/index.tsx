@@ -1,6 +1,6 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 
-import { Cart, Order, Home, OrderCheckout } from 'pages';
+import { Cart, Order, Home, OrderCheckout, OrderDetail } from 'pages';
 import Layout from './Layout';
 
 import { PATHS } from 'constants/router';
@@ -12,6 +12,7 @@ const router = createBrowserRouter(
       <Route path={PATHS.CART} element={<Cart />} />
       <Route path={PATHS.ORDER} element={<Order />} />
       <Route path={PATHS.ORDER_CHECKOUT} element={<OrderCheckout />} />
+      <Route path={`${PATHS.ORDER}/:id`} element={<OrderDetail />} />
     </Route>
   )
 );
