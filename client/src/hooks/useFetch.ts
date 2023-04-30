@@ -2,6 +2,8 @@ import { useEffect, useReducer, useState } from 'react';
 
 import { getCachedData, isOverCacheTime, setCachedData } from 'storages/memory';
 
+import useCallbackRef from './useCallbackRef';
+
 type Status = 'init' | 'loading' | 'pending' | 'fetched' | 'error';
 
 interface State<T> {
@@ -26,12 +28,14 @@ interface UseFetchProps<T> {
 }
 
 function useFetch<T = unknown>({
-  fetcher,
+  fetcher: fetcherProp,
   cacheKey,
   cacheTime,
   onSuccess,
   onError,
 }: UseFetchProps<T>) {
+  const fetcher = useCallbackRef(fetcherProp);
+
   const initialState: State<T> = {
     error: undefined,
     data: undefined,
