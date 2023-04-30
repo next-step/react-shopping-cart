@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox 컴포넌트 size prop 중 large snapshot 1`] = `
+<input
+  class="checkbox css-3p8rgi"
+  id=":r5:"
+  type="checkbox"
+/>
+`;
+
+exports[`Checkbox 컴포넌트 size prop 중 medium snapshot 1`] = `
+<input
+  class="checkbox css-j5ofk0"
+  id=":r6:"
+  type="checkbox"
+/>
+`;
+
+exports[`Checkbox 컴포넌트 size prop 중 small snapshot 1`] = `
+<input
+  class="checkbox css-16zo3cc"
+  id=":r7:"
+  type="checkbox"
+/>
+`;
