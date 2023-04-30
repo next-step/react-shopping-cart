@@ -28,6 +28,10 @@ const getOrder = rest.get<Order>(`${API.ORDERS}/:id`, (req, res, ctx) => {
 
   const order = orders.find((order) => order.id === +id);
 
+  if (!order) {
+    return res(ctx.status(404), ctx.delay(500));
+  }
+
   return res(ctx.status(200), ctx.delay(500), ctx.json(order));
 });
 
