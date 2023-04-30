@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button 컴포넌트 size prop 중 large snapshot 1`] = `
+<button
+  class="css-nxzj1m"
+>
+  <div
+    class="css-6gg35w"
+  >
+    <div
+      class="css-1adtie5"
+    >
+      Large
+    </div>
+  </div>
+</button>
+`;
+
+exports[`Button 컴포넌트 size prop 중 medium snapshot 1`] = `
+<button
+  class="css-19lhd0s"
+>
+  <div
+    class="css-6gg35w"
+  >
+    <div
+      class="css-1mgruh1"
+    >
+      Medium
+    </div>
+  </div>
+</button>
+`;
+
+exports[`Button 컴포넌트 size prop 중 small snapshot 1`] = `
+<button
+  class="css-1n2ue7"
+>
+  <div
+    class="css-6gg35w"
+  >
+    <div
+      class="css-1mgruh1"
+    >
+      Small
+    </div>
+  </div>
+</button>
+`;
+
+exports[`Button 컴포넌트 size prop 중 tiny snapshot 1`] = `
+<button
+  class="css-g7j9rt"
+>
+  <div
+    class="css-6gg35w"
+  >
+    <div
+      class="css-1mgruh1"
+    >
+      Tiny
+    </div>
+  </div>
+</button>
+`;
+
+exports[`Button 컴포넌트 type prop 중 default snapshot 1`] = `
+<button
+  class="css-19lhd0s"
+>
+  <div
+    class="css-6gg35w"
+  >
+    <div
+      class="css-1mgruh1"
+    >
+      Default Type
+    </div>
+  </div>
+</button>
+`;
+
+exports[`Button 컴포넌트 type prop 중 primary snapshot 1`] = `
+<button
+  class="css-uccf8t"
+>
+  <div
+    class="css-6gg35w"
+  >
+    <div
+      class="css-1xdhv8f"
+    >
+      Primary Type
+    </div>
+  </div>
+</button>
+`;
+
+exports[`Button 컴포넌트 type prop 중 secondary snapshot 1`] = `
+<button
+  class="css-xrw0gf"
+>
+  <div
+    class="css-6gg35w"
+  >
+    <div
+      class="css-1xdhv8f"
+    >
+      Secondary Type
+    </div>
+  </div>
+</button>
+`;
+
+exports[`Button 컴포넌트 type prop 중 text snapshot 1`] = `
+<button
+  class="css-1pevnll"
+>
+  <div
+    class="css-6gg35w"
+  >
+    <div
+      class="css-1mgruh1"
+    >
+      Text Type
+    </div>
+  </div>
+</button>
+`;
