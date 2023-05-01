@@ -1,0 +1,81 @@
+{
+  "path": "cz-emoji",
+  "config": {
+    "cz-emoji": {
+      "conventional": true,
+      "symbol": true,
+      "skipQuestions": [
+        "breaking",
+        "scope",
+        "issues"
+      ],
+      "types": [
+        {
+          "emoji": "✨",
+          "code": ":sparkles:",
+          "description": "새로운 기능 추가 및 기능 변경",
+          "name": "FEAT"
+        },
+        {
+          "emoji": "🐛",
+          "code": ":bug:",
+          "description": "일반적인 버그 수정",
+          "name": "BUGFIX"
+        },
+        {
+          "emoji": "♻️",
+          "code": ":recycle:",
+          "description": "코드 리펙토링 (더 좋은 코드를 위한 수정 및 삭제)",
+          "name": "REFACTOR"
+        },
+        {
+          "emoji": "⚡️",
+          "code": ":zap:",
+          "description": "성능 개선 작업",
+          "name": "PERF"
+        },
+        {
+          "emoji": "🚧",
+          "code": ":construction:",
+          "description": "작업중인 코드",
+          "name": "WIP"
+        },
+        {
+          "emoji": "🔀",
+          "code": ":twisted_rightwards_arrows:",
+          "description": "브랜치 머지 관련 커밋 (Git Pull, Git Merge)",
+          "name": "MERGE"
+        },
+        {
+          "emoji": "🚨",
+          "code": ":rotating_light:",
+          "description": "빌드 에러 수정",
+          "name": "BUILD-ERROR"
+        },
+        {
+          "emoji": "⏪",
+          "code": ":rewind:",
+          "description": "변경사항 Revert",
+          "name": "REVERT"
+        },
+        {
+          "emoji": "✅",
+          "code": ":white_check_mark:",
+          "description": "테스트 코드 추가",
+          "name": "TEST"
+        },
+        {
+          "emoji": "🔧",
+          "code": ":wrench:",
+          "description": "세팅 관련 파일 (ESLint, Tailwind, package.json, etc.) 추가 및 변경",
+          "name": "CONFIG"
+        }
+      ],
+      "questions": {
+        "type": "해당 커밋의 종류를 골라주세요",
+        "subject": "커밋 메세지를 작성해주세요",
+        "body": "(선택사항 - Enter로 스킵)"
+      }
+    }
+  }
+}

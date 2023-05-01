@@ -1,0 +1,42 @@
+{
+  "orders": [
+    {
+      "id": 1,
+      "orderDetails": [
+        {
+          "id": 12,
+          "name": "[리뉴얼]젓가락(종이)-정성을 담아",
+          "quantity": 2,
+          "price": 43600,
+          "imageUrl": "https://cdn-mart.baemin.com/sellergoods/main/5297837f-5ecd-4945-be2f-4a75854cd06e.jpg"
+        },
+        {
+          "id": 33,
+          "name": "젓가락(종이)-웬만해선 이 맛을 막을 수 없다",
+          "quantity": 1,
+          "price": 21800,
+          "imageUrl": "https://cdn-mart.baemin.com/sellergoods/main/1b6e926b-52a3-4a92-8db5-fddaccdb2583.jpg"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "orderDetails": [
+        {
+          "id": 4,
+          "name": "리치스 스위트콘 대 2.95kg",
+          "quantity": 5,
+          "price": 23900,
+          "imageUrl": "https://cdn-mart.baemin.com/sellergoods/main/ff297e50-7d6b-4a87-8509-b387442ff877.jpg"
+        },
+        {
+          "id": 3,
+          "name": "펩시 콜라 355ml 24캔",
+          "quantity": 1,
+          "price": 83700,
+          "imageUrl": "https://cdn-mart.baemin.com/sellergoods/main/84fc0238-0239-4d0e-870b-a9daa6f2c42c.jpg"
+        }
+      ]
+    }
+  ]
+}
