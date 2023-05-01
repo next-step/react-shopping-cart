@@ -19,7 +19,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "npm run server & NODE_ENV=development react-scripts start",
+    "start": "NODE_ENV=development react-scripts start",
     "server": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false",
@@ -51,7 +51,6 @@
     "lowdb": "^1.0.0",
     "msw": "^1.1.0",
     "react-query": "^3.39.3",
-    "recoil": "^0.7.7",
     "react-confirm-alert": "^3.0.6"
   }
 }

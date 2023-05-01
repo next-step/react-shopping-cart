@@ -9,38 +9,74 @@ import { useSelectedProduct } from "hooks/product";
 import { printWon } from "common/util";
 import { useRouter } from "hooks/useRouter";
 import { ROUTE } from "router";
+import { useEffect, useState } from "react";
+import { handleModal } from "common/modal";
+import { useAddCart } from "hooks/cart/useAddCart";
 
 export const Contents = () => {
   const { id } = useParams<{ id: string }>();
   const { go } = useRouter();
+  const { mutate } = useAddCart();
+  const { data, isLoading, isError } = useSelectedProduct(Number(id));
 
-  const selectedProduct = useSelectedProduct(Number(id));
-  
-  if (!selectedProduct) {
-    return <div>no Have Detail Item</div>;
+  const [product, setProduct] = useState<Product>({} as Product);
+
+  useEffect(() => {
+    if (isError) {
+      console.log("Error fetching product list", isError);
+
+      alert("상품 목록을 불러오는데 실패했습니다.");
+      return;
+    }
+
+    if (data) {
+      setProduct(data);
+    }
+  }, [data, id, isError, setProduct]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
+
+  if (!Object.values(product).length) {
+    return <div>상품이 없습니다.</div>;
+  }
+
+  const HandleAddCart = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    item: Product
+  ) => {
+    e.stopPropagation();
+    mutate(item);
+    handleModal({
+      title: "장바구니에 추가되었습니다",
+      message: "해당 페이지로 이동하시겠습니까?",
+      onConfirm: () => go(ROUTE.CART_LIST),
+    });
+  };
 
   return (
     <ProductContainer>
       <div className="flex-col-center w-520">
         <img
           className="w-480 h-480 mb-10"
-          src={`${selectedProduct.imageUrl}`}
+          src={`${product.imageUrl}`}
           alt="상세 이미지"
         />
         <div className="product-detail-info">
-          <span className="product-detail-info__name">
-            {selectedProduct.name}
-          </span>
+          <span className="product-detail-info__name">{product.name}</span>
           <hr className="divide-line-gray my-20" />
           <div className="flex justify-between">
             <span>금액</span>
             <span className="product-detail-info__price">
-              {printWon(selectedProduct.price)}
+              {printWon(product.price)}
             </span>
           </div>
         </div>
-        <button className="product-detail-button flex-center mt-20" onClick={() => go(ROUTE.ORDER_LIST)}>
+        <button
+          className="product-detail-button flex-center mt-20"
+          onClick={(e) => HandleAddCart(e, product)}
+        >
           장바구니
         </button>
       </div>

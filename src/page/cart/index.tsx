@@ -5,30 +5,52 @@ import "./style.css";
 import LeftSection from "./left-section";
 import RightSection from "./right-section";
 
-import { useCart } from "hooks/cart";
 import { Header } from "common/ui/header";
+import { useCartList } from "hooks/cart/useCartList";
+import { useCart } from "hooks/cart/useCart";
+import { useEffect } from "react";
 
 const CartContent = () => {
-  const { data: carts, isLoading, isError } = useCart();
+  const { data, isError } = useCartList();
+  const {
+    userCartsState: carts,
+    setUserCartsState,
+    selectCart,
+    setAllChecked,
+    deleteCartItem,
+    deleteCartItems,
+    increaseCartItemQuantity,
+    decreaseCartItemQuantity,
+  } = useCart();
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  useEffect(() => {
+    if (isError) {
+      console.error("Error fetching cart list:", isError);
+      alert("Failed to load cart list.");
+      return;
+    }
 
-  if (isError) {
-    return <div>Error loading product data</div>;
-  }
-
-  if (!carts) {
-    return <div>No cart data available</div>;
-  }
+    if (data) {
+      setUserCartsState(
+        data.map((cart) => ({ ...cart, checked: false, quantity: 1 }))
+      );
+    }
+  }, [data, isError, setUserCartsState]);
 
   return (
     <section className="cart-section">
-      <Header title={'장바구니'}/>
+      <Header title={"장바구니"} />
       <div className="flex">
-        <LeftSection carts={carts}/>
-        <RightSection />
+        <LeftSection
+          carts={carts}
+          selectCart={selectCart}
+          setAllChecked={setAllChecked}
+          deleteCartItem={deleteCartItem}
+          deleteCartItems={deleteCartItems}
+          increaseCartItemQuantity={increaseCartItemQuantity}
+          decreaseCartItemQuantity={decreaseCartItemQuantity}
+        />
+        <RightSection carts={carts} deleteCartItems={deleteCartItems} />
       </div>
     </section>
   );

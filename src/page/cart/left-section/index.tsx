@@ -1,30 +1,72 @@
-import { CartItem } from "types/type";
 import Item from "./item";
+import CheckBox from "components/common/checkBox";
+import Button from "components/common/button";
+import Divider from "components/common/dvider";
+import { handleModal } from "common/modal";
+import { useCheckBox } from "hooks/useCheckBox";
+
+const cartOrderText = (items: UserCart[]) => {
+  return items.length ? `든든배송 상품(${items.length} 개)` : "";
+};
 
 type LeftSectionProps = {
-  carts: CartItem[];
+  carts: UserCart[];
+  selectCart: (cart: UserCart) => void;
+  setAllChecked: (checked: boolean, carts: UserCart[]) => void;
+  deleteCartItem: (itemId: number) => void;
+  deleteCartItems: (items: UserCart[]) => void;
+  increaseCartItemQuantity: (itemId: number) => void;
+  decreaseCartItemQuantity: (itemId: number) => void;
 };
-const LeftSection = ({ carts }: LeftSectionProps) => {
+const LeftSection = ({
+  carts,
+  selectCart,
+  setAllChecked,
+  deleteCartItem,
+  deleteCartItems,
+  increaseCartItemQuantity,
+  decreaseCartItemQuantity,
+}: LeftSectionProps) => {
+  const { checked: checkedAll, handleSelect: handleSelectAll } = useCheckBox();
+
+  const handleSelect = () => {
+    handleSelectAll();
+    setAllChecked(!checkedAll, carts);
+  };
+
+  const handleDeleteAll = () => {
+    handleModal({
+      title: "고갱님",
+      message:
+        "확인 버튼을 누르면 정말루 다 지워집니다. 그래도 삭제 가시겠습니까?",
+      onConfirm: () => deleteCartItems(carts),
+    });
+  };
+
+  // useMemo, useCallBack 활용
+  const isAllCheck = carts.every((item) => item.checked);
+
   return (
     <section className="cart-left-section">
       <div className="flex justify-between items-center">
-        <div className="checkbox-container">
-          <input
-            className="checkbox"
-            name="checkbox"
-            type="checkbox"
-            checked={true}
-          />
-          <label className="checkbox-label" htmlFor="checkbox">
-            선택해제
-          </label>
-        </div>
-        <button className="delete-button">상품삭제</button>
+        <CheckBox
+          label="선택해제"
+          onSelect={handleSelect}
+          checked={isAllCheck}
+        />
+        <Button handleDeleteAll={handleDeleteAll} text="상품삭제" />
       </div>
-      <h3 className="cart-title">든든배송 상품(3개)</h3>
-      <hr className="divide-line-gray mt-10" />
-      {carts.map((item: CartItem) => (
-        <Item item={item} />
+      <h3 className="cart-title">{cartOrderText(carts)}</h3>
+      <Divider />
+      {carts.map((item: UserCart) => (
+        <Item
+          item={item}
+          key={item.id}
+          selectCart={selectCart}
+          deleteCartItem={deleteCartItem}
+          increaseCartItemQuantity={increaseCartItemQuantity}
+          decreaseCartItemQuantity={decreaseCartItemQuantity}
+        />
       ))}
     </section>
   );

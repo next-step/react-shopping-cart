@@ -7,6 +7,7 @@ export const ProductContainer = styled("section", {
   flexWrap: "wrap",
   gap: "20px",
   padding: "50px 240px",
+  height: "100vh"
 });
 
 export const ItemWrapper = styled("div", {
