@@ -1,21 +1,21 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { AxiosError, AxiosResponse } from 'axios';
 
-type UseMutationResult<TData, TPayload> = {
-  data?: TData | null;
+type UseMutationResultType<TData, TPayload> = {
+  data: TData | null;
   error: string | null;
-  isLoading: boolean;
-  mutate: (payload?: TPayload) => Promise<void>;
+  loading: boolean;
+  mutate: (payload: TPayload) => Promise<void>;
 };
 
 const useCustomMutation = <TData, TPayload>(
   mutationFn: (payload?: TPayload) => Promise<AxiosResponse>
-): UseMutationResult<TData, TPayload> => {
+): UseMutationResultType<TData, TPayload> => {
   const [data, setData] = useState<TData | null>(null);
-  const [isLoading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const mutate = async (payload?: TPayload) => {
+  const mutate = useCallback(async (payload: TPayload) => {
     setLoading(true);
     setData(null);
     setError(null);
@@ -29,11 +29,11 @@ const useCustomMutation = <TData, TPayload>(
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
   return {
     data,
     error,
-    isLoading,
+    loading,
     mutate,
   };
 };

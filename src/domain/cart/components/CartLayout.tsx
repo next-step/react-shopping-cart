@@ -1,0 +1,37 @@
+import { CartList, CartTotal } from '../components';
+import styled from '@emotion/styled';
+import { mediaQuery } from '../../../utils';
+import { CartListType } from '../../../context/CartContext';
+import { cartFunctionType } from '../hooks/useCart';
+
+const S = {
+  Content: styled.div(
+    mediaQuery({
+      display: 'grid',
+      gridTemplateColumns: ['1fr', '1fr', '2fr 1fr'],
+      columnGap: ['0', '0', '50px'],
+      rowGap: ['50px', '50px', '0'],
+      margin: ['0 0 100px'],
+    })
+  ),
+};
+
+interface CartLayoutProps {
+  cartState: CartListType;
+  cartDispatch: cartFunctionType;
+}
+const CartLayout = ({ cartState, cartDispatch }: CartLayoutProps) => {
+  return (
+    <S.Content>
+      <CartList items={cartState.products} cartDispatch={cartDispatch} />
+      <CartTotal
+        title="결제예상금액"
+        label="결제예상금액"
+        totalPrice={cartState.totalPrice}
+        buttonText={`주문하기(${cartState.totalCount}개)`}
+      />
+    </S.Content>
+  );
+};
+
+export default CartLayout;

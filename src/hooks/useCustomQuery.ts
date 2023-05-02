@@ -1,38 +1,40 @@
 import { useCallback, useEffect, useState } from 'react';
-import axiosRequest from '../api/axios';
+import httpRequest from '../apiClient/httpRequest';
 import { AxiosError } from 'axios';
+import { useLocation } from 'react-router-dom';
 
-type UseQueryResult<TData> = {
-  data?: TData | null;
+type UseQueryResultType<TData> = {
+  data: TData | null;
   error: string | null;
-  isLoading: boolean;
+  loading: boolean;
 };
 
-const useCustomQuery = <TData>(url: string): UseQueryResult<TData> => {
+const useCustomQuery = <TData>(url: string): UseQueryResultType<TData> => {
   const [data, setData] = useState<TData | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const location = useLocation();
 
   const fetchData = useCallback(async () => {
-    setIsLoading(true);
+    setLoading(true);
     setData(null);
     setError(null);
     try {
-      const response = await axiosRequest.get(url);
+      const response = await httpRequest.get(url);
       setData(response.data);
     } catch (err) {
       const error = err as AxiosError;
       setError(error.message);
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   }, [url]);
 
   useEffect(() => {
     fetchData();
-  }, [url]);
+  }, [location.search]);
 
-  return { data, isLoading, error };
+  return { data, loading, error };
 };
 
 export default useCustomQuery;
