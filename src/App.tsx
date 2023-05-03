@@ -1,7 +1,7 @@
 import { PayssionProvider } from 'payssion'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import { Header, Nav, Modal } from '@/components'
+import { Nav, Modal } from '@/components'
 import { ModalProvider } from '@/providers'
 import routes from '@/routes'
 
@@ -11,7 +11,6 @@ function App() {
       <BrowserRouter>
         <PayssionProvider>
           <ModalProvider>
-            <Header />
             <Nav />
             <Routes>
               {routes.map((route) => (
