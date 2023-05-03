@@ -1,4 +1,4 @@
-/*** The new CSS Reset - version 1.4.4 (last updated 22.12.2021) ***/
+** The new CSS Reset - version 1.4.4 (last updated 22.12.2021) **
 
 /*
     Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
@@ -9,7 +9,7 @@
   display: revert;
 }
 
-/* Preferred box-sizing value */
+/* Preferred box-sizing value
 *,
 *::before,
 *::after {
@@ -66,11 +66,4 @@ button {
 /* apply back the draggable feature - exist only in Chromium and Safari */
 :where([draggable='true']) {
   -webkit-user-drag: element;
-}
-
-input[type='number']::-webkit-outer-spin-button,
-input[type='number']::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
 }
