@@ -1,23 +1,31 @@
 .number-input-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  align-items: space-between;
 }
 
 .number-input {
-  width: 72px;
-  height: 58px;
-  border: 1px solid #dddddd;
+  width: 3.125rem;
+  height: 3.125rem;
+  border: none;
   text-align: center;
-  font-size: 24px;
+  font-size: 20px;
+}
+
+.number-input-quantity {
+  width: 3.125rem;
+  height: 3.125rem;
+  border: none;
+  text-align: center;
+  font-size: 20px;
+  line-height: 3.125rem;
 }
 
 .number-input-button {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 4px 12px;
-  border: 1px solid #dddddd;
+  padding: 4px 0;
   font-size: 100%;
   cursor: pointer;
 }

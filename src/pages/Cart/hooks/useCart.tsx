@@ -123,7 +123,8 @@ const useCart = () => {
 
   const checkedCartListCount = cartList.reduce((acc, cur) => {
     if (cur.checked) {
-      return acc + 1
+      console.log(cur)
+      return acc + cur.quantity
     } else {
       return acc
     }

@@ -23,14 +23,18 @@ const CartItem = ({ item, handleQuantityChange, handleCheckedChange, updateCartL
     closeModal({ element: DeleteModal })
   }
 
-  const openDeleteModal = (productName: string) => {
+  const openDeleteModal = (product: ProductSchemaWithCheckedAndQuantityInfer) => {
     openModal({
-      element: <DeleteModal onDelete={deleteCartItem} text={`장바구니에서 ${productName} 제품을 삭제하시겠어요?`} />,
+      element: (
+        <DeleteModal onDelete={deleteCartItem} text={`장바구니에서 선택된 제품을 삭제하시겠어요?`}>
+          <div>{product.name}</div>
+        </DeleteModal>
+      ),
     })
   }
 
   return (
-    <div className="cart-container mt-10 mb-10">
+    <div className="cart-container my-20">
       <div className="flex gap-15">
         <input
           className="checkbox"
@@ -42,15 +46,15 @@ const CartItem = ({ item, handleQuantityChange, handleCheckedChange, updateCartL
         <img className="card-image" src={item.imageUrl} alt={item.name} />
         <span className="cart-name">{item.name}</span>
       </div>
-      <div className="flex-col-center justify-end gap-15">
+      <div className="flex-col justify-between items-end gap-15">
         <img
           className="cart-trash-svg"
           src={'./assets/svgs/trash.svg'}
           alt="삭제"
-          onClick={() => openDeleteModal(item.name)}
+          onClick={() => openDeleteModal(item)}
         />
         <div className="number-input-container">
-          <input type="number" className="number-input" value={item.quantity} readOnly />
+          <div className="number-input-quantity">{item.quantity}</div>
           <div>
             <button className="number-input-button" onClick={() => handleQuantityChange(item.id, item.quantity + 1)}>
               ▲

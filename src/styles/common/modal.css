@@ -26,8 +26,6 @@
 }
 
 .modal {
-  width: 30rem;
-  height: 10rem;
   background-color: white;
   border-radius: 10px;
 }
@@ -37,8 +35,8 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 0.9375rem;
-  padding: 2.5rem 1.25rem 1.25rem 1.25rem;
+  gap: 2rem;
+  padding: 1.5rem 2rem;
   text-align: center;
 }
 

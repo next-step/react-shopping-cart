@@ -95,6 +95,10 @@
   gap: 60px;
 }
 
+.w-full {
+  width: 100%;
+}
+
 .w-144 {
   width: 144px;
 }

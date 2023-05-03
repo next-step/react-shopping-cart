@@ -21,7 +21,7 @@ const Cart = () => {
       <SubHeader title="장바구니" type="cart" />
       <div className="grid grid-cols-5 gap-60">
         <section className="span-3 cart-left-section">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center mb-20">
             <div className="checkbox-container">
               <input
                 className="checkbox"

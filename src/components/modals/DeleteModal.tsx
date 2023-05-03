@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, PropsWithChildren } from 'react'
 
 import { CenterModalContainer } from '@/components/modals'
 import { useModal, useOutsideClick } from '@/hooks'
@@ -8,7 +8,11 @@ interface DeleteModalProps {
   onDelete?: () => void
 }
 
-const DeleteModal = ({ onDelete, text = '장바구니에서 모두 삭제하시겠어요?' }: DeleteModalProps) => {
+const DeleteModal = ({
+  children,
+  onDelete,
+  text = '장바구니에서 모두 삭제하시겠어요?',
+}: PropsWithChildren<DeleteModalProps>) => {
   const modalRef = useRef<HTMLDivElement>(null)
 
   const { closeModal } = useModal()
@@ -25,7 +29,8 @@ const DeleteModal = ({ onDelete, text = '장바구니에서 모두 삭제하시�
     <div ref={modalRef}>
       <CenterModalContainer>
         <div className="modal delete-modal">
-          <pre>{text}</pre>
+          <p>{text}</p>
+          <div>{children}</div>
           <div className="flex justify-between gap-10">
             <button className="delete-modal-button" onClick={onDelete}>
               삭제
