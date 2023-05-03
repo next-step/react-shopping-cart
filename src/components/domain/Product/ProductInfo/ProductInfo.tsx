@@ -1,9 +1,10 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Product } from "../../../../store/store";
 import Button from "../../../common/Button/Button";
 import { useAppDispatch } from "../../../../hooks/storeHooks";
 import { addToCart } from "../../../../store/cartSlice";
+import Modal from "../../../common/Modal/Modal";
 
 export type ProductInfoProps = {
   ref?: ((node: HTMLElement | null) => void) | null;
@@ -13,11 +14,11 @@ export type ProductInfoProps = {
 const ProductInfo = ({ product }: ProductInfoProps) => {
   const { name, price, imageUrl } = product;
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
 
   const handleClick = () => {
     dispatch(addToCart(product));
-    navigate("/cart");
+    setShowModal(true);
   };
 
   return (
@@ -32,6 +33,9 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
           <img src="assets/svgs/cart.svg" alt="장바구니" />
         </Button>
       </div>
+      {showModal && (
+        <Modal product={product} onClick={() => setShowModal(false)} />
+      )}
     </div>
   );
 };
