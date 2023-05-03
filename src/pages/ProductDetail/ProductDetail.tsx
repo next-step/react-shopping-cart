@@ -6,12 +6,12 @@ const ProductDetail = () => {
     <div className="product-detail-container">
       {productDetail ? (
         <div className="flex-col-center w-520">
-          <img className="w-480 h-480 mb-10" src={productDetail.imageUrl} alt={productDetail.name} />
+          <img className="product-detail-image mb-10" src={productDetail.imageUrl} alt={productDetail.name} />
           <div className="product-detail-info">
             <span className="product-detail-info__name">{productDetail.name}</span>
-            <hr className="divide-line-gray my-20" />
+            <hr className="divide-line-gray my-10" />
             <div className="flex justify-between">
-              <span>금액</span>
+              <span className="product-detail-info__price">금액</span>
               <span className="product-detail-info__price">{`${productDetail.price.toLocaleString()}원`}</span>
             </div>
           </div>

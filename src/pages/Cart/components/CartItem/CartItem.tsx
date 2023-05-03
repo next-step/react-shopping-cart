@@ -39,13 +39,13 @@ const CartItem = ({ item, handleQuantityChange, handleCheckedChange, updateCartL
           checked={item.checked}
           onChange={() => handleCheckedChange(item.id, item.checked)}
         />
-        <img className="w-144 h-144" src="./assets/images/product.png" alt={item.name} />
+        <img className="card-image" src={item.imageUrl} alt={item.name} />
         <span className="cart-name">{item.name}</span>
       </div>
       <div className="flex-col-center justify-end gap-15">
         <img
           className="cart-trash-svg"
-          src="./assets/svgs/trash.svg"
+          src={'./assets/svgs/trash.svg'}
           alt="삭제"
           onClick={() => openDeleteModal(item.name)}
         />

@@ -15,7 +15,7 @@ const useProductList = () => {
   const navigate = useNavigate()
 
   const [page, setPage] = useState(pageParam || '1')
-  const [perPage, setPerPage] = useState(perPageParam || '10')
+  const [perPage, setPerPage] = useState(perPageParam || '12')
 
   useEffect(() => {
     if (pageParam) {

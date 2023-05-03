@@ -5,7 +5,7 @@
 
 .checkbox {
   appearance: none;
-  border: 1px solid #2ac1bc;
+  border: 1px solid #8bacaa;
   border-radius: 2px;
   width: 1.75rem;
   height: 1.75rem;
@@ -17,7 +17,7 @@
 }
 
 .checkbox:checked {
-  background-color: #2ac1bc;
+  background-color: #8bacaa;
 }
 
 .checkbox:after {

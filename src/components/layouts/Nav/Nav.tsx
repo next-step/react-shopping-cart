@@ -7,9 +7,9 @@ const Nav = () => {
     <nav className="nav flex justify-between items-center">
       <h1 className="nav-title">
         <Link to="/">
-          <div className="flex items-center gap-30">
+          <div className="flex items-center gap-20">
             <Logo width={30} height={30} />
-            <p>ㅅㄹㅅ</p>
+            <p>김사세요</p>
           </div>
         </Link>
       </h1>

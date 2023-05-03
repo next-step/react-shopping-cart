@@ -100,3 +100,13 @@
 .amount-box__button[disabled] {
   opacity: 0.5;
 }
+
+.card-image {
+  border-radius: 0.5rem;
+  width: 100%;
+  height: 100%;
+  max-width: 144px;
+  max-height: 144px;
+
+  object-fit: cover;
+}

@@ -10,15 +10,15 @@ body {
 
 .divide-line {
   width: 100%;
-  border: 2px solid black;
+  border: 1px solid black;
 }
 
 .divide-line-gray {
   width: 100%;
-  border: 2px solid #aaaaaa;
+  border: 1px solid #8bacaa;
 }
 
 .divide-line-thin {
   width: 100%;
-  border: 1px solid #aaaaaa;
+  border: 1px solid #8bacaa;
 }
