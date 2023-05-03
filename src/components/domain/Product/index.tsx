@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, {
   MutableRefObject,
   memo,
@@ -19,15 +20,14 @@ const Products = () => {
     hasMore,
   } = useFetchData(PRODUCTS_URL, globalProduct);
 
-  const PRODUCTS_PER_PAGE = 4;
   const [pageNumber, setPageNumber] = useState(0);
   const [pageVisited, setPageVisited] = useState(0);
-
-  const fourProducts = products.slice(
+  const productsPerPage = products.slice(
     pageVisited,
     pageVisited + PRODUCTS_PER_PAGE
   );
-  const [displayProducts, setDisplayProducts] = useState(fourProducts);
+  const [displayProducts, setDisplayProducts] = useState(productsPerPage);
+  console.log(displayProducts);
 
   const observer: MutableRefObject<IntersectionObserver | null> = useRef(null);
   const lastProductElementRef = useCallback(
@@ -51,17 +51,27 @@ const Products = () => {
 
   useEffect(() => {
     setPageVisited(pageNumber * PRODUCTS_PER_PAGE);
-    setDisplayProducts((prev) => [...prev, ...fourProducts]);
+    setDisplayProducts((prev) => {
+      const newProductsPerPage = products.slice(
+        pageVisited,
+        pageVisited + PRODUCTS_PER_PAGE
+      );
+      return [...prev, ...newProductsPerPage];
+    });
   }, [pageNumber]);
 
   return (
     <section className="product-container">
-      {displayProducts.map((product) => (
-        <ProductInfo key={product.id} product={product} />
+      {displayProducts.map((product, idx) => (
+        <>
+          <ProductInfo key={product.id} product={product} />
+          {idx === displayProducts.length - 1 && (
+            <div ref={lastProductElementRef}>Loader</div>
+          )}
+        </>
       ))}
       {loading && "Skeleton"}
       {error && "Error"}
-      <div ref={lastProductElementRef}>Loader</div>
     </section>
   );
 };
@@ -69,3 +79,4 @@ const Products = () => {
 export default memo(Products);
 
 const PRODUCTS_URL = "http://localhost:3000/";
+const PRODUCTS_PER_PAGE = 4;
