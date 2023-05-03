@@ -2,13 +2,17 @@ import React from "react";
 import CartSectionTitle from "./etc/CartSectionTitle";
 import CartItemsSection from "./sections/CartItemsSection";
 import OrderDisplaySection from "./sections/OrderDisplaySection";
+import { useAppSelector } from "../../../hooks/storeHooks";
+import { useFetchData } from "../../../hooks/useFetchData";
 
 const Cart = () => {
+  const globalProduct = useAppSelector((state) => state.cart.products);
+
   return (
     <section className="cart-section">
       <CartSectionTitle />
       <div className="flex">
-        <CartItemsSection />
+        <CartItemsSection product={globalProduct} />
         <OrderDisplaySection />
       </div>
     </section>

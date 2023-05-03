@@ -72,6 +72,9 @@ const cartSlice = createSlice({
         existingItem.isChecked = !existingItem.isChecked;
       }
     },
+    selectAll: (state) => {
+      state.products.map((product) => (product.isChecked = !product.isChecked));
+    },
   },
 });
 
@@ -82,5 +85,6 @@ export const {
   increaseQuantity,
   decreaseQuantity,
   selectItem,
+  selectAll,
 } = cartSlice.actions;
 export default cartSlice;

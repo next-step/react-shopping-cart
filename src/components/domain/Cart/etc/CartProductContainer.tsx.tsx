@@ -3,13 +3,15 @@ import { numberFormat } from "../../../../utils/numberFormat";
 import Checkbox from "../../../common/Input/Checkbox/Checkbox";
 import QuantityCounter from "../../../common/Input/QuantityCounter/QuantityCounter";
 import { Product } from "../../../../store/store";
-import { useAppSelector } from "../../../../hooks/storeHooks";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/storeHooks";
+import { selectItem } from "../../../../store/cartSlice";
 
 type Props = {
   product: Product;
 };
 
 const CartProductContainer = ({ product }: Props) => {
+  const dispatch = useAppDispatch();
   const { id, name, price, imageUrl } = product;
   const updatedQuantity = useAppSelector((state) => {
     const theItem = state.cart.products.find(
@@ -17,11 +19,14 @@ const CartProductContainer = ({ product }: Props) => {
     );
     return theItem?.quantity;
   });
+  const handleClickCheckbox = () => {
+    dispatch(selectItem(product));
+  };
 
   return (
     <div className="cart-container">
       <div className="flex gap-15 mt-10">
-        <Checkbox product={product} />
+        <Checkbox product={product} onClick={handleClickCheckbox} />
         <img className="w-144 h-144" src={imageUrl} alt={name} />
         <span className="cart-name">{name}</span>
       </div>
