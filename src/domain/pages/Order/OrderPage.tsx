@@ -11,8 +11,8 @@ const OrderPage = () => {
     isOpenDialog,
     dialogTitle,
     handlePaymentAppCloseButton,
+    cartList,
     totalAmount,
-    ordredItems,
     totalPrice,
   } = useOrderPage();
 
@@ -21,7 +21,6 @@ const OrderPage = () => {
   } else if (status === 'Fail') {
     return <ErrorMessage />;
   }
-
   return (
     <Styled.Layout>
       {isOpenPaymentUI && <Styled.CustomPaymentApp onCloseButton={handlePaymentAppCloseButton} />}
@@ -31,7 +30,7 @@ const OrderPage = () => {
         <Styled.ItemSection>
           <Styled.Title>{`주문 상품(${totalAmount}건)`}</Styled.Title>
           <Styled.DivideLine />
-          {ordredItems.map((product) => (
+          {cartList.map((product) => (
             <OrderdItem
               id={product.id}
               key={uuid()}

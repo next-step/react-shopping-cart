@@ -33,7 +33,7 @@ export const dialogSlice = createSlice({
           state.type = 'orderCartItem';
           break;
         case '결제 하시겠습니까?':
-          state.type = 'payment';
+          state.type = 'paymentApp';
           break;
         default:
           break;

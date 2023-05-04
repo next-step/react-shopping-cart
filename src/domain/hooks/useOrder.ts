@@ -11,7 +11,7 @@ const useOrder = () => {
   };
 
   const payment = () => {
-    setDialogMessage('payment');
+    setDialogMessage('paymentApp');
   };
 
   const getOrderItem = () => {

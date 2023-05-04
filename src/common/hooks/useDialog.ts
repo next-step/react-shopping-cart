@@ -1,11 +1,8 @@
-import type { CartProductType } from 'domain/types';
 import type { DialogType } from 'common/types';
-
 import { useNavigate } from 'react-router-dom';
 import { handleOpenDialog, handleDialogMessage } from 'common/store/feature/dialog/dialogslice';
-import { handlePaymentApp, updateOrder } from 'domain/store/feature/order/orderSlice';
+import { handlePaymentApp } from 'domain/store/feature/order/orderSlice';
 import { useAppDispatch, useAppSelector } from 'store';
-import { getData } from 'common/utils/axios';
 import { useCart } from 'domain/hooks';
 
 const useDialog = () => {
@@ -36,7 +33,7 @@ const useDialog = () => {
       case 'orderCartItem':
         dispatch(handleDialogMessage('주문 하시겠습니까?'));
         break;
-      case 'payment':
+      case 'paymentApp':
         dispatch(handleDialogMessage('결제 하시겠습니까?'));
         break;
       default:
@@ -54,14 +51,9 @@ const useDialog = () => {
         const isValid = await addCartItem(selectedCartItem);
         return isValid ? alert('장바구니에 상품을 추가하였습니다!') : alert('장바구니에 이미 추가된 상품입니다');
       case 'orderCartItem':
-        const cartItem = (await getData('/carts')) as CartProductType[];
-        const orderItems = cartItem.filter((item) => {
-          return item.isOrder === true;
-        });
-        dispatch(updateOrder(orderItems));
         navigate('/order');
         break;
-      case 'payment':
+      case 'paymentApp':
         dispatch(handlePaymentApp(true));
         break;
       default:

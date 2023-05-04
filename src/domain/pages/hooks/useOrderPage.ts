@@ -1,28 +1,20 @@
 import { useNavigate } from 'react-router-dom';
 import { useDialog } from 'common/hooks';
 import { useOrder, useCart } from 'domain/hooks';
-import { handlePaymentApp } from 'domain/store/feature/order/orderSlice';
+import { handlePaymentApp, updateOrder } from 'domain/store/feature/order/orderSlice';
 import { usePayment } from 'payment-junyoung';
 import { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'store';
 
 const useOrderPage = () => {
-  const { getOrderItem } = useOrder();
-  const { deleteOrderedCartItem } = useCart();
+  const dispatch = useAppDispatch();
+  const { deleteOrderedCartItem, cartList, status, totalAmount, totalPrice } = useCart();
   const { isOpenDialog, dialogTitle } = useDialog();
   const navigate = useNavigate();
 
   const orderStore = useAppSelector((state) => state.orderReducer);
-  const orderedList = orderStore.orderedList;
-  const orderListLength = orderedList.length;
-  const recentlyOrderedItem = orderedList[orderListLength - 1];
-  const totalAmount = recentlyOrderedItem.ordered.totalAmount;
-  const totalPrice = recentlyOrderedItem.ordered.totalPrice;
-  const ordredItems = recentlyOrderedItem.ordered.items;
-  const status = orderStore.status;
   const isOpenPaymentUI = orderStore.isOpenPaymentApp;
-  const dispatch = useAppDispatch();
 
   const { isPayment } = usePayment();
 
@@ -31,13 +23,13 @@ const useOrderPage = () => {
   };
 
   useEffect(() => {
-    getOrderItem();
-  }, []);
-
-  // payment APP 결제완료시
-  useEffect(() => {
+    // payment APP 결제완료시
     if (isPayment) {
+      const orderItems = cartList.filter((item) => {
+        return item.isOrder === true;
+      });
       deleteOrderedCartItem();
+      dispatch(updateOrder(orderItems));
       dispatch(handlePaymentApp(false));
       navigate('/orders');
     }
@@ -48,10 +40,10 @@ const useOrderPage = () => {
     status,
     isOpenDialog,
     dialogTitle,
-    handlePaymentAppCloseButton,
+    cartList,
     totalAmount,
-    ordredItems,
     totalPrice,
+    handlePaymentAppCloseButton,
   };
 };
 export default useOrderPage;

@@ -1,7 +1,8 @@
 import { rest } from 'msw';
+import data from '../data/products.json';
 import type { CartProductListType, CartProductType } from 'domain/types';
 
-let userCarts: CartProductListType = [];
+let userCarts: CartProductListType = data.cart;
 
 export const addCart = rest.post('/carts', async (req, res, ctx) => {
   const product = (await req.json()) as CartProductType;
