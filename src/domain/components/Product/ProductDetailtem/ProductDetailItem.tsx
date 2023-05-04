@@ -1,13 +1,9 @@
-import { useParams } from 'react-router-dom';
 import * as Styled from './ProductDetailItem.styles';
 import type { ProductDetailItemProps } from './ProductDetailItem.types';
 import useProductItem from 'domain/components/hooks/useProductItem';
 
-const ProductDetailItem = ({ products }: ProductDetailItemProps) => {
-  const params = useParams();
-  const { id } = params;
-
-  const currentDetailItem = products.filter((product) => product.id === Number(id))[0];
+const ProductDetailItem = ({ id, image, name, price }: ProductDetailItemProps) => {
+  const currentDetailItem = { id, image, name, price };
   const { addToCart } = useProductItem(currentDetailItem);
 
   return (

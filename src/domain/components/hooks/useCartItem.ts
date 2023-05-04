@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { CartProductType } from 'domain/types';
-import { useCart } from 'common/hooks';
+import { useCart } from 'domain/hooks';
 
 const MAX_NUMBER = 20;
 const MIN_NUMBER = 1;

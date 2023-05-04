@@ -1,23 +1,25 @@
 import { useState, useEffect } from 'react';
-import { useCart, useDialog } from 'common/hooks';
+import { useDialog } from 'common/hooks';
+import { useCart } from 'domain/hooks';
+
 const useCartPage = () => {
-  const [check, setCheck] = useState(false);
+  const [checkbox, setcheckBox] = useState(false);
   const { getCartItems, updateOrderCartItem, cartList, totalAmount, totalPrice, status } = useCart();
-  const { setDialogUI } = useDialog();
+  const { setDialogMessage } = useDialog();
 
   const handleSelectAllCheckBox = () => {
-    setCheck(!check);
-    updateOrderCartItem(check);
+    setcheckBox(!checkbox);
+    updateOrderCartItem(checkbox);
   };
   const handleRemoveButton = () => {
-    setDialogUI('deleteCartItem');
+    setDialogMessage('deleteCartItem');
   };
 
   useEffect(() => {
     getCartItems();
   }, []);
 
-  return { check, handleSelectAllCheckBox, handleRemoveButton, cartList, totalAmount, totalPrice, status };
+  return { checkbox, handleSelectAllCheckBox, handleRemoveButton, cartList, totalAmount, totalPrice, status };
 };
 
 export default useCartPage;

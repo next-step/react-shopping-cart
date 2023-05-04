@@ -1,14 +1,17 @@
-import { useCart, useDialog, useOrder, useRouter } from 'common/hooks';
+import { useNavigate } from 'react-router-dom';
+import { useDialog } from 'common/hooks';
+import { useOrder, useCart } from 'domain/hooks';
 import { handlePaymentApp } from 'domain/store/feature/order/orderSlice';
 import { usePayment } from 'payment-junyoung';
 import { useEffect } from 'react';
+
 import { useAppDispatch, useAppSelector } from 'store';
 
 const useOrderPage = () => {
   const { getOrderItem } = useOrder();
   const { deleteOrderedCartItem } = useCart();
   const { isOpenDialog, dialogTitle } = useDialog();
-  const { push } = useRouter();
+  const navigate = useNavigate();
 
   const orderStore = useAppSelector((state) => state.orderReducer);
   const orderedList = orderStore.orderedList;
@@ -36,7 +39,7 @@ const useOrderPage = () => {
     if (isPayment) {
       deleteOrderedCartItem();
       dispatch(handlePaymentApp(false));
-      push('/orders');
+      navigate('/orders');
     }
   }, [isPayment]);
 

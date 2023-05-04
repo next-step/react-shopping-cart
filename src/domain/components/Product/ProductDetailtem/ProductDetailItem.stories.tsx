@@ -29,14 +29,14 @@ const mockData = [
 
 const Template: ComponentStory<typeof ProductDetailItem> = (args) => <ProductDetailItem {...args} />;
 
-export const DetailItem = Template.bind({});
-DetailItem.parameters = {
-  reactRouter: {
-    routePath: '/product/:id',
-    routeParams: { id: 1 },
-  },
-};
+// export const DetailItem = Template.bind({});
+// DetailItem.parameters = {
+//   reactRouter: {
+//     routePath: '/product/:id',
+//     routeParams: { id: 1 },
+//   },
+// };
 
-DetailItem.args = {
-  products: mockData,
-};
+// DetailItem.args = {
+//   products: mockData,
+// };

@@ -5,7 +5,7 @@ import { Dialog, ErrorMessage, PageHeader } from 'common/components';
 import useCartPage from '../hooks/useCartPage';
 import { useDialog } from 'common/hooks';
 const CartPage = () => {
-  const { check, handleSelectAllCheckBox, handleRemoveButton, cartList, totalAmount, totalPrice, status } =
+  const { checkbox, handleSelectAllCheckBox, handleRemoveButton, cartList, totalAmount, totalPrice, status } =
     useCartPage();
   const { isOpenDialog, dialogTitle } = useDialog();
 
@@ -21,7 +21,12 @@ const CartPage = () => {
         <Styled.ItemSection>
           <Styled.CheckBoxContainer>
             <Styled.CheckBoxInputBox>
-              <Styled.CheckBox type={'checkbox'} name="checkbox" onChange={handleSelectAllCheckBox} checked={check} />
+              <Styled.CheckBox
+                type={'checkbox'}
+                name="checkbox"
+                onChange={handleSelectAllCheckBox}
+                checked={checkbox}
+              />
               <Styled.CheckBoxLabel htmlFor="checkbox">모두 선택</Styled.CheckBoxLabel>
             </Styled.CheckBoxInputBox>
             <Styled.CartRemoveButton onClick={handleRemoveButton} />

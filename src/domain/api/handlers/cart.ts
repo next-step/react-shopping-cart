@@ -11,7 +11,7 @@ export const addCart = rest.post('/carts', async (req, res, ctx) => {
     userCarts.push(product);
     return res(ctx.status(201));
   } else {
-    return res(ctx.status(400));
+    return res(ctx.status(400)); //중복처리
   }
 });
 

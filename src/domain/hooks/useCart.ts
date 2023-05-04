@@ -1,6 +1,5 @@
 import { useAppSelector, useAppDispatch } from 'store';
 import { updateCart, getCart, deleteCartItem, selectCartItem } from 'domain/store/feature/cart/cartSlice';
-
 import { CartProductType } from 'domain/types';
 import { calculateCartProductTotal, calculateCartTotalAmount } from 'domain/utils';
 import { getData, postData } from 'common/utils/axios';
@@ -17,6 +16,7 @@ const useCart = () => {
     dispatch(getCart('/carts'));
   };
 
+  // 변수명 겹침
   const SelectCartItem = (cartProduct: CartProductType) => {
     dispatch(selectCartItem(cartProduct));
   };
@@ -37,12 +37,12 @@ const useCart = () => {
     dispatch(updateCart(product));
   };
 
-  const updateOrderCartItem = async (checked: boolean) => {
+  const updateOrderCartItem = async (ischecked: boolean) => {
     const cartItem = (await getData('/carts')) as CartProductType[];
     cartItem.forEach((product) => {
       updateCartItem({
         ...product,
-        isOrder: !checked,
+        isOrder: !ischecked,
       });
     });
   };

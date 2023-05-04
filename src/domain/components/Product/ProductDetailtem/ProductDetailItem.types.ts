@@ -1,4 +1,2 @@
 import type { ProductType } from 'domain/types';
-export type ProductDetailItemProps = {
-  products: ProductType[];
-};
+export type ProductDetailItemProps = ProductType;

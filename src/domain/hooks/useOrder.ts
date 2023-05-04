@@ -4,14 +4,14 @@ import { useDialog } from 'common/hooks';
 
 const useOrder = () => {
   const dispatch = useAppDispatch();
-  const { setDialogUI } = useDialog();
+  const { setDialogMessage } = useDialog();
 
   const orderCart = () => {
-    setDialogUI('orderCartItem');
+    setDialogMessage('orderCartItem');
   };
 
   const payment = () => {
-    setDialogUI('payment');
+    setDialogMessage('payment');
   };
 
   const getOrderItem = () => {

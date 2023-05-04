@@ -1,6 +1,6 @@
-import { useOrder } from 'common/hooks';
 import * as Styled from './Payment.styled';
 import type { PaymentProps } from './Payment.types';
+import { useOrder } from 'domain/hooks';
 
 const Payment = ({ ...props }: PaymentProps) => {
   const { orderCart, payment } = useOrder();

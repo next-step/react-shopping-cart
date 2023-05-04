@@ -9,7 +9,7 @@ const ProductItem = ({ name, price, image, id }: ItemProps) => {
 
   return (
     <Styled.Layout>
-      <Styled.ItemImage src={image} alt={name} onClick={moveToProductDetailPage} data-testid="product" />
+      <Styled.ItemImage src={image} alt={name} onClick={moveToProductDetailPage} />
       <Styled.FlexContainer>
         <Styled.FlexBox>
           <Styled.NameText>{name}</Styled.NameText>

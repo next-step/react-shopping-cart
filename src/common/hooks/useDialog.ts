@@ -1,14 +1,16 @@
+import type { CartProductType } from 'domain/types';
+import type { DialogType } from 'common/types';
+
+import { useNavigate } from 'react-router-dom';
 import { handleOpenDialog, handleDialogMessage } from 'common/store/feature/dialog/dialogslice';
 import { handlePaymentApp, updateOrder } from 'domain/store/feature/order/orderSlice';
-import type { CartProductType } from 'domain/types';
 import { useAppDispatch, useAppSelector } from 'store';
-import type { DialogType } from 'common/types';
-import { useCart, useRouter } from 'common/hooks';
 import { getData } from 'common/utils/axios';
+import { useCart } from 'domain/hooks';
 
 const useDialog = () => {
   const { deleteOrderedCartItem, selectedCartItem, addCartItem } = useCart();
-  const { push } = useRouter();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const dialogStore = useAppSelector((state) => state.dialogReducer);
   const isOpenDialog = dialogStore.isOpen;
@@ -23,7 +25,7 @@ const useDialog = () => {
     dispatch(handleOpenDialog(false));
   };
 
-  const setDialogUI = (type: DialogType) => {
+  const setDialogMessage = (type: DialogType) => {
     switch (type) {
       case 'deleteCartItem':
         dispatch(handleDialogMessage('상품을 삭제하시겠습니까?'));
@@ -57,7 +59,7 @@ const useDialog = () => {
           return item.isOrder === true;
         });
         dispatch(updateOrder(orderItems));
-        push('/order');
+        navigate('/order');
         break;
       case 'payment':
         dispatch(handlePaymentApp(true));
@@ -72,7 +74,7 @@ const useDialog = () => {
     dialogTitle,
     openDialog,
     closeDialog,
-    setDialogUI,
+    setDialogMessage,
     handleConfirmButton,
   };
 };
