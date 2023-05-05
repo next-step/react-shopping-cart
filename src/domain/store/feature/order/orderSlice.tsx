@@ -2,10 +2,11 @@ import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import type { OrderProductType, OrderedItemsType, StatusType } from 'domain/types';
 import { getData, postData } from 'common/utils/axios';
 import { OrdersSchema } from 'domain/schema';
-
+import type { ThunkApiType } from 'store';
 type OrderStateType = {
   orderedList: OrderedItemsType[];
   status: StatusType;
+  statusMessage: string;
   isOpenPaymentApp: boolean;
 };
 
@@ -21,29 +22,32 @@ const initialState: OrderStateType = {
     },
   ],
   status: 'Loading',
+  statusMessage: '',
   isOpenPaymentApp: false,
 };
 
-const getOrder = createAsyncThunk('getOrder', async (url: string, thunkApi: any) => {
+const getOrder = createAsyncThunk<OrderedItemsType[], string, ThunkApiType>('getOrder', async (url, thunkApi) => {
   try {
-    const response = await getData(url);
+    const response = (await getData(url)) as OrderedItemsType[];
     await OrdersSchema.validate(response);
     return response;
-  } catch (error: any) {
-    return thunkApi.rejectWithValue(error.message);
+  } catch (error) {
+    return thunkApi.rejectWithValue('데이터를 가져오는데 실패하였습니다 !');
   }
 });
 
-const updateOrder = createAsyncThunk('updateOrder', async (data: OrderProductType[], thunkApi: any) => {
-  try {
-    const response = await postData('/order/update', data);
-
-    await OrdersSchema.validate(response.data);
-    return response.data;
-  } catch (error: any) {
-    return thunkApi.rejectWithValue(error.message);
+const updateOrder = createAsyncThunk<OrderedItemsType[], OrderProductType[], ThunkApiType>(
+  'updateOrder',
+  async (data, thunkApi) => {
+    try {
+      const response = (await postData('/order/update', data)) as OrderedItemsType[];
+      await OrdersSchema.validate(response);
+      return response;
+    } catch (error) {
+      return thunkApi.rejectWithValue('데이터를 가져오는데 실패하였습니다 !');
+    }
   }
-});
+);
 
 export const orderSlice = createSlice({
   name: 'order',

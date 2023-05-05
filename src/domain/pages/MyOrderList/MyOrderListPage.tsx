@@ -1,16 +1,15 @@
+import uuid from 'react-uuid';
 import { useEffect } from 'react';
 import { useAppSelector } from 'store';
 import { useOrder } from 'domain/hooks';
 
 import * as Styled from './MyOrderListPage.styles';
+
 import { ErrorMessage, PageHeader, Spinner } from 'common/components';
 import { MyOrderListItem, MyOrderListHeader } from 'domain/components';
 
-import uuid from 'react-uuid';
-
 const MyOrderListPage = () => {
   const { getOrderItem } = useOrder();
-
   const orderStore = useAppSelector((state) => state.orderReducer);
   const orderedList = orderStore.orderedList;
   const status = orderStore.status;

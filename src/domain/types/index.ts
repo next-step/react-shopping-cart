@@ -5,6 +5,11 @@ export type ProductType = {
   id: number;
 };
 
+export type ProductListType = {
+  products: ProductType[];
+  TOTAL_PAGE: number;
+};
+
 export interface CartProductType extends ProductType {
   isOrder: boolean;
   amount: number;

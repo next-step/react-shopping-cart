@@ -3,6 +3,7 @@ import { updateCart, getCart, deleteCartItem, selectCartItem } from 'domain/stor
 import { CartProductType } from 'domain/types';
 import { calculateCartProductTotal, calculateCartTotalAmount } from 'domain/utils';
 import { getData, postData } from 'common/utils/axios';
+import { AxiosResponse } from 'axios';
 
 const useCart = () => {
   const cartList = useAppSelector((state) => state.cartReducer.cartList);
@@ -23,7 +24,7 @@ const useCart = () => {
 
   const addCartItem = async (product: CartProductType) => {
     try {
-      const response = await postData('/carts', product);
+      const response = (await postData('/carts', product)) as AxiosResponse;
       if (response.status === 400) {
         throw new Error();
       }

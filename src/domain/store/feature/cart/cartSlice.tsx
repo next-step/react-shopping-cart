@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import type { CartProductType, CartProductListType, StatusType } from 'domain/types';
+import type { ThunkApiType } from 'store';
 import { getData, postData, updateData } from 'common/utils/axios';
 import { CartProductsSchema } from 'domain/schema';
 
@@ -15,34 +16,40 @@ const initialState: CartStateType = {
   status: 'Loading',
 };
 
-const getCart = createAsyncThunk('getCart', async (url: string, thunkApi: any) => {
+const getCart = createAsyncThunk<CartProductListType, string, ThunkApiType>('getCart', async (url, thunkApi) => {
   try {
-    const response = await getData(url);
-    await CartProductsSchema.validate(response); //서버로부터 온 데이터가 validate하지 않으면 error로 이동
+    const response = (await getData(url)) as CartProductListType;
+    await CartProductsSchema.validate(response);
     return response;
-  } catch (error: any) {
-    return thunkApi.rejectWithValue(error.message);
+  } catch (error) {
+    return thunkApi.rejectWithValue('데이터를 가져오는데 실패하였습니다 !');
   }
 });
 
-const deleteCartItem = createAsyncThunk('deleteCart', async (data: CartProductType, thunkApi: any) => {
-  try {
-    const response = await postData('/cart/delete', data);
-    await CartProductsSchema.validate(response.data); //서버로부터 온 데이터가 validate하지 않으면 error로 이동
-    return response.data;
-  } catch (error: any) {
-    return thunkApi.rejectWithValue(error.message);
+const deleteCartItem = createAsyncThunk<CartProductListType, CartProductType, ThunkApiType>(
+  'deleteCart',
+  async (data, thunkApi) => {
+    try {
+      const response = (await postData('/cart/delete', data)) as CartProductListType;
+      await CartProductsSchema.validate(response);
+      return response;
+    } catch (error) {
+      return thunkApi.rejectWithValue('데이터를 가져오는데 실패하였습니다 !');
+    }
   }
-});
-const updateCart = createAsyncThunk('updateCart', async (data: CartProductType, thunkApi: any) => {
-  try {
-    const response = await updateData('/cart/update', data);
-    await CartProductsSchema.validate(response.data); //서버로부터 온 데이터가 validate하지 않으면 error로 이동
-    return response.data;
-  } catch (error: any) {
-    return thunkApi.rejectWithValue(error.message);
+);
+const updateCart = createAsyncThunk<CartProductListType, CartProductType, ThunkApiType>(
+  'updateCart',
+  async (data, thunkApi) => {
+    try {
+      const response = (await updateData('/cart/update', data)) as CartProductListType;
+      await CartProductsSchema.validate(response);
+      return response;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error);
+    }
   }
-});
+);
 
 export const cartSlice = createSlice({
   name: 'cart',

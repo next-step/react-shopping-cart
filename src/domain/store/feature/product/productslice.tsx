@@ -1,12 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { ProductType, StatusType } from 'domain/types';
+import type { ProductListType, StatusType } from 'domain/types';
 import { getProductItems } from 'common/utils/axios';
 import { ProductsSchema } from 'domain/schema';
+import type { ThunkApiType } from 'store';
 
-type ProductListType = {
-  products: ProductType[];
-  TOTAL_PAGE: number;
-};
 type ProductStateType = {
   productList: ProductListType;
   status: StatusType;
@@ -20,13 +17,13 @@ const initialState: ProductStateType = {
   status: 'Loading',
 };
 
-const getProductList = createAsyncThunk('product', async (param: number, thunkApi: any) => {
+const getProductList = createAsyncThunk<ProductListType, number, ThunkApiType>('product', async (param, thunkApi) => {
   try {
     const response = await getProductItems(param);
     await ProductsSchema.validate(response);
     return response;
-  } catch (error: any) {
-    return thunkApi.rejectWithValue(error.message);
+  } catch (error) {
+    return thunkApi.rejectWithValue('데이터를 가져오는데 실패하였습니다 !');
   }
 });
 
@@ -42,7 +39,7 @@ export const productSlice = createSlice({
       state.status = 'Complete';
       state.productList = action.payload;
     });
-    builder.addCase(getProductList.rejected, (state) => {
+    builder.addCase(getProductList.rejected, (state: ProductStateType) => {
       state.status = 'Fail';
     });
   },
