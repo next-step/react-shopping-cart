@@ -26,7 +26,7 @@ const CartItem = ({ item, handleQuantityChange, handleCheckedChange, updateCartL
   const openDeleteModal = (product: ProductSchemaWithCheckedAndQuantityInfer) => {
     openModal({
       element: (
-        <DeleteModal onDelete={deleteCartItem} text={`장바구니에서 선택된 제품을 삭제하시겠어요?`}>
+        <DeleteModal onDelete={deleteCartItem} text={`장바구니에서 해당 제품을 삭제하시겠어요?`}>
           <div>{product.name}</div>
         </DeleteModal>
       ),
