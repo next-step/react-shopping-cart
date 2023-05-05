@@ -21,8 +21,6 @@ function useMutation<TData, TVariables>(
     setIsLoading(true)
     setError(null)
 
-    console.log(url, method, variables)
-
     try {
       const response = await asyncRequest(url, {
         method,

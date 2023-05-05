@@ -1,3 +1,5 @@
+import { usePayssion, Payssion } from 'payssion'
+
 import { SubHeader, AmountBox } from '@/components'
 import { useOrder } from '@/pages/Order/hooks'
 
@@ -5,6 +7,7 @@ import { OrderItem } from './components'
 
 const Order = () => {
   const { orders, totalOrderPrice, totalOrderQuantity, openPaymentCheckModal } = useOrder()
+  const { isOpen } = usePayssion()
 
   return (
     <section className="order-section">
@@ -15,10 +18,10 @@ const Order = () => {
           <hr className="divide-line-thin mt-10" />
           {orders && orders.length > 0 ? (
             orders?.map((order) => (
-              <>
+              <div key={order.id}>
                 <OrderItem key={order.id} item={order} />
                 <hr className="divide-line-thin mt-10" />
-              </>
+              </div>
             ))
           ) : (
             <div className="flex justify-center px-20">주문 비어있습니다.</div>
@@ -34,6 +37,7 @@ const Order = () => {
           />
         </section>
       </div>
+      {isOpen && <Payssion />}
     </section>
   )
 }

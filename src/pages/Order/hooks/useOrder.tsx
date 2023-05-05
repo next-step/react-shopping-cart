@@ -1,3 +1,4 @@
+import { usePayssion } from 'payssion'
 import { useNavigate } from 'react-router-dom'
 import uuid from 'react-uuid'
 import { z } from 'zod'
@@ -10,6 +11,7 @@ import { OrderSchema, OrderSchemaInfer } from '@/schemas'
 const useOrder = () => {
   const navigate = useNavigate()
   const { openModal, closeModal } = useModal()
+  const { initiatePayment } = usePayssion()
 
   const {
     payload: orders,
@@ -22,7 +24,7 @@ const useOrder = () => {
 
   const deleteAllOrdersMutation = useMutation(`${API.ORDERS}`, 'DELETE')
 
-  const handleConfirmButtonClick = async () => {
+  const onSuccessAction = async () => {
     await createOrderListMutation.mutate({
       orderListItem: {
         orderListId: uuid(),
@@ -30,14 +32,19 @@ const useOrder = () => {
       },
     })
     await deleteAllOrdersMutation.mutate()
-
-    closeModal({ element: CheckModal })
     navigate('/order-list')
   }
 
-  const openPaymentCheckModal = () => {
+  const handleConfirmButtonClick = (amount: number) => {
+    closeModal({ element: CheckModal })
+    initiatePayment({ amount, onSuccessAction })
+  }
+
+  const openPaymentCheckModal = (price: number) => {
     openModal({
-      element: <CheckModal text="주문 목록을 결제하시겠어요?" onConfirmButtonClick={handleConfirmButtonClick} />,
+      element: (
+        <CheckModal text="주문 목록을 결제하시겠어요?" onConfirmButtonClick={() => handleConfirmButtonClick(price)} />
+      ),
     })
   }
 

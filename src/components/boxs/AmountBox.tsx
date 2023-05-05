@@ -2,8 +2,12 @@ interface AmountBoxProps {
   title: string
   price: string
   disabled: boolean
-  onClick: () => void
+  onClick: (price: number) => void
   buttonText: string
+}
+
+function extractNumberFromString(str: string) {
+  return parseInt(str.replace(/[^0-9]/g, ''), 10)
 }
 
 const AmountBox = ({ title, price, disabled, onClick, buttonText }: AmountBoxProps) => {
@@ -14,7 +18,11 @@ const AmountBox = ({ title, price, disabled, onClick, buttonText }: AmountBoxPro
         <span className="underline">{title}</span>
         <span className="underline">{price}</span>
       </div>
-      <button className="amount-box__button primary-button" disabled={disabled} onClick={onClick}>
+      <button
+        className="amount-box__button primary-button"
+        disabled={disabled}
+        onClick={() => onClick(extractNumberFromString(price))}
+      >
         {buttonText}
       </button>
     </div>
