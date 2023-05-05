@@ -1,3 +1,4 @@
+import { ReactComponent as Trash } from '@/assets/trash.svg'
 import { DeleteModal } from '@/components/modals'
 import { API } from '@/config'
 import { useModal, useMutation } from '@/hooks'
@@ -47,12 +48,7 @@ const CartItem = ({ item, handleQuantityChange, handleCheckedChange, updateCartL
         <span className="cart-name">{item.name}</span>
       </div>
       <div className="flex-col justify-between items-end gap-15">
-        <img
-          className="cart-trash-svg"
-          src={'./assets/svgs/trash.svg'}
-          alt="삭제"
-          onClick={() => openDeleteModal(item)}
-        />
+        <Trash width={25} height={25} onClick={() => openDeleteModal(item)} />
         <div className="number-input-container">
           <div className="number-input-quantity">{item.quantity}</div>
           <div>
