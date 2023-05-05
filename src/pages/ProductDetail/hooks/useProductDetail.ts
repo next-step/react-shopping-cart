@@ -14,7 +14,7 @@ const useProductDetail = () => {
     isLoading,
     error,
   } = useFetch<ProductSchemaInfer>(API.PRODUCT(getProductId()), {
-    enabled: !!getProductId(),
+    enabled: typeof getProductId() === 'number',
     schema: ProductSchema,
   })
   const productDetailMutation = useMutation(API.CARTS, 'POST')
