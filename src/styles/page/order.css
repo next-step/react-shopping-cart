@@ -1,5 +1,5 @@
 .order-section {
-  padding: 24px 100px;
+  padding: 1.5rem 7.5rem;
 }
 
 .order-section__title {
@@ -15,11 +15,11 @@
 .order-title {
   display: flex;
   align-items: center;
-  font-size: 20px;
+  font-size: 1.2rem;
 }
 
 .order-name {
-  font-size: 20px;
+  font-size: 1.2rem;
 }
 
 .order-info {
@@ -54,18 +54,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 10px;
 }
 
 .order-list__header {
   width: 100%;
   padding: 30px 50px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   margin-top: 50px;
-  font-size: 20px;
-  background: #f6f6f6;
-
+  font-size: 1.2rem;
+  background: #e2e2e2;
+  border-radius: 0.5rem;
   border: 1px solid #aaaaaa;
 }
 
@@ -74,7 +72,8 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 20px 40px;
+  padding: 30px 50px;
+  border-radius: 0.5rem;
 
   border: 1px solid #aaaaaa;
 }
@@ -86,5 +85,5 @@
 }
 
 .order-detail-title {
-  font-size: 24px;
+  font-size: 1rem;
 }

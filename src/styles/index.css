@@ -22,3 +22,14 @@ body {
   width: 100%;
   border: 1px solid #8bacaa;
 }
+
+.image-small {
+  width: 100%;
+  height: 100%;
+
+  max-width: 9rem;
+  max-height: 9rem;
+  object-fit: cover;
+
+  border-radius: 0.5rem;
+}

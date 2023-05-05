@@ -9,8 +9,8 @@ const OrderListItem = ({ orderItem }: OrderListItemProps) => {
   const { openCheckCartNavigationModal } = useOrderListItem({ orderItem })
   return (
     <div className="order-list-item">
-      <div className="flex gap-15 mt-10">
-        <img className="w-144 h-144" src="./assets/images/product.png" alt="PET보틀-정사각(420ml)" />
+      <div className="flex gap-15">
+        <img className="image-small" src={orderItem.imageUrl} alt={orderItem.name} />
         <div className="flex-col gap-15">
           <span className="order-name">{orderItem.name}</span>
           <span className="order-info">
