@@ -1,4 +1,4 @@
-import PageButton from './PageButton'
+import { PageButton } from '@/components/layouts'
 
 type Pages = {
   page: number

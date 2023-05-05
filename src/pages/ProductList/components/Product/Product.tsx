@@ -1,7 +1,6 @@
 import { ReactComponent as ShoppingBag } from '@/assets/shoppingBag.svg'
+import { useProduct } from '@/pages/ProductList/components/Product/hooks'
 import { Product as ProductProps } from '@/types'
-
-import { useProduct } from './hooks'
 
 const Product = ({ product }: { product: ProductProps }) => {
   const { id, imageUrl, name, price } = product

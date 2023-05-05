@@ -1,4 +1,4 @@
-import { useProductDetail } from './hooks'
+import { useProductDetail } from '@/pages/ProductDetail/hooks'
 
 const ProductDetail = () => {
   const { productDetail, handleCartButtonClick } = useProductDetail()

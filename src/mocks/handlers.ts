@@ -2,6 +2,7 @@ import { rest, RestRequest } from 'msw'
 import z from 'zod'
 
 import { API } from '@/config'
+import { products, carts, orders, orderList } from '@/mocks/data'
 import {
   ProductSchema,
   ProductSchemaInfer,
@@ -10,8 +11,6 @@ import {
   OrderListSchema,
   OrderListSchemaInfer,
 } from '@/schemas'
-
-import { products, carts, orders, orderList } from './data'
 
 const getProduct = (products: ProductSchemaInfer[], schema: z.ZodTypeAny) =>
   rest.get(`${API.PRODUCTS}/:id`, (req, res, ctx) => {

@@ -1,7 +1,6 @@
 import { SubHeader, AmountBox } from '@/components'
-
-import { CartItem } from './components'
-import { useCart } from './hooks'
+import { CartItem } from '@/pages/Cart/components'
+import { useCart } from '@/pages/Cart/hooks'
 
 const Cart = () => {
   const {
