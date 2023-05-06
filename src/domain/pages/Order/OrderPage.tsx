@@ -14,12 +14,13 @@ const OrderPage = () => {
     cartList,
     totalAmount,
     totalPrice,
+    errorMessage,
   } = useOrderPage();
 
   if (status === 'Loading') {
     return <Spinner />;
   } else if (status === 'Fail') {
-    return <ErrorMessage />;
+    return <ErrorMessage>{errorMessage}</ErrorMessage>;
   }
   return (
     <Styled.Layout>

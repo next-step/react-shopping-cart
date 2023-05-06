@@ -8,12 +8,13 @@ const useProductDetailPage = () => {
   const productStore = useAppSelector((state) => state.productReducer);
   const products = productStore.productList.products;
   const status = productStore.status;
+  const errorMessage = productStore.errorMessage;
 
   const params = useParams();
   const { id } = params;
   const currentDetailItem = products.filter((product) => product.id === Number(id))[0];
 
-  return { isOpenDialog, dialogTitle, currentDetailItem, status };
+  return { isOpenDialog, dialogTitle, currentDetailItem, status, errorMessage };
 };
 
 export default useProductDetailPage;

@@ -3,17 +3,20 @@ import type { CartProductType, CartProductListType, StatusType } from 'domain/ty
 import type { ThunkApiType } from 'store';
 import { getData, postData, updateData } from 'common/utils/axios';
 import { CartProductsSchema } from 'domain/schema';
+import { reportError } from 'common/utils/error';
 
 type CartStateType = {
   cartList: CartProductListType;
   selectedCartItem: CartProductType;
   status: StatusType;
+  errorMessage: string;
 };
 
 const initialState: CartStateType = {
   cartList: [],
   selectedCartItem: { price: 0, image: '', name: '', id: 0, isOrder: false, amount: 0 },
   status: 'Loading',
+  errorMessage: '',
 };
 
 const getCart = createAsyncThunk<CartProductListType, string, ThunkApiType>('getCart', async (url, thunkApi) => {
@@ -22,7 +25,7 @@ const getCart = createAsyncThunk<CartProductListType, string, ThunkApiType>('get
     await CartProductsSchema.validate(response);
     return response;
   } catch (error) {
-    return thunkApi.rejectWithValue('데이터를 가져오는데 실패하였습니다 !');
+    return thunkApi.rejectWithValue(reportError(error));
   }
 });
 
@@ -34,7 +37,7 @@ const deleteCartItem = createAsyncThunk<CartProductListType, CartProductType, Th
       await CartProductsSchema.validate(response);
       return response;
     } catch (error) {
-      return thunkApi.rejectWithValue('데이터를 가져오는데 실패하였습니다 !');
+      return thunkApi.rejectWithValue(reportError(error));
     }
   }
 );
@@ -46,7 +49,7 @@ const updateCart = createAsyncThunk<CartProductListType, CartProductType, ThunkA
       await CartProductsSchema.validate(response);
       return response;
     } catch (error) {
-      return thunkApi.rejectWithValue(error);
+      return thunkApi.rejectWithValue(reportError(error));
     }
   }
 );
@@ -67,8 +70,9 @@ export const cartSlice = createSlice({
       state.cartList = action.payload;
       state.status = 'Complete';
     });
-    builder.addCase(getCart.rejected, (state: CartStateType) => {
+    builder.addCase(getCart.rejected, (state: CartStateType, action: PayloadAction<unknown>) => {
       state.status = 'Fail';
+      state.errorMessage = action.payload as string;
     });
 
     builder.addCase(deleteCartItem.pending, (state: CartStateType) => {
@@ -78,8 +82,9 @@ export const cartSlice = createSlice({
       state.cartList = action.payload;
       state.status = 'Complete';
     });
-    builder.addCase(deleteCartItem.rejected, (state: CartStateType) => {
+    builder.addCase(deleteCartItem.rejected, (state: CartStateType, action: PayloadAction<unknown>) => {
       state.status = 'Fail';
+      state.errorMessage = action.payload as string;
     });
     builder.addCase(updateCart.pending, (state: CartStateType) => {
       state.status = 'Loading';
@@ -89,8 +94,9 @@ export const cartSlice = createSlice({
       state.cartList = action.payload;
       state.status = 'Complete';
     });
-    builder.addCase(updateCart.rejected, (state: CartStateType) => {
+    builder.addCase(updateCart.rejected, (state: CartStateType, action: PayloadAction<unknown>) => {
       state.status = 'Fail';
+      state.errorMessage = action.payload as string;
     });
   },
 });

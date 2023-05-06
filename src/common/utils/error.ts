@@ -10,7 +10,7 @@ export const reportError = (error: unknown) => {
   if (error instanceof CustomError) {
     return error.message;
   } else if (error instanceof AxiosError) {
-    return error.message;
+    return error.response?.data.message;
   }
   return 'error!';
 };

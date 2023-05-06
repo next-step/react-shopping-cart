@@ -15,6 +15,7 @@ const useOrderPage = () => {
 
   const orderStore = useAppSelector((state) => state.orderReducer);
   const isOpenPaymentUI = orderStore.isOpenPaymentApp;
+  const errorMessage = orderStore.errorMessage;
 
   const { isPayment } = usePayment();
 
@@ -44,6 +45,7 @@ const useOrderPage = () => {
     totalAmount,
     totalPrice,
     handlePaymentAppCloseButton,
+    errorMessage,
   };
 };
 export default useOrderPage;

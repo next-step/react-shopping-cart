@@ -3,10 +3,12 @@ import type { OrderProductType, OrderedItemsType, StatusType } from 'domain/type
 import { getData, postData } from 'common/utils/axios';
 import { OrdersSchema } from 'domain/schema';
 import type { ThunkApiType } from 'store';
+import { reportError } from 'common/utils/error';
+
 type OrderStateType = {
   orderedList: OrderedItemsType[];
   status: StatusType;
-  statusMessage: string;
+  errorMessage: string;
   isOpenPaymentApp: boolean;
 };
 
@@ -22,7 +24,7 @@ const initialState: OrderStateType = {
     },
   ],
   status: 'Loading',
-  statusMessage: '',
+  errorMessage: '',
   isOpenPaymentApp: false,
 };
 
@@ -32,7 +34,7 @@ const getOrder = createAsyncThunk<OrderedItemsType[], string, ThunkApiType>('get
     await OrdersSchema.validate(response);
     return response;
   } catch (error) {
-    return thunkApi.rejectWithValue('데이터를 가져오는데 실패하였습니다 !');
+    return thunkApi.rejectWithValue(reportError(error));
   }
 });
 
@@ -44,7 +46,7 @@ const updateOrder = createAsyncThunk<OrderedItemsType[], OrderProductType[], Thu
       await OrdersSchema.validate(response);
       return response;
     } catch (error) {
-      return thunkApi.rejectWithValue('데이터를 가져오는데 실패하였습니다 !');
+      return thunkApi.rejectWithValue(reportError(error));
     }
   }
 );
@@ -61,8 +63,9 @@ export const orderSlice = createSlice({
     builder.addCase(getOrder.pending, (state: OrderStateType) => {
       state.status = 'Loading';
     });
-    builder.addCase(getOrder.rejected, (state: OrderStateType) => {
+    builder.addCase(getOrder.rejected, (state: OrderStateType, action: PayloadAction<unknown>) => {
       state.status = 'Fail';
+      state.errorMessage = action.payload as string;
     });
     builder.addCase(getOrder.fulfilled, (state: OrderStateType, action: PayloadAction<OrderedItemsType[]>) => {
       state.orderedList = action.payload;
@@ -75,8 +78,9 @@ export const orderSlice = createSlice({
     builder.addCase(updateOrder.pending, (state: OrderStateType) => {
       state.status = 'Loading';
     });
-    builder.addCase(updateOrder.rejected, (state: OrderStateType) => {
+    builder.addCase(updateOrder.rejected, (state: OrderStateType, action: PayloadAction<unknown>) => {
       state.status = 'Fail';
+      state.errorMessage = action.payload as string;
     });
   },
 });

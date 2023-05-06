@@ -26,6 +26,7 @@ const MyOrderListPage = () => {
       />
     ))
   );
+  const errorMessage = orderStore.errorMessage;
 
   useEffect(() => {
     getOrderItem();
@@ -34,7 +35,7 @@ const MyOrderListPage = () => {
   if (status === 'Loading') {
     return <Spinner />;
   } else if (status === 'Fail') {
-    return <ErrorMessage />;
+    return <ErrorMessage>{errorMessage}</ErrorMessage>;
   }
 
   return (

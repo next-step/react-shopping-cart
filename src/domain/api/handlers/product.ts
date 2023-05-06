@@ -9,7 +9,7 @@ export const getProducts = rest.get('/products', async (req, res, ctx) => {
   const currentPage = Number(req.url.searchParams.get('page'));
 
   if (typeof currentPage !== 'number') {
-    return res(ctx.status(400), ctx.json({ errorMessage: '올바른 형식의 number 값이 아닙니다' }));
+    return res(ctx.status(400), ctx.json({ message: '올바른 형식의 currentPage 값이 아닙니다 ! (number x)' }));
   }
 
   const offset = (currentPage - 1) * PRODUCT_LENGTH;

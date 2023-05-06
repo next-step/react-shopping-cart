@@ -3,10 +3,12 @@ import type { ProductListType, StatusType } from 'domain/types';
 import { getProductItems } from 'common/utils/axios';
 import { ProductsSchema } from 'domain/schema';
 import type { ThunkApiType } from 'store';
+import { reportError } from 'common/utils/error';
 
 type ProductStateType = {
   productList: ProductListType;
   status: StatusType;
+  errorMessage: string;
 };
 
 const initialState: ProductStateType = {
@@ -15,6 +17,7 @@ const initialState: ProductStateType = {
     TOTAL_PAGE: 0,
   },
   status: 'Loading',
+  errorMessage: '',
 };
 
 const getProductList = createAsyncThunk<ProductListType, number, ThunkApiType>('product', async (param, thunkApi) => {
@@ -23,7 +26,7 @@ const getProductList = createAsyncThunk<ProductListType, number, ThunkApiType>('
     await ProductsSchema.validate(response);
     return response;
   } catch (error) {
-    return thunkApi.rejectWithValue('데이터를 가져오는데 실패하였습니다 !');
+    return thunkApi.rejectWithValue(reportError(error));
   }
 });
 
@@ -39,8 +42,9 @@ export const productSlice = createSlice({
       state.status = 'Complete';
       state.productList = action.payload;
     });
-    builder.addCase(getProductList.rejected, (state: ProductStateType) => {
+    builder.addCase(getProductList.rejected, (state: ProductStateType, action: PayloadAction<unknown>) => {
       state.status = 'Fail';
+      state.errorMessage = action.payload as string;
     });
   },
 });

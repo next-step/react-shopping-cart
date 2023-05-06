@@ -4,12 +4,12 @@ import { Spinner, ErrorMessage, Dialog } from 'common/components';
 import useProductDetailPage from '../hooks/useProductDetailPage';
 
 const ProductDetailPage = () => {
-  const { status, isOpenDialog, dialogTitle, currentDetailItem } = useProductDetailPage();
+  const { status, isOpenDialog, dialogTitle, currentDetailItem, errorMessage } = useProductDetailPage();
 
   if (status === 'Loading') {
     return <Spinner />;
   } else if (status === 'Fail') {
-    return <ErrorMessage />;
+    return <ErrorMessage>{errorMessage}</ErrorMessage>;
   }
 
   return (

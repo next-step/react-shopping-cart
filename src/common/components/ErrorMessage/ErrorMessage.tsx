@@ -8,10 +8,9 @@ const ErrorMessage = ({ children }: PropsWithChildren) => {
         <Styled.ErrorIcon />
         <Styled.TextBox>
           <h3>Error</h3>
-          <span>새로고침이 필요합니다</span>
           <span>{children}</span>
         </Styled.TextBox>
-        <Styled.ErrorMessageButton>Try Again</Styled.ErrorMessageButton>
+        <Styled.ErrorMessageButton onClick={() => window.location.reload()}>Try Again</Styled.ErrorMessageButton>
       </Styled.FlexContainer>
     </Styled.OverLay>
   );

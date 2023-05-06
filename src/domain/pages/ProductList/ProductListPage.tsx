@@ -5,12 +5,12 @@ import { ProductItem } from 'domain/components';
 import useProductListPage from '../hooks/useProductListPage';
 
 const ProductListPage = () => {
-  const { status, isOpenDialog, dialogTitle, products, totalPage } = useProductListPage();
+  const { status, isOpenDialog, dialogTitle, products, totalPage, errorMessage } = useProductListPage();
 
   if (status === 'Loading') {
     return <Spinner />;
   } else if (status === 'Fail') {
-    return <ErrorMessage />;
+    return <ErrorMessage>{errorMessage}</ErrorMessage>;
   }
 
   return (

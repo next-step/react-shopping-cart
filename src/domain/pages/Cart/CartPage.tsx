@@ -5,12 +5,20 @@ import { Dialog, ErrorMessage, PageHeader } from 'common/components';
 import useCartPage from '../hooks/useCartPage';
 import { useDialog } from 'common/hooks';
 const CartPage = () => {
-  const { checkbox, handleSelectAllCheckBox, handleRemoveButton, cartList, totalAmount, totalPrice, status } =
-    useCartPage();
+  const {
+    checkbox,
+    handleSelectAllCheckBox,
+    handleRemoveButton,
+    cartList,
+    totalAmount,
+    totalPrice,
+    status,
+    errorMessage,
+  } = useCartPage();
   const { isOpenDialog, dialogTitle } = useDialog();
 
   if (status === 'Fail') {
-    return <ErrorMessage />;
+    return <ErrorMessage>{errorMessage}</ErrorMessage>;
   }
 
   return (

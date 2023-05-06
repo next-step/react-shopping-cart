@@ -9,6 +9,7 @@ const MyOrderListDetailPage = () => {
   const orderStore = useAppSelector((state) => state.orderReducer);
   const orderedList = orderStore.orderedList;
   const status = orderStore.status;
+  const errorMessage = orderStore.errorMessage;
   const { id } = useParams();
 
   const MyorderedListItem = orderedList.filter((item) => item.id === Number(id))[0].ordered;
@@ -28,7 +29,7 @@ const MyOrderListDetailPage = () => {
   if (status === 'Loading') {
     return <Spinner />;
   } else if (status === 'Fail') {
-    return <ErrorMessage />;
+    return <ErrorMessage>{errorMessage}</ErrorMessage>;
   }
 
   return (
