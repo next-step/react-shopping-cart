@@ -38,7 +38,7 @@ const useCart = () => {
     dispatch(updateCart(product));
   };
 
-  const updateOrderCartItem = async (ischecked: boolean) => {
+  const updateOrderedCartItem = async (ischecked: boolean) => {
     const cartItem = (await getData('/carts')) as CartProductType[];
     cartItem.forEach((product) => {
       updateCartItem({
@@ -63,7 +63,7 @@ const useCart = () => {
     getCartItems,
     totalAmount,
     totalPrice,
-    updateOrderCartItem,
+    updateOrderedCartItem,
     deleteOrderedCartItem,
     selectedCartItem,
     SelectCartItem,

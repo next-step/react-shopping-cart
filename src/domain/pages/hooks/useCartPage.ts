@@ -6,12 +6,12 @@ const useCartPage = () => {
   const errorMessage = useAppSelector((state) => state.cartReducer.errorMessage);
 
   const [checkbox, setcheckBox] = useState(false);
-  const { getCartItems, updateOrderCartItem, cartList, totalAmount, totalPrice, status } = useCart();
+  const { getCartItems, updateOrderedCartItem, cartList, totalAmount, totalPrice, status } = useCart();
   const { setDialogMessage } = useDialog();
 
   const handleSelectAllCheckBox = () => {
     setcheckBox(!checkbox);
-    updateOrderCartItem(checkbox);
+    updateOrderedCartItem(checkbox);
   };
   const handleRemoveButton = () => {
     setDialogMessage('deleteCartItem');

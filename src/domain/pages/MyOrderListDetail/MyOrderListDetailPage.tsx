@@ -1,18 +1,15 @@
 import * as Styled from './MyOrderListDetailPage.styles';
 import { ErrorMessage, PageHeader, Spinner } from 'common/components';
 import { MyOrderListHeader, MyOrderListItem, Payment } from 'domain/components';
-import { useAppSelector } from 'store';
-import { useParams } from 'react-router-dom';
 import uuid from 'react-uuid';
+import useMyOrderListPage from '../hooks/useMyOrderListPage';
+import { useParams } from 'react-router-dom';
 
 const MyOrderListDetailPage = () => {
-  const orderStore = useAppSelector((state) => state.orderReducer);
-  const orderedList = orderStore.orderedList;
-  const status = orderStore.status;
-  const errorMessage = orderStore.errorMessage;
+  const { status, errorMessage, orderedList } = useMyOrderListPage();
   const { id } = useParams();
-
   const MyorderedListItem = orderedList.filter((item) => item.id === Number(id))[0].ordered;
+
   const MyorderListTotalPrice = MyorderedListItem.totalPrice;
   const MyorderListSelectedHeader = <MyOrderListHeader id={Number(id)} />;
   const MyorderListSelectedItems = MyorderedListItem.items.map((orderListProduct) => (

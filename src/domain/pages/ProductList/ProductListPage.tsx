@@ -2,10 +2,10 @@ import * as Styled from './ProductListPage.styles';
 import uuid from 'react-uuid';
 import { Spinner, ErrorMessage, Pagination, Dialog } from 'common/components';
 import { ProductItem } from 'domain/components';
-import useProductListPage from '../hooks/useProductListPage';
+import useProductPage from '../hooks/useProductPage';
 
 const ProductListPage = () => {
-  const { status, isOpenDialog, dialogTitle, products, totalPage, errorMessage } = useProductListPage();
+  const { status, isOpenDialog, dialogTitle, products, totalPage, errorMessage } = useProductPage();
 
   if (status === 'Loading') {
     return <Spinner />;

@@ -1,10 +1,10 @@
 import * as Styled from './ProductDetailPage.styles';
 import { ProductDetailItem } from 'domain/components';
 import { Spinner, ErrorMessage, Dialog } from 'common/components';
-import useProductDetailPage from '../hooks/useProductDetailPage';
+import useProductPage from '../hooks/useProductPage';
 
 const ProductDetailPage = () => {
-  const { status, isOpenDialog, dialogTitle, currentDetailItem, errorMessage } = useProductDetailPage();
+  const { status, isOpenDialog, dialogTitle, currentDetailItem, errorMessage } = useProductPage();
 
   if (status === 'Loading') {
     return <Spinner />;
