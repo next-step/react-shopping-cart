@@ -5,9 +5,7 @@ import { useOrder } from 'domain/hooks';
 
 const Payment = ({ ...props }: PaymentProps) => {
   const { orderCart } = useOrder();
-
   const { openPaymentApp } = usePaymentApp();
-
   return (
     <Styled.Container>
       <Styled.TitleBox>

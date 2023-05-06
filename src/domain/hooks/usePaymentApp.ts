@@ -10,11 +10,11 @@ const usePaymentApp = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const payment = () => {
+  const payment = async () => {
     const orderItems = cartList.filter((item) => {
       return item.isOrder === true;
     });
-    deleteOrderedCartItem();
+    await deleteOrderedCartItem();
     dispatch(updateOrder(orderItems));
     navigate('/orders');
   };
