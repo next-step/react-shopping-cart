@@ -10,14 +10,10 @@ const useOrder = () => {
     setDialogMessage('orderCartItem');
   };
 
-  const payment = () => {
-    setDialogMessage('paymentApp');
-  };
-
   const getOrderItem = () => {
     dispatch(getOrder('/orders'));
   };
 
-  return { payment, orderCart, getOrderItem };
+  return { orderCart, getOrderItem };
 };
 export default useOrder;

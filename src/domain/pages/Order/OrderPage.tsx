@@ -22,6 +22,7 @@ const OrderPage = () => {
   } else if (status === 'Fail') {
     return <ErrorMessage>{errorMessage}</ErrorMessage>;
   }
+
   return (
     <Styled.Layout>
       {isOpenPaymentUI && <Styled.CustomPaymentApp onCloseButton={handlePaymentAppCloseButton} />}

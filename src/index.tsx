@@ -7,7 +7,6 @@ import { router } from './common/routes/index';
 
 import store from './store/index';
 import { PaymentAppContextProvider } from 'payment-junyoung';
-
 worker.start();
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);

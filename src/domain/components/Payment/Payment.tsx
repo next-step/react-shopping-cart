@@ -1,9 +1,13 @@
+import usePaymentApp from 'domain/hooks/usePaymentApp';
 import * as Styled from './Payment.styled';
 import type { PaymentProps } from './Payment.types';
 import { useOrder } from 'domain/hooks';
 
 const Payment = ({ ...props }: PaymentProps) => {
-  const { orderCart, payment } = useOrder();
+  const { orderCart } = useOrder();
+
+  const { openPaymentApp } = usePaymentApp();
+
   return (
     <Styled.Container>
       <Styled.TitleBox>
@@ -24,7 +28,7 @@ const Payment = ({ ...props }: PaymentProps) => {
               {`주문하기 ${props.totalAmount}개`}
             </Styled.OrderButton>
           )}
-          {props.type === 'order' && <Styled.OrderButton onClick={payment}>{`결제하기`}</Styled.OrderButton>}
+          {props.type === 'order' && <Styled.OrderButton onClick={openPaymentApp}>{`결제하기`}</Styled.OrderButton>}
         </Styled.ButtonBox>
       </div>
     </Styled.Container>

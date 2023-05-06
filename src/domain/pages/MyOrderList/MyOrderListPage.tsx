@@ -7,7 +7,6 @@ import useMyOrderListPage from '../hooks/useMyOrderListPage';
 const MyOrderListPage = () => {
   const { orderedList, status, errorMessage } = useMyOrderListPage();
 
-  console.log(orderedList);
   const MyorderListHeaderItems = orderedList.map((item) => <MyOrderListHeader id={item.id} key={uuid()} />);
   const MyorderListOrdredItems = orderedList.map((orderListProducts) =>
     orderListProducts.ordered.items.map((item) => (
