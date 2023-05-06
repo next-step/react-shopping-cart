@@ -1,5 +1,4 @@
-import { object, string, number, boolean, array } from 'yup';
-// import type { InferType } from 'yup';
+import { object, string, number, boolean, array, ObjectSchema, ArraySchema } from 'yup';
 export const CartProductsSchema = array(
   object({
     price: number().defined(),

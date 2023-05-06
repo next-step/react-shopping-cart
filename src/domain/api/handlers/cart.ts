@@ -12,7 +12,7 @@ export const addCart = rest.post('/carts', async (req, res, ctx) => {
     userCarts.push(product);
     return res(ctx.status(201));
   } else {
-    return res(ctx.status(400)); //중복처리
+    return res(ctx.status(400), ctx.json({ message: '이미 추가된 장바구니 아이템 입니다.' }));
   }
 });
 
@@ -23,7 +23,9 @@ export const getCarts = rest.get('/carts', async (req, res, ctx) => {
 export const deleteCart = rest.post('/cart/delete', async (req, res, ctx) => {
   const product = (await req.json()) as CartProductType;
   const newCarts = userCarts.filter((item) => item.id !== product.id);
-
+  if (!newCarts.length) {
+    return res(ctx.status(400), ctx.json({ message: '존재하지 않은 장바구니 아이템 입니다.' }));
+  }
   userCarts = newCarts;
   return res(ctx.status(200), ctx.json(newCarts));
 });
@@ -38,7 +40,7 @@ export const updateCart = rest.put('/cart/update', async (req, res, ctx) => {
   });
 
   if (!newCarts.length) {
-    return res(ctx.status(400));
+    return res(ctx.status(400), ctx.json({ message: '장바구니가 비어있습니다!' }));
   }
   userCarts = newCarts;
 

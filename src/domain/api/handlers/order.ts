@@ -2,16 +2,7 @@ import { rest } from 'msw';
 import type { OrderProductType, OrderedItemsType } from 'domain/types';
 import { calculateOrderProductTotal, calculateOrderTotalAmount } from 'domain/utils';
 
-const OrderedItems: OrderedItemsType[] = [
-  {
-    id: 0,
-    ordered: {
-      items: [],
-      totalAmount: 0,
-      totalPrice: 0,
-    },
-  },
-];
+const OrderedItems: OrderedItemsType[] | undefined = [];
 
 export const updateOrders = rest.post('/order/update', async (req, res, ctx) => {
   const userOrderItems = (await req.json()) as OrderProductType[];
@@ -21,10 +12,6 @@ export const updateOrders = rest.post('/order/update', async (req, res, ctx) => 
   const newOrderItems = [...userOrderItems];
   const totalAmount = calculateOrderTotalAmount(newOrderItems);
   const totalPrice = calculateOrderProductTotal(newOrderItems);
-
-  if (OrderedItems[0].id === 0) {
-    OrderedItems.pop();
-  }
 
   OrderedItems.push({
     id: OrderedItems.length + 1,
