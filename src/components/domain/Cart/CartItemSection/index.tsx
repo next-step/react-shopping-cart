@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import CheckboxContainer from "./CheckboxContainer";
+import ProductsControllers from "./ProductsControllers";
 import CartTitle from "./CartTitle";
 import CartProductContainer from "./CartProductContainer.tsx";
 import Divider from "../../../common/Divider/Divider";
@@ -7,6 +7,7 @@ import { useFetchData } from "../../../../hooks/useFetchData";
 import { Product } from "../../../../store/store";
 import { useAppSelector } from "../../../../hooks/storeHooks";
 import { initialState } from "../../../../store/cartSlice";
+import ProductsController from "./ProductsControllers";
 
 export type Props = {
   product: Product[];
@@ -16,7 +17,7 @@ const CartItemsSection = ({ product }: Props) => {
 
   return (
     <section className="cart-left-section">
-      <CheckboxContainer />
+      <ProductsControllers />
       <CartTitle />
       {globalCart.map((product) => {
         return (

@@ -1,5 +1,5 @@
 import React from "react";
-import CartSectionTitle from "./CartItemSection/CartSectionTitle";
+import CartSectionTitle from "./SectionTitle/CartSectionTitle";
 import CartItemsSection from "./CartItemSection";
 import OrderDisplaySection from "./OrderDisplaySection";
 import { useAppSelector } from "../../../hooks/storeHooks";
