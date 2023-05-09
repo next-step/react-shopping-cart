@@ -1,30 +1,16 @@
-import React, { memo, useEffect } from "react";
+import React, { memo } from "react";
 import { Product } from "../../../store/store";
-
 import Button from "../Button/Button";
-import { setIsModalOpen, setModalMessage } from "../../../store/modalSlice";
-import { useAppDispatch } from "../../../hooks/storeHooks";
-import { useNavigate } from "react-router-dom";
+import useModal from "../../../hooks/useModal";
 
 export type Props = {
   type: string;
   message: string;
-  product: Product;
+  product?: Product;
 };
 
 const Modal = ({ product, type, message }: Props) => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  const handleConfirmButton = () => {
-    navigate("/cart");
-  };
-  const handleCancelButton = () => {
-    dispatch(setIsModalOpen(false));
-  };
-  useEffect(() => {
-    dispatch(setModalMessage(type));
-  }, [type, dispatch]);
+  const { closeModal, handleConfirmButton } = useModal();
 
   return (
     <div className="modal">
@@ -33,7 +19,7 @@ const Modal = ({ product, type, message }: Props) => {
         <div className="modal-button-container">
           <Button
             className="primary-button primary-button-small primary-button-white"
-            onClick={handleCancelButton}
+            onClick={closeModal}
           >
             Cancel
           </Button>
