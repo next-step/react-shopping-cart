@@ -34,7 +34,7 @@ const cartSlice = createSlice({
     },
     deleteFromCart: (state, action: PayloadAction<number>) => {
       const existingItem = state.products.find(
-        (item) => item.id === action.payload - 1
+        (item) => item.id === action.payload
       );
       if (existingItem) {
         state.products.length -= existingItem.quantity;
@@ -44,8 +44,7 @@ const cartSlice = createSlice({
       }
     },
     deleteAll: (state) => {
-      state.products = [];
-      state.products.length = 0;
+      state.products = state.products.filter((item) => !item.isChecked);
     },
     increaseQuantity: (state, action: PayloadAction<Product>) => {
       const selectedProduct = action.payload;
