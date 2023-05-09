@@ -19,7 +19,6 @@ const modalSlice = createSlice({
   initialState,
   reducers: {
     setIsModalOpen: (state: ModalStateType, action: PayloadAction<boolean>) => {
-      alert(action.payload);
       state.isOpen = action.payload;
     },
     setModalMessage: (state: ModalStateType, action: PayloadAction<string>) => {

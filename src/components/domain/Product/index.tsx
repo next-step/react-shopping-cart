@@ -27,7 +27,6 @@ const Products = () => {
     pageVisited + PRODUCTS_PER_PAGE
   );
   const [displayProducts, setDisplayProducts] = useState(productsPerPage);
-  console.log(displayProducts);
 
   const observer: MutableRefObject<IntersectionObserver | null> = useRef(null);
   const lastProductElementRef = useCallback(
@@ -53,12 +52,12 @@ const Products = () => {
     setPageVisited(pageNumber * PRODUCTS_PER_PAGE);
     setDisplayProducts((prev) => {
       const newProductsPerPage = products.slice(
-        pageVisited,
-        pageVisited + PRODUCTS_PER_PAGE
+        pageNumber * PRODUCTS_PER_PAGE,
+        (pageNumber + 1) * PRODUCTS_PER_PAGE
       );
       return [...prev, ...newProductsPerPage];
     });
-  }, [pageNumber]);
+  }, [pageNumber, products]);
 
   return (
     <section className="product-container">
