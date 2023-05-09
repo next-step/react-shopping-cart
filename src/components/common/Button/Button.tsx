@@ -3,7 +3,7 @@ import React, { PropsWithChildren } from "react";
 export type ButtonProps = PropsWithChildren<{
   className: string;
   paren?: number;
-  onClick?: () => void;
+  onClick?: any; // TODO: Button component onClick prop type에 대한 고민 필요
 }>;
 
 const Button = ({
