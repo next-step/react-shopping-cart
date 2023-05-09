@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import CheckboxContainer from "../etc/CheckboxContainer";
-import CartTitle from "../etc/CartTitle";
-import CartProductContainer from "../etc/CartProductContainer.tsx";
+import CheckboxContainer from "./CheckboxContainer";
+import CartTitle from "./CartTitle";
+import CartProductContainer from "./CartProductContainer.tsx";
 import Divider from "../../../common/Divider/Divider";
 import { useFetchData } from "../../../../hooks/useFetchData";
 import { Product } from "../../../../store/store";

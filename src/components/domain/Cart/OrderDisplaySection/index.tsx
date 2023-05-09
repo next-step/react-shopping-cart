@@ -15,7 +15,7 @@ export const OrderDisplaySection = () => {
   }, [orderPrice, orderQuantity]);
 
   return (
-    <TotalPrice title={"결제예상금액"} price={orderPrice}>
+    <TotalPrice title={"결제예상금액"} price={0}>
       <Button
         className="primary-button"
         paren={orderQuantity}

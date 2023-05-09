@@ -1,7 +1,7 @@
 import React from "react";
-import CartSectionTitle from "./etc/CartSectionTitle";
-import CartItemsSection from "./sections/CartItemsSection";
-import OrderDisplaySection from "./sections/OrderDisplaySection";
+import CartSectionTitle from "./CartItemSection/CartSectionTitle";
+import CartItemsSection from "./CartItemSection";
+import OrderDisplaySection from "./OrderDisplaySection";
 import { useAppSelector } from "../../../hooks/storeHooks";
 import { useFetchData } from "../../../hooks/useFetchData";
 
