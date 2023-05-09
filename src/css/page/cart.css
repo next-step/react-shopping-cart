@@ -1,5 +1,6 @@
 .cart-section {
-  padding: 24px 300px;
+  width: 100%;
+  padding: 24px 30px;
 }
 
 .cart-section__title {
@@ -57,4 +58,36 @@
 .cart-price {
   color: #333333;
   align-self: flex-end;
+}
+
+@media screen and (min-width: 768px) {
+  .cart-section {
+    padding: 24px 100px;
+  }
+
+  .flex {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .cart-left-section {
+    width: 60%;
+  }
+
+  .cart-right-section {
+    width: 35%;
+    margin-left: 5%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .flex {
+    flex-direction: column;
+  }
+
+  .cart-left-section,
+  .cart-right-section {
+    width: 100%;
+    margin-left: 0;
+  }
 }

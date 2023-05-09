@@ -15,7 +15,7 @@ const TotalPrice = ({ title, price, children }: TotalPriceProps) => {
       </div>
       <hr className="divide-line-thin" />
       <div className="cart-right-section__bottom">
-        <div className="flex justify-between p-20 mt-20">
+        <div className="flex justify-between p-20 mt-20 items-center">
           <span className="highlight-text">{title}</span>
           <span className="highlight-text">{numberFormat(price)}원</span>
         </div>
