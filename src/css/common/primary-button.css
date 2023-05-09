@@ -7,15 +7,31 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
 .primary-button-small {
-  background: #2ac1bc;
   font-size: 20px;
-  color: white;
   padding: 14px 28px;
+  width: fit-content;
 }
 
 .primary-button-brown {
   background-color: #73675c;
+}
+
+.primary-button-white {
+  background-color: white;
+  border: 1px solid #dddddd;
+  color: #2ac1bc;
+}
+
+.primary-button-small:hover {
+  background-color: #f5f5f5;
+}
+
+.primary-button-small:active {
+  background-color: #dddddd;
 }
