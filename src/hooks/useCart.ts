@@ -49,6 +49,14 @@ const useCart = () => {
     return total;
   };
 
+  const disableOrder = (disable: boolean) => {
+    if (disable) {
+      alert("상품을 장바구니에 담아주세요!");
+      return;
+    }
+    return;
+  };
+
   return {
     setCurrentItem,
     selectItem,
@@ -57,6 +65,7 @@ const useCart = () => {
     deleteItem,
     getTotalPrice,
     getTotalAmount,
+    disableOrder,
   };
 };
 

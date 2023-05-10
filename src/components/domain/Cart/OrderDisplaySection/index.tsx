@@ -5,18 +5,14 @@ import useCart from "../../../../hooks/useCart";
 import useModal from "../../../../hooks/useModal";
 
 export const OrderDisplaySection = () => {
-  const { getTotalAmount, getTotalPrice } = useCart();
+  const { getTotalAmount, getTotalPrice, disableOrder } = useCart();
   const { openModal } = useModal();
   const totalAmount = getTotalAmount();
   const totalPrice = getTotalPrice();
   const modalType = "order";
 
   const handleOrderButtonClick = () => {
-    if (totalAmount === 0) {
-      alert("상품을 장바구니에 담아주세요!");
-      return;
-    }
-
+    disableOrder(totalAmount === 0);
     openModal(modalType);
   };
 
