@@ -38,6 +38,11 @@ const useModal = () => {
         dispatch(deleteAll());
         break;
       }
+      case "order": {
+        //TODO: order 버튼 기능 추가
+        alert("결제 페이지 이동");
+        break;
+      }
       default:
         break;
     }

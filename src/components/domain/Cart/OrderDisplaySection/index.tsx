@@ -1,18 +1,28 @@
-import React, { useEffect, useState, memo } from "react";
+import React, { memo } from "react";
 import TotalPrice from "../../TotalPrice/TotalPrice";
 import Button from "../../../common/Button/Button";
-import { useAppSelector } from "../../../../hooks/storeHooks";
 import useCart from "../../../../hooks/useCart";
+import useModal from "../../../../hooks/useModal";
 
 export const OrderDisplaySection = () => {
-  const cart = useAppSelector((state) => state.cart);
   const { getTotalAmount, getTotalPrice } = useCart();
+  const { openModal } = useModal();
   const totalAmount = getTotalAmount();
   const totalPrice = getTotalPrice();
+  const modalType = "order";
+
+  const handleOrderButtonClick = () => {
+    if (totalAmount === 0) {
+      alert("상품을 장바구니에 담아주세요!");
+      return;
+    }
+
+    openModal(modalType);
+  };
 
   return (
     <TotalPrice title={"결제예상금액"} price={totalPrice}>
-      <Button className="primary-button" onClick={() => alert("결제창 이동")}>
+      <Button className="primary-button" onClick={handleOrderButtonClick}>
         주문하기({totalAmount}개)
       </Button>
     </TotalPrice>

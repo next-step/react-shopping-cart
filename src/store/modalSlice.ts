@@ -36,6 +36,9 @@ const modalSlice = createSlice({
         case "deleteAll":
           state.message = MODAL_QUESTIONS.DELETE_ALL_ITEMS;
           break;
+        case "order":
+          state.message = MODAL_QUESTIONS.ORDER_SELECTED_ITEMS;
+          break;
         default:
           break;
       }
