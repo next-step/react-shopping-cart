@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { Product } from "../../../store/store";
+import type { Product } from "../../../store/cartSlice";
 import Button from "../Button/Button";
 import useModal from "../../../hooks/useModal";
 

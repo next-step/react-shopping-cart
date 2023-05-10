@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { useAppSelector } from "../../../../hooks/storeHooks";
-import { Product } from "../../../../store/store";
+import React from "react";
+import type { Product } from "../../../../store/cartSlice";
 
 export type Props = {
   product?: Product;

@@ -3,8 +3,8 @@ import {
   increaseQuantity,
   decreaseQuantity,
 } from "../../../../store/cartSlice";
-import { Product } from "../../../../store/store";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/storeHooks";
+import type { Product } from "../../../../store/cartSlice";
 
 export type Props = {
   product: Product;

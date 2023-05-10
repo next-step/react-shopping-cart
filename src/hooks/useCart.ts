@@ -1,12 +1,16 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "./storeHooks";
-import { Product } from "../store/store";
-import { deleteAll, selectAll, selectItem } from "../store/cartSlice";
+import { Product, setCurrentProduct } from "../store/cartSlice";
+import { deleteAll, selectAll, selectProduct } from "../store/cartSlice";
 import { setIsModalOpen, setModalMessage } from "../store/modalSlice";
 
 const useCart = () => {
   const products = useAppSelector((state) => state.cart.products);
   const dispatch = useAppDispatch();
+
+  const setCurrentItem = (product: Product) => {
+    dispatch(setCurrentProduct(product));
+  };
 
   const selectItem = (product: Product) => {
     return;
@@ -46,6 +50,7 @@ const useCart = () => {
   };
 
   return {
+    setCurrentItem,
     selectItem,
     selectAllItems,
     deleteAllItems,

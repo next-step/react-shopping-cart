@@ -17,17 +17,16 @@ const useModal = () => {
     dispatch(setModalMessage(type));
   };
   const openModal = (type: string) => {
-    dispatch(setIsModalOpen(true));
     initModal(type);
+    dispatch(setIsModalOpen(true));
   };
   const closeModal = () => {
     dispatch(setIsModalOpen(false));
   };
   const handleConfirmButton = () => {
-    alert(modalType);
     switch (modalType) {
       case "add": {
-        alert("todo: addToCart"); // TODO: addToCart(product) product 인자로 받지 않는법 모색
+        dispatch(addToCart());
         navigate("/cart");
         break;
       }

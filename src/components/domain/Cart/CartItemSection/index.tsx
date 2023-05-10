@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ProductsControllers from "./ProductsControllers";
 import CartTitle from "./CartTitle";
 import CartProductContainer from "./CartProductContainer.tsx";
 import Divider from "../../../common/Divider/Divider";
-import { useFetchData } from "../../../../hooks/useFetchData";
-import { Product } from "../../../../store/store";
 import { useAppSelector } from "../../../../hooks/storeHooks";
-import { initialState } from "../../../../store/cartSlice";
-import ProductsController from "./ProductsControllers";
+import type { Product } from "../../../../store/cartSlice";
 
 export type Props = {
   product: Product[];
 };
+
 const CartItemsSection = ({ product }: Props) => {
   const globalCart = useAppSelector((state) => state.cart.products);
 

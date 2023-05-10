@@ -1,8 +1,21 @@
 /* eslint-disable no-console */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Product, SliceState } from "./store";
 
-export const initialState: SliceState = {
+export type Product = {
+  id: number;
+  name: string;
+  price: number;
+  imageUrl: string;
+  quantity: number;
+  isChecked: boolean;
+};
+
+export type ProductsState = {
+  products: Product[];
+  currentProduct: Product;
+};
+
+const initialState: ProductsState = {
   products: [
     {
       id: 0,
@@ -13,23 +26,34 @@ export const initialState: SliceState = {
       isChecked: false,
     },
   ],
+  currentProduct: {
+    id: 0,
+    name: "",
+    price: 0,
+    imageUrl: "",
+    quantity: 1,
+    isChecked: false,
+  },
 };
 
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<Product>) => {
+    setCurrentProduct: (state, action: PayloadAction<Product>) => {
+      state.currentProduct = action.payload;
+    },
+    addToCart: (state) => {
       const existingItem = state.products.find(
-        (item) => item.id === action.payload.id
+        (item) => item.id === state.currentProduct.id
       );
       if (existingItem) {
-        existingItem.quantity += action.payload.quantity;
+        existingItem.quantity += 1;
         state.products = [...state.products];
       } else if (state.products[0].id === 0) {
-        state.products = [action.payload];
+        state.products = [state.currentProduct];
       } else {
-        state.products = [...state.products, action.payload];
+        state.products = [...state.products, state.currentProduct];
       }
     },
     deleteFromCart: (state, action: PayloadAction<number>) => {
@@ -64,7 +88,7 @@ const cartSlice = createSlice({
         existingItem.quantity -= 1;
       }
     },
-    selectItem: (state, action: PayloadAction<Product>) => {
+    selectProduct: (state, action: PayloadAction<Product>) => {
       const selectedProduct = action.payload;
       const existingItem = state.products.find(
         (item) => item.id === selectedProduct.id
@@ -80,12 +104,13 @@ const cartSlice = createSlice({
 });
 
 export const {
+  setCurrentProduct,
   addToCart,
   deleteFromCart,
   deleteAll,
   increaseQuantity,
   decreaseQuantity,
-  selectItem,
+  selectProduct,
   selectAll,
 } = cartSlice.actions;
 export default cartSlice;

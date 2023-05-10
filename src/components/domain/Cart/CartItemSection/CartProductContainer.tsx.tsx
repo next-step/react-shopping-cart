@@ -2,9 +2,12 @@ import React from "react";
 import { numberFormat } from "../../../../utils/numberFormat";
 import Checkbox from "../../../common/Input/Checkbox/Checkbox";
 import QuantityCounter from "../../../common/Input/QuantityCounter/QuantityCounter";
-import { Product } from "../../../../store/store";
+import {
+  Product,
+  selectProduct,
+  deleteFromCart,
+} from "../../../../store/cartSlice";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/storeHooks";
-import { deleteFromCart, selectItem } from "../../../../store/cartSlice";
 import Modal from "../../../common/Modal/Modal";
 import Button from "../../../common/Button/Button";
 
@@ -24,7 +27,7 @@ const CartProductContainer = ({ product }: Props) => {
   const { isOpen, message } = useAppSelector((state) => state.modal);
 
   const handleCheckboxClick = () => {
-    dispatch(selectItem(product));
+    dispatch(selectProduct(product));
   };
 
   const handleDeleteButtonClick = () => {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Product } from "../store/store";
+import type { Product } from "../store/cartSlice";
 
 export const useFetchData = (
   url: string,
