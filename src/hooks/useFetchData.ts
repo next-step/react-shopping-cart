@@ -20,7 +20,7 @@ export const useFetchData = (
         res.map((product: Product) => ({
           ...product,
           quantity: 1,
-          isChecked: false,
+          isChecked: true,
         }))
       )
       .then((res) => {

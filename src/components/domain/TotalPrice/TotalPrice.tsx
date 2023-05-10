@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { numberFormat } from "../../../utils/numberFormat";
 
 export type TotalPriceProps = {
@@ -25,4 +25,4 @@ const TotalPrice = ({ title, price, children }: TotalPriceProps) => {
   );
 };
 
-export default TotalPrice;
+export default memo(TotalPrice);

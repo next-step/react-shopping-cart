@@ -28,7 +28,7 @@ const useCart = () => {
     dispatch(deleteAll());
   };
 
-  const getTotalAmount = (products: Product[]) => {
+  const getTotalAmount = () => {
     const amounts = products.reduce((prev, next) => {
       if (next.isChecked) {
         return prev + next.quantity;
@@ -38,7 +38,7 @@ const useCart = () => {
     }, 0);
     return amounts;
   };
-  const getTotalPrice = (products: Product[]) => {
+  const getTotalPrice = () => {
     const total = products.reduce((a, b) => {
       if (b.isChecked) {
         return a + b.price * b.quantity;
