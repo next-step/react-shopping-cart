@@ -56,14 +56,13 @@ const cartSlice = createSlice({
         state.products = [...state.products, state.currentProduct];
       }
     },
-    deleteFromCart: (state, action: PayloadAction<number>) => {
+    deleteFromCart: (state) => {
       const existingItem = state.products.find(
-        (item) => item.id === action.payload
+        (item) => item.id === state.currentProduct.id
       );
       if (existingItem) {
-        state.products.length -= existingItem.quantity;
         state.products = state.products.filter(
-          (item) => item.id !== action.payload
+          (item) => item.id !== state.currentProduct.id
         );
       }
     },

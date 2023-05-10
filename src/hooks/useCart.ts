@@ -13,7 +13,7 @@ const useCart = () => {
   };
 
   const selectItem = (product: Product) => {
-    return;
+    dispatch(selectProduct(product));
   };
   const selectAllItems = () => {
     dispatch(selectAll());
@@ -26,6 +26,14 @@ const useCart = () => {
     dispatch(setIsModalOpen(true));
     dispatch(setModalMessage("deleteAll"));
     dispatch(deleteAll());
+  };
+
+  const getItemQuantity = (product: Product) => {
+    const theItem = products.find(
+      (globalCartProduct) => globalCartProduct.id === product.id
+    );
+    const qnt = theItem?.quantity || 0;
+    return qnt;
   };
 
   const getTotalAmount = () => {
@@ -63,6 +71,7 @@ const useCart = () => {
     selectAllItems,
     deleteAllItems,
     deleteItem,
+    getItemQuantity,
     getTotalPrice,
     getTotalAmount,
     disableOrder,

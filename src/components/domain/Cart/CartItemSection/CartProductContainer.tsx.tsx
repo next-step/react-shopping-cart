@@ -2,43 +2,36 @@ import React from "react";
 import { numberFormat } from "../../../../utils/numberFormat";
 import Checkbox from "../../../common/Input/Checkbox/Checkbox";
 import QuantityCounter from "../../../common/Input/QuantityCounter/QuantityCounter";
-import {
-  Product,
-  selectProduct,
-  deleteFromCart,
-} from "../../../../store/cartSlice";
-import { useAppDispatch, useAppSelector } from "../../../../hooks/storeHooks";
 import Modal from "../../../common/Modal/Modal";
 import Button from "../../../common/Button/Button";
+import useModal from "../../../../hooks/useModal";
+import useCart from "../../../../hooks/useCart";
+import type { Product } from "../../../../store/cartSlice";
 
 type Props = {
   product: Product;
 };
 
 const CartProductContainer = ({ product }: Props) => {
-  const dispatch = useAppDispatch();
-  const { id, name, price, imageUrl } = product;
-  const updatedQuantity = useAppSelector((state) => {
-    const theItem = state.cart.products.find(
-      (globalCartProduct) => globalCartProduct.id === product.id
-    );
-    return theItem?.quantity;
-  });
-  const { isOpen, message } = useAppSelector((state) => state.modal);
+  const { name, price, imageUrl } = product;
+  const { selectItem, setCurrentItem, getItemQuantity } = useCart();
+  const { isModalOpen, modalMessage, openModal } = useModal();
+  const eachItemQuantity = getItemQuantity(product);
+  const modalType = "delete";
 
   const handleCheckboxClick = () => {
-    dispatch(selectProduct(product));
+    selectItem(product);
   };
 
   const handleDeleteButtonClick = () => {
-    alert("해당 아이템을 삭제하시겠습니까?");
-    dispatch(deleteFromCart(product.id));
+    setCurrentItem(product);
+    openModal(modalType);
   };
 
   return (
     <div className="cart-container">
       <div className="flex gap-15 mt-10">
-        {isOpen && <Modal type="delete" message={message} />}
+        {isModalOpen && <Modal type="delete" message={modalMessage} />}
         <Checkbox product={product} onClick={handleCheckboxClick} />
         <img className="w-144 h-144" src={imageUrl} alt={name} />
         <span className="cart-name">{name}</span>
@@ -49,7 +42,7 @@ const CartProductContainer = ({ product }: Props) => {
         </Button>
         <QuantityCounter product={product} />
         <span className="cart-price">
-          {numberFormat(price * updatedQuantity!)}원
+          {numberFormat(price * eachItemQuantity)}원
         </span>
       </div>
     </div>

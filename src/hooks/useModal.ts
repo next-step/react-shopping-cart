@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { addToCart, deleteAll } from "../store/cartSlice";
+import { addToCart, deleteAll, deleteFromCart } from "../store/cartSlice";
 import { setModalMessage, setModalType } from "../store/modalSlice";
 import { setIsModalOpen } from "../store/modalSlice";
 import { useAppDispatch, useAppSelector } from "./storeHooks";
@@ -31,7 +31,7 @@ const useModal = () => {
         break;
       }
       case "delete": {
-        alert("todo: delete item ");
+        dispatch(deleteFromCart());
         break;
       }
       case "deleteAll": {
