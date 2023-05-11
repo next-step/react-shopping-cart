@@ -9,6 +9,7 @@ type ProductStateType = {
   productList: ProductListType;
   status: StatusType;
   errorMessage: string;
+  selectedPage: number;
 };
 
 const initialState: ProductStateType = {
@@ -18,6 +19,7 @@ const initialState: ProductStateType = {
   },
   status: 'Loading',
   errorMessage: '',
+  selectedPage: 1,
 };
 
 const getProductList = createAsyncThunk<ProductListType, number, ThunkApiType>('product', async (param, thunkApi) => {
@@ -33,7 +35,11 @@ const getProductList = createAsyncThunk<ProductListType, number, ThunkApiType>('
 export const productSlice = createSlice({
   name: 'product',
   initialState,
-  reducers: {},
+  reducers: {
+    handleSelectPage: (state: ProductStateType, action: PayloadAction<number>) => {
+      state.selectedPage = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getProductList.pending, (state: ProductStateType) => {
       state.status = 'Loading';
@@ -49,3 +55,4 @@ export const productSlice = createSlice({
   },
 });
 export { getProductList };
+export const { handleSelectPage } = productSlice.actions;

@@ -3,7 +3,7 @@ import * as Styled from './Pagination.styles';
 
 import { usePagination } from 'common/hooks';
 const Pagination = ({ totalPage }: PaginationProps) => {
-  const { handlePageNationButton, currentPage } = usePagination();
+  const { handlePageNationButton, selectedProductPage } = usePagination();
 
   const paginationArray = new Array(totalPage).fill(1).map((value, idx) => idx + value);
 
@@ -13,7 +13,7 @@ const Pagination = ({ totalPage }: PaginationProps) => {
         <Styled.PaginationItem
           key={value}
           onClick={() => handlePageNationButton(value)}
-          isActive={value === currentPage}
+          isActive={value === selectedProductPage}
         >
           {value}
         </Styled.PaginationItem>

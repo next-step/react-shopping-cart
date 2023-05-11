@@ -1,11 +1,10 @@
-import { useDialog, usePagination } from 'common/hooks';
+import { useDialog } from 'common/hooks';
 import { getProductList } from 'domain/store/feature/product/productslice';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'store';
 
 const useProductPage = () => {
-  const { currentPage } = usePagination();
   const { dialogTitle, isOpenDialog } = useDialog();
   const dispatch = useAppDispatch();
   const productStore = useAppSelector((state) => state.productReducer);
@@ -15,12 +14,13 @@ const useProductPage = () => {
   const status = productStore.status;
   const totalPage = productStore.productList.TOTAL_PAGE;
   const errorMessage = productStore.errorMessage;
+  const selectedPage = productStore.selectedPage;
 
   const currentDetailItem = products.filter((product) => product.id === Number(id))[0];
 
   useEffect(() => {
-    dispatch(getProductList(currentPage));
-  }, [currentPage]);
+    dispatch(getProductList(selectedPage));
+  }, [selectedPage]);
 
   return { status, products, totalPage, isOpenDialog, dialogTitle, errorMessage, currentDetailItem };
 };
