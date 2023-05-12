@@ -1,6 +1,11 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "./storeHooks";
-import { Product, setCurrentProduct } from "../store/cartSlice";
+import {
+  Product,
+  setCurrentProduct,
+  increaseQuantity,
+  decreaseQuantity,
+} from "../store/cartSlice";
 import { deleteAll, selectAll, selectProduct } from "../store/cartSlice";
 import { setIsModalOpen, setModalMessage } from "../store/modalSlice";
 
@@ -36,6 +41,14 @@ const useCart = () => {
     return qnt;
   };
 
+  const increaseItemQuantity = (product: Product) => {
+    return dispatch(increaseQuantity(product));
+  };
+
+  const decreaseItemQuantity = (product: Product) => {
+    return dispatch(decreaseQuantity(product));
+  };
+
   const getTotalAmount = () => {
     const amounts = products.reduce((prev, next) => {
       if (next.isChecked) {
@@ -54,6 +67,7 @@ const useCart = () => {
         return a;
       }
     }, 0);
+
     return total;
   };
 
@@ -66,12 +80,15 @@ const useCart = () => {
   };
 
   return {
+    products,
     setCurrentItem,
     selectItem,
     selectAllItems,
     deleteAllItems,
     deleteItem,
     getItemQuantity,
+    increaseItemQuantity,
+    decreaseItemQuantity,
     getTotalPrice,
     getTotalAmount,
     disableOrder,

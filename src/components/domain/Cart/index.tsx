@@ -1,18 +1,14 @@
 import React from "react";
-import CartSectionTitle from "./SectionTitle/CartSectionTitle";
 import CartItemsSection from "./CartItemSection";
 import OrderDisplaySection from "./OrderDisplaySection";
-import { useAppSelector } from "../../../hooks/storeHooks";
-import { useFetchData } from "../../../hooks/useFetchData";
+import PageTitle from "../../common/PageTitle/PageTitle";
 
 const Cart = () => {
-  const globalProduct = useAppSelector((state) => state.cart.products);
-
   return (
     <section className="cart-section">
-      <CartSectionTitle />
+      <PageTitle title={"장바구니"} />
       <div className="flex">
-        <CartItemsSection product={globalProduct} />
+        <CartItemsSection />
         <OrderDisplaySection />
       </div>
     </section>

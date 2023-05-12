@@ -1,23 +1,20 @@
 import React from "react";
 import ProductsControllers from "./ProductsControllers";
-import CartTitle from "./CartTitle";
 import CartProductContainer from "./CartProductContainer.tsx";
 import Divider from "../../../common/Divider/Divider";
-import { useAppSelector } from "../../../../hooks/storeHooks";
-import type { Product } from "../../../../store/cartSlice";
+import useCart from "../../../../hooks/useCart";
+import ListTitle from "../../../common/ListTitle/ListTitle";
 
-export type Props = {
-  product: Product[];
-};
-
-const CartItemsSection = ({ product }: Props) => {
-  const globalCart = useAppSelector((state) => state.cart.products);
+const CartItemsSection = () => {
+  const { products } = useCart();
+  const { getTotalAmount } = useCart();
+  const totalAmount = getTotalAmount();
 
   return (
     <section className="cart-left-section">
       <ProductsControllers />
-      <CartTitle />
-      {globalCart.map((product) => {
+      <ListTitle title={"든든배송 상품"} quantity={totalAmount} />
+      {products.map((product) => {
         return (
           <div key={product.id}>
             <CartProductContainer product={product} />

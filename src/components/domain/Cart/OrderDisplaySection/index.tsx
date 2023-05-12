@@ -3,6 +3,7 @@ import TotalPrice from "../../TotalPrice/TotalPrice";
 import Button from "../../../common/Button/Button";
 import useCart from "../../../../hooks/useCart";
 import useModal from "../../../../hooks/useModal";
+import { usePayssion, Payssion } from "payssion";
 
 export const OrderDisplaySection = () => {
   const { getTotalAmount, getTotalPrice, disableOrder } = useCart();
@@ -10,6 +11,7 @@ export const OrderDisplaySection = () => {
   const totalAmount = getTotalAmount();
   const totalPrice = getTotalPrice();
   const modalType = "order";
+  const { isOpen } = usePayssion();
 
   const handleOrderButtonClick = () => {
     disableOrder(totalAmount === 0);
@@ -21,6 +23,7 @@ export const OrderDisplaySection = () => {
       <Button className="primary-button" onClick={handleOrderButtonClick}>
         주문하기({totalAmount}개)
       </Button>
+      {isOpen && <Payssion />}
     </TotalPrice>
   );
 };
