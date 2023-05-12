@@ -1,28 +1,24 @@
 import React from "react";
-import { useAppDispatch } from "../../../../hooks/storeHooks";
-import type { Product } from "../../../../store/cartSlice";
 import useCart from "../../../../hooks/useCart";
+import type { Product } from "../../../../store/cartSlice";
 
 export type Props = {
   product: Product;
 };
 
 const QuantityCounter = ({ product }: Props) => {
-  const dispatch = useAppDispatch();
-  const { getTotalAmount, increaseItemQuantity, decreaseItemQuantity } =
-    useCart();
-  const amount = getTotalAmount();
+  const { increaseItemQuantity, decreaseItemQuantity } = useCart();
 
   const handleIncrease = () => {
-    dispatch(increaseItemQuantity(product));
+    increaseItemQuantity(product);
   };
   const handleDecrease = () => {
-    dispatch(decreaseItemQuantity(product));
+    decreaseItemQuantity(product);
   };
 
   return (
     <div className="number-input-container">
-      <input type="number" className="number-input" value={amount} />
+      <input type="number" className="number-input" value={product.quantity} />
       <div>
         <button className="number-input-button" onClick={handleIncrease}>
           ▲
