@@ -4,7 +4,7 @@ export type HeaderProps = {
   title: string;
 };
 
-const Header = ({ title }: HeaderProps) => {
+const PageTitle = ({ title }: HeaderProps) => {
   return (
     <header className="flex-col-center mt-20">
       <h2 className="cart-section__title">{title}</h2>
@@ -13,4 +13,4 @@ const Header = ({ title }: HeaderProps) => {
   );
 };
 
-export default Header;
+export default PageTitle;

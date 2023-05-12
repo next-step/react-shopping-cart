@@ -1,8 +1,7 @@
 import React from "react";
 import { Meta } from "@storybook/react/types-6-0";
 import { Story } from "@storybook/react";
-import Header, { HeaderProps } from "./Header";
-// require("../../../css/common/index.css");
+import Header, { HeaderProps } from "./PageTitle";
 
 export default {
   title: "Components/Header",
