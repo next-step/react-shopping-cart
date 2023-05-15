@@ -7,6 +7,7 @@ import Button from "../../../common/Button/Button";
 import useModal from "../../../../hooks/useModal";
 import useCart from "../../../../hooks/useCart";
 import type { Product } from "../../../../store/cartSlice";
+import { ReactComponent as TrashIcon } from "../../../../assets/svgs/trash.svg";
 
 type Props = {
   product: Product;
@@ -38,7 +39,7 @@ const CartProductContainer = ({ product }: Props) => {
       </div>
       <div className="flex-col-center justify-end gap-15">
         <Button className="cart-trash-svg" onClick={handleDeleteButtonClick}>
-          <img src="./assets/svgs/trash.svg" alt="삭제" />
+          <TrashIcon />
         </Button>
         <QuantityCounter product={product} />
         <span className="cart-price">

@@ -4,6 +4,7 @@ import Button from "../../../common/Button/Button";
 import Modal from "../../../common/Modal/Modal";
 import useModal from "../../../../hooks/useModal";
 import useCart from "../../../../hooks/useCart";
+import { ReactComponent as CartIcon } from "../../../../assets/svgs/cart.svg";
 
 export type ProductInfoProps = {
   ref?: ((node: HTMLElement | null) => void) | null;
@@ -33,7 +34,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
           <p className="product-info__price">{price}</p>
         </div>
         <Button onClick={handleClick} className="">
-          <img src="assets/svgs/cart.svg" alt="장바구니" />
+          <CartIcon />
         </Button>
       </div>
     </div>

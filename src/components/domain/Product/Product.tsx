@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, {
   MutableRefObject,
   memo,
@@ -10,6 +9,7 @@ import React, {
 import ProductInfo from "./ProductInfo/ProductInfo";
 import { useFetchData } from "../../../hooks/useFetchData";
 import { useAppSelector } from "../../../hooks/storeHooks";
+import { ReactComponent as Loader } from "../../../assets/svgs/loader.svg";
 
 const Products = () => {
   const globalProduct = useAppSelector((state) => state.cart.products);
@@ -20,6 +20,7 @@ const Products = () => {
     hasMore,
   } = useFetchData(PRODUCTS_URL, globalProduct);
 
+  const lastPage = products.length / PRODUCTS_PER_PAGE;
   const [pageNumber, setPageNumber] = useState(0);
   const [pageVisited, setPageVisited] = useState(0);
   const productsPerPage = products.slice(
@@ -65,7 +66,9 @@ const Products = () => {
         <>
           <ProductInfo key={product.id} product={product} />
           {idx === displayProducts.length - 1 && (
-            <div ref={lastProductElementRef}>Loader</div>
+            <div className="flex-center w-280" ref={lastProductElementRef}>
+              <Loader />
+            </div>
           )}
         </>
       ))}
