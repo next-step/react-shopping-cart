@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import CartItem from './CartItem';
 
 export default {
-  title: 'Domain/Cart',
+  title: 'Domain/Cart/CartItem',
   component: CartItem,
 } as ComponentMeta<typeof CartItem>;
 

@@ -1,8 +1,8 @@
 import { initialize, mswDecorator } from 'msw-storybook-addon';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import store from 'store';
-import { handlers } from '../src/mocks/server/handlers/index';
-import { reduxDecorator } from '../src/decorator/index';
+
+import { handlers } from '../src/domain/api/handlers/index';
+import { reduxDecorator } from '../src/common/decorator/index';
 
 initialize();
 export const decorators = [mswDecorator, withRouter, reduxDecorator];
