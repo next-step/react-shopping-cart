@@ -1,14 +1,16 @@
-import React, { memo } from "react";
+import React, { memo, ReactNode } from "react";
 import useCart from "../../../../hooks/useCart";
-import ListTitle from "../../../common/ListTitle/ListTitle";
 
-const OrderItemListSection = () => {
-  const { products, getTotalAmount } = useCart();
-  const quantity = getTotalAmount();
+type Props = {
+  children?: ReactNode;
+};
+
+const OrderItemListSection = ({ children }: Props) => {
+  const { products } = useCart();
 
   return (
-    <section className="cart-left-section">
-      <ListTitle title={"주문 상품"} quantity={quantity} />
+    <section className="cart-left-section ">
+      {children}
       {products.map((product) => (
         <div key={product.id}>
           <div className="flex gap-15 mt-10">

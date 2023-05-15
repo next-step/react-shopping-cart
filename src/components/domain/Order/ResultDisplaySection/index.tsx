@@ -18,7 +18,8 @@ export const PayDisplaySection = () => {
   const { isOpen } = usePayssion();
   const onSuccessAction = () => {
     alert("주문이 완료되었습니다");
-    navigate("/payment");
+    //TODO: 주문 내역 slice 추가하기
+    navigate("/order/complete");
     return;
   };
   const { initiatePayment } = usePayssion();

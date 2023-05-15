@@ -8,7 +8,7 @@ import ProductDetailPage from "../pages/ProductDetailPage";
 import { Provider } from "react-redux";
 import { store } from "../store/store";
 import { PayssionProvider } from "payssion";
-import PaymentSuccessPage from "../pages/PaymentSuccessPage";
+import OrderDetailPage from "../pages/OrderDetailPage";
 
 export const router = createBrowserRouter([
   {
@@ -31,7 +31,7 @@ export const router = createBrowserRouter([
       },
       { path: "cart", element: <CartPage /> },
       { path: "order", element: <OrderPage /> },
-      { path: "payment", element: <PaymentSuccessPage /> },
+      { path: "order/complete", element: <OrderDetailPage /> },
       { path: "*", element: <Navigate replace to="/" /> },
     ],
   },

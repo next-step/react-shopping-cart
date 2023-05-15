@@ -4,7 +4,7 @@ import { numberFormat } from "../../../utils/numberFormat";
 export type TotalPriceProps = {
   title: string;
   price: number;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 const TotalPrice = ({ title, price, children }: TotalPriceProps) => {
