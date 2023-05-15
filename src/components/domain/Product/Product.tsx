@@ -10,6 +10,7 @@ import ProductInfo from "./ProductInfo/ProductInfo";
 import { useFetchData } from "../../../hooks/useFetchData";
 import { useAppSelector } from "../../../hooks/storeHooks";
 import { ReactComponent as Loader } from "../../../assets/svgs/loader.svg";
+import ProductSkeleton from "./ProductSkeleton/ProductSkeleton";
 
 const Products = () => {
   const globalProduct = useAppSelector((state) => state.cart.products);
@@ -20,7 +21,6 @@ const Products = () => {
     hasMore,
   } = useFetchData(PRODUCTS_URL, globalProduct);
 
-  const lastPage = products.length / PRODUCTS_PER_PAGE;
   const [pageNumber, setPageNumber] = useState(0);
   const [pageVisited, setPageVisited] = useState(0);
   const productsPerPage = products.slice(
@@ -62,6 +62,7 @@ const Products = () => {
 
   return (
     <section className="product-container">
+      {loading && <ProductSkeleton />}
       {displayProducts.map((product, idx) => (
         <>
           <ProductInfo key={product.id} product={product} />
@@ -72,7 +73,6 @@ const Products = () => {
           )}
         </>
       ))}
-      {loading && "Skeleton"}
       {error && "Error"}
     </section>
   );
