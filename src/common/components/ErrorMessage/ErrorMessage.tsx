@@ -5,7 +5,7 @@ const ErrorMessage = ({ children }: PropsWithChildren) => {
   return (
     <Styled.OverLay>
       <Styled.FlexContainer>
-        <Styled.ErrorIcon />
+        <Styled.ErrorIcon role="img" />
         <Styled.TextBox>
           <h3>Error</h3>
           {children ? <span>{children}</span> : <span>잠시 오류가 발생하였습니다.</span>}
