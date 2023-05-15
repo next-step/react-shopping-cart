@@ -10,9 +10,7 @@ const NavBar = () => {
         <Styled.Title>JunYoung SHOP</Styled.Title>
       </Styled.TitleBox>
       <Styled.ButtonBox>
-        <Styled.NavButton data-testid="nav-cart" onClick={() => navigate('/carts')}>
-          장바구니
-        </Styled.NavButton>
+        <Styled.NavButton onClick={() => navigate('/carts')}>장바구니</Styled.NavButton>
         <Styled.NavButton onClick={() => navigate('/orders')}>나의 주문목록</Styled.NavButton>
       </Styled.ButtonBox>
     </Styled.Container>
