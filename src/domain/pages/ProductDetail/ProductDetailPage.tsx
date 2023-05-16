@@ -2,9 +2,11 @@ import * as Styled from './ProductDetailPage.styles';
 import { ProductDetailItem } from 'domain/components';
 import { Spinner, ErrorMessage, Dialog } from 'common/components';
 import useProductPage from '../hooks/useProductPage';
+import { useDialog } from 'common/hooks';
 
 const ProductDetailPage = () => {
-  const { status, isOpenDialog, dialogTitle, currentDetailItem, errorMessage } = useProductPage();
+  const { status, currentDetailItem, errorMessage } = useProductPage();
+  const { isOpenDialog, dialogTitle } = useDialog();
 
   if (status === 'Loading') {
     return <Spinner />;
@@ -14,7 +16,7 @@ const ProductDetailPage = () => {
 
   return (
     <Styled.Layout>
-      <Dialog isOpen={isOpenDialog} title={dialogTitle} />
+      <Dialog title={dialogTitle} isOpen={isOpenDialog} />
       <ProductDetailItem
         id={currentDetailItem.id}
         image={currentDetailItem.image}

@@ -8,6 +8,7 @@ module.exports = {
     '@storybook/addon-interactions',
     '@storybook/preset-create-react-app',
     'storybook-addon-react-router-v6',
+    '@storybook/addon-actions',
   ],
   framework: '@storybook/react',
   core: {

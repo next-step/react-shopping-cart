@@ -3,10 +3,11 @@ import uuid from 'react-uuid';
 import { Spinner, ErrorMessage, Pagination, Dialog } from 'common/components';
 import { ProductItem } from 'domain/components';
 import useProductPage from '../hooks/useProductPage';
+import { useDialog } from 'common/hooks';
 
 const ProductListPage = () => {
-  const { status, isOpenDialog, dialogTitle, products, totalPage, errorMessage } = useProductPage();
-
+  const { status, products, totalPage, errorMessage } = useProductPage();
+  const { dialogTitle, isOpenDialog } = useDialog();
   if (status === 'Loading') {
     return <Spinner />;
   } else if (status === 'Fail') {
@@ -15,7 +16,7 @@ const ProductListPage = () => {
 
   return (
     <div>
-      <Dialog isOpen={isOpenDialog} title={dialogTitle} />
+      <Dialog title={dialogTitle} isOpen={isOpenDialog} />
       <Styled.Grid>
         {products?.map((product) => (
           <ProductItem key={uuid()} price={product.price} image={product.image} name={product.name} id={product.id} />

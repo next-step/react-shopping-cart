@@ -11,7 +11,6 @@ import usePaymentApp from 'domain/hooks/usePaymentApp';
 const useOrderPage = () => {
   const dispatch = useAppDispatch();
   const { cartList, status, totalAmount, totalPrice } = useCart();
-  const { isOpenDialog, dialogTitle } = useDialog();
 
   const { payment } = usePaymentApp();
 
@@ -35,8 +34,6 @@ const useOrderPage = () => {
   return {
     isOpenPaymentUI,
     status,
-    isOpenDialog,
-    dialogTitle,
     cartList,
     totalAmount,
     totalPrice,

@@ -15,7 +15,7 @@ const CartPage = () => {
     status,
     errorMessage,
   } = useCartPage();
-  const { isOpenDialog, dialogTitle } = useDialog();
+  const { dialogTitle, isOpenDialog } = useDialog();
 
   if (status === 'Fail') {
     return <ErrorMessage>{errorMessage}</ErrorMessage>;
@@ -23,7 +23,7 @@ const CartPage = () => {
 
   return (
     <Styled.Layout>
-      <Dialog isOpen={isOpenDialog} title={dialogTitle} />
+      <Dialog title={dialogTitle} isOpen={isOpenDialog} />
       <PageHeader>장바구니</PageHeader>
       <Styled.SectionContainer>
         <Styled.ItemSection>

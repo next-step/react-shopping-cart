@@ -1,11 +1,9 @@
-import { useDialog } from 'common/hooks';
 import { getProductList } from 'domain/store/feature/product/productslice';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'store';
 
 const useProductPage = () => {
-  const { dialogTitle, isOpenDialog } = useDialog();
   const dispatch = useAppDispatch();
   const productStore = useAppSelector((state) => state.productReducer);
   const { id } = useParams();
@@ -22,7 +20,7 @@ const useProductPage = () => {
     dispatch(getProductList(selectedPage));
   }, [selectedPage]);
 
-  return { status, products, totalPage, isOpenDialog, dialogTitle, errorMessage, currentDetailItem };
+  return { status, products, totalPage, errorMessage, currentDetailItem };
 };
 
 export default useProductPage;

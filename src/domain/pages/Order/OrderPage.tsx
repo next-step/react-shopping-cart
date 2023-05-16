@@ -3,19 +3,13 @@ import * as Styled from './OrderPage.styles';
 import { OrderdItem, Payment } from 'domain/components';
 import { Dialog, ErrorMessage, PageHeader, Spinner } from 'common/components';
 import useOrderPage from '../hooks/useOrderPage';
+import { useDialog } from 'common/hooks';
 
 const OrderPage = () => {
-  const {
-    status,
-    isOpenPaymentUI,
-    isOpenDialog,
-    dialogTitle,
-    handlePaymentAppCloseButton,
-    cartList,
-    totalAmount,
-    totalPrice,
-    errorMessage,
-  } = useOrderPage();
+  const { status, isOpenPaymentUI, handlePaymentAppCloseButton, cartList, totalAmount, totalPrice, errorMessage } =
+    useOrderPage();
+
+  const { dialogTitle, isOpenDialog } = useDialog();
 
   if (status === 'Loading') {
     return <Spinner />;
@@ -26,7 +20,7 @@ const OrderPage = () => {
   return (
     <Styled.Layout>
       {isOpenPaymentUI && <Styled.CustomPaymentApp onCloseButton={handlePaymentAppCloseButton} />}
-      <Dialog isOpen={isOpenDialog} title={dialogTitle} />
+      <Dialog title={dialogTitle} isOpen={isOpenDialog} />
       <PageHeader>주문/결제</PageHeader>
       <Styled.SectionContainer>
         <Styled.ItemSection>
