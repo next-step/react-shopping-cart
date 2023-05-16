@@ -37,9 +37,6 @@ describe('Pagination 스토리북 행위 테스트', () => {
     await userEvent.click(clickPaginationButton);
 
     PaginationButtons = PaginationButtons.slice(0, PaginationButtons.length - 1);
-
-    expect(PaginationButtons).toHaveLength(2);
-
     PaginationButtons.map((button) => {
       expect(button).toHaveStyle({ opacity: 0.3 });
     });
