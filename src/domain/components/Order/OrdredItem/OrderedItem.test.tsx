@@ -21,10 +21,8 @@ describe('OrderedItem 렌더링 검증 테스트', () => {
     const price = await screen.findByText('가격: 83700원');
     expect(price).toBeInTheDocument();
   });
-
   test('아이템 이미지가 존재해야 된다', async () => {
     render(<Default />);
-
     const image = await screen.findByRole('img');
     expect(image).toBeInTheDocument();
   });
