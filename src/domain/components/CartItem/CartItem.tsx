@@ -11,13 +11,7 @@ const CartItem = ({ id, image, price, name, isOrder, amount }: CartItemProps) =>
   return (
     <Styled.Contianer>
       <Styled.LeftBox>
-        <Styled.CheckBox
-          type={'checkbox'}
-          name="checkbox"
-          onChange={updateOrder}
-          checked={isOrder}
-          data-testid="checkbox"
-        />
+        <Styled.CheckBox type={'checkbox'} name="checkbox" onChange={updateOrder} checked={isOrder} />
         <Styled.CartItemBox>
           <Styled.CartItemImage src={image} alt={name} />
           <Styled.CartItemName>{name}</Styled.CartItemName>
