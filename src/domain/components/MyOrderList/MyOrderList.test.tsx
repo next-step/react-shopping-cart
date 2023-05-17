@@ -6,7 +6,13 @@ import userEvent from '@testing-library/user-event';
 import { render } from '../../../test/rtkProvider';
 const { Default } = composeStories(stories);
 
-describe('MyOrderList 스토리북 검증 테스트', () => {
+const mockedUsedNavigate = jest.fn();
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockedUsedNavigate,
+}));
+
+describe('MyOrderList 스토리북 렌더링 검증 테스트', () => {
   test('냉면용기 (대)가 보여야 되어야한다.', async () => {
     render(<Default />);
     const itemTitle = await screen.findByText('냉면용기(대)');
@@ -31,5 +37,13 @@ describe('MyOrderList 스토리북 검증 테스트', () => {
     render(<Default />);
     const priceAndAmount = await screen.findByText('83700원 / 수량 : 1개');
     expect(priceAndAmount).toBeInTheDocument();
+  });
+});
+describe('MyOrderList 스토리북 행위 테스트', () => {
+  test('상세보기를 클릭하면 navigate가 호출이 되어야한다.', async () => {
+    render(<Default />);
+    const detail = await screen.findByText('상세보기');
+    await userEvent.click(detail);
+    expect(mockedUsedNavigate).toBeCalled();
   });
 });

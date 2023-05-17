@@ -86,6 +86,6 @@ describe('CartItem의 DefaultItem 스토리북 행위 테스트', () => {
 
     await userEvent.click(decreaseButton);
 
-    expect(window.alert).not.toBeCalled();
+    expect(window.alert).toBeCalled();
   });
 });
