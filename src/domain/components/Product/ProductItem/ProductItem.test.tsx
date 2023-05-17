@@ -2,7 +2,6 @@ import * as stories from './ProductItem.stories';
 import { screen } from '@testing-library/react';
 
 import { composeStories } from '@storybook/react';
-import userEvent from '@testing-library/user-event';
 import { render } from 'test/rtkProvider';
 const { Item } = composeStories(stories);
 
