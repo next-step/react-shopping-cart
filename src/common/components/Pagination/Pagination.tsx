@@ -11,6 +11,7 @@ const Pagination = ({ totalPage }: PaginationProps) => {
     <Styled.PaginationList>
       {paginationArray.map((value: number) => (
         <Styled.PaginationItem
+          data-testid="pagination-button"
           key={value}
           onClick={() => handlePageNationButton(value)}
           isActive={value === selectedProductPage}

@@ -8,9 +8,14 @@ const ProductDetailItem = ({ id, image, name, price }: ProductDetailItemProps) =
 
   return (
     <Styled.Container>
-      <Styled.ItemImage src={currentDetailItem.image} alt={currentDetailItem.name} width={640}></Styled.ItemImage>
+      <Styled.ItemImage
+        data-testid="productDetail-image"
+        src={currentDetailItem.image}
+        alt={currentDetailItem.name}
+        width={640}
+      ></Styled.ItemImage>
       <Styled.ItemInfoContainer>
-        <Styled.Name>{currentDetailItem.name}</Styled.Name>
+        <Styled.Name data-testid="productDetail-name">{currentDetailItem.name}</Styled.Name>
         <Styled.Horizontal />
         <Styled.ItemInfoBox>
           <Styled.Text>금액</Styled.Text>

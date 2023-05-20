@@ -2,7 +2,7 @@ import * as Styled from './ProductListPage.styles';
 import uuid from 'react-uuid';
 import { Spinner, ErrorMessage, Pagination, Dialog } from 'common/components';
 import { ProductItem } from 'domain/components';
-import useProductPage from '../hooks/useProductPage';
+import useProductPage from '../../hooks/useProductPage';
 import { useDialog } from 'common/hooks';
 
 const ProductListPage = () => {

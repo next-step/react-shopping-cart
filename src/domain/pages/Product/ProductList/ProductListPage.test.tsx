@@ -7,6 +7,11 @@ import { render } from 'test/rtkProvider';
 import { setupServer } from 'msw/node';
 
 import { handlers } from './mockserver';
+const mockedUsedNavigate = jest.fn();
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockedUsedNavigate,
+}));
 
 const { Default } = composeStories(stories);
 
@@ -65,28 +70,29 @@ describe('ProductListPage 렌더링 테스트', () => {
       { timeout: 3000 }
     );
   });
-  test('페이지 네이션 버튼은 5개여야한다', async () => {
+  test('ProductPage 페이지의 페이지네이션 버튼은 5개여야한다', async () => {
     render(<Default />);
     await waitFor(
       () => {
-        const paginationButton = screen.getAllByRole('button');
+        const paginationButton = screen.getAllByTestId('pagination-button');
         expect(paginationButton).toHaveLength(5);
       },
       { timeout: 3000 }
     );
   });
 });
-describe('페이지 네이션 동작테스트', () => {
+
+describe('ProductList 페이지 네이션 동작테스트', () => {
   test('다음 페이지 네이션 버튼을 누르면 8개의 이미지가 렌더링 되어야한다.', async () => {
     render(<Default />);
     await waitFor(
       () => {
-        const paginationButtons = screen.getAllByRole('button');
+        const paginationButtons = screen.getAllByTestId('pagination-button');
         expect(paginationButtons).toHaveLength(5);
       },
       { timeout: 3000 }
     );
-    const paginationButtons = screen.getAllByRole('button');
+    const paginationButtons = screen.getAllByTestId('pagination-button');
     const button = paginationButtons[1];
     await userEvent.click(button);
 
@@ -102,12 +108,12 @@ describe('페이지 네이션 동작테스트', () => {
     render(<Default />);
     await waitFor(
       () => {
-        const paginationButtons = screen.getAllByRole('button');
+        const paginationButtons = screen.getAllByTestId('pagination-button');
         expect(paginationButtons).toHaveLength(5);
       },
       { timeout: 3000 }
     );
-    const paginationButtons = screen.getAllByRole('button');
+    const paginationButtons = screen.getAllByTestId('pagination-button');
     const button = paginationButtons[1];
     await userEvent.click(button);
 
@@ -123,12 +129,12 @@ describe('페이지 네이션 동작테스트', () => {
     render(<Default />);
     await waitFor(
       () => {
-        const paginationButtons = screen.getAllByRole('button');
+        const paginationButtons = screen.getAllByTestId('pagination-button');
         expect(paginationButtons).toHaveLength(5);
       },
       { timeout: 3000 }
     );
-    const paginationButtons = screen.getAllByRole('button');
+    const paginationButtons = screen.getAllByTestId('pagination-button');
     const button = paginationButtons[1];
     await userEvent.click(button);
 
@@ -145,12 +151,12 @@ describe('페이지 네이션 동작테스트', () => {
     render(<Default />);
     await waitFor(
       () => {
-        const paginationButtons = screen.getAllByRole('button');
+        const paginationButtons = screen.getAllByTestId('pagination-button');
         expect(paginationButtons).toHaveLength(5);
       },
       { timeout: 3000 }
     );
-    const paginationButtons = screen.getAllByRole('button');
+    const paginationButtons = screen.getAllByTestId('pagination-button');
     const button = paginationButtons[1];
     await userEvent.click(button);
 
