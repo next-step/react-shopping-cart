@@ -5,7 +5,7 @@ import type { DialogProps } from './Dialog.types';
 const Dialog = ({ title, isOpen }: DialogProps) => {
   const { closeDialog, handleConfirmButton } = useDialog();
   return isOpen ? (
-    <Styled.OverLay>
+    <Styled.OverLay data-testid="dialog">
       <Styled.FlexContainer>
         <Styled.TitleBox>
           <Styled.Title>{title}</Styled.Title>

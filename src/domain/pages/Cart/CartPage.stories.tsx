@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import CartPage from './CartPage';
-import { deleteCart, getCartItem, updateCartItem } from './mockhandler';
+import { handlers } from './mockserver';
 
 export default {
   title: 'pages/CartPage',
@@ -15,6 +15,6 @@ Default.args = {};
 
 Default.parameters = {
   msw: {
-    handlers: [deleteCart, getCartItem, updateCartItem],
+    handlers: [handlers],
   },
 };

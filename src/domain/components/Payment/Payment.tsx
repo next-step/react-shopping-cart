@@ -15,13 +15,14 @@ const Payment = ({ ...props }: PaymentProps) => {
       <div>
         <Styled.ItemInfoBox>
           <div />
-          <Styled.Price>{props.price}원</Styled.Price>
+          <Styled.Price data-testid="payment-price">{props.price}원</Styled.Price>
         </Styled.ItemInfoBox>
         <Styled.ButtonBox>
           {props.type === 'cart' && (
             <Styled.OrderButton
               onClick={orderCart}
               disabled={props.totalAmount && props.totalAmount > 0 ? false : true}
+              data-testid="order-buttton"
             >
               {`주문하기 ${props.totalAmount}개`}
             </Styled.OrderButton>

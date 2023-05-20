@@ -34,10 +34,11 @@ const CartPage = () => {
                 name="checkbox"
                 onChange={handleSelectAllCheckBox}
                 checked={checkbox}
+                data-testid="all-checkbox"
               />
               <Styled.CheckBoxLabel htmlFor="checkbox">모두 선택</Styled.CheckBoxLabel>
             </Styled.CheckBoxInputBox>
-            <Styled.CartRemoveButton onClick={handleRemoveButton} />
+            <Styled.CartRemoveButton onClick={handleRemoveButton} data-testid="cart-removeButton" />
           </Styled.CheckBoxContainer>
           <Styled.CartTitle>든든 배송상품</Styled.CartTitle>
           <Styled.Divider />
