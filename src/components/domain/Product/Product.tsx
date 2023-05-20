@@ -11,7 +11,6 @@ import { useFetchData } from "../../../hooks/useFetchData";
 import { useAppSelector } from "../../../hooks/storeHooks";
 import { ReactComponent as Loader } from "../../../assets/svgs/loader.svg";
 import ProductSkeleton from "./ProductSkeleton/ProductSkeleton";
-
 const Products = () => {
   const globalProduct = useAppSelector((state) => state.cart.products);
   const {
@@ -63,6 +62,7 @@ const Products = () => {
   return (
     <section className="product-container">
       {loading && <ProductSkeleton />}
+      {error && "Error Page"}
       {displayProducts.map((product, idx) => (
         <>
           <ProductInfo key={product.id} product={product} />
@@ -73,12 +73,11 @@ const Products = () => {
           )}
         </>
       ))}
-      {error && "Error"}
     </section>
   );
 };
 
 export default memo(Products);
 
-const PRODUCTS_URL = "http://localhost:3000/";
+const PRODUCTS_URL = "/";
 const PRODUCTS_PER_PAGE = 4;
