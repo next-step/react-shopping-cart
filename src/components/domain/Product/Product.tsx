@@ -79,5 +79,5 @@ const Products = () => {
 
 export default memo(Products);
 
-const PRODUCTS_URL = "/";
+const PRODUCTS_URL = "http://www.naver.com/";
 const PRODUCTS_PER_PAGE = 4;
