@@ -1,11 +1,13 @@
 import uuid from 'react-uuid';
 import * as Styled from './MyOrderListPage.styles';
-import { ErrorMessage, PageHeader, Spinner } from 'common/components';
+import { Dialog, ErrorMessage, PageHeader, Spinner } from 'common/components';
 import { MyOrderListItem, MyOrderListHeader } from 'domain/components';
 import useMyOrderListPage from '../../hooks/useMyOrderListPage';
+import { useDialog } from 'common/hooks';
 
 const MyOrderListPage = () => {
   const { orderedList, status, errorMessage } = useMyOrderListPage();
+  const { isOpenDialog, dialogTitle } = useDialog();
 
   const MyorderListHeaderItems = orderedList.map((item) => <MyOrderListHeader id={item.id} key={uuid()} />);
   const MyorderListOrdredItems = orderedList.map((orderListProducts) =>
@@ -30,6 +32,7 @@ const MyOrderListPage = () => {
   return (
     <Styled.Layout>
       <PageHeader>주문 목록</PageHeader>
+      <Dialog isOpen={isOpenDialog} title={dialogTitle} />
       {MyorderListHeaderItems.map((value, idx) => (
         <Styled.ItemBox key={uuid()}>
           {MyorderListHeaderItems[idx]}

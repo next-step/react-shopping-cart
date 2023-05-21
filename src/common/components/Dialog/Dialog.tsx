@@ -8,7 +8,7 @@ const Dialog = ({ title, isOpen }: DialogProps) => {
     <Styled.OverLay data-testid="dialog">
       <Styled.FlexContainer>
         <Styled.TitleBox>
-          <Styled.Title>{title}</Styled.Title>
+          <Styled.Title data-testid="dialog-title">{title}</Styled.Title>
         </Styled.TitleBox>
         <Styled.ButtonBox>
           <Styled.DiaLogButton theme="primary" onClick={handleConfirmButton} data-testid="confirm-button">

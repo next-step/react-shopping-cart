@@ -6,8 +6,12 @@ const MyOrderListHeader = ({ id }: MyOrderListHeaderProps) => {
   const { moveToDetailPage, isActiveDetailPage } = useMyOrderList(id);
   return (
     <Styled.Layout>
-      <Styled.Text>{`주문번호 : ${id}`}</Styled.Text>
-      {!isActiveDetailPage && <Styled.Text onClick={() => moveToDetailPage(`${id}`)}>상세보기</Styled.Text>}
+      <Styled.Text data-testid="order-number">{`주문번호 : ${id}`}</Styled.Text>
+      {!isActiveDetailPage && (
+        <Styled.Text onClick={() => moveToDetailPage(`${id}`)} data-testid="orderDetail-button">
+          상세보기
+        </Styled.Text>
+      )}
     </Styled.Layout>
   );
 };
