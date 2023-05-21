@@ -2,7 +2,7 @@ import * as Styled from './MyOrderListDetailPage.styles';
 import { ErrorMessage, PageHeader, Spinner } from 'common/components';
 import { MyOrderListHeader, MyOrderListItem, Payment } from 'domain/components';
 import uuid from 'react-uuid';
-import useMyOrderListPage from '../hooks/useMyOrderListPage';
+import useMyOrderListPage from '../../hooks/useMyOrderListPage';
 import { useParams } from 'react-router-dom';
 
 const MyOrderListDetailPage = () => {

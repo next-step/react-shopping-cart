@@ -1,10 +1,7 @@
-import { useNavigate } from 'react-router-dom';
-import { useDialog } from 'common/hooks';
-import { useCart, useOrder } from 'domain/hooks';
-import { handlePaymentApp, updateOrder } from 'domain/store/feature/order/orderSlice';
-import { usePayment } from 'payment-junyoung';
 import { useEffect } from 'react';
-
+import { useCart } from 'domain/hooks';
+import { handlePaymentApp } from 'domain/store/feature/order/orderSlice';
+import { usePayment } from 'payment-junyoung';
 import { useAppDispatch, useAppSelector } from 'store';
 import usePaymentApp from 'domain/hooks/usePaymentApp';
 

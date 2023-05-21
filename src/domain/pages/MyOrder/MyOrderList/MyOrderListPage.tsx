@@ -2,7 +2,7 @@ import uuid from 'react-uuid';
 import * as Styled from './MyOrderListPage.styles';
 import { ErrorMessage, PageHeader, Spinner } from 'common/components';
 import { MyOrderListItem, MyOrderListHeader } from 'domain/components';
-import useMyOrderListPage from '../hooks/useMyOrderListPage';
+import useMyOrderListPage from '../../hooks/useMyOrderListPage';
 
 const MyOrderListPage = () => {
   const { orderedList, status, errorMessage } = useMyOrderListPage();
