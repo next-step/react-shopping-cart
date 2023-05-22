@@ -5,7 +5,7 @@ import type { PageHeaderProps } from './PageHeader.types';
 const PageHeader = ({ children }: PropsWithChildren<PageHeaderProps>) => {
   return (
     <Styled.Layout>
-      <Styled.Title>{children}</Styled.Title>
+      <Styled.Title data-testid="page-header-text">{children}</Styled.Title>
       <Styled.Horizontal />
     </Styled.Layout>
   );
