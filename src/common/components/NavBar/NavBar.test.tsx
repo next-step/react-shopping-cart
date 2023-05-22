@@ -41,17 +41,14 @@ describe('버튼 클릭시 navigate 동작 여부 테스트', () => {
 
   test('장바구니 버튼이 클릭시 useNavigate는 /carts를 호출한다.', async () => {
     render(<PageNavBar />);
-    const buttons = await screen.findAllByRole('button');
-    const CartButton = buttons[0];
+    const CartButton = await screen.findByText('장바구니');
 
     await userEvent.click(CartButton);
-
     expect(mockedUsedNavigate).toHaveBeenCalledWith('/carts');
   });
   test('나의 주문목록 버튼이 클릭시 useNavigate는 /orders를 호출한다.', async () => {
     render(<PageNavBar />);
-    const buttons = await screen.findAllByRole('button');
-    const MyOrderButton = buttons[1];
+    const MyOrderButton = await screen.findByText('나의 주문목록');
     await userEvent.click(MyOrderButton);
 
     expect(mockedUsedNavigate).toHaveBeenCalledWith('/orders');
