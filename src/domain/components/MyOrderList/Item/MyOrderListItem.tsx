@@ -9,7 +9,7 @@ const MyOrderListItem = ({ id, amount, name, price, image }: MyOrderListItemProp
     <Styled.Container>
       <Styled.FlexContainer>
         <Styled.ItemContainer>
-          <Styled.ItemImage src={`${image}`} alt={`${name}`} />
+          <Styled.ItemImage data-testid="order-image" src={`${image}`} alt={`${name}`} />
           <Styled.ItemBox>
             <Styled.ItemName data-testid="order-name">{name}</Styled.ItemName>
             <Styled.ItemInfo data-testid="order-info">{`${price}원 / 수량 : ${amount}개`}</Styled.ItemInfo>
