@@ -19,19 +19,23 @@ const CartItem = ({ id, image, price, name, isOrder, amount }: CartItemProps) =>
           data-testid="item-checkbox"
         />
         <Styled.CartItemBox>
-          <Styled.CartItemImage src={image} alt={name} />
-          <Styled.CartItemName>{name}</Styled.CartItemName>
+          <Styled.CartItemImage data-testid="cart-image" src={image} alt={name} />
+          <Styled.CartItemName data-testid="cart-productName">{name}</Styled.CartItemName>
         </Styled.CartItemBox>
       </Styled.LeftBox>
       <Styled.RightBox>
         <Styled.CartInputContainer>
-          <Styled.CartInputNumber type="text" value={cartIteminput} readOnly={true} />
+          <Styled.CartInputNumber type="text" value={cartIteminput} readOnly={true} data-testid="cart-input" />
           <div>
-            <Styled.CartInputNumberButton onClick={increaseCartItem}>▲</Styled.CartInputNumberButton>
-            <Styled.CartInputNumberButton onClick={decreaseCartItem}>▼</Styled.CartInputNumberButton>
+            <Styled.CartInputNumberButton onClick={increaseCartItem} data-testid="increase-button">
+              ▲
+            </Styled.CartInputNumberButton>
+            <Styled.CartInputNumberButton onClick={decreaseCartItem} data-testid="decrease-button">
+              ▼
+            </Styled.CartInputNumberButton>
           </div>
         </Styled.CartInputContainer>
-        <Styled.CartPriceText>{price * cartIteminput}원</Styled.CartPriceText>
+        <Styled.CartPriceText data-testid="cart-price">{price * cartIteminput}원</Styled.CartPriceText>
       </Styled.RightBox>
     </Styled.Contianer>
   );

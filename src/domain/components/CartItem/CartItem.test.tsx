@@ -8,82 +8,73 @@ import { render } from '../../../test/rtkProvider';
 const { DefaultItem } = composeStories(stories);
 jest.spyOn(window, 'alert').mockImplementation(() => {});
 
-describe('CartItem의 DefaultItem 스토리북 렌더링 검증 테스트', () => {
+describe('CartItem의 스토리북 렌더링 검증 테스트', () => {
   test('체크박스는 체크되어있으면 안된다.', async () => {
     render(<DefaultItem />);
     const checkBox = await screen.findByRole('checkbox');
     expect(checkBox).not.toBeChecked();
   });
-  test('이미지가 나타나야한다', async () => {
+  test('상품 이미지가 존재 해야 한다', async () => {
     render(<DefaultItem />);
-    const Image = await screen.findByRole('img');
-    expect(Image).toBeInTheDocument();
+    const image = await screen.findByTestId('cart-image');
+    expect(image).toBeInTheDocument();
   });
   test('input값은 1이어야한다.', async () => {
     render(<DefaultItem />);
-    const input = await screen.findByRole('textbox');
-    const inputValue = input.value;
-
-    expect(inputValue).toBe('1');
+    const input = await screen.findByTestId('cart-input');
+    expect(input).toHaveValue('1');
   });
   test('가격은 83700원이어야 한다.', async () => {
     render(<DefaultItem />);
-    const price = await screen.findByText('83700원');
-    expect(price).toBeInTheDocument();
+    const price = await screen.findByTestId('cart-price');
+    expect(price).toHaveTextContent('83700원');
   });
-  test('이름은 냉면용기(대)이어야 한다', async () => {
+  test('상품의 이름은 냉면용기(대)이어야 한다', async () => {
     render(<DefaultItem />);
-    const name = await screen.findByText('냉면용기(대)');
-    expect(name).toBeInTheDocument();
+    const name = await screen.findByTestId('cart-productName');
+    expect(name).toHaveTextContent('냉면용기(대)');
   });
 });
 
-describe('CartItem의 DefaultItem 스토리북 행위 테스트', () => {
+describe('CartItem 스토리북 행위 테스트', () => {
   test('checkBox를 누르면 check되어야 한다.', async () => {
     render(<DefaultItem />);
     const checkBox = await screen.findByRole('checkbox');
-
     await userEvent.click(checkBox);
-
     expect(checkBox).toBeChecked();
   });
 
   test('increaseButton을 누르면 input Value는 2가되어야한다.', async () => {
     render(<DefaultItem />);
-    const buttons = await screen.findAllByRole('button');
-    const increaseButton = buttons[0];
-
+    const increaseButton = await screen.findByTestId('increase-button');
     await userEvent.click(increaseButton);
+    const input = await screen.findByTestId('cart-input');
 
-    const input = await screen.findByRole('textbox');
-    const inputValue = input.value;
-    expect(inputValue).toBe('2');
+    expect(input).toHaveValue('2');
   });
   test('inputValue가 2일떄 decreaseButton을 누르면 input Value는 1이 되어야한다.', async () => {
     render(<DefaultItem />);
-    const buttons = await screen.findAllByRole('button');
-    const increaseButton = buttons[0];
-    const decreaseButton = buttons[1];
+    const increaseButton = await screen.findByTestId('increase-button');
+    const decreaseButton = await screen.findByTestId('decrease-button');
 
     await userEvent.click(increaseButton);
-    let input = await screen.findByRole('textbox');
-    let inputValue = input.value;
-
-    expect(inputValue).toBe('2');
+    const input = await screen.findByTestId('cart-input');
+    expect(input).toHaveValue('2');
+    // input value=2
 
     await userEvent.click(decreaseButton);
-    input = await screen.findByRole('textbox');
-    inputValue = input.value;
+    const changeInput = await screen.findByTestId('cart-input');
 
-    expect(inputValue).toBe('1');
+    expect(changeInput).toHaveValue('1');
   });
 
   test('inputValue가 1일떄 decreaseButton을 누르면 alert창이 나온다.', async () => {
     render(<DefaultItem />);
 
-    const buttons = await screen.findAllByRole('button');
-    const decreaseButton = buttons[1];
+    const input = await screen.findByTestId('cart-input');
+    expect(input).toHaveValue('1');
 
+    const decreaseButton = await screen.findByTestId('decrease-button');
     await userEvent.click(decreaseButton);
 
     expect(window.alert).toBeCalled();
