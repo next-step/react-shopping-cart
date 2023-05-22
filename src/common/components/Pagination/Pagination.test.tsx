@@ -14,7 +14,7 @@ describe('Pagination 스토리북 렌더링 검증 테스트', () => {
     expect(PaginationButtons).toHaveLength(3);
   });
 });
-describe('Pagination 스토리북 행위 테스트', () => {
+describe('Pagination 스토리북 버튼 테스트', () => {
   test('현재 활성화된 페이지네이션 버튼의 opactiy값은 1이어야한다.', async () => {
     render(<Default />);
     const PaginationButtons = await screen.findAllByRole('button');

@@ -14,7 +14,7 @@ const Dialog = ({ title, isOpen }: DialogProps) => {
           <Styled.DiaLogButton theme="primary" onClick={handleConfirmButton} data-testid="confirm-button">
             확인
           </Styled.DiaLogButton>
-          <Styled.DiaLogButton theme="primary" onClick={closeDialog}>
+          <Styled.DiaLogButton theme="primary" onClick={closeDialog} data-testid="cancel-button">
             취소
           </Styled.DiaLogButton>
         </Styled.ButtonBox>

@@ -5,25 +5,25 @@ import userEvent from '@testing-library/user-event';
 
 const { Default } = composeStories(stories);
 
-describe('Default ErrorMessageButton 렌더링 검증 테스트', () => {
-  test('Default ErrorMessageButton render test', async () => {
+describe('ErrorMessage 스토리북 렌더링 검증 테스트', () => {
+  test('ErrorMessageButton은 Try Again이라는 Text를 가져야 있어야한다', async () => {
     render(<Default />);
-    const ErrorMessageButton = (await screen.findByRole('button')).innerHTML;
-    expect(ErrorMessageButton).toBe('Try Again');
+    const ErrorMessageButton = await screen.findByRole('button');
+    expect(ErrorMessageButton).toHaveTextContent('Try Again');
   });
-  test('Default ErrorMessageButton children text test', async () => {
+  test('ErrorMessage text는 데이터를 가져오는데 실패하였습니다가 되어야한다.', async () => {
     render(<Default />);
     const ErrorMessageButton = await screen.findByText('데이터를 가져오는데 실패하였습니다.');
     expect(ErrorMessageButton).toBeInTheDocument();
   });
-  test('Default ErrorMessageButton ErrorIcon render test', async () => {
+  test('Error Icon이 존재해야한다', async () => {
     render(<Default />);
-    const errorIcon = await screen.findByRole('img');
+    const errorIcon = await screen.findByTestId('error-icon');
     expect(errorIcon).toBeInTheDocument();
   });
 });
 
-describe('Default ErrorMessageButton click test', () => {
+describe('ErrorMessage 스토리북 버튼 테스트', () => {
   const { location } = window;
 
   beforeAll(() => {
@@ -35,7 +35,7 @@ describe('Default ErrorMessageButton click test', () => {
     window.location = location;
   });
 
-  test('Default ErrorMessageButton를 누르면 refresh가 호출된다.', async () => {
+  test('ErrorMessageButton를 누르면 refresh가 호출되어야한다..', async () => {
     render(<Default />);
 
     const ErrorMessageButton = await screen.findByRole('button');

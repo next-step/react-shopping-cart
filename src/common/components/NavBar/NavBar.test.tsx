@@ -11,7 +11,7 @@ jest.mock('react-router-dom', () => ({
 
 const { PageNavBar } = composeStories(stories);
 
-describe('PageNavBar 렌더링 검증 테스트', () => {
+describe('PageNavBar 스토리북 렌더링 검증 테스트', () => {
   test('Title이 존재해야한다.', async () => {
     render(<PageNavBar />);
     const title = await screen.findByText('JunYoung SHOP');
@@ -31,7 +31,7 @@ describe('PageNavBar 렌더링 검증 테스트', () => {
     expect(MyOrderButton).toBe('나의 주문목록');
   });
 });
-describe('버튼 클릭시 navigate 동작 여부 테스트', () => {
+describe('NavBar버튼 스토리북 동작 여부 테스트', () => {
   test('나의 JunyoungShop을 클릭시 useNavigate는 /orders를 호출한다.', async () => {
     render(<PageNavBar />);
     const title = await screen.findByText('JunYoung SHOP');
