@@ -1,12 +1,12 @@
 import * as stories from './ProductListPage.stories';
-import { screen, waitFor, act } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 
 import { composeStories } from '@storybook/react';
 import userEvent from '@testing-library/user-event';
 import { render } from 'test/rtkProvider';
 import { setupServer } from 'msw/node';
-
 import { handlers } from '../mockserver';
+
 const mockedUsedNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -20,7 +20,7 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
-describe('ProductListPage 렌더링 테스트', () => {
+describe('Product Page 렌더링 테스트', () => {
   test('초기에는 로딩 스피너가 나타나야한다', async () => {
     render(<Default />);
     const Spinner = await screen.findByTestId('spinner');
@@ -47,7 +47,7 @@ describe('ProductListPage 렌더링 테스트', () => {
     expect(cartButton).toHaveLength(8);
   });
 
-  test('ProductPage 페이지의 페이지네이션 버튼은 5개여야한다', async () => {
+  test('ProductListPage 페이지의 페이지네이션 버튼은 5개여야한다', async () => {
     render(<Default />);
     await waitFor(
       () => {
@@ -59,8 +59,8 @@ describe('ProductListPage 렌더링 테스트', () => {
   });
 });
 
-describe('ProductList 페이지 네이션 기능 테스트', () => {
-  test('다음 페이지 네이션 버튼을 누르면 8개의 이미지,가격,카트버튼, 이름이 렌더링 되어야한다.', async () => {
+describe('ProductListPage 페이지 네이션 버튼 테스트', () => {
+  test('다른 페이지 네이션 버튼을 누르면 8개의 이미지,가격,카트버튼, 이름이 렌더링 되어야한다.', async () => {
     render(<Default />);
     await waitFor(
       () => {
@@ -87,5 +87,41 @@ describe('ProductList 페이지 네이션 기능 테스트', () => {
     expect(productsName).toHaveLength(8);
     expect(productsprice).toHaveLength(8);
     expect(cartButton).toHaveLength(8);
+  });
+});
+
+describe('ProductListPage 기능 테스트', () => {
+  test('상품을 클릭하면, useNavigate는 해당 상품에 맞는 url을 호출해야한다.', async () => {
+    render(<Default />);
+    await waitFor(
+      () => {
+        const mainProductimg = screen.getAllByTestId('product-image');
+        expect(mainProductimg).toHaveLength(8);
+      },
+      { timeout: 3000 }
+    );
+    const mainProductimg = screen.getAllByTestId('product-image');
+    await userEvent.click(mainProductimg[0]);
+    expect(mockedUsedNavigate).toBeCalledWith('/product/1');
+  });
+
+  test('상품의 cartButton을 클릭하면 모달창이 나오고 모달 title은 장바구니에 추가하시겠습니까? 되어야한다', async () => {
+    render(<Default />);
+
+    await waitFor(
+      () => {
+        const cartButtons = screen.getAllByTestId('cart-button');
+        expect(cartButtons).toHaveLength(8);
+      },
+      { timeout: 3000 }
+    );
+    const cartButton = screen.getAllByTestId('cart-button')[0];
+    await userEvent.click(cartButton);
+
+    const dialog = await screen.findByTestId('dialog');
+    const dialogtitle = await screen.findByTestId('dialog-title');
+
+    expect(dialog).toBeInTheDocument();
+    expect(dialogtitle.innerHTML).toBe('장바구니에 추가 하시겠습니까?');
   });
 });

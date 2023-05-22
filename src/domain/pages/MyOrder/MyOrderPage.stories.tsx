@@ -22,7 +22,7 @@ const MyOrderPage = () => {
 };
 
 export default {
-  title: 'pages/MyOrderPage',
+  title: 'pages/MyOrder/MyOrderPage',
   component: MyOrderPage,
 } as ComponentMeta<typeof MyOrderPage>;
 

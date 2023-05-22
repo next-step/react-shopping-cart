@@ -31,7 +31,7 @@ const MyOrderListPage = () => {
 
   return (
     <Styled.Layout>
-      <PageHeader data-testid="page-header">주문 목록</PageHeader>
+      <PageHeader>주문 목록</PageHeader>
       <Dialog isOpen={isOpenDialog} title={dialogTitle} />
       {MyorderListHeaderItems.map((value, idx) => (
         <Styled.ItemBox key={uuid()}>

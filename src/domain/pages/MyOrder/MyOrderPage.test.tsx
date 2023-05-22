@@ -109,7 +109,6 @@ describe('MyOrderPage 기능 테스트', () => {
     );
 
     const detailButton = screen.getByTestId('orderDetail-button');
-
     const orderPageImage = screen.getAllByRole('img');
     const orderPageName = screen.getAllByTestId('order-name');
     const orderPageInfo = screen.getAllByTestId('order-info');
