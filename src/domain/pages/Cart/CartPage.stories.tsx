@@ -3,7 +3,7 @@ import CartPage from './CartPage';
 import { handlers } from './mockserver';
 
 export default {
-  title: 'pages/CartPage',
+  title: 'pages/Cart/CartPage',
   component: CartPage,
 } as ComponentMeta<typeof CartPage>;
 
