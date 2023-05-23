@@ -1,16 +1,16 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { handlers } from './mockserver';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import MyOrderListPage from './MyOrderList/MyOrderListPage';
 import MyOrderListDetailPage from './MyOrderListDetail/MyOrderListDetailPage';
-import { NavBar } from 'common/components';
 import { ROUTE_URL } from 'common/routes';
 
 const MyOrderPage = () => {
+  const naivgate = useNavigate();
   return (
     <div>
-      <NavBar />
+      <button onClick={() => naivgate('/')}>주문목록 페이지로 이동</button>
       <Routes>
         <Route path={ROUTE_URL.MY_ORDER_LIST_DETAIL} element={<MyOrderListDetailPage />}></Route>
         <Route path={ROUTE_URL.MY_ORDER_LIST} element={<MyOrderListPage />}></Route>

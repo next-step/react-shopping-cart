@@ -7,8 +7,7 @@ import usePaymentApp from 'domain/hooks/usePaymentApp';
 
 const useOrderPage = () => {
   const dispatch = useAppDispatch();
-  const { cartList, status, totalAmount, totalPrice } = useCart();
-
+  const { cartList, status, totalAmount, totalPrice, getCartItems } = useCart();
   const { payment } = usePaymentApp();
 
   const orderStore = useAppSelector((state) => state.orderReducer);
@@ -20,6 +19,10 @@ const useOrderPage = () => {
   const handlePaymentAppCloseButton = () => {
     dispatch(handlePaymentApp(false));
   };
+
+  useEffect(() => {
+    getCartItems();
+  }, []);
 
   useEffect(() => {
     if (isPayment) {

@@ -17,7 +17,7 @@ afterEach(() => server.resetHandlers());
 
 afterAll(() => server.close());
 
-describe('장바구니 아이템 선택 체크박스 테스트', () => {
+describe('장바구니 체크박스 테스트', () => {
   test('장바구니에서 첫번쨰 아이템을 선택하면 주문하기 1개,결제 예상 금액은 83700원이 되어야한다.', async () => {
     render(<Default />);
     await waitFor(() => {

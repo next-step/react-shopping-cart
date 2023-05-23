@@ -11,8 +11,6 @@ const Template: ComponentStory<typeof CartPage> = () => <CartPage />;
 
 export const Default = Template.bind({});
 
-Default.args = {};
-
 Default.parameters = {
   msw: {
     handlers: [handlers],

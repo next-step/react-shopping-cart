@@ -1,6 +1,8 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import OrderPage from './OrderPage';
 import { rest } from 'msw';
+import { handlers } from '../Cart/mockserver';
+
 export default {
   title: 'pages/OrderPage',
   component: OrderPage,
@@ -15,19 +17,44 @@ const mockCartData = [
     isOrder: true,
     amount: 1,
   },
+  {
+    id: 2,
+    name: '생새우살 (71/90) 500g 4개',
+    price: 29000,
+    image: 'https://cdn-mart.baemin.com/sellergoods/main/6b95c66a-c13d-4ccd-9df5-b1af1428a225.jpg',
+    isOrder: true,
+    amount: 1,
+  },
+  {
+    id: 3,
+    name: '펩시 콜라 355ml 24캔',
+    price: 83700,
+    image: 'https://cdn-mart.baemin.com/sellergoods/main/84fc0238-0239-4d0e-870b-a9daa6f2c42c.jpg',
+    isOrder: true,
+    amount: 1,
+  },
+  {
+    id: 4,
+    name: '리치스 스위트콘 대 2.95kg',
+    price: 4780,
+    image: 'https://cdn-mart.baemin.com/sellergoods/main/ff297e50-7d6b-4a87-8509-b387442ff877.jpg',
+    isOrder: true,
+    amount: 1,
+  },
 ];
 
 const Template: ComponentStory<typeof OrderPage> = () => <OrderPage />;
-Template.parameters = {
-  msw: {
-    handlers: [
-      rest.get('/carts', (req, res, ctx) => {
-        return res(ctx.status(200), ctx.json(mockCartData));
-      }),
-    ],
-  },
-};
 
 export const Default = Template.bind({});
 
-Default.args = {};
+Default.story = {
+  parameters: {
+    msw: {
+      handlers: [
+        rest.get('/carts', (req, res, ctx) => {
+          return res(ctx.status(200), ctx.json(mockCartData));
+        }),
+      ],
+    },
+  },
+};
