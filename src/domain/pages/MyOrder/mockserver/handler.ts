@@ -1,8 +1,7 @@
 import { rest } from 'msw';
-import type { OrderProductType, OrderedItemsType } from 'domain/types';
 import { calculateOrderProductTotal, calculateOrderTotalAmount } from 'domain/utils';
 
-const OrderedItems: OrderedItemsType[] = [
+const OrderedItems = [
   {
     id: 1,
     ordered: {
@@ -31,7 +30,7 @@ const OrderedItems: OrderedItemsType[] = [
 ];
 
 export const updateOrders = rest.post('/order/update', async (req, res, ctx) => {
-  const userOrderItems = (await req.json()) as OrderProductType[];
+  const userOrderItems = await req.json();
   if (!userOrderItems.length) {
     return res(ctx.status(400));
   }
