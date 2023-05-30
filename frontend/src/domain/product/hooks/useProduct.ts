@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { TProduct } from '@/types/product';
 
-import productApi from '@/product/apis/product';
+import productApi from '@/domain/product/apis/product';
 
 export default function useProduct(id: number) {
   const [data, setData] = useState<TProduct>();

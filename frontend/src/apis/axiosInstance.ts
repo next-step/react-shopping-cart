@@ -3,14 +3,14 @@ import axios, { AxiosInstance } from 'axios';
 class Axios {
   instance: AxiosInstance;
 
-  constructor(private baseURL: string) {
+  constructor(baseURL: string) {
     this.instance = axios.create({
       baseURL,
-      timeout: 5000,
+      timeout: 3_000,
     });
   }
 }
 
-const axiosInstance = new Axios(import.meta.env.VITE_BASE_URL);
+const axiosInstance = new Axios(import.meta.env.MSW_BASE_URL);
 
 export default axiosInstance;

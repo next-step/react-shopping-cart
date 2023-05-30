@@ -6,9 +6,9 @@ import worker from './mocks/server';
 
 import routes from './routes';
 
-// if (import.meta.env.NODE_ENV === 'development') {
-worker.start();
-// }
+if (import.meta.env.DEV) {
+  worker.start();
+}
 
 const router = createBrowserRouter(routes);
 

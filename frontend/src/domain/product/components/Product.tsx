@@ -7,7 +7,8 @@ import { CartIcon } from '@/assets/svgs';
 
 import { Box } from '@/components/common';
 
-import { useCartContext } from '@/context/Cart';
+import { useCartContext } from '@/context/cart';
+import { useToastContext } from '@/context/toast';
 
 import { TProduct } from '@/types/product';
 
@@ -17,14 +18,16 @@ type Props = TProduct;
 
 export default function Product({ id, name, price, imageUrl }: Props) {
   const { items, addItem } = useCartContext();
+  const { showToast } = useToastContext();
 
   const handleClickAddItemToCart = useCallback(
     (item: TProduct) => (e: MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
+      showToast('장바구니에 상품이 담겼습니다.');
 
       addItem(item);
     },
-    [addItem],
+    [addItem, showToast],
   );
 
   const 카트에_제품이_존재하는가 = items.find((item) => item.id === id);

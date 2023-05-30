@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
-import { CartContext } from '@/context/Cart/CartProvider';
+import { CartContext } from '@/context/cart/CartProvider';
 import { assert } from '@/utils/validation';
 
 export default function useCartContext() {

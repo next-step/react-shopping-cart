@@ -2,15 +2,16 @@ import { useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-import { useCartContext } from '@/context/Cart';
-
 import { ROUTES } from '@/constants/routes';
+
+import { useCartContext } from '@/context/cart';
 
 import { Box } from '@/components/common';
 
+import useProduct from '@/domain/product/hooks/useProduct';
+
 import { TProduct } from '@/types/product';
 
-import useProduct from '@/product/hooks/useProduct';
 import { numberFormatter } from '@/utils/number';
 
 export default function ProductDetail() {
@@ -18,7 +19,7 @@ export default function ProductDetail() {
   const { id } = useParams();
 
   if (!id) {
-    throw new Error('product id가 존재하지 않습니다.');
+    navigate('/product-list');
   }
 
   const { addItem } = useCartContext();

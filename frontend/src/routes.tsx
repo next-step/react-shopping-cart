@@ -1,13 +1,14 @@
 import { ROUTES } from '@/constants/routes';
 
-import CartProvider from '@/context/Cart/CartProvider';
+import CartProvider from '@/context/cart/CartProvider';
 
-import { ProductDetail, ProductList } from '@/product/pages';
-import Cart from '@/cart/pages';
-import OrderList from '@/order/pages';
-import Main from '@/main/pages';
+import Main from '@/domain/main/pages';
+import { ProductList, ProductDetail } from '@/domain/product/pages';
+import Cart from '@/domain/cart/pages';
+import OrderList from '@/domain/order/pages';
 
 import App from './App';
+import ToastProvider from './context/toast/ToastProvider';
 
 const routes = [
   {
@@ -19,7 +20,9 @@ const routes = [
         path: ROUTES.PRODUCT_LIST,
         element: (
           <CartProvider>
-            <ProductList />
+            <ToastProvider>
+              <ProductList />
+            </ToastProvider>
           </CartProvider>
         ),
       },
