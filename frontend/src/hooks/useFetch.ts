@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import useBoolean from '@/hooks/useBoolean';
 import { AxiosError } from 'axios';
+
+import useBoolean from '@/hooks/useBoolean';
 
 export default function useFetch<T>(fetcher: () => Promise<T>) {
   const [data, setData] = useState<T>();

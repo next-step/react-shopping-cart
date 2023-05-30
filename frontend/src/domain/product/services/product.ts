@@ -2,7 +2,7 @@ import axiosInstance from '@/apis/axiosInstance';
 
 import { ProductsDto, TProduct } from '@/types/product';
 
-class ProductApi {
+class ProductService {
   async getProducts() {
     const { data } = await axiosInstance.instance.get<ProductsDto>('/products');
 
@@ -16,6 +16,6 @@ class ProductApi {
   }
 }
 
-const productApi = new ProductApi();
+const productService = new ProductService();
 
-export default productApi;
+export default productService;

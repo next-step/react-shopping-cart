@@ -1,31 +1,9 @@
-import { useEffect, useState } from 'react';
+import productService from '@/domain/product/services/product';
 
-import { TProduct } from '@/types/product';
+import useFetch from '@/hooks/useFetch';
 
-import productApi from '@/domain/product/apis/product';
+import { ProductsDto } from '@/types/product';
 
 export default function useProducts() {
-  const [data, setData] = useState<TProduct[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<Error>();
-
-  useEffect(() => {
-    setIsLoading(true);
-    const fetchProducts = async () => {
-      const res = await productApi.getProducts();
-      setData(res.products);
-    };
-
-    try {
-      fetchProducts();
-    } catch (error) {
-      if (error instanceof Error) {
-        setError(error);
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
-  return { data, isLoading, error };
+  return useFetch<ProductsDto>(productService.getProducts);
 }

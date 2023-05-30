@@ -7,6 +7,8 @@ import { CartIcon } from '@/assets/svgs';
 
 import { Box } from '@/components/common';
 
+import { TOAST_MESSAGE } from '@/constants/toastMessage';
+
 import { useCartContext } from '@/context/cart';
 import { useToastContext } from '@/context/toast';
 
@@ -20,17 +22,19 @@ export default function Product({ id, name, price, imageUrl }: Props) {
   const { items, addItem } = useCartContext();
   const { showToast } = useToastContext();
 
+  const 장바구니에_상품이_존재하는가 = items.find((item) => item.id === id);
+
   const handleClickAddItemToCart = useCallback(
     (item: TProduct) => (e: MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
-      showToast('장바구니에 상품이 담겼습니다.');
 
       addItem(item);
-    },
-    [addItem, showToast],
-  );
 
-  const 카트에_제품이_존재하는가 = items.find((item) => item.id === id);
+      const toastMessage = 장바구니에_상품이_존재하는가 ? TOAST_MESSAGE.CART.DELETED : TOAST_MESSAGE.CART.ADDED;
+      showToast(toastMessage);
+    },
+    [addItem, showToast, 장바구니에_상품이_존재하는가],
+  );
 
   return (
     <BoxList>
@@ -44,7 +48,7 @@ export default function Product({ id, name, price, imageUrl }: Props) {
           <SvgBox>
             <button
               type="button"
-              className={classnames({ deleteCart: 카트에_제품이_존재하는가 })}
+              className={classnames({ deleteCart: 장바구니에_상품이_존재하는가 })}
               onClick={handleClickAddItemToCart({ id, name, price, imageUrl })}
             >
               <CartIcon />
@@ -59,8 +63,6 @@ export default function Product({ id, name, price, imageUrl }: Props) {
 const BoxList = styled.li`
   img {
     width: 100%;
-    max-height: 300px;
-    //height: 250px;
     object-fit: cover;
   }
 `;

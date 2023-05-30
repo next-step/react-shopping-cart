@@ -5,9 +5,9 @@ export const Toast = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 24px;
+  bottom: 24px;
   right: 0;
-  width: 200px;
+  width: 300px;
   height: 60px;
   border: 1px solid #29c1bc;
   background-color: white;

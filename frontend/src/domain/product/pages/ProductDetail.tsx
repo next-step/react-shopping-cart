@@ -2,11 +2,11 @@ import { useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from '@emotion/styled';
 
+import { Box } from '@/components/common';
+
 import { ROUTES } from '@/constants/routes';
 
 import { useCartContext } from '@/context/cart';
-
-import { Box } from '@/components/common';
 
 import useProduct from '@/domain/product/hooks/useProduct';
 
@@ -16,11 +16,7 @@ import { numberFormatter } from '@/utils/number';
 
 export default function ProductDetail() {
   const navigate = useNavigate();
-  const { id } = useParams();
-
-  if (!id) {
-    navigate('/product-list');
-  }
+  const { id } = useParams() as { id: string };
 
   const { addItem } = useCartContext();
 
@@ -29,6 +25,7 @@ export default function ProductDetail() {
   const handleClickCart = useCallback(
     (product: TProduct) => () => {
       addItem(product);
+
       navigate(ROUTES.CART);
     },
     [addItem, navigate],

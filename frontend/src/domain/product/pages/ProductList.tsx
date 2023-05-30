@@ -2,15 +2,11 @@ import styled from '@emotion/styled';
 
 import { Grid } from '@/components/common';
 
-import productApi from '@/domain/product/apis/product';
 import Product from '@/domain/product/components/Product';
-
-import useFetch from '@/hooks/useFetch';
-
-import { ProductsDto } from '@/types/product';
+import useProducts from '@/domain/product/hooks/useProducts';
 
 export default function ProductList() {
-  const { data, isLoading } = useFetch<ProductsDto>(productApi.getProducts);
+  const { data, isLoading } = useProducts();
 
   if (isLoading) {
     return <div>Loading...</div>;
