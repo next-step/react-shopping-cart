@@ -1,26 +1,28 @@
-import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 
 import { Grid } from '@/components/common';
-import { TProduct } from '@/types/product';
 
-import productApi from '@/product/apis/product';
 import Product from '@/product/components/Product';
 
-export default function ProductList() {
-  const [products, setProducts] = useState<TProduct[]>([]);
+import useProducts from '@/product/hooks/useProducts';
+import useFetch from '@/hooks/useFetch';
+import { ProductsDto, TProduct } from '@/types/product';
+import productApi from '@/product/apis/product';
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const res = await productApi.getProducts();
-      setProducts(res.products);
-    };
-    fetchProducts();
-  }, []);
+export default function ProductList() {
+  const { data, isLoading } = useFetch<ProductsDto>(productApi.getProducts);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!data) {
+    return <div>Not Found...</div>;
+  }
 
   return (
-    <ProductListGrid as="ul" display="grid" gap="24px" gridTemplateColumns="1fr 1fr 1fr 1fr">
-      {products.map((product) => {
+    <ProductListGrid as="ul" gap="12px" display="grid">
+      {data.products.map((product) => {
         return <Product key={product.id} {...product} />;
       })}
     </ProductListGrid>
@@ -28,6 +30,23 @@ export default function ProductList() {
 }
 
 const ProductListGrid = styled(Grid)`
-  max-width: 1392px;
+  max-width: 1280px;
   margin: 32px auto 0;
+  padding: 0 16px;
+
+  @media screen and (min-width: 320px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media screen and (min-width: 1280px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 `;

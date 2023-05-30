@@ -1,61 +1,63 @@
 import { MouseEvent, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import classnames from 'classnames';
 
 import { CartIcon } from '@/assets/svgs';
+
 import { Box } from '@/components/common';
+
 import { useCartContext } from '@/context/Cart';
+
 import { TProduct } from '@/types/product';
-import { Link } from 'react-router-dom';
 
-type ProductProps = TProduct;
+import { numberFormatter } from '@/utils/number';
 
-export default function Product({ id, name, price, imageUrl }: ProductProps) {
-  const { carts, addCart } = useCartContext();
+type Props = TProduct;
 
-  const handleClickCart = useCallback(
-    (product: TProduct) => (e: MouseEvent<HTMLButtonElement>) => {
+export default function Product({ id, name, price, imageUrl }: Props) {
+  const { items, addItem } = useCartContext();
+
+  const handleClickAddItemToCart = useCallback(
+    (item: TProduct) => (e: MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
 
-      addCart(product);
+      addItem(item);
     },
-    [addCart],
+    [addItem],
   );
 
-  const isProductExistInCart = carts.find((cart) => cart.id === id);
+  const 카트에_제품이_존재하는가 = items.find((item) => item.id === id);
 
   return (
-    <ProductBox>
+    <BoxList>
       <Link to={`/product-detail/${id}`}>
-        <img src={imageUrl} alt="" />
-
+        <img src={imageUrl} alt="product image" />
         <TextBox display="flex" justifyContent="space-between">
           <Text>
             <div>{name}</div>
-            <div>{price.toLocaleString()}원</div>
+            <div>{numberFormatter(price)}원</div>
           </Text>
           <SvgBox>
             <button
-              className={classnames({ deleteCart: isProductExistInCart })}
               type="button"
-              onClick={handleClickCart({ id, name, price, imageUrl })}
+              className={classnames({ deleteCart: 카트에_제품이_존재하는가 })}
+              onClick={handleClickAddItemToCart({ id, name, price, imageUrl })}
             >
               <CartIcon />
             </button>
           </SvgBox>
         </TextBox>
       </Link>
-    </ProductBox>
+    </BoxList>
   );
 }
 
-const ProductBox = styled.li`
-  width: 320px;
-  height: 300px;
-
+const BoxList = styled.li`
   img {
-    width: 320px;
-    height: 250px;
+    width: 100%;
+    max-height: 300px;
+    //height: 250px;
     object-fit: cover;
   }
 `;

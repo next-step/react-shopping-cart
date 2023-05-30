@@ -12,6 +12,7 @@ export const BoxWrapper = styled(Box)`
   max-width: 1280px;
   height: 100%;
   margin: 0 auto;
+  padding: 0 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;

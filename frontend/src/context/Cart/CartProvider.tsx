@@ -1,48 +1,48 @@
 import { createContext, PropsWithChildren, useCallback, useMemo, useState } from 'react';
 
-import { Carts } from '@/types/cart';
+import { Item } from '@/types/cart';
 import { TProduct } from '@/types/product';
-import { assert } from '@/utils/validation';
 
 type InitValue = {
-  carts: Carts;
-  addCart: (product: TProduct) => void;
-  deleteCart: (id: number) => void;
+  items: Item[];
+  addItem: (product: TProduct) => void;
+  deleteItem: (id: number) => void;
 };
 
 const initValue: InitValue = {
-  carts: [],
-  addCart: () => null,
-  deleteCart: () => null,
+  items: [],
+  addItem: () => null,
+  deleteItem: () => null,
 };
 
 export const CartContext = createContext(initValue);
 
 export default function CartProvider({ children }: PropsWithChildren) {
-  const [carts, setCarts] = useState<Carts>([]);
+  const [items, setItems] = useState<Item[]>([]);
 
-  const deleteCart = useCallback(
+  const deleteItem = useCallback(
     (id: number) => {
-      const filteredCarts = carts.filter((cart) => cart.id !== id);
-      setCarts(filteredCarts);
+      const filteredItems = items.filter((item) => item.id !== id);
+      setItems(filteredItems);
     },
-    [carts],
+    [items],
   );
 
-  const addCart = useCallback(
-    (product: TProduct) => {
-      const hasProductInCarts = carts.findIndex((cart) => cart.id === product.id);
-      if (hasProductInCarts > -1) {
-        deleteCart(product.id);
+  const addItem = useCallback(
+    (value: TProduct) => {
+      const hasItemInCarts = items.findIndex((item) => item.id === value.id);
+
+      if (hasItemInCarts > -1) {
+        deleteItem(value.id);
         return;
       }
 
-      setCarts((prevCart) => [...prevCart, product]);
+      setItems((prevItems) => [...prevItems, value]);
     },
-    [carts, deleteCart],
+    [items, deleteItem],
   );
 
-  const contextValue = useMemo(() => ({ carts, addCart, deleteCart }), [addCart, carts, deleteCart]);
+  const contextValue = useMemo(() => ({ items, addItem, deleteItem }), [items, addItem, deleteItem]);
 
   return <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>;
 }

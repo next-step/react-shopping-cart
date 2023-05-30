@@ -1,12 +1,13 @@
 import { ROUTES } from '@/constants/routes';
 
+import CartProvider from '@/context/Cart/CartProvider';
+
 import { ProductDetail, ProductList } from '@/product/pages';
-import Cart from '@/cart/pages/Cart';
-import OrderList from '@/order/pages/OrderList';
-import Main from '@/main/pages/Main';
+import Cart from '@/cart/pages';
+import OrderList from '@/order/pages';
+import Main from '@/main/pages';
 
 import App from './App';
-import CartProvider from '@/context/Cart/CartProvider';
 
 const routes = [
   {

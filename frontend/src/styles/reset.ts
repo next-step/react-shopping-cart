@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-export const reset = css`
+const reset = css`
   /* stylelint-disable */
   // http://meyerweb.com/eric/tools/css/reset/
   // v2.0 | 20110126
@@ -163,6 +163,7 @@ export const reset = css`
   }
 
   a {
+    color: black;
     text-decoration: none;
   }
 
@@ -202,3 +203,5 @@ export const reset = css`
     color: initial;
   }
 `;
+
+export default reset;
