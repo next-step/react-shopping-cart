@@ -18,7 +18,7 @@ export default function ProductList() {
 
   return (
     <ProductListGrid as="ul" gap="12px" display="grid">
-      {data.products.map((product) => {
+      {data.products?.map((product) => {
         return <Product key={product.id} {...product} />;
       })}
     </ProductListGrid>
