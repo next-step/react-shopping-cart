@@ -1,4 +1,4 @@
-export type ProductsDto = {
+export type TProductsDto = {
   products: TProduct[];
 };
 

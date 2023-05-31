@@ -170,8 +170,6 @@ const reset = css`
   select,
   input,
   textarea {
-    // @miriya (2022-03-03): 사파리에서 줌 시작되지 않는 최소 사이즈
-    // https://stackoverflow.com/questions/2989263/disable-auto-zoom-in-input-text-tag-safari-on-iphone
     font-size: 16px;
   }
 

@@ -12,6 +12,7 @@ import { TOAST_MESSAGE } from '@/constants/toastMessage';
 import { useCartContext } from '@/context/cart';
 import { useToastContext } from '@/context/toast';
 
+import { TItem } from '@/types/cart';
 import { TProduct } from '@/types/product';
 
 import { numberFormatter } from '@/utils/number';
@@ -22,18 +23,18 @@ export default function Product({ id, name, price, imageUrl }: Props) {
   const { items, addItem } = useCartContext();
   const { showToast } = useToastContext();
 
-  const 장바구니에_상품이_존재하는가 = items.find((item) => item.id === id);
+  const hasItemInCarts = items.findIndex((item) => item.id === id) > -1;
 
   const handleClickAddItemToCart = useCallback(
-    (item: TProduct) => (e: MouseEvent<HTMLButtonElement>) => {
+    (item: TItem) => (e: MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
 
       addItem(item);
 
-      const toastMessage = 장바구니에_상품이_존재하는가 ? TOAST_MESSAGE.CART.DELETED : TOAST_MESSAGE.CART.ADDED;
+      const toastMessage = hasItemInCarts ? TOAST_MESSAGE.CART.DELETED : TOAST_MESSAGE.CART.ADDED;
       showToast(toastMessage);
     },
-    [addItem, showToast, 장바구니에_상품이_존재하는가],
+    [addItem, showToast, hasItemInCarts],
   );
 
   return (
@@ -48,7 +49,7 @@ export default function Product({ id, name, price, imageUrl }: Props) {
           <SvgBox>
             <button
               type="button"
-              className={classnames({ deleteCart: 장바구니에_상품이_존재하는가 })}
+              className={classnames({ deleteCart: hasItemInCarts })}
               onClick={handleClickAddItemToCart({ id, name, price, imageUrl })}
             >
               <CartIcon />

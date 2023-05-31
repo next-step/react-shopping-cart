@@ -1,11 +1,10 @@
 import { createContext, PropsWithChildren, useCallback, useMemo, useState } from 'react';
 
-import { Item } from '@/types/cart';
-import { TProduct } from '@/types/product';
+import { TItem } from '@/types/cart';
 
 type InitValue = {
-  items: Item[];
-  addItem: (product: TProduct) => void;
+  items: TItem[];
+  addItem: (product: TItem) => void;
   deleteItem: (id: number) => void;
 };
 
@@ -18,7 +17,7 @@ const initValue: InitValue = {
 export const CartContext = createContext(initValue);
 
 export default function CartProvider({ children }: PropsWithChildren) {
-  const [items, setItems] = useState<Item[]>([]);
+  const [items, setItems] = useState<TItem[]>([]);
 
   const deleteItem = useCallback(
     (id: number) => {
@@ -29,7 +28,7 @@ export default function CartProvider({ children }: PropsWithChildren) {
   );
 
   const addItem = useCallback(
-    (value: TProduct) => {
+    (value: TItem) => {
       const hasItemInCarts = items.findIndex((item) => item.id === value.id);
 
       if (hasItemInCarts > -1) {

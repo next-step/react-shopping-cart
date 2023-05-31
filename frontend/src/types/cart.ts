@@ -1,3 +1,3 @@
 import { TProduct } from '@/types/product';
 
-export type Item = TProduct;
+export type TItem = TProduct;

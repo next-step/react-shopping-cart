@@ -1,16 +1,16 @@
-import axiosInstance from '@/apis/axiosInstance';
+import axiosInstance from '@/services/axiosInstance';
 
-import { ProductsDto, TProduct } from '@/types/product';
+import { TProductsDto, TProduct } from '@/types/product';
 
 class ProductService {
   async getProducts() {
-    const { data } = await axiosInstance.instance.get<ProductsDto>('/products');
+    const { data } = await axiosInstance.get<TProductsDto>('/products');
 
     return data;
   }
 
   async getProductById(id: number) {
-    const { data } = await axiosInstance.instance.get<TProduct>(`/products/${id}`);
+    const { data } = await axiosInstance.get<TProduct>(`/products/${id}`);
 
     return data;
   }
