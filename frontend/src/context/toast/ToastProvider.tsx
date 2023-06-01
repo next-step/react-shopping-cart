@@ -37,9 +37,7 @@ export default function ToastProvider({ children }: PropsWithChildren) {
     [setTrue, setFalse],
   );
 
-  const contextValue = useMemo(() => {
-    return { showToast };
-  }, [showToast]);
+  const contextValue = useMemo(() => ({ showToast }), [showToast]);
 
   return (
     <ToastContext.Provider value={contextValue}>
