@@ -28,7 +28,7 @@ export default function ToastProvider({ children }: PropsWithChildren) {
     const timer = setTimeout(() => {
       setIsToastOpen(false);
       setMessage('');
-    }, 3_000);
+    }, 1_500);
     toastTimer.current = timer;
   }, []);
 
