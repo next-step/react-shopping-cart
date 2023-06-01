@@ -4,4 +4,5 @@ export const ROUTES = {
   PRODUCT_DETAIL: '/product-detail/:id',
   CART: '/cart',
   ORDER_LIST: '/order-list',
+  NOT_FOUND: '*',
 };

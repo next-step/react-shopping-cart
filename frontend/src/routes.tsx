@@ -43,6 +43,8 @@ const routes = [
         ),
       },
       { path: ROUTES.ORDER_LIST, element: <OrderList /> },
+      // FIXME: 추후에 NotFound Page 작성해보기
+      { path: ROUTES.NOT_FOUND, element: <Main /> },
     ],
   },
 ];
