@@ -2,6 +2,7 @@ import { MouseEvent, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import classnames from 'classnames';
+import TagManager from 'react-gtm-module';
 
 import { CartIcon } from '@/assets/svgs';
 
@@ -19,6 +20,13 @@ import { numberFormatter } from '@/utils/number';
 
 type Props = TProduct;
 
+const tagManagerArgs = {
+  dataLayer: {
+    event: 'Click add item in cart',
+  },
+};
+
+TagManager.dataLayer(tagManagerArgs);
 export default function Product({ id, name, price, imageUrl }: Props) {
   const { items, addItem } = useCartContext();
   const { showToast } = useToastContext();
@@ -33,6 +41,8 @@ export default function Product({ id, name, price, imageUrl }: Props) {
 
       const toastMessage = hasItemInCarts ? TOAST_MESSAGE.CART.DELETED : TOAST_MESSAGE.CART.ADDED;
       showToast(toastMessage);
+
+      TagManager.dataLayer(tagManagerArgs);
     },
     [addItem, showToast, hasItemInCarts],
   );
