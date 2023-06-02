@@ -11,8 +11,10 @@ if (import.meta.env.DEV) {
   worker.start();
 }
 
-const gaTrackingId = import.meta.env.GA_TRACKING_ID;
-ReactGA.initialize(gaTrackingId, { debug: true });
+const gaTrackingId = import.meta.env.VITE_GA_TRACKING_ID;
+
+console.log(gaTrackingId);
+ReactGA.initialize(gaTrackingId, { debug: import.meta.env.DEV });
 ReactGA.pageview(window.location.pathname);
 
 const router = createBrowserRouter(routes);
