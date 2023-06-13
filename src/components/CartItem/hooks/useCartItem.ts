@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from "react";
-import { IProduct } from "../../../domain/shopping-cart/types";
+import { ICartItem } from "../../../domain/shopping-cart/types";
 import { CART } from "../../../domain/shopping-cart/constants";
 import useCartDataHandlers from "../../../hooks/useCart";
 
@@ -7,34 +7,35 @@ const {
   PRODUCTS: { QUANTITY_UNIT },
 } = CART;
 
-const useCartItem = (product: IProduct) => {
+const useCartItem = (item: ICartItem) => {
   const {
     cart,
-    cartDataHandlers: { updateProduct, deleteProduct },
+    cartDataHandlers: { updateItem, deleteItem },
   } = useCartDataHandlers();
 
+  const { product } = item;
   const { price, checked, quantity = 1 } = product;
 
   const totalPrice = useMemo(() => price * quantity, [quantity]);
 
   const handleToggleChecked = useCallback(() => {
-    updateProduct({ ...product, checked: !checked });
+    updateItem({ ...item, product: { ...product, checked: !checked } });
   }, [cart]);
 
   const handleRemovingProduct = useCallback(() => {
     if (!confirm("장바구니에서 선택한 상품을 삭제하시겠습니까?")) return;
 
-    deleteProduct(product);
+    deleteItem(item);
   }, [cart]);
 
   const handleIncrement = useCallback(() => {
-    updateProduct({ ...product, quantity: quantity + QUANTITY_UNIT });
+    updateItem({ ...item, product: { ...product, quantity: quantity + QUANTITY_UNIT } });
   }, [cart]);
 
   const handleDecrement = useCallback(() => {
     if (quantity - 1 === 0) return;
 
-    updateProduct({ ...product, quantity: quantity - QUANTITY_UNIT });
+    updateItem({ ...item, product: { ...product, quantity: quantity - QUANTITY_UNIT } });
   }, [cart]);
 
   return { cart, totalPrice, handleToggleChecked, handleRemovingProduct, handleIncrement, handleDecrement };

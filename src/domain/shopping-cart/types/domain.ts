@@ -13,7 +13,12 @@ export interface IProduct {
 
 export interface ICart {
   // id: number | string;
-  products: IProduct[];
+  items: ICartItem[];
+}
+
+export interface ICartItem {
+  id: number;
+  product: IProduct;
 }
 
 export interface IOrder {

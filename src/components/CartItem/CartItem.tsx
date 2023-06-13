@@ -2,21 +2,23 @@ import React from "react";
 import deleteSvg from "../../assets/svgs/trash.svg";
 import QuantityHandler from "./QuantityHandler";
 import useCartItem from "./hooks/useCartItem";
-import { IProduct } from "../../domain/shopping-cart/types";
+import { ICartItem } from "../../domain/shopping-cart/types";
 import { CART } from "../../domain/shopping-cart/constants";
 
 type TCartItemProps = {
-  product: IProduct;
+  item: ICartItem;
 };
 
 const {
   PRODUCTS: { DEFAULT_INITIAL_QUANTITY },
 } = CART;
 
-function CartItem({ product }: TCartItemProps) {
-  const { name, imageUrl, checked, quantity = DEFAULT_INITIAL_QUANTITY } = product;
+function CartItem({ item }: TCartItemProps) {
+  const {
+    product: { name, imageUrl, checked, quantity = DEFAULT_INITIAL_QUANTITY },
+  } = item;
   const { totalPrice, handleToggleChecked, handleRemovingProduct, handleIncrement, handleDecrement } =
-    useCartItem(product);
+    useCartItem(item);
 
   return (
     <div className="cart-container">

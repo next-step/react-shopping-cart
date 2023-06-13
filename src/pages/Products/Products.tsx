@@ -2,14 +2,10 @@ import React, { useEffect, useState } from "react";
 import { ProductItem } from "../../components/ProductItem";
 import { getProducts } from "../../apis/products";
 import { IProduct } from "../../domain/shopping-cart/types";
-import useCartDataHandlers from "../../hooks/useCart";
 import axios from "axios";
 
 function Products() {
   const [products, setProducts] = useState([] as IProduct[]);
-  const {
-    cartDataHandlers: { insertProduct },
-  } = useCartDataHandlers();
 
   useEffect(() => {
     fetchProducts();
@@ -32,7 +28,6 @@ function Products() {
     }
 
     try {
-      insertProduct({ ...product, checked: true });
       axios.post("/api/cart", { product });
     } catch (error) {
       console.error(error);

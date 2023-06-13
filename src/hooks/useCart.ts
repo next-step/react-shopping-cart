@@ -1,111 +1,125 @@
-import { ICart, IProduct } from "../domain/shopping-cart/types";
+import { ICart, ICartItem } from "../domain/shopping-cart/types";
 import { CART } from "../domain/shopping-cart/constants";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { cartState } from "../recoil/atoms";
 import { allCheckedProductsSelector, checkedProductsSelector, estimatedPriceSelector } from "../recoil/selector";
+import fetcher from "../utils/fetcher";
+import { ICartResponse } from "../domain/shopping-cart/types/response";
 
 export type TCartDataHandlers = {
-  insertProducts: (products: IProduct[]) => void;
-  updateProducts: (products: IProduct[]) => void;
-  deleteProducts: (products: IProduct[]) => void;
+  insertItems: (items: ICartItem[]) => void;
+  updateItems: (items: ICartItem[]) => void;
+  deleteItems: (items: ICartItem[]) => void;
 
-  insertProduct: (product: IProduct) => void;
-  updateProduct: (product: IProduct) => void;
-  deleteProduct: (product: IProduct) => void;
+  insertItem: (item: ICartItem) => void;
+  updateItem: (item: ICartItem) => void;
+  deleteItem: (item: ICartItem) => void;
 };
 
 type THookCartDataHandlers = () => {
   cart: ICart;
   cartDataHandlers: TCartDataHandlers;
-  checkedProducts: IProduct[];
+  checkedProducts: ICartItem[];
   allChecked: boolean;
   estimatedPrice: number;
+  fetchCartItems: () => void;
 };
 
 const {
   PRODUCTS: { QUANTITY_UNIT },
 } = CART;
 
-const sortProducts = (products: IProduct[]) => products.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+const sortItems = (items: ICartItem[]) => items.sort((a, b) => (b.product.createdAt || 0) - (a.product.createdAt || 0));
 
-const insertAndUpdateProducts = (oldProducts: IProduct[], newProducts: IProduct[], isIncreasingQuantity = false) => {
+const insertAndUpdateItems = (oldItems: ICartItem[], newItems: ICartItem[], isIncreasingQuantity = false) => {
   const currentTime = Date.now();
-  const newProductIds = newProducts.map(({ id }) => id);
+  const newProductIds = newItems.map(({ id }) => id);
 
   return [
-    ...newProducts.map((product) => {
-      const oldProduct = oldProducts.find(({ id }) => id === product.id);
-      if (oldProduct) {
+    ...newItems.map((item) => {
+      const oldItem = oldItems.find(({ id }) => id === item.id);
+      if (oldItem) {
         return {
-          ...product,
-          quantity: isIncreasingQuantity ? (oldProduct?.quantity || 0) + QUANTITY_UNIT : product.quantity,
-          updatedAt: currentTime,
+          ...item,
+          product: {
+            ...item.product,
+            quantity: isIncreasingQuantity ? (oldItem?.product.quantity || 0) + QUANTITY_UNIT : item.product.quantity,
+            updatedAt: currentTime,
+          },
         };
       }
       return {
-        ...product,
-        amount: 1,
-        createdAt: currentTime,
-        updatedAt: currentTime,
+        ...item,
+        product: {
+          ...item.product,
+          amount: 1,
+          createdAt: currentTime,
+          updatedAt: currentTime,
+        },
       };
     }),
-    ...oldProducts.filter(({ id }) => !newProductIds.includes(id)),
+    ...oldItems.filter(({ id }) => !newProductIds.includes(id)),
   ];
 };
 
 const useCartDataHandlers: THookCartDataHandlers = () => {
   const [cart, setCart] = useRecoilState(cartState);
 
-  const insertProducts = (newProducts: IProduct[]) => {
-    const products = insertAndUpdateProducts(cart.products, newProducts, true);
-    sortProducts(products);
-
+  const insertItems = (newItems: ICartItem[]) => {
+    const items = insertAndUpdateItems(cart.items, newItems, true);
+    sortItems(items);
+    deleteItems;
     setCart({
       ...cart,
-      products,
+      items,
     });
   };
 
-  const updateProducts = (newProducts: IProduct[]) => {
-    const products = insertAndUpdateProducts(cart.products, newProducts);
+  const updateItems = (newItems: ICartItem[]) => {
+    const items = insertAndUpdateItems(cart.items, newItems);
 
-    sortProducts(products);
-
-    setCart({
-      ...cart,
-      products,
-    });
-  };
-
-  const deleteProducts = (products: IProduct[]) => {
-    const { products: oldProducts } = cart;
-    const ids = products.map(({ id }) => id);
+    deleteItems(items);
 
     setCart({
       ...cart,
-      products: oldProducts.filter(({ id }) => !ids.includes(id)),
+      items,
     });
   };
 
-  const insertProduct = (product: IProduct) => insertProducts([product]);
-  const updateProduct = (product: IProduct) => updateProducts([product]);
-  const deleteProduct = (product: IProduct) => deleteProducts([product]);
+  const deleteItems = (items: ICartItem[]) => {
+    const { items: oldItems } = cart;
+    const ids = items.map(({ id }) => id);
+
+    setCart({
+      ...cart,
+      items: oldItems.filter(({ id }) => !ids.includes(id)),
+    });
+  };
+
+  const insertItem = (item: ICartItem) => insertItems([item]);
+  const updateItem = (item: ICartItem) => updateItems([item]);
+  const deleteItem = (item: ICartItem) => deleteItems([item]);
+
+  const fetchCartItems = async () => {
+    const response = await fetcher.get<ICartResponse>("/api/cart");
+    setCart(response.cart);
+  };
 
   const cartDataHandlers = {
-    insertProducts,
-    updateProducts,
-    deleteProducts,
+    insertItems,
+    updateItems,
+    deleteItems,
 
-    insertProduct,
-    updateProduct,
-    deleteProduct,
+    insertItem,
+    updateItem,
+    deleteItem,
   };
 
   const checkedProducts = useRecoilValue(checkedProductsSelector);
   const allChecked = useRecoilValue(allCheckedProductsSelector);
   const estimatedPrice = useRecoilValue(estimatedPriceSelector);
 
-  return { cart, cartDataHandlers, checkedProducts, allChecked, estimatedPrice };
+  return { cart, cartDataHandlers, checkedProducts, allChecked, estimatedPrice, fetchCartItems };
 };
 
 export default useCartDataHandlers;

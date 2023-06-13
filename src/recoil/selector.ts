@@ -7,7 +7,7 @@ export const checkedProductsSelector = selector({
   get: ({ get }) => {
     const cart = get(cartState);
 
-    return cart.products.filter(({ checked }) => checked);
+    return cart.items?.filter(({ product: { checked } }) => checked) || [];
   },
 });
 
@@ -16,7 +16,7 @@ export const allCheckedProductsSelector = selector({
   get: ({ get }) => {
     const cart = get(cartState);
 
-    return cart.products.every(({ checked }) => !!checked);
+    return cart.items?.every(({ product: { checked } }) => !!checked) || false;
   },
 });
 
@@ -25,10 +25,12 @@ export const estimatedPriceSelector = selector({
   get: ({ get }) => {
     const cart = get(cartState);
 
-    return cart.products.reduce(
-      (result, { checked, price, quantity = CART.PRODUCTS.DEFAULT_INITIAL_QUANTITY }) =>
-        checked ? result + price * quantity : result,
-      0
+    return (
+      cart.items?.reduce(
+        (result, { product: { checked, price, quantity = CART.PRODUCTS.DEFAULT_INITIAL_QUANTITY } }) =>
+          checked ? result + price * quantity : result,
+        0
+      ) || 0
     );
   },
 });

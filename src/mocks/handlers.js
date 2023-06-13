@@ -53,9 +53,12 @@ export const handlers = [
     const unit = request.url.searchParams.get(UNIT_KEY);
     const { start, end, endOfPage, parsedPage } = analyzePages({ page, unit, items: carts });
 
-    const responseForCarts = carts.slice(start, end);
+    const productsInCart = carts.slice(start, end);
 
-    return response(context.status(200), context.json({ carts: responseForCarts, page: parsedPage, endOfPage }));
+    return response(
+      context.status(200),
+      context.json({ cart: { items: productsInCart }, page: parsedPage, endOfPage })
+    );
   }),
 
   rest.post("/api/cart", async (request, response, context) => {

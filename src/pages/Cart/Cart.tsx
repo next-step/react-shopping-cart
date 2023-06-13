@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { CartItem } from "../../components/CartItem";
 import useCartDataHandlers from "../../hooks/useCart";
 
@@ -8,18 +8,23 @@ function Cart() {
     estimatedPrice,
     checkedProducts,
     allChecked,
-    cartDataHandlers: { updateProducts, deleteProducts },
+    cartDataHandlers: { updateItems, deleteItems },
+    fetchCartItems,
   } = useCartDataHandlers();
 
+  useEffect(() => {
+    fetchCartItems();
+  }, []);
+
   const handleAllCheck = useCallback(() => {
-    updateProducts(cart.products.map((product) => ({ ...product, checked: !allChecked })));
+    updateItems(cart.items.map((item) => ({ ...item, product: { ...item.product, checked: !allChecked } })));
   }, [cart]);
 
   const handleDeletingChecked = useCallback(() => {
-    if (checkedProducts.length === 0) return;
+    if (checkedProducts?.length === 0) return;
     if (!confirm(`정말 선택하신 ${checkedProducts.length}개의 상품을 삭제하시겠습니까?`)) return;
 
-    deleteProducts(checkedProducts);
+    deleteItems(checkedProducts);
   }, [cart]);
 
   return (
@@ -48,13 +53,13 @@ function Cart() {
               상품삭제
             </button>
           </div>
-          {cart.products.length > 0 && (
+          {cart?.items?.length > 0 && (
             <>
-              <h3 className="cart-title">든든배송 상품({cart.products.length}개)</h3>
+              <h3 className="cart-title">든든배송 상품({cart.items.length}개)</h3>
               <hr className="divide-line-gray mt-10" />
-              {cart.products.map((product, idx) => (
-                <React.Fragment key={idx}>
-                  <CartItem product={product} />
+              {cart?.items?.map((item) => (
+                <React.Fragment key={item.id}>
+                  <CartItem item={item} />
                   <hr className="divide-line-thin mt-10" />
                 </React.Fragment>
               ))}
