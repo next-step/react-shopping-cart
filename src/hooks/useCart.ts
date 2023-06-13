@@ -1,25 +1,26 @@
-import { ICart, ICartItem } from "../domain/shopping-cart/types";
-import { CART } from "../domain/shopping-cart/constants";
+import { ICart } from "../domain/types";
+import { CART } from "../domain/constants";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { cartState } from "../recoil/atoms";
 import { allCheckedProductsSelector, checkedItemsSelector, estimatedPriceSelector } from "../recoil/selector";
 import fetcher from "../utils/fetcher";
-import { ICartResponse } from "../domain/shopping-cart/types/response";
+import { ICartResponse } from "../domain/types/response";
+import { ICartItemUI } from "../components";
 
 export type TCartDataHandlers = {
-  insertItems: (items: ICartItem[]) => void;
-  updateItems: (items: ICartItem[]) => void;
-  deleteItems: (items: ICartItem[]) => void;
+  insertItems: (items: ICartItemUI[]) => void;
+  updateItems: (items: ICartItemUI[]) => void;
+  deleteItems: (items: ICartItemUI[]) => void;
 
-  insertItem: (item: ICartItem) => void;
-  updateItem: (item: ICartItem) => void;
-  deleteItem: (item: ICartItem) => void;
+  insertItem: (item: ICartItemUI) => void;
+  updateItem: (item: ICartItemUI) => void;
+  deleteItem: (item: ICartItemUI) => void;
 };
 
 type THookCartDataHandlers = () => {
   cart: ICart;
   cartDataHandlers: TCartDataHandlers;
-  checkedItems: ICartItem[];
+  checkedItems: ICartItemUI[];
   allChecked: boolean;
   estimatedPrice: number;
   fetchCartItems: () => void;
@@ -29,9 +30,10 @@ const {
   PRODUCTS: { QUANTITY_UNIT },
 } = CART;
 
-const sortItems = (items: ICartItem[]) => items.sort((a, b) => (b.product.createdAt || 0) - (a.product.createdAt || 0));
+const sortItems = (items: ICartItemUI[]) =>
+  items.sort((a, b) => (b.product.createdAt || 0) - (a.product.createdAt || 0));
 
-const insertAndUpdateItems = (oldItems: ICartItem[], newItems: ICartItem[], isIncreasingQuantity = false) => {
+const insertAndUpdateItems = (oldItems: ICartItemUI[], newItems: ICartItemUI[], isIncreasingQuantity = false) => {
   const newProductIds = newItems.map(({ id }) => id);
 
   const items = [
@@ -65,7 +67,7 @@ const insertAndUpdateItems = (oldItems: ICartItem[], newItems: ICartItem[], isIn
 const useCartDataHandlers: THookCartDataHandlers = () => {
   const [cart, setCart] = useRecoilState(cartState);
 
-  const insertItems = (newItems: ICartItem[]) => {
+  const insertItems = (newItems: ICartItemUI[]) => {
     const items = insertAndUpdateItems(cart.items, newItems, true);
 
     setCart({
@@ -74,7 +76,7 @@ const useCartDataHandlers: THookCartDataHandlers = () => {
     });
   };
 
-  const updateItems = (newItems: ICartItem[]) => {
+  const updateItems = (newItems: ICartItemUI[]) => {
     const items = insertAndUpdateItems(cart.items, newItems);
 
     setCart({
@@ -83,7 +85,7 @@ const useCartDataHandlers: THookCartDataHandlers = () => {
     });
   };
 
-  const deleteItems = (items: ICartItem[]) => {
+  const deleteItems = (items: ICartItemUI[]) => {
     const { items: oldItems } = cart;
     const ids = items.map(({ id }) => id);
 
@@ -93,9 +95,9 @@ const useCartDataHandlers: THookCartDataHandlers = () => {
     });
   };
 
-  const insertItem = (item: ICartItem) => insertItems([item]);
-  const updateItem = (item: ICartItem) => updateItems([item]);
-  const deleteItem = (item: ICartItem) => deleteItems([item]);
+  const insertItem = (item: ICartItemUI) => insertItems([item]);
+  const updateItem = (item: ICartItemUI) => updateItems([item]);
+  const deleteItem = (item: ICartItemUI) => deleteItems([item]);
 
   const fetchCartItems = async () => {
     const response = await fetcher.get<ICartResponse>("/api/cart");

@@ -1,20 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { OrderItem } from '../../components/OrderItem';
-import { IOrder, IOrderResponse } from '../../domain/shopping-cart/types';
+import React from "react";
+import { OrderItem } from "../../components";
+import { useOrders } from "../../hooks";
 
 function Orders() {
-  const [orders, setOrders] = useState<IOrder[]>([]);
-
-  useEffect(() => {
-    const loadProducts = async () => {
-      const response = await fetch('/api/orders');
-      const json = (await response.json()) as IOrderResponse;
-
-      setOrders(json.orders);
-    };
-
-    loadProducts();
-  }, []);
+  const { orders } = useOrders();
 
   return (
     <section className="order-section">
@@ -26,7 +15,7 @@ function Orders() {
       {orders.map((item) => (
         <div key={item.id} className="order--list">
           <div className="order-list__header">
-            <span>주문번호: 1</span>
+            <span>주문번호: {item.id}</span>
             <span>상세보기 &gt;</span>
           </div>
 

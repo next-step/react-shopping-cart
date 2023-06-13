@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect } from "react";
+import React, { Fragment, useCallback, useEffect } from "react";
+import { requestDeleteItems } from "../../apis";
+import { useCart } from "../../hooks";
 import { CartItem } from "../../components/CartItem";
-import useCartDataHandlers from "../../hooks/useCart";
-import axios from "axios";
-import { requestDeleteItems } from "../../apis/cart";
 
 function Cart() {
   const {
@@ -12,17 +11,17 @@ function Cart() {
     allChecked,
     cartDataHandlers: { updateItems, deleteItems },
     fetchCartItems,
-  } = useCartDataHandlers();
+  } = useCart();
 
   useEffect(() => {
     fetchCartItems();
   }, []);
 
-  const handleAllCheck = useCallback(() => {
+  const allCheck = useCallback(() => {
     updateItems(cart.items.map((item) => ({ ...item, product: { ...item.product, checked: !allChecked } })));
   }, [cart]);
 
-  const handleDeletingCheckedItems = useCallback(async () => {
+  const deleteCheckedItems = useCallback(async () => {
     if (checkedItems?.length === 0) return;
     if (!confirm(`정말 선택하신 ${checkedItems.length}개의 상품을 삭제하시겠습니까?`)) return;
 
@@ -46,18 +45,12 @@ function Cart() {
         <section className="cart-left-section">
           <div className="flex justify-between items-center">
             <div className="checkbox-container">
-              <input
-                className="checkbox"
-                name="checkbox"
-                type="checkbox"
-                checked={allChecked}
-                onChange={handleAllCheck}
-              />
+              <input className="checkbox" name="checkbox" type="checkbox" checked={allChecked} onChange={allCheck} />
               <label className="checkbox-label" htmlFor="checkbox">
                 선택해제
               </label>
             </div>
-            <button className="delete-button" onClick={handleDeletingCheckedItems}>
+            <button className="delete-button" onClick={deleteCheckedItems}>
               상품삭제
             </button>
           </div>
@@ -65,12 +58,14 @@ function Cart() {
             <>
               <h3 className="cart-title">든든배송 상품({cart.items.length}개)</h3>
               <hr className="divide-line-gray mt-10" />
-              {cart?.items?.map((item) => (
-                <React.Fragment key={item.id}>
-                  <CartItem item={item} />
-                  <hr className="divide-line-thin mt-10" />
-                </React.Fragment>
-              ))}
+              {cart?.items?.map((item) => {
+                return (
+                  <Fragment key={item.id}>
+                    <CartItem item={item} />
+                    <hr className="divide-line-thin mt-10" />
+                  </Fragment>
+                );
+              })}
             </>
           )}
         </section>

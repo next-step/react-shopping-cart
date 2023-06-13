@@ -1,11 +1,11 @@
 import React from "react";
-import { IProduct } from "../../domain/shopping-cart/types";
+import { IProduct } from "../../domain/types";
 
-type TOrderItemProps = {
+type TProps = {
   item: IProduct;
 };
 
-function OrderItem({ item: { name, price, imageUrl, quantity = 1 } }: TOrderItemProps) {
+function OrderItem({ item: { name, price, imageUrl, quantity = 1 } }: TProps) {
   return (
     <div className="order-list-item">
       <div className="flex gap-15 mt-10">

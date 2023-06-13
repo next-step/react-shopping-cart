@@ -1,28 +1,28 @@
 import { useCallback, useMemo } from "react";
-import { ICartItem } from "../../../domain/shopping-cart/types";
-import { CART } from "../../../domain/shopping-cart/constants";
-import useCartDataHandlers from "../../../hooks/useCart";
+import { CART } from "../../../domain/constants";
+import { useCart } from "../../../hooks";
+import { ICartItemUI } from "../../types";
 
 const {
   PRODUCTS: { QUANTITY_UNIT },
 } = CART;
 
-const useCartItem = (item: ICartItem) => {
+const useCartItem = (item: ICartItemUI) => {
   const {
     cart,
     cartDataHandlers: { updateItem, deleteItem },
-  } = useCartDataHandlers();
+  } = useCart();
 
   const { product } = item;
   const { price, checked, quantity = 1 } = product;
 
   const totalPrice = useMemo(() => price * quantity, [quantity]);
 
-  const handleToggleChecked = useCallback(() => {
+  const toggleChecked = useCallback(() => {
     updateItem({ ...item, product: { ...product, checked: !checked } });
   }, [cart]);
 
-  const handleRemovingItem = useCallback(() => {
+  const removeItem = useCallback(() => {
     if (!confirm("장바구니에서 선택한 상품을 삭제하시겠습니까?")) return;
 
     deleteItem(item);
@@ -38,7 +38,15 @@ const useCartItem = (item: ICartItem) => {
     updateItem({ ...item, product: { ...product, quantity: quantity - QUANTITY_UNIT } });
   }, [cart]);
 
-  return { cart, totalPrice, handleToggleChecked, handleRemovingItem, handleIncrement, handleDecrement };
+  return {
+    totalPrice,
+    handlers: {
+      toggleChecked,
+      removeItem,
+      handleIncrement,
+      handleDecrement,
+    },
+  };
 };
 
 export default useCartItem;

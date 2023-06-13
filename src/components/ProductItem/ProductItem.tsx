@@ -1,13 +1,13 @@
 import React from "react";
 import cartIcon from "../../assets/svgs/cart.svg";
-import { IProduct } from "../../domain/shopping-cart/types";
+import { IProduct } from "../../domain/types";
 
-type TProductItemProps = {
+type TProps = {
   product: IProduct;
   onAddInCart: (product: IProduct) => void;
 };
 
-function ProductItem({ product, onAddInCart }: TProductItemProps) {
+function ProductItem({ product, onAddInCart }: TProps) {
   const { name, price, imageUrl } = product;
 
   return (

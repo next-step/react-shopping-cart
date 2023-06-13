@@ -1,6 +1,6 @@
-import { IProductResponse } from "../domain/shopping-cart/types";
+import { IProductResponse } from "../domain/types";
 import fetcher from "../utils/fetcher";
-import { API_URL } from "./constants";
+import { API_URL } from "./endpoints";
 
 export async function requestProducts({ page = 1, unit = 2_999_999_9999_999 }) {
   try {

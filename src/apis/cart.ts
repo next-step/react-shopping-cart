@@ -1,6 +1,6 @@
 import axios from "axios";
-import { ICartItem, IProduct } from "../domain/shopping-cart/types";
-import { API_URL } from "./constants";
+import { ICartItem, IProduct } from "../domain/types";
+import { API_URL } from "./endpoints";
 
 export async function requestDeleteItems(items: ICartItem[]): Promise<boolean> {
   try {
