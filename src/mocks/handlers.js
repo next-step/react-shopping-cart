@@ -57,4 +57,15 @@ export const handlers = [
 
     return response(context.status(200), context.json({ carts: responseForCarts, page: parsedPage, endOfPage }));
   }),
+
+  rest.post("/api/cart", async (request, response, context) => {
+    const product = await request.json();
+
+    const oldProduct = carts.find(({ id }) => id === product.id);
+    if (oldProduct) {
+      oldProduct.quantity = 5;
+    }
+
+    return response(context.status(204));
+  }),
 ];

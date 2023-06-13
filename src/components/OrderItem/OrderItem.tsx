@@ -1,11 +1,11 @@
-import React from 'react';
-import { IProduct } from '../../domain/shopping-cart/types';
+import React from "react";
+import { IProduct } from "../../domain/shopping-cart/types";
 
 type TOrderItemProps = {
   item: IProduct;
 };
 
-function OrderItem({ item: { name, price, imageUrl, amount = 1 } }: TOrderItemProps) {
+function OrderItem({ item: { name, price, imageUrl, quantity = 1 } }: TOrderItemProps) {
   return (
     <div className="order-list-item">
       <div className="flex gap-15 mt-10">
@@ -13,7 +13,7 @@ function OrderItem({ item: { name, price, imageUrl, amount = 1 } }: TOrderItemPr
         <div className="flex-col gap-15">
           <span className="order-name">{name}</span>
           <span className="order-info">
-            {price}원 / 수량: {amount}개
+            {price}원 / 수량: {quantity}개
           </span>
         </div>
       </div>

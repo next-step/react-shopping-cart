@@ -3,6 +3,7 @@ import { ProductItem } from "../../components/ProductItem";
 import { getProducts } from "../../apis/products";
 import { IProduct } from "../../domain/shopping-cart/types";
 import useCartDataHandlers from "../../hooks/useCart";
+import axios from "axios";
 
 function Products() {
   const [products, setProducts] = useState([] as IProduct[]);
@@ -30,7 +31,12 @@ function Products() {
       return;
     }
 
-    insertProduct({ ...product, checked: true });
+    try {
+      insertProduct({ ...product, checked: true });
+      axios.post("/api/cart", { product });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

@@ -1,15 +1,15 @@
 import React from "react";
 
-type TAmountHandlerProps = {
-  amount: number;
+type TQuantityHandlerProps = {
+  quantity: number;
   onIncrement?: () => void;
   onDecrement?: () => void;
 };
 
-function AmountHandler({ amount, onIncrement, onDecrement }: TAmountHandlerProps) {
+function QuantityHandler({ quantity, onIncrement, onDecrement }: TQuantityHandlerProps) {
   return (
     <div className="number-input-container">
-      <input type="number" className="number-input" value={amount} readOnly />
+      <input type="number" className="number-input" value={quantity} readOnly />
       <div>
         <button type="button" className="number-input-button" onClick={() => onIncrement?.()}>
           ▲
@@ -22,4 +22,4 @@ function AmountHandler({ amount, onIncrement, onDecrement }: TAmountHandlerProps
   );
 }
 
-export default AmountHandler;
+export default QuantityHandler;

@@ -23,12 +23,12 @@ type THookCartDataHandlers = () => {
 };
 
 const {
-  PRODUCTS: { AMOUNT_UNIT },
+  PRODUCTS: { QUANTITY_UNIT },
 } = CART;
 
 const sortProducts = (products: IProduct[]) => products.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
 
-const insertAndUpdateProducts = (oldProducts: IProduct[], newProducts: IProduct[], isIncreasingAmount = false) => {
+const insertAndUpdateProducts = (oldProducts: IProduct[], newProducts: IProduct[], isIncreasingQuantity = false) => {
   const currentTime = Date.now();
   const newProductIds = newProducts.map(({ id }) => id);
 
@@ -38,7 +38,7 @@ const insertAndUpdateProducts = (oldProducts: IProduct[], newProducts: IProduct[
       if (oldProduct) {
         return {
           ...product,
-          amount: isIncreasingAmount ? (oldProduct?.amount || 0) + AMOUNT_UNIT : product.amount,
+          quantity: isIncreasingQuantity ? (oldProduct?.quantity || 0) + QUANTITY_UNIT : product.quantity,
           updatedAt: currentTime,
         };
       }

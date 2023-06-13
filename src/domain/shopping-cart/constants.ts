@@ -2,9 +2,9 @@
 
 export const CART = {
   PRODUCTS: {
-    DEFAULT_INITIAL_AMOUNT: 1,
-    MIN_AMOUNT: 1,
-    MAX_AMOUNT: 2,
-    AMOUNT_UNIT: 1,
+    DEFAULT_INITIAL_QUANTITY: 1,
+    MIN_QUANTITY: 1,
+    MAX_QUANTITY: 2,
+    QUANTITY_UNIT: 1,
   },
 };

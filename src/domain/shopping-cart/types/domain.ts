@@ -4,7 +4,7 @@ export interface IProduct {
   name: string;
   price: number;
   imageUrl: string;
-  amount?: number;
+  quantity?: number;
   checked?: boolean;
 
   createdAt?: number;

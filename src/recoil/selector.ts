@@ -26,8 +26,8 @@ export const estimatedPriceSelector = selector({
     const cart = get(cartState);
 
     return cart.products.reduce(
-      (result, { checked, price, amount = CART.PRODUCTS.DEFAULT_INITIAL_AMOUNT }) =>
-        checked ? result + price * amount : result,
+      (result, { checked, price, quantity = CART.PRODUCTS.DEFAULT_INITIAL_QUANTITY }) =>
+        checked ? result + price * quantity : result,
       0
     );
   },

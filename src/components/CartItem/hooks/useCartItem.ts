@@ -4,7 +4,7 @@ import { CART } from "../../../domain/shopping-cart/constants";
 import useCartDataHandlers from "../../../hooks/useCart";
 
 const {
-  PRODUCTS: { AMOUNT_UNIT },
+  PRODUCTS: { QUANTITY_UNIT },
 } = CART;
 
 const useCartItem = (product: IProduct) => {
@@ -13,9 +13,9 @@ const useCartItem = (product: IProduct) => {
     cartDataHandlers: { updateProduct, deleteProduct },
   } = useCartDataHandlers();
 
-  const { price, checked, amount = 1 } = product;
+  const { price, checked, quantity = 1 } = product;
 
-  const totalPrice = useMemo(() => price * amount, [amount]);
+  const totalPrice = useMemo(() => price * quantity, [quantity]);
 
   const handleToggleChecked = useCallback(() => {
     updateProduct({ ...product, checked: !checked });
@@ -28,13 +28,13 @@ const useCartItem = (product: IProduct) => {
   }, [cart]);
 
   const handleIncrement = useCallback(() => {
-    updateProduct({ ...product, amount: amount + AMOUNT_UNIT });
+    updateProduct({ ...product, quantity: quantity + QUANTITY_UNIT });
   }, [cart]);
 
   const handleDecrement = useCallback(() => {
-    if (amount - 1 === 0) return;
+    if (quantity - 1 === 0) return;
 
-    updateProduct({ ...product, amount: amount - AMOUNT_UNIT });
+    updateProduct({ ...product, quantity: quantity - QUANTITY_UNIT });
   }, [cart]);
 
   return { cart, totalPrice, handleToggleChecked, handleRemovingProduct, handleIncrement, handleDecrement };

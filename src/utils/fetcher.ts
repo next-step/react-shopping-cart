@@ -1,7 +1,9 @@
+import axios from "axios";
+
 const fetcher = {
   get: async <T>(url: string) => {
-    const response = await fetch(url);
-    return response.json() as T;
+    const response = await axios.get(url);
+    return response.data as T;
   },
 };
 
