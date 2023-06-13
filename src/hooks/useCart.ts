@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { ICart, IProduct } from '../../../domain/shopping-cart/types';
-import { CART } from '../../../domain/shopping-cart/constants';
-
-const CART_INITIAL_VALUE = { products: [] };
+import { ICart, IProduct } from "../domain/shopping-cart/types";
+import { CART } from "../domain/shopping-cart/constants";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { cartState } from "../recoil/atoms";
+import { allCheckedProductsSelector, checkedProductsSelector, estimatedPriceSelector } from "../recoil/selector";
 
 export type TCartDataHandlers = {
   insertProducts: (products: IProduct[]) => void;
@@ -17,6 +17,9 @@ export type TCartDataHandlers = {
 type THookCartDataHandlers = () => {
   cart: ICart;
   cartDataHandlers: TCartDataHandlers;
+  checkedProducts: IProduct[];
+  allChecked: boolean;
+  estimatedPrice: number;
 };
 
 const {
@@ -51,7 +54,7 @@ const insertAndUpdateProducts = (oldProducts: IProduct[], newProducts: IProduct[
 };
 
 const useCartDataHandlers: THookCartDataHandlers = () => {
-  const [cart, setCart] = useState<ICart>(CART_INITIAL_VALUE);
+  const [cart, setCart] = useRecoilState(cartState);
 
   const insertProducts = (newProducts: IProduct[]) => {
     const products = insertAndUpdateProducts(cart.products, newProducts, true);
@@ -98,7 +101,11 @@ const useCartDataHandlers: THookCartDataHandlers = () => {
     deleteProduct,
   };
 
-  return { cart, cartDataHandlers };
+  const checkedProducts = useRecoilValue(checkedProductsSelector);
+  const allChecked = useRecoilValue(allCheckedProductsSelector);
+  const estimatedPrice = useRecoilValue(estimatedPriceSelector);
+
+  return { cart, cartDataHandlers, checkedProducts, allChecked, estimatedPrice };
 };
 
 export default useCartDataHandlers;

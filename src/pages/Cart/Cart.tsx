@@ -1,6 +1,6 @@
-import React, { useCallback } from 'react';
-import { useCartContext } from '../../context/CartContext/CartContext';
-import { CartItem } from '../../components/CartItem';
+import React, { useCallback } from "react";
+import { CartItem } from "../../components/CartItem";
+import useCartDataHandlers from "../../hooks/useCart";
 
 function Cart() {
   const {
@@ -9,7 +9,7 @@ function Cart() {
     checkedProducts,
     allChecked,
     cartDataHandlers: { updateProducts, deleteProducts },
-  } = useCartContext();
+  } = useCartDataHandlers();
 
   const handleAllCheck = useCallback(() => {
     updateProducts(cart.products.map((product) => ({ ...product, checked: !allChecked })));

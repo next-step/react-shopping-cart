@@ -1,7 +1,7 @@
-import { useCallback, useMemo } from 'react';
-import { useCartContext } from '../../../context/CartContext';
-import { IProduct } from '../../../domain/shopping-cart/types';
-import { CART } from '../../../domain/shopping-cart/constants';
+import { useCallback, useMemo } from "react";
+import { IProduct } from "../../../domain/shopping-cart/types";
+import { CART } from "../../../domain/shopping-cart/constants";
+import useCartDataHandlers from "../../../hooks/useCart";
 
 const {
   PRODUCTS: { AMOUNT_UNIT },
@@ -11,7 +11,8 @@ const useCartItem = (product: IProduct) => {
   const {
     cart,
     cartDataHandlers: { updateProduct, deleteProduct },
-  } = useCartContext();
+  } = useCartDataHandlers();
+
   const { price, checked, amount = 1 } = product;
 
   const totalPrice = useMemo(() => price * amount, [amount]);
@@ -21,7 +22,7 @@ const useCartItem = (product: IProduct) => {
   }, [cart]);
 
   const handleRemovingProduct = useCallback(() => {
-    if (!confirm('장바구니에서 선택한 상품을 삭제하시겠습니까?')) return;
+    if (!confirm("장바구니에서 선택한 상품을 삭제하시겠습니까?")) return;
 
     deleteProduct(product);
   }, [cart]);
