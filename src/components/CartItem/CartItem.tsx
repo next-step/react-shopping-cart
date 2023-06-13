@@ -15,10 +15,9 @@ const {
 
 function CartItem({ item }: TCartItemProps) {
   const {
-    product: { name, imageUrl, checked, quantity = DEFAULT_INITIAL_QUANTITY },
+    product: { name, imageUrl, checked, quantity = DEFAULT_INITIAL_QUANTITY, createdAt },
   } = item;
-  const { totalPrice, handleToggleChecked, handleRemovingProduct, handleIncrement, handleDecrement } =
-    useCartItem(item);
+  const { totalPrice, handleToggleChecked, handleRemovingItem, handleIncrement, handleDecrement } = useCartItem(item);
 
   return (
     <div className="cart-container">
@@ -32,9 +31,10 @@ function CartItem({ item }: TCartItemProps) {
         />
         <img className="w-144 h-144" src={imageUrl} alt={name} />
         <span className="cart-name">{name}</span>
+        <span>createdAt: {createdAt}</span>
       </div>
       <div className="flex-col-center justify-end gap-15">
-        <img className="cart-trash-svg" src={deleteSvg} alt="삭제" onClick={handleRemovingProduct} />
+        <img className="cart-trash-svg" src={deleteSvg} alt="삭제" onClick={handleRemovingItem} />
         <QuantityHandler quantity={quantity} onIncrement={handleIncrement} onDecrement={handleDecrement} />
         <span className="cart-price">{totalPrice.toLocaleString()}원</span>
       </div>

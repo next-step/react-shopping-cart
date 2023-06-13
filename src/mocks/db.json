@@ -241,7 +241,7 @@
       "imageUrl": "https://cdn-mart.baemin.com/sellergoods/main/8916edff-9fa9-4538-95c3-13d463f58a86.jpg"
     }
   ],
-  "carts": [
+  "cartItems": [
     {
       "id": 1,
       "product": {

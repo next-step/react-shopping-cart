@@ -2,7 +2,7 @@ import { selector } from "recoil";
 import { cartState } from "./atoms";
 import { CART } from "../domain/shopping-cart/constants";
 
-export const checkedProductsSelector = selector({
+export const checkedItemsSelector = selector({
   key: "checkedProductsState", // unique ID (with respect to other atoms/selectors)
   get: ({ get }) => {
     const cart = get(cartState);

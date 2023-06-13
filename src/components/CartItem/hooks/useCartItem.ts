@@ -22,7 +22,7 @@ const useCartItem = (item: ICartItem) => {
     updateItem({ ...item, product: { ...product, checked: !checked } });
   }, [cart]);
 
-  const handleRemovingProduct = useCallback(() => {
+  const handleRemovingItem = useCallback(() => {
     if (!confirm("장바구니에서 선택한 상품을 삭제하시겠습니까?")) return;
 
     deleteItem(item);
@@ -38,7 +38,7 @@ const useCartItem = (item: ICartItem) => {
     updateItem({ ...item, product: { ...product, quantity: quantity - QUANTITY_UNIT } });
   }, [cart]);
 
-  return { cart, totalPrice, handleToggleChecked, handleRemovingProduct, handleIncrement, handleDecrement };
+  return { cart, totalPrice, handleToggleChecked, handleRemovingItem, handleIncrement, handleDecrement };
 };
 
 export default useCartItem;

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { ProductItem } from "../../components/ProductItem";
-import { getProducts } from "../../apis/products";
+import { requestProducts } from "../../apis/products";
 import { IProduct } from "../../domain/shopping-cart/types";
-import axios from "axios";
+import { requestAddItem } from "../../apis/cart";
 
 function Products() {
   const [products, setProducts] = useState([] as IProduct[]);
@@ -13,24 +13,25 @@ function Products() {
 
   const fetchProducts = async () => {
     try {
-      const response = await getProducts({});
-      setProducts(() => response.products); // TODO: Paging
+      const response = await requestProducts({
+        /*TODO: PAGING */
+      });
+      setProducts(() => response.products);
     } catch (error) {
-      console.error(error);
+      alert("상품 목록 불러오기 실패. 다시 시도해 주세요.");
     }
   };
 
   // 이벤트 핸들러
 
-  const handleAddToCart = (product: IProduct) => {
+  const handleAddToCart = async (product: IProduct) => {
     if (!confirm(`${product.name}을 장바구니에 담으시겠습니까?`)) {
       return;
     }
 
-    try {
-      axios.post("/api/cart", { product });
-    } catch (error) {
-      console.error(error);
+    const result = await requestAddItem(product);
+    if (!result) {
+      alert("장바구니에 담지 못했습니다. 다시 시도해 주세요");
     }
   };
 
