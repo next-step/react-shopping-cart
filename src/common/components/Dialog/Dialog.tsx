@@ -5,16 +5,16 @@ import type { DialogProps } from './Dialog.types';
 const Dialog = ({ title, isOpen }: DialogProps) => {
   const { closeDialog, handleConfirmButton } = useDialog();
   return isOpen ? (
-    <Styled.OverLay data-testid="dialog">
+    <Styled.OverLay role="dialog">
       <Styled.FlexContainer>
         <Styled.TitleBox>
-          <Styled.Title data-testid="dialog-title">{title}</Styled.Title>
+          <Styled.Title>{title}</Styled.Title>
         </Styled.TitleBox>
         <Styled.ButtonBox>
-          <Styled.DiaLogButton theme="primary" onClick={handleConfirmButton} data-testid="confirm-button">
+          <Styled.DiaLogButton theme="primary" onClick={handleConfirmButton}>
             확인
           </Styled.DiaLogButton>
-          <Styled.DiaLogButton theme="primary" onClick={closeDialog} data-testid="cancel-button">
+          <Styled.DiaLogButton theme="primary" onClick={closeDialog}>
             취소
           </Styled.DiaLogButton>
         </Styled.ButtonBox>
