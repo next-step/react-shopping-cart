@@ -9,7 +9,7 @@ const { UnCheckedItem, CheckedItem } = composeStories(stories);
 jest.spyOn(window, 'alert').mockImplementation(() => {});
 
 describe('CartItem의 UnCheckedItem 스토리북 렌더링 검증 테스트', () => {
-  test('체크박스는 체크되어있으면 안된다.', async () => {
+  test('체크박스가 체크되어있으면 안된다.', async () => {
     render(<UnCheckedItem />);
     const checkBox = await screen.findByRole('checkbox');
     expect(checkBox).not.toBeChecked();
@@ -29,7 +29,7 @@ describe('CartItem의 UnCheckedItem 스토리북 렌더링 검증 테스트', ()
     const price = await screen.findByTestId('cart-price');
     expect(price).toHaveTextContent('83700원');
   });
-  test('상품의 이름은 냉면용기(대)이어야 한다', async () => {
+  test('상품 이름은 냉면용기(대)여야 한다', async () => {
     render(<UnCheckedItem />);
     const name = await screen.findByTestId('cart-productName');
     expect(name).toHaveTextContent('냉면용기(대)');
@@ -37,7 +37,7 @@ describe('CartItem의 UnCheckedItem 스토리북 렌더링 검증 테스트', ()
 });
 
 describe('CartItem의 CheckedItem 스토리북 렌더링 검증 테스트', () => {
-  test('체크박스는 체크 되어야한다.', async () => {
+  test('체크박스가 체크 되어 있어야 한다.', async () => {
     render(<CheckedItem />);
     const checkBox = await screen.findByRole('checkbox');
     expect(checkBox).toBeChecked();
@@ -57,7 +57,7 @@ describe('CartItem의 CheckedItem 스토리북 렌더링 검증 테스트', () =
     const price = await screen.findByTestId('cart-price');
     expect(price).toHaveTextContent('83700원');
   });
-  test('상품의 이름은 냉면용기(대)이어야 한다', async () => {
+  test('상품의 이름은 냉면용기(대) 이다.', async () => {
     render(<CheckedItem />);
     const name = await screen.findByTestId('cart-productName');
     expect(name).toHaveTextContent('냉면용기(대)');
@@ -65,7 +65,7 @@ describe('CartItem의 CheckedItem 스토리북 렌더링 검증 테스트', () =
 });
 
 describe('CartItem의 CheckedItem 스토리북 행위 테스트', () => {
-  test('increaseButton을 누르면 input Value는 2가되어야한다.', async () => {
+  test('increaseButton을 누르면 input Value는 2가 된다.', async () => {
     render(<CheckedItem />);
     const increaseButton = await screen.findByTestId('increase-button');
     await userEvent.click(increaseButton);
@@ -73,7 +73,7 @@ describe('CartItem의 CheckedItem 스토리북 행위 테스트', () => {
 
     expect(input).toHaveValue('2');
   });
-  test('inputValue가 2일떄 decreaseButton을 누르면 input Value는 1이 되어야한다.', async () => {
+  test('inputValue가 2일떄 decreaseButton을 누르면 input Value는 1이 된다.', async () => {
     render(<CheckedItem />);
     const increaseButton = await screen.findByTestId('increase-button');
     const decreaseButton = await screen.findByTestId('decrease-button');
@@ -81,15 +81,14 @@ describe('CartItem의 CheckedItem 스토리북 행위 테스트', () => {
     await userEvent.click(increaseButton);
     const input = await screen.findByTestId('cart-input');
     expect(input).toHaveValue('2');
-    // input value=2
 
+    // mocking  input value= 2
     await userEvent.click(decreaseButton);
     const changeInput = await screen.findByTestId('cart-input');
-
     expect(changeInput).toHaveValue('1');
   });
 
-  test('inputValue가 1일떄 decreaseButton을 누르면 alert를 호출해야한다.', async () => {
+  test('inputValue가 1일떄 decreaseButton을 누르면 alert가 호출해야한다.', async () => {
     render(<CheckedItem />);
 
     const input = await screen.findByTestId('cart-input');
@@ -103,7 +102,7 @@ describe('CartItem의 CheckedItem 스토리북 행위 테스트', () => {
 });
 
 describe('CartItem의 UnCheckedItem 스토리북 행위 테스트', () => {
-  test('increaseButton을 누르면 input Value는 2가되어야한다.', async () => {
+  test('increaseButton을 누르면 input Value는 2가 된다.', async () => {
     render(<UnCheckedItem />);
     const increaseButton = await screen.findByTestId('increase-button');
     await userEvent.click(increaseButton);
@@ -111,6 +110,7 @@ describe('CartItem의 UnCheckedItem 스토리북 행위 테스트', () => {
 
     expect(input).toHaveValue('2');
   });
+
   test('inputValue가 2일떄 decreaseButton을 누르면 input Value는 1이 되어야한다.', async () => {
     render(<UnCheckedItem />);
     const increaseButton = await screen.findByTestId('increase-button');
@@ -123,11 +123,10 @@ describe('CartItem의 UnCheckedItem 스토리북 행위 테스트', () => {
 
     await userEvent.click(decreaseButton);
     const changeInput = await screen.findByTestId('cart-input');
-
     expect(changeInput).toHaveValue('1');
   });
 
-  test('inputValue가 1일떄 decreaseButton을 누르면 alert를 호출해야한다.', async () => {
+  test('inputValue가 1일떄 decreaseButton을 누르면 alert가 호출 된다.', async () => {
     render(<UnCheckedItem />);
 
     const input = await screen.findByTestId('cart-input');
