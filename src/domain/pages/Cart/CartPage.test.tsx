@@ -18,7 +18,7 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 describe('장바구니 체크박스 테스트', () => {
-  test('장바구니에서 첫번쨰 아이템을 선택하면 주문하기 1개,결제 예상 금액은 83700원이 되어야한다.', async () => {
+  test('장바구니에서 첫번쨰 아이템을 선택하면 주문하기 1개,결제 예상 금액은 83700원이 된다.', async () => {
     render(<Default />);
 
     const itemCheckBoxs = await screen.findAllByTestId('item-checkbox');
@@ -32,7 +32,7 @@ describe('장바구니 체크박스 테스트', () => {
     });
   });
 
-  test('장바구니에서 두번쨰 아이템을 선택하면 주문하기 2개,결제 예상 금액은 112700원이 되어야한다.', async () => {
+  test('장바구니에서 두번쨰 아이템을 선택하면 주문하기 2개,결제 예상 금액은 112700원이 된다.', async () => {
     render(<Default />);
 
     const itemCheckBoxs = await screen.findAllByTestId('item-checkbox');
@@ -48,7 +48,7 @@ describe('장바구니 체크박스 테스트', () => {
     expect(orderButton).toHaveTextContent('주문하기 2개');
   });
 
-  test('장바구니에서 두번째 아이템을 해제하면 주문하기 1개,결제 예상 금액은 83700원이 되어야한다.', async () => {
+  test('장바구니에서 두번째 아이템을 해제하면 주문하기 1개,결제 예상 금액은 83700원이 된다.', async () => {
     render(<Default />);
 
     const itemCheckBoxs = await screen.findAllByTestId('item-checkbox');
@@ -66,7 +66,7 @@ describe('장바구니 체크박스 테스트', () => {
 });
 
 describe('모두 선택 체크 박스 테스트', () => {
-  test('모두선택 체크 박스를 누르면 주문하기 2개, 112700원이 되어야한다.', async () => {
+  test('모두선택 체크 박스를 누르면 주문하기 2개, 112700원이 된다.', async () => {
     render(<Default />);
 
     const allcheckbox = await screen.findByTestId('all-checkbox');
@@ -80,7 +80,7 @@ describe('모두 선택 체크 박스 테스트', () => {
     expect(orderButton).toHaveTextContent('주문하기 2개');
   });
 
-  test('모두선택 체크 박스를 다시누르면 주문하기 0개, 결제예상금액은 0원이 되어야한다.', async () => {
+  test('모두선택 체크 박스를 다시누르면 주문하기 0개, 결제예상금액은 0원이 된다.', async () => {
     render(<Default />);
 
     const allcheckbox = await screen.findByTestId('all-checkbox');
@@ -92,13 +92,13 @@ describe('모두 선택 체크 박스 테스트', () => {
 });
 
 describe('주문하기 버튼 테스트', () => {
-  test('체크된 아이템이 존재하지 않으면 주문하기 버튼은 비활성화 되어야한다.', async () => {
+  test('체크된 아이템이 존재하지 않으면 주문하기 버튼은 비활성화 된다.', async () => {
     render(<Default />);
     const orderButton = screen.getByTestId('order-button');
     expect(orderButton).toBeDisabled();
   });
 
-  test('체크된 아이템이 존재하면 주문하기 버튼은 활성화 되어야한다.', async () => {
+  test('체크된 아이템이 존재하면 주문하기 버튼은 활성화 된다.', async () => {
     render(<Default />);
 
     const itemCheckBoxs = await screen.findAllByTestId('item-checkbox');
@@ -110,7 +110,7 @@ describe('주문하기 버튼 테스트', () => {
     expect(orderButton).toBeEnabled();
   });
 
-  test('주문하기 버튼을 누르면 주문 하시겠습니까?를 가진 dialog가 나타나야한다.', async () => {
+  test('주문하기 버튼을 누르면 주문 하시겠습니까? 를 가진 dialog가 나타난다.', async () => {
     render(<Default />);
 
     const itemCheckBoxs = await screen.findAllByTestId('item-checkbox');
@@ -127,7 +127,7 @@ describe('주문하기 버튼 테스트', () => {
   });
 });
 describe('장바구니 삭제 테스트', () => {
-  test('체크된 모든 아이템 들을 삭제 버튼 누르고 모달창의 확인버튼을 누르면, 주문하기 버튼은 주문하기 0개이 되어야한다.', async () => {
+  test('체크된 모든 아이템 들을 삭제 버튼 누르고 모달창의 확인버튼을 누르면, 주문하기 버튼 텍스트는 주문하기 0개가 된다.', async () => {
     render(<Default />);
 
     const allcheckbox = await screen.findByTestId('all-checkbox');

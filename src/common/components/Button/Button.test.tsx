@@ -5,18 +5,18 @@ import { composeStories } from '@storybook/react';
 const { Primary, Brown, Disabled } = composeStories(stories);
 
 describe('Button 렌더링 검증 테스트', () => {
-  test('Button render test', async () => {
+  test('Primary Button이 존재한다.', async () => {
     render(<Primary />);
     const PrimaryButton = await screen.findByRole('button');
     expect(PrimaryButton).toBeInTheDocument();
   });
-  test('Button text test', async () => {
+  test('Primary Button이 Text가 존재한다.', async () => {
     render(<Primary />);
     const PrimaryButton = await screen.findByText('버튼');
     expect(PrimaryButton).toBeInTheDocument();
   });
 
-  test('Primary Button attribute test', async () => {
+  test('Primary Button attribute가 존재한다.', async () => {
     render(<Primary />);
     const PrimaryButton = await screen.findByText('버튼');
     expect(PrimaryButton).toHaveStyle({
@@ -25,13 +25,13 @@ describe('Button 렌더링 검증 테스트', () => {
     });
   });
 
-  test('Brown Button attribute test', async () => {
+  test('Brown Button attribute가 존재한다.', async () => {
     render(<Brown />);
     const BrownButton = await screen.findByRole('button');
     expect(BrownButton).toHaveStyle({ background: '#73675c', color: 'white' });
   });
 
-  test('Disabled Button attribute test', async () => {
+  test('Disabled Button attribute가 존재한다.', async () => {
     render(<Disabled />);
     const DiabledButton = await screen.findByRole('button');
     expect(DiabledButton).toHaveStyle({ opacity: '0.5', pointerEvents: 'none' });

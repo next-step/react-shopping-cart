@@ -32,7 +32,7 @@ describe('PageNavBar 스토리북 렌더링 검증 테스트', () => {
   });
 });
 describe('NavBar버튼 스토리북 동작 여부 테스트', () => {
-  test('나의 JunyoungShop을 클릭시 useNavigate는 /orders를 호출한다.', async () => {
+  test('나의 JunyoungShop을 클릭시 useNavigate는 /orders를 호출한다..', async () => {
     render(<PageNavBar />);
     const title = await screen.findByText('JunYoung SHOP');
     await userEvent.click(title);

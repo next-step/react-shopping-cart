@@ -6,7 +6,7 @@ import { render } from 'test/rtkProvider';
 const { Default } = composeStories(stories);
 
 describe('Dialog 스토리북 렌더링 검증 테스트', () => {
-  test('Dialog에는 확인 버튼이 있어야한다.', async () => {
+  test('Dialog에는 확인 버튼이 존재한다..', async () => {
     render(<Default />);
     const ConfirmButton = await screen.findByTestId('confirm-button');
     expect(ConfirmButton).toHaveTextContent('확인');

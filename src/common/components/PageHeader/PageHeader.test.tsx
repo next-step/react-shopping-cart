@@ -7,7 +7,7 @@ import { render } from '../../../test/rtkProvider';
 const { Default } = composeStories(stories);
 
 describe('PageHeader 스토리북 렌더링 검증 테스트', () => {
-  test('Page Header 텍스트는 Page Header이어야 한다.', async () => {
+  test('Page Header 텍스트는 Page Header 이다.', async () => {
     render(<Default />);
     const pageHeaderText = await screen.findByTestId('page-header-text');
 

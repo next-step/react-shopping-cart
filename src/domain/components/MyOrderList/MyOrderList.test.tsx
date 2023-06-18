@@ -13,28 +13,28 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('MyOrderList 스토리북 렌더링 검증 테스트', () => {
-  test('상품의 이름은 냉면용기(대)여야 되어야한다.', async () => {
+  test('상품의 이름은 냉면용기(대)이다.', async () => {
     render(<Default />);
     const name = await screen.findByTestId('order-name');
     expect(name).toHaveTextContent('냉면용기(대)');
   });
-  test('상품의 이미지가 존재 해야한다.', async () => {
+  test('상품의 이미지가 존재 한다.', async () => {
     render(<Default />);
     const image = await screen.findByTestId('order-image');
     expect(image).toBeInTheDocument();
   });
-  test('주문번호 : 1이 존재 해야한다.', async () => {
+  test('주문번호 : 1이 존재 한다.', async () => {
     render(<Default />);
     const orderNumber = await screen.findByTestId('order-number');
     expect(orderNumber).toHaveTextContent('주문번호 : 1');
   });
-  test('상세보기 버튼이 존재 해야한다.', async () => {
+  test('상세보기 버튼이 존재 한다.', async () => {
     render(<Default />);
     const detailButton = await screen.findByTestId('orderDetail-button');
     expect(detailButton).toHaveTextContent('상세보기');
   });
 
-  test('가격과 수량 정보는 83700원 / 수량 : 1이어야한다.', async () => {
+  test('가격과 수량 정보는 83700원 / 수량 : 1이다.', async () => {
     render(<Default />);
     const priceAndAmount = await screen.findByTestId('order-info');
     expect(priceAndAmount).toHaveTextContent('83700원 / 수량 : 1개');
@@ -42,7 +42,7 @@ describe('MyOrderList 스토리북 렌더링 검증 테스트', () => {
 });
 
 describe('MyOrderList 스토리북 행위 테스트', () => {
-  test('상세보기를 클릭하면 navigate가 호출이 되어야한다.', async () => {
+  test('상세보기를 클릭하면 navigate가 호출 된다.', async () => {
     render(<Default />);
     const detailButton = await screen.findByTestId('orderDetail-button');
     await userEvent.click(detailButton);

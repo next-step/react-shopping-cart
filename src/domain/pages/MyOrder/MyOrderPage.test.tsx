@@ -15,7 +15,7 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 describe('MyOrderPage 테스트', () => {
-  test('2개의 상품의정보(이미지,이름,가격,수량)가 존재해야한다.', async () => {
+  test('2개의 상품의정보(이미지,이름,가격,수량)가 존재한다.', async () => {
     render(<Default />);
     await waitFor(
       () => {
@@ -31,7 +31,7 @@ describe('MyOrderPage 테스트', () => {
     expect(productsInfo).toHaveLength(2);
   });
 
-  test('페이지 헤더 이름은 주문 목록 이어야 한다.', async () => {
+  test('페이지 헤더 이름은 주문 목록 이다.', async () => {
     render(<Default />);
     await waitFor(
       () => {
@@ -43,7 +43,7 @@ describe('MyOrderPage 테스트', () => {
     const pageHeader = screen.getByTestId('page-header-text');
     expect(pageHeader.innerHTML).toBe('주문 목록');
   });
-  test('2개의 cartButton이 존재해야한다.', async () => {
+  test('2개의 cartButton이 존재한다.', async () => {
     render(<Default />);
     await waitFor(
       () => {
@@ -53,7 +53,7 @@ describe('MyOrderPage 테스트', () => {
       { timeout: 3000 }
     );
   });
-  test('주문번호는 1이어야한다.', async () => {
+  test('주문번호는 1이다.', async () => {
     render(<Default />);
 
     await waitFor(
@@ -64,7 +64,7 @@ describe('MyOrderPage 테스트', () => {
       { timeout: 3000 }
     );
   });
-  test('상세보기버튼이 존재해야한다.', async () => {
+  test('상세보기버튼이 존재 한다.', async () => {
     render(<Default />);
 
     await waitFor(
@@ -78,7 +78,7 @@ describe('MyOrderPage 테스트', () => {
 });
 
 describe('MyOrderPage 기능 테스트', () => {
-  test('장바구니 버튼을 누르면 장바구니 추가하시겠습니까? 모달창이 나와야한다.', async () => {
+  test('장바구니 버튼을 누르면 장바구니 추가하시겠습니까? 모달창이 나온다.', async () => {
     render(<Default />);
 
     await waitFor(
@@ -98,7 +98,7 @@ describe('MyOrderPage 기능 테스트', () => {
     expect(dialog).toBeInTheDocument();
     expect(dialogTitle).toHaveTextContent('장바구니에 추가 하시겠습니까?');
   });
-  test('상세보기를 누르면 주문내역과 동일한 2개의 상품의정보(이미지,이름,가격,수량)가 존재해야한다.', async () => {
+  test('상세보기를 누르면 주문내역과 동일한 2개의 상품의정보(이미지,이름,가격,수량)가 존재 한다.', async () => {
     render(<Default />);
     await waitFor(
       () => {
@@ -131,7 +131,7 @@ describe('MyOrderPage 기능 테스트', () => {
     expect(orderPageInfo).toEqual(orderDetailPageInfo);
   });
 
-  test('상세보기를 누르면 페이지 헤더 이름은 주문내역 상세 여야 한다.', async () => {
+  test('상세보기를 누르면 페이지 헤더 이름은 주문내역 상세 이다.', async () => {
     render(<Default />);
     await waitFor(
       () => {
@@ -154,7 +154,7 @@ describe('MyOrderPage 기능 테스트', () => {
     expect(pageHeader.innerHTML).toBe('주문내역 상세');
   });
 
-  test('상세보기를 누르면 결제 금액정보는 112700원이어야한다.', async () => {
+  test('상세보기를 누르면 결제 금액정보는 112700원이다.', async () => {
     render(<Default />);
     await waitFor(
       () => {

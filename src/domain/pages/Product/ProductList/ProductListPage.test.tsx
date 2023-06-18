@@ -21,14 +21,14 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 describe('Product Page 렌더링 테스트', () => {
-  test('초기에는 로딩 스피너가 나타나야한다', async () => {
+  test('초기에는 로딩 스피너가 나타난다.', async () => {
     render(<Default />);
     const Spinner = await screen.findByTestId('spinner');
 
     expect(Spinner).toBeInTheDocument();
   });
 
-  test('상품의 이미지,가격,이름,장바구니버튼은 8개여야 한다', async () => {
+  test('상품의 이미지,가격,이름,장바구니버튼은 8개다.', async () => {
     render(<Default />);
 
     await waitFor(
@@ -47,7 +47,7 @@ describe('Product Page 렌더링 테스트', () => {
     expect(cartButton).toHaveLength(8);
   });
 
-  test('ProductListPage 페이지의 페이지네이션 버튼은 5개여야한다', async () => {
+  test('ProductListPage 페이지의 페이지네이션 버튼은 5개다.', async () => {
     render(<Default />);
     await waitFor(
       () => {
@@ -60,7 +60,7 @@ describe('Product Page 렌더링 테스트', () => {
 });
 
 describe('ProductListPage 페이지 네이션 버튼 테스트', () => {
-  test('다른 페이지 네이션 버튼을 누르면 8개의 이미지,가격,카트버튼, 이름이 렌더링 되어야한다.', async () => {
+  test('다른 페이지 네이션 버튼을 누르면 8개의 이미지,가격,카트버튼, 이름이 나타난다.', async () => {
     render(<Default />);
     await waitFor(
       () => {
@@ -91,7 +91,7 @@ describe('ProductListPage 페이지 네이션 버튼 테스트', () => {
 });
 
 describe('ProductListPage 기능 테스트', () => {
-  test('상품을 클릭하면, useNavigate는 해당 상품에 맞는 url을 호출해야한다.', async () => {
+  test('상품을 클릭하면, useNavigate는 상품에 맞는 url이 호출된다.', async () => {
     render(<Default />);
     await waitFor(
       () => {
@@ -105,7 +105,7 @@ describe('ProductListPage 기능 테스트', () => {
     expect(mockedUsedNavigate).toBeCalledWith('/product/1');
   });
 
-  test('상품의 cartButton을 클릭하면 모달창이 나오고 모달 title은 장바구니에 추가하시겠습니까? 되어야한다', async () => {
+  test('상품의 cartButton을 클릭하면 모달창이 나타나고, 모달 title은 장바구니에 추가하시겠습니까? 나타난다.', async () => {
     render(<Default />);
 
     await waitFor(
