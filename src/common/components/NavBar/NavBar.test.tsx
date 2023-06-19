@@ -22,13 +22,13 @@ describe('PageNavBar 스토리북 테스트', () => {
     const cartImage = screen.getByRole('img');
     expect(cartImage).toBeInTheDocument();
   });
-  test('장바구니 버튼이 존재해야한다.', () => {
+  test('장바구니 버튼이 존재한다.', () => {
     render(<PageNavBar />);
     const buttons = screen.getAllByRole('button');
     const CartButton = buttons[0];
     expect(CartButton).toHaveTextContent('장바구니');
   });
-  test('나의 주문목록 버튼이 존재해야한다.', () => {
+  test('나의 주문목록 버튼이 존재한다.', () => {
     render(<PageNavBar />);
     const buttons = screen.getAllByRole('button');
     const MyOrderButton = buttons[1];
