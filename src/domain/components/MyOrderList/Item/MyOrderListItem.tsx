@@ -9,16 +9,13 @@ const MyOrderListItem = ({ id, amount, name, price, image }: MyOrderListItemProp
     <Styled.Container>
       <Styled.FlexContainer>
         <Styled.ItemContainer>
-          <Styled.ItemImage data-testid="order-image" src={`${image}`} alt={`${name}`} />
+          <Styled.ItemImage src={`${image}`} alt={`${name}`} />
           <Styled.ItemBox>
-            <Styled.ItemName data-testid="order-name">{name}</Styled.ItemName>
-            <Styled.ItemInfo data-testid="order-info">{`${price}원 / 수량 : ${amount}개`}</Styled.ItemInfo>
+            <Styled.ItemName>{name}</Styled.ItemName>
+            <Styled.ItemInfo>{`${price}원 / 수량 : ${amount}개`}</Styled.ItemInfo>
           </Styled.ItemBox>
         </Styled.ItemContainer>
-        <Styled.CartButton
-          data-testid="order-cartbutton"
-          onClick={() => addToCart({ id, amount, name, price, image, isOrder: false })}
-        />
+        <Styled.CartButton onClick={() => addToCart({ id, amount, name, price, image, isOrder: false })} />
       </Styled.FlexContainer>
     </Styled.Container>
   );
