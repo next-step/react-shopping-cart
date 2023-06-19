@@ -30,7 +30,7 @@ describe('Dialog 스토리북 검증 테스트', () => {
     expect(cancleButton).toHaveTextContent('취소');
   });
 
-  test('Dialog 타이틀 이름은 모달창 이다.', async () => {
+  test('Dialog 타이틀 이름은 모달창 이다.', () => {
     render(<Default />);
     const dialogTitle = screen.getByRole('heading');
     expect(dialogTitle).toHaveTextContent('모달창');

@@ -39,7 +39,7 @@ export const TextBox = styled.div`
   h3 {
     font-size: 32px;
   }
-  span {
+  p {
     font-size: 20px;
     color: gray;
   }
