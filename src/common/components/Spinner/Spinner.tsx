@@ -3,7 +3,7 @@ import * as Styled from './Spinner.styles';
 const Spinner = () => {
   return (
     <Styled.Container>
-      <Styled.Spinner data-testid="spinner" />
+      <Styled.Spinner role="img" />
     </Styled.Container>
   );
 };
