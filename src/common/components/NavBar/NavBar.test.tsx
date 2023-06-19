@@ -12,7 +12,7 @@ jest.mock('react-router-dom', () => ({
 const { PageNavBar } = composeStories(stories);
 
 describe('PageNavBar 스토리북 테스트', () => {
-  test('heading Text는 JunYoung SHOP 이다.', () => {
+  test('JunYoung SHOP Text가 존재한다.', () => {
     render(<PageNavBar />);
     const title = screen.getByRole('heading');
     expect(title).toHaveTextContent('JunYoung SHOP');

@@ -13,7 +13,7 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('MyOrderList 스토리북 테스트', () => {
-  test('상품의 이름은 냉면용기(대)이다.', () => {
+  test('냉면용기(대) Text가 존재한다.', () => {
     render(<Default />);
     const productName = screen.getByText('냉면용기(대)');
     expect(productName).toBeInTheDocument();
@@ -24,7 +24,7 @@ describe('MyOrderList 스토리북 테스트', () => {
 
     expect(image).toBeInTheDocument();
   });
-  test('주문번호 : 1이 존재 한다.', () => {
+  test('주문번호 : 1이 Text가 존재한다', () => {
     render(<Default />);
     const orderNumber = screen.getByText('주문번호 : 1');
     expect(orderNumber).toBeInTheDocument();
@@ -35,7 +35,7 @@ describe('MyOrderList 스토리북 테스트', () => {
     expect(detailButton).toHaveTextContent('상세보기');
   });
 
-  test('83700원 / 수량 : 1 텍스트가 존재한다', () => {
+  test('83700원 / 수량 : 1 Text가 존재한다', () => {
     render(<Default />);
     const priceAndAmount = screen.getByText('83700원 / 수량 : 1개');
     expect(priceAndAmount).toBeInTheDocument();

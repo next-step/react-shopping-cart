@@ -24,12 +24,12 @@ describe('CartItem의 UnCheckedItem 스토리북 렌더링 검증 테스트', ()
     const input = screen.getByRole('textbox');
     expect(input).toHaveValue('1');
   });
-  test('상품 가격은 83700원이다.', async () => {
+  test('83700원 Text가 존재한다.', async () => {
     render(<UnCheckedItem />);
     const price = screen.getByText('83700원');
     expect(price).toBeInTheDocument();
   });
-  test('상품 이름은 냉면용기(대) 이다.', async () => {
+  test('냉면용기(대) Text가 존재한다.', async () => {
     render(<UnCheckedItem />);
     const productName = screen.getByText('냉면용기(대)');
     expect(productName).toBeInTheDocument();
@@ -52,12 +52,12 @@ describe('CartItem의 CheckedItem 스토리북 검증 테스트', () => {
     const input = screen.getByRole('textbox');
     expect(input).toHaveValue('1');
   });
-  test('상품 가격은 83700원이다.', async () => {
+  test('83700원 Text가 존재한다.', async () => {
     render(<CheckedItem />);
     const price = screen.getByText('83700원');
     expect(price).toBeInTheDocument();
   });
-  test('상품 이름은 냉면용기(대) 이다.', async () => {
+  test('냉면용기(대) Text가 존재한다.', async () => {
     render(<CheckedItem />);
     const productName = screen.getByText('냉면용기(대)');
     expect(productName).toBeInTheDocument();
