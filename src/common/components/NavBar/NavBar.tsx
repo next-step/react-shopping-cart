@@ -6,7 +6,7 @@ const NavBar = () => {
   return (
     <Styled.Container>
       <Styled.TitleBox onClick={() => navigate('/products')}>
-        <Styled.CartIcon />
+        <Styled.CartIcon role="img" />
         <Styled.Title>JunYoung SHOP</Styled.Title>
       </Styled.TitleBox>
       <Styled.ButtonBox>

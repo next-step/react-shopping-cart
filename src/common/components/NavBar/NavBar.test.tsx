@@ -17,7 +17,11 @@ describe('PageNavBar 스토리북 테스트', () => {
     const title = screen.getByRole('heading');
     expect(title).toHaveTextContent('JunYoung SHOP');
   });
-
+  test('Cart Image가 존재 한다.', () => {
+    render(<PageNavBar />);
+    const cartImage = screen.getByRole('img');
+    expect(cartImage).toBeInTheDocument();
+  });
   test('장바구니 버튼이 존재해야한다.', () => {
     render(<PageNavBar />);
     const buttons = screen.getAllByRole('button');
@@ -32,7 +36,7 @@ describe('PageNavBar 스토리북 테스트', () => {
   });
 });
 
-describe('NavBar버튼 스토리북 동작 여부 테스트', () => {
+describe('NavBar버튼 스토리북 동작 테스트', () => {
   test('나의 JunyoungShop을 클릭시 useNavigate는 /orders를 호출한다.', async () => {
     render(<PageNavBar />);
     const title = screen.getByRole('heading');
