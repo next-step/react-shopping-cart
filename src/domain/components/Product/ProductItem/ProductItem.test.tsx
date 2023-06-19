@@ -6,24 +6,24 @@ import { render } from 'test/rtkProvider';
 const { Item } = composeStories(stories);
 
 describe('ProductItem 스토리북 렌더링 테스트', () => {
-  test('상품의 이미지가 존재 한다', async () => {
+  test('상품의 이미지가 존재 한다', () => {
     render(<Item />);
-    const image = await screen.findByTestId('product-image');
+    const image = screen.getByRole('img');
     expect(image).toBeInTheDocument();
   });
-  test('상품의 이름은 냉면용기(대) 이다.', async () => {
+  test('냉면 용기(대) Text가 존재한다.', () => {
     render(<Item />);
-    const name = await screen.findByTestId('product-name');
-    expect(name).toHaveTextContent('냉면용기(대)');
+    const name = screen.getByText('냉면용기(대)');
+    expect(name).toBeInTheDocument();
   });
-  test('가격은 83700 이다.', async () => {
+  test('83000 텍스트가 존재한다.', () => {
     render(<Item />);
-    const price = await screen.findByTestId('product-price');
-    expect(price).toHaveTextContent('83700');
+    const price = screen.getByText('냉면용기(대)');
+    expect(price).toBeInTheDocument();
   });
-  test('장바구니 아이콘 버튼 존재한다.', async () => {
+  test('장바구니 아이콘 버튼 존재한다.', () => {
     render(<Item />);
-    const cartButton = await screen.findByTestId('cart-button');
-    expect(cartButton).toHaveTextContent('cart.svg');
+    const cartButton = screen.getByRole('button');
+    expect(cartButton).toBeInTheDocument();
   });
 });

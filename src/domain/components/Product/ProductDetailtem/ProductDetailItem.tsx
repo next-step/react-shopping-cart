@@ -8,20 +8,15 @@ const ProductDetailItem = ({ id, image, name, price }: ProductDetailItemProps) =
 
   return (
     <Styled.Container>
-      <Styled.ItemImage
-        data-testid="productDetail-image"
-        src={currentDetailItem.image}
-        alt={currentDetailItem.name}
-        width={640}
-      ></Styled.ItemImage>
+      <Styled.ItemImage src={currentDetailItem.image} alt={currentDetailItem.name} width={640}></Styled.ItemImage>
       <Styled.ItemInfoContainer>
-        <Styled.Name data-testid="productDetail-name">{currentDetailItem.name}</Styled.Name>
+        <Styled.Name>{currentDetailItem.name}</Styled.Name>
         <Styled.Horizontal />
         <Styled.ItemInfoBox>
           <Styled.Text>금액</Styled.Text>
-          <Styled.Price data-testid="productDetail-price">{currentDetailItem.price}</Styled.Price>
+          <Styled.Price>{currentDetailItem.price}</Styled.Price>
         </Styled.ItemInfoBox>
-        <Styled.CartButton onClick={addToCart} theme="brown" data-testid="cart-button">
+        <Styled.CartButton onClick={addToCart} theme="brown">
           장바구니
         </Styled.CartButton>
       </Styled.ItemInfoContainer>

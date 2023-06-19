@@ -9,13 +9,13 @@ const ProductItem = ({ name, price, image, id }: ItemProps) => {
 
   return (
     <Styled.Layout>
-      <Styled.ItemImage src={image} alt={name} onClick={moveToProductDetailPage} data-testid="product-image" />
+      <Styled.ItemImage src={image} alt={name} onClick={moveToProductDetailPage} />
       <Styled.FlexContainer>
         <Styled.FlexBox>
-          <Styled.NameText data-testid="product-name">{name}</Styled.NameText>
-          <Styled.PriceText data-testid="product-price">{price}원</Styled.PriceText>
+          <Styled.NameText>{name}</Styled.NameText>
+          <Styled.PriceText>{price}원</Styled.PriceText>
         </Styled.FlexBox>
-        <Styled.CartIcon onClick={addToCart} data-testid="cart-button" />
+        <Styled.CartIcon onClick={addToCart} role="button" />
       </Styled.FlexContainer>
     </Styled.Layout>
   );
