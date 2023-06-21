@@ -37,7 +37,7 @@ const CartPage = () => {
               />
               <Styled.CheckBoxLabel htmlFor="checkbox">모두 선택</Styled.CheckBoxLabel>
             </Styled.CheckBoxInputBox>
-            <Styled.CartRemoveButton onClick={handleRemoveButton} />
+            <Styled.CartRemoveButton onClick={handleRemoveButton} role="button" />
           </Styled.CheckBoxContainer>
           <Styled.CartTitle>든든 배송상품</Styled.CartTitle>
           <Styled.Divider />

@@ -12,12 +12,12 @@ const Payment = ({ ...props }: PaymentProps) => {
         <Styled.Title>{props.title}</Styled.Title>
       </Styled.TitleBox>
       <Styled.ThinLine />
-      <div role="list">
-        <Styled.ItemInfoBox role="listitem">
+      <div>
+        <Styled.ItemInfoBox>
           <div />
-          <Styled.Price>{props.price}원</Styled.Price>
+          <Styled.Price data-testid="payment-price">{props.price}원</Styled.Price>
         </Styled.ItemInfoBox>
-        <Styled.ButtonBox role="listitem">
+        <Styled.ButtonBox>
           {props.type === 'cart' && (
             <Styled.OrderButton
               onClick={orderCart}
