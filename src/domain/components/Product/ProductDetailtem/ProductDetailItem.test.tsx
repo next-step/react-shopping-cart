@@ -13,13 +13,13 @@ describe('ProductDetailItem 스토리북 테스트', () => {
   });
   test('상품 이름은 냉면용기(대)이다.', () => {
     render(<DetailItem />);
-    const name = screen.getByText('냉면용기(대)');
-    expect(name).toBeInTheDocument();
+    const productName = screen.getByTestId('product-name');
+    expect(productName).toHaveTextContent('냉면용기(대)');
   });
   test('상품 금액은 83700 이다.', () => {
     render(<DetailItem />);
-    const price = screen.getByText('83700');
-    expect(price).toBeInTheDocument();
+    const price = screen.getByTestId('product-price');
+    expect(price).toHaveTextContent('83700');
   });
   test('장바구니 버튼이 존재 한다.', () => {
     render(<DetailItem />);
