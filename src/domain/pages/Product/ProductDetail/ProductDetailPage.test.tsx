@@ -23,19 +23,19 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
-describe('ProductDetail Page 렌더링 테스트', () => {
+describe('ProductDetail Page 테스트', () => {
   test('상품의 이름과 이미지 가격이 존재한다.', async () => {
     render(<Default />);
 
     await waitFor(
       () => {
-        const productName = screen.getByTestId('productDetail-name');
+        const productName = screen.getByTestId('product-name');
         expect(productName).toBeInTheDocument();
       },
       { timeout: 3000 }
     );
-    const productimg = screen.getByTestId('productDetail-image');
-    const price = screen.getByTestId('productDetail-price');
+    const productimg = screen.getByRole('img');
+    const price = screen.getByTestId('product-price');
     expect(price).toBeInTheDocument();
     expect(productimg).toBeInTheDocument();
   });
@@ -47,17 +47,15 @@ describe('ProductDetail Page 장바구니 버튼 테스트', () => {
 
     await waitFor(
       () => {
-        const productsimg = screen.getByRole('img');
-        expect(productsimg).toBeInTheDocument();
+        const productName = screen.getByTestId('product-name');
+        expect(productName).toBeInTheDocument();
       },
       { timeout: 3000 }
     );
-    const cartButton = screen.getByTestId('cart-button');
+    const cartButton = screen.getByRole('button');
     await userEvent.click(cartButton);
 
-    const dialog = await screen.findByTestId('dialog');
-    const dialogText = await screen.findByText('장바구니에 추가 하시겠습니까?');
-    expect(dialog).toBeInTheDocument();
-    expect(dialogText).toBeInTheDocument();
+    const dialog = await screen.findByRole('dialog');
+    expect(dialog).toHaveTextContent('장바구니에 추가 하시겠습니까?');
   });
 });
