@@ -24,7 +24,7 @@ const OrderPage = () => {
       <PageHeader>주문/결제</PageHeader>
       <Styled.SectionContainer>
         <Styled.ItemSection>
-          <Styled.Title>{`주문 상품(${totalAmount}건)`}</Styled.Title>
+          <Styled.Title data-testid="order-totalAmount">{`주문 상품(${totalAmount}건)`}</Styled.Title>
           <Styled.DivideLine />
           {cartList.map((product) => (
             <OrderdItem

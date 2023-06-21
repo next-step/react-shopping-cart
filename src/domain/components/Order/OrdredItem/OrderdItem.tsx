@@ -9,9 +9,9 @@ const OrderdItem = ({ amount, name, image, price }: OrderItemProps) => {
       <Styled.OrderContainer>
         <Styled.OrderItemImage src={`${image}`} alt={name} />
         <Styled.OrderItemBox>
-          <Styled.OrderName>{name}</Styled.OrderName>
-          <Styled.OrderNumber>{`수량:${amount}`}</Styled.OrderNumber>
-          <Styled.OrderNumber>{`가격: ${amount * price}원`}</Styled.OrderNumber>
+          <Styled.OrderName data-testid="order-name">{name}</Styled.OrderName>
+          <Styled.OrderNumber data-testid="order-amount">{`수량:${amount}`}</Styled.OrderNumber>
+          <Styled.OrderNumber data-testid="order-price">{`가격: ${amount * price}원`}</Styled.OrderNumber>
         </Styled.OrderItemBox>
       </Styled.OrderContainer>
     </Styled.Container>
