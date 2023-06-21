@@ -12,8 +12,8 @@ const ProductItem = ({ name, price, image, id }: ItemProps) => {
       <Styled.ItemImage src={image} alt={name} onClick={moveToProductDetailPage} />
       <Styled.FlexContainer>
         <Styled.FlexBox>
-          <Styled.NameText>{name}</Styled.NameText>
-          <Styled.PriceText>{price}원</Styled.PriceText>
+          <Styled.NameText data-testid="product-name">{name}</Styled.NameText>
+          <Styled.PriceText data-testid="product-price">{price}원</Styled.PriceText>
         </Styled.FlexBox>
         <Styled.CartIcon onClick={addToCart} role="button" />
       </Styled.FlexContainer>

@@ -21,11 +21,11 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 describe('Product Page 렌더링 테스트', () => {
-  test('초기에는 로딩 스피너가 나타난다.', async () => {
+  test('초기에는 로딩 스피너가 나타난다.', () => {
     render(<Default />);
-    const Spinner = await screen.findByTestId('spinner');
+    const loadingSpinner = screen.getByRole('img');
 
-    expect(Spinner).toBeInTheDocument();
+    expect(loadingSpinner).toBeInTheDocument();
   });
 
   test('상품의 이미지,가격,이름,장바구니버튼은 8개다.', async () => {
@@ -40,7 +40,7 @@ describe('Product Page 렌더링 테스트', () => {
     );
     const productsprice = screen.getAllByTestId('product-price');
     const productsName = screen.getAllByTestId('product-name');
-    const cartButton = screen.getAllByTestId('cart-button');
+    const cartButton = screen.getAllByRole('button', { name: 'cart.svg' });
 
     expect(productsprice).toHaveLength(8);
     expect(productsName).toHaveLength(8);
@@ -60,7 +60,7 @@ describe('Product Page 렌더링 테스트', () => {
 });
 
 describe('ProductListPage 페이지 네이션 버튼 테스트', () => {
-  test('다른 페이지 네이션 버튼을 누르면 8개의 이미지,가격,카트버튼, 이름이 나타난다.', async () => {
+  test('다른 페이지 네이션 버튼을 눌러도 8개의 이미지,가격,카트버튼, 이름이 나타난다.', async () => {
     render(<Default />);
     await waitFor(
       () => {
@@ -81,7 +81,7 @@ describe('ProductListPage 페이지 네이션 버튼 테스트', () => {
       { timeout: 3000 }
     );
     const productsprice = screen.getAllByTestId('product-price');
-    const cartButton = screen.getAllByTestId('cart-button');
+    const cartButton = screen.getAllByRole('button', { name: 'cart.svg' });
     const productsName = screen.getAllByTestId('product-name');
 
     expect(productsName).toHaveLength(8);
@@ -91,17 +91,17 @@ describe('ProductListPage 페이지 네이션 버튼 테스트', () => {
 });
 
 describe('ProductListPage 기능 테스트', () => {
-  test('상품을 클릭하면, useNavigate는 상품에 맞는 url이 호출된다.', async () => {
+  test('상품 이미지를 클릭하면, useNavigate는 상품에 맞는 url이 호출한다.', async () => {
     render(<Default />);
     await waitFor(
       () => {
-        const mainProductimg = screen.getAllByTestId('product-image');
-        expect(mainProductimg).toHaveLength(8);
+        const productImage = screen.getAllByRole('img');
+        expect(productImage).toHaveLength(8);
       },
       { timeout: 3000 }
     );
-    const mainProductimg = screen.getAllByTestId('product-image');
-    await userEvent.click(mainProductimg[0]);
+    const productImage = screen.getAllByRole('img');
+    await userEvent.click(productImage[0]);
     expect(mockedUsedNavigate).toBeCalledWith('/product/1');
   });
 
@@ -110,18 +110,15 @@ describe('ProductListPage 기능 테스트', () => {
 
     await waitFor(
       () => {
-        const cartButtons = screen.getAllByTestId('cart-button');
+        const cartButtons = screen.getAllByRole('button', { name: 'cart.svg' });
         expect(cartButtons).toHaveLength(8);
       },
       { timeout: 3000 }
     );
-    const cartButton = screen.getAllByTestId('cart-button')[0];
-    await userEvent.click(cartButton);
+    const cartButtons = screen.getAllByRole('button', { name: 'cart.svg' });
+    await userEvent.click(cartButtons[0]);
 
-    const dialog = await screen.findByTestId('dialog');
-    const dialogtitle = await screen.findByTestId('dialog-title');
-
-    expect(dialog).toBeInTheDocument();
-    expect(dialogtitle.innerHTML).toBe('장바구니에 추가 하시겠습니까?');
+    const dialog = await screen.findByRole('dialog');
+    expect(dialog).toHaveTextContent('장바구니에 추가 하시겠습니까?');
   });
 });
