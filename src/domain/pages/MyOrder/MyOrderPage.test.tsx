@@ -1,5 +1,5 @@
 import * as stories from './MyOrderPage.stories';
-import { screen, waitFor, act } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 
 import { composeStories } from '@storybook/react';
 import userEvent from '@testing-library/user-event';
@@ -24,10 +24,10 @@ describe('MyOrderPage 테스트', () => {
       },
       { timeout: 3000 }
     );
-    const productsName = screen.getAllByTestId('order-name');
+    const orderName = screen.getAllByTestId('order-name');
     const productsInfo = screen.getAllByTestId('order-info');
 
-    expect(productsName).toHaveLength(2);
+    expect(orderName).toHaveLength(2);
     expect(productsInfo).toHaveLength(2);
   });
 
@@ -35,20 +35,18 @@ describe('MyOrderPage 테스트', () => {
     render(<Default />);
     await waitFor(
       () => {
-        const pageHeader = screen.getByTestId('page-header-text');
+        const pageHeader = screen.getByRole('heading', { name: '주문 목록' });
         expect(pageHeader).toBeInTheDocument();
       },
       { timeout: 3000 }
     );
-    const pageHeader = screen.getByTestId('page-header-text');
-    expect(pageHeader.innerHTML).toBe('주문 목록');
   });
   test('2개의 cartButton이 존재한다.', async () => {
     render(<Default />);
     await waitFor(
       () => {
-        const cartButton = screen.getAllByTestId('order-cartbutton');
-        expect(cartButton).toHaveLength(2);
+        const cartButtons = screen.getAllByRole('button', { name: 'cart.svg' });
+        expect(cartButtons).toHaveLength(2);
       },
       { timeout: 3000 }
     );
@@ -69,8 +67,8 @@ describe('MyOrderPage 테스트', () => {
 
     await waitFor(
       () => {
-        const orderDetailButton = screen.getByTestId('orderDetail-button');
-        expect(orderDetailButton).toHaveTextContent('상세보기');
+        const orderDetailButton = screen.getByRole('button', { name: '상세보기' });
+        expect(orderDetailButton).toBeInTheDocument();
       },
       { timeout: 3000 }
     );
@@ -83,32 +81,30 @@ describe('MyOrderPage 기능 테스트', () => {
 
     await waitFor(
       () => {
-        const cartButtons = screen.getAllByTestId('order-cartbutton');
+        const cartButtons = screen.getAllByRole('button', { name: 'cart.svg' });
         expect(cartButtons).toHaveLength(2);
       },
       { timeout: 3000 }
     );
-    const cartButton = screen.getAllByTestId('order-cartbutton')[0];
+    const cartButtons = screen.getAllByRole('button', { name: 'cart.svg' });
 
-    await userEvent.click(cartButton);
+    await userEvent.click(cartButtons[0]);
 
-    const dialog = await screen.findByTestId('dialog');
-    const dialogTitle = screen.getByTestId('dialog-title');
-
-    expect(dialog).toBeInTheDocument();
-    expect(dialogTitle).toHaveTextContent('장바구니에 추가 하시겠습니까?');
+    const dialog = await screen.findByRole('dialog');
+    expect(dialog).toHaveTextContent('장바구니에 추가 하시겠습니까?');
   });
+
   test('상세보기를 누르면 주문내역과 동일한 2개의 상품의정보(이미지,이름,가격,수량)가 존재 한다.', async () => {
     render(<Default />);
     await waitFor(
       () => {
-        const orderDetailButton = screen.getByTestId('orderDetail-button');
-        expect(orderDetailButton).toHaveTextContent('상세보기');
+        const detailButton = screen.getByRole('button', { name: '상세보기' });
+        expect(detailButton).toBeInTheDocument();
       },
       { timeout: 3000 }
     );
 
-    const detailButton = screen.getByTestId('orderDetail-button');
+    const detailButton = screen.getByRole('button', { name: '상세보기' });
     const orderPageImage = screen.getAllByRole('img');
     const orderPageName = screen.getAllByTestId('order-name');
     const orderPageInfo = screen.getAllByTestId('order-info');
@@ -135,45 +131,42 @@ describe('MyOrderPage 기능 테스트', () => {
     render(<Default />);
     await waitFor(
       () => {
-        const orderDetailButton = screen.getByTestId('orderDetail-button');
-        expect(orderDetailButton).toHaveTextContent('상세보기');
+        const detailButton = screen.getByRole('button', { name: '상세보기' });
+        expect(detailButton).toBeInTheDocument();
       },
       { timeout: 3000 }
     );
 
-    const detailButton = screen.getByTestId('orderDetail-button');
+    const detailButton = screen.getByRole('button', { name: '상세보기' });
     await userEvent.click(detailButton);
+
     await waitFor(
       () => {
-        const pageHeader = screen.getByTestId('page-header-text');
+        const pageHeader = screen.getByRole('heading', { name: '주문내역 상세' });
         expect(pageHeader).toBeInTheDocument();
       },
       { timeout: 3000 }
     );
-    const pageHeader = screen.getByTestId('page-header-text');
-    expect(pageHeader.innerHTML).toBe('주문내역 상세');
   });
 
   test('상세보기를 누르면 결제 금액정보는 112700원이다.', async () => {
     render(<Default />);
     await waitFor(
       () => {
-        const orderDetailButton = screen.getByTestId('orderDetail-button');
-        expect(orderDetailButton).toHaveTextContent('상세보기');
+        const detailButton = screen.getByRole('button', { name: '상세보기' });
+        expect(detailButton).toBeInTheDocument();
       },
       { timeout: 3000 }
     );
 
-    const detailButton = screen.getByTestId('orderDetail-button');
+    const detailButton = screen.getByRole('button', { name: '상세보기' });
     await userEvent.click(detailButton);
     await waitFor(
       () => {
         const paymentPrice = screen.getByTestId('payment-price');
-        expect(paymentPrice).toBeInTheDocument();
+        expect(paymentPrice).toHaveTextContent('112700원');
       },
       { timeout: 3000 }
     );
-    const paymentPrice = await screen.findByTestId('payment-price');
-    expect(paymentPrice.innerHTML).toBe('112700원');
   });
 });
