@@ -1,4 +1,4 @@
 export * from "./cart";
-export * from "./endpoints";
+export * from "./constants";
 export * from "./orders";
 export * from "./products";

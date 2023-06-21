@@ -1,5 +1,7 @@
 import { rest } from "msw";
 import db from "./db";
+import { RESPONSE_CODE } from "../apis";
+import { generateError } from "./util";
 
 const { products, orders: defaultOrders, cartItems: defaultCartItems } = db;
 const sortItems = (items) => items.sort((a, b) => (b.product.createdAt || 0) - (a.product.createdAt || 0));
@@ -9,6 +11,7 @@ const initializedCartItems = sortItems(
   defaultCartItems.map((item, idx) => ({
     ...item,
     product: { ...item.product, createdAt: Date.now() + idx, updatedAt: Date.now() + idx },
+    checked: false,
   }))
 );
 
@@ -41,14 +44,6 @@ export const handlers = [
     const unit = request.url.searchParams.get(UNIT_KEY);
     const { start, end, endOfPage, parsedPage } = analyzePages({ page, unit, items: products });
 
-    // console.log(`
-    //   page: ${page},
-    //   unit: ${unit},
-    //   start: ${start},
-    //   end: ${end},
-    //   endOfPage: ${endOfPage}
-    // `);
-
     const responseForProducts = products.slice(start, end);
 
     return response(context.status(200), context.json({ products: responseForProducts, page: parsedPage, endOfPage }));
@@ -66,21 +61,14 @@ export const handlers = [
     const productsInCart = cart.items.slice(start, end);
 
     return response(
+      context.delay(RESPONSE_CODE.FAILED_RESPONSE),
       context.status(200),
       context.json({ cart: { items: productsInCart }, page: parsedPage, endOfPage })
     );
   }),
 
   rest.post("/api/cart", async (request, response, context) => {
-    const product = await request.json();
-
-    const oldProduct = cart.items.find(({ id }) => id === product.id);
-
-    if (oldProduct) {
-      oldProduct.updatedAt = Date.now();
-      oldProduct.quantity = oldProduct.quantity ? oldProduct.quantity + 1 : 1;
-      return response(context.status(204));
-    }
+    const { data: product } = await request.json();
 
     cart.items.unshift({
       id: Date.now(),
@@ -90,19 +78,69 @@ export const handlers = [
         createdAt: Date.now(),
         updatedAt: Date.now(),
       },
+      checked: true,
     });
-    return response(context.status(204));
+
+    return response(context.status(RESPONSE_CODE.SUCCESS_EMPTY));
   }),
 
   rest.delete("/api/cart", async (request, response, context) => {
     try {
-      const { items } = await request.json();
+      const {
+        data: { items },
+      } = await request.json();
       cart.items = cart.items.filter(({ id }) => !items.map(({ id }) => id).includes(id));
 
-      return response(context.status(204));
+      return response(context.status(RESPONSE_CODE.SUCCESS_EMPTY));
     } catch (error) {
-      console.error("delete", error);
-      return response(context.status(500));
+      return response(
+        context.status(RESPONSE_CODE.FAILED_RESPONSE),
+        context.json(generateError("상품 삭제에 실패했습니다. 다시 시도해 주세요."))
+      );
+    }
+  }),
+
+  rest.patch("/api/cart/item/quantity", async (request, response, context) => {
+    try {
+      const {
+        data: { item },
+      } = await request.json();
+
+      const oldProduct = cart.items.find(({ id }) => id === item.id);
+      if (oldProduct) {
+        oldProduct.updatedAt = Date.now();
+        oldProduct.product.quantity = item.product.quantity;
+      }
+
+      return response(context.status(RESPONSE_CODE.SUCCESS_EMPTY));
+    } catch (error) {
+      console.error("quantity patch", error);
+      return response(
+        context.status(RESPONSE_CODE.FAILED_RESPONSE),
+        context.json(generateError("수량 조절에 실패했습니다."))
+      );
+    }
+  }),
+
+  rest.patch("/api/cart/items/check", async (request, response, context) => {
+    try {
+      const {
+        data: { items, checked },
+      } = await request.json();
+
+      items?.forEach((item) => {
+        const oldProduct = cart.items.find(({ id }) => id === item.id);
+
+        if (oldProduct) {
+          oldProduct.updatedAt = Date.now();
+          oldProduct.checked = checked;
+        }
+      });
+
+      return response(context.status(RESPONSE_CODE.SUCCESS_EMPTY));
+    } catch (error) {
+      console.error("check patch", error);
+      return response(context.status(RESPONSE_CODE.FAILED_RESPONSE));
     }
   }),
 ];

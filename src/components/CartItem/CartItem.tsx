@@ -2,24 +2,24 @@ import React from "react";
 import deleteSvg from "../../assets/svgs/trash.svg";
 import QuantityHandler from "./QuantityHandler";
 import { CART } from "../../domain/constants";
-import { ICartItemUI } from "../types";
-import { IProduct } from "../../domain/types";
+import { ICartItem, IProduct } from "../../domain/types";
 
 type TProps = {
-  item: ICartItemUI;
+  item: ICartItem;
   handlers: {
-    toggleChecked: (item: ICartItemUI) => void;
-    handleDeleteItem: (item: ICartItemUI) => void;
-    handleIncrement: (item: ICartItemUI) => void;
-    handleDecrement: (item: ICartItemUI) => void;
+    toggleCheck: (item: ICartItem) => void;
+    handleDeleteItem: (item: ICartItem) => void;
+    handleIncrement: (item: ICartItem) => void;
+    handleDecrement: (item: ICartItem) => void;
   };
 };
 
 const getTotalPrice = ({ price, quantity = CART.PRODUCTS.MIN_QUANTITY }: IProduct) => price * quantity;
 
-function CartItem({ item, handlers: { toggleChecked, handleDeleteItem, handleIncrement, handleDecrement } }: TProps) {
+function CartItem({ item, handlers: { toggleCheck, handleDeleteItem, handleIncrement, handleDecrement } }: TProps) {
   const {
-    product: { name, imageUrl, checked, quantity = CART.PRODUCTS.DEFAULT_INITIAL_QUANTITY },
+    product: { name, imageUrl, quantity = CART.PRODUCTS.DEFAULT_INITIAL_QUANTITY },
+    checked,
   } = item;
 
   return (
@@ -29,8 +29,9 @@ function CartItem({ item, handlers: { toggleChecked, handleDeleteItem, handleInc
           type="checkbox"
           name="checkbox"
           className="checkbox"
+          readOnly
           checked={!!checked}
-          onChange={() => toggleChecked(item)}
+          onChange={() => toggleCheck(item)}
         />
         <img className="w-144 h-144" src={imageUrl} alt={name} />
         <span className="cart-name">{name}</span>

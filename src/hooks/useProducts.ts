@@ -1,24 +1,15 @@
-import { useEffect, useState } from "react";
-import { requestProducts, requestAddItem } from "../apis";
+import { requestAddItem } from "../apis";
 import { IProduct } from "../domain/types";
+import { IResponseError } from "../domain/types/response";
+import useProductsQuery from "../queries/useProductsQuery";
+import { convertToViewError } from "./utils";
 
 const useProducts = () => {
-  const [products, setProducts] = useState([] as IProduct[]);
+  const { data, status, error: queryError } = useProductsQuery();
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+  const error = convertToViewError(queryError as IResponseError);
 
-  const fetchProducts = async () => {
-    try {
-      const response = await requestProducts({
-        /*TODO: PAGING */
-      });
-      setProducts(() => response.products);
-    } catch (error) {
-      alert("상품 목록 불러오기 실패. 다시 시도해 주세요.");
-    }
-  };
+  const products = data?.products || [];
 
   const handleAddToCart = async (product: IProduct) => {
     if (!confirm(`${product.name}을 장바구니에 담으시겠습니까?`)) {
@@ -31,6 +22,6 @@ const useProducts = () => {
     }
   };
 
-  return { products, handleAddToCart };
+  return { status, error, products, handleAddToCart };
 };
 export default useProducts;

@@ -1,7 +1,5 @@
-import { atom } from "recoil";
-import { ICartUI } from "../components";
+// import { atom } from "recoil";
 
-export const cartState = atom({
-  key: "cartState", // unique ID (with respect to other atoms/selectors)
-  default: { items: [] } as ICartUI, // default value (aka initial value)
-});
+export function blankAAAAAAAAABBBBBBBBBBA() {
+  //
+}

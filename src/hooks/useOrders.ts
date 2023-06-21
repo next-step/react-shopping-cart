@@ -7,7 +7,7 @@ const useOrders = () => {
 
   const fetchMyOrders = async () => {
     const myOrders = await requestMyOrders();
-    setOrders(myOrders.orders);
+    setOrders(myOrders.data.orders);
   };
 
   useEffect(() => {
