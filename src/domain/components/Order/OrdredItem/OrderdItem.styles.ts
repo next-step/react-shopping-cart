@@ -42,6 +42,6 @@ export const OrderItemImage = styled(Image)`
 export const OrderName = styled.span`
   font-size: 18px;
 `;
-export const OrderNumber = styled.span`
+export const OrderInfo = styled.span`
   font-size: 16px;
 `;
