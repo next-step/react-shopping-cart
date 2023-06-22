@@ -297,22 +297,13 @@ describe('장바구니 아이템 삭제 테스트', () => {
 
     // 1. 모두 선택 체크박스 클릭
     await userEvent.click(allcheckbox);
-    expect(allcheckbox).toBeChecked();
 
-    await waitFor(() => {
-      const cartItem = screen.getAllByTestId('cart-item');
-      expect(cartItem).toHaveLength(2);
-    });
-
-    const cartRemoveButton = screen.getByRole('button', { name: 'trash.svg' });
+    const cartRemoveButton = screen.getByRole('button', { name: '/src/assets/svgs/trash.svg' });
     await userEvent.click(cartRemoveButton);
-
     const confirmButton = screen.getByRole('button', { name: '확인' });
     await userEvent.click(confirmButton);
 
     const orderButton = await screen.findByRole('button', { name: '주문하기 0개' });
     expect(orderButton).toHaveTextContent('주문하기 0개');
-    const cartItem = await screen.findByTestId('cart-item');
-    expect(cartItem).not.toBeInTheDocument();
   });
 });

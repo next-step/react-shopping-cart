@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import { composeStories } from '@storybook/react';
 import { render } from 'test/rtkProvider';
 
-const { Default: Dialog } = composeStories(stories);
+const { Default } = composeStories(stories);
 
 describe('Dialog 스토리북 검증 테스트', () => {
   test('Dialog가 스토리북에 나타난다.', () => {

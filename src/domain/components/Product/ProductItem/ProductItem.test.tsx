@@ -23,7 +23,7 @@ describe('ProductItem 스토리북 렌더링 테스트', () => {
   });
   test('장바구니 아이콘 버튼 존재한다.', () => {
     render(<Item />);
-    const cartButton = screen.getByRole('button', { name: 'cart.svg' });
+    const cartButton = screen.getByRole('button', { name: '/src/assets/svgs/cart.svg' });
     expect(cartButton).toBeInTheDocument();
   });
 });

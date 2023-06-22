@@ -9,7 +9,7 @@ const CartItem = ({ id, image, price, name, isOrder, amount }: CartItemProps) =>
   const { increaseCartItem, decreaseCartItem, cartIteminput, updateOrder } = useCartItem(currentCartItem);
 
   return (
-    <Styled.Contianer data-testid="cart-item">
+    <Styled.Contianer>
       <Styled.LeftBox>
         <Styled.CheckBox type="checkbox" name="checkbox" onChange={updateOrder} checked={isOrder} />
         <Styled.CartItemBox>

@@ -40,7 +40,7 @@ describe('Product Page 렌더링 테스트', () => {
     );
     const productsprice = screen.getAllByTestId('product-price');
     const productsName = screen.getAllByTestId('product-name');
-    const cartButton = screen.getAllByRole('button', { name: 'cart.svg' });
+    const cartButton = screen.getAllByRole('button', { name: '/src/assets/svgs/cart.svg' });
 
     expect(productsprice).toHaveLength(8);
     expect(productsName).toHaveLength(8);
@@ -81,7 +81,7 @@ describe('ProductListPage 페이지 네이션 버튼 테스트', () => {
       { timeout: 3000 }
     );
     const productsprice = screen.getAllByTestId('product-price');
-    const cartButton = screen.getAllByRole('button', { name: 'cart.svg' });
+    const cartButton = screen.getAllByRole('button', { name: '/src/assets/svgs/cart.svg' });
     const productsName = screen.getAllByTestId('product-name');
 
     expect(productsName).toHaveLength(8);
@@ -110,12 +110,12 @@ describe('ProductListPage 기능 테스트', () => {
 
     await waitFor(
       () => {
-        const cartButtons = screen.getAllByRole('button', { name: 'cart.svg' });
+        const cartButtons = screen.getAllByRole('button', { name: '/src/assets/svgs/cart.svg' });
         expect(cartButtons).toHaveLength(8);
       },
       { timeout: 3000 }
     );
-    const cartButtons = screen.getAllByRole('button', { name: 'cart.svg' });
+    const cartButtons = screen.getAllByRole('button', { name: '/src/assets/svgs/cart.svg' });
     await userEvent.click(cartButtons[0]);
 
     const dialog = await screen.findByRole('dialog');
