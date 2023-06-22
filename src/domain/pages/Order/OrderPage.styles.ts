@@ -52,7 +52,8 @@ export const DivideLine = styled(HorizontalLine)`
 export const CustomPaymentApp = styled(PaymentApp)`
   position: fixed;
   margin: 0 auto;
-  left: 0;
-  right: 0;
-  bottom: 5px;
+  left: 50%;
+  top: 5px;
+  transform: translateX(-50%);
+  bottom: 30px;
 `;

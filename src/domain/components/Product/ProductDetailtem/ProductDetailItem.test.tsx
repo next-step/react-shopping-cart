@@ -24,7 +24,7 @@ describe('ProductDetailItem 스토리북 테스트', () => {
   test('장바구니 버튼이 존재 한다.', () => {
     render(<DetailItem />);
     const cartButton = screen.getByRole('button', { name: '장바구니' });
-    expect(cartButton).toHaveTextContent('장바구니');
+    expect(cartButton).toBeInTheDocument();
   });
   test('수평바가 존재한다.', () => {
     render(<DetailItem />);

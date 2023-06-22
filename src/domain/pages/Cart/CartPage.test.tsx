@@ -45,7 +45,6 @@ describe('장바구니 체크박스 테스트', () => {
     });
 
     const paymentPrice = screen.getByTestId('payment-price');
-
     expect(paymentPrice).toHaveTextContent('83700원');
   });
 
@@ -312,7 +311,8 @@ describe('장바구니 아이템 삭제 테스트', () => {
     await userEvent.click(confirmButton);
 
     const orderButton = await screen.findByRole('button', { name: '주문하기 0개' });
-
-    expect(orderButton).toBeInTheDocument();
+    expect(orderButton).toHaveTextContent('주문하기 0개');
+    const cartItem = await screen.findByTestId('cart-item');
+    expect(cartItem).not.toBeInTheDocument();
   });
 });
