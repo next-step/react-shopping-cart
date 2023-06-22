@@ -13,39 +13,38 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('MyOrderList 스토리북 테스트', () => {
-  test('냉면용기(대) Text가 존재한다.', () => {
+  test('상품이름은 냉면용기(대) 이다.', () => {
     render(<Default />);
-    const productName = screen.getByText('냉면용기(대)');
-    expect(productName).toBeInTheDocument();
+    const productName = screen.getByTestId('order-name');
+    expect(productName).toHaveTextContent('냉면용기(대)');
   });
-  test('상품 이미지가 존재 한다.', () => {
+  test('상품 이미지는 냉면용기(대) 이다.', () => {
     render(<Default />);
     const image = screen.getByRole('img');
-
-    expect(image).toBeInTheDocument();
+    expect(image).toHaveAccessibleName('냉면용기(대)');
   });
-  test('주문번호 : 1이 Text가 존재한다', () => {
+  test('주문번호는 1이다.', () => {
     render(<Default />);
-    const orderNumber = screen.getByText('주문번호 : 1');
-    expect(orderNumber).toBeInTheDocument();
+    const orderNumber = screen.getByTestId('order-number');
+    expect(orderNumber).toHaveTextContent('주문번호 : 1');
   });
   test('버튼이름은 상세보기이다.', () => {
     render(<Default />);
-    const detailButton = screen.getByRole('button');
-    expect(detailButton).toHaveTextContent('상세보기');
+    const detailButton = screen.getByRole('button', { name: '상세보기' });
+    expect(detailButton).toBeInTheDocument();
   });
 
-  test('83700원 / 수량 : 1 Text가 존재한다', () => {
+  test('상품정보는 83700원 / 수량 : 1 이다.', () => {
     render(<Default />);
-    const priceAndAmount = screen.getByText('83700원 / 수량 : 1개');
-    expect(priceAndAmount).toBeInTheDocument();
+    const productInfo = screen.getByTestId('order-info');
+    expect(productInfo).toHaveTextContent('83700원 / 수량 : 1개');
   });
 });
 
 describe('MyOrderList 스토리북 행위 테스트', () => {
   test('상세보기를 클릭하면 pathname :1 과 함께 navigate가 호출 된다.', async () => {
     render(<Default />);
-    const detailButton = screen.getByRole('button');
+    const detailButton = screen.getByRole('button', { name: '상세보기' });
     await userEvent.click(detailButton);
     expect(mockedUsedNavigate).toBeCalledWith({ pathname: '1' });
   });

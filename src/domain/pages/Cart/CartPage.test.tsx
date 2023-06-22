@@ -312,8 +312,7 @@ describe('장바구니 아이템 삭제 테스트', () => {
     await userEvent.click(confirmButton);
 
     const orderButton = await screen.findByRole('button', { name: '주문하기 0개' });
-    // const cartItem = await screen.findByTestId('cart-item');
-    // expect(cartItem).toBeInTheDocument();
-    expect(orderButton).toHaveTextContent('123');
+
+    expect(orderButton).toBeInTheDocument();
   });
 });

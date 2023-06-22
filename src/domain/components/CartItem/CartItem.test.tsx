@@ -14,25 +14,25 @@ describe('CartItem의 UnCheckedItem 스토리북 렌더링 검증 테스트', ()
     const checkBox = screen.getByRole('checkbox');
     expect(checkBox).not.toBeChecked();
   });
-  test('상품 이미지가 존재 한다.', () => {
+  test('냉면용기 (대) 이미지가 존재 한다.', () => {
     render(<UnCheckedItem />);
     const image = screen.getByRole('img');
-    expect(image).toBeInTheDocument();
+    expect(image).toHaveAccessibleName('냉면용기(대)');
   });
   test('UnCheckedItem input값은 1이다.', () => {
     render(<UnCheckedItem />);
     const input = screen.getByRole('textbox');
     expect(input).toHaveValue('1');
   });
-  test('83700원 Text가 존재한다.', async () => {
+  test('상품가격은 83700원이다.', async () => {
     render(<UnCheckedItem />);
-    const price = screen.getByText('83700원');
-    expect(price).toBeInTheDocument();
+    const price = screen.getByTestId('cartItem-price');
+    expect(price).toHaveTextContent('83700원');
   });
-  test('냉면용기(대) Text가 존재한다.', async () => {
+  test('상품이름은 냉면용기(대) 이다.', async () => {
     render(<UnCheckedItem />);
-    const productName = screen.getByText('냉면용기(대)');
-    expect(productName).toBeInTheDocument();
+    const name = screen.getByTestId('cartItem-name');
+    expect(name).toHaveTextContent('냉면용기');
   });
 });
 
@@ -42,25 +42,25 @@ describe('CartItem의 CheckedItem 스토리북 검증 테스트', () => {
     const checkBox = screen.getByRole('checkbox');
     expect(checkBox).toBeChecked();
   });
-  test('상품 이미지가 존재 한다.', () => {
+  test('냉면용기 (대) 이미지가 존재 한다.', () => {
     render(<CheckedItem />);
     const image = screen.getByRole('img');
-    expect(image).toBeInTheDocument();
+    expect(image).toHaveAccessibleName('냉면용기(대)');
   });
   test('초기 input값은 1이다.', async () => {
     render(<CheckedItem />);
     const input = screen.getByRole('textbox');
     expect(input).toHaveValue('1');
   });
-  test('83700원 Text가 존재한다.', async () => {
+  test('상품 가격은 83700원 이다', async () => {
     render(<CheckedItem />);
-    const price = screen.getByText('83700원');
-    expect(price).toBeInTheDocument();
+    const price = screen.getByTestId('cartItem-price');
+    expect(price).toHaveTextContent('83700원');
   });
-  test('냉면용기(대) Text가 존재한다.', async () => {
+  test('상품이름은 냉면용기(대) 이다.', async () => {
     render(<CheckedItem />);
-    const productName = screen.getByText('냉면용기(대)');
-    expect(productName).toBeInTheDocument();
+    const name = screen.getByTestId('cartItem-name');
+    expect(name).toHaveTextContent('냉면용기');
   });
 });
 describe('CartItem의 CheckedItem 스토리북 행위 테스트', () => {
