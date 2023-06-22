@@ -14,7 +14,7 @@ const ProductDetailItem = ({ id, image, name, price }: ProductDetailItemProps) =
         <Styled.Horizontal />
         <Styled.ItemInfoBox>
           <Styled.Text>금액</Styled.Text>
-          <Styled.Price data-testid="product-price">{currentDetailItem.price}</Styled.Price>
+          <Styled.Price data-testid="product-price">{currentDetailItem.price}원</Styled.Price>
         </Styled.ItemInfoBox>
         <Styled.CartButton onClick={addToCart} theme="brown">
           장바구니
