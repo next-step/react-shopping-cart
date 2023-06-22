@@ -2,7 +2,7 @@ import * as stories from './Button.stories';
 import { render, screen } from '@testing-library/react';
 import { composeStories } from '@storybook/react';
 
-const { Primary, Brown, Disabled } = composeStories(stories);
+const { Primary, Brown, Disabled } = composeStories(stories) ;
 
 describe('Primary Button 스토리북 테스트', () => {
   test('Primary Button이 스토리북에 존재한다.', async () => {

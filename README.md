@@ -1,7 +1,7 @@
 ## 데모 주소
 - https://react-shopping-cart-plum.vercel.app/
 ## 스토리북 배포주소
-- https://www.chromatic.com/library?appId=646c9850177c1611bb37e4c5
+- https://www.chromatic.com/library?appId=6493e2d459413b4793b2318a
 
 ## 테스트  
 - 스토리북 RTL,Jest 테스트 적용
