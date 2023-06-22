@@ -1,5 +1,5 @@
 import * as stories from './OrderPage.stories';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 
 import { composeStories } from '@storybook/react';
 import userEvent from '@testing-library/user-event';
@@ -64,5 +64,24 @@ describe('OrderPage 결제하기 버튼 테스트', () => {
 
     const dialog = await screen.findByRole('dialog');
     expect(dialog).toHaveTextContent('결제 하시겠습니까?');
+  });
+});
+describe('OrderPage paymentApp 실행 가능 여부 테스트', () => {
+  test('결제하기 버튼을 클릭하면 결제하시겠습니까 라는 dialog가 나타난다.', async () => {
+    render(<Default />);
+    const paymentButton = await screen.findByRole('button', { name: '결제하기' });
+
+    await userEvent.click(paymentButton);
+
+    const dialog = await screen.findByRole('dialog');
+    expect(dialog).toBeInTheDocument();
+    const confirmButton = await screen.findByRole('button', { name: '확인' });
+
+    await userEvent.click(confirmButton);
+
+    await waitFor(() => {
+      const paymentApp = screen.getByText('보유카드');
+      expect(paymentApp).toBeInTheDocument();
+    });
   });
 });
