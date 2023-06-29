@@ -3,15 +3,11 @@ import deleteSvg from "../../assets/svgs/trash.svg";
 import QuantityHandler from "./QuantityHandler";
 import { CART } from "../../domain/constants";
 import { ICartItem, IProduct } from "../../domain/types";
+import { ICartItemHandlers } from "../../hooks/cart/useCartItemHandlers";
 
 type TProps = {
   item: ICartItem;
-  handlers: {
-    toggleCheck: (item: ICartItem) => void;
-    handleDeleteItem: (item: ICartItem) => void;
-    handleIncrement: (item: ICartItem) => void;
-    handleDecrement: (item: ICartItem) => void;
-  };
+  handlers: ICartItemHandlers;
 };
 
 const getTotalPrice = ({ price, quantity = CART.PRODUCTS.MIN_QUANTITY }: IProduct) => price * quantity;

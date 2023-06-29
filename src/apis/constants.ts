@@ -4,6 +4,7 @@ export const API_URL = {
   CART_ITEM_QUANTITY: "/api/cart/item/quantity",
   CART_ITEMS_CHECK: "/api/cart/items/check",
   ORDERS: "/api/orders",
+  CHECKOUT: "/api/checkout",
 };
 
 export const RESPONSE_CODE = {

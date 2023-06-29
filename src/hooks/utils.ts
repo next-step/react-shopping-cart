@@ -34,5 +34,5 @@ export function convertToViewError(error: IResponseError): IViewError {
 
   const status = parseStatusCode(error?.message);
   const message = parseMessage(status);
-  return { title: "에러 테스트", message };
+  return { title: `${status} Error`, message };
 }

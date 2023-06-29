@@ -1,7 +1,7 @@
 import { rest } from "msw";
 import db from "./db";
 import { RESPONSE_CODE } from "../apis";
-import { generateError } from "./util";
+import { CustomError, generateError } from "./util";
 
 const { products, orders: defaultOrders, cartItems: defaultCartItems } = db;
 const sortItems = (items) => items.sort((a, b) => (b.product.createdAt || 0) - (a.product.createdAt || 0));
@@ -114,7 +114,6 @@ export const handlers = [
 
       return response(context.status(RESPONSE_CODE.SUCCESS_EMPTY));
     } catch (error) {
-      console.error("quantity patch", error);
       return response(
         context.status(RESPONSE_CODE.FAILED_RESPONSE),
         context.json(generateError("수량 조절에 실패했습니다."))
@@ -140,6 +139,39 @@ export const handlers = [
       return response(context.status(RESPONSE_CODE.SUCCESS_EMPTY));
     } catch (error) {
       console.error("check patch", error);
+      return response(context.status(RESPONSE_CODE.FAILED_RESPONSE));
+    }
+  }),
+
+  rest.post("/api/checkout", async (request, response, context) => {
+    try {
+      const resp = await request.json();
+      const {
+        data: { items = [] },
+      } = resp;
+
+      if (items.length === 0) {
+        throw new CustomError("구매할 물건을 선택하지 않았습니다.");
+      }
+
+      // 주문 목록 추가하기
+      const newOrder = {
+        id: orders.length + 1,
+        orderDetails: items?.map((item) => item.product),
+      };
+      orders.unshift(newOrder);
+
+      // 장바구니에서 지우기
+      const itemIds = items.map(({ id }) => id);
+      cart.items = cart.items.filter((item) => !itemIds.includes(item.id));
+
+      return response(context.status(RESPONSE_CODE.SUCCESS_EMPTY));
+    } catch (error) {
+      console.error("checkout error", error);
+
+      if (error instanceof CustomError) {
+        return response(context.status(RESPONSE_CODE.FAILED_RESPONSE), context.json(generateError(error.message)));
+      }
       return response(context.status(RESPONSE_CODE.FAILED_RESPONSE));
     }
   }),

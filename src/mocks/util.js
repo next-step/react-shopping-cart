@@ -3,3 +3,5 @@ export function generateError(message) {
     customMessage: message,
   };
 }
+
+export class CustomError extends Error {}

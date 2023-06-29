@@ -1,10 +1,14 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { useCart, useCartItemHandlers } from "../../hooks";
-import { CartItem } from "../../components/CartItem";
+import { useNavigate } from "react-router-dom";
+import { CartItems } from "../../components/CartItems";
+import EstimatedPaymentSide from "../../components/EstimatedPaymentSide/EstimatedPaymentSide";
+import { SectionHeader } from "../../components/SectionHeader";
 
 const template = (children: React.ReactNode) => <div>{children}</div>;
 
 function Cart() {
+  const navigate = useNavigate();
   const [errorMessage, setError] = useState<string | null>(null);
 
   const {
@@ -24,13 +28,14 @@ function Cart() {
     return template(error.message); // not working.. TODO: 템플릿 작업
   }
 
+  const handleCheckout = () => {
+    navigate("/checkout");
+  };
+
   return (
     <section className="cart-section">
       {errorMessage && <div>{errorMessage}</div>}
-      <header className="flex-col-center mt-20">
-        <h2 className="cart-section__title">장바구니</h2>
-        <hr className="divide-line mt-20" />
-      </header>
+      <SectionHeader title="장바구니" />
 
       <div className="flex">
         <section className="cart-left-section">
@@ -53,32 +58,17 @@ function Cart() {
             </button>
           </div>
           {cart?.items?.length > 0 && (
-            <>
-              <h3 className="cart-title">든든배송 상품({cart.items.length}개)</h3>
-              <hr className="divide-line-gray mt-10" />
-              {cart?.items?.map((item) => (
-                <Fragment key={item.id}>
-                  <CartItem item={item} handlers={cartItemHandlers} />
-                  <hr className="divide-line-thin mt-10" />
-                </Fragment>
-              ))}
-            </>
+            <CartItems items={cart.items} title={`든든배송 상품(${cart.items.length}개)`} handlers={cartItemHandlers} />
           )}
         </section>
         <section className="cart-right-section">
-          <div className="cart-right-section__top">
-            <h3 className="cart-title">결제예상금액</h3>
-          </div>
-          <hr className="divide-line-thin" />
-          <div className="cart-right-section__bottom">
-            <div className="flex justify-between p-20 mt-20">
-              <span className="highlight-text">결제예상금액</span>
-              <span className="highlight-text">{estimatedPrice.toLocaleString()}원</span>
-            </div>
-            <div className="flex-center mt-30 mx-10">
-              <button className="primary-button flex-center">주문하기({checkedItems.length}개)</button>
-            </div>
-          </div>
+          <EstimatedPaymentSide
+            title="결제예상금액"
+            subtitle="결제예상금액"
+            estimatedPrice={estimatedPrice}
+            label={`주문하기(${checkedItems.length})개`}
+            onClick={handleCheckout}
+          />
         </section>
       </div>
     </section>

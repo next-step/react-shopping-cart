@@ -2,10 +2,13 @@ import React from "react";
 import { IProduct } from "../../domain/types";
 
 type TProps = {
-  item: IProduct;
+  product: IProduct;
+  onClick?: (product: IProduct) => void;
 };
 
-function OrderItem({ item: { name, price, imageUrl, quantity = 1 } }: TProps) {
+function OrderProduct({ product, onClick }: TProps) {
+  const { name, price, imageUrl, quantity = 1 } = product;
+
   return (
     <div className="order-list-item">
       <div className="flex gap-15 mt-10">
@@ -17,9 +20,11 @@ function OrderItem({ item: { name, price, imageUrl, quantity = 1 } }: TProps) {
           </span>
         </div>
       </div>
-      <button className="primary-button-small flex-center self-start">장바구니</button>
+      <button className="primary-button-small flex-center self-start" onClick={() => onClick?.(product)}>
+        장바구니
+      </button>
     </div>
   );
 }
 
-export default OrderItem;
+export default OrderProduct;
