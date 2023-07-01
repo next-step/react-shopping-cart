@@ -9,7 +9,10 @@ export async function requestDeleteItems(items: ICartItem[]): Promise<boolean> {
 }
 
 export async function requestToggleItem(items: ICartItem[], checked: boolean): Promise<boolean> {
-  const response = await fetcher.patch(API_URL.CART_ITEMS_CHECK, { items, checked });
+  const response = await fetcher.patch(API_URL.CART_ITEMS_CHECK, {
+    items,
+    checked,
+  });
   return response.status === RESPONSE_CODE.SUCCESS_EMPTY;
 }
 
@@ -23,7 +26,10 @@ export async function requestAddItem(product: IProduct): Promise<boolean> {
   return response.status === RESPONSE_CODE.SUCCESS_EMPTY;
 }
 
-export async function requestCartItems({ page = 1, unit = 2_999_999_9999_999 }: IRequestPaging) {
-  const params = new URLSearchParams({ page: page.toString(), unit: unit.toString() });
+export async function requestCartItems({ page, unit }: IRequestPaging) {
+  const params = new URLSearchParams({
+    page: page.toString(),
+    unit: unit.toString(),
+  });
   return fetcher.get<ICartResponse>(`${API_URL.CART}?${params.toString()}`);
 }

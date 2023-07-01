@@ -10,9 +10,13 @@ const orders = [...defaultOrders];
 const initializedCartItems = sortItems(
   defaultCartItems.map((item, idx) => ({
     ...item,
-    product: { ...item.product, createdAt: Date.now() + idx, updatedAt: Date.now() + idx },
+    product: {
+      ...item.product,
+      createdAt: Date.now() + idx,
+      updatedAt: Date.now() + idx,
+    },
     checked: false,
-  }))
+  })),
 );
 
 const cart = {
@@ -35,35 +39,70 @@ function analyzePages({ page, unit = DEFAULT_PAGE_UNIT, items = [] }) {
   const start = (parsedPage - 1) * parsedUnit;
   const end = start + parsedUnit;
 
-  return { parsedPage, parsedUnit, endOfPage, start, end };
+  return { parsedPage, parsedUnit, endOfPage, start, end, count: items.length };
 }
 
 export const handlers = [
   rest.get("/api/products", (request, response, context) => {
     const page = request.url.searchParams.get(PAGE_KEY);
     const unit = request.url.searchParams.get(UNIT_KEY);
-    const { start, end, endOfPage, parsedPage } = analyzePages({ page, unit, items: products });
+    const { start, end, endOfPage, parsedPage, count } = analyzePages({
+      page,
+      unit,
+      items: products,
+    });
 
     const responseForProducts = products.slice(start, end);
 
-    return response(context.status(200), context.json({ products: responseForProducts, page: parsedPage, endOfPage }));
+    return response(
+      context.status(200),
+      context.json({
+        products: responseForProducts,
+        page: parsedPage,
+        endOfPage,
+        count,
+      }),
+    );
   }),
-  rest.get("/api/orders", (_, res, context) => {
-    return res(context.status(200), context.json({ orders }));
+  rest.get("/api/orders", (request, response, context) => {
+    const page = request.url.searchParams.get(PAGE_KEY);
+    const unit = request.url.searchParams.get(UNIT_KEY);
+    const { start, end, endOfPage, parsedPage, count } = analyzePages({
+      page,
+      unit,
+      items: products,
+    });
+
+    const responseForOrders = orders.slice(start, end);
+
+    return response(
+      context.status(200),
+      context.json({
+        orders: responseForOrders,
+        page: parsedPage,
+        unit,
+        endOfPage,
+        count,
+      }),
+    );
   }),
 
   /////////////////////////
   rest.get("/api/cart", (request, response, context) => {
     const page = request.url.searchParams.get(PAGE_KEY);
     const unit = request.url.searchParams.get(UNIT_KEY);
-    const { start, end, endOfPage, parsedPage } = analyzePages({ page, unit, items: cart.items });
+    const { start, end, endOfPage, parsedPage, count } = analyzePages({
+      page,
+      unit,
+      items: cart.items,
+    });
 
     const productsInCart = cart.items.slice(start, end);
 
     return response(
       context.delay(RESPONSE_CODE.FAILED_RESPONSE),
       context.status(200),
-      context.json({ cart: { items: productsInCart }, page: parsedPage, endOfPage })
+      context.json({ items: productsInCart, page: parsedPage, endOfPage, count }),
     );
   }),
 
@@ -95,7 +134,7 @@ export const handlers = [
     } catch (error) {
       return response(
         context.status(RESPONSE_CODE.FAILED_RESPONSE),
-        context.json(generateError("상품 삭제에 실패했습니다. 다시 시도해 주세요."))
+        context.json(generateError("상품 삭제에 실패했습니다. 다시 시도해 주세요.")),
       );
     }
   }),
@@ -116,7 +155,7 @@ export const handlers = [
     } catch (error) {
       return response(
         context.status(RESPONSE_CODE.FAILED_RESPONSE),
-        context.json(generateError("수량 조절에 실패했습니다."))
+        context.json(generateError("수량 조절에 실패했습니다.")),
       );
     }
   }),

@@ -1,22 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCart, useCartItemHandlers } from "../../hooks";
 import { useNavigate } from "react-router-dom";
 import { CartItems } from "../../components/CartItems";
 import EstimatedPaymentSide from "../../components/EstimatedPaymentSide/EstimatedPaymentSide";
 import { SectionHeader } from "../../components/SectionHeader";
+import { useInView } from "react-intersection-observer";
 
 const template = (children: React.ReactNode) => <div>{children}</div>;
 
 function Cart() {
+  const { ref: infiniteRef, inView } = useInView();
+
   const navigate = useNavigate();
   const [errorMessage, setError] = useState<string | null>(null);
 
   const {
+    pageRef,
     status,
     error,
     cart,
     values: { estimatedPrice, allChecked, checkedItems },
+    queries: { fetchNextPage, hasNextPage },
   } = useCart();
+
+  useEffect(() => {
+    if (inView && hasNextPage) {
+      pageRef.current += 1;
+      fetchNextPage({ pageParam: pageRef.current });
+    }
+  }, [inView]);
 
   const { toggleAllCheck, deleteCheckedItems, cartItemHandlers } = useCartItemHandlers({ setError });
 
@@ -60,6 +72,7 @@ function Cart() {
           {cart?.items?.length > 0 && (
             <CartItems items={cart.items} title={`든든배송 상품(${cart.items.length}개)`} handlers={cartItemHandlers} />
           )}
+          <hr ref={infiniteRef} />
         </section>
         <section className="cart-right-section">
           <EstimatedPaymentSide

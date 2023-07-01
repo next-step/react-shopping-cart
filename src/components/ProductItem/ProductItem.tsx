@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import cartIcon from "../../assets/svgs/cart.svg";
 import { IProduct } from "../../domain/types";
 
@@ -24,4 +24,6 @@ function ProductItem({ product, onAddInCart }: TProps) {
   );
 }
 
-export default ProductItem;
+const forwardedProductItem = forwardRef(ProductItem);
+forwardedProductItem.displayName = "ProductItem";
+export default forwardedProductItem;

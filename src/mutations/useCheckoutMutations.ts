@@ -26,7 +26,7 @@ const useCheckoutMutations = (prop: TProp) => {
         setError?.(convertToViewError(error).message);
       },
     }),
-    [queryClient]
+    [queryClient],
   );
 
   return {

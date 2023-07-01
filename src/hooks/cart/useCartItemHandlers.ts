@@ -26,13 +26,15 @@ const useCartItemHandlers = (props: TProps) => {
     values: { allChecked, checkedItems },
   } = useCart();
 
-  const { deleteItems, toggleCheck, updateQuantity } = useCartMutations({ setError });
+  const { deleteItems, toggleCheck, updateQuantity } = useCartMutations({
+    setError,
+  });
 
   const updateItemQuantity = useCallback(
     (item: ICartItem) => {
       updateQuantity.mutate(item);
     },
-    [updateQuantity, cart]
+    [updateQuantity, cart],
   );
 
   const deleteCheckedItems = useCallback(() => {
