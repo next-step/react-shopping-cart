@@ -13,7 +13,6 @@ import { TOAST_MESSAGE } from '@/constants/toastMessage';
 import { useCartContext } from '@/context/cart';
 import { useToastContext } from '@/context/toast';
 
-import { TItem } from '@/types/cart';
 import { TProduct } from '@/types/product';
 
 import { numberFormatter } from '@/utils/number';
@@ -34,7 +33,7 @@ export default function Product({ id, name, price, imageUrl }: Props) {
   const hasItemInCarts = items.findIndex((item) => item.id === id) > -1;
 
   const handleClickAddItemToCart = useCallback(
-    (item: TItem) => (e: MouseEvent<HTMLButtonElement>) => {
+    (item: TProduct) => (e: MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
 
       addItem(item);
