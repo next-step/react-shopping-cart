@@ -9,7 +9,7 @@ import { useRef } from "react";
 const useProducts = () => {
   const pageRef = useRef(0);
 
-  const { data, status, fetchNextPage, error: queryError } = useProductsQuery();
+  const { data, fetchNextPage, error: queryError, isFetching, hasNextPage } = useProductsQuery();
 
   const error = convertToViewError(queryError as IResponseError);
 
@@ -39,6 +39,6 @@ const useProducts = () => {
     }
   };
 
-  return { pageRef, status, error, products, handleAddToCart, fetchNextPage };
+  return { pageRef, isFetching, error, products, handleAddToCart, fetchNextPage, hasNextPage };
 };
 export default useProducts;

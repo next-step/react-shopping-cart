@@ -1,45 +1,17 @@
 import React from "react";
-import { createBrowserRouter } from "react-router-dom";
-
-import { Products } from "./pages/Products";
 import App from "./App";
-import { Cart } from "./pages/Cart";
-import { Orders } from "./pages/Orders";
-import { Checkout } from "./pages/Checkout";
+import { Cart, Products, Checkout, Orders } from "./pages";
+import { Route, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: (
-      <App>
-        <Products />
-      </App>
-    ),
-  },
-  {
-    path: "/cart",
-    element: (
-      <App>
-        <Cart />
-      </App>
-    ),
-  },
-  {
-    path: "/orders",
-    element: (
-      <App>
-        <Orders />
-      </App>
-    ),
-  },
-  {
-    path: "/checkout",
-    element: (
-      <App>
-        <Checkout />
-      </App>
-    ),
-  },
-]);
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<App />}>
+      <Route path="cart" element={<Cart />} />
+      <Route path="checkout" element={<Checkout />} />
+      <Route path="orders" element={<Orders />} />
+      <Route path="/" element={<Products />} />
+    </Route>,
+  ),
+);
 
 export default router;

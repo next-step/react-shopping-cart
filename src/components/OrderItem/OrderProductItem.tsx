@@ -1,5 +1,6 @@
 import React from "react";
 import { IProduct } from "../../domain/types";
+import { PrimaryButton } from "../PrimaryButton";
 
 type TOrderProductItemProps = {
   item: IProduct;
@@ -15,7 +16,9 @@ function OrderProductItem({ item }: TOrderProductItemProps) {
           {/* TODO: STEP2~3 구현 전... */}
           <span>수량: {1}</span>
         </div>
-        <button className="primary-button-small flex-center self-start">장바구니</button>
+        <PrimaryButton size="small" classNames={["flex-center", "self-start"]}>
+          장바구니
+        </PrimaryButton>
       </div>
     </div>
   );

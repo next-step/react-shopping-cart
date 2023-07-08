@@ -14,9 +14,10 @@ const useOrdersQuery = () => {
       });
       return res.data;
     },
-
     {
       getNextPageParam: (lastPage) => lastPage.page < lastPage.endOfPage,
+      suspense: true,
+      useErrorBoundary: true,
     },
   );
 };

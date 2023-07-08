@@ -42,6 +42,12 @@ function analyzePages({ page, unit = DEFAULT_PAGE_UNIT, items = [] }) {
   return { parsedPage, parsedUnit, endOfPage, start, end, count: items.length };
 }
 
+// let retriedCounts = {
+//   products: 0,
+//   cart: 0,
+//   orders: 0,
+// };
+
 export const handlers = [
   rest.get("/api/products", (request, response, context) => {
     const page = request.url.searchParams.get(PAGE_KEY);
@@ -54,8 +60,16 @@ export const handlers = [
 
     const responseForProducts = products.slice(start, end);
 
+    // retriedCounts.products += 1;
+    // if (retriedCounts.products < 5) {
+    //   return response(
+    //     context.status(RESPONSE_CODE.FAILED_REQUEST),
+    //     context.json(generateError("서비스 부하로 상품 조회에 실패했습니다. 다시 시도해 주세요")),
+    //   );
+    // }
+
     return response(
-      context.status(200),
+      context.status(RESPONSE_CODE.SUCCESS),
       context.json({
         products: responseForProducts,
         page: parsedPage,
@@ -64,19 +78,28 @@ export const handlers = [
       }),
     );
   }),
+
   rest.get("/api/orders", (request, response, context) => {
     const page = request.url.searchParams.get(PAGE_KEY);
     const unit = request.url.searchParams.get(UNIT_KEY);
     const { start, end, endOfPage, parsedPage, count } = analyzePages({
       page,
       unit,
-      items: products,
+      items: orders,
     });
 
     const responseForOrders = orders.slice(start, end);
 
+    // retriedCounts.orders += 1;
+    // if (retriedCounts.orders < 5) {
+    //   return response(
+    //     context.status(RESPONSE_CODE.FAILED_REQUEST),
+    //     context.json(generateError("일시적인 오류로 주문 목록을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요")),
+    //   );
+    // }
+
     return response(
-      context.status(200),
+      context.status(RESPONSE_CODE.SUCCESS),
       context.json({
         orders: responseForOrders,
         page: parsedPage,
@@ -88,6 +111,7 @@ export const handlers = [
   }),
 
   /////////////////////////
+
   rest.get("/api/cart", (request, response, context) => {
     const page = request.url.searchParams.get(PAGE_KEY);
     const unit = request.url.searchParams.get(UNIT_KEY);
@@ -99,9 +123,16 @@ export const handlers = [
 
     const productsInCart = cart.items.slice(start, end);
 
+    // retriedCounts.cart += 1;
+    // if (retriedCounts.cart < 5) {
+    //   return response(
+    //     context.status(RESPONSE_CODE.FAILED_REQUEST),
+    //     context.json(generateError("일시적인 장애로 장바구니 조회에 실패했습니다. 잠시 후 다시 시도해 주세요")),
+    //   );
+    // }
+
     return response(
-      context.delay(RESPONSE_CODE.FAILED_RESPONSE),
-      context.status(200),
+      context.status(RESPONSE_CODE.SUCCESS),
       context.json({ items: productsInCart, page: parsedPage, endOfPage, count }),
     );
   }),

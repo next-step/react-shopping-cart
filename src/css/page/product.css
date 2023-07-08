@@ -1,6 +1,15 @@
 .product-container {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  max-width: 1920px;
+}
+
+.product-container ul {
+  display: flex;
+  justify-content: center;
 
   flex-wrap: wrap;
   gap: 20px;
@@ -16,8 +25,8 @@
   font-size: 12px;
 }
 
-.product-info__price {
-}
+/* .product-info__price {
+} */
 
 .product-detail-container {
   display: flex;

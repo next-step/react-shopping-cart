@@ -1,5 +1,6 @@
 import React from "react";
 import { IProduct } from "../../domain/types";
+import { PrimaryButton } from "../PrimaryButton";
 
 type TProps = {
   product: IProduct;
@@ -20,9 +21,9 @@ function OrderProduct({ product, onClick }: TProps) {
           </span>
         </div>
       </div>
-      <button className="primary-button-small flex-center self-start" onClick={() => onClick?.(product)}>
+      <PrimaryButton size="small" classNames={["flex-center", "self-start"]} onClick={() => onClick?.(product)}>
         장바구니
-      </button>
+      </PrimaryButton>
     </div>
   );
 }

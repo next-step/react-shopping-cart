@@ -1,40 +1,30 @@
-import React, { useEffect } from "react";
-import { useInView } from "react-intersection-observer";
-import { ProductItem } from "../../components/ProductItem";
-import { useProducts } from "../../hooks";
-import { IProduct } from "../../domain/types";
-
-const template = (children: React.ReactNode) => <section className="product-container">{children}</section>;
+import React, { Suspense } from "react";
+import ProductList from "./ProductList";
+import ProductTemplate from "./ProductTemplate";
+import { CartItemsSkeleton } from "../../components/CartItemsSkeleton";
+import { ErrorBoundary } from "react-error-boundary";
+import { UnknownError } from "../../components/UnknownError";
+import { QueryErrorResetBoundary } from "react-query";
+import { IResponseError } from "../../domain/types/response";
 
 function Products() {
-  const { ref: infiniteRef, inView } = useInView();
-
-  const { pageRef, status, error, products, handleAddToCart, fetchNextPage } = useProducts();
-
-  useEffect(() => {
-    if (inView) {
-      pageRef.current += 1;
-      fetchNextPage({ pageParam: pageRef.current });
-    }
-  }, [inView]);
-
-  if (status === "loading") {
-    return template(<div>loading...</div>);
-  }
-
-  if (status === "error") {
-    return template(<div>{error.message}</div>);
-  }
-
   return (
-    <>
-      {template(
-        products?.map((product: IProduct) => (
-          <ProductItem key={product.id} product={product} onAddInCart={handleAddToCart} />
-        )),
-      )}
-      <hr style={{ visibility: "hidden" }} ref={infiniteRef} />
-    </>
+    <ProductTemplate>
+      <QueryErrorResetBoundary>
+        {({ reset }) => (
+          <ErrorBoundary
+            onReset={reset}
+            fallbackRender={({ resetErrorBoundary, error }) => (
+              <UnknownError resetErrorBoundary={resetErrorBoundary} error={error as IResponseError} />
+            )}
+          >
+            <Suspense fallback={<CartItemsSkeleton />}>
+              <ProductList />
+            </Suspense>
+          </ErrorBoundary>
+        )}
+      </QueryErrorResetBoundary>
+    </ProductTemplate>
   );
 }
 

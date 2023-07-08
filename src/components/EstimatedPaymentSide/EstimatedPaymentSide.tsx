@@ -1,4 +1,5 @@
 import React from "react";
+import { PrimaryButton } from "../PrimaryButton";
 
 type TProps = {
   title: string;
@@ -21,9 +22,9 @@ function EstimatedPaymentSide({ title, subtitle, estimatedPrice, label, onClick 
           <span className="highlight-text">{estimatedPrice.toLocaleString()}원</span>
         </div>
         <div className="flex-center mt-30 mx-10">
-          <button className="primary-button flex-center" onClick={() => onClick?.()}>
+          <PrimaryButton classNames={["flex-center"]} onClick={onClick}>
             {label}
-          </button>
+          </PrimaryButton>
         </div>
       </div>
     </div>
