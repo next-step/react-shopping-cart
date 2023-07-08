@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useCart, useCartItemHandlers } from "../../hooks";
 import { useNavigate } from "react-router-dom";
-import { CartItems } from "../../components/CartItems";
-import EstimatedPaymentSide from "../../components/EstimatedPaymentSide/EstimatedPaymentSide";
+import { CartItems, EstimatedPaymentSide } from "../../components";
 import { useInView } from "react-intersection-observer";
 
 function CartList() {

@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { SectionHeader } from "../../components/SectionHeader";
-import EstimatedPaymentSide from "../../components/EstimatedPaymentSide/EstimatedPaymentSide";
-import { CartItems } from "../../components/CartItems";
-import { useCart, useCartItemHandlers } from "../../hooks";
 import { useNavigate } from "react-router-dom";
-import useCheckoutMutations from "../../mutations/useCheckoutMutations";
 import { useQueryClient } from "react-query";
 import { QUERY_KEY } from "../../queries/useOrdersQuery";
+import useCheckoutMutations from "../../mutations/useCheckoutMutations";
+import { useCart, useCartItemHandlers } from "../../hooks";
+import { SectionHeader, EstimatedPaymentSide, CartItems } from "../../components";
 
 function Checkout() {
   const queryClient = useQueryClient();

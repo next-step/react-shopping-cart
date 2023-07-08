@@ -1,13 +1,14 @@
 import React, { Fragment } from "react";
 import { ICartItem } from "../../domain/types";
-import CartItem from "../CartItem/CartItem";
 import { ICartItemHandlers } from "../../hooks/cart/useCartItemHandlers";
+import { CartItem } from "../CartItem";
 
 type TProps = {
   items: ICartItem[];
   handlers: ICartItemHandlers;
   title?: string;
 };
+
 function CartItems({ items, title, handlers }: TProps) {
   return (
     <div>

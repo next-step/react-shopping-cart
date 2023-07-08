@@ -1,5 +1,8 @@
 .cart-section {
   padding: 24px 300px;
+
+  margin: 0 auto;
+  max-width: 1920px;
 }
 
 .cart-section__title {

@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import { ProductItem } from "../../components/ProductItem";
+import { ProductItem, Spinner } from "../../components";
 import { useProducts } from "../../hooks";
 import { IProduct } from "../../domain/types";
-import { Spinner } from "../../components/Spinner";
 
 function ProductList() {
   const { ref: infiniteRef, inView } = useInView();

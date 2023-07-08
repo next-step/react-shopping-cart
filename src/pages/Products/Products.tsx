@@ -1,11 +1,10 @@
 import React, { Suspense } from "react";
 import ProductList from "./ProductList";
 import ProductTemplate from "./ProductTemplate";
-import { CartItemsSkeleton } from "../../components/CartItemsSkeleton";
-import { ErrorBoundary } from "react-error-boundary";
-import { UnknownError } from "../../components/UnknownError";
 import { QueryErrorResetBoundary } from "react-query";
+import { ErrorBoundary } from "react-error-boundary";
 import { IResponseError } from "../../domain/types/response";
+import { UnknownError, CartItemsSkeleton } from "../../components";
 
 function Products() {
   return (

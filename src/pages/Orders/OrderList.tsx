@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import OrderProduct from "../../components/OrderItem/OrderProduct";
 import { useOrders, useProducts } from "../../hooks";
-import { Spinner } from "../../components/Spinner";
+import { OrderProduct, Spinner } from "../../components";
 
 function OrderList() {
   const { ref: infiniteRef, inView } = useInView();

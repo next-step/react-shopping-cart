@@ -1,11 +1,10 @@
 import React, { Suspense } from "react";
-import OrderTemplate from "./OrderTemplate";
-import OrderList from "./OrderList";
-import { Spinner } from "../../components/Spinner";
 import { QueryErrorResetBoundary } from "react-query";
 import { ErrorBoundary } from "react-error-boundary";
-import { UnknownError } from "../../components/UnknownError";
+import { Spinner, UnknownError } from "../../components";
 import { IResponseError } from "../../domain/types/response";
+import OrderTemplate from "./OrderTemplate";
+import OrderList from "./OrderList";
 
 function Orders() {
   return (

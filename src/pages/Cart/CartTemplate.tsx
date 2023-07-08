@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from "react";
-import { SectionHeader } from "../../components/SectionHeader";
+import { SectionHeader } from "../../components";
 
 interface IProps extends PropsWithChildren {
   errorMessage?: string;

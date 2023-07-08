@@ -1,11 +1,10 @@
 import React, { Suspense } from "react";
+import { QueryErrorResetBoundary } from "react-query";
+import { ErrorBoundary } from "react-error-boundary";
 import CartList from "./CartList";
 import CartTemplate from "./CartTemplate";
-import { Spinner } from "../../components/Spinner";
-import { ErrorBoundary } from "react-error-boundary";
-import { QueryErrorResetBoundary } from "react-query";
-import { UnknownError } from "../../components/UnknownError";
 import { IResponseError } from "../../domain/types/response";
+import { Spinner, UnknownError } from "../../components";
 
 function Cart() {
   return (

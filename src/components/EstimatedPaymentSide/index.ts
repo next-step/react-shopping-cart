@@ -1,1 +1,1 @@
-export { default as EstimatedPaymentside } from "./EstimatedPaymentSide";
+export { default as EstimatedPaymentSide } from "./EstimatedPaymentSide";
