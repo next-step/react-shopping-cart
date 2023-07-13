@@ -1,15 +1,18 @@
-import React, { PropsWithChildren } from 'react';
-import { Header } from './components';
-import { CartContextProvider } from './context/CartContext/CartContext';
+import React from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { Header } from "./components";
+import { Outlet } from "react-router-dom";
 
-function App({ children }: PropsWithChildren) {
+const queryClient = new QueryClient();
+
+function App() {
   return (
-    <CartContextProvider>
+    <QueryClientProvider client={queryClient}>
       <div className="App">
         <Header />
-        {children}
+        <Outlet />
       </div>
-    </CartContextProvider>
+    </QueryClientProvider>
   );
 }
 

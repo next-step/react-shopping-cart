@@ -1,27 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { ProductItem } from '../../components/ProductItem';
-import { IProduct, IProductResponse } from '../../domain/shopping-cart/types';
+import React, { Suspense } from "react";
+import ProductList from "./ProductList";
+import ProductTemplate from "./ProductTemplate";
+import { QueryErrorResetBoundary } from "react-query";
+import { ErrorBoundary } from "react-error-boundary";
+import { IResponseError } from "../../domain/types/response";
+import { UnknownError, CartItemsSkeleton } from "../../components";
 
 function Products() {
-  const [products, setProducts] = useState<IProduct[]>([]);
-
-  useEffect(() => {
-    const loadProducts = async () => {
-      const response = await fetch('/api/products');
-      const json = (await response.json()) as IProductResponse;
-
-      setProducts(json.products);
-    };
-
-    loadProducts();
-  }, []);
-
   return (
-    <section className="product-container">
-      {products.map((product) => (
-        <ProductItem key={product.id} product={product} />
-      ))}
-    </section>
+    <ProductTemplate>
+      <QueryErrorResetBoundary>
+        {({ reset }) => (
+          <ErrorBoundary
+            onReset={reset}
+            fallbackRender={({ resetErrorBoundary, error }) => (
+              <UnknownError resetErrorBoundary={resetErrorBoundary} error={error as IResponseError} />
+            )}
+          >
+            <Suspense fallback={<CartItemsSkeleton />}>
+              <ProductList />
+            </Suspense>
+          </ErrorBoundary>
+        )}
+      </QueryErrorResetBoundary>
+    </ProductTemplate>
   );
 }
 
