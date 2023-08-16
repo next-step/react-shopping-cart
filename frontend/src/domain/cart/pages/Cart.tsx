@@ -9,9 +9,7 @@ export default function Cart() {
     <CartContainer>
       <H2>장바구니 목록</H2>
       <ul>
-        {items.map((item) => {
-          const { id, name, price, imageUrl } = item;
-
+        {items.map(({ id, name, price, imageUrl }) => {
           return (
             <ProductDetailLi key={id}>
               <LeftWing>

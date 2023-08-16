@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from '@emotion/styled';
 
@@ -16,20 +15,17 @@ import { numberFormatter } from '@/utils/number';
 
 export default function ProductDetail() {
   const navigate = useNavigate();
-  const { id } = useParams() as { id: string };
+  const { id } = useParams();
 
   const { addItem } = useCartContext();
 
   const { data: product, isLoading, error } = useProduct(Number(id));
 
-  const handleClickCart = useCallback(
-    (product: TProduct) => () => {
-      addItem(product);
+  const handleClickCart = (product: TProduct) => () => {
+    addItem(product);
 
-      navigate(ROUTES.CART);
-    },
-    [addItem, navigate],
-  );
+    navigate(ROUTES.CART);
+  };
 
   if (isLoading) {
     return <div>loading...</div>;

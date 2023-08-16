@@ -1,4 +1,4 @@
-import { MouseEvent, useCallback } from 'react';
+import { MouseEvent, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import classnames from 'classnames';
@@ -30,7 +30,7 @@ export default function Product({ id, name, price, imageUrl }: Props) {
   const { items, addItem } = useCartContext();
   const { showToast } = useToastContext();
 
-  const hasItemInCarts = items.findIndex((item) => item.id === id) > -1;
+  const hasItemInCarts = useMemo(() => items.find((item) => item.id === id), [id, items]);
 
   const handleClickAddItemToCart = useCallback(
     (item: TProduct) => (e: MouseEvent<HTMLButtonElement>) => {

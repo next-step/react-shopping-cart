@@ -25,9 +25,9 @@ export default function CartProvider({ children }: PropsWithChildren) {
 
   const addItem = useCallback(
     (value: TProduct) => {
-      const hasItemInCarts = items.findIndex((item) => item.id === value.id);
+      const hasItemInCarts = items.find((item) => item.id === value.id);
 
-      if (hasItemInCarts > -1) {
+      if (hasItemInCarts) {
         deleteItem(value.id);
         return;
       }

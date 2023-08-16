@@ -5,23 +5,23 @@ import Toast from '@/components/common/Toast/Toast';
 import useBoolean from '@/hooks/useBoolean';
 
 type InitValue = {
-  showToast: (message: string) => void;
+  openToast: (message: string) => void;
 };
 
 const initValue: InitValue = {
-  showToast: () => null,
+  openToast: () => null,
 };
 
 export const ToastContext = createContext(initValue);
 
 export default function ToastProvider({ children }: PropsWithChildren) {
   const [message, setMessage] = useState('');
-  const { bool: isToastOpen, setTrue, setFalse } = useBoolean(false);
+  const { bool: showToast, setTrue: setShowToastTrue, setFalse: setShowToastFalse } = useBoolean(false);
   const toastTimer = useRef<NodeJS.Timeout>();
 
-  const showToast = useCallback(
+  const openToast = useCallback(
     (message: string) => {
-      setTrue();
+      setShowToastTrue();
       setMessage(message);
 
       if (toastTimer.current) {
@@ -29,20 +29,20 @@ export default function ToastProvider({ children }: PropsWithChildren) {
       }
 
       const timer = setTimeout(() => {
-        setFalse();
+        setShowToastFalse();
         setMessage('');
       }, 1_500);
       toastTimer.current = timer;
     },
-    [setTrue, setFalse],
+    [setShowToastTrue, setShowToastFalse],
   );
 
-  const contextValue = useMemo(() => ({ showToast }), [showToast]);
+  const contextValue = useMemo(() => ({ openToast }), [openToast]);
 
   return (
     <ToastContext.Provider value={contextValue}>
       {children}
-      {isToastOpen && <Toast message={message} />}
+      {showToast && <Toast message={message} />}
     </ToastContext.Provider>
   );
 }
