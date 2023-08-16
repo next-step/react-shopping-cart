@@ -19,13 +19,9 @@ export const CartContext = createContext(initValue);
 export default function CartProvider({ children }: PropsWithChildren) {
   const [items, setItems] = useState<TProduct[]>([]);
 
-  const deleteItem = useCallback(
-    (id: number) => {
-      const filteredItems = items.filter((item) => item.id !== id);
-      setItems(filteredItems);
-    },
-    [items],
-  );
+  const deleteItem = useCallback((id: number) => {
+    setItems((prev) => prev.filter((item) => item.id !== id));
+  }, []);
 
   const addItem = useCallback(
     (value: TProduct) => {
@@ -41,7 +37,7 @@ export default function CartProvider({ children }: PropsWithChildren) {
     [items, deleteItem],
   );
 
-  const contextValue = useMemo(() => ({ items, addItem, deleteItem }), [items, addItem, deleteItem]);
+  const contextValue = { items, addItem, deleteItem };
 
   return <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>;
 }
