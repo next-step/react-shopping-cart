@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { Grid } from '@/components/common';
+import { Box } from '@/components/common';
 
 import Product from '@/domain/product/components/Product';
 import useProducts from '@/domain/product/hooks/useProducts';
@@ -25,7 +25,7 @@ export default function ProductList() {
   );
 }
 
-const ProductListGrid = styled(Grid)`
+const ProductListGrid = styled(Box)`
   max-width: 1280px;
   margin: 32px auto 0;
   padding: 0 16px;

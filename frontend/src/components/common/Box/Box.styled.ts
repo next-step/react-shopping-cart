@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import type { BoxProps } from './Box.types';
+import { BoxProps } from '@/components/common/Box/Box';
 
 export const Box = styled.div<BoxProps>`
   ${({ display }) => css`
@@ -15,5 +15,11 @@ export const Box = styled.div<BoxProps>`
   `}
   ${({ alignItems }) => css`
     align-items: ${alignItems};
+  `}
+  ${({ gridTemplateColumns }) => css`
+    grid-template-columns: ${gridTemplateColumns};
+  `}
+  ${({ gap }) => css`
+    gap: ${gap};
   `}
 `;
