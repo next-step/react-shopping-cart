@@ -1,10 +1,10 @@
-import React, { InputHTMLAttributes } from "react";
+import React, { InputHTMLAttributes, MouseEvent } from "react";
 
 import * as S from "./numberCounter.style";
 
 interface NumberInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  onIncrease: () => void;
-  onDecrease: () => void;
+  onIncrease: (e: MouseEvent) => void;
+  onDecrease: (e: MouseEvent) => void;
 }
 
 export default function NumberInput({ className, onIncrease, onDecrease, ...props }: NumberInputProps) {

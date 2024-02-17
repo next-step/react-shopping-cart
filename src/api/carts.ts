@@ -8,13 +8,17 @@ export type Cart = {
 };
 
 export const fetchCarts = () => {
-  return axios.get<Cart[]>(EndPoint.CARTS.GET_CARTS);
+  return axios.get<Cart[]>(EndPoint.CARTS);
 };
 
 export const addCart = (product: Product) => {
-  return axios.post<Cart>(EndPoint.CARTS.ADD_CARTS, { product });
+  return axios.post<Cart>(EndPoint.CARTS, { product });
 };
 
-export const deleteCard = (cartId: string) => {
-  return axios.delete<Cart>(EndPoint.CARTS.DELETE_CARTS, { data: { cartId } });
+export const deleteCart = (productId: number) => {
+  return axios.delete<Cart>(`${EndPoint.CARTS}/${productId}`);
+};
+
+export const deleteCarts = (productIds: number[]) => {
+  return axios.delete<Cart[]>(`${EndPoint.CARTS}`, { data: { productIds } });
 };

@@ -31,7 +31,7 @@ export default function PriceDashBoard({
           <span>{priceTitle}</span>
           <span>{numberWithCommas(price)} 원</span>
         </S.PriceWrapper>
-        <S.PriceDashBoardButton variant="contained" onClick={onSubmit}>
+        <S.PriceDashBoardButton variant="contained" onClick={onSubmit} disabled={!price}>
           {buttonLabel}
         </S.PriceDashBoardButton>
       </S.PriceDashBoardContentWrapper>

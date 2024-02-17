@@ -1,9 +1,11 @@
-import React, { useMemo } from "react";
+import React from "react";
 
 import type { Product } from "@/api/products";
 import { CartProduct } from "@/components/carts";
+import { useCartProductHandler } from "@/components/carts/CartProduct/hooks";
 import { PriceDashBoard } from "@/components/common";
-import { useFetchCartProducts } from "@/hooks/api";
+import { CONFIRM_MESSAGES } from "@/constants/messages";
+import { withAsync } from "@/helpers";
 import { CartOrderContentLayout } from "@/layouts";
 
 import * as S from "./carts.style";
@@ -15,39 +17,54 @@ export interface CartGroup extends Omit<Product, "id"> {
 }
 
 export default function Carts() {
-  const { cartProducts } = useFetchCartProducts();
+  const {
+    cartProducts,
+    selectedCartProducts,
+    onToggleAllItems,
+    onToggleItem,
+    checkedTotalPrice,
+    isChecked,
+    onIncreaseCartProductCount,
+    onDecreaseCartProductCount,
+    onDeleteCartProducts,
+    onDeleteCartProduct,
+  } = useCartProductHandler();
 
-  const cartProductsGroup = useMemo(() => {
-    return cartProducts.reduce((acc, { product }, index) => {
-      const { id, ...restProductKey } = product;
-      const curCartProductIndex = acc.findIndex((prevCartProduct) => prevCartProduct.productId === id);
+  const handleSubmitOrder = async () => {
+    const isSubmitConfirm = confirm(CONFIRM_MESSAGES.COMPLETE_ORDER_MESSAGE);
 
-      if (curCartProductIndex === -1) {
-        return [...acc, { id: Date.now() + index, productId: id, ...restProductKey, count: 1 }];
-      } else {
-        const updatedProduct = { ...acc[curCartProductIndex], count: acc[curCartProductIndex].count + 1 };
-        return [...acc.slice(0, curCartProductIndex), updatedProduct, ...acc.slice(curCartProductIndex + 1)];
-      }
-    }, [] as CartGroup[]);
-  }, [cartProducts]);
+    if (!isSubmitConfirm) return;
+
+    const { error } = await withAsync(() => onDeleteCartProducts());
+
+    if (!error) {
+      // 주문하기 페이지로 이동
+    }
+  };
 
   return (
     <CartOrderContentLayout>
       <div>
         <S.CartProductDeleteButtonWrapper>
-          <S.CartProductCheckBox width="20px" label="선택해제" />
-          <S.CartProductDeleteButton variant="outlined">상품삭제</S.CartProductDeleteButton>
+          <S.CartProductCheckBox width="20px" label="선택해제" onChange={onToggleAllItems} />
+          <S.CartProductDeleteButton variant="outlined" onClick={onDeleteCartProducts}>
+            상품삭제
+          </S.CartProductDeleteButton>
         </S.CartProductDeleteButtonWrapper>
 
-        <S.CartSubHeader textAlign="left">든든배송 상품 (3개)</S.CartSubHeader>
+        <S.CartSubHeader textAlign="left">{`든든배송 상품 (${cartProducts.length}개)`}</S.CartSubHeader>
 
-        {cartProductsGroup.map((cartProduct) => (
+        {cartProducts.map((cartProduct) => (
           <CartProduct
+            id={cartProduct.id.toString()}
             key={cartProduct.id}
             css={S.cartProductStyle}
             cartProductInfo={cartProduct}
-            onIncreaseProductQuantity={() => console.log("increase")}
-            onDecreaseProductQuantity={() => console.log("decrease")}
+            isChecked={isChecked(cartProduct.id)}
+            onCheckItem={onToggleItem}
+            onIncreaseProductQuantity={onIncreaseCartProductCount(cartProduct.id)}
+            onDecreaseProductQuantity={onDecreaseCartProductCount(cartProduct.id)}
+            onDeleteProduct={onDeleteCartProduct(cartProduct.productId)}
           />
         ))}
       </div>
@@ -56,9 +73,9 @@ export default function Carts() {
         <PriceDashBoard
           title="결제예상금액"
           priceTitle="결제예상금액"
-          price={212121}
-          buttonLabel="주문하기"
-          onSubmit={() => console.log("order")}
+          price={checkedTotalPrice}
+          buttonLabel={`주문하기 ${selectedCartProducts.size ? `${selectedCartProducts.size}개` : ""}`}
+          onSubmit={handleSubmitOrder}
         />
       </div>
     </CartOrderContentLayout>
