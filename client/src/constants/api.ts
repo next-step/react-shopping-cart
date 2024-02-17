@@ -3,4 +3,5 @@ export const API = {
   CARTS: '/carts',
   CART: '/cart',
   ORDERS: '/orders',
+  ORDER_CHECKOUT: '/order/checkout',
 };

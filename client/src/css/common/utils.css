@@ -79,6 +79,10 @@
   width: 520;
 }
 
+.w-full {
+  width: 100%;
+}
+
 .h-144 {
   height: 144px;
 }

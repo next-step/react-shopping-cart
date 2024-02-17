@@ -1,16 +1,16 @@
 import { useMutation, useRouter } from 'hooks';
-import { addOrder } from 'api';
 import { PATHS } from 'constants/router';
+import { updateOrderCheckout } from 'api';
 
-function useAddOrder() {
+function useUpdateOrderCheckout() {
   const { navigate } = useRouter();
 
   return useMutation({
-    mutation: addOrder,
+    mutation: updateOrderCheckout,
     onSuccess: () => {
       navigate(PATHS.ORDER_CHECKOUT);
     },
   });
 }
 
-export default useAddOrder;
+export default useUpdateOrderCheckout;

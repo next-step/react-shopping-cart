@@ -1,7 +1,7 @@
 info @storybook/react v6.5.16
 info 
-info => Cleaning outputDir: /var/folders/9d/0x6df99n5lq7yy_td6t2td680000gn/T/chromatic--10153-oTyE6gDZng5f
-(node:10170) DeprecationWarning: --static-dir CLI flag is deprecated, see:
+info => Cleaning outputDir: /var/folders/9d/0x6df99n5lq7yy_td6t2td680000gn/T/chromatic--36437-2lQ28kXwTcgi
+(node:36455) DeprecationWarning: --static-dir CLI flag is deprecated, see:
 
 https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#deprecated---static-dir-cli-flag
 (Use `node --trace-deprecation ...` to show where the warning was created)
@@ -136,38 +136,41 @@ info => Using default Webpack5 setup
 <s> [webpack.Progress] 10% building import loader ./node_modules/react-scripts/node_modules/babel-loader/lib/index.js
 <s> [webpack.Progress] 10% building import loader ./node_modules/react-scripts/node_modules/source-map-loader/dist/cjs.js
 <s> [webpack.Progress] 10% building 0/14 entries 13/33 dependencies 0/12 modules
+<s> [webpack.Progress] 10% building 0/14 entries 32/60 dependencies 1/28 modules
 <s> [webpack.Progress] 10% building import loader ./node_modules/@storybook/source-loader/dist/cjs/index.js
-<s> [webpack.Progress] 10% building 0/14 entries 35/59 dependencies 1/32 modules
+<s> [webpack.Progress] 10% building 0/14 entries 40/64 dependencies 1/37 modules
+<s> [webpack.Progress] 10% building 0/14 entries 63/79 dependencies 3/48 modules
 <s> [webpack.Progress] 10% building import loader ./node_modules/react-scripts/node_modules/mini-css-extract-plugin/dist/loader.js
 <s> [webpack.Progress] 10% building import loader ./node_modules/react-scripts/node_modules/css-loader/dist/cjs.js
 <s> [webpack.Progress] 10% building import loader ./node_modules/react-scripts/node_modules/postcss-loader/dist/cjs.js
-<s> [webpack.Progress] 10% building 0/14 entries 131/176 dependencies 4/87 modules
-<s> [webpack.Progress] 13% building 1/14 entries 314/386 dependencies 9/176 modules
-<s> [webpack.Progress] 13% building 1/14 entries 418/762 dependencies 12/212 modules
-<s> [webpack.Progress] 13% building 1/14 entries 1032/1100 dependencies 53/357 modules
-<s> [webpack.Progress] 13% building 1/14 entries 1400/1439 dependencies 82/403 modules
+<s> [webpack.Progress] 10% building 0/14 entries 131/183 dependencies 4/87 modules
+<s> [webpack.Progress] 10% building 0/14 entries 300/393 dependencies 6/171 modules
+<s> [webpack.Progress] 13% building 1/14 entries 317/393 dependencies 9/178 modules
+<s> [webpack.Progress] 13% building 1/14 entries 422/691 dependencies 14/211 modules
+<s> [webpack.Progress] 13% building 1/14 entries 866/1000 dependencies 39/322 modules
+<s> [webpack.Progress] 13% building 1/14 entries 1245/1400 dependencies 57/388 modules
 <s> [webpack.Progress] 13% building import loader ./node_modules/@svgr/webpack/lib/index.js
 <s> [webpack.Progress] 13% building import loader ./node_modules/react-scripts/node_modules/file-loader/dist/cjs.js
-<s> [webpack.Progress] 13% building 1/14 entries 1612/1647 dependencies 148/423 modules
-<s> [webpack.Progress] 13% building 1/14 entries 2167/2227 dependencies 300/512 modules
-<s> [webpack.Progress] 14% building 1/14 entries 2560/2800 dependencies 379/589 modules
-<s> [webpack.Progress] 14% building 1/14 entries 3070/3100 dependencies 416/677 modules
-<s> [webpack.Progress] 16% building 1/14 entries 3880/3900 dependencies 633/880 modules
-<s> [webpack.Progress] 19% building 1/14 entries 4365/4400 dependencies 851/1009 modules
-<s> [webpack.Progress] 20% building 2/14 entries 4693/4712 dependencies 962/1063 modules
-<s> [webpack.Progress] 21% building 3/14 entries 4693/4712 dependencies 962/1063 modules
-<s> [webpack.Progress] 25% building 4/14 entries 4693/4712 dependencies 962/1063 modules
-<s> [webpack.Progress] 29% building 5/14 entries 4693/4712 dependencies 962/1063 modules
-<s> [webpack.Progress] 33% building 6/14 entries 4693/4712 dependencies 962/1063 modules
-<s> [webpack.Progress] 37% building 7/14 entries 4693/4712 dependencies 962/1063 modules
-<s> [webpack.Progress] 41% building 8/14 entries 4693/4712 dependencies 962/1063 modules
-<s> [webpack.Progress] 45% building 9/14 entries 4693/4712 dependencies 962/1063 modules
-<s> [webpack.Progress] 49% building 10/14 entries 4693/4712 dependencies 963/1063 modules
-<s> [webpack.Progress] 53% building 11/14 entries 4892/4917 dependencies 1031/1095 modules
-<s> [webpack.Progress] 53% building 11/14 entries 4989/4995 dependencies 1100/1118 modules
-<s> [webpack.Progress] 57% building 12/14 entries 4989/4995 dependencies 1103/1118 modules
-<s> [webpack.Progress] 61% building 13/14 entries 4997/4997 dependencies 1123/1123 modules
-<s> [webpack.Progress] 64% building 14/14 entries 4997/4997 dependencies 1123/1123 modules
+<s> [webpack.Progress] 13% building 1/14 entries 1698/1754 dependencies 172/439 modules
+<s> [webpack.Progress] 13% building 1/14 entries 1900/2061 dependencies 196/477 modules
+<s> [webpack.Progress] 13% building 1/14 entries 2349/2500 dependencies 318/556 modules
+<s> [webpack.Progress] 14% building 1/14 entries 2600/2797 dependencies 376/593 modules
+<s> [webpack.Progress] 14% building 1/14 entries 2829/3100 dependencies 411/622 modules
+<s> [webpack.Progress] 15% building 1/14 entries 3573/3600 dependencies 523/813 modules
+<s> [webpack.Progress] 18% building 1/14 entries 4246/4293 dependencies 800/987 modules
+<s> [webpack.Progress] 21% building 2/14 entries 4828/4859 dependencies 1001/1101 modules
+<s> [webpack.Progress] 21% building 3/14 entries 4828/4859 dependencies 1002/1101 modules
+<s> [webpack.Progress] 25% building 4/14 entries 4828/4859 dependencies 1003/1101 modules
+<s> [webpack.Progress] 29% building 5/14 entries 4828/4859 dependencies 1004/1101 modules
+<s> [webpack.Progress] 33% building 6/14 entries 4828/4859 dependencies 1005/1101 modules
+<s> [webpack.Progress] 37% building 7/14 entries 4828/4859 dependencies 1006/1101 modules
+<s> [webpack.Progress] 41% building 8/14 entries 4828/4859 dependencies 1007/1101 modules
+<s> [webpack.Progress] 45% building 9/14 entries 4828/4859 dependencies 1008/1101 modules
+<s> [webpack.Progress] 49% building 10/14 entries 4828/4859 dependencies 1009/1101 modules
+<s> [webpack.Progress] 53% building 11/14 entries 4963/4984 dependencies 1055/1129 modules
+<s> [webpack.Progress] 57% building 12/14 entries 5071/5071 dependencies 1140/1155 modules
+<s> [webpack.Progress] 61% building 13/14 entries 5081/5081 dependencies 1160/1160 modules
+<s> [webpack.Progress] 65% building 14/14 entries 5081/5081 dependencies 1160/1160 modules
 <s> [webpack.Progress] 65% building
 <s> [webpack.Progress] 69% building finish
 <s> [webpack.Progress] 69% building finish
@@ -190,6 +193,7 @@ DeprecationWarning: 'createPropertyAssignment' has been deprecated since v4.0.0.
 DeprecationWarning: 'createObjectLiteralExpression' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
 DeprecationWarning: 'createFalse' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
 DeprecationWarning: 'createArrayLiteralExpression' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
+DeprecationWarning: 'createNull' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
 DeprecationWarning: 'createExpressionStatement' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
 DeprecationWarning: 'createTypeOfExpression' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
 DeprecationWarning: 'createElementAccessExpression' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
@@ -198,7 +202,6 @@ DeprecationWarning: 'createBlock' has been deprecated since v4.0.0. Use the appr
 DeprecationWarning: 'createVariableDeclaration' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
 DeprecationWarning: 'createCatchClause' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
 DeprecationWarning: 'createTryStatement' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
-DeprecationWarning: 'createNull' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
 DeprecationWarning: 'createTrue' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
 <s> [webpack.Progress] 70% sealing plugins WarnCaseSensitiveModulesPlugin
 <s> [webpack.Progress] 70% sealing plugins
@@ -288,38 +291,38 @@ DeprecationWarning: 'createTrue' has been deprecated since v4.0.0. Use the appro
 <s> [webpack.Progress] 92% sealing asset processing ESLintWebpackPlugin_1
 <s> [webpack.Progress] 92% sealing asset processing PersistentChildCompilerSingletonPlugin
 <s> [webpack.Progress] 92% sealing asset processing TerserPlugin
-info => Manager built (20 s)
+info => Manager built (23 s)
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin static/css/main.6097f15e.css generate SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin static/css/main.6097f15e.css generated SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin main.077ca9f4.iframe.bundle.js generate SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin main.077ca9f4.iframe.bundle.js generated SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin runtime~main.e7c35da4.iframe.bundle.js generate SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin runtime~main.e7c35da4.iframe.bundle.js generated SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 701.020baffc.iframe.bundle.js generate SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 701.020baffc.iframe.bundle.js generated SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 745.d6893855.iframe.bundle.js generate SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 745.d6893855.iframe.bundle.js generated SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 273.4f8e9dd1.iframe.bundle.js generate SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 273.4f8e9dd1.iframe.bundle.js generated SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 51.8a4778b4.iframe.bundle.js generate SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 51.8a4778b4.iframe.bundle.js generated SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 807.ad56bbac.iframe.bundle.js generate SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 807.ad56bbac.iframe.bundle.js generated SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 551.c3da3fe1.iframe.bundle.js generate SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 551.c3da3fe1.iframe.bundle.js generated SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 897.e9f0e067.iframe.bundle.js generate SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 897.e9f0e067.iframe.bundle.js generated SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 229.50f0adff.iframe.bundle.js generate SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 229.50f0adff.iframe.bundle.js generated SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 935.d0738f2e.iframe.bundle.js generate SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 935.d0738f2e.iframe.bundle.js generated SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 612.95c4edfc.iframe.bundle.js generate SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 612.95c4edfc.iframe.bundle.js generated SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin static/css/main.c6a0c6da.css generate SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin static/css/main.c6a0c6da.css generated SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin main.cf726c96.iframe.bundle.js generate SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin main.cf726c96.iframe.bundle.js generated SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin runtime~main.96ab8c6b.iframe.bundle.js generate SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin runtime~main.96ab8c6b.iframe.bundle.js generated SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 701.e4fdddc2.iframe.bundle.js generate SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 701.e4fdddc2.iframe.bundle.js generated SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 745.c5fb043a.iframe.bundle.js generate SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 745.c5fb043a.iframe.bundle.js generated SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 273.4a643b02.iframe.bundle.js generate SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 273.4a643b02.iframe.bundle.js generated SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 51.7f0a4385.iframe.bundle.js generate SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 51.7f0a4385.iframe.bundle.js generated SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 807.7c9431f6.iframe.bundle.js generate SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 807.7c9431f6.iframe.bundle.js generated SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 551.ffb6f456.iframe.bundle.js generate SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 551.ffb6f456.iframe.bundle.js generated SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 897.91545ade.iframe.bundle.js generate SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 897.91545ade.iframe.bundle.js generated SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 229.d7a62dfd.iframe.bundle.js generate SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 229.d7a62dfd.iframe.bundle.js generated SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 935.aef15121.iframe.bundle.js generate SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 935.aef15121.iframe.bundle.js generated SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 377.ac539580.iframe.bundle.js generate SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin 377.ac539580.iframe.bundle.js generated SourceMap
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin resolve sources
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin static/css/main.6097f15e.css attach SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin static/css/main.6097f15e.css attached SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin static/css/main.c6a0c6da.css attach SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin static/css/main.c6a0c6da.css attached SourceMap
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin resolve sources
@@ -330,8 +333,8 @@ info => Manager built (20 s)
 <s> [webpack.Progress] 92% sealing asset processing HtmlWebpackPlugin
 <s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin
 <s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin
-<s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin main.e0f5c725.iframe.bundle.js generate SourceMap
-<s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin main.e0f5c725.iframe.bundle.js generated SourceMap
+<s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin main.807d2a95.iframe.bundle.js generate SourceMap
+<s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin main.807d2a95.iframe.bundle.js generated SourceMap
 <s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin runtime~main.aa5c3927.iframe.bundle.js generate SourceMap
 <s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin runtime~main.aa5c3927.iframe.bundle.js generated SourceMap
 <s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin 701.559d2857.iframe.bundle.js generate SourceMap
@@ -352,8 +355,8 @@ info => Manager built (20 s)
 <s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin 807.96bdec84.iframe.bundle.js generated SourceMap
 <s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin 897.b8c84236.iframe.bundle.js generate SourceMap
 <s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin 897.b8c84236.iframe.bundle.js generated SourceMap
-<s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin 612.9ae3bba0.iframe.bundle.js generate SourceMap
-<s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin 612.9ae3bba0.iframe.bundle.js generated SourceMap
+<s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin 377.2d5fe0c1.iframe.bundle.js generate SourceMap
+<s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin 377.2d5fe0c1.iframe.bundle.js generated SourceMap
 <s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin resolve sources
 <s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin
 <s> [webpack.Progress] 92% sealing asset processing
@@ -380,23 +383,23 @@ info => Manager built (20 s)
 <s> [webpack.Progress] 99% cache begin idle
 <s> [webpack.Progress] 100% 
 
-info => Preview built (24 s)
+info => Preview built (28 s)
 WARN asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
 WARN This can impact web performance.
 WARN Assets: 
 WARN   273.ace84105.iframe.bundle.js (601 KiB)
 WARN   807.96bdec84.iframe.bundle.js (794 KiB)
-WARN   612.9ae3bba0.iframe.bundle.js (1.62 MiB)
+WARN   377.2d5fe0c1.iframe.bundle.js (1.63 MiB)
 WARN entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
 WARN Entrypoints:
-WARN   main (1.68 MiB)
+WARN   main (1.7 MiB)
 WARN       runtime~main.aa5c3927.iframe.bundle.js
-WARN       612.9ae3bba0.iframe.bundle.js
-WARN       main.e0f5c725.iframe.bundle.js
-WARN       static/css/main.eb8b33a1.css
+WARN       377.2d5fe0c1.iframe.bundle.js
+WARN       main.807d2a95.iframe.bundle.js
+WARN       static/css/main.81446ded.css
 WARN 
 <s> [webpack.Progress] 99% cache shutdown
 <s> [webpack.Progress] 99% cache shutdown
 <s> [webpack.Progress] 100% 
 
-info => Output directory: /var/folders/9d/0x6df99n5lq7yy_td6t2td680000gn/T/chromatic--10153-oTyE6gDZng5f
+info => Output directory: /var/folders/9d/0x6df99n5lq7yy_td6t2td680000gn/T/chromatic--36437-2lQ28kXwTcgi

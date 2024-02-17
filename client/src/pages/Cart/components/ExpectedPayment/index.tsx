@@ -3,10 +3,10 @@ import { css } from '@emotion/css';
 import { Button } from 'components';
 
 import { useTotalPriceOfCheckedCarts, useCheckedCarts } from 'store/cart';
-import { useAddOrder } from '../../hooks';
+import { useUpdateOrderCheckout } from '../../hooks';
 
 function ExpectedPayment() {
-  const { mutate: addOrder, isLoading } = useAddOrder();
+  const { mutate: updateOrderCheckout, isLoading } = useUpdateOrderCheckout();
   const totalPrice = useTotalPriceOfCheckedCarts();
   const checkedCarts = useCheckedCarts();
   const totalCount = checkedCarts.size;
@@ -17,7 +17,7 @@ function ExpectedPayment() {
     if (window.confirm('선택하신 상품들을 주문하시겠습니까?')) {
       const ids = Array.from(checkedCarts).map(({ id }) => id);
 
-      addOrder(ids);
+      updateOrderCheckout(ids);
     }
   };
 

@@ -18,7 +18,7 @@ function Counter({ count = 1, min, max, onMinus, onPlus }: CounterProps) {
   const isMax = count === max;
 
   const minButtonColor = isMin ? colors.gray400 : colors.black;
-  const maxButtonColor = isMin ? colors.gray400 : colors.black;
+  const maxButtonColor = isMax ? colors.gray400 : colors.black;
 
   return (
     <div
