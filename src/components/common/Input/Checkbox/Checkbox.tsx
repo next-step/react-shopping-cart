@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import type { Product } from "../../../../store/cartSlice";
 
-export type CheckboxProps = {
+export type Props = {
+  product?: Product;
   label?: string;
+  onClick: () => void;
 };
 
-const Checkbox = ({ label }: CheckboxProps) => {
-  const [checked, setChecked] = React.useState(false);
-  const handleClick = () => {
-    setChecked(!checked);
-    console.log(checked);
+const Checkbox = ({ product, label, onClick }: Props) => {
+  const [checkAll, setCheckAll] = useState(true);
+
+  const handleCheckboxClick = () => {
+    onClick();
+    setCheckAll((prev) => !prev);
   };
 
   return (
@@ -17,8 +21,8 @@ const Checkbox = ({ label }: CheckboxProps) => {
         className="checkbox"
         name="checkbox"
         type="checkbox"
-        checked={checked}
-        onClick={handleClick}
+        checked={product ? product.isChecked : checkAll}
+        onClick={handleCheckboxClick}
       />
       {label && (
         <label className="checkbox-label" htmlFor="checkbox">

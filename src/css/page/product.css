@@ -4,7 +4,8 @@
 
   flex-wrap: wrap;
   gap: 20px;
-  padding: 50px 240px;
+  padding: 50px 5%;
+  min-width: 100%;
 }
 
 .product-info {

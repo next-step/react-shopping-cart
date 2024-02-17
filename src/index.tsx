@@ -1,13 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createStore } from "redux";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./routes/router";
 
-if (process.env.NODE_ENV === "development") {
-  const { worker } = require("./mocks/browser");
-  worker.start();
-}
+const { worker } = require("./mocks/browser");
+worker.start({
+  onUnhandledRequest: "bypass",
+});
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

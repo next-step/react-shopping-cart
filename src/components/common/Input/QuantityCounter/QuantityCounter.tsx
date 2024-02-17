@@ -1,26 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
+import useCart from "../../../../hooks/useCart";
+import type { Product } from "../../../../store/cartSlice";
 
-const QuantityCounter = () => {
-  const [count, setCount] = useState(1);
+export type Props = {
+  product: Product;
+};
 
-  const handleIncrement = () => {
-    setCount((prevCount) => prevCount + 1);
+const QuantityCounter = ({ product }: Props) => {
+  const { increaseItemQuantity, decreaseItemQuantity } = useCart();
+
+  const handleIncrease = () => {
+    increaseItemQuantity(product);
   };
-
-  const handleDecrement = () => {
-    if (count > 1) {
-      setCount((prevCount) => prevCount - 1);
-    }
+  const handleDecrease = () => {
+    decreaseItemQuantity(product);
   };
 
   return (
     <div className="number-input-container">
-      <input type="number" className="number-input" value={count} />
+      <input type="number" className="number-input" value={product.quantity} />
       <div>
-        <button className="number-input-button" onClick={handleDecrement}>
+        <button className="number-input-button" onClick={handleIncrease}>
           ▲
         </button>
-        <button className="number-input-button" onClick={handleIncrement}>
+        <button className="number-input-button" onClick={handleDecrease}>
           ▼
         </button>
       </div>

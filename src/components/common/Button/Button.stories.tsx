@@ -3,7 +3,8 @@ import { Meta } from "@storybook/react/types-6-0";
 import { Story } from "@storybook/react";
 import Button, { ButtonProps } from "./Button";
 import { within, userEvent } from "@storybook/testing-library";
-require("../../../css/common/index.css");
+import { ReactComponent as TrashIcon } from "../../../assets/svgs/trash.svg";
+// require("../../../css/common/index.css");
 
 export default {
   title: "Components/Button",
@@ -44,9 +45,7 @@ PrimarySmall.args = {
 };
 
 Icon.args = {
-  children: (
-    <img className="cart-trash-svg" src="./assets/svgs/trash.svg" alt="삭제" />
-  ),
+  children: <TrashIcon />,
   className: "cart-trash-svg",
   onClick: () => alert("삭제"),
 };

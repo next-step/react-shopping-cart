@@ -7,8 +7,8 @@
 }
 
 .nav-title {
-  font-size: 40px;
-  font-weight: 900;
+  font-size: 36px;
+  font-weight: 600;
   text-align: center;
   vertical-align: middle;
 
@@ -20,4 +20,17 @@
   font-size: 24px;
 
   color: #ffffff;
+}
+
+.nav-button-container {
+  display: flex;
+}
+
+@media screen and (max-width: 767px) {
+  .nav-button-container {
+    display: flex;
+  }
+  .nav-button {
+    font-size: 18px;
+  }
 }

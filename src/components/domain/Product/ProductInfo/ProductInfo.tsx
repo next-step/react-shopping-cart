@@ -1,24 +1,41 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Product } from "../../../../store/cartSlice";
+import Button from "../../../common/Button/Button";
+import Modal from "../../../common/Modal/Modal";
+import useModal from "../../../../hooks/useModal";
+import useCart from "../../../../hooks/useCart";
+import { ReactComponent as CartIcon } from "../../../../assets/svgs/cart.svg";
 
 export type ProductInfoProps = {
-  imageUrl: string;
-  name: string;
-  price: number;
+  ref?: ((node: HTMLElement | null) => void) | null;
+  product: Product;
 };
 
-const ProductInfo = ({ imageUrl, name, price }: ProductInfoProps) => {
+const ProductInfo = ({ product }: ProductInfoProps) => {
+  const { setCurrentItem } = useCart();
+  const { isModalOpen, modalMessage, openModal } = useModal();
+  const { name, price, imageUrl } = product;
+  const modalType = "add";
+
+  const handleClick = () => {
+    setCurrentItem(product);
+    openModal(modalType);
+  };
+
   return (
     <div className="w-280">
-      <img src={imageUrl} alt="PET보틀-정사각(420ml)" />
+      {isModalOpen && (
+        <Modal type={modalType} message={modalMessage} product={product} />
+      )}
+      <img src={imageUrl} alt="상품 이미지" />
       <div className="flex justify-between w-280 p-5">
         <div className="product-info">
           <p className="product-info__name">{name}</p>
           <p className="product-info__price">{price}</p>
         </div>
-        <Link to="cart">
-          <img src="assets/svgs/cart.svg" alt="장바구니" />
-        </Link>
+        <Button onClick={handleClick} className="">
+          <CartIcon />
+        </Button>
       </div>
     </div>
   );
