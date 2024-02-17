@@ -1,0 +1,36 @@
+/* margin */
+.mt-1 {
+  margin-top: 1px;
+}
+.mt-3 {
+  margin-top: 3px;
+}
+.mt-5 {
+  margin-top: 5px;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mb-1 {
+  margin-bottom: 1px;
+}
+.mb-3 {
+  margin-bottom: 3px;
+}
+.mb-5 {
+  margin-bottom: 5px;
+}
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+/* height */
+.h-full {
+  height: 100%;
+}
+
+/* user-select */
+.select-none {
+  user-select: none;
+}
