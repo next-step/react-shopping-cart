@@ -1,25 +1,48 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
-import { LayeredTitleLayout } from '@/components';
-import { useOrderSelector } from '@/stores/OrderContext';
+import { getOrders } from '@/apis';
+import { ORDERS_KEY } from '@/constants';
+import { LayeredTitleLayout, CartLoader } from '@/components';
 
-import { OrderListPanel } from './OrderListPanel';
-import { StyledOrderListBody, StyledLeftSection } from './OrderList.styled';
-import { OrderProductList } from './OrderProductList';
+import { Order } from './Order';
+import { StyledOrderList, StyledOrderListLoader } from './OrderList.styled';
 
 export function OrderList() {
-  const orderStore = useOrderSelector();
+  return (
+    <Suspense
+      fallback={
+        <StyledOrderListLoader>
+          <CartLoader />
+        </StyledOrderListLoader>
+      }
+    >
+      <OrderListContent />
+    </Suspense>
+  );
+}
 
-  if (!orderStore) return null;
+function OrderListContent() {
+  const { data: orders } = useQuery(
+    ORDERS_KEY,
+    () => {
+      return getOrders();
+    },
+    {
+      suspense: true,
+      refetchOnMount: true,
+    }
+  );
 
   return (
-    <LayeredTitleLayout title="주문/결제">
-      <StyledOrderListBody>
-        <StyledLeftSection>
-          <OrderProductList order={orderStore} />
-        </StyledLeftSection>
-        <OrderListPanel order={orderStore} />
-      </StyledOrderListBody>
-    </LayeredTitleLayout>
+    <StyledOrderList>
+      {orders && (
+        <LayeredTitleLayout title="주문목록">
+          {Object.entries(orders).map(([id, orders]) => (
+            <Order id={id} orderProducts={orders} />
+          ))}
+        </LayeredTitleLayout>
+      )}
+    </StyledOrderList>
   );
 }

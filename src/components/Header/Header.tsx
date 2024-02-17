@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { CartIcon } from '@/components/Icons';
-import { routes } from '@/routes';
+import { routes } from '@/router';
 
 import { LayeredWrapper } from '../LayeredWrapper';
 import {
@@ -28,7 +28,7 @@ export function Header() {
           <Link to={routes.cart}>
             <span>장바구니</span>
           </Link>
-          <Link to={routes.orderList}>
+          <Link to={routes.payment}>
             <span>주문목록</span>
           </Link>
         </StyledButtonContainer>

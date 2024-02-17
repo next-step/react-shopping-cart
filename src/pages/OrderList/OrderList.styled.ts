@@ -1,14 +1,17 @@
 import { styled } from '@/stitches.config';
 
-export const StyledOrderListBody = styled('div', {
+export const StyledOrderListLoader = styled('div', {
   display: 'flex',
-  justifyContent: 'space-between',
+  justifyContent: 'center',
+  alignItems: 'center',
   width: '100%',
-  gap: '30px',
+  height: '100%',
 });
 
-export const StyledLeftSection = styled('section', {
-  width: '60%',
-  flex: 1,
-  marginTop: '30px',
+export const StyledOrderList = styled('div', {
+  width: '100%',
+  minHeight: 'calc(100% - 50px)',
+  paddingBottom: '80px',
+  backgroundColor: '$ghostGray',
+  boxSizing: 'border-box',
 });

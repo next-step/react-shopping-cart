@@ -1,15 +1,15 @@
 const cache = new Map();
 
-export function fetchUrl(url: string, asyncFunction: () => Promise<any>) {
+export function fetchUrl<T>(url: string, asyncFunction: () => Promise<T>) {
   if (!cache.has(url)) {
-    cache.set(url, wrapPromise(asyncFunction()));
+    cache.set(url, wrapPromise<T>(asyncFunction()));
   }
   return cache.get(url).read();
 }
 
-function wrapPromise(promise: Promise<any>) {
+function wrapPromise<T>(promise: Promise<T>) {
   let status = 'pending';
-  let result: any;
+  let result: T;
   const suspender = promise.then(
     (r) => {
       status = 'success';

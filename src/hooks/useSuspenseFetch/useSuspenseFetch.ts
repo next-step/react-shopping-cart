@@ -1,5 +1,5 @@
 import { fetchUrl } from './fetchUrl';
 
-export function useSuspenseFetch(url: string, asyncFunction: () => Promise<any>) {
-  return fetchUrl(url, asyncFunction);
+export function useSuspenseFetch<T>(url: string, asyncFunction: () => Promise<T>) {
+  return fetchUrl<T>(url, asyncFunction);
 }

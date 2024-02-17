@@ -1,26 +1,32 @@
 import { Link } from 'react-router-dom';
 
-import { styled, css } from '@/stitches.config';
+import { styled } from '@/stitches.config';
 
-export const StyledCartOrderPanel = css({
-  width: '280px',
-  height: '230px',
-  marginTop: '50px',
-  border: '1px solid rgba(0,0,0,.1)',
+export const StyledConfirmModal = styled('div', {
+  flexCenter: 'column',
+  gap: '20px',
+  width: '80vw',
+  minWidth: '350px',
+  height: '80vh',
+  minHeight: '350px',
+  boxSizing: 'border-box',
 });
 
-export const StyledTotalPrice = styled('div', {
-  display: 'flex',
-  justifyContent: 'space-between',
-  gap: '10px',
-  marginTop: '20px',
+export const StyledOrderList = styled('div', {
+  flex: 1,
+  width: '100%',
+  padding: '30px',
+  backgroundColor: 'White',
+  borderRadius: '20px',
+  overflowY: 'auto',
 });
 
 export const StyledOrderButton = styled(Link, {
   flexCenter: '',
-  flex: 1,
-  gap: '5px',
-  height: '80px',
+  width: '350px',
+  height: '100px',
   backgroundColor: '$mint',
+  borderRadius: '10px',
   color: 'White',
+  fontWeight: 'bold',
 });

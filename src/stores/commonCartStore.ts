@@ -12,11 +12,11 @@ export function getInitialCardStore() {
   return cloneDeep(initialCartStore);
 }
 
-type TCartStoreActions = 'add' | 'update' | 'delete';
+type TCartStoreActions = 'add' | 'update' | 'delete' | 'init';
 
 export function reducer(
   store: CartStore,
-  action: { type?: TCartStoreActions; payload?: CartProductModel[] | CartProductModelPOJO[] }
+  action: { type: TCartStoreActions; payload?: CartProductModel[] | CartProductModelPOJO[] }
 ) {
   const { type, payload } = action;
   if (!payload) return store;
@@ -47,8 +47,11 @@ export function reducer(
       });
       break;
     }
-    default: {
+    case 'init': {
       return getInitialCardStore();
+    }
+    default: {
+      throw new Error('need type when you dispatch to Context Store');
     }
   }
 
