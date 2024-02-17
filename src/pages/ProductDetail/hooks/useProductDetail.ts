@@ -14,7 +14,7 @@ const useProductDetail = () => {
     isLoading,
     error,
   } = useFetch<ProductSchemaInfer>(API.PRODUCT(getProductId()), {
-    enabled: !!getProductId(),
+    enabled: typeof getProductId() === 'number',
     schema: ProductSchema,
   })
   const productDetailMutation = useMutation(API.CARTS, 'POST')
@@ -23,8 +23,8 @@ const useProductDetail = () => {
     navigate('/cart')
   }
 
-  const handleCartButtonClick = async (product: Product) => {
-    await productDetailMutation.mutate({ product: { ...product } })
+  const handleCartButtonClick = async (cart: Product) => {
+    await productDetailMutation.mutate({ cart: { ...cart } })
     goToCartPage()
   }
 

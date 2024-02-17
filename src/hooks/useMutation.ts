@@ -11,7 +11,7 @@ type UseMutationResult<TData, TVariables> = {
 
 function useMutation<TData, TVariables>(
   url: string,
-  method: 'POST' | 'PUT' | 'DELETE' = 'POST',
+  method: 'POST' | 'PUT' | 'DELETE',
 ): UseMutationResult<TData, TVariables> {
   const [data, setData] = useState<TData | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -33,9 +33,7 @@ function useMutation<TData, TVariables>(
       const responseData = (await response.json()) as TData
 
       if (!response.ok) {
-        return Promise.reject(
-          `response.ok에서 false가 반환됐어요. 에러 내용: ${response.status}, ${response.statusText}}`,
-        )
+        return Promise.reject(`${response.status}, ${response.statusText}}`)
       }
 
       setData(responseData)

@@ -13,7 +13,7 @@ const OrderDetail = () => {
           </div>
           <div className="order-list-item">
             <div className="flex gap-15 mt-10">
-              <img className="w-144 h-144" src="./assets/images/product.png" alt="PET보틀-정사각(420ml)" />
+              {/* <img className="w-144 h-144" src="./assets/images/product.png" alt="PET보틀-정사각(420ml)" /> */}
               <div className="flex-col gap-15">
                 <span className="order-name">PET보틀-정사각(420ml)</span>
                 <span className="order-info">54,800원 / 수량: 3개</span>

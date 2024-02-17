@@ -2,9 +2,15 @@ import { rest, RestRequest } from 'msw'
 import z from 'zod'
 
 import { API } from '@/config'
-import { ProductSchema, ProductSchemaInfer } from '@/schemas'
-
-import { products, carts } from './data'
+import { products, carts, orders, orderList } from '@/mocks/data'
+import {
+  ProductSchema,
+  ProductSchemaInfer,
+  OrderSchema,
+  OrderSchemaInfer,
+  OrderListSchema,
+  OrderListSchemaInfer,
+} from '@/schemas'
 
 const getProduct = (products: ProductSchemaInfer[], schema: z.ZodTypeAny) =>
   rest.get(`${API.PRODUCTS}/:id`, (req, res, ctx) => {
@@ -28,10 +34,18 @@ const getProduct = (products: ProductSchemaInfer[], schema: z.ZodTypeAny) =>
   })
 
 const getProducts = (products: ProductSchemaInfer[], schema: z.ZodTypeAny) =>
-  rest.get(`${API.PRODUCTS}`, (_: RestRequest, res, ctx) => {
+  rest.get(`${API.PRODUCTS}`, (req, res, ctx) => {
+    const searchParams = new URLSearchParams(req.url.search)
+    const page = searchParams.get('page') as string
+    const perPage = searchParams.get('perPage') as string
+    const startIndex = (parseInt(page) - 1) * parseInt(perPage)
+    const endIndex = startIndex + parseInt(perPage)
+
     try {
       const validatedProducts = products.map((product) => schema.parse(product))
-      return res(ctx.status(200), ctx.json(validatedProducts))
+      const productList = validatedProducts.slice(startIndex, endIndex)
+      const totalPage = Math.ceil(products.length / parseInt(perPage))
+      return res(ctx.status(200), ctx.json({ productList, totalPage }))
     } catch (error) {
       if (error instanceof Error) {
         return res(ctx.status(400), ctx.json({ message: error.message }))
@@ -47,6 +61,22 @@ const createProduct = (schema: z.ZodTypeAny) =>
     try {
       const validatedProduct = schema.parse(product)
       products.push(validatedProduct)
+      return res(ctx.status(201))
+    } catch (error) {
+      if (error instanceof Error) {
+        return res(ctx.status(400), ctx.json({ message: error.message }))
+      } else {
+        return res(ctx.status(400), ctx.json({ message: String(error) }))
+      }
+    }
+  })
+
+const createCart = (schema: z.ZodTypeAny) =>
+  rest.post(`${API.CARTS}`, async (req: RestRequest<{ cart: ProductSchemaInfer }>, res, ctx) => {
+    const { cart } = await req.json()
+    try {
+      const validatedCart = schema.parse(cart)
+      carts.push(validatedCart)
       return res(ctx.status(201))
     } catch (error) {
       if (error instanceof Error) {
@@ -92,10 +122,143 @@ const getCart = (carts: ProductSchemaInfer[], schema: z.ZodTypeAny) =>
     }
   })
 
+const deleteCartItem = (schema: z.ZodTypeAny) =>
+  rest.delete(`${API.CARTS}/:id`, (req, res, ctx) => {
+    const { id } = req.params
+    const cartIndex = carts.findIndex((cart) => cart.id === Number(id))
+
+    if (cartIndex !== -1) {
+      const cartItem = carts[cartIndex]
+
+      try {
+        const validatedCartItem = schema.parse(cartItem)
+        carts.splice(cartIndex, 1)
+        return res(ctx.status(200), ctx.json(validatedCartItem))
+      } catch (error) {
+        if (error instanceof Error) {
+          return res(ctx.status(400), ctx.json({ message: error.message }))
+        } else {
+          return res(ctx.status(400), ctx.json({ message: String(error) }))
+        }
+      }
+    } else {
+      return res(ctx.status(404))
+    }
+  })
+
+const deleteCartItems = (schema: z.ZodTypeAny) =>
+  rest.delete(`${API.CARTS}`, async (req: RestRequest<{ ids: number[] }>, res, ctx) => {
+    const { ids } = await req.json()
+
+    try {
+      const validatedCartItems = ids.map((id: number) => {
+        const cartItem = carts.find((cart) => cart.id === id)
+        if (!cartItem) throw new Error(`Cart item with id ${id} not found`)
+        return schema.parse(cartItem)
+      })
+
+      validatedCartItems.forEach((cartItem: ProductSchemaInfer) => {
+        const cartIndex = carts.findIndex((cart) => cart.id === cartItem.id)
+        carts.splice(cartIndex, 1)
+      })
+
+      return res(ctx.status(200), ctx.json(validatedCartItems))
+    } catch (error) {
+      if (error instanceof Error) {
+        return res(ctx.status(400), ctx.json({ message: error.message }))
+      } else {
+        return res(ctx.status(400), ctx.json({ message: String(error) }))
+      }
+    }
+  })
+
+const createOrders = (schema: z.ZodTypeAny) =>
+  rest.post(`${API.ORDERS}`, async (req: RestRequest<{ orderList: OrderSchemaInfer[] }>, res, ctx) => {
+    const { orderList } = await req.json()
+    try {
+      const validatedOrders = orderList.map((order: OrderSchemaInfer) => schema.parse(order))
+      validatedOrders.forEach((order: OrderSchemaInfer) => orders.push(order))
+
+      return res(ctx.status(201))
+    } catch (error) {
+      if (error instanceof Error) {
+        return res(ctx.status(400), ctx.json({ message: error.message }))
+      } else {
+        return res(ctx.status(400), ctx.json({ message: String(error) }))
+      }
+    }
+  })
+
+const getOrders = (orders: OrderSchemaInfer[], schema: z.ZodTypeAny) =>
+  rest.get(`${API.ORDERS}`, (_: RestRequest, res, ctx) => {
+    try {
+      const validatedOrders = orders.map((order) => schema.parse(order))
+      return res(ctx.status(200), ctx.json(validatedOrders))
+    } catch (error) {
+      if (error instanceof Error) {
+        return res(ctx.status(400), ctx.json({ message: error.message }))
+      } else {
+        return res(ctx.status(400), ctx.json({ message: String(error) }))
+      }
+    }
+  })
+
+const deleteOrders = () =>
+  rest.delete(`${API.ORDERS}`, async (_, res, ctx) => {
+    try {
+      orders.splice(0, orders.length)
+      return res(ctx.status(200), ctx.json(orders))
+    } catch (error) {
+      if (error instanceof Error) {
+        return res(ctx.status(400), ctx.json({ message: error.message }))
+      } else {
+        return res(ctx.status(400), ctx.json({ message: String(error) }))
+      }
+    }
+  })
+
+const createOrderList = (schema: z.ZodTypeAny) =>
+  rest.post(`${API.ORDER_LIST}`, async (req: RestRequest<{ orderListItem: OrderListSchemaInfer }>, res, ctx) => {
+    const { orderListItem } = await req.json()
+    try {
+      const validatedOrderListItem = schema.parse(orderListItem)
+      orderList.push(validatedOrderListItem)
+      return res(ctx.status(201))
+    } catch (error) {
+      if (error instanceof Error) {
+        return res(ctx.status(400), ctx.json({ message: error.message }))
+      } else {
+        return res(ctx.status(400), ctx.json({ message: String(error) }))
+      }
+    }
+  })
+
+const getOrderLists = (orderList: OrderListSchemaInfer[], schema: z.ZodTypeAny) =>
+  rest.get(`${API.ORDER_LIST}`, (_: RestRequest, res, ctx) => {
+    try {
+      const validatedOrderLists = orderList.map((orderList) => schema.parse(orderList))
+      return res(ctx.status(200), ctx.json(validatedOrderLists))
+    } catch (error) {
+      if (error instanceof Error) {
+        return res(ctx.status(400), ctx.json({ message: error.message }))
+      } else {
+        return res(ctx.status(400), ctx.json({ message: String(error) }))
+      }
+    }
+  })
+
 export const handlers = [
   getProduct(products, ProductSchema),
   getProducts(products, ProductSchema),
   createProduct(ProductSchema),
+  createCart(ProductSchema),
   getCarts(carts, ProductSchema),
   getCart(carts, ProductSchema),
+  deleteCartItem(ProductSchema),
+  deleteCartItems(ProductSchema),
+  getOrders(orders, OrderSchema),
+  createOrders(OrderSchema),
+  createOrderList(OrderListSchema),
+  getOrderLists(orderList, OrderListSchema),
+  deleteOrders(),
 ]

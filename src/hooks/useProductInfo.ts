@@ -4,6 +4,9 @@ const useProductInfo = () => {
   const { id } = useParams()
 
   const getProductId = () => {
+    if (id === '0') {
+      return Number(id)
+    }
     if (id && id !== 'null') {
       return Number(id)
     }

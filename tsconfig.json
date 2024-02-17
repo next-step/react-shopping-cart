@@ -16,6 +16,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "public"],
+  "include": ["src", "public", "src/custom.d.ts"],
   "extends": "./tsconfig.paths.json"
 }

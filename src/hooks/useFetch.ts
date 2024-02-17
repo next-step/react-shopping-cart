@@ -22,6 +22,7 @@ const useFetch = <T>(url: string, options: UseFetchOptions = { enabled: true }):
   const fetchData = useCallback(async () => {
     try {
       const response = await asyncRequest(url)
+
       if (!response.ok) {
         return Promise.reject(
           `response.ok에서 false가 반환됐어요. 에러 내용: ${response.status}, ${response.statusText}}`,
@@ -31,6 +32,7 @@ const useFetch = <T>(url: string, options: UseFetchOptions = { enabled: true }):
       if (options.schema) {
         options.schema.parse(json)
       }
+
       setPayload(json)
     } catch (error) {
       if (error instanceof Error) {
@@ -38,6 +40,7 @@ const useFetch = <T>(url: string, options: UseFetchOptions = { enabled: true }):
       } else {
         setError(String(error))
       }
+      throw error
     } finally {
       setLoading(false)
     }
