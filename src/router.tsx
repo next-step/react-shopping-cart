@@ -1,11 +1,46 @@
-import { createBrowserRouter } from "react-router-dom";
-import App from "@/pages/App";
+import { createBrowserRouter, Outlet } from "react-router-dom";
+import Home from "@/app/page";
+import Layout from "@/app/layout";
+import ItemDetail from "@/app/[id]/page";
+import Cart from "@/app/cart/page";
+import Order from "@/app/order/page";
+import MyOrder from "@/app/myorder/page";
+import OrderDetail from "@/app/myorder/[id]/page";
 
 const router = createBrowserRouter(
   [
     {
-      path: "/",
-      element: <App />,
+      element: (
+        <Layout>
+          <Outlet />
+        </Layout>
+      ),
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "/:id",
+          element: <ItemDetail />,
+        },
+        {
+          path: "/cart",
+          element: <Cart />,
+        },
+        {
+          path: "/order",
+          element: <Order />,
+        },
+        {
+          path: "/myorder",
+          element: <MyOrder />,
+        },
+        {
+          path: "/myorder/:id",
+          element: <OrderDetail />,
+        },
+      ],
     },
   ],
   {
