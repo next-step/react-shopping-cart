@@ -2,7 +2,7 @@
 @import "./page/index.css";
 
 body {
-  width: 1920px;
+  width: 100%;
 
   margin: 0 !important;
   padding: 0 !important;

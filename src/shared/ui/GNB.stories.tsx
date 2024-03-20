@@ -4,7 +4,6 @@ import GNBComponent from 'src/shared/ui/GNB';
 import { MemoryRouterDecorator } from 'src/stories/Decorator';
 
 const meta: Meta = {
-	title: 'shared/ui/GNB',
 	component: GNBComponent,
 	decorators: [MemoryRouterDecorator],
 };

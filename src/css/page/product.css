@@ -1,10 +1,15 @@
 .product-container {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 
-  flex-wrap: wrap;
   gap: 20px;
   padding: 50px 240px;
+}
+
+.product-item-box {
+  width: 100%;
+
+  aspect-ratio: 1.2;
 }
 
 .product-info {
@@ -45,4 +50,8 @@
   background: #73675c;
   font-size: 24px;
   color: white;
+}
+
+.product-cart-button {
+  cursor: pointer;
 }
