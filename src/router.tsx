@@ -1,4 +1,5 @@
 import { createBrowserRouter, Outlet } from "react-router-dom";
+import { Provider } from "@/components";
 import Home from "@/app/page";
 import Layout from "@/app/layout";
 import ItemDetail from "@/app/[id]/page";
@@ -11,9 +12,11 @@ const router = createBrowserRouter(
   [
     {
       element: (
-        <Layout>
-          <Outlet />
-        </Layout>
+        <Provider>
+          <Layout>
+            <Outlet />
+          </Layout>
+        </Provider>
       ),
       children: [
         {
