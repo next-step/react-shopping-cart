@@ -1,8 +1,33 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        campton: ["Campton-Light", "sans-serif"],
+        "campton-b": ["Campton-Bold", "sans-serif"],
+      },
+    },
+    colors: {
+      transparent: "transparent",
+      current: "currentColor",
+      white: "#ffffff",
+      primary: {
+        50: "#f0fdfb",
+        100: "#cdfaf5",
+        200: "#9af5eb",
+        300: "#60e8e0",
+        400: "#2ac1bc",
+        500: "#16b6b3",
+        600: "#0f9192",
+        700: "#107475",
+        800: "#125b5d",
+        900: "#144c4d",
+        950: "#052b2e",
+      },
+      // ...
+    },
   },
+
   plugins: [],
 };
