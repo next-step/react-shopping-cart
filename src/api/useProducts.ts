@@ -10,7 +10,8 @@ export const useProducts = () => {
     queryKey: ["products"],
     queryFn: ({ pageParam }) => fetchProducts(pageParam),
     initialPageParam: 1,
-    getNextPageParam: (lastPage, _allPages, lastPageParam) => lastPageParam + 1,
+    getNextPageParam: (_lastPage, _allPages, lastPageParam) =>
+      lastPageParam + 1,
   });
 };
 
