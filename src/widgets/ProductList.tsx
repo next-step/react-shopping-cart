@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { MouseEvent } from 'react';
 
 import useGetProductListQuery from 'src/entities/product/hooks/useGetProductListQuery';
-import ProductItem from 'src/entities/product/ui/ProductItem';
+import ProductListItem from 'src/entities/product/ui/ProductListItem';
 
 export default function ProductList() {
 	const navigate = useNavigate();
@@ -32,7 +32,7 @@ export default function ProductList() {
 	return (
 		<section className="product-container">
 			{productList.map(product => (
-				<ProductItem
+				<ProductListItem
 					key={product.id}
 					onClickCart={handleClickCart(product.id)}
 					onClickItem={handleClickItem(product.id)}

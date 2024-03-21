@@ -4,7 +4,7 @@ import GNB from 'src/shared/ui/GNB';
 
 export default function RootLayout() {
 	return (
-		<div>
+		<div className="app-container">
 			<GNB />
 			<Outlet />
 		</div>

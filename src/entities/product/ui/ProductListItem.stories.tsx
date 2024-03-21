@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn, userEvent, expect, within } from '@storybook/test';
 
-import ProductItemComponent, { ProductItemProps } from 'src/entities/product/ui/ProductItem';
-import { MemoryRouterDecorator } from 'src/stories/Decorator';
+import ProductItemComponent, { ProductItemProps } from 'src/entities/product/ui/ProductListItem';
 
 const meta: Meta<ProductItemProps> = {
 	component: ProductItemComponent,
@@ -13,7 +12,6 @@ const meta: Meta<ProductItemProps> = {
 			</section>
 		);
 	},
-	decorators: [MemoryRouterDecorator],
 };
 
 export default meta;
@@ -23,8 +21,8 @@ type Story = StoryObj<typeof ProductItemComponent>;
 export const ProductItem: Story = {
 	args: {
 		id: 1,
-		name: '상품명',
-		price: 1000,
+		name: '냉면용기(대)',
+		price: 83700,
 		imageUrl: 'https://cdn-mart.baemin.com/goods/2/1556008840639m0.jpg',
 		onClickCart: fn(),
 	},
@@ -32,20 +30,17 @@ export const ProductItem: Story = {
 		name: {
 			control: {
 				type: 'text',
-				defaultValue: '냉면용기(대)',
 			},
 		},
 		price: {
 			control: {
 				type: 'number',
-				defaultValue: 83700,
 				min: 0,
 			},
 		},
 		imageUrl: {
 			control: {
 				type: 'text',
-				defaultValue: 'https://cdn-mart.baemin.com/goods/2/1556008840639m0.jpg',
 			},
 		},
 	},

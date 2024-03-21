@@ -43,7 +43,7 @@
   flex-direction: column;
   align-items: center;
 
-  margin-top: 50px;
+  padding: 50px 0;
 }
 
 .product-detail-info {
@@ -64,6 +64,8 @@
   background: #73675c;
   font-size: 24px;
   color: white;
+
+  cursor: pointer;
 }
 
 .product-cart-button {

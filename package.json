@@ -61,6 +61,7 @@
     "path-browserify": "^1.0.1",
     "prettier": "^3.2.5",
     "storybook": "^8.0.2",
+    "storybook-addon-remix-react-router": "^3.0.0",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.2.2",

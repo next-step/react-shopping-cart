@@ -1,6 +1,11 @@
 @import "./common/index.css";
 @import "./page/index.css";
 
+html {
+  width: 100%;
+  height: 100%;
+}
+
 body {
   width: 100%;
   height: 100%;
@@ -22,6 +27,15 @@ body {
 .divide-line-thin {
   width: 100%;
   border: 1px solid #aaaaaa;
+}
+
+.app-container {
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 80px 1fr;
 }
 
 #storybook-root {

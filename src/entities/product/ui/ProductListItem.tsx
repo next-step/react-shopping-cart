@@ -8,7 +8,7 @@ export interface ProductItemProps extends Product {
 	onClickItem?: MouseEventHandler;
 }
 
-export default function ProductItem({ onClickCart, name, price, imageUrl, id, onClickItem }: ProductItemProps) {
+export default function ProductListItem({ onClickCart, name, price, imageUrl, id, onClickItem }: ProductItemProps) {
 	return (
 		<div className="product-item-box" onClick={onClickItem}>
 			<img src={imageUrl} alt={name} />
