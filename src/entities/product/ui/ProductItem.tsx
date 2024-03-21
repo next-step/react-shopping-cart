@@ -1,13 +1,16 @@
+import { MouseEventHandler } from 'react';
+
 import type { Product } from 'src/entities/product/type/product.type';
 import { formatPriceToKRW } from 'src/shared/lib/format';
 
 export interface ProductItemProps extends Product {
-	onClickCart: () => void;
+	onClickCart?: MouseEventHandler;
+	onClickItem?: MouseEventHandler;
 }
 
-export default function ProductItem({ onClickCart, name, price, imageUrl, id }: ProductItemProps) {
+export default function ProductItem({ onClickCart, name, price, imageUrl, id, onClickItem }: ProductItemProps) {
 	return (
-		<div className="product-item-box">
+		<div className="product-item-box" onClick={onClickItem}>
 			<img src={imageUrl} alt={name} />
 			<div className="flex justify-between p-5">
 				<div className="product-info">

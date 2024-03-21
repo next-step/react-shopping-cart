@@ -152,3 +152,9 @@ $RECYCLE.BIN/
 
 node_modules
 *storybook.log
+
+.env
+.env.local
+.env.development
+.env.test
+.env.production
