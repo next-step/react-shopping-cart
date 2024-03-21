@@ -5,9 +5,10 @@ import { Product } from 'src/entities/product/type/product.type';
 import dbJSON from 'src/shared/mock/db.json';
 import { Response } from 'src/shared/types/api';
 
-export const getProductListMockApi = http.get('*/products', () => {
-	return HttpResponse.json({ response: dbJSON.products });
-});
+export const getProductListMockHandler = (products?: Product[]) =>
+	http.get('*/products', () => {
+		return HttpResponse.json({ response: products ?? dbJSON.products });
+	});
 
 export default async function getProductListApi() {
 	const response = await axiosInstance.get<Response<Product[]>>('/products');

@@ -7,10 +7,14 @@ import ProductItem from 'src/entities/product/ui/ProductItem';
 export default function ProductList() {
 	const navigate = useNavigate();
 
-	const { data, isLoading } = useGetProductListQuery();
+	const { data: productList, isLoading } = useGetProductListQuery();
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return <div className="product-no-items">Loading...</div>;
+	}
+
+	if (productList.length === 0) {
+		return <div className="product-no-items">상품이 존재하지 않습니다.</div>;
 	}
 
 	const handleClickCart = (id: number) => (event: MouseEvent) => {
@@ -27,7 +31,7 @@ export default function ProductList() {
 
 	return (
 		<section className="product-container">
-			{data?.response.map(product => (
+			{productList.map(product => (
 				<ProductItem
 					key={product.id}
 					onClickCart={handleClickCart(product.id)}

@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { fn, userEvent, expect, within } from '@storybook/test';
 
 import ProductItemComponent, { ProductItemProps } from 'src/entities/product/ui/ProductItem';
+import { MemoryRouterDecorator } from 'src/stories/Decorator';
 
 const meta: Meta<ProductItemProps> = {
 	component: ProductItemComponent,
@@ -12,6 +13,7 @@ const meta: Meta<ProductItemProps> = {
 			</section>
 		);
 	},
+	decorators: [MemoryRouterDecorator],
 };
 
 export default meta;

@@ -14,7 +14,9 @@ async function enableMocking() {
 
 	const mswWorker = await import('src/shared/lib/mswWorker');
 
-	return mswWorker.default.start();
+	return mswWorker.default.start({
+		onUnhandledRequest: 'bypass',
+	});
 }
 
 enableMocking().then(() => {
