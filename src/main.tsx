@@ -6,14 +6,17 @@ import "./index.css";
 import { worker } from "@/mocks/browser";
 import type { StartOptions } from "msw/browser";
 
-if (process.env.NODE_ENV === "development") {
-  const workerStartOptions: StartOptions = {
-    serviceWorker: {
-      url: "/react-shopping-cart/mockServiceWorker.js",
-    },
-  };
-  worker.start(workerStartOptions);
-}
+// if (process.env.NODE_ENV === "development") {
+// }
+const workerStartOptions: StartOptions = {
+  serviceWorker: {
+    url: "/react-shopping-cart/mockServiceWorker.js",
+    // options: {
+    //   scope: "/react-shopping-cart",
+    // },
+  },
+};
+worker.start(workerStartOptions);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
