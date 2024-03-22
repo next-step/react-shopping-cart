@@ -2,7 +2,7 @@ import { OrderDetail } from 'src/entities/order/types/order.type';
 import { formatPriceToKRW } from 'src/shared/lib/format';
 import usePostCartItemMutation from 'src/entities/cart/hooks/usePostCartItemMutation';
 
-export default function OrderProduct({ name, quantity, imageUrl, price, id }: OrderDetail) {
+export default function OrderListItemProduct({ name, quantity, imageUrl, price, id }: OrderDetail) {
 	const { mutate: postCartItem } = usePostCartItemMutation();
 
 	const handleAddToCart = () => {
