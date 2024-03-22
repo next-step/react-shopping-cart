@@ -14,7 +14,7 @@ export default function OrderListItem({ id, orderDetails }: Order) {
 		<div className="order-list">
 			<div className="order-list__header">
 				<span>주문번호: {id}</span>
-				<span onClick={handleOrderDetailClick}>{`상세보기 >`}</span>
+				<span onClick={handleOrderDetailClick} className="order-list__header__button">{`상세보기 >`}</span>
 			</div>
 			{orderDetails.map(orderDetail => (
 				<OrderProduct {...orderDetail} key={orderDetail.id} />

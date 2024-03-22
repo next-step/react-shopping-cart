@@ -69,6 +69,10 @@
   border: 1px solid #aaaaaa;
 }
 
+.order-list__header__button {
+  cursor: pointer;
+}
+
 .order-list-item {
   display: flex;
   justify-content: space-between;
