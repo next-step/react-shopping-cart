@@ -3,8 +3,19 @@ import CartOrderPanel from 'src/entities/cart/ui/CartOrderPanel';
 import CartHeader from 'src/entities/cart/ui/CartHeader';
 import CartItemListHeader from 'src/entities/cart/ui/CartItemListHeader';
 import CartItemList from 'src/entities/cart/ui/CartItemList';
+import useGetCartItemListQuery from 'src/entities/cart/hooks/useGetCartItemListQuery';
 
 export default function Cart() {
+	const { data: cartItemList, isLoading } = useGetCartItemListQuery();
+
+	if (isLoading) {
+		return <div className="product-no-items">Loading...</div>;
+	}
+
+	if (cartItemList.length === 0) {
+		return <div className="product-no-items">장바구니에 담긴 상품이 없습니다.</div>;
+	}
+
 	return (
 		<section className="cart-section">
 			<CartHeader />
@@ -12,7 +23,7 @@ export default function Cart() {
 				<section className="cart-left-section">
 					<CartItemSelectPanel />
 					<CartItemListHeader />
-					<CartItemList />
+					<CartItemList cartItemList={cartItemList} />
 				</section>
 				<section className="cart-right-section">
 					<CartOrderPanel />

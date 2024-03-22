@@ -1,9 +1,9 @@
-import type { CartItem } from 'src/entities/cart/type/cart.type';
+import type { CartItemData } from 'src/entities/cart/type/cart.type';
 import useCartStore from 'src/entities/cart/store/useCartStore';
 import { formatPriceToKRW } from 'src/shared/lib/format';
 import useDeleteCartItemMutation from 'src/entities/cart/hooks/useDeleteCartItemMutation';
 
-export default function CartItem({ id, product }: CartItem) {
+export default function CartItem({ id, product }: CartItemData) {
 	const { mutate: deleteCartItem } = useDeleteCartItemMutation();
 
 	const selected = useCartStore.use.cart()[id]?.selected || false;

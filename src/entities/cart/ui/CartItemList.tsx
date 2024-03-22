@@ -1,11 +1,9 @@
 import { Fragment } from 'react';
 
 import CartItem from 'src/entities/cart/ui/CartItem';
-import useGetCartItemListQuery from 'src/entities/cart/hooks/useGetCartItemListQuery';
+import { CartItemData } from 'src/entities/cart/type/cart.type';
 
-export default function CartItemList() {
-	const { data: cartItemList } = useGetCartItemListQuery();
-
+export default function CartItemList({ cartItemList }: { cartItemList: CartItemData[] }) {
 	return (
 		<>
 			{cartItemList.map((cartItem, index) => (

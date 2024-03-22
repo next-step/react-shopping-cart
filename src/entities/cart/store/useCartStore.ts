@@ -1,16 +1,16 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
-import type { CartItem, CartItemSelection } from 'src/entities/cart/type/cart.type';
+import type { CartItemData, CartItemSelection } from 'src/entities/cart/type/cart.type';
 import createSelectors from 'src/shared/lib/zustand';
 
 interface CartState {
-	cart: Record<CartItem['id'], CartItemSelection>;
-	increaseQuantity: (id: CartItem['id']) => void;
-	decreaseQuantity: (id: CartItem['id']) => void;
+	cart: Record<CartItemData['id'], CartItemSelection>;
+	increaseQuantity: (id: CartItemData['id']) => void;
+	decreaseQuantity: (id: CartItemData['id']) => void;
 	resetCart: () => void;
-	setItemsToCart: (items: CartItem[]) => void;
-	toggleItemSelection: (id: CartItem['id']) => void;
+	setItemsToCart: (items: CartItemData[]) => void;
+	toggleItemSelection: (id: CartItemData['id']) => void;
 	selectAllItems: () => void;
 	unselectAllItems: () => void;
 }
@@ -40,7 +40,7 @@ const useCartBaseStore = create<CartState>()(
 						}
 						return acc;
 					},
-					{} as Record<CartItem['id'], CartItemSelection>,
+					{} as Record<CartItemData['id'], CartItemSelection>,
 				);
 			}),
 		toggleItemSelection: id => {

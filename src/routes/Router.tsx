@@ -6,6 +6,7 @@ import ProductList from 'src/widgets/ProductList';
 import ProductDetail from 'src/widgets/ProductDetail';
 import Cart from 'src/widgets/Cart';
 import OrderConfirm from 'src/widgets/OrderConfirm';
+import OrderList from 'src/widgets/OrderList';
 
 const router = createBrowserRouter([
 	{
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
 			{
 				path: 'order/confirm/:id',
 				element: <OrderConfirm />,
+			},
+			{
+				path: 'order/list',
+				element: <OrderList />,
 			},
 		],
 	},

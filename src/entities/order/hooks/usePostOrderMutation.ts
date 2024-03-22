@@ -17,6 +17,7 @@ export default function usePostOrderMutation(options?: UsePostOrderMutationOptio
 			options?.onSuccess?.(data.response);
 
 			queryClient.invalidateQueries({ queryKey: ['orderList'] });
+			queryClient.invalidateQueries({ queryKey: ['cartItemList'] });
 		},
 	});
 }
