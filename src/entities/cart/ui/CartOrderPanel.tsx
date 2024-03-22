@@ -1,7 +1,18 @@
+import { useNavigate } from 'react-router-dom';
+
 import useCartStore from 'src/entities/cart/store/useCartStore';
 import { formatPriceToKRW } from 'src/shared/lib/format';
+import usePostOrderMutation from 'src/entities/order/hooks/usePostOrderMutation';
 
 export default function CartOrderPanel() {
+	const navigate = useNavigate();
+
+	const { mutate: postOrder } = usePostOrderMutation({
+		onSuccess: ({ id }) => {
+			navigate(`/order/confirm/${id}`);
+		},
+	});
+
 	const cartCount = useCartStore(state =>
 		Object.values(state.cart).reduce((acc, item) => acc + (item.selected ? 1 : 0), 0),
 	);
@@ -9,6 +20,22 @@ export default function CartOrderPanel() {
 	const totalPrice = useCartStore(state =>
 		Object.values(state.cart).reduce((acc, item) => acc + (item.selected ? item.product.price * item.quantity : 0), 0),
 	);
+
+	const selectedCartItems = useCartStore(state =>
+		Object.values(state.cart)
+			.filter(item => item.selected)
+			.map(item => ({
+				id: item.product.id,
+				quantity: item.quantity,
+				price: item.product.price,
+				name: item.product.name,
+				imageUrl: item.product.imageUrl,
+			})),
+	);
+
+	const handleOrderButtonClick = () => {
+		postOrder({ orderDetails: selectedCartItems });
+	};
 
 	return (
 		<>
@@ -22,7 +49,9 @@ export default function CartOrderPanel() {
 					<span className="highlight-text">{formatPriceToKRW(totalPrice)}</span>
 				</div>
 				<div className="flex-center mt-30 mx-10">
-					<button className="primary-button flex-center">주문하기({cartCount}개)</button>
+					<button className="primary-button flex-center" type="button" onClick={handleOrderButtonClick}>
+						주문하기({cartCount}개)
+					</button>
 				</div>
 			</div>
 		</>

@@ -8,7 +8,7 @@
   - `/cart`: `Cart` 컴포넌트
   - `/order`: `Order` 컴포넌트
   - `/order/list` : `OrderList` 컴포넌트
-  - `/order/${id}`: `OrderDetail` 컴포넌트
+  - `/order/${id}`: `OrderDetails` 컴포넌트
 
 ## 상태관리
 

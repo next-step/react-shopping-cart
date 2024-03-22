@@ -5,6 +5,7 @@ import RootLayout from 'src/shared/ui/RootLayout';
 import ProductList from 'src/widgets/ProductList';
 import ProductDetail from 'src/widgets/ProductDetail';
 import Cart from 'src/widgets/Cart';
+import OrderConfirm from 'src/widgets/OrderConfirm';
 
 const router = createBrowserRouter([
 	{
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
 			{
 				path: 'cart',
 				element: <Cart />,
+			},
+			{
+				path: 'order/confirm/:id',
+				element: <OrderConfirm />,
 			},
 		],
 	},
