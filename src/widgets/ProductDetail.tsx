@@ -8,11 +8,11 @@ export default function ProductDetail() {
 	const { data: product, isLoading } = useGetProductDetailQuery(Number(id));
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return <div className="product-no-items">Loading...</div>;
 	}
 
 	if (!product) {
-		return <div>상품이 존재하지 않습니다.</div>;
+		return <div className="product-no-items">상품이 존재하지 않습니다.</div>;
 	}
 
 	return <ProductDetailItem id={product.id} name={product.name} price={product.price} imageUrl={product.imageUrl} />;

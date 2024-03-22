@@ -30,7 +30,7 @@ export const EmptyList: Story = {
 				children: [
 					{
 						index: true,
-						Component: ProductListComponent,
+						useStoryElement: true,
 					},
 					{
 						path: 'cart',
@@ -61,7 +61,7 @@ export const WithList: Story = {
 				children: [
 					{
 						index: true,
-						Component: ProductListComponent,
+						useStoryElement: true,
 					},
 					{
 						path: 'product/:id',

@@ -1,13 +1,16 @@
-import { MouseEventHandler } from 'react';
-
 import { Product } from 'src/entities/product/type/product.type';
 import { formatPriceToKRW } from 'src/shared/lib/format';
+import usePostCartItemMutation from 'src/entities/cart/hooks/usePostCartItemMutation';
 
-export interface ProductDetailItemProps extends Product {
-	onClickCartButton?: MouseEventHandler;
-}
+export interface ProductDetailItemProps extends Product {}
 
-export default function ProductDetailItem({ onClickCartButton, name, price, imageUrl }: ProductDetailItemProps) {
+export default function ProductDetailItem({ name, price, imageUrl, id }: ProductDetailItemProps) {
+	const { mutate: postCartItem } = usePostCartItemMutation();
+
+	const handleClickCart = () => {
+		postCartItem({ product: { name, price, imageUrl, id } });
+	};
+
 	return (
 		<div className="product-detail-container">
 			<div className="flex-col-center w-480">
@@ -23,7 +26,7 @@ export default function ProductDetailItem({ onClickCartButton, name, price, imag
 				<button
 					className="product-detail-button flex-center mt-20"
 					type="button"
-					onClick={onClickCartButton}
+					onClick={handleClickCart}
 					data-testid="product-detail-button"
 				>
 					장바구니

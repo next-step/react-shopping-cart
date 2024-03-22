@@ -10,6 +10,8 @@
 .delete-button {
   padding: 12px 22px;
   border: 1px solid #bbbbbb;
+
+  cursor: pointer;
 }
 
 .cart-left-section {
@@ -48,6 +50,8 @@
 
 .cart-trash-svg {
   align-self: flex-end;
+
+  cursor: pointer;
 }
 
 .cart-name {

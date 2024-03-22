@@ -33,4 +33,6 @@
 
 .checkbox-label {
   padding-left: 7px;
+
+  cursor: pointer;
 }
