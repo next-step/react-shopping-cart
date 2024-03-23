@@ -12,7 +12,7 @@ const Header = (props: ComponentProps<"header">) => {
         "bg-primary-400 text-white flex justify-center"
       )}
     >
-      <div className="max-w-6xl flex justify-between items-center flex-grow px-10">
+      <div className="max-w-6xl flex justify-between items-center flex-grow px-4">
         <h1>
           <Link to="/" className="text-xl font-bold">
             NEXTSTEP

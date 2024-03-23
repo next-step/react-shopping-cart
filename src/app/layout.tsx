@@ -8,7 +8,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <Header className="w-dvw sticky top-0 h-16 z-10" />
-      <main className="p-10 max-w-6xl m-auto">{children}</main>
+      <main className="max-w-6xl m-auto px-4 py-8">{children}</main>
       <ReactQueryDevtools />
     </>
   );
