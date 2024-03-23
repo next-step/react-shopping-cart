@@ -26,7 +26,7 @@ const Home = () => {
       <h2 className="sr-only">상품 목록</h2>
       {data?.pages.flat().map(({ id, ...props }) => (
         <Link key={id} to={`/${id}`}>
-          <Card {...props} />
+          <Card id={id} {...props} />
         </Link>
       ))}
       <div ref={ref} />

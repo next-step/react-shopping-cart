@@ -14,9 +14,9 @@ const getProducts = async (page: number, limit: number) => {
 };
 
 const getProduct = async (id: string) => {
-  const findItem = products.find((item) => `${item.id}` === id);
+  const item = products.find((product) => product.id === Number(id));
   await delay(1000);
-  if (!findItem) {
+  if (!item) {
     new HttpResponse("Not found", {
       status: 404,
       headers: {
@@ -24,7 +24,7 @@ const getProduct = async (id: string) => {
       },
     });
   }
-  return HttpResponse.json(findItem);
+  return HttpResponse.json(item);
 };
 
 export const handlers = [
@@ -36,6 +36,6 @@ export const handlers = [
   }),
   http.get("/product/:id", ({ params }) => {
     const { id } = params;
-    getProduct(`${id}`);
+    return getProduct(`${id}`);
   }),
 ];
