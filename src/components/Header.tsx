@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
+import { Count } from "@/components";
+import { cartAtom } from "@/atoms";
+import { useAtomValue } from "jotai";
 import type { ComponentProps } from "react";
 
 const Header = (props: ComponentProps<"header">) => {
   const { className } = props;
+  const cart = useAtomValue(cartAtom);
   return (
     <header
       {...props}
@@ -21,7 +25,9 @@ const Header = (props: ComponentProps<"header">) => {
         <nav>
           <ul className="flex gap-4">
             <li>
-              <Link to="/cart">장바구니</Link>
+              <Count count={cart.length}>
+                <Link to="/cart">장바구니</Link>
+              </Count>
             </li>
             <li>
               <Link to="/myorder">주문목록</Link>
