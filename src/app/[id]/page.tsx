@@ -2,6 +2,7 @@ import { useProduct } from "@/api";
 import { useParams } from "react-router-dom";
 import { useAtom } from "jotai";
 import { cartAtom } from "@/atoms";
+import { Loading } from "@/components";
 import { addProductToCart } from "@/utils/cart";
 
 const ItemDetail = () => {
@@ -14,7 +15,7 @@ const ItemDetail = () => {
     setCart(addProductToCart(cart, data));
   };
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   if (isError) {
     return <div>Error</div>;

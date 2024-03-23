@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useProducts } from "@/api";
-import { Card } from "@/components";
+import { Card, Loading } from "@/components";
 import { Link } from "react-router-dom";
 import { useIntersectionObserver } from "@/hooks";
 
@@ -16,7 +16,7 @@ const Home = () => {
   }, [isIntersecting, fetchNextPage, hasNextPage]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   if (isError) {
     return <div>Error</div>;

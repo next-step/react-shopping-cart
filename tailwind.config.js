@@ -12,6 +12,7 @@ export default {
         current: "currentColor",
         white: "#ffffff",
         dimmed: "rgba(0, 0, 0, 0.15)",
+        "white-dimmed": "rgba(255, 255, 255, 0.3)",
         primary: {
           50: "#f0fdfb",
           100: "#cdfaf5",
