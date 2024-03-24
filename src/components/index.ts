@@ -8,6 +8,8 @@ import Loading from "./Loading";
 import Count from "./Count";
 import Checkbox from "./Checkbox";
 import Footer from "./Footer";
+import Button from "./Button";
+import LinkButton from "./LinkButton";
 
 export {
   Provider,
@@ -19,5 +21,7 @@ export {
   Count,
   Checkbox,
   Footer,
+  Button,
+  LinkButton,
 };
 export type { ModalRef };

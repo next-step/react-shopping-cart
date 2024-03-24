@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useProduct, usePostCarts } from "@/api";
-import { useParams, Link } from "react-router-dom";
-import { Loading, Modal } from "@/components";
+import { useParams } from "react-router-dom";
+import { Loading, Modal, Button, LinkButton } from "@/components";
 import type { ModalRef } from "@/components";
 
 const ItemDetail = () => {
@@ -40,16 +40,15 @@ const ItemDetail = () => {
                 <span className="font-medium">{price.toLocaleString()}</span>원
               </div>
             </div>
-            <button
-              className="bg-secondary-400 py-4 text-white hover:bg-secondary-500 transition-colors
-        "
+            <Button
+              type="secondary"
               onClick={() => {
                 modalRef.current?.open();
                 mutation.mutate(data);
               }}
             >
               장바구니
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -57,21 +56,17 @@ const ItemDetail = () => {
         <div className="flex flex-col gap-4 p-8">
           <h2 className="text-lg">장바구니에 상품이 추가되었습니다.</h2>
           <div className="grid grid-cols-2 gap-4">
-            <button
-              className=" text-primary-400 border flex items-center justify-center p-2"
+            <Button
               onClick={(e) => {
                 modalRef.current?.close();
                 e.stopPropagation();
               }}
             >
               계속 쇼핑하기
-            </button>
-            <Link
-              to="/cart"
-              className="bg-primary-400 text-white p-2 flex items-center justify-center"
-            >
+            </Button>
+            <LinkButton to="/cart" type="primary">
               장바구니 보기
-            </Link>
+            </LinkButton>
           </div>
         </div>
       </Modal>

@@ -1,8 +1,7 @@
 import Cart from "@/assets/cart.svg?react";
 import { useRef } from "react";
-import { Link } from "react-router-dom";
 import { usePostCarts } from "@/api";
-import { Modal } from "@/components";
+import { Modal, Button, LinkButton } from "@/components";
 
 import type { IProduct } from "@/types";
 import type { ModalRef } from "@/components";
@@ -45,21 +44,17 @@ const Card = (props: IProduct) => {
         <div className="flex flex-col gap-4 p-8">
           <h2 className="text-lg">장바구니에 상품이 추가되었습니다.</h2>
           <div className="grid grid-cols-2 gap-4">
-            <button
-              className=" text-primary-400 border flex items-center justify-center p-2"
+            <Button
               onClick={(e) => {
                 modalRef.current?.close();
                 e.stopPropagation();
               }}
             >
               계속 쇼핑하기
-            </button>
-            <Link
-              to="/cart"
-              className="bg-primary-400 text-white p-2 flex items-center justify-center"
-            >
+            </Button>
+            <LinkButton to="/cart" type="primary">
               장바구니 보기
-            </Link>
+            </LinkButton>
           </div>
         </div>
       </Modal>

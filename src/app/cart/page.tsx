@@ -2,11 +2,11 @@ import Spinner from "@/assets/spinner.svg?react";
 import { useEffect } from "react";
 import { useCarts } from "@/api";
 import { useIntersectionObserver } from "@/hooks";
-import { Loading, Checkbox, Footer } from "@/components";
+import { Loading, Checkbox, Footer, Button } from "@/components";
 
 function TotalPrice() {
   return (
-    <article className="flex flex-col w-full">
+    <article className="flex flex-col w-full md:p-0 px-2 py-4">
       <h3 className="border-b w-full">결제예상금액</h3>
       <div className="flex justify-between">
         <div className="underline decoration-primary-400 decoration-4 underline-offset-[-2px]">
@@ -17,7 +17,9 @@ function TotalPrice() {
         </div>
       </div>
       <div>
-        <button>주문하기</button>
+        <Button type="primary" block>
+          주문하기
+        </Button>
       </div>
     </article>
   );
@@ -80,7 +82,7 @@ const Cart = () => {
             {isFetching && <Spinner />}
           </ol>
         </div>
-        <div className="hidden md:flex">
+        <div className="hidden md:flex h-max">
           <TotalPrice />
         </div>
       </div>
