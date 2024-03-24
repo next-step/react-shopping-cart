@@ -1,20 +1,16 @@
 import Cart from "@/assets/cart.svg?react";
 import { useRef } from "react";
-import { useAtom } from "jotai";
-import { cartAtom } from "@/atoms";
+import { Link } from "react-router-dom";
+import { usePostCarts } from "@/api";
 import { Modal } from "@/components";
-import { addProductToCart } from "@/utils/cart";
 
-import type { IProduct } from "@/types/product";
+import type { IProduct } from "@/types";
 import type { ModalRef } from "@/components";
 
 const Card = (props: IProduct) => {
-  const [cart, setCart] = useAtom(cartAtom);
   const modalRef = useRef<ModalRef | null>(null);
   const { name, imageUrl, price } = props;
-  const handleAddToCart = () => {
-    setCart(addProductToCart(cart, props));
-  };
+  const mutation = usePostCarts();
 
   return (
     <>
@@ -37,8 +33,7 @@ const Card = (props: IProduct) => {
             className="shrink-0 px-2 hover:text-primary-400 transition-colors"
             onClick={(e) => {
               e.preventDefault();
-              e.stopPropagation();
-              handleAddToCart();
+              mutation.mutate(props);
               modalRef.current?.open();
             }}
           >
@@ -46,18 +41,26 @@ const Card = (props: IProduct) => {
           </button>
         </div>
       </div>
-      <Modal ref={modalRef} className="backdrop:bg-dimmed">
+      <Modal ref={modalRef}>
         <div className="flex flex-col gap-4 p-8">
           <h2 className="text-lg">장바구니에 상품이 추가되었습니다.</h2>
-          <button
-            className="bg-primary-400 text-white py-2"
-            onClick={(e) => {
-              modalRef.current?.close();
-              e.stopPropagation();
-            }}
-          >
-            확인
-          </button>
+          <div className="grid grid-cols-2 gap-4">
+            <button
+              className=" text-primary-400 border flex items-center justify-center p-2"
+              onClick={(e) => {
+                modalRef.current?.close();
+                e.stopPropagation();
+              }}
+            >
+              계속 쇼핑하기
+            </button>
+            <Link
+              to="/cart"
+              className="bg-primary-400 text-white p-2 flex items-center justify-center"
+            >
+              장바구니 보기
+            </Link>
+          </div>
         </div>
       </Modal>
     </>
