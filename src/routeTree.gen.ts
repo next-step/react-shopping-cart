@@ -15,6 +15,7 @@ import { Route as OrderImport } from './routes/order'
 import { Route as ListImport } from './routes/list'
 import { Route as CartImport } from './routes/cart'
 import { Route as IndexImport } from './routes/index'
+import { Route as ListIdImport } from './routes/list_.$id'
 
 // Create/Update Routes
 
@@ -38,6 +39,11 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const ListIdRoute = ListIdImport.update({
+  path: '/list/$id',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -58,6 +64,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OrderImport
       parentRoute: typeof rootRoute
     }
+    '/list/$id': {
+      preLoaderRoute: typeof ListIdImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -68,6 +78,7 @@ export const routeTree = rootRoute.addChildren([
   CartRoute,
   ListRoute,
   OrderRoute,
+  ListIdRoute,
 ])
 
 /* prettier-ignore-end */
