@@ -1,3 +1,4 @@
 import cartAtom from "./cartAtom";
+import orderAtom from "./orderAtom";
 
-export { cartAtom };
+export { cartAtom, orderAtom };

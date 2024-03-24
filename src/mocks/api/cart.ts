@@ -3,10 +3,9 @@ import { pagination } from "@/utils";
 // import { groupByProductId } from "@/utils/cart";
 import type { ICart, IProduct } from "@/types";
 
-const cartData = localStorage.getItem("cart") || "[]";
-const parsedCartData = JSON.parse(cartData);
-
 const getCarts = async (page: number, limit: number) => {
+  const cartData = localStorage.getItem("cart") || "[]";
+  const parsedCartData = JSON.parse(cartData);
   try {
     const paginatedData = pagination<ICart>(parsedCartData, page, limit);
     // const groupByProduct = groupByProductId(paginatedData);
@@ -24,6 +23,8 @@ const addToCart = async (product: IProduct) => {
     id: window.crypto.randomUUID(),
     product,
   };
+  const cartData = localStorage.getItem("cart") || "[]";
+  const parsedCartData = JSON.parse(cartData);
   try {
     const newCart = [...parsedCartData, newItem];
     localStorage.setItem("cart", JSON.stringify(newCart));

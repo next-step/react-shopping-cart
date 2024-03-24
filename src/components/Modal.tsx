@@ -46,7 +46,7 @@ const Modal = forwardRef<ModalRef, ModalProps>(function Modal(
   return createPortal(
     <dialog
       {...props}
-      className={twMerge("backdrop:bg-dimmed", className)}
+      className={twMerge("backdrop:bg-dimmed rounded", className)}
       ref={dialog}
     >
       {children}
