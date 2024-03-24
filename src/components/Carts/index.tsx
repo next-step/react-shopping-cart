@@ -25,7 +25,7 @@ const Carts = () => {
               <h3 className="cart-title">든든배송 상품{` (${myCarts.carts.length})`}개</h3>
               <hr className="divide-line-gray mt-10" />
               {myCarts.carts.map((item, _) => (
-                <div className="cart-container">
+                <div className="cart-container" key={item.name}>
                   <div className="flex gap-15 mt-10">
                     <Checkbox />
                     <img className="w-144 h-144" src={item.imageUrl} alt={item.name} />
