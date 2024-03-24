@@ -8,8 +8,9 @@ const plugins = [react(), TanStackRouterVite()];
 export default defineConfig({
   plugins: plugins,
   resolve: {
-    alias: {
-      '@': './src/*',
-    },
+    alias: [
+      { find: '@', replacement: '/src' },
+      { find: '@/components', replacement: '/src/components' },
+    ],
   },
 });
