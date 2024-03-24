@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
 
+import useGetCartItemListQuery from 'src/entities/cart/hooks/useGetCartItemListQuery';
+
 export default function GNB() {
+	const { data: cartItemList } = useGetCartItemListQuery();
+
 	return (
 		<nav className="nav flex justify-around">
 			<div className="flex-center">
@@ -8,13 +12,14 @@ export default function GNB() {
 					<Link to="/">CLEAN CODE SHOP</Link>
 				</h1>
 			</div>
-			<div className="flex gap-15">
-				<button className="nav-button" data-testid="gnb-cart">
-					<Link to="/cart">장바구니</Link>
-				</button>
-				<button className="nav-button" data-testid="gnb-order-list">
-					<Link to="/order/list">주문목록</Link>
-				</button>
+			<div className="flex gap-15 items-center">
+				<Link to="/cart" className="nav-button" data-testid="gnb-cart">
+					{cartItemList.length > 0 && <div className="nav-button-badge" />}
+					장바구니
+				</Link>
+				<Link to="/order/list" className="nav-button" data-testid="gnb-order-list">
+					주문목록
+				</Link>
 			</div>
 		</nav>
 	);
