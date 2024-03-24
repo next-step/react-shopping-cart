@@ -1,8 +1,13 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
+import { apiClient } from "./axios";
 import type { IProduct } from "@/types/product";
 
-const fetchProducts = async (page: number): Promise<IProduct[]> => {
-  return fetch(`/products?page=${page}&limit=${12}`).then((res) => res.json());
+const fetchProducts = async (page: number) => {
+  const query = new URLSearchParams({ page: page.toString(), limit: "12" });
+  const { data } = await apiClient.get<IProduct[]>(
+    `/products?${query.toString()}`
+  );
+  return data;
 };
 
 export const useProducts = () => {

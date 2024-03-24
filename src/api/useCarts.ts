@@ -3,22 +3,22 @@ import {
   useMutation,
   useQueryClient,
 } from "@tanstack/react-query";
+import { apiClient } from "./axios";
 import type { ICart, IProduct } from "@/types";
 
-const fetchCarts = async (page: number): Promise<ICart[]> => {
-  return fetch(`/carts?page=${page}&limit=${5}`).then((res) => res.json());
+const fetchCarts = async (page: number) => {
+  const query = new URLSearchParams({ page: page.toString(), limit: "5" });
+  const { data } = await apiClient.get<ICart[]>(`/carts?${query.toString()}`);
+  return data;
 };
 
 const postCart = async (product: IProduct) => {
-  return fetch("/carts", {
-    method: "POST",
-    body: JSON.stringify(product),
-  }).then((res) => res.json());
+  const { data } = await apiClient.post<ICart>("/carts", product);
+  return data;
 };
 const deleteCartItem = async (id: number) => {
-  return fetch(`/cart/${id}`, {
-    method: "DELETE",
-  }).then((res) => res.json());
+  const { data } = await apiClient.delete<ICart>(`/carts/${id}`);
+  return data;
 };
 
 export const useCarts = () => {

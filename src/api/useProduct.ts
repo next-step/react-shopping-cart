@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import type { IProduct } from "@/types/product";
+import { apiClient } from "./axios";
 
-const fetchProduct = async (id: string): Promise<IProduct> => {
-  return fetch(`/products/${id}`).then((res) => res.json());
+const fetchProduct = async (id: string) => {
+  const { data } = await apiClient.get<IProduct>(`/products/${id}`);
+  return data;
 };
 export const useProduct = (id: string) => {
   return useQuery({
