@@ -4,7 +4,8 @@
 body {
   margin: 0;
 }
-a {
+a,
+button {
   cursor: pointer;
 }
 .divide-line {
