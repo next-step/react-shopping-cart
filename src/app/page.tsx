@@ -3,9 +3,10 @@ import { useProducts } from "@/api";
 import { Card, Loading } from "@/components";
 import { Link } from "react-router-dom";
 import { useIntersectionObserver } from "@/hooks";
+import Spinner from "@/assets/spinner.svg?react";
 
 const Home = () => {
-  const { data, isLoading, isError, hasNextPage, fetchNextPage } =
+  const { data, isLoading, isError, hasNextPage, fetchNextPage, isFetching } =
     useProducts();
   const { ref, isIntersecting } = useIntersectionObserver();
 
@@ -30,6 +31,11 @@ const Home = () => {
         </Link>
       ))}
       <div ref={ref} />
+      {isFetching && (
+        <div className="col-span-2 md:col-span-4 col-start-1 flex justify-center">
+          <Spinner />
+        </div>
+      )}
     </section>
   );
 };
