@@ -1,15 +1,20 @@
+import ProductCardList from '@/components/ProductCardList';
+import ProductSkeletonCardList from '@/components/ProductSkeletonCardList';
 import { createLazyFileRoute } from '@tanstack/react-router';
-import { products } from '../../db.json';
+import { Suspense } from 'react';
 
 export const Route = createLazyFileRoute('/')({
   component: Index,
 });
 
 function Index() {
-  console.log(products);
   return (
-    <div className="p-2">
-      <h3>Welcome Home!</h3>
+    <div className="p-5 max-w-[1280px] mx-auto">
+      <div className="grid grid-cols-4 gap-5">
+        <Suspense fallback={<ProductSkeletonCardList />}>
+          <ProductCardList />
+        </Suspense>
+      </div>
     </div>
   );
 }
