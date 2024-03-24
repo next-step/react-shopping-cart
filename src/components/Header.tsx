@@ -1,3 +1,4 @@
+import Cart from "@/assets/cart.svg?react";
 import { Link } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 import { Count } from "@/components";
@@ -18,7 +19,8 @@ const Header = (props: ComponentProps<"header">) => {
     >
       <div className="max-w-6xl flex justify-between items-center flex-grow px-4">
         <h1>
-          <Link to="/" className="text-xl font-bold">
+          <Link to="/" className="text-2xl font-bold flex gap-2 items-center">
+            <Cart />
             NEXTSTEP
           </Link>
         </h1>
