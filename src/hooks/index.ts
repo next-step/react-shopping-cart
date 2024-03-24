@@ -1,3 +1,5 @@
 import { useIntersectionObserver } from "./useIntersectionObserver";
+import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
+import { useScrollLock } from "./useScrollRock";
 
-export { useIntersectionObserver };
+export { useIntersectionObserver, useIsomorphicLayoutEffect, useScrollLock };

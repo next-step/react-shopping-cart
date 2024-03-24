@@ -7,6 +7,7 @@ import {
 } from "react";
 import { createPortal } from "react-dom";
 import { twMerge } from "tailwind-merge";
+import { useScrollLock } from "@/hooks";
 
 interface ModalProps extends ComponentProps<"dialog"> {
   children: ReactNode;
@@ -23,15 +24,21 @@ const Modal = forwardRef<ModalRef, ModalProps>(function Modal(
 ) {
   const dialog = useRef<HTMLDialogElement>(null);
 
+  const { lock, unlock } = useScrollLock({
+    autoLock: false,
+  });
+
   useImperativeHandle(ref, () => ({
     open() {
       if (dialog.current) {
         dialog.current.showModal();
+        lock();
       }
     },
     close() {
       if (dialog.current) {
         dialog.current.close();
+        unlock();
       }
     },
   }));
