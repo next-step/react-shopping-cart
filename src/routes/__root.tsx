@@ -2,17 +2,22 @@ import { createRootRoute, Link, Outlet } from '@tanstack/react-router';
 
 export const Route = createRootRoute({
   component: () => (
-    <>
-      <div className="p-2 flex gap-2">
-        <Link to="/" className="[&.active]:font-bold">
-          Home
+    <header>
+      <nav className="p-2 flex gap-2 justify-between max-w-[1280px] mx-auto">
+        <Link to="/" className="font-bold">
+          <h1>🛒 NEXTSTEP</h1>
         </Link>{' '}
-        <Link to="/about" className="[&.active]:font-bold">
-          About
-        </Link>
-      </div>
+        <div className="flex gap-5">
+          <Link to="/about" className="[&.active]:font-bold">
+            장바구니
+          </Link>
+          <Link to="/cart" className="[&.active]:font-bold">
+            주문목록
+          </Link>
+        </div>
+      </nav>
       <hr />
       <Outlet />
-    </>
+    </header>
   ),
 });
