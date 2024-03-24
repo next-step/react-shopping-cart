@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useProducts } from "@/api";
-import { Card, Loading } from "@/components";
+import { Card, Loading, NoData } from "@/components";
 import { Link } from "react-router-dom";
 import { useIntersectionObserver } from "@/hooks";
 import Spinner from "@/assets/spinner.svg?react";
@@ -21,6 +21,9 @@ const Home = () => {
   }
   if (isError) {
     return <div>Error</div>;
+  }
+  if (!isFetching && data?.pages.flat().length === 0) {
+    return <NoData message={"상품 목록이 존재하지 않습니다."} />;
   }
   return (
     <section className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-6">
