@@ -1,9 +1,26 @@
+import { useNavigate } from 'react-router-dom';
+
 import { OrderDetail } from 'src/entities/order/types/order.type';
 import { formatPriceToKRW } from 'src/shared/lib/format';
 import usePostCartItemMutation from 'src/entities/cart/hooks/usePostCartItemMutation';
+import useAlertStore from 'src/shared/store/useAlertStore';
 
 export default function OrderDetailItemProduct({ name, quantity, imageUrl, price, id }: OrderDetail) {
-	const { mutate: postCartItem } = usePostCartItemMutation();
+	const navigate = useNavigate();
+
+	const openAlert = useAlertStore.use.open();
+
+	const { mutate: postCartItem } = usePostCartItemMutation({
+		onSuccess: () => {
+			openAlert({
+				message: '장바구니에 상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?',
+				title: '장바구니',
+				confirm: () => {
+					navigate('/cart');
+				},
+			});
+		},
+	});
 
 	const handleAddToCart = () => {
 		postCartItem({ product: { id, price, name, imageUrl } });
