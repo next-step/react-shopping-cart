@@ -15,9 +15,33 @@
   color: #ffffff;
 }
 
+.nav_menu_button {
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+}
 .nav-button {
   font-weight: 500;
   font-size: 24px;
 
   color: #ffffff;
+}
+
+.nav-col-center {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.nav-sub-menu {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  font-size: 24px;
+  font-weight: 400;
+  color: #fff;
+  line-height: 12px;
 }

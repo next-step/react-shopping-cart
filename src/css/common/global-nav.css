@@ -7,20 +7,41 @@
 .global-nav-button-box {
   display: flex;
   gap: 5px;
+  align-items: center;
 
-  margin: 10px 0;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 100%;
+
+  h1 {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: #fff;
+  }
+  svg {
+    path {
+      fill: #fff;
+    }
+  }
 }
 
 .global-nav-button {
-  background-color: #ffffff;
-  border: 1px solid #222222;
-  border-radius: 8px;
-  box-sizing: border-box;
   color: #222222;
   cursor: pointer;
   display: inline-block;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
-    "Helvetica Neue", sans-serif;
+  font-family:
+    Circular,
+    -apple-system,
+    BlinkMacSystemFont,
+    Roboto,
+    'Helvetica Neue',
+    sans-serif;
   font-size: 16px;
   font-weight: 600;
   line-height: 20px;
@@ -31,7 +52,10 @@
   text-align: center;
   text-decoration: none;
   touch-action: manipulation;
-  transition: box-shadow 0.2s, -ms-transform 0.1s, -webkit-transform 0.1s,
+  transition:
+    box-shadow 0.2s,
+    -ms-transform 0.1s,
+    -webkit-transform 0.1s,
     transform 0.1s;
   user-select: none;
   -webkit-user-select: none;
@@ -39,7 +63,9 @@
 }
 
 .global-nav-button:focus-visible {
-  box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+  box-shadow:
+    #222222 0 0 0 2px,
+    rgba(255, 255, 255, 0.8) 0 0 0 4px;
   transition: box-shadow 0.2s;
 }
 
