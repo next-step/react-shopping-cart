@@ -8,6 +8,18 @@ import { routeTree } from './routeTree.gen';
 const router = createRouter({ routeTree });
 const queryClient = new QueryClient();
 
+async function enableMocking() {
+  if (process.env.NODE_ENV !== 'development') {
+    return;
+  }
+
+  const { worker } = await import('./mocks/browser');
+
+  // `worker.start()` returns a Promise that resolves
+  // once the Service Worker is up and ready to intercept requests.
+  return worker.start();
+}
+
 declare module '@tanstack/react-router' {
   interface Register {
     router: typeof router;
@@ -17,9 +29,11 @@ declare module '@tanstack/react-router' {
 const rootElement = document.getElementById('app')!;
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
-  root.render(
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
-  );
+  enableMocking().then(() => {
+    root.render(
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    );
+  });
 }
