@@ -14,7 +14,7 @@ export default function GNB() {
 			</div>
 			<div className="flex gap-15 items-center">
 				<Link to="/cart" className="nav-button" data-testid="gnb-cart">
-					{cartItemList.length > 0 && <div className="nav-button-badge" />}
+					{cartItemList.length > 0 && <div className="nav-button-badge" data-testid="cart-badge" />}
 					장바구니
 				</Link>
 				<Link to="/order/list" className="nav-button" data-testid="gnb-order-list">
