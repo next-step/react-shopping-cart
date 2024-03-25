@@ -26,11 +26,12 @@ export default function Alert() {
 
 	return createPortal(
 		<>
-			<div className="alert-container">
+			<div className="alert-container" data-testid="alert">
 				<h3 className="alert-title">{title}</h3>
 				<div className="alert-message">{message}</div>
 				<div className="alert-button-box">
 					<button
+						data-testid="alert-confirm-button"
 						onClick={() => {
 							confirm();
 							close();
@@ -39,7 +40,7 @@ export default function Alert() {
 					>
 						확인
 					</button>
-					<button onClick={close} className="alert-button-cancel">
+					<button onClick={close} className="alert-button-cancel" data-testid="alert-cancel-button">
 						취소
 					</button>
 				</div>

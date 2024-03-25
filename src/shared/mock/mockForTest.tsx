@@ -1,6 +1,7 @@
+import { ReactNode } from 'react';
 import { render, renderHook } from '@testing-library/react';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import { createMemoryRouter, RouterProvider, MemoryRouter } from 'react-router-dom';
+import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { InitialEntry } from 'history';
 
 import routes from 'src/routes/Router';
@@ -10,16 +11,23 @@ interface RenderWithMemoryRouterOptions {
 	initialIndex?: number;
 }
 
-export function renderMemoryRouter(options?: RenderWithMemoryRouterOptions) {
+function QueryClientWrapper({ children }: { children: ReactNode }) {
 	const queryClient = new QueryClient();
-	const memoryRouter = createMemoryRouter(routes, { ...options });
-	return render(
-		<QueryClientProvider client={queryClient}>
-			<RouterProvider router={memoryRouter} />
-		</QueryClientProvider>,
-	);
+	return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
 }
 
-export function renderHookWithMemoryRouter<Result, Props>(callback: (initialProps: Props) => Result) {
-	return renderHook(callback, { wrapper: MemoryRouter });
+export function renderMemoryRouter(options?: RenderWithMemoryRouterOptions) {
+	const memoryRouter = createMemoryRouter(routes, { ...options });
+	const alert = document.createElement('div');
+
+	alert.id = 'alert';
+
+	return render(<RouterProvider router={memoryRouter} />, {
+		wrapper: QueryClientWrapper,
+		container: document.body.appendChild(alert),
+	});
+}
+
+export function renderHookWithQueryClient<Result, Props>(callback: (initialProps: Props) => Result) {
+	return renderHook(callback, { wrapper: QueryClientWrapper });
 }

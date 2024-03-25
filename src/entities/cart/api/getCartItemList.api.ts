@@ -11,5 +11,6 @@ export const getCartItemListMockHandler = http.get('*/carts', () => {
 
 export default async function getCartItemListApi() {
 	const response = await axiosInstance.get<Response<CartItemData[]>>('/carts');
+
 	return response.data;
 }
