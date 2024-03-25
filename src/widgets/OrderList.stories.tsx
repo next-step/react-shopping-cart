@@ -89,11 +89,6 @@ export const WithOrderList: Story = {
 			};
 		}, []);
 
-		return (
-			<>
-				<div id="alert" />
-				<OrderListComponent />
-			</>
-		);
+		return <OrderListComponent />;
 	},
 };

@@ -13,15 +13,12 @@ const meta: Meta<Omit<AlertOptions, 'confirm'>> = {
 		};
 
 		return (
-			<>
-				<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
-					<button onClick={handleClick} className="primary-button" style={{ width: 'fit-content' }}>
-						Alert
-					</button>
-					<AlertComponent />
-				</div>
-				<div id="alert" />
-			</>
+			<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
+				<button onClick={handleClick} className="primary-button" style={{ width: 'fit-content' }}>
+					Alert
+				</button>
+				<AlertComponent />
+			</div>
 		);
 	},
 };
