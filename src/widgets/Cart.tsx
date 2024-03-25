@@ -9,15 +9,23 @@ export default function Cart() {
 	const { data: cartItemList, isLoading } = useGetCartItemListQuery();
 
 	if (isLoading) {
-		return <div className="product-no-items">Loading...</div>;
+		return (
+			<div className="product-no-items" data-testid="cart-page">
+				Loading...
+			</div>
+		);
 	}
 
 	if (cartItemList.length === 0) {
-		return <div className="product-no-items">장바구니에 담긴 상품이 없습니다.</div>;
+		return (
+			<div className="product-no-items" data-testid="cart-page">
+				장바구니에 담긴 상품이 없습니다.
+			</div>
+		);
 	}
 
 	return (
-		<section className="cart-section">
+		<section className="cart-section" data-testid="cart-page">
 			<CartHeader />
 			<div className="flex">
 				<section className="cart-left-section">
