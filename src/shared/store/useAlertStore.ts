@@ -3,7 +3,7 @@ import { immer } from 'zustand/middleware/immer';
 
 import createSelectors from 'src/shared/lib/zustand';
 
-interface AlertOptions {
+export interface AlertOptions {
 	message: string;
 	title: string;
 	confirm: () => void;
