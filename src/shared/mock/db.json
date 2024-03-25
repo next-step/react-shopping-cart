@@ -279,7 +279,8 @@
           "imageUrl": "https://cdn-mart.baemin.com/sellergoods/main/1b6e926b-52a3-4a92-8db5-fddaccdb2583.jpg",
           "quantity": 3
         }
-      ]
+      ],
+      "isPaid": false
     }
   ]
 }
