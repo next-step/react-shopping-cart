@@ -1,5 +1,3 @@
-import { setupWorker } from 'msw/browser';
-
 import { getProductListMockHandler } from 'src/entities/product/api/getProductList.api';
 import { getProductDetailMockHandler } from 'src/entities/product/api/getProductDetail.api';
 import { getCartItemListMockHandler } from 'src/entities/cart/api/getCartItemList.api';
@@ -11,7 +9,7 @@ import { getOrderDetailMockHandler } from 'src/entities/order/api/getOrderDetail
 import { postOrderMockHandler } from 'src/entities/order/api/postOrder.api';
 import { putOrderIsPaidMockHandler } from 'src/entities/order/api/putOrderIsPaid.api';
 
-const handler = [
+const httpHandlers = [
 	getProductListMockHandler(),
 	getProductDetailMockHandler,
 	getCartItemListMockHandler,
@@ -24,6 +22,4 @@ const handler = [
 	putOrderIsPaidMockHandler,
 ];
 
-const mswWorker = setupWorker(...handler);
-
-export default mswWorker;
+export default httpHandlers;

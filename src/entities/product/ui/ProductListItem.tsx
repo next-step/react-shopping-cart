@@ -35,7 +35,7 @@ export default function ProductListItem({ name, price, imageUrl, id }: ProductIt
 	};
 
 	return (
-		<div className="product-item-box" onClick={handleClickItem}>
+		<div className="product-item-box" onClick={handleClickItem} data-testid="product-list-item">
 			<img src={imageUrl} alt={name} />
 			<div className="flex justify-between p-5">
 				<div className="product-info">

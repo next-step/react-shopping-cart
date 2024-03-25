@@ -1,20 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
 import 'src/css/index.css';
-import Router from 'src/routes/Router';
-
-const queryClient = new QueryClient();
+import App from 'src/app';
+import httpHandlers from 'src/shared/lib/mswWorker';
 
 async function enableMocking() {
 	if (!import.meta.env.DEV) {
 		return;
 	}
 
-	const mswWorker = await import('src/shared/lib/mswWorker');
+	const { setupWorker } = await import('msw/browser');
 
-	return mswWorker.default.start({
+	return setupWorker(...httpHandlers).start({
 		onUnhandledRequest: 'bypass',
 	});
 }
@@ -22,9 +20,7 @@ async function enableMocking() {
 enableMocking().then(() => {
 	ReactDOM.createRoot(document.getElementById('root')!).render(
 		<React.StrictMode>
-			<QueryClientProvider client={queryClient}>
-				<Router />
-			</QueryClientProvider>
+			<App />
 		</React.StrictMode>,
 	);
 });
