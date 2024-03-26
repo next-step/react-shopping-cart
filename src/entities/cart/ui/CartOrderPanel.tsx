@@ -46,10 +46,17 @@ export default function CartOrderPanel() {
 			<div className="cart-right-section__bottom">
 				<div className="flex justify-between p-20 mt-20">
 					<span className="highlight-text">결제예상금액</span>
-					<span className="highlight-text">{formatPriceToKRW(totalPrice)}</span>
+					<span className="highlight-text" aria-label="total-price">
+						{formatPriceToKRW(totalPrice)}
+					</span>
 				</div>
 				<div className="flex-center mt-30 mx-10">
-					<button className="primary-button flex-center" type="button" onClick={handleOrderButtonClick}>
+					<button
+						className="primary-button flex-center"
+						type="button"
+						onClick={handleOrderButtonClick}
+						aria-label="make-order"
+					>
 						주문하기({cartCount}개)
 					</button>
 				</div>

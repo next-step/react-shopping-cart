@@ -30,7 +30,7 @@ export default function CartItem({ id, product }: CartItemData) {
 	};
 
 	return (
-		<div className="cart-container">
+		<div className="cart-container" data-testid="cart-item">
 			<div className="flex gap-15 mt-10">
 				<input
 					className="checkbox"
@@ -38,6 +38,8 @@ export default function CartItem({ id, product }: CartItemData) {
 					type="checkbox"
 					checked={selected}
 					onChange={handleToggleItemSelection}
+					data-testid={`select-item-${id}`}
+					aria-label="select-item"
 				/>
 				<img className="w-144 h-144" src={product.imageUrl} alt={product.name} />
 				<span className="cart-name">{product.name}</span>
@@ -47,10 +49,20 @@ export default function CartItem({ id, product }: CartItemData) {
 				<div className="number-input-container">
 					<input type="number" className="number-input" value={quantity} readOnly />
 					<div>
-						<button className="number-input-button" type="button" onClick={handleIncreaseQuantity}>
+						<button
+							className="number-input-button"
+							type="button"
+							onClick={handleIncreaseQuantity}
+							aria-label={`increase-quantity-${id}`}
+						>
 							▲
 						</button>
-						<button className="number-input-button" type="button" onClick={handleDecreaseQuantity}>
+						<button
+							className="number-input-button"
+							type="button"
+							onClick={handleDecreaseQuantity}
+							aria-label={`decrease-quantity-${id}`}
+						>
 							▼
 						</button>
 					</div>

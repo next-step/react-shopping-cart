@@ -11,15 +11,23 @@ export default function OrderConfirm() {
 	const { data: order, isLoading } = useGetOrderDetailQuery({ id: Number(id) });
 
 	if (isLoading) {
-		return <div className="product-no-items">Loading...</div>;
+		return (
+			<div className="product-no-items" data-testid="order-confirm-page">
+				Loading...
+			</div>
+		);
 	}
 
 	if (order.isPaid) {
-		return <div className="product-no-items">이미 결제가 완료된 주문입니다.</div>;
+		return (
+			<div className="product-no-items" data-testid="order-confirm-page">
+				이미 결제가 완료된 주문입니다.
+			</div>
+		);
 	}
 
 	return (
-		<section className="order-section">
+		<section className="order-section" data-testid="order-confirm-page">
 			<OrderConfirmHeader />
 			<div className="flex">
 				<section className="order-left-section">

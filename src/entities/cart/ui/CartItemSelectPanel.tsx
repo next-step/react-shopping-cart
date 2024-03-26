@@ -43,12 +43,13 @@ export default function CartItemSelectPanel() {
 					checked={isAllSelected}
 					id="select-all"
 					onChange={handleSelectAll}
+					aria-label="select-all"
 				/>
 				<label className="checkbox-label" htmlFor="select-all">
 					전체선택
 				</label>
 			</div>
-			<button className="delete-button" type="button" onClick={handleDeleteCartItemList}>
+			<button className="delete-button" type="button" onClick={handleDeleteCartItemList} aria-label="delete-cart-item">
 				상품삭제
 			</button>
 		</div>
