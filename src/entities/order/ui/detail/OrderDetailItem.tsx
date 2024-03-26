@@ -1,5 +1,5 @@
 import { Order } from 'src/entities/order/types/order.type';
-import OrderListItemProduct from 'src/entities/order/ui/list/OrderListItemProduct';
+import OrderDetailItemProduct from 'src/entities/order/ui/detail/OrderDetailItemProduct';
 
 export default function OrderDetailItem({ id, orderDetails }: Order) {
 	return (
@@ -8,7 +8,7 @@ export default function OrderDetailItem({ id, orderDetails }: Order) {
 				<span>주문번호: {id}</span>
 			</div>
 			{orderDetails.map(orderDetail => (
-				<OrderListItemProduct {...orderDetail} key={orderDetail.id} />
+				<OrderDetailItemProduct {...orderDetail} key={orderDetail.id} />
 			))}
 		</div>
 	);

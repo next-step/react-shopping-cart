@@ -11,7 +11,9 @@ export default function OrderDetailPrice({ orderDetails }: Order) {
 				<hr className="divide-line-thin my-20" />
 				<div className="flex justify-between">
 					<span className="highlight-text">총 결제금액</span>
-					<span className="highlight-text">{formatPriceToKRW(totalPrice)}</span>
+					<span className="highlight-text" data-testid="total-price">
+						{formatPriceToKRW(totalPrice)}
+					</span>
 				</div>
 			</div>
 		</div>

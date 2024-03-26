@@ -27,7 +27,7 @@ export default function OrderDetailItemProduct({ name, quantity, imageUrl, price
 	};
 
 	return (
-		<div className="order-list-item">
+		<div className="order-list-item" data-testid="order-detail-item">
 			<div className="flex gap-15 mt-10">
 				<img className="w-144 h-144" src={imageUrl} alt={name} />
 				<div className="flex-col gap-15">
@@ -37,7 +37,12 @@ export default function OrderDetailItemProduct({ name, quantity, imageUrl, price
 					</span>
 				</div>
 			</div>
-			<button className="primary-button-small flex-center self-start" type="button" onClick={handleAddToCart}>
+			<button
+				className="primary-button-small flex-center self-start"
+				type="button"
+				onClick={handleAddToCart}
+				aria-label={`cart-button-${id}`}
+			>
 				장바구니
 			</button>
 		</div>
