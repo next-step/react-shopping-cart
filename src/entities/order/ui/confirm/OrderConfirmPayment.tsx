@@ -28,10 +28,17 @@ export default function OrderConfirmPayment({ orderDetails, id }: Order) {
 			<div className="order-right-section__bottom">
 				<div className="flex justify-between p-20 mt-20">
 					<span className="highlight-text">총 결제금액</span>
-					<span className="highlight-text">{formatPriceToKRW(totalPrice)}</span>
+					<span className="highlight-text" data-testid="total-price-payment">
+						{formatPriceToKRW(totalPrice)}
+					</span>
 				</div>
 				<div className="flex-center mt-30 mx-10">
-					<button className="primary-button flex-center" type="button" onClick={handlePaymentButtonClick}>
+					<button
+						className="primary-button flex-center"
+						type="button"
+						onClick={handlePaymentButtonClick}
+						aria-label="confirm-payment"
+					>
 						{formatPriceToKRW(totalPrice)} 결제하기
 					</button>
 				</div>
