@@ -37,7 +37,12 @@ export default function OrderListItemProduct({ name, quantity, imageUrl, price, 
 					</span>
 				</div>
 			</div>
-			<button className="primary-button-small flex-center self-start" type="button" onClick={handleAddToCart}>
+			<button
+				className="primary-button-small flex-center self-start"
+				type="button"
+				onClick={handleAddToCart}
+				aria-label={`cart-button-${id}`}
+			>
 				장바구니
 			</button>
 		</div>

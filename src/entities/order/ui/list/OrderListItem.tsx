@@ -11,10 +11,14 @@ export default function OrderListItem({ id, orderDetails }: Order) {
 	};
 
 	return (
-		<div className="order-list">
+		<div className="order-list" data-testid="order-list-item">
 			<div className="order-list__header">
 				<span>주문번호: {id}</span>
-				<span onClick={handleOrderDetailClick} className="order-list__header__button">{`상세보기 >`}</span>
+				<button
+					onClick={handleOrderDetailClick}
+					className="order-list__header__button"
+					aria-label={`detail-button-${id}`}
+				>{`상세보기 >`}</button>
 			</div>
 			{orderDetails.map(orderDetail => (
 				<OrderListItemProduct {...orderDetail} key={orderDetail.id} />

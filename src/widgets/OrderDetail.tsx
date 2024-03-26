@@ -10,11 +10,15 @@ export default function OrderDetail() {
 	const { data: orderDetail, isLoading } = useGetOrderDetailQuery({ id: Number(id) });
 
 	if (isLoading) {
-		return <div className="product-no-items">Loading...</div>;
+		return (
+			<div className="product-no-items" data-testid="order-detail-page">
+				Loading...
+			</div>
+		);
 	}
 
 	return (
-		<section className="order-section">
+		<section className="order-section" data-testid="order-detail-page">
 			<OrderDetailHeader />
 			<OrderDetailItem {...orderDetail} />
 			<OrderDetailPrice {...orderDetail} />
