@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: Campton-Bold;
+  src: url("font/Campton-BoldDEMO.eot");
+  src: url("font/Campton-BoldDEMO.woff2") format("woff2"),
+    url("font/Campton-BoldDEMO.woff") format("woff"),
+    url("font/Campton-BoldDEMO.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Campton-Light;
+  src: url("font/Campton-LightDEMO.eot");
+  src: url("font/Campton-LightDEMO.woff2") format("woff2"),
+    url("font/Campton-LightDEMO.woff") format("woff"),
+    url("font/Campton-LightDEMO.ttf") format("truetype");
+}
+@layer base {
+  html {
+    font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system,
+      BlinkMacSystemFont, system-ui, "Segoe UI", "Apple SD Gothic Neo",
+      "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol", sans-serif;
+  }
+}
