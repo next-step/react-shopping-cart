@@ -1,0 +1,29 @@
+@import './common/index.css';
+@import './page/index.css';
+
+body {
+  margin: 0;
+}
+a,
+button {
+  cursor: pointer;
+}
+.divide-line {
+  width: 100%;
+  border: 2px solid black;
+}
+
+.divide-line-gray {
+  width: 100%;
+  border: 2px solid #aaaaaa;
+}
+
+.divide-line-thin {
+  width: 100%;
+  border: 1px solid #aaaaaa;
+}
+
+.main_container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
