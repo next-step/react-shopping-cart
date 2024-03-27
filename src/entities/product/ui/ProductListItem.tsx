@@ -14,7 +14,7 @@ export default function ProductListItem({ name, price, imageUrl, id }: ProductIt
 	const openAlert = useAlertStore.use.open();
 
 	const { mutate: postCartItem } = usePostCartItemMutation({
-		onSuccess: () => {
+		onMutate: () => {
 			openAlert({
 				message: '장바구니에 상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?',
 				title: '장바구니',

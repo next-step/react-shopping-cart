@@ -30,7 +30,7 @@ describe('주문 목록 페이지 테스트', () => {
 
 		const totalPrice = result.current.data?.orderDetails.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-		expect(totalPriceElement.innerHTML).toBe(formatPriceToKRW(totalPrice));
+		expect(totalPriceElement.innerHTML).toBe(formatPriceToKRW(totalPrice ?? 0));
 		expect(numberOfProductsElement.length).toBe(numberOfProducts);
 	});
 
@@ -47,7 +47,7 @@ describe('주문 목록 페이지 테스트', () => {
 
 		await waitFor(() => {
 			expect(result.current.data).toHaveLength(1);
-			expect(result.current.data[0].product.id).toBe(dbJSON.orders[0].orderDetails[0].id);
+			expect(result.current.data?.at(0)?.product.id).toBe(dbJSON.orders[0].orderDetails[0].id);
 		});
 	});
 });
