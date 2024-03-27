@@ -8,7 +8,7 @@ export const handlers = [
     const { id } = params
     const filtered = list.products.filter((item, _) => item.id === Number(id))
 
-    return HttpResponse.json(filtered)
+    return HttpResponse.json(filtered[0])
   }),
   http.get('/carts', () => HttpResponse.json(list.carts)),
 ]
