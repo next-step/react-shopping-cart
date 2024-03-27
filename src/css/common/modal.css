@@ -11,9 +11,7 @@
   align-items: center;
   justify-content: center;
 }
-._show {
-  display: block;
-}
+
 .modal_container {
   width: 450px;
   height: 200px;

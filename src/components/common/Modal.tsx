@@ -10,7 +10,7 @@ type ModalProps = {
 
 const Modal = ({ props }: { props: ModalProps }) => {
   return (
-    <div className={`modal_dim ${props.isOpen ?? '_show'}`}>
+    <div className={`modal_dim}`}>
       <div className="modal_container">
         <p>{props.title}</p>
         <p>{props.message}</p>

@@ -1,14 +1,15 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { CartsContext, UpdateCartsContext } from '../../context/cartsContext'
 import Modal from '../common/Modal'
 import { useQuery } from '@tanstack/react-query'
 import { getOrderList } from '../../api/cart'
+import useModal from '../../hooks/useModal'
 
 const OrderList = () => {
   const cartsContext = useContext(CartsContext)
   const updateCartsContext = useContext(UpdateCartsContext)
 
-  const [openModal, setOpenModal] = useState(false)
+  const { props, openModal, setOpenModal } = useModal({ title: '장바구니에 담았어요!' })
 
   const { data: orderList } = useQuery({
     queryKey: ['orderList'],
@@ -29,9 +30,7 @@ const OrderList = () => {
       {openModal && (
         <Modal
           props={{
-            isOpen: openModal,
-            title: '장바구니에 담았어요!',
-            setModalStatus: () => setOpenModal((state) => !state),
+            ...props,
           }}
         />
       )}
