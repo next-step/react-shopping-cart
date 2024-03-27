@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { CartsContext, UpdateCartsContext } from '../../context/cartsContext'
 import Modal from '../common/Modal'
 import { useQuery } from '@tanstack/react-query'
-import { fetchOrderList } from '../../api/cart'
+import { getOrderList } from '../../api/cart'
 
 const OrderList = () => {
   const cartsContext = useContext(CartsContext)
@@ -13,7 +13,7 @@ const OrderList = () => {
   const { data: orderList } = useQuery({
     queryKey: ['orderList'],
     queryFn: () => {
-      return fetchOrderList()
+      return getOrderList()
     },
     retry: 3,
   })
