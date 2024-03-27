@@ -13,7 +13,7 @@ export default function OrderList() {
 		);
 	}
 
-	if (orderList.length === 0) {
+	if (orderList?.length === 0) {
 		return (
 			<div className="product-no-items" data-testid="order-list-page">
 				주문이 없습니다.
@@ -24,9 +24,7 @@ export default function OrderList() {
 	return (
 		<section className="order-section" data-testid="order-list-page">
 			<OrderListHeader />
-			{orderList.map(order => (
-				<OrderListItem {...order} key={order.id} />
-			))}
+			{orderList?.map(order => <OrderListItem {...order} key={order.id} />)}
 		</section>
 	);
 }

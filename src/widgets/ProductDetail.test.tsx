@@ -16,13 +16,13 @@ describe('상품 상세 페이지 테스트', () => {
 		const { result } = renderHookWithQueryClient(() => useGetProductDetailQuery('1'));
 
 		await waitFor(() => {
-			expect(screen.queryByText(result.current.data?.name)).not.toBeNull();
-			expect(screen.queryByText(formatPriceToKRW(result.current.data?.price))).not.toBeNull();
+			expect(screen.queryByText(result.current.data?.name ?? '')).not.toBeNull();
+			expect(screen.queryByText(formatPriceToKRW(result.current.data?.price ?? 0))).not.toBeNull();
 		});
 	});
 
 	it('장바구니 버튼을 클릭하면 alert가 팝업되며 장바구니에 해당 상품이 추가된다.', async () => {
-		const productCartButton = screen.getByTestId('product-detail-button');
+		const productCartButton = await screen.findByTestId('product-detail-button');
 
 		await userEvent.click(productCartButton);
 
@@ -33,7 +33,7 @@ describe('상품 상세 페이지 테스트', () => {
 		const { result } = renderHookWithQueryClient(() => useGetCartItemListQuery());
 
 		await waitFor(() => {
-			expect(result.current.data[0].product.id).toBe(1);
+			expect(result.current.data?.at(0)?.product.id).toBe('1');
 		});
 	});
 });

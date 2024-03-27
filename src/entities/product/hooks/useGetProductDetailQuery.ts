@@ -9,7 +9,6 @@ export default function useGetProductDetailQuery(id: string) {
 		queryKey: ['productDetail', id],
 		queryFn: () => getProductDetailApi({ id }),
 		select: data => data.response,
-		initialData: { response: { id: '', name: '', price: 0, imageUrl: '' } },
 		enabled: !!id,
 	});
 }

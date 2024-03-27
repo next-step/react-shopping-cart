@@ -9,6 +9,5 @@ export default function useGetOrderDetailQuery({ id }: Pick<Order, 'id'>) {
 		queryKey: ['orderDetail', { id }],
 		queryFn: () => getOrderDetailApi({ id }),
 		select: data => data.response,
-		initialData: { response: { id: '', orderDetails: [], isPaid: false } },
 	});
 }

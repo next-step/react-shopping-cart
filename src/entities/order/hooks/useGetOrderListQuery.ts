@@ -9,6 +9,5 @@ export default function useGetOrderListQuery() {
 		queryKey: ['orderList'],
 		queryFn: getOrderListApi,
 		select: data => data.response,
-		initialData: { response: [] },
 	});
 }

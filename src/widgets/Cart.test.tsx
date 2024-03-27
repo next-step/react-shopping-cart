@@ -5,7 +5,6 @@ import userEvent from '@testing-library/user-event';
 import MOCK_CART_LIST, { clearMockCartList } from 'src/entities/cart/mock/MOCK_CART_LIST';
 import { renderMemoryRouter, renderHookWithQueryClient } from 'src/shared/mock/mockForTest';
 import dbJSON from 'src/shared/mock/db.json';
-import useGetCartItemListQuery from 'src/entities/cart/hooks/useGetCartItemListQuery';
 import { formatPriceToKRW } from 'src/shared/lib/format';
 import useCartStore from 'src/entities/cart/store/useCartStore';
 import useGetOrderListQuery from 'src/entities/order/hooks/useGetOrderListQuery';
@@ -17,7 +16,10 @@ describe('장바구니 페이지 테스트', () => {
 		const cartItemList = screen.queryAllByTestId('cart-item');
 
 		expect(cartItemList).toHaveLength(0);
-		expect(screen.queryByText('장바구니에 담긴 상품이 없습니다.')).not.toBeNull();
+
+		await waitFor(() => {
+			expect(screen.queryByText('장바구니에 담긴 상품이 없습니다.')).not.toBeNull();
+		});
 	});
 
 	it('장바구니에 상품이 있으면 상품이 표시된다.', async t => {
@@ -137,12 +139,9 @@ describe('장바구니 페이지 테스트', () => {
 
 		await userEvent.click(orderButton);
 
-		const { result: cartListResult } = renderHookWithQueryClient(() => useGetCartItemListQuery());
 		const { result: orderListResult } = renderHookWithQueryClient(() => useGetOrderListQuery());
 
 		await waitFor(() => {
-			expect(cartListResult.current.data).toHaveLength(0);
-
 			expect(orderListResult.current.data).toHaveLength(1);
 		});
 

@@ -17,6 +17,14 @@ export default function OrderDetail() {
 		);
 	}
 
+	if (!orderDetail) {
+		return (
+			<div className="product-no-items" data-testid="order-detail-page">
+				주문이 존재하지 않습니다.
+			</div>
+		);
+	}
+
 	return (
 		<section className="order-section" data-testid="order-detail-page">
 			<OrderDetailHeader />

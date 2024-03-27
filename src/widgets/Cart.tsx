@@ -16,7 +16,7 @@ export default function Cart() {
 		);
 	}
 
-	if (cartItemList.length === 0) {
+	if (cartItemList?.length === 0) {
 		return (
 			<div className="product-no-items" data-testid="cart-page">
 				장바구니에 담긴 상품이 없습니다.
@@ -31,7 +31,7 @@ export default function Cart() {
 				<section className="cart-left-section">
 					<CartItemSelectPanel />
 					<CartItemListHeader />
-					<CartItemList cartItemList={cartItemList} />
+					<CartItemList cartItemList={cartItemList ?? []} />
 				</section>
 				<section className="cart-right-section">
 					<CartOrderPanel />

@@ -1,5 +1,5 @@
 import { expect, describe, it, beforeEach, afterEach } from 'vitest';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { renderMemoryRouter, renderHookWithQueryClient } from 'src/shared/mock/mockForTest';
@@ -29,8 +29,10 @@ describe('주문 결제 페이지 테스트', () => {
 
 		const totalPrice = result.current.data?.orderDetails.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-		expect(totalPriceElement.innerHTML).toBe(formatPriceToKRW(totalPrice));
-		expect(numberOfProductsElement.innerHTML).toBe(`주문 상품(${numberOfProducts}건)`);
+		await waitFor(() => {
+			expect(totalPriceElement.innerHTML).toBe(formatPriceToKRW(totalPrice ?? 0));
+			expect(numberOfProductsElement.innerHTML).toBe(`주문 상품(${numberOfProducts}건)`);
+		});
 	});
 
 	it('결제하기 버튼을 클릭하면 주문 정보가 갱신되며 주문목록 페이지로 이동한다.', async () => {

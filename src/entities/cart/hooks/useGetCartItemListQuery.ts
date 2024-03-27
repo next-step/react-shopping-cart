@@ -18,6 +18,5 @@ export default function useGetCartItemListQuery() {
 			return response;
 		},
 		select: data => data.response,
-		initialData: { response: [] },
 	});
 }

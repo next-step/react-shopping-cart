@@ -18,6 +18,14 @@ export default function OrderConfirm() {
 		);
 	}
 
+	if (!order) {
+		return (
+			<div className="product-no-items" data-testid="order-confirm-page">
+				주문이 존재하지 않습니다.
+			</div>
+		);
+	}
+
 	if (order.isPaid) {
 		return (
 			<div className="product-no-items" data-testid="order-confirm-page">
