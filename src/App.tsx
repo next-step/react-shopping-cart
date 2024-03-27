@@ -4,15 +4,22 @@ import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { routeTree } from './routeTree.gen'
 import { useContext } from 'react'
 import CartsProvider, { CartsContext } from './context/cartsContext'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 // Create a new router instance
 const router = createRouter({
   routeTree,
   defaultPreload: 'intent',
   context: {
-    myOrder: undefined!, //cartsProvider로 포장한 후 설정?
+    myOrder: {
+      carts: [],
+      order: [],
+    },
   },
 })
+
+// Create a client
+const queryClient = new QueryClient()
 
 // Register the router instance for type safety
 declare module '@tanstack/react-router' {
@@ -23,9 +30,11 @@ declare module '@tanstack/react-router' {
 function App() {
   const myOrder = useContext(CartsContext)
   return (
-    <CartsProvider>
-      <RouterProvider router={router} context={{ myOrder }} />
-    </CartsProvider>
+    <QueryClientProvider client={queryClient}>
+      <CartsProvider>
+        <RouterProvider router={router} context={{ myOrder }} />
+      </CartsProvider>
+    </QueryClientProvider>
   )
 }
 
