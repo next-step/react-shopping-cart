@@ -3,7 +3,7 @@ import { CartsContext } from '../../context/cartsContext'
 import TrashIcon from '../../assets/svgs/trash.svg?react'
 import Checkbox from '../common/Checkbox'
 
-const Carts = () => {
+const Cart = () => {
   const myCarts = useContext(CartsContext)
 
   return (
@@ -66,40 +66,9 @@ const Carts = () => {
         ) : (
           <p className="item_not_found">물건을 담아주세요!</p>
         )}
-
-        {/* <div className="row_stack">
-          <div className="action_row">
-            <Checkbox>선택해제</Checkbox>
-            <button type="button">상품삭제</button>
-          </div>
-          <p>든든배송 상품(3개)</p>
-          <ul className="row">
-            <li>
-              <div>
-                <Checkbox />
-              </div>
-              <div>
-                <img src="" alt="" />
-              </div>
-              <div></div>
-            </li>
-          </ul>
-        </div>
-        <div className="pannel">
-          <div className="pannel_header">
-            <p>결제예상금액</p>
-          </div>
-          <div className="pannel_content">
-            <p>
-              결제예상금액
-              <span>21700원</span>
-            </p>
-            <button>주문하기(2개)</button>
-          </div>
-        </div> */}
       </section>
     </article>
   )
 }
 
-export default Carts
+export default Cart
