@@ -23,7 +23,7 @@ const ProductList = () => {
     <div className="product-container">
       <ul className="product_list">
         {productList.map((item) => (
-          <li className="list_box" key={item.id} onClick={() => console.log()}>
+          <li className="list_box" key={item.id}>
             <Link to={`/list/$id`} params={{ id: String(item.id) }}>
               <div className="image_box">
                 <img src={item.imageUrl} alt="product image " />
