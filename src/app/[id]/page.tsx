@@ -37,7 +37,10 @@ const ItemDetail = () => {
             <div className="flex justify-between p-2 md:p-0">
               <div>금액</div>
               <div className="text-xl">
-                <span className="font-medium">{price.toLocaleString()}</span>원
+                <span className="font-medium">
+                  {price.toLocaleString("ko-KR")}
+                </span>
+                원
               </div>
             </div>
             <Button

@@ -24,7 +24,7 @@ const Card = (props: IProduct) => {
           <div className="flex flex-col truncate">
             <div className="text-xs truncate font-medium">{name}</div>
             <div className="font-campton-b">
-              {price.toLocaleString()}
+              {price.toLocaleString("ko-KR")}
               <span className="font-sans font-normal">원</span>
             </div>
           </div>

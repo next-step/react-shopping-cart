@@ -73,7 +73,7 @@ const Cart = () => {
                       삭제
                     </button>
                     <input type="number" value={1} />
-                    <div>{product.price.toLocaleString()}원</div>
+                    <div>{product.price.toLocaleString("ko-KR")}원</div>
                   </div>
                 </div>
               </li>
