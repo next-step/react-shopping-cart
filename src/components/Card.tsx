@@ -9,7 +9,7 @@ import type { ModalRef } from "@/components";
 const Card = (props: IProduct) => {
   const modalRef = useRef<ModalRef | null>(null);
   const { name, imageUrl, price } = props;
-  const mutation = usePostCarts();
+  const { mutate: addCart } = usePostCarts();
 
   return (
     <>
@@ -32,7 +32,7 @@ const Card = (props: IProduct) => {
             className="shrink-0 px-2 hover:text-primary-400 transition-colors"
             onClick={(e) => {
               e.preventDefault();
-              mutation.mutate(props);
+              addCart(props);
               modalRef.current?.open();
             }}
           >

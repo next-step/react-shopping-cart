@@ -8,7 +8,7 @@ const ItemDetail = () => {
   const { id } = useParams();
   const modalRef = useRef<ModalRef | null>(null);
   const { data, isLoading, isError } = useProduct(id!);
-  const mutation = usePostCarts();
+  const { mutate: addCart } = usePostCarts();
   if (isLoading) {
     return <Loading />;
   }
@@ -47,7 +47,7 @@ const ItemDetail = () => {
               type="secondary"
               onClick={() => {
                 modalRef.current?.open();
-                mutation.mutate(data);
+                addCart(data);
               }}
             >
               장바구니
