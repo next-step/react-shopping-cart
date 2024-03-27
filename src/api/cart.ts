@@ -12,3 +12,10 @@ export const getProductList = async () => {
 
   return data
 }
+
+export const getProductDetailItem = async (param: string) => {
+  const response = await fetch(`/products/${param}`)
+  const data: Product = await response.json()
+
+  return data
+}
