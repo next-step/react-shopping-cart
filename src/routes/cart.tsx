@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
-import Carts from '../components/Carts'
+import Cart from '../components/Cart'
 
 export const Route = createFileRoute('/cart')({
-  component: () => <Carts />,
+  component: () => <Cart />,
 })
