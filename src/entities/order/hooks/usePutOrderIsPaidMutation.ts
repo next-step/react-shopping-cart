@@ -18,6 +18,7 @@ export default function usePutOrderIsPaidMutation(options?: UsePutOrderIsPaidMut
 
 			queryClient.invalidateQueries({ queryKey: ['orderList'] });
 			queryClient.invalidateQueries({ queryKey: ['orderDetail', { id: data.response.id }] });
+			queryClient.invalidateQueries({ queryKey: ['cartItemList'] });
 		},
 	});
 }

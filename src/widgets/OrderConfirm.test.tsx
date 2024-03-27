@@ -19,7 +19,7 @@ describe('주문 결제 페이지 테스트', () => {
 	});
 
 	it('주문 상세 api로 호출된 데이터를 화면에 나타낸다.', async () => {
-		const { result } = renderHookWithQueryClient(() => useGetOrderDetailQuery({ id: 1 }));
+		const { result } = renderHookWithQueryClient(() => useGetOrderDetailQuery({ id: '1' }));
 
 		const totalPriceElement = await screen.findByTestId('total-price-payment');
 

@@ -5,7 +5,7 @@ import ProductDetailItem from 'src/entities/product/ui/ProductDetailItem';
 
 export default function ProductDetail() {
 	const { id } = useParams();
-	const { data: product, isLoading } = useGetProductDetailQuery(Number(id));
+	const { data: product, isLoading } = useGetProductDetailQuery(id || '');
 
 	if (isLoading) {
 		return <div className="product-no-items">Loading...</div>;

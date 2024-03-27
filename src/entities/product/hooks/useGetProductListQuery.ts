@@ -9,6 +9,5 @@ export default function useGetProductListQuery() {
 		queryKey: ['productList'],
 		queryFn: getProductListApi,
 		select: data => data.response,
-		initialData: { response: [] },
 	});
 }

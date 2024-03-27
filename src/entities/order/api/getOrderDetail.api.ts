@@ -6,7 +6,7 @@ import { Order } from 'src/entities/order/types/order.type';
 import { MOCK_ORDER_LIST } from 'src/entities/order/mock/MOCK_ORDER_LIST';
 
 export const getOrderDetailMockHandler = http.get('*/orders/:id', ({ params }) => {
-	const orderId = Number(params.id);
+	const orderId = params.id as string;
 
 	const order = MOCK_ORDER_LIST.find(order => order.id === orderId);
 

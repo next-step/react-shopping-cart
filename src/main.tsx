@@ -6,7 +6,7 @@ import App from 'src/app';
 import httpHandlers from 'src/shared/lib/mswWorker';
 
 async function enableMocking() {
-	if (!import.meta.env.DEV) {
+	if (import.meta.env.MODE === 'production') {
 		return;
 	}
 

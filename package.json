@@ -6,6 +6,7 @@
   "scripts": {
     "server": "node server.cjs",
     "dev": "vite",
+    "dev:prod": "vite --mode production",
     "build": "tsc && vite build",
     "lint": "eslint react-payments --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",

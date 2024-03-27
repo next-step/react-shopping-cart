@@ -6,7 +6,7 @@ import { CartItemData } from 'src/entities/cart/type/cart.type';
 import MOCK_CART_LIST from 'src/entities/cart/mock/MOCK_CART_LIST';
 
 export const deleteCartItemMockHandler = http.delete('*/carts/:id', ({ params }) => {
-	const id = Number(params.id);
+	const id = params.id as string;
 
 	const targetIndex = MOCK_CART_LIST.findIndex(item => item.id === id);
 

@@ -8,11 +8,11 @@ import { Response } from 'src/shared/types/api';
 export const getProductDetailMockHandler = http.get('*/products/:id', ({ params }) => {
 	const { id } = params;
 
-	if (typeof id !== 'string' || Number.isNaN(Number(id))) {
+	if (typeof id !== 'string') {
 		return new HttpResponse(null, { status: 403, statusText: 'Invalid Id' });
 	}
 
-	const product = dbJSON.products.find((product: Product) => product.id === Number(id));
+	const product = dbJSON.products.find((product: Product) => product.id === id);
 
 	if (!product) {
 		return new HttpResponse(null, { status: 404, statusText: 'Not Found' });

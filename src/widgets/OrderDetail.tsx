@@ -7,7 +7,7 @@ import useGetOrderDetailQuery from 'src/entities/order/hooks/useGetOrderDetailQu
 
 export default function OrderDetail() {
 	const { id } = useParams();
-	const { data: orderDetail, isLoading } = useGetOrderDetailQuery({ id: Number(id) });
+	const { data: orderDetail, isLoading } = useGetOrderDetailQuery({ id: id || '' });
 
 	if (isLoading) {
 		return (

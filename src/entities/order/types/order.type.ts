@@ -5,7 +5,7 @@ export interface OrderDetail extends Product {
 }
 
 export interface Order {
-	id: number;
+	id: string;
 	orderDetails: OrderDetail[];
 	isPaid: boolean;
 }

@@ -2,21 +2,19 @@ import useGetProductListQuery from 'src/entities/product/hooks/useGetProductList
 import ProductListItem from 'src/entities/product/ui/ProductListItem';
 
 export default function ProductList() {
-	const { data: productList, isLoading } = useGetProductListQuery();
+	const { data: productList, isLoading, isSuccess } = useGetProductListQuery();
 
 	if (isLoading) {
 		return <div className="product-no-items">Loading...</div>;
 	}
 
-	if (productList.length === 0) {
+	if (isSuccess && productList.length === 0) {
 		return <div className="product-no-items">상품이 존재하지 않습니다.</div>;
 	}
 
 	return (
 		<section className="product-container">
-			{productList.map(product => (
-				<ProductListItem key={product.id} {...product} />
-			))}
+			{productList?.map(product => <ProductListItem key={product.id} {...product} />)}
 		</section>
 	);
 }

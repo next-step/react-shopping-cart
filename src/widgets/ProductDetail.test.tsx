@@ -13,7 +13,7 @@ describe('상품 상세 페이지 테스트', () => {
 	});
 
 	it('상품 상세 api로 호출된 데이터를 화면에 나타낸다.', async () => {
-		const { result } = renderHookWithQueryClient(() => useGetProductDetailQuery(1));
+		const { result } = renderHookWithQueryClient(() => useGetProductDetailQuery('1'));
 
 		await waitFor(() => {
 			expect(screen.queryByText(result.current.data?.name)).not.toBeNull();

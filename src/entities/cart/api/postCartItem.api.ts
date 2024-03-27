@@ -14,7 +14,7 @@ export const postCartItemMockHandler = http.post<never, Pick<CartItemData, 'prod
 
 		if (!isProductExist) {
 			MOCK_CART_LIST.push({
-				id: Date.now(),
+				id: Date.now().toString(),
 				product,
 			});
 		}

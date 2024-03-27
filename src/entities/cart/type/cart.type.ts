@@ -1,7 +1,7 @@
 import type { Product } from 'src/entities/product/type/product.type';
 
 export interface CartItemData {
-	id: number;
+	id: string;
 	product: Product;
 }
 
