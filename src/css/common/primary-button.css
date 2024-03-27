@@ -11,4 +11,5 @@
   font-size: 20px;
   color: white;
   padding: 14px 28px;
+  flex-shrink: 0;
 }

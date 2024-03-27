@@ -71,6 +71,8 @@
 
 .order-list-item {
   display: flex;
+  flex-direction: column;
+  gap: 16px;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -87,4 +89,14 @@
 
 .order-detail-title {
   font-size: 24px;
+}
+.order-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  .custom {
+    width: 100%;
+    margin: 0;
+  }
 }
