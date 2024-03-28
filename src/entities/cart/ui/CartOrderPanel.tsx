@@ -3,8 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import useCartStore from 'src/entities/cart/store/useCartStore';
 import { formatPriceToKRW } from 'src/shared/lib/format';
 import usePostOrderMutation from 'src/entities/order/hooks/usePostOrderMutation';
+import useAlertStore from 'src/shared/store/useAlertStore';
 
 export default function CartOrderPanel() {
+	const openAlert = useAlertStore.use.open();
+
 	const navigate = useNavigate();
 
 	const { mutate: postOrder } = usePostOrderMutation({
@@ -34,7 +37,11 @@ export default function CartOrderPanel() {
 	);
 
 	const handleOrderButtonClick = () => {
-		postOrder({ orderDetails: selectedCartItems });
+		openAlert({
+			title: '주문하기',
+			message: '선택한 상품을 주문하시겠습니까?',
+			confirm: () => postOrder({ orderDetails: selectedCartItems }),
+		});
 	};
 
 	return (
@@ -56,6 +63,7 @@ export default function CartOrderPanel() {
 						type="button"
 						onClick={handleOrderButtonClick}
 						aria-label="make-order"
+						disabled={cartCount === 0}
 					>
 						주문하기({cartCount}개)
 					</button>

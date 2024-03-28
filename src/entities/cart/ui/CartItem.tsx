@@ -2,8 +2,14 @@ import type { CartItemData } from 'src/entities/cart/type/cart.type';
 import useCartStore from 'src/entities/cart/store/useCartStore';
 import { formatPriceToKRW } from 'src/shared/lib/format';
 import useDeleteCartItemMutation from 'src/entities/cart/hooks/useDeleteCartItemMutation';
+import useAlertStore from 'src/shared/store/useAlertStore';
+
+const MAX_QUANTITY = 20;
+const MIN_QUANTITY = 1;
 
 export default function CartItem({ id, product }: CartItemData) {
+	const openAlert = useAlertStore.use.open();
+
 	const { mutate: deleteCartItem } = useDeleteCartItemMutation();
 
 	const selected = useCartStore.use.cart()[id]?.selected || false;
@@ -26,7 +32,11 @@ export default function CartItem({ id, product }: CartItemData) {
 	};
 
 	const handleDeleteCartItem = () => {
-		deleteCartItem({ id });
+		openAlert({
+			title: '장바구니 상품 삭제',
+			message: `${product.name}을(를) 장바구니에서 삭제하시겠습니까?`,
+			confirm: () => deleteCartItem({ id }),
+		});
 	};
 
 	return (
@@ -54,6 +64,7 @@ export default function CartItem({ id, product }: CartItemData) {
 							type="button"
 							onClick={handleIncreaseQuantity}
 							aria-label={`increase-quantity-${id}`}
+							disabled={quantity >= MAX_QUANTITY}
 						>
 							▲
 						</button>
@@ -62,6 +73,7 @@ export default function CartItem({ id, product }: CartItemData) {
 							type="button"
 							onClick={handleDecreaseQuantity}
 							aria-label={`decrease-quantity-${id}`}
+							disabled={quantity <= MIN_QUANTITY}
 						>
 							▼
 						</button>

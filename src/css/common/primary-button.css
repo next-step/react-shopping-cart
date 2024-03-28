@@ -8,6 +8,12 @@
   cursor: pointer;
 }
 
+.primary-button:disabled {
+  background: #f0f0f0;
+  color: #888888;
+  cursor: not-allowed;
+}
+
 .primary-button-small {
   background: #2ac1bc;
   font-size: 20px;

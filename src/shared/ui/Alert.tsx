@@ -31,7 +31,7 @@ export default function Alert() {
 				<div className="alert-message">{message}</div>
 				<div className="alert-button-box">
 					<button
-						data-testid="alert-confirm-button"
+						aria-label="alert-confirm-button"
 						onClick={() => {
 							confirm();
 							close();
@@ -40,7 +40,7 @@ export default function Alert() {
 					>
 						확인
 					</button>
-					<button onClick={close} className="alert-button-cancel" data-testid="alert-cancel-button">
+					<button onClick={close} className="alert-button-cancel" aria-label="alert-cancel-button">
 						취소
 					</button>
 				</div>

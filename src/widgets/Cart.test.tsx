@@ -74,7 +74,7 @@ describe('장바구니 페이지 테스트', () => {
 			});
 		});
 
-		it('상품삭제 버튼을 클릭하면 모든 상품이 삭제된다.', async () => {
+		it('상품삭제 버튼을 클릭하면 alert가 팝업되며 확인 버튼을 클릭하면 모든 상품이 삭제된다.', async () => {
 			renderMemoryRouter({ initialEntries: ['/cart'] });
 
 			const selectAllButton = await screen.findByLabelText('select-all');
@@ -84,6 +84,14 @@ describe('장바구니 페이지 테스트', () => {
 			const deleteButton = await screen.findByLabelText('delete-cart-item');
 
 			await userEvent.click(deleteButton);
+
+			const alert = screen.queryByTestId('alert');
+
+			expect(alert).not.toBeNull();
+
+			const alertConfirmButton = await screen.findByLabelText('alert-confirm-button');
+
+			await userEvent.click(alertConfirmButton);
 
 			const cartItemList = screen.queryAllByTestId('cart-item');
 
@@ -126,7 +134,7 @@ describe('장바구니 페이지 테스트', () => {
 		});
 	});
 
-	it('제품 선택 후 주문하기 버튼을 클릭하면 주문이 추가되고 주문 확인 페이지로 이동한다.', async t => {
+	it('제품 선택 후 주문하기 버튼을 클릭하면 alert가 팝업된다. 확인 버튼을 클릭하면 주문이 추가되고 주문 확인 페이지로 이동한다.', async t => {
 		MOCK_CART_LIST.push(...dbJSON.carts);
 
 		renderMemoryRouter({ initialEntries: ['/cart'] });
@@ -138,6 +146,14 @@ describe('장바구니 페이지 테스트', () => {
 		const orderButton = await screen.findByLabelText('make-order');
 
 		await userEvent.click(orderButton);
+
+		const alert = screen.queryByTestId('alert');
+
+		expect(alert).not.toBeNull();
+
+		const alertConfirmButton = await screen.findByLabelText('alert-confirm-button');
+
+		await userEvent.click(alertConfirmButton);
 
 		const { result: orderListResult } = renderHookWithQueryClient(() => useGetOrderListQuery());
 
