@@ -149,3 +149,14 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,jetbrains+all
+
+node_modules
+*storybook.log
+
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+dist
