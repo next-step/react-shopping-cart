@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { getProductListApiPagination } from 'src/entities/product/api/getProductList.api';
+import getProductListApiPagination from 'src/entities/product/api/getProductList.api';
 
 export default function useGetProductListInfiniteScroll() {
 	return useInfiniteQuery({

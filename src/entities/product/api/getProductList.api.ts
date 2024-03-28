@@ -50,13 +50,7 @@ export const getProductListMockHandler = (products?: Product[]) =>
 		});
 	});
 
-export default async function getProductListApi() {
-	const response = await axiosInstance.get<Response<Pagination<Product>>>('/products');
-
-	return response.data;
-}
-
-export async function getProductListApiPagination({ pageParam }: { pageParam: number }) {
+export default async function getProductListApiPagination({ pageParam }: { pageParam: number }) {
 	const response = await axiosInstance.get<Response<Pagination<Product>>>('/products', {
 		params: {
 			page: pageParam,
