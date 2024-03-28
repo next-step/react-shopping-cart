@@ -8,7 +8,7 @@ export default mergeConfig(
 		test: {
 			environment: 'jsdom',
 			globals: true,
-			setupFiles: ['./src/shared/mock/mswSetup.ts'],
+			setupFiles: ['./src/shared/mock/mswSetup.ts', './src/shared/mock/intersectionObserverMock.ts'],
 		},
 	}),
 );

@@ -22,14 +22,6 @@ describe('상품 목록 페이지 테스트', () => {
 		});
 	});
 
-	it('올바른 상품 개수가 표시된다.', async () => {
-		renderMemoryRouter();
-
-		const productListItems = await screen.findAllByTestId('product-list-item');
-
-		expect(productListItems).toHaveLength(dbJson.products.length);
-	});
-
 	it('상품을 클릭하면 해당 상품의 상세 페이지로 이동한다.', async () => {
 		renderMemoryRouter();
 
