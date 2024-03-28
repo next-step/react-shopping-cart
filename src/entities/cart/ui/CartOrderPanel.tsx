@@ -10,7 +10,7 @@ export default function CartOrderPanel() {
 
 	const navigate = useNavigate();
 
-	const { mutate: postOrder } = usePostOrderMutation({
+	const { mutate: postOrder, isPending } = usePostOrderMutation({
 		onSuccess: ({ id }) => {
 			navigate(`/order/confirm/${id}`);
 		},
@@ -63,7 +63,7 @@ export default function CartOrderPanel() {
 						type="button"
 						onClick={handleOrderButtonClick}
 						aria-label="make-order"
-						disabled={cartCount === 0}
+						disabled={cartCount === 0 || isPending}
 					>
 						주문하기({cartCount}개)
 					</button>

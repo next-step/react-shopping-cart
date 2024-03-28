@@ -3,11 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { Order } from 'src/entities/order/types/order.type';
 import { formatPriceToKRW } from 'src/shared/lib/format';
 import usePutOrderIsPaidMutation from 'src/entities/order/hooks/usePutOrderIsPaidMutation';
+import useAlertStore from 'src/shared/store/useAlertStore';
 
 export default function OrderConfirmPayment({ orderDetails, id }: Order) {
+	const openAlert = useAlertStore.use.open();
+
 	const navigate = useNavigate();
 
-	const { mutate: putOrderIsPaid } = usePutOrderIsPaidMutation({
+	const { mutate: putOrderIsPaid, isPending } = usePutOrderIsPaidMutation({
 		onSuccess: () => {
 			navigate('/order/list');
 		},
@@ -16,7 +19,11 @@ export default function OrderConfirmPayment({ orderDetails, id }: Order) {
 	const totalPrice = orderDetails.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
 	const handlePaymentButtonClick = () => {
-		putOrderIsPaid({ id });
+		openAlert({
+			title: '결제하기',
+			message: '주문하신 상품을 결제하시겠습니까?',
+			confirm: () => putOrderIsPaid({ id }),
+		});
 	};
 
 	return (
@@ -38,6 +45,7 @@ export default function OrderConfirmPayment({ orderDetails, id }: Order) {
 						type="button"
 						onClick={handlePaymentButtonClick}
 						aria-label="confirm-payment"
+						disabled={isPending}
 					>
 						{formatPriceToKRW(totalPrice)} 결제하기
 					</button>

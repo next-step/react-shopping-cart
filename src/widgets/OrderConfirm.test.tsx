@@ -35,10 +35,18 @@ describe('주문 결제 페이지 테스트', () => {
 		});
 	});
 
-	it('결제하기 버튼을 클릭하면 주문 정보가 갱신되며 주문목록 페이지로 이동한다.', async () => {
+	it('결제하기 버튼을 클릭하면 alert가 팝업되며 확인 버튼 클릭시 주문 정보가 갱신되며 주문목록 페이지로 이동한다.', async () => {
 		const confirmPaymentButton = await screen.findByLabelText('confirm-payment');
 
 		await userEvent.click(confirmPaymentButton);
+
+		const alert = screen.queryByTestId('alert');
+
+		expect(alert).not.toBeNull();
+
+		const alertConfirmButton = await screen.findByLabelText('alert-confirm-button');
+
+		await userEvent.click(alertConfirmButton);
 
 		expect(MOCK_ORDER_LIST[0].isPaid).toBeTruthy();
 
