@@ -6,10 +6,15 @@
   "license": "MIT",
   "devDependencies": {
     "json-server": "^0.17.0",
-    "lowdb": "^1.0.0"
+    "lowdb": "^1.0.0",
+    "msw": "^2.2.10"
   },
   "scripts": {
     "server": "node server.js"
   },
-  "dependencies": {}
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
+  }
 }
