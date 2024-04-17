@@ -37,20 +37,20 @@
 
 ```json
 {
-	"response": [
-		{
-			"id": 1,
-			"price": 10000,
-			"name": "치킨",
-			"imageUrl": "http://example.com/chicken.jpg"
-		},
-		{
-			"id": 2,
-			"price": 20000,
-			"name": "피자",
-			"imageUrl": "http://example.com/pizza.jpg"
-		}
-	]
+  "response": [
+    {
+      "id": 1,
+      "price": 10000,
+      "name": "치킨",
+      "imageUrl": "http://example.com/chicken.jpg"
+    },
+    {
+      "id": 2,
+      "price": 20000,
+      "name": "피자",
+      "imageUrl": "http://example.com/pizza.jpg"
+    }
+  ]
 }
 ```
 
@@ -62,13 +62,13 @@
 
 ```json
 {
-	"requestBody": {
-		"products": {
-			"price": 10000,
-			"name": "치킨",
-			"imageUrl": "http://example.com/chicken.jpg"
-		}
-	}
+  "requestBody": {
+    "products": {
+      "price": 10000,
+      "name": "치킨",
+      "imageUrl": "http://example.com/chicken.jpg"
+    }
+  }
 }
 ```
 
@@ -80,12 +80,12 @@
 
 ```json
 {
-	"response": {
-		"id": 1,
-		"price": 10000,
-		"name": "치킨",
-		"imageUrl": "http://example.com/chicken.jpg"
-	}
+  "response": {
+    "id": 1,
+    "price": 10000,
+    "name": "치킨",
+    "imageUrl": "http://example.com/chicken.jpg"
+  }
 }
 ```
 
@@ -97,7 +97,7 @@
 
 ```json
 {
-	"response": {}
+  "response": {}
 }
 ```
 
@@ -140,14 +140,14 @@
 
 ```json
 {
-	"requestBody": {
-		"product": {
-			"id": 10,
-			"name": "tes11111t",
-			"price": 1234,
-			"imageUrl": "test.com"
-		}
-	}
+  "requestBody": {
+    "product": {
+      "id": 10,
+      "name": "tes11111t",
+      "price": 1234,
+      "imageUrl": "test.com"
+    }
+  }
 }
 ```
 
@@ -159,7 +159,7 @@
 
 ```json
 {
-	"response": {}
+  "response": {}
 }
 ```
 
@@ -173,24 +173,24 @@
 
 ```json
 {
-	"requestBody": {
-		"orderDetails": [
-			{
-				"id": 1,
-				"price": 10000,
-				"name": "치킨",
-				"imageUrl": "http://example.com/chicken.jpg",
-				"quantity": 5
-			},
-			{
-				"id": 2,
-				"price": 20000,
-				"name": "피자",
-				"imageUrl": "http://example.com/pizza.jpg",
-				"quantity": 3
-			}
-		]
-	}
+  "requestBody": {
+    "orderDetails": [
+      {
+        "id": 1,
+        "price": 10000,
+        "name": "치킨",
+        "imageUrl": "http://example.com/chicken.jpg",
+        "quantity": 5
+      },
+      {
+        "id": 2,
+        "price": 20000,
+        "name": "피자",
+        "imageUrl": "http://example.com/pizza.jpg",
+        "quantity": 3
+      }
+    ]
+  }
 }
 ```
 
@@ -202,46 +202,46 @@
 
 ```json
 {
-	"response": [
-		{
-			"id": 1,
-			"orderDetails": [
-				{
-					"id": 1,
-					"price": 10000,
-					"name": "치킨",
-					"imageUrl": "http://example.com/chicken.jpg",
-					"quantity": 5
-				},
-				{
-					"id": 2,
-					"price": 20000,
-					"name": "피자",
-					"imageUrl": "http://example.com/pizza.jpg",
-					"quantity": 3
-				}
-			]
-		},
-		{
-			"id": 2,
-			"orderDetails": [
-				{
-					"id": 1,
-					"price": 10000,
-					"name": "치킨",
-					"imageUrl": "http://example.com/chicken.jpg",
-					"quantity": 5
-				},
-				{
-					"id": 2,
-					"price": 20000,
-					"name": "피자",
-					"imageUrl": "http://example.com/pizza.jpg",
-					"quantity": 3
-				}
-			]
-		}
-	]
+  "response": [
+    {
+      "id": 1,
+      "orderDetails": [
+        {
+          "id": 1,
+          "price": 10000,
+          "name": "치킨",
+          "imageUrl": "http://example.com/chicken.jpg",
+          "quantity": 5
+        },
+        {
+          "id": 2,
+          "price": 20000,
+          "name": "피자",
+          "imageUrl": "http://example.com/pizza.jpg",
+          "quantity": 3
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "orderDetails": [
+        {
+          "id": 1,
+          "price": 10000,
+          "name": "치킨",
+          "imageUrl": "http://example.com/chicken.jpg",
+          "quantity": 5
+        },
+        {
+          "id": 2,
+          "price": 20000,
+          "name": "피자",
+          "imageUrl": "http://example.com/pizza.jpg",
+          "quantity": 3
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -253,24 +253,24 @@
 
 ```json
 {
-	"response": {
-		"id": 1,
-		"orderDetails": [
-			{
-				"id": 1,
-				"price": 10000,
-				"name": "치킨",
-				"imageUrl": "http://example.com/chicken.jpg",
-				"quantity": 5
-			},
-			{
-				"id": 2,
-				"price": 20000,
-				"name": "피자",
-				"imageUrl": "http://example.com/pizza.jpg",
-				"quantity": 3
-			}
-		]
-	}
+  "response": {
+    "id": 1,
+    "orderDetails": [
+      {
+        "id": 1,
+        "price": 10000,
+        "name": "치킨",
+        "imageUrl": "http://example.com/chicken.jpg",
+        "quantity": 5
+      },
+      {
+        "id": 2,
+        "price": 20000,
+        "name": "피자",
+        "imageUrl": "http://example.com/pizza.jpg",
+        "quantity": 3
+      }
+    ]
+  }
 }
 ```

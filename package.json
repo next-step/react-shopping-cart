@@ -1,15 +1,59 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "main": "index.js",
-  "type": "commonjs",
-  "license": "MIT",
-  "devDependencies": {
-    "json-server": "^0.17.0",
-    "lowdb": "^1.0.0"
-  },
+  "name": "react-shopping-cart",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "server": "node server.js"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "preview": "vite preview"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@tanstack/react-query": "^5.28.6",
+    "@tanstack/react-router": "^1.22.3",
+    "@vanilla-extract/css": "^1.14.1",
+    "@vanilla-extract/recipes": "^0.5.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^1.2.25",
+    "@storybook/addon-essentials": "^8.0.4",
+    "@storybook/addon-interactions": "^8.0.4",
+    "@storybook/addon-links": "^8.0.4",
+    "@storybook/addon-onboarding": "^8.0.4",
+    "@storybook/blocks": "^8.0.4",
+    "@storybook/react": "^8.0.4",
+    "@storybook/react-vite": "^8.0.4",
+    "@storybook/test": "^8.0.4",
+    "@tanstack/react-query-devtools": "^5.28.9",
+    "@tanstack/router-devtools": "^1.22.3",
+    "@tanstack/router-vite-plugin": "^1.20.5",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "@vanilla-extract/vite-plugin": "^4.0.6",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "eslint-plugin-storybook": "^0.8.0",
+    "msw": "^2.2.10",
+    "storybook": "^8.0.4",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0"
+  },
+  "resolutions": {
+    "@types/mime": "3.0.4"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
+  }
 }
