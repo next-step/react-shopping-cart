@@ -2,12 +2,29 @@ import { checkedItemCount, sumPrice } from '../../util/calculator'
 import { formattingComma } from '../../util/formatter'
 import useCart from '../../hooks/useCart'
 import { useNavigate } from '@tanstack/react-router'
+import { useState } from 'react'
+
+import { PaymentsApp } from '@sxungchxn/react-payments'
+import '@sxungchxn/react-payments/styles'
 
 const Order = () => {
   const navigate = useNavigate()
   const { orderContext, actions } = useCart()
+  const [isPaymentApp, setIsPaymentApp] = useState(false)
 
   const checkedItems = checkedItemCount({ item: orderContext.order })
+
+  const callPaymentApp = () => {
+    setIsPaymentApp(true)
+  }
+
+  const handlePayClick = () => {
+    if (window.confirm('결제 할게요!')) {
+      actions('ADD_ORDER_ITEM')
+      navigate({ to: '/orderList' })
+      actions('REMOVE_CART_ITEM')
+    }
+  }
   if (!checkedItems) return null
   return (
     <section className="order-section">
@@ -49,7 +66,7 @@ const Order = () => {
                 className="primary-button flex-center"
                 onClick={() => {
                   actions('ADD_ORDER_HISTORY', [...orderContext.order])
-                  navigate({ to: '/orderList' })
+                  callPaymentApp()
                 }}
               >
                 {formattingComma(sumPrice({ item: checkedItems }))}원 결제하기
@@ -58,6 +75,40 @@ const Order = () => {
           </div>
         </section>
       </div>
+
+      {isPaymentApp && (
+        <div
+          className="payment-dim-area"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setIsPaymentApp(false)
+          }}
+        >
+          <div className="import-payment">
+            <p className="pay-title">결제</p>
+            <div className="">
+              <p className="pay-title">보유카드</p>
+              <PaymentsApp className="pay-list" />
+            </div>
+            <p className="sub-info">계좌정보 변경은 설정에서 확인해주세요.</p>
+            <div className="account-info">
+              <p>결제 금액</p>
+              <p>
+                총 결제금액
+                <span>{formattingComma(sumPrice({ item: checkedItems }))}</span>
+              </p>
+            </div>
+            <div className="terms">
+              <p>약관 이용 및 동의</p>
+              <p>거래 정보 제공 동의</p>
+            </div>
+
+            <div className="pay-button">
+              <button onClick={handlePayClick}>결제하기</button>
+              <button onClick={() => setIsPaymentApp(false)}>취소하기</button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }

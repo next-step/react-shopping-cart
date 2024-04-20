@@ -1,13 +1,10 @@
-import { useContext, useEffect, useState } from 'react'
-import { CartContext, UpdateCartContext } from '../../context/cartsContext'
+import { useState } from 'react'
 import Checkbox from '../common/Checkbox'
 import Payment from './Payment'
 import CartItemRow from './CartItemRow'
 import useCart from '../../hooks/useCart'
 
 const Cart = () => {
-  const myContext = useContext(CartContext)
-  const updateCart = useContext(UpdateCartContext)
   const [allCheckbox, setAllCheckbox] = useState(false)
 
   const { orderContext, actions } = useCart()
@@ -15,10 +12,7 @@ const Cart = () => {
   const handleChangeAll = () => {
     setAllCheckbox((state) => !state)
 
-    updateCart({
-      ...myContext,
-      cart: myContext.cart.map((item) => ({ ...item, isChecked: !allCheckbox })),
-    })
+    actions('ALL_CHECK_ITEM', [...orderContext.cart.map((item) => ({ ...item, isChecked: !allCheckbox }))])
   }
 
   const isAllChecked = () => {
@@ -31,7 +25,7 @@ const Cart = () => {
 
   const handleAllDelete = () => {
     if (window.confirm('모든 상품을 삭제하시겠어요?')) {
-      updateCart({ ...myContext, cart: [] })
+      actions('ALL_DELETE_ITEM', [])
     }
   }
 
@@ -52,7 +46,7 @@ const Cart = () => {
                 상품삭제
               </button>
             </div>
-            <h3 className="cart-title">든든배송 상품{` (${myContext.cart.length})`}개</h3>
+            <h3 className="cart-title">든든배송 상품{` (${orderContext.cart.length})`}개</h3>
             <hr className="divide-line-gray mt-10" />
             <CartItemRow />
           </section>
