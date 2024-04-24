@@ -1,6 +1,6 @@
 import db from '../../db.json'
 import { HttpResponse, PathParams, http } from 'msw'
-import { Product, Cart, ProductRequest, CartRequest, Order } from '@/types/api-type'
+import { Product, Cart, ProductRequest, CartRequest, Order, OrderRequest } from '@/types/api-type'
 import { isCartRequest, isProductRequest } from '@/types/type-guard'
 
 const productList: Product[] = db.products
@@ -9,6 +9,7 @@ const orderList: Order[] = db.orders
 
 let lastProductId = productList.at(-1)?.id ?? productList.length + 1
 let lastCartId = cartList.at(-1)?.id ?? cartList.length + 1
+let lastOrderId = orderList.at(-1)?.id ?? orderList.length + 1
 
 export const handlers = [
   // product api
@@ -71,7 +72,7 @@ export const handlers = [
   }),
 
   // 즐겨찾기 개수 감소 = 장바구니 리스트 내 해당 상품 한개만 삭제
-  http.delete('/carts/product/:id', async ({ params }) => {
+  http.delete('/carts/product/:id', ({ params }) => {
     const { id: targetProductId } = params
     const targetCart = cartList.find(cart => cart.product.id === Number(targetProductId))
     if (!targetCart) return new HttpResponse(null, { status: 400 })
@@ -83,6 +84,12 @@ export const handlers = [
   // orders api
   http.get('/orders', () => {
     return HttpResponse.json<Order[]>(orderList)
+  }),
+
+  http.post<PathParams, OrderRequest>('/orders', async ({ request }) => {
+    const orderRequest = await request.json()
+    orderList.push({ id: ++lastOrderId, orderDetails: orderRequest })
+    return new HttpResponse(null, { status: 201 })
   }),
 
   http.get('/orders/:id', ({ params }) => {

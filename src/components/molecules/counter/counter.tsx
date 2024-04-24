@@ -11,9 +11,9 @@ export interface CounterProps extends HTMLAttributes<HTMLDivElement> {
   /** counter 최대 값 (기본 20) */
   max?: number
   /** 증가시 실행할 부수함수 */
-  onIncrement?: (value: number) => void
+  onIncrement?: (value: number, max: number) => void
   /** 감소시 실행할 부수함수 */
-  onDecrement?: (value: number) => void
+  onDecrement?: (value: number, min: number) => void
 }
 
 export const Counter = ({
@@ -26,13 +26,11 @@ export const Counter = ({
   ...rest
 }: CounterProps) => {
   const handleIncrement = () => {
-    if (value >= max) return
-    onIncrement?.(++value)
+    onIncrement?.(value + 1, max)
   }
 
   const handleDecrement = () => {
-    if (value <= min) return
-    onDecrement?.(--value)
+    onDecrement?.(value - 1, min)
   }
 
   return (

@@ -16,8 +16,12 @@ const Template = () => {
   return (
     <Counter
       value={value}
-      onIncrement={value => setValue(value)}
-      onDecrement={value => setValue(value)}
+      onIncrement={(value, max) => {
+        if (value <= max) setValue(value)
+      }}
+      onDecrement={(value, min) => {
+        if (value >= min) setValue(value)
+      }}
     />
   )
 }

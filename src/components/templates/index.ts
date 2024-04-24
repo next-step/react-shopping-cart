@@ -1,3 +1,5 @@
 export * from './nav-bar'
 export * from './product-item/product-item'
 export * from './order-panel/order-panel'
+export * from './payment-modal/payment-modal'
+export * from './card-carousel/card-carousel'

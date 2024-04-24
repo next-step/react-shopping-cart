@@ -1,5 +1,5 @@
 import { act, renderHook } from '@/tests/test-utils'
-import { useCartProductListSelection, useCartProductSelection } from './cart-select-atom'
+import { useCartProductListSelection, useCartProductSelection } from '@/stores/hooks'
 import { CartGroupedData } from '@/types/api-type'
 
 const CART_SELECTION = 0

@@ -4,7 +4,7 @@ import { css } from '@styled-system/css'
 import { flex, vstack } from '@styled-system/patterns'
 import { IconTrash } from '@tabler/icons-react'
 import { Counter } from '@/components/molecules/counter/counter'
-import { useCartProductSelection, useResetCartProductSelection } from '@/atoms/cart-select-atom'
+import { useCartProductSelection, useResetCartProductSelection } from '@/stores/hooks'
 import { useDeleteCartProductSingle } from '@/mutations/delete-cart-product-single'
 import { useCreateCart } from '@/mutations/create-cart'
 import { useDeleteCartProductAll } from '@/mutations/delete-cart-product-all'
@@ -50,12 +50,16 @@ const CartSelectListItem = ({ cart }: CartSelectListItemProps) => {
     toggleCartProductSelection(id)
   }
 
-  const handleClickIncreaseButton = () => {
-    addCartProductSingle({ id, price, imageUrl, name })
+  const handleClickIncreaseButton = (value: number, max: number) => {
+    if (value <= max) {
+      addCartProductSingle({ id, price, imageUrl, name })
+    }
   }
 
-  const handleClickDecreaseButton = () => {
-    deleteCartProductSingle(id)
+  const handleClickDecreaseButton = (value: number, min: number) => {
+    if (value >= min) {
+      deleteCartProductSingle(id)
+    }
   }
 
   const handleClickDeleteCartProductButton = () => {

@@ -31,3 +31,5 @@ export interface Order {
 export interface ProductRequest extends Omit<Product, 'id'> {}
 
 export interface CartRequest extends Product {}
+
+export type OrderRequest = CartGroupedData[]

@@ -1,3 +1,4 @@
+import { OverlayContextProvider } from '@/contexts/overlay-context'
 import '@/styles/index.css'
 import type { Preview } from '@storybook/react'
 
@@ -10,6 +11,13 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [
+    Story => (
+      <OverlayContextProvider container={document.getElementById('modal-root')!}>
+        <Story />
+      </OverlayContextProvider>
+    ),
+  ],
 }
 
 export default preview
