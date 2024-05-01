@@ -3,6 +3,7 @@
  */
 
 export * from './Button/index';
+export * from './Carousel/index';
 export * from './Cart/index';
 export * from './Checkbox/index';
 export * from './Divider/index';
@@ -12,6 +13,7 @@ export * from './Image/index';
 export * from './Layout/index';
 export * from './OrderHistory/index';
 export * from './Overlay/index';
+export * from './Payments/index';
 export * from './Product/index';
 export * from './ProductDetail/index';
 export * from './QuantityCounter/index';

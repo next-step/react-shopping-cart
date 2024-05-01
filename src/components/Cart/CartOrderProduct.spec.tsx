@@ -18,7 +18,12 @@ describe('CartOrderProduct 컴포넌트', () => {
   const renderCartOrderProduct = () =>
     render(
       <QueryClientProvider client={queryClient}>
-        <CartOrderProduct value={{ ...cartItem }} />
+        <CartOrderProduct
+          type="cart"
+          product={cartItem.product}
+          checked={cartItem.checked}
+          quantity={cartItem.quantity}
+        />
       </QueryClientProvider>,
     );
 

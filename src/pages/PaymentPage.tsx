@@ -1,12 +1,14 @@
+import { CardInfoProvider, CardListProvider } from 'myfirstpackage-payments';
 import { MdOutlinePayment } from 'react-icons/md';
 import { flex } from '@styled-system/patterns';
 import { useNavigate } from '@tanstack/react-router';
-import { Button, CartOrderProduct, CartSummary, EmptyDescription, Typography } from '@/components';
-import { useAlert } from '@/hooks';
+import { Button, CartOrderProduct, CartSummary, EmptyDescription, PaymentForm, Typography } from '@/components';
+import { useAlert, useOverlay } from '@/hooks';
 import { usePaymentMutation } from '@/queries';
 import { Route } from '@/routes/orders_.$id.tsx';
 import { useOrderStore } from '@/store';
-import { Cart, Order, OrderSchema, Payment } from '@/types';
+import { Cart, OrderSchema, PaymentCancel, PaymentResult } from '@/types';
+import 'myfirstpackage-payments/styles';
 
 export const PaymentPage = () => <PaymentList />;
 
@@ -28,6 +30,7 @@ const PaymentList = () => {
   const orderId = Number(id);
 
   const alert = useAlert();
+  const overlay = useOverlay();
   const paymentMutation = usePaymentMutation();
 
   const orderStore = useOrderStore();
@@ -42,19 +45,61 @@ const PaymentList = () => {
   const totalPrice = orderData?.totalPrice ?? 0;
   const checkedCartProductImages = orderProducts.map((value) => value.product.imageUrl);
 
-  const onPayment = () => {
-    const payment: Payment = {
-      cardNumber: '1234-5678-1234-5678',
-      cardBrand: 'NEXTSTEP',
-      timestamp: Date.now(),
-    };
-    const order: Order = {
+  const onPayment = async () => {
+    const order = {
       ...OrderSchema.parse(orderData),
-      payment,
     };
-    paymentMutation.mutate(order, {
+
+    const responsePayment = await new Promise<PaymentResult | PaymentCancel>((resolve) => {
+      overlay.open(({ opened, close }) =>
+        opened ? (
+          <CardListProvider>
+            <CardInfoProvider>
+              <PaymentForm
+                orderId={order.id}
+                totalPrice={order.totalPrice}
+                onPaymentComplete={(paymentResult) => {
+                  resolve(paymentResult);
+                  close();
+                }}
+                onPaymentCancel={(paymentCancel) => {
+                  resolve(paymentCancel);
+                  close();
+                }}
+              />
+            </CardInfoProvider>
+          </CardListProvider>
+        ) : null,
+      );
+    });
+
+    const validPayment = (responsePayment: PaymentResult | PaymentCancel): responsePayment is PaymentResult =>
+      responsePayment.success;
+
+    if (!validPayment(responsePayment)) {
+      const confirmed = await alert.open({
+        message: '결제를 취소했습니다.\n다시 시도하시겠습니까?',
+        confirmText: '예',
+        cancelText: '아니오',
+      });
+      if (confirmed) {
+        onPayment();
+      }
+      return;
+    }
+
+    const requiredOrder = OrderSchema.required().parse({
+      ...orderData,
+      payment: {
+        cardNumber: responsePayment.cardNumber,
+        cardBrand: responsePayment.cardBrandName,
+        timestamp: responsePayment.paymentTimestamp,
+      },
+    });
+
+    paymentMutation.mutate(requiredOrder, {
       onSuccess: async () => {
-        orderStore.setOrder(order);
+        orderStore.setOrder(requiredOrder);
         await alert.open({
           type: 'alert',
           message: '결제가 완료되었습니다.',
@@ -103,7 +148,13 @@ const PaymentList = () => {
           })}
         >
           {orderProducts.map((cart) => (
-            <CartOrderProduct key={cart.product.id} value={cart} />
+            <CartOrderProduct
+              key={cart.product.id}
+              type="order"
+              product={cart.product}
+              checked={cart.checked}
+              quantity={cart.quantity}
+            />
           ))}
         </ul>
         <CartSummary totalPrice={totalPrice} productImages={checkedCartProductImages}>

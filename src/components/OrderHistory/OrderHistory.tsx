@@ -23,10 +23,11 @@ import {
   IconButton,
   Image,
   LikeIconButton,
+  PaymentReceipt,
   Typography,
   UnderlineButton,
 } from '@/components';
-import { useAddToCart } from '@/hooks';
+import { useAddToCart, useOverlay } from '@/hooks';
 import { Order, OrderSchema } from '@/types';
 import { formatNumberWithCommas } from '@/utils';
 
@@ -66,11 +67,16 @@ export const OrderHistory = ({ values }: OrderHistoryProps) => {
 
 const OrderHeader = ({ value }: OrderHeaderProps) => {
   const addToCart = useAddToCart();
+  const overlay = useOverlay();
 
   const validValue = OrderSchema.required().parse(value);
   const formattedDate = new Date(validValue.payment?.timestamp).toLocaleDateString('ko-KR');
   const formattedOrderId = validValue.id.toString();
   const paymentDetailString = `결제상세 ${formatNumberWithCommas(validValue.totalPrice)}원`;
+
+  const openPaymentReceipt = () => {
+    overlay.open(({ opened, close }) => (opened ? <PaymentReceipt order={value} onClose={close} /> : null));
+  };
 
   const addOrderInProductsToCart = () => {
     const productIds = validValue.products.map((product) => product.id);
@@ -87,7 +93,7 @@ const OrderHeader = ({ value }: OrderHeaderProps) => {
         </Typography>
       </div>
       <div className={orderHeaderActionsStyle}>
-        <UnderlineButton>
+        <UnderlineButton onClick={openPaymentReceipt}>
           <Typography as="span" variant="body">
             {paymentDetailString}
           </Typography>

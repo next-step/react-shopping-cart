@@ -1,7 +1,8 @@
 import { PiShoppingCartSimpleFill } from 'react-icons/pi';
 import { css } from '@styled-system/css';
 import { flex } from '@styled-system/patterns';
-import { Link, useNavigate } from '@tanstack/react-router';
+import { useNavigate } from '@tanstack/react-router';
+import { MenuLink } from './MenuLink';
 import { Button, Typography } from '@/components';
 
 type GlobalNavigationProps = {
@@ -29,7 +30,7 @@ const Logo = () => {
 };
 
 export const GlobalNavigation = ({ menuPaths }: GlobalNavigationProps) => {
-  if (!menuPaths || menuPaths.length === 0) {
+  if (menuPaths.length === 0) {
     return null;
   }
 
@@ -49,22 +50,7 @@ export const GlobalNavigation = ({ menuPaths }: GlobalNavigationProps) => {
             return null;
           }
 
-          return (
-            <Link key={menuPath.path} to={menuPath.path}>
-              <Typography
-                variant="headline"
-                className={css({
-                  color: 'white',
-                  fontSize: {
-                    base: '15px',
-                    sm: '20px',
-                  },
-                })}
-              >
-                {menuPath.title}
-              </Typography>
-            </Link>
-          );
+          return <MenuLink key={menuPath.path} title={menuPath.title} path={menuPath.path} />;
         })}
       </div>
     </nav>

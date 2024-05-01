@@ -9204,15 +9204,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"myfirstpackage-payments@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "myfirstpackage-payments@npm:0.2.0"
+"myfirstpackage-payments@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "myfirstpackage-payments@npm:0.2.2"
   dependencies:
     "@xstate/react": "npm:^4.1.0"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     xstate: "npm:^5.9.1"
-  checksum: 10c0/5379942c517a3ba60dbfd407b81b9b0d709fe379d839c9cb9039bd512a9e631e059adb9e66489bc7910a47103e6d8382a98181025824058954e0aae12d941ebd
+  checksum: 10c0/bc57d7c802357194afc8e86592c4af202cd2fefe573c98a0afbdee6b05d2c4d6a97e701d5d17c2ac31417a44b0a6a73356534a77d3b90f703a94b8aa2b424bd6
   languageName: node
   linkType: hard
 
@@ -10511,7 +10511,7 @@ __metadata:
     husky: "npm:^8.0.3"
     jsdom: "npm:^24.0.0"
     msw: "npm:^2.2.13"
-    myfirstpackage-payments: "npm:^0.2.0"
+    myfirstpackage-payments: "npm:^0.2.2"
     prettier: "npm:^3.2.5"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"

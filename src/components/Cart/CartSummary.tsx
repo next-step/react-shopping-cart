@@ -1,4 +1,4 @@
-import { memo, PropsWithChildren } from 'react';
+import { memo, MouseEventHandler, PropsWithChildren } from 'react';
 import { FaCirclePlus } from 'react-icons/fa6';
 import { css } from '@styled-system/css';
 import { flex } from '@styled-system/patterns';
@@ -11,6 +11,11 @@ type CartSummaryProps = {
   productImages: string[];
   curationProducts?: Product[];
   addCartProduct?: (product: Product) => void;
+};
+
+type CurationProductProps = {
+  imageUrl: string;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 export const CartSummary = memo(
@@ -42,9 +47,13 @@ export const CartSummary = memo(
                   함께 담으면 좋을 상품 😎
                 </Typography>
                 <div className={productImageWrapperStyle}>
-                  {curationProducts.map((product) => (
-                    <CurationProduct key={product.id} product={product} addCartProduct={addCartProduct} />
-                  ))}
+                  {curationProducts.map((product) => {
+                    const addProductToCart = () => {
+                      addCartProduct?.(product);
+                    };
+
+                    return <CurationProduct key={product.id} imageUrl={product.imageUrl} onClick={addProductToCart} />;
+                  })}
                 </div>
               </>
             )}
@@ -68,17 +77,9 @@ export const CartSummary = memo(
 
 CartSummary.displayName = 'CartSummary';
 
-const CurationProduct = ({
-  product,
-  addCartProduct,
-}: { product: Product } & Pick<CartSummaryProps, 'addCartProduct'>) => (
-  <Button
-    key={product.id}
-    variant="ghost"
-    style={{ padding: 0, margin: 0, position: 'relative' }}
-    onClick={() => addCartProduct?.(product)}
-  >
-    <Image src={product.imageUrl} alt="상품 이미지" className={productImageStyle} />
+const CurationProduct = ({ imageUrl, onClick }: CurationProductProps) => (
+  <Button variant="ghost" style={{ padding: 0, margin: 0, position: 'relative' }} onClick={onClick}>
+    <Image src={imageUrl} alt="상품 이미지" className={productImageStyle} />
     <div
       className={css({
         position: 'absolute',

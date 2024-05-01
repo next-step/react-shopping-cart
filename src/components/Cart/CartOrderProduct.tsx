@@ -6,17 +6,20 @@ import { CART_MAX_QUANTITY_VALUE } from '@/constants';
 import { useAlert } from '@/hooks';
 import { useRemoveProductFromCartMutation } from '@/queries';
 import { useCartStore } from '@/store';
-import { Cart } from '@/types';
+import { Product } from '@/types';
 import { formatNumberWithCommas } from '@/utils';
 
 type CartProductProps = {
-  value: Cart;
+  type?: 'cart' | 'order';
+  product: Product;
+  quantity: number;
+  checked?: boolean;
 };
 
 type ProductImageProps = {
-  processedOrder: boolean;
   checked?: boolean;
   imageUrl: string;
+  visibleCheckbox: boolean;
   onCheckboxChange: () => void;
 };
 
@@ -24,21 +27,21 @@ type ProductInfoProps = {
   name: string;
   price: string;
   quantity: number;
-  orderProcess: boolean;
   liked: boolean;
   productId: number;
+  visibleActions: boolean;
+  visibleQuantityCounter: boolean;
   onDeleteCartProduct: () => void;
   onQuantityChange: (quantity: number) => void;
 };
 
-export const CartOrderProduct = ({ value }: CartProductProps) => {
-  const { product, quantity, checked } = value;
+export const CartOrderProduct = ({ type = 'cart', product, quantity, checked }: CartProductProps) => {
   const alert = useAlert();
   const cartStore = useCartStore();
   const removeProductToCartMutation = useRemoveProductFromCartMutation();
 
   const productPrice = `${formatNumberWithCommas(product.price * quantity)}원`;
-  const processedOrder = checked === undefined;
+  const visibleExtras = type === 'cart';
 
   const handleCheckboxChange = () => {
     cartStore.toggleProductCheck(product.id);
@@ -63,18 +66,19 @@ export const CartOrderProduct = ({ value }: CartProductProps) => {
   return (
     <li className={cartProductListItemStyle}>
       <ProductImage
-        processedOrder={processedOrder}
         checked={checked}
         imageUrl={product.imageUrl}
+        visibleCheckbox={visibleExtras}
         onCheckboxChange={handleCheckboxChange}
       />
       <ProductInfo
         name={product.name}
         price={productPrice}
         quantity={quantity}
-        orderProcess={processedOrder}
         liked={Boolean(product.liked)}
         productId={product.id}
+        visibleActions={visibleExtras}
+        visibleQuantityCounter={visibleExtras}
         onDeleteCartProduct={handleDeleteCartProduct}
         onQuantityChange={handleQuantityChange}
       />
@@ -82,9 +86,9 @@ export const CartOrderProduct = ({ value }: CartProductProps) => {
   );
 };
 
-const ProductImage = ({ processedOrder, checked, imageUrl, onCheckboxChange }: ProductImageProps) => (
+const ProductImage = ({ visibleCheckbox, checked, imageUrl, onCheckboxChange }: ProductImageProps) => (
   <div className={productImageContainerStyle}>
-    {!processedOrder ? (
+    {visibleCheckbox ? (
       <Checkbox checked={checked} onChange={onCheckboxChange} className={productImageCheckboxStyle} />
     ) : null}
     <Image src={imageUrl} alt="주문 상품 이미지" className={productImageStyle} />
@@ -95,16 +99,17 @@ const ProductInfo = ({
   name,
   price,
   quantity,
-  orderProcess,
   liked,
   productId,
+  visibleActions,
+  visibleQuantityCounter,
   onDeleteCartProduct,
   onQuantityChange,
 }: ProductInfoProps) => (
   <div className={productInfoContainerStyle}>
     <Typography className={productNameStyle}>{name}</Typography>
     <div className={productInfoRightContainerStyle}>
-      {!orderProcess ? (
+      {visibleActions ? (
         <div className={productActionButtonsContainerStyle}>
           <LikeIconButton productId={productId} liked={liked} />
           <IconButton
@@ -119,9 +124,7 @@ const ProductInfo = ({
         <div className={productPriceContainerStyle}>
           <Typography className={productPriceStyle}>{price}</Typography>
         </div>
-        {orderProcess ? (
-          <Typography className={productQuantityStyle}>{quantity}개</Typography>
-        ) : (
+        {visibleQuantityCounter ? (
           <QuantityCounter
             value={quantity}
             min={1}
@@ -129,6 +132,8 @@ const ProductInfo = ({
             increment={() => onQuantityChange(quantity + 1)}
             decrement={() => onQuantityChange(quantity - 1)}
           />
+        ) : (
+          <Typography className={productQuantityStyle}>{quantity}개</Typography>
         )}
       </div>
     </div>

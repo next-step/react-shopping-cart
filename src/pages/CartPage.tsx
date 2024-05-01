@@ -120,7 +120,13 @@ const CartList = () => {
           })}
         >
           {cartStore.cartProducts.map((cart) => (
-            <CartOrderProduct key={cart.product.id} value={cart} />
+            <CartOrderProduct
+              key={cart.product.id}
+              type="cart"
+              product={cart.product}
+              checked={cart.checked}
+              quantity={cart.quantity}
+            />
           ))}
         </ul>
         <CartSummary

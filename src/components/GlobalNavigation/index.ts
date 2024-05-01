@@ -3,3 +3,4 @@
  */
 
 export * from './GlobalNavigation';
+export * from './MenuLink';

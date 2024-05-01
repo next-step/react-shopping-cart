@@ -17,26 +17,26 @@ export const Alert = ({ type, message, confirmText = '확인', cancelText = '취
         {message}
       </Typography>
       <section className={buttonContainerStyles}>
-        {type === 'confirm' && (
+        {type === 'confirm' ? (
           <Button
             className={buttonStyles}
             variant="solid"
             colorScheme="gray"
             onClick={() => {
-              resolve(false);
               close();
+              resolve(false);
             }}
           >
             {cancelText}
           </Button>
-        )}
+        ) : null}
         <Button
           className={buttonStyles}
           variant="solid"
           colorScheme="teal"
           onClick={() => {
-            resolve(true);
             close();
+            resolve(true);
           }}
         >
           {confirmText}
