@@ -13,12 +13,14 @@
   "dependencies": {
     "@tanstack/react-query": "^5.29.0",
     "@tanstack/react-query-devtools": "^5.29.0",
-    "@tanstack/react-router": "^1.26.18",
+    "@tanstack/react-router": "^1.29.2",
     "@tanstack/router-devtools": "^1.26.18",
     "@tanstack/router-vite-plugin": "^1.26.16",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "typescript-eslint": "^7.0.2"
+    "react-intersection-observer": "^9.8.2",
+    "typescript-eslint": "^7.0.2",
+    "zod": "^3.22.5"
   },
   "devDependencies": {
     "@types/node": "^20.11.20",

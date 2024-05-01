@@ -818,6 +818,11 @@
   resolved "https://registry.yarnpkg.com/@tanstack/history/-/history-1.26.10.tgz#fa67fd8a3e1a93ad626860afc3d6b5073b8be480"
   integrity sha512-fHx8RQ3liEDhueIemUggBGmqYnK6vOxtxCduolW7r6ExBEQVwKdLEcaUobxp6BxcXLQ7z/qhXAptlOlYi4FFXg==
 
+"@tanstack/history@1.28.9":
+  version "1.28.9"
+  resolved "https://registry.yarnpkg.com/@tanstack/history/-/history-1.28.9.tgz#487d4414c242d1fe5eacdff109fa25f08da81e11"
+  integrity sha512-WgTFJhHaZnGZPyt0H11xFhGGDj1MtA1mrUmdAjB/nhVpmsAYXsSB5O+hkF9N66u7MjbNb405wTb9diBsztvI5w==
+
 "@tanstack/query-core@5.29.0":
   version "5.29.0"
   resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.29.0.tgz#d0b3d12c07d5a47f42ab0c1ed4f317106f3d4b20"
@@ -842,12 +847,22 @@
   dependencies:
     "@tanstack/query-core" "5.29.0"
 
-"@tanstack/react-router@1.27.0", "@tanstack/react-router@^1.26.18":
+"@tanstack/react-router@1.27.0":
   version "1.27.0"
   resolved "https://registry.yarnpkg.com/@tanstack/react-router/-/react-router-1.27.0.tgz#8fbfd9ad6d901623f4ed37edd57b930f8a7be64e"
   integrity sha512-tBFGdB7o2z0BIT9fsmsF0I9SrLya86HV0xVdPSUWcwFOVUYy8UtDmVw9rBb0Rze0oW5keNgvECT+kYhD6e1vCg==
   dependencies:
     "@tanstack/history" "1.26.10"
+    "@tanstack/react-store" "^0.2.1"
+    tiny-invariant "^1.3.1"
+    tiny-warning "^1.0.3"
+
+"@tanstack/react-router@^1.29.2":
+  version "1.29.2"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-router/-/react-router-1.29.2.tgz#49a3a5cfad3bd43fc62631f89016b931abdcab35"
+  integrity sha512-rSSLyI+AaVg79qeeH5fH6KA8ZQkckinH9mFdLrGUhA4wX2B7Az7eloepha2TqvsFJon0HgeV7heMqPkq9nyAeg==
+  dependencies:
+    "@tanstack/history" "1.28.9"
     "@tanstack/react-store" "^0.2.1"
     tiny-invariant "^1.3.1"
     tiny-warning "^1.0.3"
@@ -2765,6 +2780,11 @@ react-dom@^18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
+react-intersection-observer@^9.8.2:
+  version "9.8.2"
+  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-9.8.2.tgz#a45db2441909a4d2f310de381686e151f016691d"
+  integrity sha512-901naEiiZmse3p+AmtbQ3NL9xx+gQ8TXLiGDc+8GiE3JKJkNV3vP737aGuWTAXBA+1QqxPrDDE+fIEgYpGDlrQ==
+
 react-refresh@^0.14.0:
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.14.0.tgz#4e02825378a5f227079554d4284889354e5f553e"
@@ -3390,3 +3410,8 @@ zod@^3.22.4:
   version "3.22.4"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.22.4.tgz#f31c3a9386f61b1f228af56faa9255e845cf3fff"
   integrity sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==
+
+zod@^3.22.5:
+  version "3.22.5"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-3.22.5.tgz#b9b09db03f6700b0d0b75bf0dbf0c5fc46155220"
+  integrity sha512-HqnGsCdVZ2xc0qWPLdO25WnseXThh0kEYKIdV5F/hTHO75hNZFp8thxSeHhiPrHZKrFTo1SOgkAj9po5bexZlw==
