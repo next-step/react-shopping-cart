@@ -46,6 +46,12 @@ server.post("/carts", (req, res) => {
   }
 });
 
+// 장바구니 값 가져오기 추가
+server.get("/carts", (req, res) => {
+  const carts = db.get("carts").value();
+  res.json(carts);
+});
+
 server.post("/orders", (req, res) => {
   const { orderDetails } = req.body;
 
