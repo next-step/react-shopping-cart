@@ -1,3 +1,4 @@
+import { styleVariants } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 export const contained = recipe({
@@ -41,5 +42,17 @@ export const outlined = recipe({
         fontSize: 24,
       },
     },
+  },
+});
+
+export const disabled = styleVariants({
+  contained: {
+    color: 'rgba(0, 0, 0, 0.26)',
+    backgroundColor: 'rgba(0, 0, 0, 0.12)',
+    cursor: 'not-allowed',
+  },
+  outlined: {
+    color: 'rgba(0, 0, 0, 0.26)',
+    cursor: 'not-allowed',
   },
 });

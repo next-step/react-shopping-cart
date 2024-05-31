@@ -23,6 +23,7 @@ const fadeOut = keyframes({
 });
 
 export const snackbarContainer = style({
+  display: 'none',
   visibility: 'hidden',
   minWidth: 180,
   minHeight: 30,
@@ -39,6 +40,7 @@ export const snackbarContainer = style({
 });
 
 export const snackbarShow = style({
+  display: 'block',
   visibility: 'visible',
   WebkitAnimation: `${fadeIn} 0.5s, ${fadeOut} 0.5s 2.5s`,
   animation: `${fadeIn} 0.5s, ${fadeOut} 0.5s 2.5s`,

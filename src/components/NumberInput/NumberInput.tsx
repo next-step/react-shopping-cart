@@ -8,22 +8,34 @@ import {
 interface Props {
   value: number;
   onChange: (value: number) => void;
+  min?: number;
+  max?: number;
 }
 
-const NumberInput = ({ value, onChange }: Props) => {
+const INPUT_MIN = 1;
+const INPUT_MAX = 20;
+
+const NumberInput = ({
+  value,
+  onChange,
+  min = INPUT_MIN,
+  max = INPUT_MAX,
+}: Props) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newValue = parseInt(event.target.value, 10);
+    if (newValue < min || newValue > max) return;
     onChange(newValue);
   };
 
   const handlePlus = () => {
     const newValue = value + 1;
+    if (newValue > max) return;
     onChange(newValue);
   };
 
   const handleMinus = () => {
     const newValue = value - 1;
-    if (newValue <= 0) return;
+    if (newValue < min) return;
     onChange(newValue);
   };
 

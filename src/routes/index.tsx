@@ -1,35 +1,15 @@
 import { useState } from 'react';
-import { createFileRoute, useNavigate } from '@tanstack/react-router';
-import { useSuspenseQuery } from '@tanstack/react-query';
-import { productListQueryOptions } from './products/-queryOptions';
-import ProductCard from './products/-components/ProductCard';
+import { createFileRoute } from '@tanstack/react-router';
 import SnackBar from '../components/SnackBar/SnackBar';
-import { PendingComponent } from './-components/pendingComponent';
+import { ProductList } from './products/-components';
 
-export const ProductList = () => {
-  const navigate = useNavigate();
-  const { data } = useSuspenseQuery(productListQueryOptions());
+export const Home = () => {
   const [showSnackBar, setShowSnackBar] = useState(false);
-
   const handleCloseSnackBar = () => setShowSnackBar(false);
 
   return (
     <>
-      <section className='product-container'>
-        {data.map((item) => (
-          <ProductCard
-            key={item.id}
-            product={item}
-            setShowSnackBar={setShowSnackBar}
-            onClick={() =>
-              navigate({
-                to: '/products/$productId',
-                params: { productId: item.id },
-              })
-            }
-          />
-        ))}
-      </section>
+      <ProductList setShowSnackBar={setShowSnackBar} />
       <SnackBar
         open={showSnackBar}
         onClose={handleCloseSnackBar}
@@ -40,8 +20,5 @@ export const ProductList = () => {
 };
 
 export const Route = createFileRoute('/')({
-  component: ProductList,
-  loader: ({ context }) =>
-    context.queryClient.ensureQueryData(productListQueryOptions()),
-  pendingComponent: PendingComponent,
+  component: Home,
 });

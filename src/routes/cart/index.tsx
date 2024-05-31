@@ -1,125 +1,38 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { createFileRoute } from '@tanstack/react-router';
-import { useSuspenseQuery } from '@tanstack/react-query';
-import Checkbox from '../../components/Checkbox/Checkbox';
-import Button from '../../components/Button/Button';
-import {
-  cartItemQueryOptions,
-  useDeleteCartItemMutation,
-} from './-queryOptions';
+import { cartItemQueryOptions } from './-queryOptions';
 import PageTitle from '../../components/PageTitle/PageTitle';
-import HighlightText from '../../components/HighlightText/HighlightText';
-import { useSelectItems } from './-hooks/useSelectItems';
-import NumberInput from '../../components/NumberInput/NumberInput';
-import TrashIcon from '../../assets/svgs/trash.svg?react';
+import { useCartStore } from '../../store/cart';
+import * as styles from './cart.css';
+import { CartItemList, CartOrderInfo } from './-components';
 
 function Cart() {
-  const { data } = useSuspenseQuery(cartItemQueryOptions());
-  const [cartItems, setCartItems] = useState(data);
+  const data = Route.useLoaderData();
+  const setItems = useCartStore((state) => state.setItems);
 
-  const deleteCartItem = useDeleteCartItemMutation();
-  const {
-    isAllSelected,
-    selectedItems,
-    toggleItemSelection,
-    toggleAllItemsSelection,
-  } = useSelectItems(cartItems);
-
-  const totalAmount = cartItems.reduce((acc, { id, product }) => {
-    if (selectedItems.has(id)) {
-      return acc + product.price * (product.quantity || 1);
-    }
-    return acc;
-  }, 0);
-
-  const handleQuantityChange = (id: number, newQuantity: number) => {
-    setCartItems(
-      cartItems.map((cartItem) =>
-        cartItem.id === id
-          ? {
-              ...cartItem,
-              product: { ...cartItem.product, quantity: newQuantity },
-            }
-          : cartItem
-      )
-    );
-  };
+  useEffect(() => {
+    setItems(data);
+  }, [data]);
 
   return (
-    <section className='cart-section'>
-      <PageTitle>장바구니</PageTitle>
-      <div className='flex'>
-        <section className='cart-left-section'>
-          <div className='flex justify-between items-center'>
-            <Checkbox
-              label='선택해제'
-              checked={isAllSelected}
-              onChange={toggleAllItemsSelection}
-            />
-            <Button variant='outlined' size='small'>
-              상품삭제
-            </Button>
-          </div>
-          <h3 className='cart-title'>든든배송 상품({data.length}개)</h3>
-          <hr className='divide-line-gray mt-10' />
+    <>
+      <section className={styles.cartSectionContainer}>
+        <PageTitle>장바구니</PageTitle>
 
-          {cartItems.map((cartItem) => {
-            const { name, imageUrl, price, quantity } = cartItem.product;
-            return (
-              <div key={cartItem.id}>
-                <div className='cart-container'>
-                  <div className='flex gap-15 mt-10'>
-                    <Checkbox
-                      checked={selectedItems.has(cartItem.id)}
-                      onChange={() => toggleItemSelection(cartItem.id)}
-                    />
-                    <img className='w-144 h-144' src={imageUrl} alt={name} />
-                    <span className='cart-name'>{name}</span>
-                  </div>
-                  <div className='flex-col-center justify-end gap-15'>
-                    <TrashIcon
-                      className='cart-trash-svg'
-                      onClick={() => deleteCartItem.mutate(cartItem.id)}
-                    />
-                    <NumberInput
-                      value={quantity || 1}
-                      onChange={(newQuantity) =>
-                        handleQuantityChange(cartItem.id, newQuantity)
-                      }
-                    />
-                    <span className='cart-price'>
-                      {price.toLocaleString()}원
-                    </span>
-                  </div>
-                </div>
-                <hr className='divide-line-thin mt-10' />
-              </div>
-            );
-          })}
-        </section>
-        <section className='cart-right-section'>
-          <div className='cart-right-section__top'>
-            <h3 className='cart-title'>결제예상금액</h3>
-          </div>
-          <hr className='divide-line-thin' />
-          <div className='cart-right-section__bottom'>
-            <div className='flex justify-between p-20 mt-20'>
-              <HighlightText>결제예상금액</HighlightText>
-              <HighlightText>{totalAmount.toLocaleString()}원</HighlightText>
+        <div className={styles.cartInnerContainer}>
+          {data.length ? (
+            <div className={styles.cartSection}>
+              <CartItemList />
+              <CartOrderInfo />
             </div>
-            <div className='flex-center mt-30 mx-10'>
-              <Button
-                className='flex-center'
-                variant='contained'
-                color='primary'
-              >
-                주문하기({selectedItems.size}개)
-              </Button>
+          ) : (
+            <div className={styles.emptyCartContainer}>
+              장바구니가 비었습니다
             </div>
-          </div>
-        </section>
-      </div>
-    </section>
+          )}
+        </div>
+      </section>
+    </>
   );
 }
 

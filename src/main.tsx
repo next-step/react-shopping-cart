@@ -7,7 +7,7 @@ import {
 } from '@tanstack/react-router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { routeTree } from './routeTree.gen';
-import './styles/index.css';
+import './styles/global.css.ts';
 
 export const queryClient = new QueryClient();
 

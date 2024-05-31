@@ -7,20 +7,20 @@ export const numberInputContainer = style({
 });
 
 export const numberInput = style({
-  width: 75,
-  height: 58,
+  width: 60,
+  height: 50,
   border: '1px solid #dddddd',
   textAlign: 'center',
-  fontSize: 24,
+  fontSize: 20,
 });
 
 export const numberInputButton = style({
+  width: 30,
+  height: 25,
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  padding: '4px 12px',
   border: '1px solid #dddddd',
-  fontSize: '100%',
   cursor: 'pointer',
 
   ':focus': {

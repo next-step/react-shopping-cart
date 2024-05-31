@@ -30,6 +30,8 @@ export const SnackBar = ({
     }
   }, [open]);
 
+  if (!open) return <></>;
+
   return (
     <div className={classNames(snackbarContainer, { [snackbarShow]: show })}>
       {message}

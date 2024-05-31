@@ -25,7 +25,7 @@ export const checkbox = style({
     content: '✔',
     width: '100%',
     height: '100%',
-    fontSize: '0.75rem',
+    fontSize: '0.5rem',
     color: 'white',
     display: 'flex',
     justifyContent: 'center',
