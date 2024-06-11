@@ -1,14 +1,8 @@
 # Pull Request Template
 
-> `PR Template`은 유용한 PR을 통해 리뷰어와 유의미한 소통으로 더 많은 성장을 하기 위함을 목적으로 하고 있습니다. (삭제)
-> 아래의 템플릿은 그대로 사용하셔도 되고 선택적으로 참고만하셔도 됩니다. (삭제)
-> (삭제)가 표기된 가이드 문구는 PR 올리실때 모두 제거해주세요. (삭제)
-
 ## 1. 가이드
 
 ### 1-1. 배포
-
-> 배포된 페이지가 있다면 링크를 남겨주세요 (삭제)
 
 - [LMS](https://edu.nextstep.camp)
 - [CSS](next-step.github.io/shopping-cart-css)
