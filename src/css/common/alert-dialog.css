@@ -1,0 +1,58 @@
+.alert-dialog-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.alert-dialog-content {
+  position: fixed;
+  display: grid;
+  gap: 16px;
+  top: 50%;
+  left: 50%;
+  padding: 18px;
+  min-width: 300px;
+  max-width: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: white;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
+
+.alert-dialog-confirm-button {
+  flex: 1;
+  height: 32px;
+  text-align: center;
+  color: white;
+  background-color: #2ac1bc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.alert-dialog-title {
+  text-align: start;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.alert-dialog-button-container {
+  display: flex;
+  gap: 8px;
+}
+.alert-dialog-cancel-button {
+  flex: 1;
+  height: 32px;
+  text-align: center;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.alert-dialog-message {
+  padding: 4px 0;
+  font-size: 18px;
+}
